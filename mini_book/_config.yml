@@ -1,0 +1,23 @@
+#######################################################################################
+# Book settings
+title : Scientific Python QuickStart 
+author: Thomas J. Sargent and John Stachurski
+logo: 'qe-logo-large.png'
+
+# Information about where the book exists on the web
+description: >-
+  A brief introduction to Python programming for scientific applications.
+
+execute_notebooks           : cache
+
+# #######################################################################################
+# Interact link settings
+notebook_interface          : "notebook"
+
+repository:
+  url                       : https://github.com/ExecutableBookProject/quantecon-example/tree/master/mini_book/docs
+  path_to_book              : "mini_book/"
+
+binder:
+  binderhub_url             : "https://mybinder.org"
+  text                      : "Launch binder"
