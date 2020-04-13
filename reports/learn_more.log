@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/Users/junaluzi/opt/anaconda3/envs/quantecon-mini-example/lib/python3.8/site-packages/jupyter_cache/executors/basic.py", line 157, in execute
+    executenb(nb_bundle.nb, cwd=tmpdirname)
+  File "/Users/junaluzi/opt/anaconda3/envs/quantecon-mini-example/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/Users/junaluzi/opt/anaconda3/envs/quantecon-mini-example/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/Users/junaluzi/opt/anaconda3/envs/quantecon-mini-example/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/Users/junaluzi/opt/anaconda3/envs/quantecon-mini-example/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np                     # Load the library
+
+a = np.linspace(-np.pi, np.pi, 100)    # Create even grid from -π to π
+b = np.cos(a)                          # Apply cosine to each element of a
+c = np.sin(a)                          # Apply sin to each element of a
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-7f34990abcd7>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m                     [0;31m# Load the library[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0ma[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlinspace[0m[0;34m([0m[0;34m-[0m[0mnp[0m[0;34m.[0m[0mpi[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mpi[0m[0;34m,[0m [0;36m100[0m[0;34m)[0m    [0;31m# Create even grid from -π to π[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mb[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mcos[0m[0;34m([0m[0ma[0m[0;34m)[0m                          [0;31m# Apply cosine to each element of a[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mc[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0msin[0m[0;34m([0m[0ma[0m[0;34m)[0m                          [0;31m# Apply sin to each element of a[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
