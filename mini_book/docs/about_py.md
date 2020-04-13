@@ -28,7 +28,9 @@ Python is free and open source, with development coordinated through the
 [Python Software Foundation](https://www.python.org/psf/).
 
 Python has experienced rapid adoption in the last decade and is now one
-of the most popular programming languages.
+of the most commonly used programming languages.
+
+Popular textbooks on Python programming include {cite}`guttag2016introduction` and {cite}`hill2016learning`.
 
 ### Common Uses
 
@@ -41,13 +43,15 @@ such as
 -   game development
 -   multimedia, data processing, security, etc., etc., etc.
 
-Python is very beginner-friendly and is often used to [teach computer
-science and
-programming](http://cacm.acm.org/blogs/blog-cacm/176450-python-is-now-the-most-popular-introductory-teaching-language-at-top-us-universities/fulltext).
+Python is beginner-friendly and routinely used to teach computer science and
+programming in top computer science programs.
 
-Python is particularly popular within the scientific and data science communities.
+Python is particularly popular within the scientific and data science
+communities.
 
-It is steadily [replacing familiar tools like Excel](https://news.efinancialcareers.com/us-en/3002556/python-replaced-excel-banking) in the fields of finance and banking.
+It is steadily [replacing familiar tools like
+Excel](https://news.efinancialcareers.com/us-en/3002556/python-replaced-excel-banking)
+in the fields of finance and banking.
 
 ### Relative Popularity
 
@@ -130,4 +134,9 @@ It\'s either the dominant player or a major player in
 -   [meteorology](https://pypi.org/project/meteorology/)
 
 Its popularity in economics is also beginning to rise.
+
+## Bibliography
+
+```{bibliography} ../_bibliography/references.bib
+```
 

@@ -39,11 +39,11 @@ Anaconda is
 -   comprehensive
 -   completely unrelated to the Nicki Minaj song of the same name
 
-```{note} 
 Anaconda also comes with a great package management system to organize
 your code libraries.
 
-**All of what follows assumes that you adopt this recommendation!**
+```{note} 
+All of what follows assumes that you adopt this recommendation!
 ```
 
 (install_anaconda)=
@@ -99,16 +99,18 @@ in a Jupyter notebook
 ```{figure} /_static/lecture_specific/getting_started/jp_demo.png
 :scale: 50%
 :figclass: align-center
+:name: jp_demo
+
+A Jupyter notebook viewed in the browser
 ```
 
 While Jupyter isn\'t the only way to code in Python, it\'s great for
 when you wish to
 
--   start coding in Python
+-   get started
 -   test new ideas or interact with small pieces of code
--   share or collaborate scientific ideas with students or colleagues
+-   share scientific ideas with students or colleagues
 
-These lectures are designed for executing in Jupyter notebooks.
 
 ### Starting the Jupyter Notebook
 
@@ -133,8 +135,8 @@ The output tells us the notebook is running at `http://localhost:8888/`
 -   `8888` refers to [port number](https://en.wikipedia.org/wiki/Port_%28computer_networking%29)
     8888 on your computer
 
-Thus, the Jupyter kernel is listening for Python commands on port 8888
-of our local machine.
+Thus, the Jupyter kernel is listening for Python commands on port 8888 of our
+local machine.
 
 Hopefully, your default browser has also opened up with a web page that
 looks something like this

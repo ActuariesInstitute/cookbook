@@ -11,18 +11,17 @@ kernelspec:
 
 # Learn More
 
-This section briefly showcases some examples of Python for scientific
-programming.
+We're about ready to wrap up this brief course on Python for scientific
+computing.
 
--   All of these topics will be covered in detail later on.
+In this last lecture we give some pointers to the major scientific libraries
+and suggestions for further reading.
 
-## Numerical Programming
+
+## NumPy
 
 Fundamental matrix and array processing capabilities are provided by the
 excellent [NumPy](http://www.numpy.org/) library.
-
-NumPy provides the basic array data type plus some simple processing
-operations.
 
 For example, let\'s build some arrays
 
@@ -40,11 +39,18 @@ Now let\'s take the inner product
 b @ c
 ```
 
-The number you see here might vary slightly but it\'s essentially zero.
+The number you see here might vary slightly due to floating point arithmetic
+but it\'s essentially zero.
 
-(For older versions of Python and NumPy you need to use the
-[np.dot](http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html)
-function)
+As with other standard NumPy operations, this inner product calls into highly
+optimized machine code.
+
+It is as efficient as carefully hand-coded FORTRAN or C.
+
+
+
+
+## SciPy
 
 The [SciPy](http://www.scipy.org) library is built on top of NumPy and
 provides additional functionality.
@@ -111,7 +117,6 @@ Other graphics libraries include
 
 -   [Plotly](https://plot.ly/python/)
 -   [Bokeh](http://bokeh.pydata.org/en/latest/)
--   [VPython](http://www.vpython.org/) --- 3D graphics and animations
 
 ## Symbolic Algebra
 
@@ -165,12 +170,7 @@ working within a fully fledged programming language.
 We can easily create tables of derivatives, generate LaTeX output, add
 that output to figures and so on.
 
-## Statistics
-
-Python\'s data manipulation and statistics libraries have improved
-rapidly over the last few years.
-
-### Pandas
+## Pandas
 
 One of the most popular libraries for working with data is
 [pandas](http://pandas.pydata.org/).
@@ -195,74 +195,11 @@ print(df)
 df.mean()
 ```
 
-### Other Useful Statistics Libraries
+## Further Reading
 
--   [statsmodels](http://statsmodels.sourceforge.net/) --- various
-    statistical routines
 
--   [scikit-learn](http://scikit-learn.org/) --- machine learning in
-    Python (sponsored by Google, among others)
+These lectures were originally taken from a longer and more complete lecture
+series on Python programming hosted by [QuantEcon](https://quantecon.org).
 
--   [pyMC](http://pymc-devs.github.io/pymc/) --- for Bayesian data
-    analysis
-
--   [pystan](https://pystan.readthedocs.org/en/latest/) Bayesian
-    analysis based on [stan](http://mc-stan.org/)
-
-## Networks and Graphs
-
-Python has many libraries for studying graphs.
-
-One well-known example is [NetworkX](http://networkx.github.io/). Its
-features include, among many other things:
-
--   standard graph algorithms for analyzing networks
--   plotting routines
-
-Here\'s some example code that generates and plots a random graph, with
-node color determined by shortest path length from a central node.
-
-```{code-cell} ipython3
-import networkx as nx
-import matplotlib.pyplot as plt
-%matplotlib inline
-np.random.seed(1234)
-
-# Generate a random graph
-p = dict((i, (np.random.uniform(0, 1), np.random.uniform(0, 1)))
-         for i in range(200))
-g = nx.random_geometric_graph(200, 0.12, pos=p)
-pos = nx.get_node_attributes(g, 'pos')
-
-# Find node nearest the center point (0.5, 0.5)
-dists = [(x - 0.5)**2 + (y - 0.5)**2 for x, y in list(pos.values())]
-ncenter = np.argmin(dists)
-
-# Plot graph, coloring by path length from central node
-p = nx.single_source_shortest_path_length(g, ncenter)
-plt.figure()
-nx.draw_networkx_edges(g, pos, alpha=0.4)
-nx.draw_networkx_nodes(g,
-                       pos,
-                       nodelist=list(p.keys()),
-                       node_size=120, alpha=0.5,
-                       node_color=list(p.values()),
-                       cmap=plt.cm.jet_r)
-plt.show()
-```
-
-## Cloud Computing
-
-Running your Python code on massive servers in the cloud is becoming
-easier and easier.
-
-A nice example is [Anaconda Enterprise](https://www.anaconda.com/enterprise/).
-
-See also
-
--   [Amazon Elastic Compute Cloud](http://aws.amazon.com/ec2/)
--   The [Google App Engine](https://cloud.google.com/appengine/)
-    (Python, Java, PHP or Go)
--   [Pythonanywhere](https://www.pythonanywhere.com/)
--   [Sagemath Cloud](https://cloud.sagemath.com/)
-
+The [full set of lectures](https://python-programming.quantecon.org/) might be
+useful as the next step of your study.

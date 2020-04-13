@@ -28,7 +28,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="OOP I: Introduction to Object Oriented Programming" href="oop_intro.html" />
+    <link rel="prev" title="An Introductory Example" href="python_by_example.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -74,9 +74,6 @@
   <li class="">
     <a href="python_by_example.html">An Introductory Example</a>
   </li>
-  <li class="">
-    <a href="oop_intro.html">OOP I: Introduction to Object Oriented Programming</a>
-  </li>
   <li class="active">
     <a href="">Learn More</a>
   </li>
@@ -91,9 +88,6 @@
   </li>
   <li class="">
     <a href="python_by_example.html">An Introductory Example</a>
-  </li>
-  <li class="">
-    <a href="oop_intro.html">OOP I: Introduction to Object Oriented Programming</a>
   </li>
   <li class="active">
     <a href="">Learn More</a>
@@ -141,7 +135,11 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#numerical-programming" class="nav-link">Numerical Programming</a>
+            <a href="#numpy" class="nav-link">NumPy</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#scipy" class="nav-link">SciPy</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -153,25 +151,11 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#statistics" class="nav-link">Statistics</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
             <a href="#pandas" class="nav-link">Pandas</a>
         </li>
     
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#other-useful-statistics-libraries" class="nav-link">Other Useful Statistics Libraries</a>
-        </li>
-    
-            </ul>
-        </li>
-    
         <li class="nav-item toc-entry toc-h2">
-            <a href="#networks-and-graphs" class="nav-link">Networks and Graphs</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#cloud-computing" class="nav-link">Cloud Computing</a>
+            <a href="#further-reading" class="nav-link">Further Reading</a>
         </li>
     
     </ul>
@@ -188,17 +172,14 @@
                 
   <div class="section" id="learn-more">
 <h1>Learn More<a class="headerlink" href="#learn-more" title="Permalink to this headline">¶</a></h1>
-<p>This section briefly showcases some examples of Python for scientific
-programming.</p>
-<ul class="simple">
-<li><p>All of these topics will be covered in detail later on.</p></li>
-</ul>
-<div class="section" id="numerical-programming">
-<h2>Numerical Programming<a class="headerlink" href="#numerical-programming" title="Permalink to this headline">¶</a></h2>
+<p>We’re about ready to wrap up this brief course on Python for scientific
+computing.</p>
+<p>In this last lecture we give some pointers to the major scientific libraries
+and suggestions for further reading.</p>
+<div class="section" id="numpy">
+<h2>NumPy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
 <p>Fundamental matrix and array processing capabilities are provided by the
 excellent <a class="reference external" href="http://www.numpy.org/">NumPy</a> library.</p>
-<p>NumPy provides the basic array data type plus some simple processing
-operations.</p>
 <p>For example, let’s build some arrays</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -226,10 +207,14 @@ operations.</p>
 </div>
 </div>
 </div>
-<p>The number you see here might vary slightly but it’s essentially zero.</p>
-<p>(For older versions of Python and NumPy you need to use the
-<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html">np.dot</a>
-function)</p>
+<p>The number you see here might vary slightly due to floating point arithmetic
+but it’s essentially zero.</p>
+<p>As with other standard NumPy operations, this inner product calls into highly
+optimized machine code.</p>
+<p>It is as efficient as carefully hand-coded FORTRAN or C.</p>
+</div>
+<div class="section" id="scipy">
+<h2>SciPy<a class="headerlink" href="#scipy" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://www.scipy.org">SciPy</a> library is built on top of NumPy and
 provides additional functionality.</p>
 <p id="tuple-unpacking-example">For example, let’s calculate <span class="math notranslate nohighlight">\(\int_{-2}^2 \phi(z) dz\)</span> where <span class="math notranslate nohighlight">\(\phi\)</span> is
@@ -290,7 +275,6 @@ gallery</a>.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://plot.ly/python/">Plotly</a></p></li>
 <li><p><a class="reference external" href="http://bokeh.pydata.org/en/latest/">Bokeh</a></p></li>
-<li><p><a class="reference external" href="http://www.vpython.org/">VPython</a> — 3D graphics and animations</p></li>
 </ul>
 </div>
 <div class="section" id="symbolic-algebra">
@@ -382,12 +366,8 @@ working within a fully fledged programming language.</p>
 <p>We can easily create tables of derivatives, generate LaTeX output, add
 that output to figures and so on.</p>
 </div>
-<div class="section" id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
-<p>Python’s data manipulation and statistics libraries have improved
-rapidly over the last few years.</p>
 <div class="section" id="pandas">
-<h3>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
+<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
 <p>One of the most popular libraries for working with data is
 <a class="reference external" href="http://pandas.pydata.org/">pandas</a>.</p>
 <p>Pandas is fast, efficient, flexible and well designed.</p>
@@ -432,80 +412,12 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="section" id="other-useful-statistics-libraries">
-<h3>Other Useful Statistics Libraries<a class="headerlink" href="#other-useful-statistics-libraries" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><a class="reference external" href="http://statsmodels.sourceforge.net/">statsmodels</a> — various
-statistical routines</p></li>
-<li><p><a class="reference external" href="http://scikit-learn.org/">scikit-learn</a> — machine learning in
-Python (sponsored by Google, among others)</p></li>
-<li><p><a class="reference external" href="http://pymc-devs.github.io/pymc/">pyMC</a> — for Bayesian data
-analysis</p></li>
-<li><p><a class="reference external" href="https://pystan.readthedocs.org/en/latest/">pystan</a> Bayesian
-analysis based on <a class="reference external" href="http://mc-stan.org/">stan</a></p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="networks-and-graphs">
-<h2>Networks and Graphs<a class="headerlink" href="#networks-and-graphs" title="Permalink to this headline">¶</a></h2>
-<p>Python has many libraries for studying graphs.</p>
-<p>One well-known example is <a class="reference external" href="http://networkx.github.io/">NetworkX</a>. Its
-features include, among many other things:</p>
-<ul class="simple">
-<li><p>standard graph algorithms for analyzing networks</p></li>
-<li><p>plotting routines</p></li>
-</ul>
-<p>Here’s some example code that generates and plots a random graph, with
-node color determined by shortest path length from a central node.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
-
-<span class="c1"># Generate a random graph</span>
-<span class="n">p</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
-         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">random_geometric_graph</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">)</span>
-
-<span class="c1"># Find node nearest the center point (0.5, 0.5)</span>
-<span class="n">dists</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
-<span class="n">ncenter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span>
-
-<span class="c1"># Plot graph, coloring by path length from central node</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">single_source_shortest_path_length</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ncenter</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">g</span><span class="p">,</span>
-                       <span class="n">pos</span><span class="p">,</span>
-                       <span class="n">nodelist</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
-                       <span class="n">node_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                       <span class="n">node_color</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-                       <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet_r</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/learn_more_20_0.png" src="../_images/learn_more_20_0.png" />
-</div>
-</div>
-</div>
-<div class="section" id="cloud-computing">
-<h2>Cloud Computing<a class="headerlink" href="#cloud-computing" title="Permalink to this headline">¶</a></h2>
-<p>Running your Python code on massive servers in the cloud is becoming
-easier and easier.</p>
-<p>A nice example is <a class="reference external" href="https://www.anaconda.com/enterprise/">Anaconda Enterprise</a>.</p>
-<p>See also</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://aws.amazon.com/ec2/">Amazon Elastic Compute Cloud</a></p></li>
-<li><p>The <a class="reference external" href="https://cloud.google.com/appengine/">Google App Engine</a>
-(Python, Java, PHP or Go)</p></li>
-<li><p><a class="reference external" href="https://www.pythonanywhere.com/">Pythonanywhere</a></p></li>
-<li><p><a class="reference external" href="https://cloud.sagemath.com/">Sagemath Cloud</a></p></li>
-</ul>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>These lectures were originally taken from a longer and more complete lecture
+series on Python programming hosted by <a class="reference external" href="https://quantecon.org">QuantEcon</a>.</p>
+<p>The <a class="reference external" href="https://python-programming.quantecon.org/">full set of lectures</a> might be
+useful as the next step of your study.</p>
 </div>
 </div>
 
@@ -518,7 +430,7 @@ easier and easier.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="oop_intro.html" title="previous page">OOP I: Introduction to Object Oriented Programming</a>
+    <a class='left-prev' id="prev-link" href="python_by_example.html" title="previous page">An Introductory Example</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
