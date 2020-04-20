@@ -40,7 +40,7 @@ distribution that contains
 2.  compatible versions of the most popular scientific libraries.
 
 
-The best such distribution is 
+The best such distribution is
 [Anaconda](https://www.anaconda.com/what-is-anaconda/).
 
 Anaconda is
@@ -53,7 +53,7 @@ Anaconda is
 Anaconda also comes with a great package management system to organize
 your code libraries.
 
-```{note} 
+```{note}
 All of what follows assumes that you adopt this recommendation!
 ```
 
@@ -103,7 +103,7 @@ They use a *browser-based* interface to Python with
 Because of these features, Jupyter is now a major player in the
 scientific computing ecosystem.
 
-Here\'s an image showing execution of some code (borrowed from
+{numref}`Figure %s <jp_demo>` shows the execution of some code (borrowed from
 [here](http://matplotlib.org/examples/pylab_examples/hexbin_demo.html))
 in a Jupyter notebook
 
