@@ -25,14 +25,3 @@ lectures](https://python.quantecon.org) on open source computing hosted by
 [QuantEcon](https://quantecon.org).
 
 
-## Table of Contents
-
-
-```{toctree}
-:maxdepth: 1
-
-about_py
-getting_started
-python_by_example
-learn_more
-```

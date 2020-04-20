@@ -21,10 +21,6 @@ body {
     }
 }
 
-code {
-    font-size: 87.5% !important;
-}
-
 /*********************************************
 * Main body *
 *********************************************/
@@ -45,156 +41,50 @@ code {
 div.bd-sidebar.collapse:not(.show) + main.bd-content {
     @media (max-width: $breakpoint-xxl) {
         flex: 0 0 100%;
-        max-width: 100%;
+        max-width: 100%;    
     }
 }
 
-main.bd-content {
-    padding-top: $topbar-height !important;
-    padding-bottom: 0px !important;
+main {
+    &.bd-content {
+        padding-top: $topbar-height !important;
+        padding-bottom: 0px !important;
+    }
 
-    // CSS unique to a single page
-    &.single-page {
-        max-width: 1100px;
-        margin-left: auto;
-        margin-right: auto;
+    a.headerlink {
+        opacity: 0;
+        margin-left: .2em;
+        color: #005b81;
 
-        // Page title styling
-        div#main-content div.section:first-of-type > h1:first-of-type {
-            border-bottom: 1px solid #130654;
-            padding-bottom: .2em;
-            font-size: 3em;
+        &:hover {
+            background-color: transparent;
+            color: #005b81;
         }
     }
 
-    #main-content {
-        // Content links and link color
-        a.headerlink {
-            opacity: 0;
-            margin-left: .2em;
-
-            &:hover {
-                background-color: transparent;
-                color: #0071bc;
-                opacity: 1 !important;
-            }
+    h1, h2, h3, h4, h5 {
+        &:hover a.headerlink {
+            opacity: 1;
         }
+    }
 
-        a, a:visited {
-            color: #0071bc;
-        }
+    div.section {
+        padding-right: 1em;
+        overflow: visible !important;  // So that sidebars don't cause a scroll
+    }
 
-        h1, h2, h3, h4, h5 {
-            color: black;
-            &:hover a.headerlink {
-                opacity: .5;
-            }
-            // Make sure titles don't become hyperlink color when there are labels
-            a.toc-backref {
-                color: inherit;
-            }
-        }
+    // Math equations
+    span.eqno {
+        float: right;
+        margin: 1em 0em;
+        font-size: 1.2em;
+    }
 
-        div.section {
-            padding-right: 1em;
-            overflow: visible !important;  // So that sidebars don't cause a scroll
-
-            // List styles to avoid too much whitespace
-            ul, ol {
-                p {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
-        // Math equations
-        span.eqno {
-            float: right;
-            margin: 1em 0em;
-            font-size: 1.2em;
-        }
-
-        // Figures
-        div.figure {
-            width: 100%;
-            margin-bottom: 1em;
-            text-align: center;
-
-            &.align-left {
-                text-align: left;
-                p.caption {
-                    margin-left: 0;
-                }
-            }
-            &.align-right {
-                text-align: right;
-                p.caption {
-                    margin-right: 0;
-                }
-            }
-
-            p.caption {
-                margin: .5em 10%;
-            }
-
-            &.margin, &.margin-caption {
-                p.caption {
-                    margin: .5em 0;
-                }
-            }
-
-            &.margin-caption p.caption {
-                text-align: left;
-            }
-
-            span.caption-number {
-                font-weight: bold;
-            }
-
-            span {
-                font-size: .9em;
-            }
-        }
-
-        // Admonitions
-        div.alert {
-            padding-bottom: .75em;  // Overriding an override
-
-            p.admonition-title {
-                margin-bottom: .2em;
-                font-size: 1.1em;
-
-                &::after {
-                    font-family: "FontAwesome";
-                    margin-left: 0.5em;
-                    // Default content is exclamation point
-                    content: "\f06a";
-                }
-            }
-
-            &.alert-warning p.admonition-title::after {
-                content: "\f071";
-                color: red;
-            }
-        }
-
-        // Glossaries
-        dl.glossary {
-            dd {
-                margin-left: 1.5em;
-            }
-        }
-
-        // Table of contents
-        div.contents p.topic-title {
-            font-size: 1.5em;
-            padding: .5em 0 0 1em;
-        }
-
-        // Misc text and directives
-        p.centered {
-            text-align: center;
-        }
+    // List styles to avoid too much whitespace
+    div.section ul, div.section ol {
+        p {
+            margin-bottom: 0;
+        }   
     }
 }
 
@@ -213,61 +103,42 @@ div.cell {
     }
 }
 
-// Margin and content-sidebar rules
-div.sidebar, div.margin, div.margin-caption p.caption {
-    width: 40%;
-    float: right;
-    border-left: 1px #a4a6a7 solid;
-    margin-left: 0.5em;
-    padding: .2em 0 .2em 1em;
 
-    p {
-        margin-bottom: 0;
-    }
-
-    p.sidebar-title {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-}
-
-
-// Right margin CSS, largely copied from https://edwardtufte.github.io/tufte-css/
+// Right sidebar CSS, largely copied from https://edwardtufte.github.io/tufte-css/
 // 992px is the L breakpoint in bootstrap
 @media (min-width: $breakpoint-md) {
-    div.cell.tag_popout, div.cell.tag_margin, div.margin, div.margin-caption p.caption {
-        border: none;
+    div.cell.tag_popout, div.cell.tag_sidebar, div.sidebar {
+        float: right;
         clear: right;
         width: 33% !important;
-        margin: 0 -40% 0 0 !important;
-        padding: 0 1em 0 0 !important;
+        margin-right: -40% !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: 1em !important;
         font-size: 0.9rem;
         line-height: 1.3;
         vertical-align: baseline;
         position: relative;
-
-        p {
-            margin-bottom: .5em;
-
-            &.sidebar-title {
-                font-size: 1em;
-            }
-        }
-
-
     }
 
-    // Make cell outputs take up more space if they're in the margin
-    div.cell.tag_margin .cell_output {
+    // Make cell outputs take up more space if they're in the sidebar
+    div.cell.tag_sidebar .cell_output {
         padding-left: 0;
+        margin-bottom: 0;
+        
     }
 }
 
-
-@media (min-width: $breakpoint-md) {
-    div.cell.tag_full-width, div.cell.tag_full_width, div.full_width, div.full-width {
-        width: 134% !important;
+@media (max-width: $breakpoint-md) {
+    div.cell.tag_popout, div.cell.tag_sidebar, div.sidebar {
+        border-left: 3px solid #c3c3c3;
+        margin: 1em;
+        padding: .2em 1.5em;
     }
+}
+
+div.cell.tag_full_width, div.full-width {
+    width: 134% !important;
 }
 
 blockquote {
@@ -291,11 +162,6 @@ blockquote {
         color: #6c757d;
         padding-right: 2em;
     }
-}
-
-// Code cells have background at the `pre` level so remove from here
-div.highlight {
-    background: none;
 }
 
 // Footnotes
@@ -327,11 +193,11 @@ dl.footnote {
     }
 
     .topbar-main {
-        button.navbar-toggler, .dropdown-buttons-trigger {
+        button.navbar-toggler, .download-buttons-dropdown {
             float: left;
             height: 100%;
         }
-
+    
         button.topbarbtn {
             margin: 0 .2em;
             background-color: #5a5a5a;
@@ -347,33 +213,25 @@ dl.footnote {
 }
 
 // Download buttons
-span.topbar-button-text {
-    margin-left: 0.4em;
-
-    @media (max-width: $breakpoint-md) {
-        display: none;
-    }
-}
-
-div.dropdown-buttons-trigger {
-
-    div.dropdown-buttons {
+div.download-buttons-dropdown {
+    div.download-buttons {
         display: none;
         position: absolute;
-        max-width: 120px;
+        max-width: 100px;
 
         button {
-            min-width: 120px !important;
+            min-width: 100px !important;
             border: 1px white solid !important;
+            border-radius: 0 !important;
         }
     }
 
-    &:hover div.dropdown-buttons {
+    &:hover div.download-buttons {
         display: block;
     }
 }
 
-a.dropdown-buttons i {
+a.download-buttons i {
     margin-right: .5em;
 }
 
@@ -459,16 +317,7 @@ button.topbarbtn img {
     // By default the nav is hidden unless a few conditions are met
     nav {
         opacity: 0;
-        transition: opacity 0.2s ease;
-
-        // TOC link color
-        a:hover, li.active > a.active {
-            color: #0071bc;
-        }
-
-        li.active > a.active {
-            border-left: 2px solid #0071bc;
-        }
+        transition: opacity 0.2s ease; 
     }
 
     // On really wide screens, we always show the nav
@@ -494,11 +343,6 @@ button.topbarbtn img {
     .toc-entry a {
         padding: .125rem 1rem !important;
     }
-
-    // Make sure the pydata sphinx theme edit button doesn't show up
-    div.editthispage {
-        display: none;
-    }
 }
 
 /*********************************************
@@ -507,47 +351,13 @@ button.topbarbtn img {
 .bd-sidebar  {
     top: 0px !important;
     overflow-y: auto;
-    height: 100vh !important;
-
-    // Sidebar link color
-    nav ul.nav {
-        a:hover, li.active > a, li.active > a:hover {
-            color: #0071bc;
-        }
-    }
-
     scrollbar-width: thin;
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    &::-webkit-scrollbar {
-        background: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-    }
+    height: 100vh !important;
 
     @media (min-width: $breakpoint-md) {
         opacity: 0.6;
     }
-
-    // Hide the scrollbar until hover on wide screens
-    @media (min-width: $breakpoint-lg) {
-        &:not(:hover) {
-            -ms-overflow-style: none;
-
-            &::-webkit-scrollbar {
-              background: #FFFFFF;
-            }
-
-            &::-webkit-scrollbar-thumb {
-              background: #FFFFFF;
-            }
-        }
-    }
-
+    
     &:hover {
         opacity: 1;
     }
@@ -559,7 +369,7 @@ button.topbarbtn img {
         text-align: center;
     }
 
-    p.navbar_footer {
+    p.sidebar_footer {
         text-align: center;
         font-size: .9em;
         padding-top: .5em;
@@ -573,20 +383,15 @@ button.topbarbtn img {
     }
 
     // Captions
-    li + li.navbar-special {
+    li + li.sidebar-special {
         margin-top: 1em;
     }
 
-    p.margin-caption {
+    p.sidebar-caption {
         margin-bottom: 0;
         font-size: 1.2em;
     }
 
-    // External links
-    li > a > i {
-        font-size: .8em;
-        margin-left: 0.3em;
-    }
 }
 
 .site-navigation, .site-navigation.collapsing {
@@ -603,6 +408,9 @@ button.topbarbtn img {
 }
 
 @media (max-width: $breakpoint-md) {
+    div#main-content {
+        margin-top: $topbar-height;
+    }
 
     .bd-sidebar {
         height: 60vh !important;
@@ -625,6 +433,16 @@ button.topbarbtn img {
     }
 }
 
+
+// Scrollbar width
+::-webkit-scrollbar {
+  width: 5px;
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+}
 
 div.navbar-brand-box {
     padding-top: 2em;
@@ -676,44 +494,106 @@ nav.bd-links {
 }
 
 
-// Thebelab buttons
-.thebelab-cell {
-    // To ensure that thebelab cells are always the top of the Z-stack
-    position: relative;
-    z-index: 999;
+/*********************************************
+* Print-specific CSS *
+*********************************************/
+@media print {
+    .tag_popout, div.sidebar {
+        float: right;
+        clear: right;
+        width: 50%;
+        margin-right: -56%;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-right: 1em;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        vertical-align: baseline;
+        position: relative;
+        
+        border-left: none;
+        padding-left: 0;
+    }
 
-    // Remove styling since we use our own
-    border: 0 !important;
-    border-radius: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 8px !important;
+    .bd-content {
+        // Widen the main div since we won't have a TOC
+        div#main-content > div {
+            flex: 0 0 75%;
+            max-width: 75%;
+        }
+    }
+
+    h1, h2, h3, h4 {
+        break-after: avoid;
+    }
+
+    table {
+        break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+
+    a.copybtn, a.headerlink {
+        display: none;
+    }
+
+    .tag-fullwidth {
+        width: 145%;
+        clear: both;
+    }
+
+    div.toggle-hidden {
+        visibility: inherit;
+        opacity: 1;
+        height: auto;
+    }
+    
+    button.toggle-button {
+        display: none;
+    }
+
+    blockquote.epigraph {
+        border: none;
+    }
+
+    // For some reason this fixes the containers from taking up the whole screen
+    div.container {
+        min-width: 50% !important;
+    }
+
+    div.bd-sidebar, div.prev-next-bottom {
+        display: none;
+    }
+
+    div.topbar {
+        height: 0;
+        padding: 0;
+        position: inherit;  // So that TOC isn't printed on each page
+        
+        div.topbar-main {
+            opacity: 0;
+        }
+
+        // Grow and show the TOC on print
+        .bd-toc {
+            flex: 0 0 25%;
+            max-width: 25%;
+            height: auto !important;
+            // All 1st and 2nd items should be displayed
+            nav, nav > ul.nav, nav > ul.nav > li > ul.nav {
+                opacity: 1;
+                display: block;
+            }
+            
+            // No fancy styling for nav links
+            .nav-link.active {
+                font-weight: inherit;
+                color: inherit;
+                background-color: inherit;
+                border-left: inherit;
+            }
+        }
+    }
 }
-
-.thebelab-button {
-    z-index: 999;
-    display: inline-block;
-    padding: 0.35em 1.2em;
-    margin: 0px 1px;
-    border-radius: 0.12em;
-    box-sizing:  border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    transition: all 0.2s;
-    background-color: #dddddd;
-    border: 0.05em solid white;
-    color: #000000;
-}
-
-.thebelab-button:hover{
-    border: 0.05em solid black;
-    background-color: #fcfcfc;
-}
-
-
-div.jp-OutputArea-output {
-    padding: 5px;
-}
-
-@import 'print';
