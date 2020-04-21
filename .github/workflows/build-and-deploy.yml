@@ -13,6 +13,7 @@ jobs:
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
+          auto-activate-base: false
           miniconda-version: 'latest'
           python-version: 3.7
           environment-file: environment.yml
@@ -23,10 +24,11 @@ jobs:
 
       - name: Build QuantEcon Mini Example
         run: jb build mini_book/
-        
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: _build/html/
+
