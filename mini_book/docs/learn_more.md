@@ -93,21 +93,18 @@ Example 2D plot with embedded LaTeX annotations
 
 ```{figure} /_static/lecture_specific/about_py/qs.png
 :scale: 55%
-:figclass: align-center
 ```
 
 Example contour plot
 
 ```{figure} /_static/lecture_specific/about_py/bn_density1.png
 :scale: 55%
-:figclass: align-center
 ```
 
 Example 3D plot
 
 ```{figure} /_static/lecture_specific/about_py/career_vf.png
 :scale: 80%
-:figclass: align-center
 ```
 
 More examples can be found in the [Matplotlib thumbnail
