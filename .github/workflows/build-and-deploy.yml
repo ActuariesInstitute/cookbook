@@ -36,3 +36,6 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: mini_book/_build/html/
+        run: | 
+          pwd
+          ls mini_book/_build/html/
