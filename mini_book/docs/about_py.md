@@ -140,3 +140,4 @@ Its popularity in economics is also beginning to rise.
 ```{bibliography} ../_bibliography/references.bib
 ```
 
+**Testing** text for [PR#6](https://github.com/ExecutableBookProject/quantecon-mini-example/pull/6)
