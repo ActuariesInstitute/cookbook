@@ -32,5 +32,5 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: _build/html/
+          FOLDER: mini_book/_build/html/
 
