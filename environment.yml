@@ -1,0 +1,11 @@
+name: quantecon-mini-example
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - pip
+  - python
+  - matplotlib
+  - pip:
+    - quantecon
+ 
