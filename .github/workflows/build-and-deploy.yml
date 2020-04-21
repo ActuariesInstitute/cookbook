@@ -20,9 +20,11 @@ jobs:
           activate-environment: quantecon-mini-example
           
       - name: Install jupyter_book
+        shell: bash -l {0}
         run: pip install git+https://github.com/ExecutableBookProject/cli.git@master
 
       - name: Build QuantEcon Mini Example
+        shell: bash -l {0}
         run: jb build mini_book/
 
       - name: Deploy 🚀
