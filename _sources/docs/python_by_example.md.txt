@@ -37,7 +37,6 @@ In other words, we want to generate figures that look something like
 this:
 
 ```{figure} /_static/lecture_specific/python_by_example/test_program_1_updated.png
-:figclass: align-center
 ```
 
 (Here $t$ is on the horizontal axis and $\epsilon_t$ is on the vertical
@@ -255,7 +254,7 @@ objects.
 For example, try
 
 ```{code-cell} python3
-x = [10, 'foo', False]  
+x = [10, 'foo', False]
 type(x)
 ```
 
@@ -437,7 +436,7 @@ The balance updates from period $t$ to $t+1$ according to
 
 ```{math}
 :label: ilom
-    b_{t+1} = (1 + r) b_t 
+    b_{t+1} = (1 + r) b_t
 ```
 
 In the code below, we generate and plot the sequence $b_0, b_1, \ldots, b_T$
@@ -447,7 +446,7 @@ Instead of using a Python list to store this sequence, we will use a
 NumPy array.
 
 ```{code-cell} python3
-r = 0.025         # interest rate 
+r = 0.025         # interest rate
 T = 50            # end date
 b = np.empty(T+1) # an empty NumPy array, to store all b_t
 b[0] = 10         # initial balance
@@ -595,7 +594,7 @@ Here\'s one solution.
 ```{code-cell} python3
 α = 0.9
 T = 200
-x = np.empty(T+1) 
+x = np.empty(T+1)
 x[0] = 0
 
 for t in range(T):
@@ -610,7 +609,7 @@ plt.show()
 ```{code-cell} python3
 α_values = [0.0, 0.8, 0.98]
 T = 200
-x = np.empty(T+1) 
+x = np.empty(T+1)
 
 for α in α_values:
     x[0] = 0
@@ -629,7 +628,7 @@ Here\'s one solution:
 ```{code-cell} python3
 α = 0.9
 T = 200
-x = np.empty(T+1) 
+x = np.empty(T+1)
 x[0] = 0
 
 for t in range(T):
@@ -646,7 +645,7 @@ Here\'s one way:
 ```{code-cell} python3
 α = 0.9
 T = 200
-x = np.empty(T+1) 
+x = np.empty(T+1)
 x[0] = 0
 
 for t in range(T):
@@ -665,7 +664,7 @@ Here\'s a shorter way to write the same thing:
 ```{code-cell} python3
 α = 0.9
 T = 200
-x = np.empty(T+1) 
+x = np.empty(T+1)
 x[0] = 0
 
 for t in range(T):

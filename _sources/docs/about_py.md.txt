@@ -60,7 +60,6 @@ measure of the relative popularity of Python
 
 ```{figure} /_static/lecture_specific/about_py/python_vs_matlab.png
 :scale: 72%
-:figclass: align-center
 ```
 
 The figure indicates not only that Python is widely used but also that
@@ -76,7 +75,6 @@ library for data analysis with Python has exploded, as seen here.
 
 ```{figure} /_static/lecture_specific/about_py/pandas_vs_matlab.png
 :scale: 23%
-:figclass: align-center
 ```
 
 Note that pandas takes off in 2012, which is the same year that we see
@@ -140,3 +138,4 @@ Its popularity in economics is also beginning to rise.
 ```{bibliography} ../_bibliography/references.bib
 ```
 
+**Testing** text for [PR#6](https://github.com/ExecutableBookProject/quantecon-mini-example/pull/6)
