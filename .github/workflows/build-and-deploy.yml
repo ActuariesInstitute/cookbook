@@ -28,14 +28,11 @@ jobs:
 
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
-        run: | 
-          jb build mini_book/
-          pwd
-          ls mini_book/_build/html/
+        run: jb build mini_book/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: mini_book/_build/html/
+          FOLDER: mini_book/_build/html
