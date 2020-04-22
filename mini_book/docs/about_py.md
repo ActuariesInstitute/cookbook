@@ -137,5 +137,3 @@ Its popularity in economics is also beginning to rise.
 
 ```{bibliography} ../_bibliography/references.bib
 ```
-
-**New Text** is here
