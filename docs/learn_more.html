@@ -6,15 +6,14 @@
   <head>
     <meta charset="utf-8" />
     <title>Learn More &#8212; Scientific Python QuickStart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
-    <link href="../_static/css/index.css" rel="stylesheet">
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -38,7 +37,7 @@
     <meta name="docsearch:language" content="en">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <!-- Put requirejs at the end so it's always after bootstrap -->
 <!-- TODO: remove this once https://github.com/pandas-dev/pydata-sphinx-theme/pull/149 is merged -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
@@ -46,10 +45,10 @@
 
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
 
-    <div class="container-fluid">
+    <div class="container-xl">
       <div class="row">
           
 
@@ -101,14 +100,14 @@
 
 
           
-<main class="col py-md-3 pl-md-5 bd-content overflow-auto" role="main">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
     
       <div class="row topbar fixed-top container-xl">
     <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
     </div>
-    <div class="col topbar-main">
-        <button id="navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation">
+    <div class="col pl-2 topbar-main">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
@@ -146,9 +145,10 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
-
-<div class="tocsection onthispage"><i class="fas fa-list"></i> On this page</div>
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
     
@@ -179,11 +179,12 @@
     </ul>
 </nav>
 
+
     </div>
 </div>
     
     <div id="main-content" class="row">
-        <div class="col-12 col-md-9 col-xxl-7">
+        <div class="col-12 col-md-9 col-xxl-7 pl-md-3 pr-md-0">
         
               <div>
                 
@@ -216,11 +217,6 @@ excellent <a class="reference external" href="http://www.numpy.org/">NumPy</a> l
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.04891256782214e-16
-</pre></div>
-</div>
-</div>
 </div>
 <p>The number you see here might vary slightly due to floating point arithmetic
 but it’s essentially zero.</p>
@@ -242,11 +238,6 @@ the standard normal density.</p>
 <span class="n">ϕ</span> <span class="o">=</span> <span class="n">norm</span><span class="p">()</span>
 <span class="n">value</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">ϕ</span><span class="o">.</span><span class="n">pdf</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Integrate using Gaussian quadrature</span>
 <span class="n">value</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9544997361036417
 </pre></div>
 </div>
 </div>
@@ -307,10 +298,6 @@ from within the Python shell.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 3 x + y\]</div>
-</div>
 </div>
 <p>We can manipulate expressions</p>
 <div class="cell docutils container">
@@ -320,10 +307,6 @@ from within the Python shell.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle x^{2} + 2 x y + y^{2}\]</div>
-</div>
 </div>
 <p>solve polynomials</p>
 <div class="cell docutils container">
@@ -331,11 +314,6 @@ from within the Python shell.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">solve</span>
 
 <span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[-1/2 - sqrt(7)*I/2, -1/2 + sqrt(7)*I/2]
 </pre></div>
 </div>
 </div>
@@ -349,10 +327,6 @@ from within the Python shell.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \infty\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -360,20 +334,12 @@ from within the Python shell.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 1\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \cos{\left(x \right)}\]</div>
 </div>
 </div>
 <p>The beauty of importing this functionality into Python is that we are
@@ -401,27 +367,10 @@ excellent <code class="docutils literal notranslate"><span class="pre">random</s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>               price    weight
-2010-12-28  0.471435 -1.190976
-2010-12-29  1.432707 -0.312652
-2010-12-30 -0.720589  0.887163
-2010-12-31  0.859588 -0.636524
-2011-01-01  0.015696 -2.242685
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>price     0.411768
-weight   -0.699135
-dtype: float64
 </pre></div>
 </div>
 </div>
@@ -448,7 +397,7 @@ useful as the next step of your study.</p>
     <a class='left-prev' id="prev-link" href="python_by_example.html" title="previous page">An Introductory Example</a>
 
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
   <div class="container">
     <p>
           &copy; Copyright .<br/>
