@@ -1,8 +1,7 @@
 name: Build and Deploy (Nightly)
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
