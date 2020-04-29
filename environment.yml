@@ -1,4 +1,4 @@
-name: quantecon-mini-example
+name: qe-mini
 channels:
   - default
   - conda-forge
@@ -10,8 +10,4 @@ dependencies:
   - matplotlib
   - pip:
     - quantecon
-    - git+https://github.com/ExecutableBookProject/MyST-NB.git
-    - jupyter-cache[cli]
-    - git+https://github.com/mwouts/jupytext.git
     - git+https://github.com/ExecutableBookProject/jupyter-book
-    - git+https://github.com/ExecutableBookProject/sphinx-book-theme
