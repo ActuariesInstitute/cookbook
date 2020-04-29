@@ -9,4 +9,5 @@ dependencies:
   - matplotlib
   - pip:
     - quantecon
+    - jupyter-cache[jupyter-book]
     - git+https://github.com/ExecutableBookProject/jupyter-book
