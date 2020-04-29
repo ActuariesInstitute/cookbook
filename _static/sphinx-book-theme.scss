@@ -8,11 +8,14 @@ $breakpoint-lg: 992px;
 $breakpoint-md: 768px;
 $breakpoint-sm: 576px;
 
+// Colors
+$non-content-grey: #5a5a5a;
+
 /*********************************************
 * Whole page *
 *********************************************/
 
-$topbar-height: 3.5em;
+$topbar-height: 3em;
 
 body {
     padding-top: 0px !important;
@@ -196,6 +199,13 @@ main.bd-content {
         p.centered {
             text-align: center;
         }
+
+        // Tables from sphinx-tabs
+
+        div.sphinx-tabs > div.menu > a.item {
+            width: auto;
+            margin: 0;
+        }
     }
 }
 
@@ -240,8 +250,8 @@ div.sidebar, div.margin, div.margin-caption p.caption, .cell.tag_popout, .cell.t
     div.cell.tag_popout, div.cell.tag_margin, div.margin, div.margin-caption p.caption {
         border: none;
         clear: right;
-        width: 32% !important;
-        margin: 0 -38% 0 0 !important;
+        width: 31% !important;
+        margin: 0 -35% 0 0 !important;
         padding: 0 !important;
         font-size: 0.9rem;
         line-height: 1.3;
@@ -317,10 +327,10 @@ dl.footnote {
 *********************************************/
 .topbar {
     margin: 0em auto 1em auto !important;
-    padding-top: .75em;
-    padding-bottom: .75em;
+    padding-top: .25em;
+    padding-bottom: .25em;
     background-color: white;
-    height: 4em;
+    height: $topbar-height;
     transition: left .2s;
 
     > div {
@@ -329,14 +339,24 @@ dl.footnote {
     }
 
     .topbar-main {
-        button.navbar-toggler, .dropdown-buttons-trigger {
+        > button, > div, > a {
             float: left;
             height: 100%;
         }
 
         button.topbarbtn {
-            margin: 0 .2em;
-            background-color: #5a5a5a;
+            margin: 0 .1em;
+            background-color: white;
+            color: $non-content-grey;
+            font-size: 1.4em;
+            border: none;
+            padding-top: .1rem;
+            padding-bottom: .1rem;
+        }
+
+        // buttons float right
+        div.dropdown-buttons-trigger, a.edit-button, a.full-screen-button {
+            float: right;
         }
     }
 }
@@ -363,10 +383,17 @@ div.dropdown-buttons-trigger {
         display: none;
         position: absolute;
         max-width: 120px;
+        margin-top: .2em;
+        z-index: 1000;
 
-        button {
+        button.topbarbtn {
+            padding-top: .35rem;
+            padding-bottom: .35rem;
             min-width: 120px !important;
             border: 1px white solid !important;
+            background-color: $non-content-grey;
+            color: white;
+            font-size: 1em;
         }
     }
 
@@ -389,6 +416,7 @@ button.topbarbtn img {
     position: relative;
     margin-right: 1em;
     margin-left: .5em;
+    color: $non-content-grey;
 
     i {
         transition: opacity .3s, transform .3s;
@@ -396,7 +424,7 @@ button.topbarbtn img {
         top: 16%;
         left: 0;
         display: block;
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 
     i.fa-bars {
@@ -458,6 +486,11 @@ button.topbarbtn img {
     z-index: 999;
     transition: height .35s ease;
 
+    // Colors
+    div.onthispage, .toc-entry a {
+        color: $non-content-grey;
+    }
+
     // By default the nav is hidden unless a few conditions are met
     nav {
         opacity: 0;
@@ -513,6 +546,9 @@ button.topbarbtn img {
 
     // Sidebar link color
     nav ul.nav {
+        li a, ul li a {
+            color: $non-content-grey;
+        }
         a:hover, li.active > a, li.active > a:hover {
             color: #0071bc;
         }
@@ -565,6 +601,7 @@ button.topbarbtn img {
         text-align: center;
         font-size: .9em;
         padding-top: .5em;
+        color: $non-content-grey;
     }
 
     &.collapsing {
@@ -629,7 +666,9 @@ button.topbarbtn img {
 
 
 div.navbar-brand-box {
-    padding-top: 2em;
+    @media (min-width: $breakpoint-md) {
+        padding-top: 2em;
+    }
 
     a.navbar-brand {
         width: 100%;
