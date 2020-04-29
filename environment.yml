@@ -1,4 +1,4 @@
-name: qe-mini
+name: quantecon-mini-example
 channels:
   - default
   - conda-forge
