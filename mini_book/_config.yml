@@ -1,6 +1,6 @@
 #######################################################################################
 # Book settings
-title : Scientific Python QuickStart 
+title : Scientific Python QuickStart
 author: Thomas J. Sargent and John Stachurski
 logo: 'qe-logo-large.png'
 
@@ -8,19 +8,29 @@ logo: 'qe-logo-large.png'
 description: >-
   A brief introduction to Python programming for scientific applications.
 
-execute_notebooks           : cache
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks           : cache
+
+#######################################################################################
+# HTML-specific settings
+html:
+  home_page_in_navbar         : false
 
 # #######################################################################################
 # Interact link settings
-notebook_interface          : "notebook"
+notebook_interface            : "notebook"
 
+#######################################################################################
+# Launch button settings
 repository:
-  url                       : https://github.com/ExecutableBookProject/quantecon-example/tree/master/mini_book/docs
-  path_to_book              : "mini_book/"
+  url                         : https://github.com/ExecutableBookProject/quantecon-example/tree/master/mini_book/docs
+  path_to_book                : "mini_book/"
 
 binder:
-  binderhub_url             : "https://mybinder.org"
-  text                      : "Launch binder"
+  binderhub_url               : "https://mybinder.org"
+  text                        : "Launch binder"
 
 latex:
-  latex_engine              : "xelatex"
+  latex_engine                : "xelatex"
