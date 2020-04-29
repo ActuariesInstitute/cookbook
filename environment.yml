@@ -4,10 +4,14 @@ channels:
   - conda-forge
 dependencies:
   - python=3.7.*
+  - sphinx=2.4.4
   - pip
   - pandas
   - matplotlib
   - pip:
     - quantecon
-    - jupyter-cache[jupyter-book]
+    - git+https://github.com/ExecutableBookProject/MyST-NB.git
+    - jupyter-cache[cli]
+    - git+https://github.com/mwouts/jupytext.git
     - git+https://github.com/ExecutableBookProject/jupyter-book
+    - git+https://github.com/ExecutableBookProject/sphinx-book-theme
