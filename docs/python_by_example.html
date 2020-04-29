@@ -338,6 +338,9 @@ in the notebook if you run it on your own machine.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_3_0.png" src="../_images/python_by_example_3_0.png" />
+</div>
 </div>
 <p>Let’s break this program down and see how it works.</p>
 <div class="section" id="imports">
@@ -361,10 +364,20 @@ syntax <code class="docutils literal notranslate"><span class="pre">np.attribute
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.3862943611198906
 </pre></div>
 </div>
 </div>
@@ -375,6 +388,11 @@ syntax <code class="docutils literal notranslate"><span class="pre">np.attribute
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
 </pre></div>
 </div>
 </div>
@@ -428,6 +446,11 @@ package.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here’s another way to access NumPy’s square root function</p>
 <div class="cell docutils container">
@@ -435,6 +458,11 @@ package.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.0
 </pre></div>
 </div>
 </div>
@@ -457,6 +485,9 @@ lines after the import statements are</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_14_0.png" src="../_images/python_by_example_14_0.png" />
 </div>
 </div>
 <p>The first line generates 100 (quasi) independent standard normals and
@@ -492,6 +523,9 @@ semantics in a familiar setting.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_16_0.png" src="../_images/python_by_example_16_0.png" />
+</div>
 </div>
 <p>In brief,</p>
 <ul class="simple">
@@ -520,6 +554,11 @@ objects.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
 </div>
 <p>The first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> is an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">integer</a>,
@@ -534,11 +573,21 @@ and the third is a <a class="reference external" href="https://en.wikipedia.org/
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, &#39;foo&#39;, False]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
 <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, &#39;foo&#39;, False, 2.5]
 </pre></div>
 </div>
 </div>
@@ -560,6 +609,11 @@ etc.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, &#39;foo&#39;, False, 2.5]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -567,10 +621,20 @@ etc.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.5
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[10, &#39;foo&#39;, False]
 </pre></div>
 </div>
 </div>
@@ -583,10 +647,20 @@ element is referenced by <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># second element of x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;foo&#39;
 </pre></div>
 </div>
 </div>
@@ -621,6 +695,13 @@ a <code class="docutils literal notranslate"><span class="pre">for</span></code>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">animals</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The plural of &quot;</span> <span class="o">+</span> <span class="n">animal</span> <span class="o">+</span> <span class="s2">&quot; is &quot;</span> <span class="o">+</span> <span class="n">animal</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>The plural of dog is dogs
+The plural of cat is cats
+The plural of bird is birds
 </pre></div>
 </div>
 </div>
@@ -689,6 +770,9 @@ a <code class="docutils literal notranslate"><span class="pre">while</span></cod
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_34_0.png" src="../_images/python_by_example_34_0.png" />
+</div>
 </div>
 <p>Note that</p>
 <ul class="simple">
@@ -726,6 +810,9 @@ NumPy array.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_36_0.png" src="../_images/python_by_example_36_0.png" />
 </div>
 </div>
 <p>The statement <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">np.empty(T+1)</span></code> allocates storage in memory for <code class="docutils literal notranslate"><span class="pre">T+1</span></code>
@@ -819,6 +906,14 @@ and 1 for each nonnegative number</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-1
+1
+-1
+1
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, write a new solution to Exercise 3 that does not use an existing
 function to compute the absolute value.</p>
@@ -868,6 +963,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_45_0.png" src="../_images/python_by_example_45_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="id2">
@@ -889,6 +987,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_47_0.png" src="../_images/python_by_example_47_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="id3">
@@ -908,6 +1009,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_49_0.png" src="../_images/python_by_example_49_0.png" />
 </div>
 </div>
 </div>
@@ -933,6 +1037,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_51_0.png" src="../_images/python_by_example_51_0.png" />
+</div>
 </div>
 <p>Here’s a shorter way to write the same thing:</p>
 <div class="cell docutils container">
@@ -950,6 +1057,9 @@ landing in <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_by_example_53_0.png" src="../_images/python_by_example_53_0.png" />
 </div>
 </div>
 </div>
@@ -978,6 +1088,11 @@ fraction that falls into the circle.</p>
 <span class="n">area_estimate</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">n</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">area_estimate</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># dividing by radius**2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.142
 </pre></div>
 </div>
 </div>
