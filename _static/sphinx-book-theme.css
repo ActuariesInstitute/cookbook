@@ -396,11 +396,12 @@ div.navbar-brand-box a.navbar-brand {
   width: 100%;
   height: auto; }
   div.navbar-brand-box a.navbar-brand img {
-    min-height: 100px;
-    max-height: 10vh;
-    margin: 0 auto;
     display: block;
-    height: auto !important; }
+    height: auto;
+    width: auto;
+    max-height: 10vh;
+    max-width: 100%;
+    margin: 0 auto; }
     @media (min-width: 768px) {
       div.navbar-brand-box a.navbar-brand img {
         max-height: 15vh !important; } }
