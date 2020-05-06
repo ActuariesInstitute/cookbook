@@ -10,4 +10,4 @@ dependencies:
   - matplotlib
   - pip:
     - quantecon
-    - git+https://github.com/ExecutableBookProject/jupyter-book
+    - jupyter-book>=0.7.0b
