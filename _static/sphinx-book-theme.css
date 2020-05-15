@@ -288,7 +288,7 @@ button.topbarbtn img {
 *********************************************/
 .bd-toc {
   padding: 0px !important;
-  overflow-y: hidden;
+  overflow-y: visible;
   background: white;
   right: 0;
   z-index: 999;
@@ -297,18 +297,27 @@ button.topbarbtn img {
     color: #5a5a5a; }
   .bd-toc nav {
     opacity: 0;
-    transition: opacity 0.2s ease; }
+    max-height: 0;
+    transition: opacity 0.2s ease, max-height .7s ease;
+    overflow-y: hidden;
+    background: white; }
     .bd-toc nav a:hover, .bd-toc nav li.active > a.active {
       color: #0071bc; }
     .bd-toc nav li.active > a.active {
       border-left: 2px solid #0071bc; }
-  .bd-toc:hover, .bd-toc.show {
-    overflow-y: visible;
-    height: auto; }
-    .bd-toc:hover nav, .bd-toc.show nav {
-      opacity: 1; }
+  .bd-toc:hover nav, .bd-toc.show nav {
+    max-height: 100vh;
+    opacity: 1; }
+  .bd-toc:hover .tocsection:after, .bd-toc.show .tocsection:after {
+    opacity: 0; }
   .bd-toc .tocsection {
     padding: .5rem 0 .5rem 1rem !important; }
+    .bd-toc .tocsection:after {
+      content: "\f107";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      padding-left: .5em;
+      transition: opacity .3s ease; }
   .bd-toc .toc-entry a {
     padding: .125rem 1rem !important; }
   .bd-toc div.editthispage {
