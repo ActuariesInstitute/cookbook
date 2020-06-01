@@ -1,12 +1,10 @@
-name: Build and Deploy
+name: Build HTML
 on:
-  schedule:
-    - cron: '0 0 * * *'
   push:
-    branches:
+    branches-ignore:
       - master
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -31,15 +29,3 @@ jobs:
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
         run: jb build mini_book/
-
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          SSH: true
-          BRANCH: gh-pages
-          FOLDER: mini_book/_build/html
