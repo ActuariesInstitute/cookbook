@@ -6,7 +6,7 @@ on:
     branches:
       - master
 jobs:
-  build-html-and-deploy:
+  build-pdf:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
