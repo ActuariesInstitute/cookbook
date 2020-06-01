@@ -1,0 +1,59 @@
+name: Build PDF
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - master
+jobs:
+  build-html-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install Fonts
+        run: |
+          sudo apt-get install -y fonts-liberation
+          sudo apt-get install -y fonts-cmu
+      - name: TexLive Cache
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: /tmp/texlive
+          key: cache-texlive
+      - name: Install & Update TexLive
+        shell: bash -l {0}
+        run: |
+          bash scripts/install_latex.sh
+          echo 'export PATH=/tmp/texlive/bin/x86_64-linux:$PATH' >> ~/.bash_profile
+          source ~/.bash_profile
+          xelatex --version
+
+      - name: Setup Miniconda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          auto-activate-base: false
+          miniconda-version: 'latest'
+          python-version: 3.7
+          environment-file: environment.yml
+          activate-environment: qe-mini-example
+
+      - name: Install jupyter_book
+        shell: bash -l {0}
+        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+
+      - name: Build QuantEcon Mini Example
+        shell: bash -l {0}
+        run: |
+          echo 'export PATH=/tmp/texlive/bin/x86_64-linux:$PATH' >> ~/.bash_profile
+          source ~/.bash_profile
+          jb build mini_book/ --builder pdflatex
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pdf
+          path: mini_book/_build/latex/book.pdf
