@@ -40,7 +40,6 @@ main.bd-content {
       margin-bottom: 0; }
   main.bd-content #main-content span.eqno {
     float: right;
-    margin: 1em 0em;
     font-size: 1.2em; }
   main.bd-content #main-content div.figure {
     width: 100%;
