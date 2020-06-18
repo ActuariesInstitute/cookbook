@@ -15,7 +15,7 @@ Book documentation.
 
 
 These lectures are a mini-version of a [longer
-series](https://executablebookproject.github.io/quantecon-example/docs/index.html)
+series](https://executablebooks.github.io/quantecon-example/docs/index.html)
 of lectures, also built using Jupyter Book 2.0.  That series contains more
 features and applications but also requires more libraries and takes longer to
 run.  
