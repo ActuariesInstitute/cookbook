@@ -73,21 +73,29 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="about_py.html">About Python</a>
-  </li>
-  <li class="">
-    <a href="getting_started.html">Setting up Your Python Environment</a>
-  </li>
-  <li class="active">
-    <a href="">An Introductory Example</a>
-  </li>
-  <li class="">
-    <a href="learn_more.html">Learn More</a>
-  </li>
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
 </ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -144,140 +152,167 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-task-plotting-a-white-noise-process">
+   The Task: Plotting a White Noise Process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-1">
+   Version 1
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports">
+     Imports
+    </a>
     <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#overview" class="nav-link">Overview</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-task-plotting-a-white-noise-process" class="nav-link">The Task: Plotting a White Noise Process</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#version-1" class="nav-link">Version 1</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#imports" class="nav-link">Imports</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#why-so-many-imports" class="nav-link">Why So Many Imports?</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#packages" class="nav-link">Packages</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#subpackages" class="nav-link">Subpackages</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#importing-names-directly" class="nav-link">Importing Names Directly</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#random-draws" class="nav-link">Random Draws</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#alternative-implementations" class="nav-link">Alternative Implementations</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#a-version-with-a-for-loop" class="nav-link">A Version with a For Loop</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#lists" class="nav-link">Lists</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#the-for-loop" class="nav-link">The For Loop</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#a-comment-on-indentation" class="nav-link">A Comment on Indentation</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#while-loops" class="nav-link">While Loops</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#another-application" class="nav-link">Another Application</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#exercises" class="nav-link">Exercises</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#exercise-1" class="nav-link">Exercise 1</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#exercise-2" class="nav-link">Exercise 2</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#exercise-3" class="nav-link">Exercise 3</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#exercise-4" class="nav-link">Exercise 4</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#exercise-5" class="nav-link">Exercise 5</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#solutions" class="nav-link">Solutions</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#id1" class="nav-link">Exercise 1</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#id2" class="nav-link">Exercise 2</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#id3" class="nav-link">Exercise 3</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#id4" class="nav-link">Exercise 4</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#id5" class="nav-link">Exercise 5</a>
-        </li>
-    
-            </ul>
-        </li>
-    
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#why-so-many-imports">
+       Why So Many Imports?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#packages">
+       Packages
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#subpackages">
+       Subpackages
+      </a>
+     </li>
     </ul>
-</nav>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#importing-names-directly">
+     Importing Names Directly
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-draws">
+     Random Draws
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-implementations">
+   Alternative Implementations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-version-with-a-for-loop">
+     A Version with a For Loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lists">
+     Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-for-loop">
+     The For Loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-comment-on-indentation">
+     A Comment on Indentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#while-loops">
+     While Loops
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#another-application">
+   Another Application
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     Exercise 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     Exercise 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-3">
+     Exercise 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-4">
+     Exercise 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5">
+     Exercise 5
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solutions">
+   Solutions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Exercise 3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Exercise 4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Exercise 5
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -1089,7 +1124,7 @@ fraction that falls into the circle.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.1364
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.13796
 </pre></div>
 </div>
 </div>

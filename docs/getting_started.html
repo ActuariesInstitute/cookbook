@@ -73,21 +73,29 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="about_py.html">About Python</a>
-  </li>
-  <li class="active">
-    <a href="">Setting up Your Python Environment</a>
-  </li>
-  <li class="">
-    <a href="python_by_example.html">An Introductory Example</a>
-  </li>
-  <li class="">
-    <a href="learn_more.html">Learn More</a>
-  </li>
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
 </ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -144,90 +152,105 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda">
+   Anaconda
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-anaconda">
+     Installing Anaconda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-anaconda">
+     Updating Anaconda
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebooks">
+   Jupyter Notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-the-jupyter-notebook">
+     Starting the Jupyter Notebook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notebook-basics">
+     Notebook Basics
+    </a>
     <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#overview" class="nav-link">Overview</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#anaconda" class="nav-link">Anaconda</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#installing-anaconda" class="nav-link">Installing Anaconda</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#updating-anaconda" class="nav-link">Updating Anaconda</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#jupyter-notebooks" class="nav-link">Jupyter Notebooks</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#starting-the-jupyter-notebook" class="nav-link">Starting the Jupyter Notebook</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#notebook-basics" class="nav-link">Notebook Basics</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#running-cells" class="nav-link">Running Cells</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#modal-editing" class="nav-link">Modal Editing</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#inserting-unicode-e-g-greek-letters" class="nav-link">Inserting Unicode (e.g., Greek Letters)</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#a-test-program" class="nav-link">A Test Program</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#working-with-the-notebook" class="nav-link">Working with the Notebook</a><ul class="nav section-nav flex-column">
-                
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#tab-completion" class="nav-link">Tab Completion</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#on-line-help" class="nav-link">On-Line Help</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h4">
-            <a href="#other-content" class="nav-link">Other Content</a>
-        </li>
-    
-            </ul>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h3">
-            <a href="#sharing-notebooks" class="nav-link">Sharing Notebooks</a>
-        </li>
-    
-            </ul>
-        </li>
-    
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#running-cells">
+       Running Cells
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modal-editing">
+       Modal Editing
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#inserting-unicode-e-g-greek-letters">
+       Inserting Unicode (e.g., Greek Letters)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-test-program">
+       A Test Program
+      </a>
+     </li>
     </ul>
-</nav>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-the-notebook">
+     Working with the Notebook
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tab-completion">
+       Tab Completion
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#on-line-help">
+       On-Line Help
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-content">
+       Other Content
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sharing-notebooks">
+     Sharing Notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
 
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">

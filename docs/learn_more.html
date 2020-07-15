@@ -72,21 +72,29 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
-  <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="about_py.html">About Python</a>
-  </li>
-  <li class="">
-    <a href="getting_started.html">Setting up Your Python Environment</a>
-  </li>
-  <li class="">
-    <a href="python_by_example.html">An Introductory Example</a>
-  </li>
-  <li class="active">
-    <a href="">Learn More</a>
-  </li>
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Learn More
+  </a>
+ </li>
 </ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
@@ -143,42 +151,47 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy">
+   NumPy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scipy">
+   SciPy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphics">
+   Graphics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-algebra">
+   Symbolic Algebra
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas">
+   Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further Reading
+  </a>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#numpy" class="nav-link">NumPy</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#scipy" class="nav-link">SciPy</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#graphics" class="nav-link">Graphics</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#symbolic-algebra" class="nav-link">Symbolic Algebra</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#pandas" class="nav-link">Pandas</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#further-reading" class="nav-link">Further Reading</a>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -216,7 +229,7 @@ excellent <a class="reference external" href="http://www.numpy.org/">NumPy</a> l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.04891256782214e-16
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>8.354477064952943e-17
 </pre></div>
 </div>
 </div>
