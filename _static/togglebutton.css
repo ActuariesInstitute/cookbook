@@ -15,7 +15,7 @@
 
 /* Titles should cut off earlier to avoid overlapping w/ button */
 div.admonition.toggle p.admonition-title {
-    padding-right: 20%;
+    padding-right: 25%;
 }
 
 /* hides all the content of a page until de-toggled */
@@ -59,13 +59,16 @@ button.toggle-button {
     padding: 0px;
 }
 
-button.toggle-button.toggle-button-hidden:before {
-    content: "Click to show";
-    position: absolute;
-    font-size: .8em;
-    left: -6.5em;
-    bottom: .4em;
+@media (min-width: 768px) {
+    button.toggle-button.toggle-button-hidden:before {
+        content: "Click to show";
+        position: absolute;
+        font-size: .8em;
+        left: -6.5em;
+        bottom: .4em;
+    }
 }
+
 
 /* Plus / minus toggles */
 .toggle-button .bar {
