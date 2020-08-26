@@ -1,13 +1,12 @@
 name: qe-mini-example
 channels:
   - default
-  - conda-forge
 dependencies:
-  - python=3.7.*
+  - python=3.7
   - sphinx=2.4.4
   - pip
   - pandas
   - matplotlib
   - pip:
     - quantecon
-    - jupyter-book>=0.7.0b
+    - jupyter-book
