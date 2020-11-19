@@ -2,8 +2,8 @@ name: qe-mini-example
 channels:
   - default
 dependencies:
-  - python=3.7
-  - sphinx=2.4.4
+  - python=3.8
+  - sphinx
   - pip
   - pandas
   - matplotlib
