@@ -1,7 +1,7 @@
-# - file: README
-- file: docs/index
-  sections:
-    - file: docs/about_py
-    - file: docs/getting_started
-    - file: docs/python_by_example
-    - file: docs/learn_more
+format: jb-article
+root: docs/index
+sections:
+- file: docs/about_py
+- file: docs/getting_started
+- file: docs/python_by_example
+- file: docs/learn_more
