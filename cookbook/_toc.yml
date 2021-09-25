@@ -12,6 +12,7 @@ parts:
   - file: docs/about_R.ipynb
   - file: docs/getting_started_R
   - file: docs/introductory_R.ipynb
+  - file: docs/R_case_study_word_cloud.ipynb
   - file: docs/intermediate_R.ipynb
 - caption: Workflow Management
   chapters:
