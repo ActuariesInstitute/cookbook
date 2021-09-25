@@ -90,10 +90,13 @@ Packages are additional functions and tools that extend R’s functionality.  Th
 +++
 
 ## Step 4 – Install the packages
- * The “install.packages” command will download and install R packages
+
+You may now run code or commands by typing it into editor and using ``Ctrl+Enter`` to run, or directly into the R console and pressing ``Enter``.
+
+ * The ``install.packages`` command will download and install R packages
  * Packages that require other packages will install all dependencies at once
 
- * Run “install.packages(<<package name>>)” for each of the packages listed above → This will download and install the packages into your library
- * Finally, run the “library(<<package name>>)” command to load the library into your R session
+ * Run ``install.packages(<<package name>>)`` for each of the packages listed above → This will download and install the packages into your library
+ * Finally, run the ``library(<<package name>>)`` command to load the library into your R session
 
-You can use the sessionInfo() command to list out the packages your R session has attached.
+You can use the ``sessionInfo()`` command to list out the packages your R session has attached.
