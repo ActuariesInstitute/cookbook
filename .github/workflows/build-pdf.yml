@@ -41,8 +41,8 @@ jobs:
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
         run: |
-          jb build mini_book/ --builder pdflatex
+          jb build cookbook/ --builder pdflatex
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
-          path: mini_book/_build/latex/book.pdf
+          path: cookbook/_build/latex/book.pdf

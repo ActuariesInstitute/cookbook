@@ -1,10 +1,10 @@
-title : Scientific Python QuickStart
-author: Thomas J. Sargent and John Stachurski
+title : Actuaries' Analytics Cookbook
+author: YDAWG, DAPC and other contributors
 logo: 'qe-logo-large.png'
 
 # Short description about the book
 description: >-
-  A brief introduction to Python programming for scientific applications.
+  A cookbook for actuaries for data and analytics
 
 execute:
   execute_notebooks           : cache
@@ -18,8 +18,8 @@ notebook_interface            : "notebook"
 
 # Launch button settings
 repository:
-  url                         : https://github.com/executablebooks/quantecon-mini-example
-  path_to_book                : "mini_book"
+  url                         : https://actuariesinstitute.github.io/cookbook
+  path_to_book                : "cookbook"
 
 binder:
   binderhub_url               : "https://mybinder.org"

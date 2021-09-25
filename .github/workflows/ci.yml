@@ -28,4 +28,4 @@ jobs:
 
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
-        run: jb build mini_book/
+        run: jb build cookbook/

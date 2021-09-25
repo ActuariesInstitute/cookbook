@@ -26,12 +26,12 @@ jobs:
 
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
-        run: jb build mini_book/
+        run: jb build cookbook/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: mini_book/_build/html
+          FOLDER: cookbook/_build/html
           CLEAN: true
