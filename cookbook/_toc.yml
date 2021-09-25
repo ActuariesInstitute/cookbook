@@ -7,6 +7,12 @@ parts:
   - file: docs/getting_started
   - file: docs/python_by_example
   - file: docs/learn_more
+- caption: Introduction to R
+  chapters:
+  - file: docs/about_R.ipynb
+  - file: docs/getting_started_R.ipynb
+  - file: docs/introductory_R.ipynb
+  - file: docs/intermediate_R.ipynb
 - caption: Workflow Management
   chapters:
   - file:  docs/vc_article.ipynb
