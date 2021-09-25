@@ -21,7 +21,7 @@ notebook_interface            : "notebook"
 # Launch button settings
 repository:
   url                         : https://github.com/ActuariesInstitute/cookbook
-  path_to_book:      : cookbook
+  path_to_book:      : "cookbook"
   branch                   : "main"
 
 binder:
@@ -37,6 +37,7 @@ latex:
     targetname: book.tex
 
 launch_buttons:
-  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+  # binderhub is too slow, let's leave it
+  # binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
   colab_url: "https://colab.research.google.com"
   thebe                  : true
