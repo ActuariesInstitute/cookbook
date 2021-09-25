@@ -4,7 +4,7 @@ on:
     - cron: '0 0 * * *'
   push:
     branches:
-      - master
+      - main
 jobs:
   build-html-and-deploy:
     runs-on: ubuntu-latest
@@ -22,9 +22,9 @@ jobs:
           miniconda-version: 'latest'
           python-version: 3.8
           environment-file: environment.yml
-          activate-environment: qe-mini-example
+          activate-environment: main-conda-env
 
-      - name: Build QuantEcon Mini Example
+      - name: Build Cookbook
         shell: bash -l {0}
         run: jb build cookbook/
 

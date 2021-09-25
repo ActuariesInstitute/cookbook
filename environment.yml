@@ -1,4 +1,4 @@
-name: qe-mini-example
+name: main-conda-env
 channels:
   - default
 dependencies:
