@@ -15,7 +15,8 @@ kernelspec:
 # Version control
 
 +++
-By Jonathan Tan.
+
+By Jonathan Tan. Originally published in Actuaries Digital as [Analytics Snippet: Version control, because the Recycle Bin doesn’t count](https://www.actuaries.digital/2019/04/17/analytics-snippet-version-control-because-the-recycle-bin-doesnt-count/).
 
 ## What is version control and why should I bother?
 
@@ -292,5 +293,3 @@ It is my personal belief that, beneath all the data hype, actuaries are to some 
 Documentation is an extremely important part of the actuarial process and as our models become more complex and too complex for excel to handle efficiently, our "housekeeping" and documentation processes must evolve alongside them.
 
 The Git system is widely used in data science to maintain robust version controls for programs and scripts and could be an invaluable tool for any actuary who works with programs and code too.
-
-+++
