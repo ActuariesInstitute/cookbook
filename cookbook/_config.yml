@@ -1,5 +1,5 @@
 title : Actuaries' Analytical Cookbook
-author: YDAWG, DAPC and other contributors
+author: YDAWG, DAPC, YAC and other contributors. The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute.
 logo: 'actuaries-logo.svg'
 
 # Short description about the book
@@ -24,9 +24,9 @@ repository:
   path_to_book       : "cookbook"
   branch                   : "main"
 
-binder:
-  binderhub_url               : "https://mybinder.org"
-  text                        : "Launch binder"
+# binder:
+#   binderhub_url               : "https://mybinder.org"
+#   text                        : "Launch binder"
 
 # LaTeX settings
 bibtex_bibfiles:
