@@ -32,3 +32,7 @@ latex:
   latex_engine                : "xelatex"
   latex_documents:
     targetname: book.tex
+
+launch_buttons:
+  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+  colab_url: "https://colab.research.google.com"
