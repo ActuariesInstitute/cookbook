@@ -22,7 +22,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3078/3085350918.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_3030/3085350918.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'load_ext'[0m[0;34m,[0m [0;34m'hierarchymagic'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m

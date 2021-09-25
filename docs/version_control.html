@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Analytics Snippet: Multitasking Risk Pricing Using Deep Learning" href="multitasking_risk_pricing.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="intermediate_R.html" />
+    <link rel="next" title="Py/R: Multitasking Risk Pricing Using Deep Learning" href="multitasking_risk_pricing.html" />
+    <link rel="prev" title="Next Steps With R" href="intermediate_R.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -134,6 +134,11 @@
    Introduction to R
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -155,7 +160,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="multitasking_risk_pricing.html">
-   Analytics Snippet: Multitasking Risk Pricing Using Deep Learning
+   Py/R: Multitasking Risk Pricing Using Deep Learning
   </a>
  </li>
 </ul>
@@ -167,7 +172,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="textClassificationEntry.html">
-   Text Classification
+   Py: Text Classification
   </a>
  </li>
 </ul>
@@ -209,11 +214,14 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/vc_article.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+        <a class="dropdown-buttons"
+            href="../_sources/docs/version_control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/version_control.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -231,7 +239,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/vc_article.ipynb"><button
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/version_control.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -251,18 +259,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/vc_article.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/version_control.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/vc_article.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -385,7 +388,7 @@
 <h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> hierarchymagic
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">hierarchymagic</span>
 </pre></div>
 </div>
 </div>
@@ -408,26 +411,22 @@ Version control, also known as revision control or source control, is the manage
 <p>The first step of this project is to review the age curve independently with some historical data, then produce a model to be deployed into production. After getting briefed on the relevant details and timelines, the team then spends the next week discussing and iterating through various parameters and hypotheses, and finally comes up with the agreed upon model to use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/messy_files.png&quot;, width=300, height=300&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/messy_files.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/messy_files.png", width=300, height=300></div></div>
 </div>
 <p>So which exactly is the final model here? What if Esther wanted to revisit a particular iteration of the model? Does this look vaguely familiar to your old college submissions or some of the shared drives in your office? If so, you probably already practice version control in one way or another. The most primitive and clunky (but useful) method would be the “Save As” button, where another version of the working file is the snapshot, and the user is free to modify the currently opened document which produces a result similar to that shown above.</p>
 <p>Note that these files could be the product of a small team of 3 actuaries working on a simple and straight forward project. You could imagine how much more convoluted it could get with a bigger team and a multi-stage analytics task.</p>
 <p>The goal of the article then, is to give the reader a quick and practical way to go from that screenshot above to this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/ideal_folder.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/ideal_folder.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/ideal_folder.png", width=450, height=450></div></div>
 </div>
 <p>Would you believe that the folder in the second screenshot contains the same amount of historical information as the first and more? This is however, limited to scripts and small files. For bigger files like excel workbooks, the article will recommend some alternative tools for the reader but will not go into detail its implementations and mechanics.</p>
 <p>The tool we will be using for version control is Git, via the Git hosting service <a class="reference external" href="https://github.com/">Github</a>.</p>
@@ -442,13 +441,11 @@ Version control, also known as revision control or source control, is the manage
 <p>After settling all the aforementioned administrative issues, the actuarial team can now proceed to download and register for GitHub. To start off, they would want to go into the <a class="reference external" href="https://github.com/">GitHub website</a> and create an account, or sign in if an account was already created.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/github_homepage.png&quot;, width=600, height=600&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/github_homepage.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/github_homepage.png", width=600, height=600></div></div>
 </div>
 <p>Assuming FOO Insurance Ltd does not have an existing corporate account with GitHub Enterprise, signing up for personal accounts in GitHub is totally free with a paid option as at time of writing (March 2019). All GitHub accounts also have the ability to create private repositories, which would be absolutely necessary for the team. (They might as well e-mail their pricing models to their competitors otherwise.)</p>
 </div>
@@ -462,13 +459,11 @@ Version control, also known as revision control or source control, is the manage
 <p>A local repository is just a file location residing in your local system, much like a folder in your local drive, whereas a remote repository is the “online” version which everyone sees. Esther now proceeds to create (initialize) a remote repository with the following steps so the team can start to work on the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/init_repo.png&quot;, width=600, height=600&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/init_repo.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/init_repo.png", width=600, height=600></div></div>
 </div>
 <p>There are no restrictions to naming and describing the repositories created, but the best practice would be to keep them short and concise. Also, note that “Private” was selected in this case as the folder is going to contain potentially sensitive information about FOO Insurance’s pricing. The bottom 2 options can generally be left as None. In simple terms, all they are saying is:</p>
 <ul class="simple">
@@ -478,13 +473,11 @@ Version control, also known as revision control or source control, is the manage
 <p>For more information on different licenses, the official GitHub page can be found <a class="reference external" href="https://help.github.com/en/articles/licensing-a-repository">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/empty_repo.png&quot;, width=600, height=600&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/empty_repo.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/empty_repo.png", width=600, height=600></div></div>
 </div>
 <p>We now have an empty remote repository in which the team can put all their project files into! There are generally 4 ways of using the features available on GitHub, and these are the:</p>
 <ul class="simple">
@@ -496,36 +489,30 @@ Version control, also known as revision control or source control, is the manage
 <p>In this article, we will try to avoid using the CLI as it can be daunting for the users who are new to Git and the concept of a version control system. Just as an example, creating a repository using the Git CLI alone would require the user to install Git from <a class="reference external" href="https://git-scm.com/downloads">here</a>, and the steps shown below correspond to the creation of a GitHub repository shown above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/create_repo_cli.png&quot;, width=400, height=400&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/create_repo_cli.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/create_repo_cli.png", width=400, height=400></div></div>
 </div>
 <p>In the article, we will also not use any IDEs for the version control process as they all function differently and Git integration is only available for some of them.</p>
 <p>Okay, enough of that scary stuff, let’s stick with using the very friendly GitHub Desktop GUI and the website. GitHub Desktop is basically an application which can be downloaded from <a class="reference external" href="https://desktop.github.com/">here</a> and allows the user to interact and use the GitHub features without having to go onto your web browser every single time. After all of them have installed the application, they should see a screen that looks similar to this - except that for new users, “Your Repositories” should start off empty.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/gitgui_homepage.png&quot;, width=400, height=400&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/gitgui_homepage.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/gitgui_homepage.png", width=400, height=400></div></div>
 </div>
 <p>Okay, let’s say Esther (Manager) has created an initial script on her own computer for the age curve in R called “model.r”, which uses Simple Linear Regression to model the relationship between policyholders’ age and the average claims incurred. The contents of model.r looks something like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/initial_model.png&quot;, width=300, height=300&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/initial_model.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/initial_model.png", width=300, height=300></div></div>
 </div>
 <p>Nothing fancy, all the script does is to read the dataset in, instantiate a simple linear regression model and print the calculated coefficients.</p>
 </div>
@@ -534,35 +521,29 @@ Version control, also known as revision control or source control, is the manage
 <p>Esther now wants both Jimmy and Michelle to work on improving it and can do that by uploading the current script into the remote repository created so all 3 of them have access to it. Remember, she created a remote repository before on the GitHub website, but will need a file in her local machine which she can use to sync the documents (The local repository). Think of it as dropping some files into a local DropBox or GoogleDrive folder to sync them into your online storage. Esther can do this by simply clicking on the “Clone a Repository from the Internet” button, which would bring up the screen below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/clone_repo_gui.png&quot;, width=300, height=300&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/clone_repo_gui.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/clone_repo_gui.png", width=300, height=300></div></div>
 </div>
 <p>Here, she should be able to see the newly created remote repository. Now she has to decide on a local path to store this “syncing” folder and hit clone.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/local_repo.png&quot;, width=300, height=300&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/local_repo.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/local_repo.png", width=300, height=300></div></div>
 </div>
 <p>We can see that the <a class="reference external" href="http://README.md">README.md</a> file which was created on the GitHub website has been cloned into Esther’s local file path.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/empty_repo_gui.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/empty_repo_gui.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/empty_repo_gui.png", width=450, height=450></div></div>
 </div>
 <p>Also, the GitHub application now has an interface in which Esther can make and track changes. Let’s see what happens when Esther drops her model.r file into the local foo_actuarial_model folder:</p>
 </div>
@@ -570,13 +551,11 @@ Version control, also known as revision control or source control, is the manage
 <h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/git_add_gui.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/git_add_gui.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/git_add_gui.png", width=450, height=450></div></div>
 </div>
 <p>We can see that the GitHub application automatically tracked all the difference within the local repository, and there is now an option to “commit” those changes. A commit is just a set of changes to a file or files within a repository. Think of it as a local “Save As” function, but way cooler sounding and every time you save, it allows you to keep records of what changes were made when and by whom. After checking through to make sure that those are indeed the files that she wants to sync, she can simply type a summary and description of the update on the bottom left of the window, and hit the “commit to master” button. (There are a set of industry best practices with regards to the format of commit messages and descriptions, but we will not go into that in this article) <br></p>
 </div>
@@ -584,38 +563,31 @@ Version control, also known as revision control or source control, is the manage
 <h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/git_commit_gui.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/git_commit_gui.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/git_commit_gui.png", width=450, height=450></div></div>
 </div>
 <p>After committing the changes/ additions, she just needs to hit the “push to origin” button and the files will be synced to the online repository.</p>
 <p>Let’s go back to the GitHub website to make sure that the files were indeed synced up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html 
-&lt;img src=&quot;/_static/version_control_img/git_meme.png&quot;, width=450, height=450&gt;
-&quot;source: https://www.google.com/search?q=in+case+of+fire+git+commit&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwir95y8lY7hAhW74HMBHcxMASQQ_AUIDigB&amp;biw=1288&amp;bih=761#imgrc=Z1O_vpZyL8lgVM:&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span> 
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/git_meme.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
+<span class="s2">&quot;source: https://www.google.com/search?q=in+case+of+fire+git+commit&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwir95y8lY7hAhW74HMBHcxMASQQ_AUIDigB&amp;biw=1288&amp;bih=761#imgrc=Z1O_vpZyL8lgVM:&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/git_meme.png", width=450, height=450>
-"source: https://www.google.com/search?q=in+case+of+fire+git+commit&source=lnms&tbm=isch&sa=X&ved=0ahUKEwir95y8lY7hAhW74HMBHcxMASQQ_AUIDigB&biw=1288&bih=761#imgrc=Z1O_vpZyL8lgVM:"</div></div>
 </div>
 <p>Generally, contributors of any project are encouraged to keep their commits byte-sized (pun intended) and frequent instead of a sudden 2000-line commit. This way, changes are easier to track, and it gives the reviewer a lot more options for reverting to any particular previous iteration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/github_synced.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/github_synced.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/github_synced.png", width=450, height=450></div></div>
 </div>
 <p>Now, Esther can open that bottle of wine, relax and check back in a week while Jimmy and Michelle begin to work on the model… just kidding - being an actuarial manager, there’s another fire for her to put out elsewhere!</p>
 </div>
@@ -624,13 +596,11 @@ Version control, also known as revision control or source control, is the manage
 <p>Jimmy and Michelle, both having GitHub accounts and the desktop application, can now clone the repository (as shown before) with Esther’s model into their respective local drives to start working on it. Each of them would then proceed to create a new “branch” of the project from their respective GitHub applications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/branch_gui.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/branch_gui.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/branch_gui.png", width=450, height=450></div></div>
 </div>
 <p>So, what is a branch? A Git branch can be somewhat seen as parallel universes for documents. When creating a new repository, a default “Master” branch is always created. Let’s say that:</p>
 <ul class="simple">
@@ -640,28 +610,23 @@ Version control, also known as revision control or source control, is the manage
 <p>Their respective scripts will then look something like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/different_work.png&quot;, width=600, height=500&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/different_work.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/different_work.png", width=600, height=500></div></div>
 </div>
 <p>As we can see, both Jimmy and Michelle have changed the script according to what he/ she believes the model ought to be. However, they would not be changing the original script or “Master” branch but instead, would create a new branch (which is just a copy of master) and make their changes there. Back to the parallel universe analogy, in one of the parallel universes the script remained a SLR, but in another the script would have been a GLM!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">dot</span>
-digraph {
-        rankdir = LR
-        Master_branch -&gt; &quot;Jimmy_branch (Copy of master)&quot;-&gt; &quot;Jimmy_commit\n (Used average claim size)&quot;
-        Master_branch -&gt; &quot;Michelle_branch (Copy of master)&quot; -&gt; &quot;Michelle_commit\n (Changed model to GLM)&quot;
-        }
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">dot</span>
+<span class="n">digraph</span> <span class="p">{</span>
+        <span class="n">rankdir</span> <span class="o">=</span> <span class="n">LR</span>
+        <span class="n">Master_branch</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jimmy_branch (Copy of master)&quot;</span><span class="o">-&gt;</span> <span class="s2">&quot;Jimmy_commit</span><span class="se">\n</span><span class="s2"> (Used average claim size)&quot;</span>
+        <span class="n">Master_branch</span> <span class="o">-&gt;</span> <span class="s2">&quot;Michelle_branch (Copy of master)&quot;</span> <span class="o">-&gt;</span> <span class="s2">&quot;Michelle_commit</span><span class="se">\n</span><span class="s2"> (Changed model to GLM)&quot;</span>
+        <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/vc_article_52_0.png" src="../_images/vc_article_52_0.png" />
 </div>
 </div>
 <p>So how does GitHub know which branch to make the official one on the website?</p>
@@ -671,35 +636,29 @@ digraph {
 <p>The short answer is, it does not. Let’s initially follow Jimmy’s workflow for now. Assuming he has successfully created a new branch and made his changes to the script, he can proceed to commit and push his changes to the “Jimmy branch” normally as shown before with Esther (except that Esther was pushing to Master branch).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/jimmy_branch_add.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/jimmy_branch_add.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/jimmy_branch_add.png", width=450, height=450></div></div>
 </div>
 <p>Now, Jimmy’s GitHub repository page will look like this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/jimmy_branch_repo.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/jimmy_branch_repo.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/jimmy_branch_repo.png", width=450, height=450></div></div>
 </div>
 <p>Notice that there is an extra “Compare and pull request” button, when clicked, should bring up a page like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/jimmy_pull.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/jimmy_pull.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/jimmy_pull.png", width=450, height=450></div></div>
 </div>
 <p>By creating a pull request, Jimmy is essentially asking Esther to review his changes and:</p>
 <ul class="simple">
@@ -709,26 +668,21 @@ digraph {
 <p>Now after a week, Esther will go onto the GitHub website and see that there is a pull request made by Jimmy. When opened, it will bring up a page like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/jimmy_pull_discussion.png&quot;, width=600, height=600&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/jimmy_pull_discussion.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/jimmy_pull_discussion.png", width=600, height=600></div></div>
 </div>
 <p>Michelle, having gone through the same process as Jimmy, would also have a pull request for Esther to review. If Esther, thinks that Michelle’s model is reasonable and no further adjustments are required, she would then merge Michelle’s branch into master.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/michelle_merge.png&quot;, width=450, height=450&gt;
-&lt;img src=&quot;/_static/version_control_img/repo_final.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/michelle_merge.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/repo_final.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/michelle_merge.png", width=450, height=450>
-<img src="/_static/version_control_img/repo_final.png", width=450, height=450></div></div>
 </div>
 </div>
 <div class="section" id="id1">
@@ -736,15 +690,12 @@ digraph {
 <p>Now, the master branch will consist of <a class="reference external" href="http://model.py">model.py</a> which is a GLM model. So, you might be asking, where does the version control aspect of this tool come in? If you take a closer look at the screenshot above, you would notice “4 commits” label on the top left. If we were to click on that, it would bring us to the screen below, where we can see all previous commits made to the repository. This can also be accessed from the GitHub application under the “History” tab.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
-&lt;img src=&quot;/_static/version_control_img/commit_history.png&quot;, width=450, height=450&gt;
-&lt;img src=&quot;/_static/version_control_img/gitgui_commit_history.png&quot;, width=450, height=450&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/commit_history.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/gitgui_commit_history.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><img src="/_static/version_control_img/commit_history.png", width=450, height=450>
-<img src="/_static/version_control_img/gitgui_commit_history.png", width=450, height=450></div></div>
 </div>
 <p>When clicking on these previous commits, it reverts the repository to any previous states, allowing Esther to:</p>
 <ul class="simple">
@@ -833,7 +784,7 @@ digraph {
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">&lt;no title&gt;</p>
+                <p class="prevnext-title">Next Steps With R</p>
             </div>
         </a>
     </div>
@@ -841,7 +792,7 @@ digraph {
         <a class="right-next" href="multitasking_risk_pricing.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Analytics Snippet: Multitasking Risk Pricing Using Deep Learning</p>
+                <p class="prevnext-title">Py/R: Multitasking Risk Pricing Using Deep Learning</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -855,7 +806,7 @@ digraph {
     <div class="container">
       <p>
         
-          By YDAWG, DAPC and other contributors<br/>
+          By YDAWG, DAPC, YAC and other contributors. The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute.<br/>
         
             &copy; Copyright 2021.<br/>
       </p>
