@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analytics Snippet: Natural Language Processing, Text Classification &#8212; Actuaries&#39; Analytical Cookbook</title>
+    <title>Text Classification &#8212; Actuaries&#39; Analytical Cookbook</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -46,14 +46,14 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Learn More" href="learn_more.html" />
+    <link rel="prev" title="Version control" href="vc_article.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -76,7 +76,7 @@
         
       
       
-      <img src="../_static/qe-logo-large.png" class="logo" alt="logo">
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
@@ -89,7 +89,7 @@
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
-  Python Introduction
+  Introduction to Python
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -116,13 +116,25 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Python Natural Language Processing
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="vc_article.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Natural Language Processing
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Analytics Snippet: Natural Language Processing, Text Classification
+   Text Classification
   </a>
  </li>
 </ul>
@@ -177,6 +189,21 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/docs/textClassificationEntry.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -185,6 +212,31 @@
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/docs/textClassificationEntry.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/docs/textClassificationEntry.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
 
         </div>
 
@@ -249,9 +301,10 @@
         
               <div>
                 
-  <div class="section" id="analytics-snippet-natural-language-processing-text-classification">
-<h1>Analytics Snippet: Natural Language Processing, Text Classification<a class="headerlink" href="#analytics-snippet-natural-language-processing-text-classification" title="Permalink to this headline">¶</a></h1>
-<p>By Jonathan Tan. According to an article written by <a class="reference external" href="https://www.ibm.com/blogs/watson/2016/05/biggest-data-challenges-might-not-even-know/">IBM</a>, it is estimated at 80% of all data is unstructured. Unstructured data is the messy stuff every quantitative analyst tries to traditionally stay away from. It can include images of accidents, text notes of loss adjusters, social media comments, claim documents and review of medical doctors etc. How can actuaries make use of these kinds of data to add value to the insurer and what techniques are available for handling these types of data? <br><br>
+  <div class="section" id="text-classification">
+<h1>Text Classification<a class="headerlink" href="#text-classification" title="Permalink to this headline">¶</a></h1>
+<p>By Jonathan Tan.
+According to an article written by <a class="reference external" href="https://www.ibm.com/blogs/watson/2016/05/biggest-data-challenges-might-not-even-know/">IBM</a>, it is estimated at 80% of all data is unstructured. Unstructured data is the messy stuff every quantitative analyst tries to traditionally stay away from. It can include images of accidents, text notes of loss adjusters, social media comments, claim documents and review of medical doctors etc. How can actuaries make use of these kinds of data to add value to the insurer and what techniques are available for handling these types of data? <br><br>
 In the insurance industry, text data appears everywhere but is generally more prevalent in the marketing, sales and claims. Listed below are some of the possible areas in which an insurer can benefit from text data analytics: <br><br></p>
 <ul class="simple">
 <li><p><strong>General Insurance</strong></p></li>
@@ -1161,8 +1214,8 @@ For more resources on Natural Language Processing techniques, I highly recommend
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1187,11 +1240,11 @@ For more resources on Natural Language Processing techniques, I highly recommend
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="learn_more.html" title="previous page">
+        <a class="left-prev" href="vc_article.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Learn More</p>
+                <p class="prevnext-title">Version control</p>
             </div>
         </a>
     </div>
