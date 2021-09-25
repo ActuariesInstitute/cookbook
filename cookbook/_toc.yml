@@ -13,6 +13,7 @@ parts:
   - file: docs/getting_started_R
   - file: docs/introductory_R.ipynb
   - file: docs/intermediate_R.ipynb
+  - file: docs/top_ten_r_packages.ipynb  
 - caption: Workflow Management
   chapters:
   - file:  docs/version_control
