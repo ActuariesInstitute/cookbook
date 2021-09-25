@@ -24,8 +24,8 @@ jobs:
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@main
+        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
 
-      - name: Build QuantEcon Mini Example
+      - name: Build Cookbook
         shell: bash -l {0}
         run: jb build cookbook/
