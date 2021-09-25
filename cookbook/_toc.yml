@@ -1,12 +1,15 @@
 format: jb-book
 root: docs/index
 parts:
-- caption: Python Introduction
+- caption: Introduction to Python
   chapters:
   - file: docs/about_py
   - file: docs/getting_started
   - file: docs/python_by_example
   - file: docs/learn_more
-- caption: Python Natural Language Processing
+- caption: Workflow Management
+  chapters:
+  - file:  docs/vc_article.ipynb
+- caption: Natural Language Processing
   chapters:
   - file:  docs/textClassificationEntry.ipynb

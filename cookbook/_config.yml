@@ -1,6 +1,6 @@
 title : Actuaries' Analytical Cookbook
 author: YDAWG, DAPC and other contributors
-logo: 'qe-logo-large.png'
+logo: 'actuaries-logo.svg'
 
 # Short description about the book
 description: >-
@@ -12,14 +12,16 @@ execute:
 # HTML-specific settings
 html:
   home_page_in_navbar         : false
+  use_repository_button         : true
+  use_edit_page_button          : true
 
 # Interact link settings
 notebook_interface            : "notebook"
 
 # Launch button settings
 repository:
-  url                         : https://actuariesinstitute.github.io/cookbook
-  path_to_book                : "cookbook"
+  url                         : https://github.com/ActuariesInstitute/cookbook
+  branch                   : "main"
 
 binder:
   binderhub_url               : "https://mybinder.org"
@@ -36,3 +38,4 @@ latex:
 launch_buttons:
   binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
   colab_url: "https://colab.research.google.com"
+  thebe                  : true
