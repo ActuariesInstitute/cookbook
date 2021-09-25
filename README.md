@@ -1,34 +1,42 @@
-# Actuaries' Analytics Cookbook
+# Actuaries' Analytical Cookbook
 
 *"Actuaries can be at a loss as to where to begin. But they often have the problem statement already.  What my teams have found useful are a few simple off the shelf solutions tailored to them that they can expand on. Given that, they usually pick it up an run with it. "*
 
-A cookbook to help actuaries get started with a project using [Jupyter Book 2.0](https://jupyterbook.org/).
+A cookbook to help actuaries get started with data and analytics projects in both data science and traditional fields, using [Jupyter Book 2.0](https://jupyterbook.org/).
 
-## Adding to the notebook
+## Workflow
 
-Generally to add content, one would:
- 1.  Make sure the .ipynb file has been fully executed,
- 2.  Add .ipynb files to the ``cookbook\docs`` subfolder,
- 3.  Add those files to the ``cookbook\_toc.yml``
+### Adding notebooks to the cookbook
 
-Full instructions [here](https://jupyterbook.org/start/create.html).
+Generally to add content to the book, one could:
+
+ 1.  Create a fork
+ 2.  Make sure the .ipynb file has been fully executed [1],
+ 3.  Add .ipynb files to the ``cookbook\docs`` subfolder,
+ 4.  Add those files to the ``cookbook\_toc.yml``
+ 5.  Enable github actions
+ 6.  Commit to ``main`` in the fork
+ 7.  Check that the website at https://[yourusername].github.io/cookbook works as intended
+ 8.  Create a pull request to ``main`` in the [https://github.com/ActuariesInstitute/cookbook](https://github.com/ActuariesInstitute/cookbook) repository.
+
+Reference Jupyter book documentation [here](https://jupyterbook.org/start/create.html).
 
 ### Publishing this Jupyter Book
 
-This repository is published automatically to `gh-pages` upon `push` to the `master` branch.
+This repository is published automatically to `gh-pages` upon `push` to the `main` branch.
 
-A `requirements.txt` file is provided to support this `CI` application.
+[1] Jupyter book runs notebooks automatically if there are missing outputs. A `requirements.txt` file is provided to support this `CI` application.
 
 ## Local preview
 
-If you wish to build and preview the site on the local machine, you will need to follow these instructions:
+This should not be needed but if you wish to build and preview the site on the local machine, you will need to follow these instructions:
 
 ### Creating an Conda Environment
 
 The conda environment is provided as `environment.yml`. This environment is used for all testing by Github Actions and can be setup by:
 
 1. `conda env create -f environment.yml`
-2. `conda activate qe-mini-example`
+2. `conda activate main-conda-env`
 
 ### Building a Jupyter Book
 

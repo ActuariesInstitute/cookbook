@@ -2,7 +2,7 @@ name: Build HTML
 on:
   push:
     branches-ignore:
-      - master
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,11 +20,11 @@ jobs:
           miniconda-version: 'latest'
           python-version: 3.8
           environment-file: environment.yml
-          activate-environment: qe-mini-example
+          activate-environment: main-conda-env
 
       - name: Install jupyter_book
         shell: bash -l {0}
-        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+        run: pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@main
 
       - name: Build QuantEcon Mini Example
         shell: bash -l {0}
