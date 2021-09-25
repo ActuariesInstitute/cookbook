@@ -1,4 +1,4 @@
-format: jb-article
+format: jb-book
 root: docs/index
 parts:
 - caption: Python Introduction
