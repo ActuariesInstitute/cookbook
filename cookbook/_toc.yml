@@ -19,6 +19,7 @@ parts:
 - caption: Segmentation and Technical Price
   chapters:
   - file:  docs/multitasking_risk_pricing.ipynb
+  - file:  docs/py_shap_values.ipynb
 - caption: Natural Language Processing
   chapters:
   - file: docs/R_case_study_word_cloud.ipynb
