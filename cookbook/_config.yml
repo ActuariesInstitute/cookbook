@@ -21,7 +21,7 @@ notebook_interface            : "notebook"
 # Launch button settings
 repository:
   url                         : https://github.com/ActuariesInstitute/cookbook
-  path_to_book:      : "cookbook"
+  path_to_book       : "cookbook"
   branch                   : "main"
 
 binder:

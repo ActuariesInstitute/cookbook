@@ -16,6 +16,9 @@ parts:
 - caption: Workflow Management
   chapters:
   - file:  docs/vc_article.ipynb
+- caption: Segmentation and Technical Price
+  chapters:
+  - file:  docs/multitasking_risk_pricing.ipynb
 - caption: Natural Language Processing
   chapters:
   - file:  docs/textClassificationEntry.ipynb
