@@ -29,4 +29,5 @@ parts:
   chapters:
   - file:  docs/automated_decision
 - caption: Contributing
+  chapters:
   - file: docs/contributing.ipynb
