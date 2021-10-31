@@ -28,3 +28,5 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
+- caption: Contributing
+  - file: docs/contributing.ipynb
