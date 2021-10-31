@@ -7,6 +7,7 @@ parts:
   - file: docs/getting_started
   - file: docs/python_by_example
   - file: docs/learn_more
+  - file: docs/Useful_Python_packages.ipynb
 - caption: Introduction to R
   chapters:
   - file: docs/about_R.ipynb
@@ -28,10 +29,3 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
-- caption: Useful Python Packages
-  chapters:
-  - file:  docs/Useful_Python_packages.ipynb
-
-
-
-
