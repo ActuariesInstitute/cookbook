@@ -21,6 +21,9 @@ parts:
   chapters:
   - file:  docs/multitasking_risk_pricing.ipynb
   - file:  docs/py_shap_values.ipynb
+- caption: Life Insurance
+  chapters:
+  - file:  docs/LifeRecipeBook.ipynb
 - caption: Natural Language Processing
   chapters:
   - file: docs/R_case_study_word_cloud.ipynb
