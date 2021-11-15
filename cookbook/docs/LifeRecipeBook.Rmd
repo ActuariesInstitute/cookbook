@@ -221,3 +221,28 @@ prop.table(table(df$sex))
 ```
 
 We can then convert the columns to factors based upon the values of the column and ordering by frequency. Base level should be chosen such that it has sufficient observations for an intercept to be computed meaningfully.
+```{r Factorise columns - factors, class.source="fold-show"}
+df$sex <- factor(df$sex, levels = c("m","f","u"))
+df$smoker <- factor(df$smoker, levels = c("n","s","u"))
+df$benefit_period <- factor(df$benefit_period, levels = c("a65","2yr","5yr"))
+df$waiting_period <- factor(df$waiting_period, labels = c("30d","14d","720d","90d"))
+df$occupation <- factor(df$occupation, labels = c("prof", "sed","techn","white","blue"))
+
+# do the same for the grouped data
+df_grp$sex <- factor(df_grp$sex, levels = c("m","f","u"))
+df_grp$smoker <- factor(df_grp$smoker, levels = c("n","s","u"))
+df_grp$benefit_period <- factor(df_grp$benefit_period, levels = c("a65","2yr","5yr"))
+df_grp$waiting_period <- factor(df_grp$waiting_period, labels = c("30d","14d","720d","90d"))
+df_grp$occupation <- factor(df_grp$occupation, labels = c("prof", "sed","techn","white","blue"))
+```
+
+If the column is already a factor, you can extract the levels to show what order they will be used in our models
+```{r Factorise columns - levels, class.source="fold-show"}
+levels(df$sex)
+```
+
+## Selection methods
+table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
+
+
+Looking at total count of claim rather than just sickness shows a slight trend by age:
