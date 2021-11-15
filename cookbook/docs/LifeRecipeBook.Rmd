@@ -1112,7 +1112,7 @@ abline(0,1)
 [Pearson dispersion test](https://search.r-project.org/CRAN/refmans/msme/html/P__disp.html): This function calculates Pearson Chi2 statistic and the Pearson-based dipersion statistic. Values of the dispersion greater than 1 indicate model overdispersion. Values under 1 indicate under-dispersion.
 
 ```{r Evaluation - pearson dispersion}
-P__disp(step_model_sick)
+print(P__disp(step_model_sick))
 ```
 
 ## Confusion matrix
