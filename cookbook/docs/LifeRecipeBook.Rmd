@@ -199,3 +199,118 @@ select <- dplyr::select
 # glimpse() or str() returns detail on the structure of the data frame. Our data consists of 600k rows and 15 columns. The columns are policy ID, several explanatory variables like sex and smoker, expected counts of claim (inc_sick_expected and inc_acc_expected) and actual counts of claim (inc_count_sick/acc/tot).
 glimpse(df)
 ```
+
+```{r Data structure, class.source="fold-show"}
+# head() returns the first 6 rows of the data frame. Similar to head(), sample_n() returns rows from our data frame, however these are chosen randomly. e.g. sample_n(df,5,replace=FALSE)
+head(df)
+```
+
+```{r Data structure, class.source="fold-show"}
+# class() returns the class of a column.
+class(df$benefit_period)
+```
+
+## Factors
+From the above you'll note that the categorical columns are stored as characters. Factorising these makes them easier to work with in our models e.g. for BP factorise a65|2yr|5yr as 1|2|3. Factors are stored as integers and have labels that tell us what they are, they can be ordered and are useful for statistical analysis. 
+
+table() returns a table of counts at each combination of column values. prop.table() converts these to a proportion. For example, applying this to the column "sex" shows us that ~75% of our data is "m" and that the other data are either "f" or "u" (unknown).
+
+```{r Factorise columns - proportions, class.source="fold-show"}
+table(df$sex)
+prop.table(table(df$sex))
+```
+
+We can then convert the columns to factors based upon the values of the column and ordering by frequency. Base level should be chosen such that it has sufficient observations for an intercept to be computed meaningfully.
+```{r Factorise columns - factors, class.source="fold-show"}
+df$sex <- factor(df$sex, levels = c("m","f","u"))
+df$smoker <- factor(df$smoker, levels = c("n","s","u"))
+df$benefit_period <- factor(df$benefit_period, levels = c("a65","2yr","5yr"))
+df$waiting_period <- factor(df$waiting_period, labels = c("30d","14d","720d","90d"))
+df$occupation <- factor(df$occupation, labels = c("prof", "sed","techn","white","blue"))
+
+# do the same for the grouped data
+df_grp$sex <- factor(df_grp$sex, levels = c("m","f","u"))
+df_grp$smoker <- factor(df_grp$smoker, levels = c("n","s","u"))
+df_grp$benefit_period <- factor(df_grp$benefit_period, levels = c("a65","2yr","5yr"))
+df_grp$waiting_period <- factor(df_grp$waiting_period, labels = c("30d","14d","720d","90d"))
+df_grp$occupation <- factor(df_grp$occupation, labels = c("prof", "sed","techn","white","blue"))
+```
+
+If the column is already a factor, you can extract the levels to show what order they will be used in our models
+```{r Factorise columns - levels, class.source="fold-show"}
+levels(df$sex)
+```
+
+## Selection methods
+table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
+
+```{r Selection Methods, class.source="fold-show", eval=FALSE}
+# data subsets:  e.g. select from df where age <25 or >60 
+subset(df, age <25 | age > 60) %>% head()
+```
+
+```{r Selection Methods, class.source="fold-show", eval=FALSE}
+#	dropping columns:
+		# exclude columns
+		mycols <- names(df) %in% c("cal_year", "smoker")
+		new_df <- df[!mycols]
+		# exclude 3rd and 5th column
+		new_df <- df[c(-3,-5)]
+		# delete columns v1 and v2 from new_df
+		new_df$v3 <- new_df$v5 <- NULL
+#	keeping columns: 
+		# select variables v1, v2, v3
+		mycols <- names(df) %in% c("cal_year", "smoker")
+		new_df <- df[!mycols]
+		# select 1st and 5th to 7th variables
+    new_df <- df[c(1,5:7)]
+```
+
+## Manipulation methods
+We might want to modify our data frame to prepare it for fitting our models. The section below looks at a few simple data manipulations. Here we also introduce the infix operator (%>%); this operator passes the argument to the left of it over to the code on the right, so df %>% "operation" passes the data frame "df" over to the operation on the right.
+
+```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+# create a copy of the dataframe to work from
+  new_df <- df
+```
+
+```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+# simple manipulations
+	# select as in the selection methods section, but using infix
+	new_df %>% select(id, age) %>% head() # or a range using select(1:5) or select(contains("sick")) or select(starts_with("inc")); others e.g. ends_with(), last_col(), select(-age)
+	# replace values in a column
+	replace(new_df$sex,new_df$sex=="u","m") # no infix in base r
+	# Rename, id to pol_id
+	new_df %>% rename(pol_id = id) %>% head() #or (reversing the renaming)
+	new_df %>% select(pol_id = id) %>% head()
+	# alter data
+	new_df <- new_df %>% mutate(inc_tot_expected = inc_acc_expected + inc_sick_expected) # need to assign the output back to the data frame
+	# transmute - select and mutate simultaneously 
+	new_df2 <- new_df %>% transmute(id, age, birth_year = cal_year - age)
+	# sort
+	new_df %>% arrange(desc(age)) %>% head()
+	# filter
+	new_df %>% filter(benefit_period == "a65", age <65) %>% head() # or
+	new_df %>% filter(benefit_period %in% c("a65","5yr")) %>% head()
+```
+
+```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+# aggregations
+	# group by, also ungroup()
+	new_df %>% group_by(sex) %>% # can add a mutate to group by which will aggregate only to the level specified in the group_by e.g. 
+	mutate(sa_by_sex = sum(sum_assured)) %>% head() # adds a new column with the total sum assured by sex.
+	# after doing this, ungroup() in order to apply future operations to all records individually
+	# count, sorting by most frequent and weighting by another column
+	new_df %>% count(sex, wt= sum_assured, sort=TRUE)  # counts the number of entries for each value of sex, weighted by sum assured
+	# summarize takes many observations and turns them into one observation. mean(), median(), min(), max(), and n() for the size of the group
+	new_df %>% summarize(total = sum(sum_assured), min_age = min(age), max_age = max(age), max(inc_tot_expected)) 
+	new_df %>% group_by(sex) %>% summarise(n = n())
+	table(new_df$sex) # returns count by sex; no infix in base r
+```
+
+```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+# outliers
+	new_df %>% top_n(10, inc_tot_expected) # also operates on grouped table - returns top n per group
+```
+
+Looking at total count of claim rather than just sickness shows a slight trend by age:
