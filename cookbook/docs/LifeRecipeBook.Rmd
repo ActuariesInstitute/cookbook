@@ -215,6 +215,12 @@ select <- dplyr::select
 glimpse(df)
 ```
 
+```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+# window functions
+	# lag - offset vector by 1 e.g. v <- c(1,3,6,14); so - lag(v) = NA 1 3 6
+	new_df %>% arrange(id,age) %>% mutate(ifelse(id==lag(id),age - lag(age),1)) %>% head()
+```
+
 ## Missing data
 By default, the regression model will exclude any observation with missing values on its predictors. Missing values can be treated as a separate category for categorical data. For missing numeric data, imputation is a potential solution. In the example below we replace missing age with an average and add an indicator to the data to flag records that have been imputed.
 
@@ -328,6 +334,9 @@ There are several tidyverse functions that can help with restructuring data, for
 
 ### Wide data format example
 
+```{r Data format, class.source="fold-show"}
+head(spread(df_sample, sex, inc_count_tot, fill = 0))
+```
 
 gather() converts data into long format; # also pivot_longer() and pivot_wider().
 
