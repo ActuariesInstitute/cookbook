@@ -214,3 +214,35 @@ class(df$benefit_period)
 From the above you'll note that the categorical columns are stored as characters. Factorising these makes them easier to work with in our models e.g. for BP factorise a65|2yr|5yr as 1|2|3. Factors are stored as integers and have labels that tell us what they are, they can be ordered and are useful for statistical analysis. 
 
 table() returns a table of counts at each combination of column values. prop.table() converts these to a proportion. For example, applying this to the column "sex" shows us that ~75% of our data is "m" and that the other data are either "f" or "u" (unknown).
+
+```{r Factorise columns - proportions, class.source="fold-show"}
+table(df$sex)
+prop.table(table(df$sex))
+```
+
+We can then convert the columns to factors based upon the values of the column and ordering by frequency. Base level should be chosen such that it has sufficient observations for an intercept to be computed meaningfully.
+```{r Factorise columns - factors, class.source="fold-show"}
+df$sex <- factor(df$sex, levels = c("m","f","u"))
+df$smoker <- factor(df$smoker, levels = c("n","s","u"))
+df$benefit_period <- factor(df$benefit_period, levels = c("a65","2yr","5yr"))
+df$waiting_period <- factor(df$waiting_period, labels = c("30d","14d","720d","90d"))
+df$occupation <- factor(df$occupation, labels = c("prof", "sed","techn","white","blue"))
+
+# do the same for the grouped data
+df_grp$sex <- factor(df_grp$sex, levels = c("m","f","u"))
+df_grp$smoker <- factor(df_grp$smoker, levels = c("n","s","u"))
+df_grp$benefit_period <- factor(df_grp$benefit_period, levels = c("a65","2yr","5yr"))
+df_grp$waiting_period <- factor(df_grp$waiting_period, labels = c("30d","14d","720d","90d"))
+df_grp$occupation <- factor(df_grp$occupation, labels = c("prof", "sed","techn","white","blue"))
+```
+
+If the column is already a factor, you can extract the levels to show what order they will be used in our models
+```{r Factorise columns - levels, class.source="fold-show"}
+levels(df$sex)
+```
+
+## Selection methods
+table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
+
+
+Looking at total count of claim rather than just sickness shows a slight trend by age:
