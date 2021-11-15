@@ -240,9 +240,3 @@ If the column is already a factor, you can extract the levels to show what order
 ```{r Factorise columns - levels, class.source="fold-show"}
 levels(df$sex)
 ```
-
-## Selection methods
-table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
-
-
-Looking at total count of claim rather than just sickness shows a slight trend by age:
