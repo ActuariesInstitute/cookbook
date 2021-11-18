@@ -14,10 +14,11 @@ Generally to add content to the book, one could:
  2.  Make sure the .ipynb file has been fully executed [1],
  3.  Add .ipynb files to the ``cookbook\docs`` subfolder,
  4.  Add those files to the ``cookbook\_toc.yml``
- 5.  Enable github actions
- 6.  Commit to ``main`` in the fork
- 7.  Check that the website at https://[yourusername].github.io/cookbook works as intended
+ 5.  Go to Actions and enable "Build HTML and Deploy to GH-PAGES" (on the right hand side)
+ 6.  Go a random file (e.g. _toc_yml), add an empty space and commit to ``main`` in the fork
+ 7.  Go back to Actio and see if a workflow has been enabled. Wait for it to finish and check that the website at https://[yourusername].github.io/cookbook works as intended
  8.  Create a pull request to ``main`` in the [https://github.com/ActuariesInstitute/cookbook](https://github.com/ActuariesInstitute/cookbook) repository.
+ 9.  Future workflows will be enabled automatically.
 
 Reference Jupyter book documentation [here](https://jupyterbook.org/start/create.html).
 
