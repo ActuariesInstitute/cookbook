@@ -22,7 +22,6 @@ parts:
   chapters:
   - file:  docs/DAA_M05_CS1.ipynb
   - file:  docs/DAA_M05_CS2.ipynb
-  - file:  docs/DAA_M05_Ex10.ipynb
   - file:  docs/multitasking_risk_pricing.ipynb
   - file:  docs/py_shap_values.ipynb
 - caption: Life Insurance
