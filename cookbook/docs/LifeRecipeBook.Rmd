@@ -260,11 +260,9 @@ table(levels(df$sex))
 table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
 
 ```{r Selection Methods, class.source="fold-show", eval=FALSE}
+not_run_sample_only <- function(){
 # data subsets:  e.g. select from df where age <25 or >60 
-subset(df, age <25 | age > 60) %>% head()
-```
-
-```{r Selection Methods, class.source="fold-show", eval=FALSE}
+    subset(df, age <25 | age > 60) 
 #	dropping columns:
 		# exclude columns
 		mycols <- names(df) %in% c("cal_year", "smoker")
@@ -279,41 +277,37 @@ subset(df, age <25 | age > 60) %>% head()
 		new_df <- df[!mycols]
 		# select 1st and 5th to 7th variables
     new_df <- df[c(1,5:7)]
+}
 ```
 
 ## Manipulation methods
 We might want to modify our data frame to prepare it for fitting our models. The section below looks at a few simple data manipulations. Here we also introduce the infix operator (%>%); this operator passes the argument to the left of it over to the code on the right, so df %>% "operation" passes the data frame "df" over to the operation on the right.
 
 ```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+not_run_sample_only <- function(){
 # create a copy of the dataframe to work from
   new_df <- df
-```
-
-```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
 # simple manipulations
 	# select as in the selection methods section, but using infix
-	new_df %>% select(id, age) %>% head() # or a range using select(1:5) or select(contains("sick")) or select(starts_with("inc")); others e.g. ends_with(), last_col(), select(-age)
+	new_df %>% select(id, age) # or a range using select(1:5) or select(contains("sick")) or select(starts_with("inc")); others e.g. ends_with(), last_col(), select(-age)
 	# replace values in a column
-	replace(new_df$sex,new_df$sex=="u","m") %>% head() %>% table() # no infix in base r
+	replace(new_df$sex,new_df$sex=="u","m") # no infix in base r
 	# Rename, id to pol_id
-	new_df %>% rename(pol_id = id) %>% head() #or (reversing the renaming)
-	new_df %>% select(pol_id = id) %>% head()
+	new_df %>% rename(pol_id = id)  #or (reversing the renaming)
+	new_df %>% select(pol_id = id)  
 	# alter data
 	new_df <- new_df %>% mutate(inc_tot_expected = inc_acc_expected + inc_sick_expected) # need to assign the output back to the data frame
 	# transmute - select and mutate simultaneously 
 	new_df2 <- new_df %>% transmute(id, age, birth_year = cal_year - age)
 	# sort
-	new_df %>% arrange(desc(age)) %>% head()
+	new_df %>% arrange(desc(age))
 	# filter
-	new_df %>% filter(benefit_period == "a65", age <65) %>% head() # or
-	new_df %>% filter(benefit_period %in% c("a65","5yr")) %>% head()
-```
-
-```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+	new_df %>% filter(benefit_period == "a65", age <65) # or
+	new_df %>% filter(benefit_period %in% c("a65","5yr"))
 # aggregations
 	# group by, also ungroup()
 	new_df %>% group_by(sex) %>% # can add a mutate to group by which will aggregate only to the level specified in the group_by e.g. 
-	mutate(sa_by_sex = sum(sum_assured)) %>% head() # adds a new column with the total sum assured by sex.
+	mutate(sa_by_sex = sum(sum_assured)) # adds a new column with the total sum assured by sex.
 	# after doing this, ungroup() in order to apply future operations to all records individually
 	# count, sorting by most frequent and weighting by another column
 	new_df %>% count(sex, wt= sum_assured, sort=TRUE)  # counts the number of entries for each value of sex, weighted by sum assured
@@ -321,17 +315,12 @@ We might want to modify our data frame to prepare it for fitting our models. The
 	new_df %>% summarize(total = sum(sum_assured), min_age = min(age), max_age = max(age), max(inc_tot_expected)) 
 	new_df %>% group_by(sex) %>% summarise(n = n())
 	table(new_df$sex) # returns count by sex; no infix in base r
-```
-
-```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
 # outliers
 	new_df %>% top_n(10, inc_tot_expected) # also operates on grouped table - returns top n per group
-```
-
-```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
 # window functions
 	# lag - offset vector by 1 e.g. v <- c(1,3,6,14); so - lag(v) = NA 1 3 6
-	new_df %>% arrange(id,age) %>% mutate(ifelse(id==lag(id),age - lag(age),1)) %>% head()
+	new_df %>% arrange(id,age) %>% mutate(ifelse(id==lag(id),age - lag(age),1))
+}
 ```
 
 ## Missing data
@@ -550,12 +539,15 @@ theme_pander() + scale_color_gdocs()
 ggplot does not cater to 3D visualisations, but this can be done through plotly simply. 
 
 ```{r Visualisation methods - 3D, class.source="fold-show", message=FALSE, warning=FALSE}
-
 plot_base <- plot_ly(data=df_sample, z= ~sum_assured, x= ~age, y=~policy_year, opacity=0.6) %>%
 add_markers(color = ~occ_group,colors= c("blue", "red"), marker=list(size=2)) 
 # show graph
 plot_base
+```
 
+```{r}
+# show graph in Jupyter notebooks
+embed_notebook(plot_base)
 ```
 
 We can add a modeled outcome to the 3D chart. For detail on the model fit, see later sections. 
