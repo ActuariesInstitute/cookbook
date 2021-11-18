@@ -542,7 +542,7 @@ ggplot does not cater to 3D visualisations, but this can be done through plotly 
 plot_base <- plot_ly(data=df_sample, z= ~sum_assured, x= ~age, y=~policy_year, opacity=0.6) %>%
 add_markers(color = ~occ_group,colors= c("blue", "red"), marker=list(size=2)) 
 # show graph
-plot_base
+# plot_base
 
 # show graph in Jupyter notebooks
 embed_notebook(plot_base)
