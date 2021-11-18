@@ -16,7 +16,8 @@ link-citations: yes
 # R: Life Modelling Recipes
 
 <!-- #region name="htmlHeader" tags=["remove_input"] -->
-By Pat Reen - originally published on his GitHub site [here](https://pat-reen.github.io/Modelling-Recipes/).
+By Pat Reen - originally published on his GitHub site [here](https://pat-reen.github.io/Modelling-Recipes/), which has the [original code](https://github.com/Pat-Reen/Modelling-Recipes/blob/main/RecipeBook.Rmd).
+
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -27,6 +28,7 @@ By Pat Reen - originally published on his GitHub site [here](https://pat-reen.gi
 </p>
 <!-- #endregion -->
 
+<!-- #region -->
 # Overview
 ## Background 
 This document sets out a few practical recipes for modelling with (life) insurance data. Insurance events are typically of low probability - these recipes consider some of the limitations of "small data" model fitting (where the observations of interest are sparse) and other topics for insurance like comparisons to standard tables. Themes
@@ -35,15 +37,17 @@ This document sets out a few practical recipes for modelling with (life) insuran
 * Regression 
   + Grouped vs ungrouped data
   + Choice of: response distribution, link (and offsets), explanatory variables 
-  + Modelling variance to industry/ reference (A/E or A - E)
+  + Modelling variance to industry / reference (A/E or A - E)
   + Model selection: stepwise regression, likelihood tests, model evaluation
   + Predictions, confidence intervals and visualisations
 * Bayesian regression and other classification models - to follow.
 
-See link to [GitHub repository](https://github.com/Pat-Reen/Modelling-Recipes) which has the [detailed code](https://github.com/Pat-Reen/Modelling-Recipes/blob/main/RecipeBook.Rmd).
+As with other recipes, the code can be found on [GitHub](https://github.com/ActuariesInstitute/cookbook/blob/main/cookbook/docs/LifeRecipeBook.Rmd).
+
 
 ## Libraries
 A list of packages used in the recipe book.
+<!-- #endregion -->
 
 ```{r Setup, results='hide', class.source="fold-show", message=FALSE, warning=FALSE}
 library(rmdformats) # theme for the HTML doc
@@ -93,7 +97,7 @@ This section sets out a method for generating dummy data. The simulated data is 
 More detail on the techniques used can be found in the section on data manipulation.
 
 ## Simulating policies
-We start by simulating a mix of 200k policies over 3 years. Some simplifying assumptions e.g. nil lapse/ new bus (no allowance for part years of exposure), no indexation. Mix of business assumptions for benefit period, waiting period and occupation taken  taken from [@BusMix], with the remainder based on an anecdotal view of industry mix not intended to be reflective of any one business. 
+We start by simulating a mix of 200k policies over 3 years. Some simplifying assumptions e.g. nil lapse / new business (no allowance for part years of exposure), no indexation. Mix of business assumptions for benefit period, waiting period and occupation taken  taken from [@BusMix], with the remainder based on an anecdotal view of industry mix not intended to be reflective of any one business. 
 
 ```{r Generate dataframe}
 # set the seed value (for the random number generator) so that the simulated data frame can be replicated later
@@ -228,7 +232,7 @@ class(df$benefit_period)
 ## Factors
 From the above you'll note that the categorical columns are stored as characters. Factorising these makes them easier to work with in our models e.g. for BP factorise a65|2yr|5yr as 1|2|3. Factors are stored as integers and have labels that tell us what they are, they can be ordered and are useful for statistical analysis. 
 
-table() returns a table of counts at each combination of column values. prop.table() converts these to a proportion. For example, applying this to the column "sex" shows us that ~75% of our data is "m" and that the other data are either "f" or "u" (unknown).
+``table()`` returns a table of counts at each combination of column values. ``prop.table()`` converts these to a proportion. For example, applying this to the column "sex" shows us that ~75% of our data is "m" and that the other data are either "f" or "u" (unknown).
 
 ```{r Factorise columns - proportions, class.source="fold-show"}
 table(df$sex)
@@ -257,7 +261,7 @@ table(levels(df$sex))
 ```
 
 ## Selection methods
-table() is a method of summarizing data, returning a count at each combination of values in a column. sample() and sample_n() are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in dplyr.
+``table()`` is a method of summarizing data, returning a count at each combination of values in a column. ``sample()`` and ``sample_n()`` are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in ``dplyr``.
 
 ```{r Selection Methods, class.source="fold-show", eval=FALSE}
 not_run_sample_only <- function(){
@@ -281,7 +285,7 @@ not_run_sample_only <- function(){
 ```
 
 ## Manipulation methods
-We might want to modify our data frame to prepare it for fitting our models. The section below looks at a few simple data manipulations. Here we also introduce the infix operator (%>%); this operator passes the argument to the left of it over to the code on the right, so df %>% "operation" passes the data frame "df" over to the operation on the right.
+We might want to modify our data frame to prepare it for fitting our models. The section below looks at a few simple data manipulations. Here we also introduce the infix operator (``%>%``); this operator passes the argument to the left of it over to the code on the right, so ``df %>%`` "operation" passes the data frame "df" over to the operation on the right.
 
 ```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
 not_run_sample_only <- function(){
@@ -440,14 +444,14 @@ There are several tidyverse functions that can help with restructuring data, for
 head(spread(df_sample, sex, inc_count_tot, fill = 0))
 ```
 
-gather() converts data into long format; # also pivot_longer() and pivot_wider().
+``gather()`` converts data into long format; also ``pivot_longer()`` and ``pivot_wider()``.
 
 ## Visualisation methods
 
 ### Introduction to ggplot
 This section sets out some simple visualisation methods using ggplot(). ggplot() Initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden [@ggplot]. The form of ggplot is:
 
-ggplot(data = df, mapping = aes(x,y, other aesthetics), ...)
+``ggplot(data = df, mapping = aes(x,y, other aesthetics), ...)``
 
 Examples below use ggplot to explore the exposure data.
 
@@ -466,7 +470,7 @@ labs(x="Age", y="Sum assured", title = "Sum Assured by age")
 
 ### Layers 
 
-The aesthetics input has a number of different options, for example x and y (axes),	colour,	size,	fill,	labels,	alpha (transparency),	shape,	line type/ width. You can change the aesthetics of each layer or default to the base layer. You can change the general look and feel of charts with a themes layer e.g. colour palette (see more in the next section).	
+The aesthetics input has a number of different options, for example x and y (axes),	colour,	size,	fill,	labels,	alpha (transparency),	shape,	line type / width. You can change the aesthetics of each layer or default to the base layer. You can change the general look and feel of charts with a themes layer e.g. colour palette (see more in the next section).	
 
 You can add more layers to the base plot, for example
 
@@ -565,7 +569,7 @@ fitted_values_WC <- crossing(y_grid, x_grid) %>% mutate(z_grid = coeff_est[1] + 
 z_grid_BC <- fitted_values_BC %>% pull(z_grid) %>% matrix(nrow = length(x_grid)) %>% t()
 z_grid_WC <- fitted_values_WC %>% pull(z_grid) %>% matrix(nrow = length(x_grid)) %>% t()
 
-# define solid colours for the two planes/ surfaces
+# define solid colours for the two planes / surfaces
 colorscale_BC = list(c(0, 1), c("red", "red"))
 colorscale_WC = list(c(0, 1), c("blue", "blue"))
 
@@ -744,7 +748,7 @@ Key assumptions
 
 ### Linear vs logistic regression 
 
-* Linear: Continuous response outcome i.e. predicting a continuous response/dependent variable using a set of explanatory variables
+* Linear: Continuous response outcome i.e. predicting a continuous response / dependent variable using a set of explanatory variables
 * Logistic: Binary response outcome - straight line does not fit the data well. The predicted values are always between 0 and 1. 
 
 For logistic regression the log odds are linear. We can transform to odds ratios by taking the exponential of the coefficients or exp(coef(model)) - this shows the relative change to odds of the response variables, where
@@ -889,7 +893,7 @@ summary(model_8)
 ```
 
 ## Stepwise regression
-This method builds a regression model from a set of candidate predictor variables by entering predictors based on p values, in a stepwise manner until there are no variables left to enter any more. Model may over/ understate the importance of predictors and the direction of stepping (forward or backward) can impact the outcome - so some degree of interpretation is necessary.
+This method builds a regression model from a set of candidate predictor variables by entering predictors based on p values, in a stepwise manner until there are no variables left to enter any more. Model may over / under-state the importance of predictors and the direction of stepping (forward or backward) can impact the outcome - so some degree of interpretation is necessary.
 
 ```{r Stepwise regression, class.source="fold-show"}
 # specify a null model with no predictors
@@ -980,18 +984,12 @@ summary(df_test_pred$pred_rate_inc_count_sick)
 
 ```
 
-To translate the predicted probabilities into a vector of claim/no-claim for each policy we could define a claim as occurring if modelled/ predicted probability of claim is greater than some threshold value. More on this later under evaluation techniques. 
+To translate the predicted probabilities into a vector of claim/no-claim for each policy we could define a claim as occurring if modelled / predicted probability of claim is greater than some threshold value. More on this later under evaluation techniques. 
 
 ```{r Binary predictions, class.source="fold-show"}
 # add binary prediction based upon a threshold probability
 df_test_pred$pred_inc_count_sick <- ifelse(df_test_pred$pred_rate_inc_count_sick>0.003,1,0) # example threshold is ~3rd quartile probability of claim. for balanced data this should be closer to 0.5.
 ```
-
-## Bayesian regression
-In progress.
-
-## Other classification models
-In progress.
 
 # Evaluation
 ## Techniques
@@ -1037,7 +1035,7 @@ lrtest(model_3,step_model_sick)
 Other validations tests could be considered like the [Wald test](https://en.wikipedia.org/wiki/Wald_test), [Score test](https://en.wikipedia.org/wiki/Score_test); see @GLM_Insurance, p74-77.
 
 ## Residual checks
-Residuals/ errors are the observed less fitted values. Traditional residual plots (shown below) are usually a good starting point (we expect to see no trend in the plot of residuals vs fitted values), but are not as informative for logistic regression or for data with a low probability outcome. 
+Residuals / errors are the observed less fitted values. Traditional residual plots (shown below) are usually a good starting point (we expect to see no trend in the plot of residuals vs fitted values), but are not as informative for logistic regression or for data with a low probability outcome. 
 
 ### Standard model plots
 Plots, linear regression example:
@@ -1055,7 +1053,7 @@ plot(step_model_sick)
 ```
 
 ### Alternatives
-For logistic regression we can try other tools to test the residuals against the model assumptions. GLMs assume that the residuals/ errors are normally distributed. Plotting the density of the residuals gives us:
+For logistic regression we can try other tools to test the residuals against the model assumptions. GLMs assume that the residuals / errors are normally distributed. Plotting the density of the residuals gives us:
 
 ```{r Evaluation - histogram of residuals}
 hist(rstandard(step_model_sick),breaks= c(seq(-1,1,by=0.001),seq(2,5, by=1)),freq=FALSE,main = "Histogram of residuals",xlab = "Residuals")
@@ -1116,7 +1114,7 @@ Where:
 * Sensitivity = True Positive Rate
 * Specificity = 1 – False Positive Rate
 
-A perfect classification model could have Sensitivity and Specificity close to 1. However, we noted earlier, in insurance applications we are not often interested in in an accurate prediction as to whether a given policy gives rise to a claim. Rather we are interested in understanding the claim rates and how they are explained by the response variables/ risk factors [@GLM_Insurance, p108-109].
+A perfect classification model could have Sensitivity and Specificity close to 1. However, we noted earlier, in insurance applications we are not often interested in in an accurate prediction as to whether a given policy gives rise to a claim. Rather we are interested in understanding the claim rates and how they are explained by the response variables / risk factors [@GLM_Insurance, p108-109].
 
 A confusion matrix is a tabular representation of Observed vs Predicted values. It helps to quantify the efficiency (or accuracy) of the model.
 
@@ -1141,7 +1139,7 @@ cat("Accuracy Rate =",(confusion_matrix[1,1]+confusion_matrix[2,2])/sum(confusio
 "; Specificity =",1-confusion_matrix[1,2]/sum(confusion_matrix[1,]))
 ```
 
-## ROC/ AUC
+## ROC / AUC
 The ROC (Receiver Operating Characteristic) curve is a graph with:
 
 * The x-axis showing the False Positive Rate
