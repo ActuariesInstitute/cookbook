@@ -21,7 +21,6 @@ parts:
 - caption: Regression, Classification and Technical Price
   chapters:
   - file:  docs/DAA_M05_CS1.ipynb
-  - file:  docs/DAA_M05_CS2.ipynb
   - file:  docs/multitasking_risk_pricing.ipynb
   - file:  docs/py_shap_values.ipynb
 - caption: Life Insurance
@@ -30,6 +29,7 @@ parts:
 - caption: Unsupervised Learning
   chapters:
   - file:  docs/DAA_M06_CS1.ipynb
+  - file:  docs/DAA_M06_CS2.ipynb
   - file:  docs/DAA_M06_Ex4.ipynb
   - file:  docs/DAA_M06_Ex5.ipynb
 - caption: Natural Language Processing
