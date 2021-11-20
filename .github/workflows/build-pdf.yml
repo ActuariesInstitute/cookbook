@@ -48,6 +48,7 @@ jobs:
           name: log
           path: cookbook/_build/latex/book.log
       - uses: actions/upload-artifact@v2
+        if: always()      
         with:
           name: pdf
           path: cookbook/_build/latex/book.pdf
