@@ -43,10 +43,16 @@ jobs:
         run: |
           jb build cookbook/ --builder pdflatex
       - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: log
-          path: cookbook/_build/latex/book.log          
+          path: cookbook/_build/latex/book.log
       - uses: actions/upload-artifact@v2
         with:
           name: pdf
           path: cookbook/_build/latex/book.pdf
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: log
+          path: cookbook/_build/latex/book.tex
