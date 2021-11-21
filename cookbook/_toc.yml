@@ -39,6 +39,7 @@ parts:
   - file:  docs/DAA_M05_Ex10.ipynb
   - file:  docs/DAA_M05_Ex18.ipynb
   - file:  docs/DAA_M07_CS1.ipynb
+  - file:  docs/DAA_M07_CS2.ipynb  
 - caption: Business Optimization
   chapters:
   - file: docs/DAA_2021_S2_Tutorial10_exercise_scipy.ipynb
