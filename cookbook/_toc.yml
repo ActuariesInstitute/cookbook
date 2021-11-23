@@ -18,17 +18,34 @@ parts:
 - caption: Workflow Management
   chapters:
   - file:  docs/version_control
-- caption: Segmentation and Technical Price
+- caption: Regression, Classification and Technical Price
   chapters:
+  - file:  docs/DAA_M05_CS1.ipynb
   - file:  docs/multitasking_risk_pricing.ipynb
   - file:  docs/py_shap_values.ipynb
 - caption: Life Insurance
   chapters:
   - file:  docs/LifeRecipeBook.ipynb
+- caption: Unsupervised Learning
+  chapters:
+  - file:  docs/DAA_M06_CS1.ipynb
+  - file:  docs/DAA_M06_CS2.ipynb
+  - file:  docs/DAA_M06_Ex4.ipynb
+  - file:  docs/DAA_M06_Ex5.ipynb
 - caption: Natural Language Processing
   chapters:
-  - file: docs/R_case_study_word_cloud.ipynb
+  - file:  docs/R_case_study_word_cloud.ipynb
   - file:  docs/textClassificationEntry.ipynb
+  - file:  docs/DAA_M05_Ex10.ipynb
+  - file:  docs/DAA_M05_Ex18.ipynb
+  - file:  docs/DAA_M07_CS1.ipynb
+  - file:  docs/DAA_M07_CS2.ipynb  
+- caption: Business Optimization
+  chapters:
+  - file: docs/DAA_2021_S2_Tutorial10_exercise_scipy.ipynb
+- caption: Image Recognition
+  chapters:
+  - file:  docs/DAA_M05_CS2.ipynb
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision

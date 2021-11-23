@@ -3,3 +3,6 @@ cookbook/_build/*
 .DS_Store
 __pycache__/
 cookbook/docs/test.parquet
+cookbook/docs/DAA_M07_CS1_data.json
+cookbook/docs/DAA_M05_Fig11.dot
+cookbook/docs/DAA_M05_Fig11.png
