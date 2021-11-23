@@ -1,0 +1,1722 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Py: Classifying review sentiment &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Py: Customer Sentiment Analysis" href="DAA_M07_CS2.html" />
+    <link rel="prev" title="Py: Neural Net Classification" href="DAA_M05_Ex18.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/DAA_M07_CS1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M07_CS1.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M07_CS1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M07_CS1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose">
+   Purpose:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages">
+   Packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-data">
+     Import data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explore-data-eda">
+     Explore data (EDA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-data">
+     Prepare data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tokenise">
+       Tokenise
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#clean-data">
+       Clean data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#split-into-training-and-test-data">
+       Split into training and test data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#define-response">
+       Define response
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-vocabulary">
+       Create vocabulary
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vectorise">
+       Vectorise
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelling">
+   Modelling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-model">
+   Evaluate model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comments">
+   Comments
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="py-classifying-review-sentiment">
+<h1>Py: Classifying review sentiment<a class="headerlink" href="#py-classifying-review-sentiment" title="Permalink to this headline">¶</a></h1>
+<p><strong>This notebook was originally created by Rob Daly for the Data Analytics Applications subject, as <em>Case study 7.1 - Classifying automative reviews</em> in the <em>DAA M07 Natural language processing</em> module.</strong></p>
+<p><strong>Data Analytics Applications is a Fellowship Applications (Module 3) subject with the Actuaries Institute that aims to teach students how to apply a range of data analytics skills, such as neural networks, natural language processing, unsupervised learning and optimisation techniques, together with their professional judgement, to solve a variety of complex and challenging business problems. The business problems used as examples in this subject are drawn from a wide range of industries.</strong></p>
+<p><strong>Find out more about the course <a class="reference external" href="https://www.actuaries.asn.au/education-program/fellowship/subjects-and-syllabus/data-analytics-applications-subject">here</a>.</strong></p>
+<div class="section" id="purpose">
+<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>This notebook walks through the use of NLP to analyse customer sentiment. The objective of the case study is to identify ‘complaints’ from a sample of YELP reviews for automotive companies. YELP is a North American review service where customers review different service providers. Reviewers write a text review and are then asked to rate the service on a five point scale.</p>
+</div>
+<div class="section" id="references">
+<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The dataset that is used in this case study was sourced from a Kaggle competition in which YELP provided a set of reviews: <a class="reference external" href="https://www.kaggle.com/yelp-dataset/yelp-dataset">https://www.kaggle.com/yelp-dataset/yelp-dataset</a>.</p>
+<p>It contains information about businesses across 8 metropolitan areas in the USA and Canada.</p>
+<p>For this case study, the dataset has been refined to contain 50,000 reviews for companies tagged as ‘automotive’.</p>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>This section installs packages that will be required for this exercise/case study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span> <span class="c1"># Json is used to load json files.</span>
+<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># os is used to join paths for windows and unix use.</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="c1"># For random number generation.</span>
+<span class="kn">import</span> <span class="nn">time</span> <span class="c1"># Useful for timing processes.</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span> <span class="c1"># Counter provides a quick way to add items in a list.</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># Enhanced mapping dictionary that can take a default value.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># For plotting.</span>
+
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+  <span class="c1"># &#39;word_tokenize&#39; is a tokeniser for natural language.</span>
+  <span class="c1"># There are many such options available.</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sklearn has many useful machine learning packages.</span>
+<span class="c1"># The following are used in the notebook.</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="c1"># Used to read files from a web URL</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
+
+<span class="c1"># Package used in the confusion matrix function.</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /Users/Jacky/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>This section defines functions that will be used for this exercise/case study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to load a json data file.</span>
+<span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">data_set_name</span><span class="p">,</span> <span class="nb">dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This is a function to load the yelp dataset which is stored in json format.</span>
+<span class="sd">    Use the optional dir argument if the file is not in the same directory</span>
+<span class="sd">    as the notebook.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">,</span> <span class="n">data_set_name</span><span class="p">,</span> <span class="s1">&#39;data &#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="c1"># If the user has set Verbose = True (or omitted this argument),</span>
+        <span class="c1"># these lines of code provide a message to the person running the code</span>
+        <span class="c1"># that the dataset is being loaded.</span>
+    
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">data_set_name</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+
+    <span class="n">data_set</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="n">data_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="p">((</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="c1"># If the dataset is very big, these lines of code print &#39;.&#39;s to</span>
+            <span class="c1"># show that the import step is progressing.</span>
+
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">{:,}</span><span class="s1"> observations have been imported.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_set</span><span class="p">)))</span>
+        <span class="c1"># This statement summarises the number of observations that have been</span>
+        <span class="c1"># imported from the dataset.</span>
+    
+    <span class="k">return</span> <span class="n">data_set</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print the Yelp reviews neatly.</span>
+<span class="k">def</span> <span class="nf">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;business_id&#39;</span><span class="p">,</span> <span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="s1">&#39;funny&#39;</span><span class="p">,</span> <span class="s1">&#39;review_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;useful&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;cool&#39;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&lt;12s}</span><span class="s1">: </span><span class="si">{:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">review</span><span class="p">[</span><span class="n">item</span><span class="p">]))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;text: &quot;&#39;</span><span class="p">,</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># The default for print() is to put a space between each argument. </span>
+    <span class="c1"># Here sep=&#39;&#39; is used to overrule this.</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to select reviews with a certain rating (number of stars).</span>
+<span class="k">def</span> <span class="nf">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">):</span>
+    <span class="n">select_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_row</span> <span class="k">for</span> <span class="n">data_row</span> <span class="ow">in</span> <span class="n">review_data</span> \
+                   <span class="k">if</span> <span class="n">data_row</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rating</span><span class="p">]</span>
+    <span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">select_data</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">review_sample</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to format the summary of review ratings.</span>
+<span class="k">def</span> <span class="nf">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">):</span>
+    <span class="n">head_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7s}</span><span class="s1">  </span><span class="si">{:&gt;10s}</span><span class="s1"> </span><span class="si">{:&gt;10s}</span><span class="s1">&#39;</span>
+    <span class="n">row_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7}</span><span class="s1">  </span><span class="si">{:&gt;10,}</span><span class="s1"> </span><span class="si">{:&gt;10.1%}</span><span class="s1">&#39;</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Stars&#39;</span><span class="p">,</span> <span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;Percent&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-----&#39;</span><span class="p">,</span> <span class="s1">&#39;-----&#39;</span><span class="p">,</span> <span class="s1">&#39;-------&#39;</span><span class="p">))</span>
+        
+    <span class="n">total_reviews</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">count</span> <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">review_count</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+
+    <span class="c1"># Add the percent to a dictionary indexed in the same way.</span>
+    <span class="n">review_perc</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">rating</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">review_perc</span><span class="p">[</span><span class="n">rating</span><span class="p">]</span> <span class="o">=</span> <span class="n">review</span><span class="o">/</span><span class="n">total_reviews</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row_format</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="n">k</span><span class="p">),</span> <span class="n">review_count</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">review_perc</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;-------&#39;</span><span class="p">,</span><span class="s1">&#39;-------&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="n">total_reviews</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print some example reviews based on a user input</span>
+<span class="c1"># of &#39;min&#39;, &#39;max&#39;, &#39;average&#39; etc summary function.</span>
+<span class="k">def</span> <span class="nf">print_certain_reviews</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">summ_func</span><span class="p">,</span> <span class="n">descr</span><span class="p">):</span>
+    <span class="c1"># The &#39;summ_func&#39; will be &#39;min&#39;, &#39;max&#39;, &#39;average&#39;, &#39;median&#39; etc.</span>
+    <span class="n">certain_review</span> <span class="o">=</span> <span class="n">summ_func</span><span class="p">([</span><span class="n">length</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+    <span class="n">reviews</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="n">certain_review</span><span class="p">]</span>
+    <span class="n">review_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">review_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Below is the 1 </span><span class="si">{:s}</span><span class="s2"> review of </span><span class="si">{:,}</span><span class="s2"> words:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">descr</span><span class="p">,</span> <span class="n">certain_review</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Below are the </span><span class="si">{:,}</span><span class="s2"> </span><span class="si">{:s}</span><span class="s2"> reviews of </span><span class="si">{:,}</span><span class="s2"> words:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">review_count</span><span class="p">,</span> <span class="n">descr</span><span class="p">,</span> <span class="n">certain_review</span><span class="p">))</span>
+      
+    <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="n">review</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to perform the Bag of Words vectorisation.</span>
+<span class="k">def</span> <span class="nf">vectorise_data</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_set</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="c1"># Prints &#39;.&#39; every 1,000 reviews so that you</span>
+            <span class="c1"># know the code is still running.</span>
+        <span class="n">token_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">])</span>
+            <span class="c1"># Create a count of all the unique tokens in the review.</span>
+        <span class="n">matrix</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">token_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">])</span>
+            <span class="c1"># The token counts for the review are added to &#39;matrix&#39;. </span>
+            <span class="c1"># The &#39;get&#39; function of Counter is used to return a 0</span>
+            <span class="c1"># for any tokens in the vocabulary that are not in a review.</span>
+    <span class="nb">print</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to calculate a range of success metrics for a fitted model.</span>
+<span class="k">def</span> <span class="nf">return_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;F1-score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Precision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Recall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
+    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to plot confusion matrices in an easy to visualise format.</span>
+<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
+                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function prints and plots a nicely formatted confusion matrix.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print out the success metrics of a model.</span>
+<span class="k">def</span> <span class="nf">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9.1%}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+    <span class="k">if</span> <span class="n">confused</span><span class="p">:</span>
+            <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">],</span>
+                                   <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-complaint&#39;</span><span class="p">,</span> <span class="s1">&#39;Complaint&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>This section:</p>
+<ul class="simple">
+<li><p>imports the data that will be used in the modelling;</p></li>
+<li><p>explores the data; and</p></li>
+<li><p>prepares the data for modelling.</p></li>
+</ul>
+<div class="section" id="import-data">
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the URL of the dataset to be imported.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS1_data.json&#39;</span>
+
+<span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;DAA_M07_CS1_data.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;DAA_M07_CS1_data.json&#39;, &lt;http.client.HTTPMessage at 0x1297bdca0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the required YELP file.</span>
+<span class="n">review_data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;DAA_M07_CS1_data.json&quot;</span><span class="p">)</span>
+
+<span class="c1"># Alternatively, use the code below with Google Colab to upload the file</span>
+<span class="c1"># from your computer.</span>
+
+<span class="c1"># from google.colab import files</span>
+<span class="c1"># files.upload()</span>
+  <span class="c1"># When prompted, select the DAA_M07_CS1_data.json dataset to upload.</span>
+  <span class="c1"># Note that this may take some time to upload as the file is large.</span>
+<span class="c1"># review_data = load_json(&#39;DAA_M07_CS1_data.json&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loading DAA_M07_CS1_data.json data . 50,000 observations have been imported.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="explore-data-eda">
+<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">¶</a></h3>
+<p>The following data exploration is performed below:</p>
+<ul class="simple">
+<li><p>look at the features available in the data;</p></li>
+<li><p>show some example reviews;</p></li>
+<li><p>see how many reviews there are in each rating category; and</p></li>
+<li><p>look at how long the reviews are.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the feature names from the data.</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+  <span class="c1"># The &#39;{}&#39; brackets are used to define a set that contains unique entries.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+<span class="c1"># The feature names could also be obtained used a for loop per the code below.</span>
+<span class="c1"># This is a less efficient way of extracting the information.</span>
+<span class="n">features2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># This creates an empty set.</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">features2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">features2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;user_id&#39;, &#39;date&#39;, &#39;review_id&#39;, &#39;text&#39;, &#39;funny&#39;, &#39;business_id&#39;, &#39;useful&#39;, &#39;cool&#39;, &#39;stars&#39;}
+{&#39;user_id&#39;, &#39;date&#39;, &#39;review_id&#39;, &#39;text&#39;, &#39;funny&#39;, &#39;business_id&#39;, &#39;useful&#39;, &#39;cool&#39;, &#39;stars&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a sample of 5 random reviews from the full dataset.</span>
+<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="c1"># The &#39;sample&#39; method in the &#39;random&#39; package selects, without replacement,</span>
+  <span class="c1"># the number of items you want from a list.</span>
+
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
+    <span class="n">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>business_id : MqcUTJ6T_DsJVBreh5r68g
+stars       : 5.0
+funny       : 1
+review_id   : DbOWQ9bysVDBo9ILkWZf6g
+date        : 2019-06-26 14:03:43
+useful      : 0
+user_id     : OJz7Rbav0tm1AAXwArGE6A
+cool        : 0
+text: &quot;Well Just picked up 4th vehicle that has gone to Notorious. Also referred a number of friends to them. Quality work, come up with great ideas on little details, shop and staff are unreal and pricing is fair but you get what you pay for! Will be dropping off #5 as soon as it gets delivered!&quot;
+
+business_id : H7mjnD5AZoMZDyNjUEcVDg
+stars       : 5.0
+funny       : 0
+review_id   : v1153so3LG3Pfbd0ojx6IA
+date        : 2011-08-15 21:37:48
+useful      : 0
+user_id     : JV1lIvs4oUevaPJh5O4Yqw
+cool        : 1
+text: &quot;Had the guys from suburban come out and install  shower glass and a wall to wall mirror for us, they did a great job for us. When we had an issue with one of the shower pieces and they came right away and fixed it for us at no additional charge.&quot;
+
+business_id : ApG6TS7aDiYSZaGjcuzEHA
+stars       : 5.0
+funny       : 0
+review_id   : yEZfm2_UlRoOMljPG7STsg
+date        : 2017-12-13 00:19:38
+useful      : 2
+user_id     : Njgb90oPFcntk7ErRozvwA
+cool        : 0
+text: &quot;I recently purchased a 2015 A6 from the Audi Chandler dealership and am very happy with the whole process. The saleswoman Adora was not pushy and awesome to work with me on pricing. I spent about 3 hours there on a Friday night (time well spent) and was finally able to make a deal. They also worked with me on dropping off my previous lease and taking care of the whole lease drop off process.
+
+Appreciate Adora and team for working with me on the purchase. Will be doing more business here in the future.&quot;
+
+business_id : LwNZ1AR4_5iukgQYuhmTOg
+stars       : 1.0
+funny       : 0
+review_id   : kshpl7b25ndcTM2oa7eHJg
+date        : 2017-04-22 02:48:47
+useful      : 1
+user_id     : bfyel8hfVMpbwmYZRAKmJQ
+cool        : 0
+text: &quot;So I came here looking at a 2005 Bentley Continental Gt that they had pre-owned. Met a fantastic guy named Sal, great person, very friendly and pretty much closed the deal. Once we got inside for paperwork, a person by the name of Zayne disrespected me so fouly, I don&#39;t want to put down here what he did, but, I immediately walked away because of the amount of disrespect he gave me, very disgusting. I highly recommend you do not do business with Zayne. I rate 1 star solely because of that man.&quot;
+
+business_id : 8Ivagy4hMgx7hHdY_QJ_hA
+stars       : 5.0
+funny       : 1
+review_id   : BQZ_18SrDN4WIo20waGlmQ
+date        : 2014-05-24 16:38:03
+useful      : 1
+user_id     : yTiYaNdjrHvUtQgmYyybbg
+cool        : 0
+text: &quot;Customer service was top notch all the way around. Fast and easy process, no games. Extremely happy with the entire experience. Will definitely be back for my next vehicle and will recommend family and friends.
+
+Spencer was a big help. 
+
+Thanks Matt!!&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print 5 random reviews with 1 star ratings using the</span>
+<span class="c1"># &#39;sample_with_rating&#39; function defined at the top of the notebook.</span>
+<span class="n">review_sample</span> <span class="o">=</span> <span class="n">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
+    <span class="n">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>business_id : hKC0ZeoiCUmYCsJVTAQEgQ
+stars       : 1.0
+funny       : 0
+review_id   : DjkV7-E7wngueXpeI1DGjQ
+date        : 2013-10-18 12:51:01
+useful      : 2
+user_id     : hm1MLz1yJV--ceZG4RY1oA
+cool        : 0
+text: &quot;Had an unexpected brake problem with my Honda. Called in advance to see if they could look at my vehicle that day. Had it towed in and it took them two days to put new brakes on. I never received an estimate. Every time they gave me that it would be completed they missed. They called at 4:45 and said it was almost done. When I arrived one hour later it still was not done. And as I pulled out of the parking lot I noticed my clock and radio were not working and need to be reset. How can a brake job affect your radio?! I wouldn&#39;t trust these fools to put air in my tires. Overpriced, under deliver, disrespectful and incompetent. BEWARE!&quot;
+
+business_id : 4r_oR7zo2oV0_BGlAN6ltw
+stars       : 1.0
+funny       : 0
+review_id   : jw5_7C9XQZyHLem6oEw9iw
+date        : 2017-02-11 19:23:32
+useful      : 0
+user_id     : qC3OGrFVAKacAvT51scF-w
+cool        : 0
+text: &quot;**SCAM ALERT**
+Thought their alignment / oil change package was a good deal on Groupon so I bought it and took in my truck. My left front ball joint was dry as a bone and a little squeaky when I dropped it off. When I got it back the manager, an older honest looking white guy, told me my ball joint was shot and so were my shocks and that I&#39;d need to put a few grand into the repairs in the near future if I wanted to keep her on the road. He said they did what they could with the alignment but it wouldn&#39;t stay out with such a damaged joint. Needless to say the alignment went out of whack quickly. Took the truck in to a friend at another shop and it turns out the guys at Fletcher&#39;s had loosened the joint to make it worse and left it dry in an attempt to con me. All it needed was a tightening and some lube. I hate to leave negative reviews but this place is trouble and you guys need to know about it.
+**AVOID THIS SHOP**&quot;
+
+business_id : QC8cV2iUE7dtXW-CayBgUg
+stars       : 1.0
+funny       : 1
+review_id   : O6MawRG6VC90AOHoKWygqA
+date        : 2016-10-28 19:08:49
+useful      : 4
+user_id     : IfX18Uxx_zjipapPOG7CwQ
+cool        : 1
+text: &quot;My wife and myself just moved to the Summerlin area from Rancho Mirage, Ca. We have been Porsche owners for the past 30 years... most recently a Cayenne Turbo. We went to the dealer looking for a Panamera. We had another trade in for them to look at. We found a silver Panamera that we liked and the salesman ( not named to protect the guilty) said he would give us a great deal. We probably should have walked out then when he said that. I gave him the vin# for the trade in and he then put everything into the computer. After about 10 minutes of plugging everything in he then left to supposedly talk to his manager to &quot;give us a great deal.&quot; After another 10 minutes he came back with a lowball trade in number which he claimed was from KBB,  and also virtually nothing off the Panamera...he previously said that they wanted to move the car and it would show in the numbers he was going to give me. I then gave him my printed copy of the KBB  dealer trade in value which was $10,000 higher than his trade in number. He must have sized us up and thought we were stupid. We then left. The next day I called my old dealership and one more on an identical Panamera, and not only received the KBB trade in value, but also $8,000 off the new Panamera. It was pretty obvious that Gaudin was just trying to pick us off. Needless to say we will never go back even for servicing on our cars.&quot;
+
+business_id : DOGLO1H45GV3C2cd-FzcOw
+stars       : 1.0
+funny       : 0
+review_id   : _jDN7Re70eQV224gDkkULw
+date        : 2017-07-05 07:02:10
+useful      : 1
+user_id     : EUZu6ds0MHtyUDwLgezWOQ
+cool        : 0
+text: &quot;My 2008 Kia Sedona had a recall so I called to make an appointment. I also had a jammed seat so I figured I would get both issues taken care of at the same time. I was advised if my seat was an easy fix there would be no charge. If it was more complicated they would have to charge me. Fair enough. I brought my car in at the scheduled time. I was told 2 hours so I decided not to wait. No shuttle was offered so I called for a ride. Over 4 hours later I received a call that my car was ready. I showed up and they were just finishing drying my car. I was handed my keys and was told my car was washed, recall fixed and my seat fixed. No charge. I was not given any paperwork for what was done on my car. I thought it was odd but figured it was because I wasn&#39;t charged anything. I was thrilled. The next day I needed to take my seats out. My seat was still jammed!!  I called immediately. Was told the Service dept was closed but a manger would definitely call as I should have been given paperwork on what was completed and she also said it was unacceptable that I was told a service was preformed and it wasn&#39;t. I am not even sure if the recall issue was completed. I never received a call from the manager of the service dept. I am extremely unhappy with the (lack) of service and follow up. I will never again go back. They obviously don&#39;t care about their customers.&quot;
+
+business_id : dWsQ4HSqSQU3vetA0us10w
+stars       : 1.0
+funny       : 1
+review_id   : 3Jug_Ik6CStmymKoexmxXA
+date        : 2010-02-25 04:53:54
+useful      : 2
+user_id     : -NcqwXiuFY9b1nsz3VJ27g
+cool        : 1
+text: &quot;I bought my brand new Jeep from Courtesy Dodge. The customer service for that was great. They went out of their way, rented me a car until my new Jeep was available for pick up etc.
+My experience in their service dept. was not so impressive. Do not let them run a diagnostics test on your vehicle unless you want to be ripped off. I asked them (1 year after purchasing) &quot;why is my engine light on?&quot;  And without asking us any questions or giving us any quotes the handy-dandy mechanic went ahead and ran one of their handy-dandy diagnostic tests to reveal the possible cause for this handy-dandy engine indicator light going off . $200 or so later (just for the test) it turns out engine light goes off because locking gascap (that was installed 2 months prior ) was not  &quot;compatible&quot; 
+Who would have thought?? 
+
+This is my advice:
+Save yourself the money and go buy a diagnostics tester from Canadian Tire and test it yourself! This new on-board diagnostic indicator stuff  in vehicles now is apparently a whole different line of technology than what people are used to. Another scam for the automobile consumers!  I Wish I would have known this before.
+Has anyone else had a bad experience with them because I would like to know seeing that I apparently have no choice but to take my Jeep back there for maintenance and repairs... Thanks.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count the number of reviews in each rating category.</span>
+<span class="c1"># This is done using a counter as an efficient method to iterate through items.</span>
+
+<span class="n">review_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">])</span>
+  <span class="c1"># A list constructor is used to produce a list of all the star ratings</span>
+  <span class="c1"># and the Counter function is then used to count how many reviews there are</span>
+  <span class="c1"># in each star rating group.</span>
+
+<span class="n">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stars         Total    Percent
+-----         -----    -------
+*****        27,101      54.2%
+****          3,915       7.8%
+***           1,790       3.6%
+**            2,470       4.9%
+*            14,724      29.4%
+            -------    -------
+Total        50,000     100.0%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the length of different reviews.</span>
+<span class="c1"># A list constructor is used to produce a list of how long each review is</span>
+<span class="c1"># in characters. </span>
+<span class="n">review_length_characters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
+
+<span class="c1"># Print summary statistics for the number of characters in each review.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The longest character length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shortest character length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average character length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The median character length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># A list constructor is used to produce a list of how long each review is</span>
+<span class="c1"># in words.</span>
+<span class="n">review_length_words</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
+  <span class="c1"># The str.split() function breaks a string by approximate word breaks. </span>
+
+<span class="c1">## Print summary statistics for the number of words in each review.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The longest word length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shortest word length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average word length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The median word lenth of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The longest character length in a review is 5,000.
+The shortest character length in a review is 1.
+The average character length of reviews is 630.
+The median character length of reviews is 436.
+
+The longest word length in a review is 1,051.
+The shortest word length in a review is 1.
+The average word length of reviews is 119.
+The median word lenth of reviews is 82.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print some examples of the shortest and longest reviews.</span>
+<span class="n">review_and_length</span> <span class="o">=</span> <span class="p">[(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
+
+<span class="n">print_certain_reviews</span><span class="p">(</span><span class="n">review_and_length</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="s1">&#39;shortest&#39;</span><span class="p">)</span>
+<span class="n">print_certain_reviews</span><span class="p">(</span><span class="n">review_and_length</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="s1">&#39;longest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Below are the 4 shortest reviews of 1 words:
+&quot; L &quot;
+&quot; Great! &quot;
+&quot; :) &quot;
+&quot; :) &quot;
+
+Below is the 1 longest review of 1,051 words:
+&quot; CAUTION!!!!!! DO NOT GO HERE!!!! If I could I&#39;d give this place a -5 star!!! That&#39;s the first red flag u should know. I have a long story &amp; from reading ALOT of reviews id say about 98% of them r poor reviews about this place. About 5 of them r very similar to mine. So here&#39;s my horrible story and experience...It was last month in Oct of 2015 ,I&#39;ve been hearing about the Tent sale on 83rd between Bell rd &amp; T-bird. Sale started Oct 22nd. So I have a 2014 Crystler 200 &amp; it was my first car I&#39;ve owned, by this time I had it for about 7 months. My heart was set on a Kia Optima but ended up settling for the 200. So when we get there we are given a person to take us around to look at cars. We were with 2 guys, Brian &amp; Tavo from Vans Chevy. Before I go on, Tavo is an amazing nice guy that is very honest, very helpful so I have nothing bad to say about Tavo. Anyways, Brian shows me a few white optimas but eventually I see a black one w/ black rims, pretty much wanted it . I test drove it &amp; all. Sat down &amp; we negotiated a lot mainly on payments. I wanted 0 down &amp; $350/month. I wanted 0 down because I did not have anything to put down but my trade in &amp; had to make my payment for my 200 on Oct 27th of $330. Brian told me after all the negotiations, ok how about u put down $330 of the payment u were gonna do for the 200 &amp; I said, R u sure I can do that since I have to make that payment for my 200? He said yes, once you sign over the 200 to us you don&#39;t have to make payments to them. So I believed him &amp; ended up doing $375/month for the Kia, which we financed with Sammy. Brian also stated that my credit score was great. So I had a good feeling no need for a cosigner which I didn&#39;t have for my 200. We swapped keys &amp; the Kia was mine ! I finally felt like I was complete with the car I&#39;ve been wanting and it was perfect for our baby on the way! About a week goes by &amp; Sammy calls letting me know about the banks he&#39;s seeing which one will take the loan. In the mean time my credit union calls me a day after my payment for the 200 was due asking for the payment so I told them,car is not in my possession I traded it in &amp; Brian told me I don&#39;t need to pay for this month. The credit union guy tells me that I&#39;m still responsible for my loan payment until they do the pay off. I told him no that&#39;s not how it works &amp; they told me diff,I don&#39;t have to pay u guys it&#39;s not in my possession. About a week &amp; a half goes by &amp; Sammy is asking if I have a cosigner. I say no. Try the TruWest bank my 200 is through.They accepted me. After almost two weeks I try calling &amp; calling his number to speak with Sammy. I can&#39;t get through and I leave messages to the front desk to have him call me back . Days go by-nothing. I even call over there while I&#39;m at work to see if he called the credit union, supposedly he said he did but I doubt he did cuz when I spoke w/ credit union they have no notes or record of them calling.
+I&#39;m getting really impatient by now &amp; it&#39;s taking longer than it should . I keep calling &amp; finally speak w/ Sammy &amp; he said we still &quot;need&quot; a cosigner to do this deal so I give him my fiancés info &amp; I know for sure they could check if he qualifies in no less than 5 min. It took him another week &amp; a half to tell me he wasn&#39;t approved either. I felt like he kept us in the dark &amp; this whole time I&#39;m still wondering if the Kia is going to be mine. At this time it&#39;s almost been 3 weeks of attempting phone calls to him. The girl just says he&#39;s with customers and I tell her to have him call me back &amp; he doesn&#39;t for days.Credit union calls me letting me know that I&#39;m being put into collections cuz of how late my payment is. We decide to drive all the way over there on nov 20th to see what is actually going on &amp; we drove 20miles to speak w/ the finance manager. I told him the situation &amp; said its been pretty Much a month &amp; your finance guy hasn&#39;t pushed anything through. He was shocked,but I&#39;m sure this isn&#39;t the first time . He had us sit &amp; wait for a sales manager to help us. We sit &amp; wait &amp; wait, 40 min we are still waiting &amp; I&#39;m pissed so we just left back home. I called the next day to speak with the general manager &amp; the lady said he was in a meeting and I asked how long,she said 2 hours. I said ok I&#39;ll call back but I just called back &amp; left my name and number &amp; said its really urgent and regarded Sammy w/ finance.Not even 30 min passed &amp; GM called me. I told him my situation &amp; he was very rude. I said you get all the paper work done Today cuz I&#39;m getting my 200 tomorrow! He Didn&#39;t apologize &amp; just said,So u are coming in tomorrow? I said Yes. He just bluntly said,Ok see u tomorrow. We get there &amp; see Tavo. I told him I&#39;m here to get my 200. He was shocked cuz he told us that the guys were just passing my file around not getting it done.they told Tavo to stay out of it &amp; he&#39;s they one who was pushing it to get done. Overall I got my 200 back&amp;Brian&amp;Sammy didn&#39;t come out to like scared liars&amp;cheaters! Never go here! Dont get anything done! &quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the 20 most common words across the whole corpus of complaints.</span>
+<span class="n">word_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Word&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">,</span> <span class="s2">&quot;----------&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">word_count</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="c1"># &#39;most_common&#39; is a helpful method that can be applied to Counter.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12,}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Word          Count
+----     ----------
+the         227,409
+and         201,289
+I           194,839
+to          183,683
+a           138,253
+was          92,536
+my           89,669
+for          70,787
+in           65,321
+of           65,069
+that         55,917
+they         55,752
+it           54,209
+car          49,644
+me           48,401
+with         46,183
+is           45,623
+on           44,690
+have         39,543
+you          34,432
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prepare-data">
+<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
+<p>This section performs the following NLP tasks:</p>
+<ul class="simple">
+<li><p>tokenisation;</p></li>
+<li><p>splitting the data into training and test sets;</p></li>
+<li><p>defining the response variable;</p></li>
+<li><p>creating the vocabulary;</p></li>
+<li><p>cleaning; and</p></li>
+<li><p>vectorisation.</p></li>
+</ul>
+<div class="section" id="tokenise">
+<h4>Tokenise<a class="headerlink" href="#tokenise" title="Permalink to this headline">¶</a></h4>
+<p>In the data exploration sections above, tokenising was performed using the Python str function ‘split’. This function splits on white space and does not, for example, tokenise end of sentence markers such as ‘?’ or ‘.’ .</p>
+<p>The ‘word_tokenize’ tokeniser from the nltk package can provide a better tokenisation outcome than the ‘split’ function because it identifies items such as end of sentence markers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+  <span class="c1"># This sets the starting time so the time taken</span>
+  <span class="c1"># to tokenise can be measured.</span>
+
+<span class="c1"># Tokenise the reviews using &#39;word_tokeniser&#39;.</span>
+<span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">review_data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="c1"># This prints a &#39;.&#39; every 1,000 reviews to reassure</span>
+        <span class="c1"># you that the code is still running.</span>
+    <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+        <span class="c1"># word_tokenize is an nltk tokeniser.</span>
+        <span class="c1"># The set of tokens from each review is added to the review</span>
+        <span class="c1"># dictionary under a new dictionary index &#39;tokens&#39;.</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenising took </span><span class="si">{:.0f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Look at five sample sets of tokens across the whole data set.</span>
+<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>..................................................
+Tokenising took 45 seconds
+
+The service department at North Hills Toyota is absolutely terrible. A car inspection took almost 2 hours. The staff sit around and play in their phones the entire time. They do not come check up on you or provide an update on your service. I will forever go to Kenny Ross in Moon.
+[&#39;The&#39;, &#39;service&#39;, &#39;department&#39;, &#39;at&#39;, &#39;North&#39;, &#39;Hills&#39;, &#39;Toyota&#39;, &#39;is&#39;, &#39;absolutely&#39;, &#39;terrible&#39;, &#39;.&#39;, &#39;A&#39;, &#39;car&#39;, &#39;inspection&#39;, &#39;took&#39;, &#39;almost&#39;, &#39;2&#39;, &#39;hours&#39;, &#39;.&#39;, &#39;The&#39;, &#39;staff&#39;, &#39;sit&#39;, &#39;around&#39;, &#39;and&#39;, &#39;play&#39;, &#39;in&#39;, &#39;their&#39;, &#39;phones&#39;, &#39;the&#39;, &#39;entire&#39;, &#39;time&#39;, &#39;.&#39;, &#39;They&#39;, &#39;do&#39;, &#39;not&#39;, &#39;come&#39;, &#39;check&#39;, &#39;up&#39;, &#39;on&#39;, &#39;you&#39;, &#39;or&#39;, &#39;provide&#39;, &#39;an&#39;, &#39;update&#39;, &#39;on&#39;, &#39;your&#39;, &#39;service&#39;, &#39;.&#39;, &#39;I&#39;, &#39;will&#39;, &#39;forever&#39;, &#39;go&#39;, &#39;to&#39;, &#39;Kenny&#39;, &#39;Ross&#39;, &#39;in&#39;, &#39;Moon&#39;, &#39;.&#39;] 
+
+I agree with Jesse, wholeheartedly. 
+
+I&#39;m sorry for those of you silver-spooners with a narrow and socially constricted view of the world. Let&#39;s hope none of you experience the many, many misfortunes that this world plagues people with, which often is what lands them as &#39;vagrants.&#39;  
+
+Poor you, seriously.
+[&#39;I&#39;, &#39;agree&#39;, &#39;with&#39;, &#39;Jesse&#39;, &#39;,&#39;, &#39;wholeheartedly&#39;, &#39;.&#39;, &#39;I&#39;, &quot;&#39;m&quot;, &#39;sorry&#39;, &#39;for&#39;, &#39;those&#39;, &#39;of&#39;, &#39;you&#39;, &#39;silver-spooners&#39;, &#39;with&#39;, &#39;a&#39;, &#39;narrow&#39;, &#39;and&#39;, &#39;socially&#39;, &#39;constricted&#39;, &#39;view&#39;, &#39;of&#39;, &#39;the&#39;, &#39;world&#39;, &#39;.&#39;, &#39;Let&#39;, &quot;&#39;s&quot;, &#39;hope&#39;, &#39;none&#39;, &#39;of&#39;, &#39;you&#39;, &#39;experience&#39;, &#39;the&#39;, &#39;many&#39;, &#39;,&#39;, &#39;many&#39;, &#39;misfortunes&#39;, &#39;that&#39;, &#39;this&#39;, &#39;world&#39;, &#39;plagues&#39;, &#39;people&#39;, &#39;with&#39;, &#39;,&#39;, &#39;which&#39;, &#39;often&#39;, &#39;is&#39;, &#39;what&#39;, &#39;lands&#39;, &#39;them&#39;, &#39;as&#39;, &quot;&#39;vagrants&quot;, &#39;.&#39;, &quot;&#39;&quot;, &#39;Poor&#39;, &#39;you&#39;, &#39;,&#39;, &#39;seriously&#39;, &#39;.&#39;] 
+
+Great service at the car wash section! The attendant was friendly, used painters tape to ensure my back wind shield wiper didn&#39;t move/wasn&#39;t damaged during the wash. A truck came up behind me and I saw the attendant check their truck bed and hand them small items so they wouldn&#39;t get wet. Will definitely come again when I&#39;m in the area. Paid $3 for the simple car wash and they have free vacuums.
+[&#39;Great&#39;, &#39;service&#39;, &#39;at&#39;, &#39;the&#39;, &#39;car&#39;, &#39;wash&#39;, &#39;section&#39;, &#39;!&#39;, &#39;The&#39;, &#39;attendant&#39;, &#39;was&#39;, &#39;friendly&#39;, &#39;,&#39;, &#39;used&#39;, &#39;painters&#39;, &#39;tape&#39;, &#39;to&#39;, &#39;ensure&#39;, &#39;my&#39;, &#39;back&#39;, &#39;wind&#39;, &#39;shield&#39;, &#39;wiper&#39;, &#39;did&#39;, &quot;n&#39;t&quot;, &#39;move/was&#39;, &quot;n&#39;t&quot;, &#39;damaged&#39;, &#39;during&#39;, &#39;the&#39;, &#39;wash.&#39;, &#39;A&#39;, &#39;truck&#39;, &#39;came&#39;, &#39;up&#39;, &#39;behind&#39;, &#39;me&#39;, &#39;and&#39;, &#39;I&#39;, &#39;saw&#39;, &#39;the&#39;, &#39;attendant&#39;, &#39;check&#39;, &#39;their&#39;, &#39;truck&#39;, &#39;bed&#39;, &#39;and&#39;, &#39;hand&#39;, &#39;them&#39;, &#39;small&#39;, &#39;items&#39;, &#39;so&#39;, &#39;they&#39;, &#39;would&#39;, &quot;n&#39;t&quot;, &#39;get&#39;, &#39;wet&#39;, &#39;.&#39;, &#39;Will&#39;, &#39;definitely&#39;, &#39;come&#39;, &#39;again&#39;, &#39;when&#39;, &#39;I&#39;, &quot;&#39;m&quot;, &#39;in&#39;, &#39;the&#39;, &#39;area&#39;, &#39;.&#39;, &#39;Paid&#39;, &#39;$&#39;, &#39;3&#39;, &#39;for&#39;, &#39;the&#39;, &#39;simple&#39;, &#39;car&#39;, &#39;wash&#39;, &#39;and&#39;, &#39;they&#39;, &#39;have&#39;, &#39;free&#39;, &#39;vacuums&#39;, &#39;.&#39;] 
+
+Quality work every time!! Thanks Joe and Todd for attention to detail on every job!! These guys are wheel repair experts and leave a flawless finish every time. The caliper color change is spot on to what we wanted. Thanks again guys!!!
+[&#39;Quality&#39;, &#39;work&#39;, &#39;every&#39;, &#39;time&#39;, &#39;!&#39;, &#39;!&#39;, &#39;Thanks&#39;, &#39;Joe&#39;, &#39;and&#39;, &#39;Todd&#39;, &#39;for&#39;, &#39;attention&#39;, &#39;to&#39;, &#39;detail&#39;, &#39;on&#39;, &#39;every&#39;, &#39;job&#39;, &#39;!&#39;, &#39;!&#39;, &#39;These&#39;, &#39;guys&#39;, &#39;are&#39;, &#39;wheel&#39;, &#39;repair&#39;, &#39;experts&#39;, &#39;and&#39;, &#39;leave&#39;, &#39;a&#39;, &#39;flawless&#39;, &#39;finish&#39;, &#39;every&#39;, &#39;time&#39;, &#39;.&#39;, &#39;The&#39;, &#39;caliper&#39;, &#39;color&#39;, &#39;change&#39;, &#39;is&#39;, &#39;spot&#39;, &#39;on&#39;, &#39;to&#39;, &#39;what&#39;, &#39;we&#39;, &#39;wanted&#39;, &#39;.&#39;, &#39;Thanks&#39;, &#39;again&#39;, &#39;guys&#39;, &#39;!&#39;, &#39;!&#39;, &#39;!&#39;] 
+
+Been going there for years, repairs always done fairly, until this week.  AC fan motor stopped blowing.  took it in, it was a fuse.  Wanted to charge me $100, talked down to $75.  Got car home, radio button different, and covered with grease.  Called back to tell them of this, crack in radio face, and the lights on the radio now don&#39;t come on.  I cannot believe the yelling and ranting at me.  I thought telling him of the issues would encourage him to work with his employees.  Instead, he has lost a customer.
+[&#39;Been&#39;, &#39;going&#39;, &#39;there&#39;, &#39;for&#39;, &#39;years&#39;, &#39;,&#39;, &#39;repairs&#39;, &#39;always&#39;, &#39;done&#39;, &#39;fairly&#39;, &#39;,&#39;, &#39;until&#39;, &#39;this&#39;, &#39;week&#39;, &#39;.&#39;, &#39;AC&#39;, &#39;fan&#39;, &#39;motor&#39;, &#39;stopped&#39;, &#39;blowing&#39;, &#39;.&#39;, &#39;took&#39;, &#39;it&#39;, &#39;in&#39;, &#39;,&#39;, &#39;it&#39;, &#39;was&#39;, &#39;a&#39;, &#39;fuse&#39;, &#39;.&#39;, &#39;Wanted&#39;, &#39;to&#39;, &#39;charge&#39;, &#39;me&#39;, &#39;$&#39;, &#39;100&#39;, &#39;,&#39;, &#39;talked&#39;, &#39;down&#39;, &#39;to&#39;, &#39;$&#39;, &#39;75&#39;, &#39;.&#39;, &#39;Got&#39;, &#39;car&#39;, &#39;home&#39;, &#39;,&#39;, &#39;radio&#39;, &#39;button&#39;, &#39;different&#39;, &#39;,&#39;, &#39;and&#39;, &#39;covered&#39;, &#39;with&#39;, &#39;grease&#39;, &#39;.&#39;, &#39;Called&#39;, &#39;back&#39;, &#39;to&#39;, &#39;tell&#39;, &#39;them&#39;, &#39;of&#39;, &#39;this&#39;, &#39;,&#39;, &#39;crack&#39;, &#39;in&#39;, &#39;radio&#39;, &#39;face&#39;, &#39;,&#39;, &#39;and&#39;, &#39;the&#39;, &#39;lights&#39;, &#39;on&#39;, &#39;the&#39;, &#39;radio&#39;, &#39;now&#39;, &#39;do&#39;, &quot;n&#39;t&quot;, &#39;come&#39;, &#39;on&#39;, &#39;.&#39;, &#39;I&#39;, &#39;can&#39;, &#39;not&#39;, &#39;believe&#39;, &#39;the&#39;, &#39;yelling&#39;, &#39;and&#39;, &#39;ranting&#39;, &#39;at&#39;, &#39;me&#39;, &#39;.&#39;, &#39;I&#39;, &#39;thought&#39;, &#39;telling&#39;, &#39;him&#39;, &#39;of&#39;, &#39;the&#39;, &#39;issues&#39;, &#39;would&#39;, &#39;encourage&#39;, &#39;him&#39;, &#39;to&#39;, &#39;work&#39;, &#39;with&#39;, &#39;his&#39;, &#39;employees&#39;, &#39;.&#39;, &#39;Instead&#39;, &#39;,&#39;, &#39;he&#39;, &#39;has&#39;, &#39;lost&#39;, &#39;a&#39;, &#39;customer&#39;, &#39;.&#39;] 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clean-data">
+<h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this headline">¶</a></h4>
+<p>The ‘word_tokenize’ tokeniser distinguishes between upper and lower case words such that ‘Great’ and ‘great’ are considered as two separate tokens. For this data set, such distinction between case may not be warranted and the model might perform better if all words are converted to their lower case form.
+This is done in the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the tokens for each review to lower case.</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">:</span>
+    <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Look at another five sample sets of lower case tokens across the whole data set.</span>
+<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Took the finance people 2.5 hours to get around to physically accepting our check. We were just buying a cheap car, though, for a college kid so the lack of care kinda makes sense. This is more of a place looking shake down people; while we waited I got to listen to a sales guy running game on some old man, adding onto the price based on color choice. When we finally got in to hand over the check, the same sales guy burst in to interrupt for his own deal, so we waited a bit longer. Go figure...
+[&#39;took&#39;, &#39;the&#39;, &#39;finance&#39;, &#39;people&#39;, &#39;2.5&#39;, &#39;hours&#39;, &#39;to&#39;, &#39;get&#39;, &#39;around&#39;, &#39;to&#39;, &#39;physically&#39;, &#39;accepting&#39;, &#39;our&#39;, &#39;check&#39;, &#39;.&#39;, &#39;we&#39;, &#39;were&#39;, &#39;just&#39;, &#39;buying&#39;, &#39;a&#39;, &#39;cheap&#39;, &#39;car&#39;, &#39;,&#39;, &#39;though&#39;, &#39;,&#39;, &#39;for&#39;, &#39;a&#39;, &#39;college&#39;, &#39;kid&#39;, &#39;so&#39;, &#39;the&#39;, &#39;lack&#39;, &#39;of&#39;, &#39;care&#39;, &#39;kinda&#39;, &#39;makes&#39;, &#39;sense&#39;, &#39;.&#39;, &#39;this&#39;, &#39;is&#39;, &#39;more&#39;, &#39;of&#39;, &#39;a&#39;, &#39;place&#39;, &#39;looking&#39;, &#39;shake&#39;, &#39;down&#39;, &#39;people&#39;, &#39;;&#39;, &#39;while&#39;, &#39;we&#39;, &#39;waited&#39;, &#39;i&#39;, &#39;got&#39;, &#39;to&#39;, &#39;listen&#39;, &#39;to&#39;, &#39;a&#39;, &#39;sales&#39;, &#39;guy&#39;, &#39;running&#39;, &#39;game&#39;, &#39;on&#39;, &#39;some&#39;, &#39;old&#39;, &#39;man&#39;, &#39;,&#39;, &#39;adding&#39;, &#39;onto&#39;, &#39;the&#39;, &#39;price&#39;, &#39;based&#39;, &#39;on&#39;, &#39;color&#39;, &#39;choice&#39;, &#39;.&#39;, &#39;when&#39;, &#39;we&#39;, &#39;finally&#39;, &#39;got&#39;, &#39;in&#39;, &#39;to&#39;, &#39;hand&#39;, &#39;over&#39;, &#39;the&#39;, &#39;check&#39;, &#39;,&#39;, &#39;the&#39;, &#39;same&#39;, &#39;sales&#39;, &#39;guy&#39;, &#39;burst&#39;, &#39;in&#39;, &#39;to&#39;, &#39;interrupt&#39;, &#39;for&#39;, &#39;his&#39;, &#39;own&#39;, &#39;deal&#39;, &#39;,&#39;, &#39;so&#39;, &#39;we&#39;, &#39;waited&#39;, &#39;a&#39;, &#39;bit&#39;, &#39;longer&#39;, &#39;.&#39;, &#39;go&#39;, &#39;figure&#39;, &#39;...&#39;] 
+
+they used to be decent years ago -  always went to the location on Maryland Parkway/Twain.  Last year (2018) - had a rude piece of trash attendant with an attitude.  Emailed to complain to their gmail account on their website -  received a response from Eric Wahrer - ewahrer@gmail.com -  said he&#39;d comp my next smog check for free.  Well this year smog check time comes and no response from him or the other e-mail:  jiffysmog@gmail.com    ( I have copies or the e-mails).  
+Don&#39;t waste your time -  better options and better pricing and most importantly BETTER CUSTOMER SERVICE!!!
+[&#39;they&#39;, &#39;used&#39;, &#39;to&#39;, &#39;be&#39;, &#39;decent&#39;, &#39;years&#39;, &#39;ago&#39;, &#39;-&#39;, &#39;always&#39;, &#39;went&#39;, &#39;to&#39;, &#39;the&#39;, &#39;location&#39;, &#39;on&#39;, &#39;maryland&#39;, &#39;parkway/twain&#39;, &#39;.&#39;, &#39;last&#39;, &#39;year&#39;, &#39;(&#39;, &#39;2018&#39;, &#39;)&#39;, &#39;-&#39;, &#39;had&#39;, &#39;a&#39;, &#39;rude&#39;, &#39;piece&#39;, &#39;of&#39;, &#39;trash&#39;, &#39;attendant&#39;, &#39;with&#39;, &#39;an&#39;, &#39;attitude&#39;, &#39;.&#39;, &#39;emailed&#39;, &#39;to&#39;, &#39;complain&#39;, &#39;to&#39;, &#39;their&#39;, &#39;gmail&#39;, &#39;account&#39;, &#39;on&#39;, &#39;their&#39;, &#39;website&#39;, &#39;-&#39;, &#39;received&#39;, &#39;a&#39;, &#39;response&#39;, &#39;from&#39;, &#39;eric&#39;, &#39;wahrer&#39;, &#39;-&#39;, &#39;ewahrer&#39;, &#39;@&#39;, &#39;gmail.com&#39;, &#39;-&#39;, &#39;said&#39;, &#39;he&#39;, &quot;&#39;d&quot;, &#39;comp&#39;, &#39;my&#39;, &#39;next&#39;, &#39;smog&#39;, &#39;check&#39;, &#39;for&#39;, &#39;free&#39;, &#39;.&#39;, &#39;well&#39;, &#39;this&#39;, &#39;year&#39;, &#39;smog&#39;, &#39;check&#39;, &#39;time&#39;, &#39;comes&#39;, &#39;and&#39;, &#39;no&#39;, &#39;response&#39;, &#39;from&#39;, &#39;him&#39;, &#39;or&#39;, &#39;the&#39;, &#39;other&#39;, &#39;e-mail&#39;, &#39;:&#39;, &#39;jiffysmog&#39;, &#39;@&#39;, &#39;gmail.com&#39;, &#39;(&#39;, &#39;i&#39;, &#39;have&#39;, &#39;copies&#39;, &#39;or&#39;, &#39;the&#39;, &#39;e-mails&#39;, &#39;)&#39;, &#39;.&#39;, &#39;do&#39;, &quot;n&#39;t&quot;, &#39;waste&#39;, &#39;your&#39;, &#39;time&#39;, &#39;-&#39;, &#39;better&#39;, &#39;options&#39;, &#39;and&#39;, &#39;better&#39;, &#39;pricing&#39;, &#39;and&#39;, &#39;most&#39;, &#39;importantly&#39;, &#39;better&#39;, &#39;customer&#39;, &#39;service&#39;, &#39;!&#39;, &#39;!&#39;, &#39;!&#39;] 
+
+This is my go-to spot for airport parking near Toronto-Pearson. There are 3 lots available: the very expensive valet lot, self-park, and economy. Self-park and economy are pretty similar, though I recall self-park being a little more expensive. Economy is further away than self-park for sure. Economy is around $38/week, which is way cheaper than taking a taxi both ways.
+
+On the way in, take your printed parking ticket with barcode. You can either place it in your car in a safe place, but don&#39;t put it on the dashboard. You&#39;ll need it when you leave. I suggest removing anything visible that looks valuable, like a GPS or your garage door opener. The location is fairly sketchy. On the way out, scan your ticket, then your rewards card, then the discount coupon, then your credit card.
+
+The economy lot is a pain when it rains. There isn&#39;t proper drainage, so rain forms pools of water. The shuttle buses usually come by every 15 minutes, unless it&#39;s very busy, in which case the shuttle bus driver should call for backup if they&#39;re too full to pick you up.
+
+A few tips:
+1. Enroll in the rewards program to earn Aeroplan miles.
+2. Visit the Park&#39;n Fly website to print a coupon. It will save you a substantial amount of money.
+3. When parking, take note of which area your car is in. There are signs by the road that indicate the location (e.g. B95). This is different than the shelter location (e.g. B11). It&#39;s important to write down both otherwise you&#39;ll end up like me and arrive at the right shelter but walk around until you can find your car in the sea of cars.
+4. If you want a guaranteed spot on the shuttle bus, walk to the shelter closest to the entrance.
+[&#39;this&#39;, &#39;is&#39;, &#39;my&#39;, &#39;go-to&#39;, &#39;spot&#39;, &#39;for&#39;, &#39;airport&#39;, &#39;parking&#39;, &#39;near&#39;, &#39;toronto-pearson&#39;, &#39;.&#39;, &#39;there&#39;, &#39;are&#39;, &#39;3&#39;, &#39;lots&#39;, &#39;available&#39;, &#39;:&#39;, &#39;the&#39;, &#39;very&#39;, &#39;expensive&#39;, &#39;valet&#39;, &#39;lot&#39;, &#39;,&#39;, &#39;self-park&#39;, &#39;,&#39;, &#39;and&#39;, &#39;economy&#39;, &#39;.&#39;, &#39;self-park&#39;, &#39;and&#39;, &#39;economy&#39;, &#39;are&#39;, &#39;pretty&#39;, &#39;similar&#39;, &#39;,&#39;, &#39;though&#39;, &#39;i&#39;, &#39;recall&#39;, &#39;self-park&#39;, &#39;being&#39;, &#39;a&#39;, &#39;little&#39;, &#39;more&#39;, &#39;expensive&#39;, &#39;.&#39;, &#39;economy&#39;, &#39;is&#39;, &#39;further&#39;, &#39;away&#39;, &#39;than&#39;, &#39;self-park&#39;, &#39;for&#39;, &#39;sure&#39;, &#39;.&#39;, &#39;economy&#39;, &#39;is&#39;, &#39;around&#39;, &#39;$&#39;, &#39;38/week&#39;, &#39;,&#39;, &#39;which&#39;, &#39;is&#39;, &#39;way&#39;, &#39;cheaper&#39;, &#39;than&#39;, &#39;taking&#39;, &#39;a&#39;, &#39;taxi&#39;, &#39;both&#39;, &#39;ways&#39;, &#39;.&#39;, &#39;on&#39;, &#39;the&#39;, &#39;way&#39;, &#39;in&#39;, &#39;,&#39;, &#39;take&#39;, &#39;your&#39;, &#39;printed&#39;, &#39;parking&#39;, &#39;ticket&#39;, &#39;with&#39;, &#39;barcode&#39;, &#39;.&#39;, &#39;you&#39;, &#39;can&#39;, &#39;either&#39;, &#39;place&#39;, &#39;it&#39;, &#39;in&#39;, &#39;your&#39;, &#39;car&#39;, &#39;in&#39;, &#39;a&#39;, &#39;safe&#39;, &#39;place&#39;, &#39;,&#39;, &#39;but&#39;, &#39;do&#39;, &quot;n&#39;t&quot;, &#39;put&#39;, &#39;it&#39;, &#39;on&#39;, &#39;the&#39;, &#39;dashboard&#39;, &#39;.&#39;, &#39;you&#39;, &quot;&#39;ll&quot;, &#39;need&#39;, &#39;it&#39;, &#39;when&#39;, &#39;you&#39;, &#39;leave&#39;, &#39;.&#39;, &#39;i&#39;, &#39;suggest&#39;, &#39;removing&#39;, &#39;anything&#39;, &#39;visible&#39;, &#39;that&#39;, &#39;looks&#39;, &#39;valuable&#39;, &#39;,&#39;, &#39;like&#39;, &#39;a&#39;, &#39;gps&#39;, &#39;or&#39;, &#39;your&#39;, &#39;garage&#39;, &#39;door&#39;, &#39;opener&#39;, &#39;.&#39;, &#39;the&#39;, &#39;location&#39;, &#39;is&#39;, &#39;fairly&#39;, &#39;sketchy&#39;, &#39;.&#39;, &#39;on&#39;, &#39;the&#39;, &#39;way&#39;, &#39;out&#39;, &#39;,&#39;, &#39;scan&#39;, &#39;your&#39;, &#39;ticket&#39;, &#39;,&#39;, &#39;then&#39;, &#39;your&#39;, &#39;rewards&#39;, &#39;card&#39;, &#39;,&#39;, &#39;then&#39;, &#39;the&#39;, &#39;discount&#39;, &#39;coupon&#39;, &#39;,&#39;, &#39;then&#39;, &#39;your&#39;, &#39;credit&#39;, &#39;card&#39;, &#39;.&#39;, &#39;the&#39;, &#39;economy&#39;, &#39;lot&#39;, &#39;is&#39;, &#39;a&#39;, &#39;pain&#39;, &#39;when&#39;, &#39;it&#39;, &#39;rains&#39;, &#39;.&#39;, &#39;there&#39;, &#39;is&#39;, &quot;n&#39;t&quot;, &#39;proper&#39;, &#39;drainage&#39;, &#39;,&#39;, &#39;so&#39;, &#39;rain&#39;, &#39;forms&#39;, &#39;pools&#39;, &#39;of&#39;, &#39;water&#39;, &#39;.&#39;, &#39;the&#39;, &#39;shuttle&#39;, &#39;buses&#39;, &#39;usually&#39;, &#39;come&#39;, &#39;by&#39;, &#39;every&#39;, &#39;15&#39;, &#39;minutes&#39;, &#39;,&#39;, &#39;unless&#39;, &#39;it&#39;, &quot;&#39;s&quot;, &#39;very&#39;, &#39;busy&#39;, &#39;,&#39;, &#39;in&#39;, &#39;which&#39;, &#39;case&#39;, &#39;the&#39;, &#39;shuttle&#39;, &#39;bus&#39;, &#39;driver&#39;, &#39;should&#39;, &#39;call&#39;, &#39;for&#39;, &#39;backup&#39;, &#39;if&#39;, &#39;they&#39;, &quot;&#39;re&quot;, &#39;too&#39;, &#39;full&#39;, &#39;to&#39;, &#39;pick&#39;, &#39;you&#39;, &#39;up&#39;, &#39;.&#39;, &#39;a&#39;, &#39;few&#39;, &#39;tips&#39;, &#39;:&#39;, &#39;1&#39;, &#39;.&#39;, &#39;enroll&#39;, &#39;in&#39;, &#39;the&#39;, &#39;rewards&#39;, &#39;program&#39;, &#39;to&#39;, &#39;earn&#39;, &#39;aeroplan&#39;, &#39;miles&#39;, &#39;.&#39;, &#39;2&#39;, &#39;.&#39;, &#39;visit&#39;, &#39;the&#39;, &quot;park&#39;n&quot;, &#39;fly&#39;, &#39;website&#39;, &#39;to&#39;, &#39;print&#39;, &#39;a&#39;, &#39;coupon&#39;, &#39;.&#39;, &#39;it&#39;, &#39;will&#39;, &#39;save&#39;, &#39;you&#39;, &#39;a&#39;, &#39;substantial&#39;, &#39;amount&#39;, &#39;of&#39;, &#39;money&#39;, &#39;.&#39;, &#39;3&#39;, &#39;.&#39;, &#39;when&#39;, &#39;parking&#39;, &#39;,&#39;, &#39;take&#39;, &#39;note&#39;, &#39;of&#39;, &#39;which&#39;, &#39;area&#39;, &#39;your&#39;, &#39;car&#39;, &#39;is&#39;, &#39;in&#39;, &#39;.&#39;, &#39;there&#39;, &#39;are&#39;, &#39;signs&#39;, &#39;by&#39;, &#39;the&#39;, &#39;road&#39;, &#39;that&#39;, &#39;indicate&#39;, &#39;the&#39;, &#39;location&#39;, &#39;(&#39;, &#39;e.g&#39;, &#39;.&#39;, &#39;b95&#39;, &#39;)&#39;, &#39;.&#39;, &#39;this&#39;, &#39;is&#39;, &#39;different&#39;, &#39;than&#39;, &#39;the&#39;, &#39;shelter&#39;, &#39;location&#39;, &#39;(&#39;, &#39;e.g&#39;, &#39;.&#39;, &#39;b11&#39;, &#39;)&#39;, &#39;.&#39;, &#39;it&#39;, &quot;&#39;s&quot;, &#39;important&#39;, &#39;to&#39;, &#39;write&#39;, &#39;down&#39;, &#39;both&#39;, &#39;otherwise&#39;, &#39;you&#39;, &quot;&#39;ll&quot;, &#39;end&#39;, &#39;up&#39;, &#39;like&#39;, &#39;me&#39;, &#39;and&#39;, &#39;arrive&#39;, &#39;at&#39;, &#39;the&#39;, &#39;right&#39;, &#39;shelter&#39;, &#39;but&#39;, &#39;walk&#39;, &#39;around&#39;, &#39;until&#39;, &#39;you&#39;, &#39;can&#39;, &#39;find&#39;, &#39;your&#39;, &#39;car&#39;, &#39;in&#39;, &#39;the&#39;, &#39;sea&#39;, &#39;of&#39;, &#39;cars&#39;, &#39;.&#39;, &#39;4&#39;, &#39;.&#39;, &#39;if&#39;, &#39;you&#39;, &#39;want&#39;, &#39;a&#39;, &#39;guaranteed&#39;, &#39;spot&#39;, &#39;on&#39;, &#39;the&#39;, &#39;shuttle&#39;, &#39;bus&#39;, &#39;,&#39;, &#39;walk&#39;, &#39;to&#39;, &#39;the&#39;, &#39;shelter&#39;, &#39;closest&#39;, &#39;to&#39;, &#39;the&#39;, &#39;entrance&#39;, &#39;.&#39;] 
+
+If you have a Mercedes probably not a good idea to bring it here. I did and they quoted me $3,300 to have catalytic converted replaced. I check with my previous shop in Mesa and the quote was less than $800. I took it to Mesa and had the job done for $812 including tax. This company may be good for Fords or Chevy&#39;s but not a high end car. Just say&#39;n.
+[&#39;if&#39;, &#39;you&#39;, &#39;have&#39;, &#39;a&#39;, &#39;mercedes&#39;, &#39;probably&#39;, &#39;not&#39;, &#39;a&#39;, &#39;good&#39;, &#39;idea&#39;, &#39;to&#39;, &#39;bring&#39;, &#39;it&#39;, &#39;here&#39;, &#39;.&#39;, &#39;i&#39;, &#39;did&#39;, &#39;and&#39;, &#39;they&#39;, &#39;quoted&#39;, &#39;me&#39;, &#39;$&#39;, &#39;3,300&#39;, &#39;to&#39;, &#39;have&#39;, &#39;catalytic&#39;, &#39;converted&#39;, &#39;replaced&#39;, &#39;.&#39;, &#39;i&#39;, &#39;check&#39;, &#39;with&#39;, &#39;my&#39;, &#39;previous&#39;, &#39;shop&#39;, &#39;in&#39;, &#39;mesa&#39;, &#39;and&#39;, &#39;the&#39;, &#39;quote&#39;, &#39;was&#39;, &#39;less&#39;, &#39;than&#39;, &#39;$&#39;, &#39;800&#39;, &#39;.&#39;, &#39;i&#39;, &#39;took&#39;, &#39;it&#39;, &#39;to&#39;, &#39;mesa&#39;, &#39;and&#39;, &#39;had&#39;, &#39;the&#39;, &#39;job&#39;, &#39;done&#39;, &#39;for&#39;, &#39;$&#39;, &#39;812&#39;, &#39;including&#39;, &#39;tax&#39;, &#39;.&#39;, &#39;this&#39;, &#39;company&#39;, &#39;may&#39;, &#39;be&#39;, &#39;good&#39;, &#39;for&#39;, &#39;fords&#39;, &#39;or&#39;, &#39;chevy&#39;, &quot;&#39;s&quot;, &#39;but&#39;, &#39;not&#39;, &#39;a&#39;, &#39;high&#39;, &#39;end&#39;, &#39;car&#39;, &#39;.&#39;, &#39;just&#39;, &quot;say&#39;n&quot;, &#39;.&#39;] 
+
+Great staff! Friendly, professional,helpful. Great environment. Everyone was knowledgeable and able to resolve issues.
+[&#39;great&#39;, &#39;staff&#39;, &#39;!&#39;, &#39;friendly&#39;, &#39;,&#39;, &#39;professional&#39;, &#39;,&#39;, &#39;helpful&#39;, &#39;.&#39;, &#39;great&#39;, &#39;environment&#39;, &#39;.&#39;, &#39;everyone&#39;, &#39;was&#39;, &#39;knowledgeable&#39;, &#39;and&#39;, &#39;able&#39;, &#39;to&#39;, &#39;resolve&#39;, &#39;issues&#39;, &#39;.&#39;] 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="split-into-training-and-test-data">
+<h4>Split into training and test data<a class="headerlink" href="#split-into-training-and-test-data" title="Permalink to this headline">¶</a></h4>
+<p>Now the data is partioned into a training and a test set. The chosen partion is 50% training and 50% test. This is because the dataset is quite large, with
+50,0000 reviews and having a large training set can cause Colab to crash when fitting the model. In practice, if RAM was not an issue, you might want to fit the model with more training data using, for example, an 80%/20% split.</p>
+<p>Note that as has been shown in previous case studies in this subject, you might want to further split the training data into a training and validation set. The validation dataset can then be used to select different hyperparameters for your model. Alternatively, cross-validation can be used on the training data to help you select these hyperparameters.</p>
+<p>This further splitting of the training data into a training and validation data set has been omitted from this case study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+  <span class="c1"># The Sklearn package &#39;train_test_split&#39; is used to automate this step. </span>
+<span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:&gt;10s}</span><span class="s1">&#39;</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;training&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;total&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:10,}</span><span class="s1">&#39;</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">review_data</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  training      test     total
+    25,000    25,000    50,000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-response">
+<h4>Define response<a class="headerlink" href="#define-response" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the response variable as 1 (a complaint) if the number of stars given</span>
+<span class="c1"># is 1 or 2. Otherwise define the response as 0 (non complaint).</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span><span class="p">]</span>
+<span class="n">test_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">test</span><span class="p">]</span>
+
+<span class="c1"># Check the total number of complaints is still the same</span>
+<span class="c1"># across the training and test sets.</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">train_y</span><span class="o">+</span><span class="n">test_y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">review_count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">review_count</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17194
+17194
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-vocabulary">
+<h4>Create vocabulary<a class="headerlink" href="#create-vocabulary" title="Permalink to this headline">¶</a></h4>
+<p>A vocabulary is created, based on all reviews in the training dataset (the corpus).
+Note that the test data is not used to create the vocabulary as this is ‘held out’ until the end of the modelling process to test how well the model performs on unseen data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the vocabulary </span>
+<span class="n">vocab_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">token</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The vocabulary has </span><span class="si">{:,}</span><span class="s1"> tokens&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab_count</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Some examples are: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:6s}</span><span class="s1"> </span><span class="si">{:s}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="s1">&#39;Token&#39;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">vocab_count</span><span class="p">),</span> <span class="mi">50</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{1:6,}</span><span class="s1"> </span><span class="si">{0:s}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">vocab_count</span><span class="p">[</span><span class="n">token</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The vocabulary has 39,391 tokens
+Some examples are: 
+Count  Token 
+   115 jose 
+    10 eaten 
+     1 black/red 
+     2 42,000 
+     1 sc430 
+     2 10:50 
+     2 brookpark 
+     5 mangers 
+     1 averaged 
+     1 dilligence 
+     7 engineering 
+   126 regret 
+     3 vancouver 
+     1 ambassor 
+     1 zeros 
+     2 farid 
+    13 calmly 
+     5 prick 
+     1 95k 
+    43 constant 
+     1 problemo 
+    33 signal 
+     1 pinching 
+     3 deadlines 
+    18 managing 
+     1 tarde 
+     4 crossover 
+     1 concentrating 
+     8 cindy 
+     2 coughed 
+     1 betos 
+     2 flashy 
+     1 inputting 
+     1 leeper 
+     1 piercy 
+     1 maxx 
+     1 5/10/19 
+     1 kozak 
+     2 chemically 
+     2 d/t 
+     5 aesthetic 
+     9 cube 
+     1 augie 
+     1 airbag-related 
+     4 mixture 
+     9 rap 
+     3 imbeciles 
+     1 up-charge 
+     3 deion 
+     1 bern 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The vocabulary is large, with many unique tokens. The code below reduces the vocabulary to only include tokens that appear a certain number of times in the training corpus. The count of each word is not needed after this point so this is also dropped in the code below.</p>
+<p>The minimum count for a token to be retained in the vocabulary is a model parameter that can be varied later when tuning the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the minimum count for a token to be retained.</span>
+<span class="n">min_count</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># Reduce the size of the vocabulary.</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">vocab_count</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">min_count</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are </span><span class="si">{:,}</span><span class="s1"> tokens used </span><span class="si">{:n}</span><span class="s1"> or more times. Some examples are:&#39;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="n">min_count</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 6,196 tokens used 15 or more times. Some examples are:
+austin
+american
+constant
+mechanical
+guests
+perhaps
+hardest
+ignored
+aligned
+service
+due
+cons
+mine
+l
+leadership
+sent
+straight
+canceling
+9:00
+promise
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the reduced vocab into a dictionary to make it easier to check each column</span>
+<span class="c1"># of the matrix later.</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="vectorise">
+<h4>Vectorise<a class="headerlink" href="#vectorise" title="Permalink to this headline">¶</a></h4>
+<p>This section vectorises the tokens in the corpus using the Bag of Words approach. This involves creating a vector, for each review, that is as long as the corpus’s vocabulary. The vector for each review shows how often each word in the vocabulary appears in the review.</p>
+<p>For example, assume a vocabulary contains the letters ‘a’ to ‘e’. The text ‘a, b, b, c, d’ would be vectorised as follows:
+{a:1, b:2, c:1, d:1, e:0}.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vectorise the training and test data.</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">vectorise_data</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+<span class="n">test_X</span> <span class="o">=</span> <span class="n">vectorise_data</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">vocab</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.........................
+.........................
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scaler so that the features in the dataset (the vectorised tokens)</span>
+<span class="c1"># can be scaled to have a mean of 0 and a standard deviation of 1.</span>
+<span class="c1"># Even though the features in this dataset are all on the same scale already,</span>
+<span class="c1"># this step can sometimes help a model converge on an optimal solution</span>
+<span class="c1"># faster during the fitting process.</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">train_X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
+<span class="n">test_X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h2>
+<p>A logistic regression model is now trained. The aim of this model is to predict whether a review is a complaint (i.e. has less than 3 stars) based on the vectorised features for each review.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;sag&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+  <span class="c1"># This line of code creates a logistic regression model.</span>
+  <span class="c1"># &#39;C&#39; is the inverse of regularisation strength and must be a positive float;</span>
+  <span class="c1"># smaller values of C specify stronger regularisation.</span>
+  <span class="c1"># solver = &#39;sag&#39; specifies that the stochastic average gradient descent solver</span>
+  <span class="c1"># should be used to optimise the parameters of the model.  </span>
+  <span class="c1"># The model can be tuned by selecting different values for C and</span>
+  <span class="c1"># also by specifying other parameters for the LogisticRegression module.</span>
+
+<span class="c1"># Fit the model.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+  <span class="c1"># The training data can be supplied in several formats including</span>
+  <span class="c1"># a list of lists (a matrix) for the X data and a list for the y data or</span>
+  <span class="c1"># numpy arrays.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_iter reached after 1199 seconds
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Jacky/opt/miniconda3/lib/python3.9/site-packages/sklearn/linear_model/_sag.py:328: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(&quot;The max_iter was reached which means &quot;
+[Parallel(n_jobs=1)]: Done   1 out of   1 | elapsed: 20.0min finished
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=5, max_iter=1000, solver=&#39;sag&#39;, verbose=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The warning message given above suggests that the model did not converge on an optimal solution after the maximum number of iterations (100) was performed. You could experiment with the model parameters to see if an optimal solution can be found.
+Either way, the evaluation section below suggests that the solution found, while not necessarily optimal, is still reasonably good.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions using the reviews in the test dataset.</span>
+<span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-model">
+<h2>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">¶</a></h2>
+<p>The next section prints key metrics for the predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the return_metrics and print_scores functions defined at the top</span>
+<span class="c1"># of the notebook to review how well this logistic regression model</span>
+<span class="c1"># has predicted complaints and non-complaints.</span>
+<span class="n">scores</span> <span class="o">=</span>  <span class="n">return_metrics</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">)</span>
+<span class="n">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy  F1-score  Precision  Recall   
+  93.1%     90.0%     90.9%     89.0%   
+</pre></div>
+</div>
+<img alt="../_images/DAA_M07_CS1_47_1.png" src="../_images/DAA_M07_CS1_47_1.png" />
+</div>
+</div>
+<p>The results are reasonably good, with all printed metrics in the order of 90% or higher.</p>
+<p>This suggests that the model has identified a high proportion of both true complaints and true non-complaints and a low proportion of false complaints and false non-complaints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a ROC curve and calculate the AUC for the model.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The AUC for the model is: &#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">))</span>
+
+<span class="c1"># Retrieve the sensitivity (true positive rate) and false positive rate for</span>
+<span class="c1"># each threshold value (where the threshold value decides how high the</span>
+<span class="c1"># predicted probability of being a complaint has to be before an observation</span>
+<span class="c1"># is classified as a complaint.)</span>
+
+<span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">true_positive_rate</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver Operating Characteristic - review classifier&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">true_positive_rate</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sensitivity (True Positive Rate)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The AUC for the model is:  0.9215204981314656
+</pre></div>
+</div>
+<img alt="../_images/DAA_M07_CS1_49_1.png" src="../_images/DAA_M07_CS1_49_1.png" />
+</div>
+</div>
+<p>It is instructive to see which tokens have the greatest and smallest weights in the fitted model. The greatest weights imply that these words predict complaints while the smallest weights show that these words predict non-complaints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the weights from the model for each token in the vocabulary.</span>
+<span class="k">def</span> <span class="nf">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">mod_coefs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+    
+    <span class="c1"># Create a list of vocab words and their weights.</span>
+    <span class="n">token_weight</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">vocab</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">token_weight</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">token</span><span class="p">,</span> <span class="n">mod_coefs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">]))</span>
+   
+    <span class="c1"># Sort and print the top k items.</span>
+    <span class="k">def</span> <span class="nf">print_list</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Word&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;----&#39;</span><span class="p">,</span> <span class="s1">&#39;------&#39;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:7.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">token</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="k">return</span>
+
+    <span class="n">token_weight</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">complaint_keywords</span> <span class="o">=</span> <span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Words driving complaints:&#39;</span><span class="p">)</span>
+    <span class="n">print_list</span><span class="p">(</span><span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+    
+    <span class="n">token_weight</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">non_complaint_keywords</span> <span class="o">=</span> <span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Words driving non-complaints:&#39;</span><span class="p">)</span>
+    <span class="n">print_list</span><span class="p">(</span><span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">complaint_keywords</span><span class="p">,</span> <span class="n">non_complaint_keywords</span>
+
+<span class="n">complaint_keywords</span><span class="p">,</span> <span class="n">non_complaint_keywords</span> <span class="o">=</span> <span class="n">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Words driving complaints:
+Word                   Weight
+----                   ------
+worst                     1.7
+horrible                  1.7
+rude                      1.6
+terrible                  1.6
+avoid                     1.4
+poor                      1.3
+beware                    1.1
+unprofessional            0.9
+disappointed              0.9
+elsewhere                 0.9
+
+Words driving non-complaints:
+Word                   Weight
+----                   ------
+excellent                -1.5
+amazing                  -1.4
+awesome                  -1.4
+thank                    -1.4
+great                    -1.3
+best                     -1.3
+highly                   -1.2
+honest                   -1.2
+quick                    -1.2
+fair                     -1.2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>The model fitted provides a reasonable prediction of whether each review is a complaint (less than 3 stars) or a non-complaint (3 or more stars). The output of the model also makes sense in that the top ‘complaint’ words all have clear negative sentiment and the top ‘non-complaint’ words all have clear positive sentiment.</p>
+<p>As an exercise, you should experiment with the tokenisation of reviews by trying the following:</p>
+<ul class="simple">
+<li><p>remove standard stop words; and</p></li>
+<li><p>perform stemming or lemmatisation.</p></li>
+</ul>
+<p>You may like to review the code in Case Study 2 first and then come back to try the above.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="DAA_M05_Ex18.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Py: Neural Net Classification</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DAA_M07_CS2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Py: Customer Sentiment Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By YDAWG, DAPC, YAC and other contributors.<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

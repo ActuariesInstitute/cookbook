@@ -1,0 +1,1383 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Py: Image Recognition &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Automated Decision-Making Systems" href="automated_decision.html" />
+    <link rel="prev" title="Py: Linear Programming" href="DAA_2021_S2_Tutorial10_exercise_scipy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/DAA_M05_CS2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M05_CS2.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M05_CS2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M05_CS2.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-the-problem">
+   Define the Problem:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose">
+   Purpose:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages">
+   Packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-data">
+     Import data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explore-data-eda">
+     Explore data (EDA)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-data">
+     Prepare data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#view-observations">
+     View observations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelling">
+   Modelling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-a-vanilla-neural-network-nn-1">
+     Fit a ‘vanilla’ neural network (NN 1)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-nn-1">
+     Evaluate NN 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit-a-convolutional-neural-network-cnn">
+     Fit a convolutional neural network (CNN)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-cnn">
+     Evaluate CNN
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-the-final-model">
+     Select the final model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#observations">
+   Observations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-on-the-test-set">
+     Predict on the test set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observe-example-misclassifications">
+     Observe example misclassifications
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="py-image-recognition">
+<h1>Py: Image Recognition<a class="headerlink" href="#py-image-recognition" title="Permalink to this headline">¶</a></h1>
+<p><strong>This notebook was originally created by Elliot Dawson for the Data Analytics Applications subject, as <em>Case Study 2</em> in DAA M05 Classification and neural networks</strong></p>
+<p><strong>Data Analytics Applications is a Fellowship Applications (Module 3) subject with the Actuaries Institute that aims to teach students how to apply a range of data analytics skills, such as neural networks, natural language processing, unsupervised learning and optimisation techniques, together with their professional judgement, to solve a variety of complex and challenging business problems. The business problems used as examples in this subject are drawn from a wide range of industries.</strong></p>
+<p><em><strong>Find out more about the course <a class="reference external" href="https://www.actuaries.asn.au/education-program/fellowship/subjects-and-syllabus/data-analytics-applications-subject">here</a>.</strong></em></p>
+<div class="section" id="define-the-problem">
+<h2>Define the Problem:<a class="headerlink" href="#define-the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Another popular use of neural networks is in image detection. Examples of ways in which neural network image classifiers might be used to solve business problems include:</p>
+<ul class="simple">
+<li><p>analysing drone images to make the insurance claims management process more efficient, such as by classifying the level of damage caused to a property following a natural disaster; and</p></li>
+<li><p>extracting information from handwritten correspondence from customers, such as information on insurance claims forms to be entered into the claims database.</p></li>
+</ul>
+<p>This case study investigates the use of a neural network to decipher handwritten digits (from zero to nine). This might be a useful tool if, for example, you are trying to automate the process of sorting mail based on postcodes written on the front of envelopes. Of course, the task of training a neural network to recognise hand-written digits can also be extended to recognising hand-written letters and then words.</p>
+</div>
+<div class="section" id="purpose">
+<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>This case study by Elliot Dawson involves building neural networks to recognise handwritten digits from zero to nine. The case study also compares the performance of the neural networks built to the performance of a gradient boosting machine (GBM) built to solve the same problem.</p>
+</div>
+<div class="section" id="references">
+<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The dataset used in this case study is a famous Modified National Institute of Standards and Technology (MNIST) dataset of handwritten images (<a class="reference external" href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/</a>). The MNIST dataset is popular for use in benchmarking classification algorithms.</p>
+<p>The dataset has 42,000 observations, each representing a greyscale image of a hand-drawn digit from zero to nine. Each image is 28 pixels in height and 28 pixels in width, making a total of 784 pixels (28x28). Each pixel has a single pixel value associated with it, from 0 to 255, indicating the lightness or darkness of that pixel. Higher pixel values represent darker pixels. The dataset represents these images as 784 features, with each feature representing a different pixel in the image.</p>
+<p>The dataset also contains one response (‘label’) that takes integer values from zero to nine, indicatating the digit drawn in each image.</p>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>This section imports the packages that will be required for this exercise/case study.</p>
+<p>We’ll use:</p>
+<ul class="simple">
+<li><p>pandas for data management</p></li>
+<li><p>numpy for mathematical operations</p></li>
+<li><p>Support functions from matplotlib, sklearns, seaborn packages</p></li>
+<li><p>keras, from the tensorflow package, for fitting the neural networks</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># For data management.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
+
+<span class="c1"># Matplotlib and Seaborn are used for plotting.</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Various scikit-learn functions to help with modelling and diagnostics.</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1"># Keras, from the Tensorflow package, is used for fitting the neural networks.</span>
+<span class="kn">from</span> <span class="nn">keras.utils.np_utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPool2D</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span><span class="p">,</span> <span class="n">SGD</span>
+<span class="kn">from</span> <span class="nn">keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ReduceLROnPlateau</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">plot_model</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>This section defines functions that will be used for this exercise/case study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to split the data into train, validation, and test sets.</span>
+<span class="c1"># This function uses the train_test_split function from the sklearn package</span>
+<span class="c1"># to do the actual data splitting.</span>
+
+<span class="k">def</span> <span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
+    <span class="c1"># Split data into train/test (80%, 20%).</span>
+    <span class="n">train_full</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">)</span>
+
+    <span class="c1"># Create a validation set from the training data (20%).</span>
+    <span class="n">train</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train_full</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">234</span><span class="p">)</span>
+
+    <span class="c1"># Create train and validation model matrices and response vectors.</span>
+    <span class="c1"># For the response vector, convert Churn Yes/No to 1/0</span>
+
+    <span class="n">train_x</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">train_y</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
+    <span class="n">train_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
+
+    <span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">validation_y</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
+    <span class="n">validation_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">validation_y</span><span class="p">))</span>
+
+    <span class="n">test_x</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">test_y</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
+    <span class="n">test_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_y</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to generate a confusion matrix to observe a model&#39;s results.</span>
+<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
+                          <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
+                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function prints and plots a confusion matrix.</span>
+<span class="sd">    Normalisation of the matrix can be applied by setting `normalise=True`.</span>
+<span class="sd">    Normalisation ensures that the sum of each row in the confusion matrix is 1.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
+        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
+                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>This section:</p>
+<ul class="simple">
+<li><p>imports the data that will be used in the modelling;</p></li>
+<li><p>explores the data; and</p></li>
+<li><p>prepares the data for modelling.</p></li>
+</ul>
+<div class="section" id="import-data">
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
+<p>The code below reads the CSV into a pandas data frame.</p>
+<p>Note that the MNIST dataset is large (75MB) hence it has been zipped, but pandas reads it natively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder or URL datasets are saved in.</span>
+<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the filename.</span>
+<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;DAA_M05_CS2_data.csv.zip&#39;</span>
+
+<span class="c1"># Read in the data from your Google Drive folder.</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="explore-data-eda">
+<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">¶</a></h3>
+<p>Prior to commencing any modelling, the code below observes:</p>
+<ul class="simple">
+<li><p>the features in the dataset and their types;</p></li>
+<li><p>the count of the number of observations for each response class.</p></li>
+</ul>
+<p>Graphical observations of the images will be made later in the notebook once the data has been pre-processed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the types of each feature and the response variable (&#39;label&#39;).</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label       int64
+pixel0      int64
+pixel1      int64
+pixel2      int64
+pixel3      int64
+            ...  
+pixel779    int64
+pixel780    int64
+pixel781    int64
+pixel782    int64
+pixel783    int64
+Length: 785, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the counts for each response class (digit) and build a barplot of these</span>
+<span class="c1"># counts for each of interpretation.</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    4684
+7    4401
+3    4351
+9    4188
+2    4177
+6    4137
+0    4132
+4    4072
+8    4063
+5    3795
+Name: label, dtype: int64
+</pre></div>
+</div>
+<img alt="../_images/DAA_M05_CS2_14_1.png" src="../_images/DAA_M05_CS2_14_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="prepare-data">
+<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
+<p>The dataset will be pre-processed so that neural networks can be built with the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Split the dataset into a train, validation, and test set. </span>
+<span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span> \
+<span class="o">=</span> <span class="n">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rescale the features from being in the range [0,255] to [0:1].</span>
+<span class="n">train_x</span> <span class="o">=</span> <span class="n">train_x</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation_x</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">test_x</span> <span class="o">=</span> <span class="n">test_x</span><span class="o">/</span><span class="mf">255.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape the features for each observation from being a vector of size 784</span>
+<span class="c1"># to being a matrix of size 28x28.</span>
+<span class="c1"># This is required for building the convolutional neural network (CNN) below.</span>
+<span class="n">train_cnn_x</span> <span class="o">=</span> <span class="n">train_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">validation_cnn_x</span> <span class="o">=</span> <span class="n">validation_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">test_cnn_x</span> <span class="o">=</span> <span class="n">test_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="view-observations">
+<h3>View observations<a class="headerlink" href="#view-observations" title="Permalink to this headline">¶</a></h3>
+<p>The code below visualises an observation (hand-written digit) from each of the response classes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise an example from each of the response classes</span>
+<span class="c1"># (the digits from 0 to 9).</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">train_cnn_x</span><span class="p">[</span><span class="n">train_y</span><span class="p">[</span><span class="n">train_y</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]][:,:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DAA_M05_CS2_20_0.png" src="../_images/DAA_M05_CS2_20_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encode the response from a continuous (integer) to a categorical variable.</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">train_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">validation_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">validation_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">test_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h2>
+<p>This section:</p>
+<ul class="simple">
+<li><p>fits a model;</p></li>
+<li><p>evaluates the fitted model;</p></li>
+<li><p>improves the model; and</p></li>
+<li><p>selects a final model.</p></li>
+</ul>
+<div class="section" id="fit-a-vanilla-neural-network-nn-1">
+<h3>Fit a ‘vanilla’ neural network (NN 1)<a class="headerlink" href="#fit-a-vanilla-neural-network-nn-1" title="Permalink to this headline">¶</a></h3>
+<p>The code below uses Keras to construct a neural network with:</p>
+<ul class="simple">
+<li><p>two hidden layers, each with 16 neurons and the ReLU activation function; and</p></li>
+<li><p>one output layer with 10 neurons (representing each of the digits from zero to nine) and the softmax activation function.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the model&#39;s architecture.</span>
+<span class="n">nn_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span> <span class="mi">784</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
+<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+
+<span class="c1"># Compile the model.</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+  <span class="c1"># This specifies that regular stochastic gradient descent (SGD) should be</span>
+  <span class="c1"># used with a learning rate of 0.2.</span>
+  <span class="c1"># Momentum = 0 specifies that the regular SGD algorithm should be used</span>
+  <span class="c1"># &#39;without momentum&#39;.</span>
+  <span class="c1"># SGD with momentum is a variant on regular SGD that uses an</span>
+  <span class="c1"># exponential moving average of current and past gradients rather than just</span>
+  <span class="c1"># the gradient for the current iteration.</span>
+<span class="n">nn_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> 
+      <span class="c1"># The &#39;categorical_crossentropy&#39; loss function is useful</span>
+      <span class="c1"># for an integer response variable.</span>
+    <span class="n">optimizer</span> <span class="o">=</span>  <span class="n">opt</span><span class="p">,</span>
+
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">nn_hist</span> <span class="o">=</span> <span class="n">nn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_y</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/100
+27/27 [==============================] - 10s 21ms/step - loss: 2.2099 - accuracy: 0.2815 - val_loss: 1.5056 - val_accuracy: 0.5580
+Epoch 2/100
+27/27 [==============================] - 0s 4ms/step - loss: 1.2441 - accuracy: 0.6751 - val_loss: 1.0109 - val_accuracy: 0.7324
+Epoch 3/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.8064 - accuracy: 0.8128 - val_loss: 0.6254 - val_accuracy: 0.8704
+Epoch 4/100
+27/27 [==============================] - 0s 6ms/step - loss: 0.6322 - accuracy: 0.8601 - val_loss: 0.5649 - val_accuracy: 0.8813
+Epoch 5/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.5453 - accuracy: 0.8848 - val_loss: 0.5192 - val_accuracy: 0.8894
+Epoch 6/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.5109 - accuracy: 0.8878 - val_loss: 0.4891 - val_accuracy: 0.8958
+Epoch 7/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.4799 - accuracy: 0.8963 - val_loss: 0.4731 - val_accuracy: 0.8969
+Epoch 8/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.4613 - accuracy: 0.8972 - val_loss: 0.4463 - val_accuracy: 0.9006
+Epoch 9/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.4240 - accuracy: 0.9088 - val_loss: 0.4260 - val_accuracy: 0.9037
+Epoch 10/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.4239 - accuracy: 0.9051 - val_loss: 0.4166 - val_accuracy: 0.9055
+Epoch 11/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.4069 - accuracy: 0.9097 - val_loss: 0.3972 - val_accuracy: 0.9094
+Epoch 12/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.4006 - accuracy: 0.9084 - val_loss: 0.3894 - val_accuracy: 0.9101
+Epoch 13/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3797 - accuracy: 0.9142 - val_loss: 0.3957 - val_accuracy: 0.9082
+Epoch 14/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.3699 - accuracy: 0.9154 - val_loss: 0.3702 - val_accuracy: 0.9146
+Epoch 15/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.3464 - accuracy: 0.9215 - val_loss: 0.3825 - val_accuracy: 0.9097
+Epoch 16/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3588 - accuracy: 0.9170 - val_loss: 0.3644 - val_accuracy: 0.9146
+Epoch 17/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3460 - accuracy: 0.9204 - val_loss: 0.3608 - val_accuracy: 0.9159
+Epoch 18/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3409 - accuracy: 0.9215 - val_loss: 0.3529 - val_accuracy: 0.9186
+Epoch 19/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.3302 - accuracy: 0.9220 - val_loss: 0.3485 - val_accuracy: 0.9170
+Epoch 20/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3380 - accuracy: 0.9185 - val_loss: 0.3405 - val_accuracy: 0.9192
+Epoch 21/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3135 - accuracy: 0.9294 - val_loss: 0.3444 - val_accuracy: 0.9189
+Epoch 22/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3127 - accuracy: 0.9286 - val_loss: 0.3367 - val_accuracy: 0.9193
+Epoch 23/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3137 - accuracy: 0.9281 - val_loss: 0.3713 - val_accuracy: 0.9040
+Epoch 24/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3454 - accuracy: 0.9149 - val_loss: 0.3292 - val_accuracy: 0.9207
+Epoch 25/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3047 - accuracy: 0.9282 - val_loss: 0.3552 - val_accuracy: 0.9113
+Epoch 26/100
+27/27 [==============================] - 0s 7ms/step - loss: 0.3171 - accuracy: 0.9241 - val_loss: 0.4023 - val_accuracy: 0.8930
+Epoch 27/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.3202 - accuracy: 0.9231 - val_loss: 0.3204 - val_accuracy: 0.9231
+Epoch 28/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2993 - accuracy: 0.9312 - val_loss: 0.3280 - val_accuracy: 0.9189
+Epoch 29/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2936 - accuracy: 0.9330 - val_loss: 0.3078 - val_accuracy: 0.9269
+Epoch 30/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2880 - accuracy: 0.9308 - val_loss: 0.3068 - val_accuracy: 0.9265
+Epoch 31/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2944 - accuracy: 0.9294 - val_loss: 0.3418 - val_accuracy: 0.9112
+Epoch 32/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2891 - accuracy: 0.9311 - val_loss: 0.3098 - val_accuracy: 0.9254
+Epoch 33/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2817 - accuracy: 0.9327 - val_loss: 0.3269 - val_accuracy: 0.9165
+Epoch 34/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2825 - accuracy: 0.9340 - val_loss: 0.3027 - val_accuracy: 0.9265
+Epoch 35/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2914 - accuracy: 0.9286 - val_loss: 0.3074 - val_accuracy: 0.9250
+Epoch 36/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2730 - accuracy: 0.9333 - val_loss: 0.2950 - val_accuracy: 0.9292
+Epoch 37/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2721 - accuracy: 0.9356 - val_loss: 0.3119 - val_accuracy: 0.9214
+Epoch 38/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2742 - accuracy: 0.9357 - val_loss: 0.3431 - val_accuracy: 0.9110
+Epoch 39/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2709 - accuracy: 0.9363 - val_loss: 0.2962 - val_accuracy: 0.9292
+Epoch 40/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2662 - accuracy: 0.9352 - val_loss: 0.2864 - val_accuracy: 0.9315
+Epoch 41/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2598 - accuracy: 0.9406 - val_loss: 0.2823 - val_accuracy: 0.9329
+Epoch 42/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2579 - accuracy: 0.9380 - val_loss: 0.3021 - val_accuracy: 0.9260
+Epoch 43/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2590 - accuracy: 0.9380 - val_loss: 0.2788 - val_accuracy: 0.9353
+Epoch 44/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2564 - accuracy: 0.9377 - val_loss: 0.2814 - val_accuracy: 0.9321
+Epoch 45/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2594 - accuracy: 0.9382 - val_loss: 0.2809 - val_accuracy: 0.9320
+Epoch 46/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2541 - accuracy: 0.9383 - val_loss: 0.2771 - val_accuracy: 0.9330
+Epoch 47/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2407 - accuracy: 0.9423 - val_loss: 0.3206 - val_accuracy: 0.9185
+Epoch 48/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2656 - accuracy: 0.9351 - val_loss: 0.2762 - val_accuracy: 0.9335
+Epoch 49/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2513 - accuracy: 0.9406 - val_loss: 0.2785 - val_accuracy: 0.9321
+Epoch 50/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2551 - accuracy: 0.9375 - val_loss: 0.3124 - val_accuracy: 0.9186
+Epoch 51/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2606 - accuracy: 0.9361 - val_loss: 0.2755 - val_accuracy: 0.9335
+Epoch 52/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2470 - accuracy: 0.9397 - val_loss: 0.2696 - val_accuracy: 0.9342
+Epoch 53/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2377 - accuracy: 0.9443 - val_loss: 0.2854 - val_accuracy: 0.9298
+Epoch 54/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2380 - accuracy: 0.9442 - val_loss: 0.2646 - val_accuracy: 0.9362
+Epoch 55/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2441 - accuracy: 0.9408 - val_loss: 0.2625 - val_accuracy: 0.9363
+Epoch 56/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2314 - accuracy: 0.9438 - val_loss: 0.4236 - val_accuracy: 0.8827
+Epoch 57/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3651 - accuracy: 0.9004 - val_loss: 0.2671 - val_accuracy: 0.9360
+Epoch 58/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2324 - accuracy: 0.9467 - val_loss: 0.2648 - val_accuracy: 0.9350
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 59/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2334 - accuracy: 0.9434 - val_loss: 0.2662 - val_accuracy: 0.9330
+Epoch 60/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2302 - accuracy: 0.9451 - val_loss: 0.2598 - val_accuracy: 0.9369
+Epoch 61/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2249 - accuracy: 0.9452 - val_loss: 0.2736 - val_accuracy: 0.9336
+Epoch 62/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2476 - accuracy: 0.9393 - val_loss: 0.2775 - val_accuracy: 0.9302
+Epoch 63/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2338 - accuracy: 0.9436 - val_loss: 0.2733 - val_accuracy: 0.9317
+Epoch 64/100
+27/27 [==============================] - 0s 7ms/step - loss: 0.2251 - accuracy: 0.9463 - val_loss: 0.2655 - val_accuracy: 0.9368
+Epoch 65/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2173 - accuracy: 0.9496 - val_loss: 0.2594 - val_accuracy: 0.9381
+Epoch 66/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2423 - accuracy: 0.9404 - val_loss: 0.2560 - val_accuracy: 0.9378
+Epoch 67/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2196 - accuracy: 0.9476 - val_loss: 0.2703 - val_accuracy: 0.9348
+Epoch 68/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2415 - accuracy: 0.9410 - val_loss: 0.2514 - val_accuracy: 0.9388
+Epoch 69/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2171 - accuracy: 0.9488 - val_loss: 0.2537 - val_accuracy: 0.9385
+Epoch 70/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2249 - accuracy: 0.9455 - val_loss: 0.2586 - val_accuracy: 0.9372
+Epoch 71/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2170 - accuracy: 0.9468 - val_loss: 0.2672 - val_accuracy: 0.9323
+Epoch 72/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3373 - accuracy: 0.9106 - val_loss: 0.2716 - val_accuracy: 0.9339
+Epoch 73/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2126 - accuracy: 0.9513 - val_loss: 0.2579 - val_accuracy: 0.9360
+Epoch 74/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2085 - accuracy: 0.9523 - val_loss: 0.2495 - val_accuracy: 0.9396
+Epoch 75/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2078 - accuracy: 0.9523 - val_loss: 0.2482 - val_accuracy: 0.9406
+Epoch 76/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2061 - accuracy: 0.9537 - val_loss: 0.4634 - val_accuracy: 0.8626
+Epoch 77/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3739 - accuracy: 0.9011 - val_loss: 0.2510 - val_accuracy: 0.9396
+Epoch 78/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2078 - accuracy: 0.9518 - val_loss: 0.2498 - val_accuracy: 0.9387
+Epoch 79/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2020 - accuracy: 0.9521 - val_loss: 0.2516 - val_accuracy: 0.9366
+Epoch 80/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2179 - accuracy: 0.9465 - val_loss: 0.2454 - val_accuracy: 0.9402
+Epoch 81/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2144 - accuracy: 0.9482 - val_loss: 0.2432 - val_accuracy: 0.9408
+Epoch 82/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2014 - accuracy: 0.9525 - val_loss: 0.2628 - val_accuracy: 0.9345
+Epoch 83/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2173 - accuracy: 0.9465 - val_loss: 0.2523 - val_accuracy: 0.9406
+Epoch 84/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2507 - accuracy: 0.9385 - val_loss: 0.2562 - val_accuracy: 0.9402
+Epoch 85/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2067 - accuracy: 0.9524 - val_loss: 0.2549 - val_accuracy: 0.9363
+Epoch 86/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2019 - accuracy: 0.9517 - val_loss: 0.2504 - val_accuracy: 0.9363
+Epoch 87/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.1985 - accuracy: 0.9539 - val_loss: 0.2401 - val_accuracy: 0.9393
+Epoch 88/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1965 - accuracy: 0.9535 - val_loss: 0.2436 - val_accuracy: 0.9405
+Epoch 89/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2016 - accuracy: 0.9529 - val_loss: 0.2437 - val_accuracy: 0.9406
+Epoch 90/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1986 - accuracy: 0.9535 - val_loss: 0.2384 - val_accuracy: 0.9429
+Epoch 91/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1947 - accuracy: 0.9543 - val_loss: 0.2517 - val_accuracy: 0.9381
+Epoch 92/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.3445 - accuracy: 0.9111 - val_loss: 0.2552 - val_accuracy: 0.9381
+Epoch 93/100
+27/27 [==============================] - 0s 5ms/step - loss: 0.2036 - accuracy: 0.9551 - val_loss: 0.2441 - val_accuracy: 0.9408
+Epoch 94/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1923 - accuracy: 0.9556 - val_loss: 0.2360 - val_accuracy: 0.9420
+Epoch 95/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1978 - accuracy: 0.9549 - val_loss: 0.2430 - val_accuracy: 0.9387
+Epoch 96/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1924 - accuracy: 0.9555 - val_loss: 0.2343 - val_accuracy: 0.9411
+Epoch 97/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1909 - accuracy: 0.9547 - val_loss: 0.2388 - val_accuracy: 0.9417
+Epoch 98/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1945 - accuracy: 0.9537 - val_loss: 0.2380 - val_accuracy: 0.9414
+Epoch 99/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.1873 - accuracy: 0.9566 - val_loss: 0.2418 - val_accuracy: 0.9420
+Epoch 100/100
+27/27 [==============================] - 0s 4ms/step - loss: 0.2002 - accuracy: 0.9523 - val_loss: 0.3419 - val_accuracy: 0.9074
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluate-nn-1">
+<h3>Evaluate NN 1<a class="headerlink" href="#evaluate-nn-1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the accuracy of the fitted model after each epoch.</span>
+<span class="c1"># An epoch is a full cycle through the training data.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NN1 model accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x158a0e820&gt;
+</pre></div>
+</div>
+<img alt="../_images/DAA_M05_CS2_26_1.png" src="../_images/DAA_M05_CS2_26_1.png" />
+</div>
+</div>
+<p>The plot above confirms that the model has converged on an optimal solution, with both training and validation accuracy increasing rapidly over the first 10 or so epochs and then flattening out after that. Not much further improvement in accuracy is obtained after the first 10 or so epochs.</p>
+</div>
+<div class="section" id="fit-a-convolutional-neural-network-cnn">
+<h3>Fit a convolutional neural network (CNN)<a class="headerlink" href="#fit-a-convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h3>
+<p>Next, a convolutional neural network (CNN) is constructed. CNNs are outlined in Section 5.7.1 of Module 5.</p>
+<p>The CNN below will use two convolutional layers with a 5x5 filter/kernel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cnn_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
+                 <span class="n">activation</span> <span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+  <span class="c1"># Notice from the input_shape = (28,28,1) term above</span>
+  <span class="c1"># that the CNN takes as input the 28x28 matrix of pixel features</span>
+  <span class="c1"># rather than the flattened vector of all 784 pixel features. </span>
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
+                 <span class="n">activation</span> <span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
+  <span class="c1"># Flatten() converts the matrix outputs from the convolutional layers</span>
+  <span class="c1"># back into vectors for feeding into the output layer. </span>
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the regular stochastic gradient descent (SGD) optimiser (without</span>
+<span class="c1"># momentum, a learning rate of 0.2 and the crossentropy loss function.</span>
+<span class="c1"># to be used in the fitting of the model.</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">cnn_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">opt</span> <span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Fit the CNN and capture the error and accuracy rates from the fitted model</span>
+<span class="c1"># after each epoch.</span>
+<span class="n">cnn_hist</span> <span class="o">=</span> <span class="n">cnn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_cnn_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">,</span>
+                         <span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">,</span>
+                         <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">validation_cnn_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/10
+2688/2688 [==============================] - 39s 14ms/step - loss: 0.5627 - accuracy: 0.8213 - val_loss: 0.1404 - val_accuracy: 0.9598
+Epoch 2/10
+2688/2688 [==============================] - 37s 14ms/step - loss: 1.4409 - accuracy: 0.4482 - val_loss: 2.3045 - val_accuracy: 0.1101
+Epoch 3/10
+2688/2688 [==============================] - 33s 12ms/step - loss: 2.3051 - accuracy: 0.1083 - val_loss: 2.3063 - val_accuracy: 0.1019
+Epoch 4/10
+2688/2688 [==============================] - 33s 12ms/step - loss: 2.3055 - accuracy: 0.1062 - val_loss: 2.3081 - val_accuracy: 0.1052
+Epoch 5/10
+2688/2688 [==============================] - 33s 12ms/step - loss: 2.3057 - accuracy: 0.1069 - val_loss: 2.3020 - val_accuracy: 0.1052
+Epoch 6/10
+2688/2688 [==============================] - 32s 12ms/step - loss: 2.3057 - accuracy: 0.1063 - val_loss: 2.3067 - val_accuracy: 0.1025
+Epoch 7/10
+2688/2688 [==============================] - 32s 12ms/step - loss: 2.3060 - accuracy: 0.1047 - val_loss: 2.3024 - val_accuracy: 0.1101
+Epoch 8/10
+2688/2688 [==============================] - 33s 12ms/step - loss: 2.3057 - accuracy: 0.1058 - val_loss: 2.3071 - val_accuracy: 0.0967
+Epoch 9/10
+2688/2688 [==============================] - 32s 12ms/step - loss: 2.3055 - accuracy: 0.1054 - val_loss: 2.3079 - val_accuracy: 0.1052
+Epoch 10/10
+2688/2688 [==============================] - 31s 11ms/step - loss: 2.3066 - accuracy: 0.1053 - val_loss: 2.3040 - val_accuracy: 0.1092
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should note that the CNN takes much longer to fit than the vanilla neural network (NN 1).</p>
+</div>
+<div class="section" id="evaluate-cnn">
+<h3>Evaluate CNN<a class="headerlink" href="#evaluate-cnn" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the accuracy of the CNN against each epoch</span>
+<span class="c1"># to ensure that the model has converged on an</span>
+<span class="c1"># optimal solution.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;CNN model accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x158de8fd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/DAA_M05_CS2_33_1.png" src="../_images/DAA_M05_CS2_33_1.png" />
+</div>
+</div>
+<p>The graph of the accuracy suggests that the model may not have converged yet,since the validation accuracy is still volatile after 10 epochs. You can try to obtain a higher accuracy on the validation data by increasing the number of epochs used to train the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the accuracy obtained under the vanilla neural network (NN 1)</span>
+<span class="c1"># to that obtained under the CNN.</span>
+<span class="p">{</span><span class="s1">&#39;CNN&#39;</span><span class="p">:</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+ <span class="s1">&#39;NN 1&#39;</span><span class="p">:</span> <span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;CNN&#39;: 0.10922618955373764, &#39;NN 1&#39;: 0.9074404835700989}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The CNN had a higher accuracy after 10 epochs compared to the vanilla neural network after 100 epochs. However, the CNN took substantially more time to train. The final choice of which model to use should take into account the business context and, in particular, the value that the business assigns to a model’s accuracy compared to its training efficiency.</p>
+</div>
+<div class="section" id="select-the-final-model">
+<h3>Select the final model<a class="headerlink" href="#select-the-final-model" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the final model and call it `nn_model_final`.</span>
+<span class="c1"># In this case, it is assumed that model accuracy is</span>
+<span class="c1"># more important than model training speed, hence the</span>
+<span class="c1"># CNN is chosen.</span>
+<span class="n">nn_model_final</span> <span class="o">=</span> <span class="n">cnn_model</span>
+<span class="n">test_x_final</span> <span class="o">=</span> <span class="n">test_cnn_x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="predict-on-the-test-set">
+<h3>Predict on the test set<a class="headerlink" href="#predict-on-the-test-set" title="Permalink to this headline">¶</a></h3>
+<p>Now that a final fitted model has been selected, it can be used to make predictions on the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the test set.</span>
+<span class="n">test_preds</span> <span class="o">=</span> <span class="n">nn_model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_x_final</span><span class="p">)</span>
+<span class="c1"># Convert the predictions (y_hat_gk) to class predictions (G(Xi.)).</span>
+<span class="n">test_preds_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_preds</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Convert the encoded responses (i.e. 0s and 1s to a single vector Numpy array</span>
+<span class="c1"># contained classes 0, 1, 2, ..., 9.</span>
+<span class="n">test_y_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that even though the CNN took a long time to train, it is very quick to score (i.e. make predictions based on a set of unseen observations).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the confusion matrix function defined at the top of the notebook</span>
+<span class="c1"># to observe the number of observations that have been</span>
+<span class="c1"># misclassified by the final model.</span>
+
+<span class="c1"># Compute the confusion matrix.</span>
+<span class="n">confusion_mtx</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">test_y_classes</span><span class="p">,</span> <span class="n">test_preds_classes</span><span class="p">)</span> 
+<span class="c1"># Plot the confusion matrix.</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">confusion_mtx</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DAA_M05_CS2_43_0.png" src="../_images/DAA_M05_CS2_43_0.png" />
+</div>
+</div>
+<p>The confusion matrix above shows that the majority of observations have been correctly classified, as previously indicated by the high accuracy obtained from this model.</p>
+</div>
+<div class="section" id="observe-example-misclassifications">
+<h3>Observe example misclassifications<a class="headerlink" href="#observe-example-misclassifications" title="Permalink to this headline">¶</a></h3>
+<p>The code below allows you to observe some of the images that were misclassified by the final model. This information might be useful in working out particular types of images that the model found hard to classify correctly, which might inform how to further improve the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a vector that allows errors to be identified.</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">test_y_classes</span> <span class="o">-</span> <span class="n">test_preds_classes</span>
+<span class="n">error_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">errors</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Plot the first 10 errors.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;. Actual digit: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_y_classes</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]])</span> <span class="o">+</span>
+          <span class="s1">&#39; Predicted digit: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_preds_classes</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]]))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_x_final</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]][:,:,</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Actual digit: 2 Predicted digit: 3
+2. Actual digit: 2 Predicted digit: 3
+3. Actual digit: 0 Predicted digit: 3
+4. Actual digit: 9 Predicted digit: 3
+5. Actual digit: 4 Predicted digit: 3
+6. Actual digit: 6 Predicted digit: 3
+7. Actual digit: 2 Predicted digit: 3
+8. Actual digit: 9 Predicted digit: 3
+9. Actual digit: 7 Predicted digit: 3
+10. Actual digit: 0 Predicted digit: 3
+</pre></div>
+</div>
+<img alt="../_images/DAA_M05_CS2_46_1.png" src="../_images/DAA_M05_CS2_46_1.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="DAA_2021_S2_Tutorial10_exercise_scipy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Py: Linear Programming</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="automated_decision.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Automated Decision-Making Systems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By YDAWG, DAPC, YAC and other contributors.<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
