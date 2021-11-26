@@ -10,13 +10,13 @@ A cookbook to help actuaries get started with data and analytics projects in bot
 
 Generally to add content to the book, one could:
 
- 1.  Create a fork
+ 1.  Create [a fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository)
  2.  Make sure the .ipynb file has been fully executed [1],
- 3.  Add .ipynb files to the ``cookbook\docs`` subfolder,
- 4.  Add those files to the ``cookbook\_toc.yml``
- 5.  Go to Actions and enable "Build HTML and Deploy to GH-PAGES" (on the right hand side)
- 6.  Go a random file (e.g. _toc_yml), add an empty space and commit to ``main`` in the fork
- 7.  Go back to Actio and see if a workflow has been enabled. Wait for it to finish and check that the website at https://[yourusername].github.io/cookbook works as intended
+ 3.  Add .ipynb files to the ``cookbook\docs`` subfolder in your fork,
+ 4.  Add those files to the ``cookbook\_toc.yml`` in your fork,
+ 5.  Go to github.com/[your-name]/cookbook, 'Actions' tab and enable "Build HTML and Deploy to GH-PAGES" (on the right hand side)
+ 6.  Go a random file on your forkedn Github page (e.g. _toc_yml), add an empty space and commit to ``main`` in the fork
+ 7.  Go back to Actions and see if a workflow has been enabled. Wait for it to finish and check that the website at https://[yourusername].github.io/cookbook works as intended
  8.  Create a pull request to ``main`` in the [https://github.com/ActuariesInstitute/cookbook](https://github.com/ActuariesInstitute/cookbook) repository.
  9.  Future workflows will be enabled automatically.
 
