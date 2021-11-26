@@ -28,7 +28,7 @@ parts:
   - file:  docs/LifeRecipeBook.ipynb
   - file:  docs/life_stats.ipynb
 - caption: Unsupervised Learning
-  chapters:
+  chapters: 
   - file:  docs/DAA_M06_CS1.ipynb
   - file:  docs/DAA_M06_CS2.ipynb
   - file:  docs/DAA_M06_Ex4.ipynb
