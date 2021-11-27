@@ -14,8 +14,7 @@ html:
   home_page_in_navbar         : false
   use_repository_button         : true
   use_edit_page_button          : true
-  extra_footer                          : "The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute."
-
+  extra_footer                          : " The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. © Institute of Actuaries of Australia and Contributors 2021. All rights reserved."
 # Interact link settings
 notebook_interface            : "notebook"
 
