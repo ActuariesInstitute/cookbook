@@ -4,7 +4,7 @@ logo: 'actuaries-logo.svg'
 
 # Short description about the book
 description: >-
-  A cookbook for actuaries for data and analytics
+  A cookbook for actuaries for data and analytics.
 
 execute:
   execute_notebooks           : cache
