@@ -3,6 +3,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -12,6 +14,10 @@ kernelspec:
 (about_py)=
 
 # About Python
+
+**This content is from the *Scientific Python QuickStart* by [Thomas J. Sargent](http://www.tomsargent.com/) and [John
+Stachurski](https://johnstachurski.net/), originally published as the [JupyterBook example](https://executablebooks.github.io/quantecon-mini-example/docs/index.html).
+We will be gradually adding more introductory Python materials by actuarial contributors. In the meantime, consider also referring to the [Python Study Group microsite](https://actuaries.asn.au/microsites/actuaries-in-data-analytics/knowledge/python-study-group) for materials from the 2021 YDAWG-organised sessions.**
 
 This is a short sequence of lectures on Python programming for scientific
 work, written by [Thomas J.  Sargent](http://www.tomsargent.com/) and [John
