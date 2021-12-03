@@ -1,12 +1,8 @@
 ---
 title: "Modelling recipes"
-knit: (function(input_file, encoding) {out_dir <- 'docs';rmarkdown::render(input_file,encoding=encoding, output_file=file.path(dirname(input_file), out_dir,'index.html'))})
 subtitle: "With (life) insurance data"
 author: "[Pat Reen](https://www.linkedin.com/in/patrick-reen/)"
 output: 
-  rmdformats::downcute:
-    includes: 
-        in_header: docs\header.html
     self_contained: false
     code_folding: hide
 bibliography: references.bib 
@@ -31,7 +27,7 @@ By Pat Reen - originally published on his GitHub site [here](https://pat-reen.gi
 <!-- #region -->
 # Overview
 ## Background 
-This document sets out a few practical recipes for modelling with (life) insurance data. Insurance events are typically of low probability - these recipes consider some of the limitations of "small data" model fitting (where the observations of interest are sparse) and other topics for insurance like comparisons to standard tables. Themes
+This section sets out a few practical recipes for modelling with (life) insurance data. Insurance events are typically of low probability - these recipes consider some of the limitations of "small data" model fitting (where the observations of interest are sparse) and other topics for insurance like comparisons to standard tables. Themes
 
 * Common data transforms, summary stats, and simple visualisations
 * Regression 
@@ -40,7 +36,6 @@ This document sets out a few practical recipes for modelling with (life) insuran
   + Modelling variance to industry / reference (A/E or A - E)
   + Model selection: stepwise regression, likelihood tests, model evaluation
   + Predictions, confidence intervals and visualisations
-* Bayesian regression and other classification models - to follow.
 
 As with other recipes, the code can be found on [GitHub](https://github.com/ActuariesInstitute/cookbook/blob/main/cookbook/docs/LifeRecipeBook.Rmd).
 
