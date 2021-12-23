@@ -1,3 +1,6 @@
+# R: data.table for actuaries
+
+```{r active="", eval=FALSE}
 ---
 title: "R's data.table - a useful package for actuaries"
 date: "2020-10-19T16:00:00Z"
@@ -7,6 +10,7 @@ authors:
 tags: ["foundations", "R", "data"]
 
 ---
+```
 
 *This is the second of two articles that discusses packages in R that are useful for data manipulation.*
 *The [first article](/mlr-blog/post/tidyverse/) covers the tidyverse ecosystem of packages.*
@@ -17,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# data.table for actuaries (R)
 ## What is data.table?
 
 `data.table` is a package for carrying out data manipulations in R of tabular data. This includes:

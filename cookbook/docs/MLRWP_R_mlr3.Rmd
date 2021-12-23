@@ -1,3 +1,6 @@
+# R: Machine Learning Triangles
+
+```{r active="", eval=FALSE}
 ---
 title: "ML modelling on triangles - a worked example"
 date: "2021-05-30T21:00:00Z"
@@ -14,8 +17,8 @@ tags:
   - R
 
 ---
+```
 
-# Machine Learning Triangles (R)
 # Introduction
 
 In this article we look at applying different machine learning (ML) models to a data set.

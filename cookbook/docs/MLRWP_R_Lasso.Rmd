@@ -1,3 +1,6 @@
+# R: Reserving with LASSO
+
+```{r active="", eval=FALSE}
 ---
 title: "Self-assembling claim reserving models using the LASSO"
 date: "2021-05-17T16:00:00Z"
@@ -11,9 +14,7 @@ tags:
   - R
 
 ---
-
-# Reserving with LASSO (R)
-
+```
 
 *In this post we look at how regularised regression techniques such as the LASSO can be used to set reserves for triangles.*
 

@@ -1,3 +1,6 @@
+# R: Reserving with GLMs
+
+```{r active="", eval=FALSE}
 ---
 title: 'Reserving with GLMs'
 date: "2021-04-26T17:00:00Z"
@@ -9,8 +12,8 @@ tags:
   - R
 output: html_document
 ---
+```
 
-# Reserving with GLMs (R)
 An aim of the MLR working party is to promote the use of machine learning (ML) in reserving.
 So why then are we talking about using GLMs for reserving?
 Well, as noted in our [introductory post](/mlr-blog/post/intro-to-foundations-blog/), we consider that getting familiar with using GLMs for reserving is a good place to begin your ML journey - GLMs should already be familiar from pricing so making the switch to reserving with GLMs is a useful first step.

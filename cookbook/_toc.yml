@@ -34,7 +34,7 @@ parts:
   - file: docs/MLRWP_R_GLMs.ipynb
   - file: docs/MLRWP_R_Lasso.ipynb
   - file: docs/MLRWP_R_mlr3.ipynb
-  - file: docs/MLRWP_Py_triangles.ipynb  
+  - file: docs/MLRWP_Py_triangles_example.ipynb  
 - caption: Unsupervised Learning
   chapters:
   - file:  docs/DAA_M06_CS1.ipynb
