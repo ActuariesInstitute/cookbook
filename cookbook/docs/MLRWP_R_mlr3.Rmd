@@ -1,14 +1,11 @@
-# R: Machine Learning Triangles
-
-```{r active="", eval=FALSE}
 ---
 title: "ML modelling on triangles - a worked example"
 date: "2021-05-30T21:00:00Z"
 slug: f-mlr3example
-authors: 
+authors:
   - gmcguire
   - jpoon
-tags: 
+tags:
   - foundations
   - lasso
   - xgboost
@@ -17,7 +14,7 @@ tags:
   - R
 
 ---
-```
+# R: Machine Learning Triangles
 
 # Introduction
 
@@ -32,7 +29,7 @@ Our goal is to illustrate a work flow for:
 A secondary goal is to demonstrate the utility of a multi-model machine learning framework which enables the user to easily "plug and play" different machine learning models within the same framework. We use the **mlr3** set of packages in R here - this and other similar packages in R (e.g. **caret** and **tidymodels**) and tools in **scikit-learn** in python may be useful in creating a smoother work flow.
 
 
-A [notebook version of this article](/mlr-blog/f_notebooks/ML modelling on triangles - a worked example.html) is also available which may be helpful if you want to experiment with this code. 
+A [notebook version of this article](/mlr-blog/f_notebooks/ML modelling on triangles - a worked example.html) is also available which may be helpful if you want to experiment with this code.
 
 
 ## Who is this article aimed at?
@@ -75,7 +72,7 @@ This is not to say that it is invalid to use machine learning for aggregate tria
 
 The purpose of this article is to demonstrate a workflow for fitting ML models in R. While we've done some work to improve model fitting, there are a lot more things we would consider if we were looking for the best models (e.g. feature engineering, train/test splits, performance measures). So, although we do look at the relative performance of the different models at the end, you should not make any conclusions about the relative performance of the different ML methods based on this work.
 
-You may find that by adjusting some hyper-parameters, or by revising the training/test data set split, you're able to find better models. 
+You may find that by adjusting some hyper-parameters, or by revising the training/test data set split, you're able to find better models.
 We'll be discussing this point a bit further at the end of the article.
 
 *A priori*, given the form of the data (simulated using a regression style structure) and that the LASSO model we used is based on previous work which did aim to establish a framework to fit good models to triangular data using the LASSO, we expected that the LASSO model would perform the best and (spoiler alert!) it did.
@@ -83,7 +80,7 @@ We'll be discussing this point a bit further at the end of the article.
 
 ## mlr3 package
 
-One problem with applying many different types of ML models is that they all generally have different input specifications for the data, and different output types. This can make it a bit tedious to try several models. 
+One problem with applying many different types of ML models is that they all generally have different input specifications for the data, and different output types. This can make it a bit tedious to try several models.
 
 There are a number of ML aggregator or multi-model packages that do a lot of the data manipulation behind the scenes. These packages take in data in a specified form and allow users to call the different ML methods. They abstract away any data manipulation required to put the data into the form required by the method. The benefit of these is apparent - set up the data in the aggregator and then switch models in and out at will.
 
@@ -92,7 +89,7 @@ One of our [previous articles](https://institute-and-faculty-of-actuaries.github
 Some ML aggregators in R include
 
 * [caret](https://cran.r-project.org/web/packages/caret/index.html)
-* [tidymodels](https://www.tidymodels.org/) - a successor to caret. 
+* [tidymodels](https://www.tidymodels.org/) - a successor to caret.
 * [mlr3](https://mlr3.mlr-org.com/) is the successor to the popular but no longer actively developed [mlr](https://mlr.mlr-org.com/).
 
 The Python package **scikit-learn** also provides a lot of useful machine learning tools.
@@ -163,11 +160,11 @@ We've included details of our session which includes versions of the packages we
 If you are having problems running our code, check that your packages (the mlr3 ones in particular) are the same as ours.
 
 Note that **mlr3** is actually a collection of a number of different packages. If you want to do a specific task, it's worth seeing if there is an **mlr3** package out there for it.
-There are a number of core **mlr3** packages which are hosted on CRAN. 
+There are a number of core **mlr3** packages which are hosted on CRAN.
 We've attached them separately here to make it clear which ones we are using but it is also possible to install and attach the most commonly used ones via the [mlr3verse](https://cran.r-project.org/web/packages/mlr3verse/index.html) wrapper package.
 
 Some of the accompanying packages are on github only.
-Of these, we're just going to use one here - **mlr3extralearners** - which contains an extended set of machine learning models (the CRAN package **mlr3learners** includes the most common ones). 
+Of these, we're just going to use one here - **mlr3extralearners** - which contains an extended set of machine learning models (the CRAN package **mlr3learners** includes the most common ones).
 Install this using the **remotes** package - the code is given below in the comments.
 
 You also need to have the following packages installed - but you do not need to attach them as a library:
@@ -175,7 +172,7 @@ You also need to have the following packages installed - but you do not need to 
 * **glmnet** (for the LASSO model)
 * **rpart** (decision tree)
 * **ranger** (random forest)
-* **xgboost** 
+* **xgboost**
 * **viridis** (colour schemes used in some of the plots).
 
 Finally you need to install **mlr3measures** but you **must not** attach it (i.e. use `library(mlr3measures)`) as this will lead to code errors.
@@ -211,10 +208,10 @@ for (p in reqd_packages){
 }
 
 message("Package checking complete\n")
-                   
+
 
 # To install packages via code:
-# install.packages(<package name>) 
+# install.packages(<package name>)
 
 # To install mlr3extralearners (which is not on CRAN so must be installed on github)
 # 1. Ensure you have the remotes package installed
@@ -399,10 +396,10 @@ tail(dat)
 ## Create a mlr3 task
 
 Now create an **mlr3** [task](https://mlr3book.mlr-org.com/tasks.html) - making an object to hold data and set roles for the data.
-These tasks abstract away (i.e. do it for you) all the hard work in getting the data into the right form for each model (learner in **mlr3** parlance) - just specify what the target is and what the features are, and **mlr3** will take care of the rest. 
+These tasks abstract away (i.e. do it for you) all the hard work in getting the data into the right form for each model (learner in **mlr3** parlance) - just specify what the target is and what the features are, and **mlr3** will take care of the rest.
 
 We need to make a regression task since we will be estimating payments. So we make a new instance of the `TaskRegr` class via `TaskRegr$new`.
-When loading the data in via the `backend`, we've omitted `mu` since this is not used in the modelling. 
+When loading the data in via the `backend`, we've omitted `mu` since this is not used in the modelling.
 We've also omitted the factor versions of `acc` and `dev`.
 
 ```{r}
@@ -492,7 +489,7 @@ task$col_roles
 # Tuning process for hyper-parameters
 
 Machine learning models have a number of hyper-parameters that control the model fit.
-Tweaking the hyper-parameters that control model fitting (e.g. for decision trees, the depth of the tree, or for random forests, the number of trees to average over) can have a significant impact on the quality of the fit. 
+Tweaking the hyper-parameters that control model fitting (e.g. for decision trees, the depth of the tree, or for random forests, the number of trees to average over) can have a significant impact on the quality of the fit.
 The standard way of doing this is to use a train and test data set where:
 
 * The model is trained (built) on the train data set
@@ -503,8 +500,8 @@ Evaluating the models on a separate data set not used in the model fitting helps
 Usually we would then select the hyper-parameters that lead to the best results on the test data set and use these to predict our future values.
 
 There are various ways we can select the test and train data sets.
-For this work we use cross-validation. We'll give a brief overview of it below. 
-Note that we will be discussing validation options in a separate article. 
+For this work we use cross-validation. We'll give a brief overview of it below.
+Note that we will be discussing validation options in a separate article.
 
 
 
@@ -527,12 +524,12 @@ tri <- rbind(data.table(x=c(0, 0, 10), y=c(0, 10, 10), group=c("past", "past", "
 #   theme_void() +
 #   annotate(geom="text", label="Payments triangle", x=3, y=8, size=8, colour="white") +
 #   theme(legend.position = "none")
-# 
-# # kept 
+#
+# # kept
 # # holdout as last diagonal
 # tri1 <- rbind(data.table(x=c(0, 0, 8), y=c(2, 10, 10), group=c("train", "train", "train")),
 #              data.table(x=c(0, 0, 8, 10), y=c(0, 2, 10, 10), group=c("test", "test", "test", "test")) )
-# 
+#
 # p2 <- ggplot(data=tri1, aes(x=x, y=y, fill=group)) +
 #   geom_polygon(aes(group = group)) +
 #   #scale_fill_viridis_d(alpha=1, begin=0.2, end=0.75, direction=-1) +
@@ -582,55 +579,55 @@ Cross-validation repeats this type of split a number of times.
 
 In more detail, the steps are:
 
-* Randomly partition the data into *k* equal-sized folds (between 5-10 folds are common choices). These folds are then fixed for the remainder of the algorithm. 
+* Randomly partition the data into *k* equal-sized folds (between 5-10 folds are common choices). These folds are then fixed for the remainder of the algorithm.
   + This means that we do a train/test split like the triangle above but repeat this *k* times.
 * Fit the model using data from *k*-1 of the folds, using the remaining fold as the test data. Do this *k* times, so each fold is used as test data once.
 * Calculate the performance metrics for each model on the corresponding test fold.
 * Average the performance metrics across all the folds.
 
-A simplified representation of the process is given below. 
+A simplified representation of the process is given below.
 
 **5-fold cross validation**
 
 ```{r echo=FALSE, fig.height=4, fig.align="center"}
 # draw the graph
 
-p <- ggplot() 
+p <- ggplot()
 
 # rectangles
 for (i in 0:4){
   for (j in 0:4){
-    if(i != (4-j)) p <- p + annotate(geom="rect", xmin=i, xmax=i+1, ymin=j, ymax=j+1, fill="#404788FF", alpha=1) 
+    if(i != (4-j)) p <- p + annotate(geom="rect", xmin=i, xmax=i+1, ymin=j, ymax=j+1, fill="#404788FF", alpha=1)
   }
 }
 
 # grid lines - second so they appear on top
 for (i in 0:4){
-  p <- p + 
+  p <- p +
     annotate(geom="rect", xmin=i, xmax=i+1, ymin=5-i, ymax=5-i-1, fill="#73D055FF", alpha=1) +
     annotate(geom="text", x=0.5, y=5-i-0.5, size=8, colour="white", label=paste("k =", i+1))
 }
 
-p <- p + 
+p <- p +
   theme_classic() +
   theme_void() +
   annotate(geom="text", label="Train", x=3.5, y=4.5, size=6, colour="white") +
-  annotate(geom="text", label="Test", x=3.5, y=1.5, size=6, colour="white") 
+  annotate(geom="text", label="Test", x=3.5, y=1.5, size=6, colour="white")
 
 
 p
 ```
 
 
-Cross-validation provides an estimate of out-of-sample performance even though all the data is used for training and testing. 
-It is often considered more robust due to its use of the full dataset for testing, but can be computationally expensive for larger datasets. Here we only have a small amount of data, so there is an advantage to using the full dataset, whilst the computational cost is manageable. 
+Cross-validation provides an estimate of out-of-sample performance even though all the data is used for training and testing.
+It is often considered more robust due to its use of the full dataset for testing, but can be computationally expensive for larger datasets. Here we only have a small amount of data, so there is an advantage to using the full dataset, whilst the computational cost is manageable.
 
 
 ## Setting up cross-validation in mlr3
 
 We can set up a cross-validation resampler in mlr3 that can then be applied to any model. As always, the [book](https://mlr3book.mlr-org.com/resampling.html) is a useful starting reference point.
 
-Here we will use 6-fold cross validation. 
+Here we will use 6-fold cross validation.
 
 
 ```{r}
@@ -657,7 +654,7 @@ Below we show the allocation of points into test and train for each fold - the d
 xydat <- data.table(acc = rep(1:num_periods, each = num_periods),
                     dev = rep(1:num_periods, times = num_periods),
                     row_id = 1:nrow(dat) )
-                      
+
 xydat[, past := TRUE][((acc+dev-1) > num_periods), past := FALSE]
 
 
@@ -669,9 +666,9 @@ for (i in 1:nf){
     data.table(row_id = (crossval$train_set(i)), train_ind = TRUE),
     data.table(row_id = (crossval$test_set(i)), train_ind = FALSE)
   )
-  
+
   setkey(tem, row_id)
-  
+
   nm <- paste0("fold", i)
   xydat[tem, on=.(row_id), (nm) := i.train_ind]
 }
@@ -711,10 +708,10 @@ As well as the cross-validation process, we want to set up a performance measure
 Here we will use RMSE (root mean square error).
 
 ```{r}
-# to see all measures use 
+# to see all measures use
 # mlr_measures$help()
 # follow the links for a specific one, or you can type
-# ?mlr_measures_regr.rmse to get help for RMSE, and then insert the 
+# ?mlr_measures_regr.rmse to get help for RMSE, and then insert the
 # other names for others, eg ?mlr_measures_regr.rmsle etc
 
 measure <- msr("regr.rmse")
@@ -750,7 +747,7 @@ evals_trm = trm("evals", n_evals = 25)
 
 Now it's time to fit and tune the following ML models using **mlr3**:
 
-* Decision tree 
+* Decision tree
 * Random forest
 * XGBoost
 
@@ -782,7 +779,7 @@ rpart.plot::rpart.plot(lrn_rpart_default$model, roundint = FALSE)
 
 ```
 
-If you are unfamiliar with decision tree diagrams, the model specifies that, for example, for accident years greater than 17, with development periods less than 7.5 (ie 7 or under) and less than 4.5, the predicted claim cost is $43m. 
+If you are unfamiliar with decision tree diagrams, the model specifies that, for example, for accident years greater than 17, with development periods less than 7.5 (ie 7 or under) and less than 4.5, the predicted claim cost is $43m.
 
 While the tree is fairly simple, we do see splits for acc<17 and dev<21, which match the location of the interaction.
 
@@ -853,7 +850,7 @@ tuner <- tnr("grid_search", resolution = 5)
 
 
 
-Finally, we run the tuning on the `instance_rpart` space. 
+Finally, we run the tuning on the `instance_rpart` space.
 
 ```{r results='hide', message=FALSE}
 # suppress log output for readability
@@ -861,7 +858,7 @@ lgr::get_logger("bbotk")$set_threshold("warn")
 lgr::get_logger("mlr3")$set_threshold("warn")
 
 
-tuner$optimize(instance_rpart) 
+tuner$optimize(instance_rpart)
 
 # restart log output
 lgr::get_logger("bbotk")$set_threshold("info")
@@ -893,7 +890,7 @@ rpart.plot::rpart.plot(lrn_rpart_tuned$model, roundint = FALSE)
 
 ```
 
-This model is much more complicated than the original and looks overfitted - we'll see if this is the case when we evaluate the model performance later in the article. 
+This model is much more complicated than the original and looks overfitted - we'll see if this is the case when we evaluate the model performance later in the article.
 
 
 
@@ -942,7 +939,7 @@ lgr::get_logger("mlr3")$set_threshold("warn")
 #We can reuse the tuner we set up for the decision tree
 #this was tuner <- tnr("grid_search", resolution = 5)
 
-tuner$optimize(instance_ranger) 
+tuner$optimize(instance_ranger)
 
 # turn output back on
 lgr::get_logger("bbotk")$set_threshold("info")
@@ -954,7 +951,7 @@ Get the best fit
 
 ```{r}
 
-instance_ranger$result_learner_param_vals
+print(instance_ranger$result_learner_param_vals)
 
 ```
 
@@ -1016,10 +1013,10 @@ tune_ps_xgboost <- ps(
   # select value for gamma
   # tuning can help overfitting but we don't investigate this here
   gamma = p_dbl(lower = 0, upper = 0),
-  
+
   # We know that the problem is not that deep in interactivity so we search a low depth
   max_depth = p_int(lower = 2, upper = 6),
-  
+
   # nrounds to stop overfitting
   nrounds = p_int(lower = 100, upper = 500)
 )
@@ -1042,7 +1039,7 @@ lgr::get_logger("bbotk")$set_threshold("warn")
 lgr::get_logger("mlr3")$set_threshold("warn")
 
 time_bef <- Sys.time()
-tuner$optimize(instance_xgboost) 
+tuner$optimize(instance_xgboost)
 
 lgr::get_logger("bbotk")$set_threshold("info")
 lgr::get_logger("mlr3")$set_threshold("info")
@@ -1090,12 +1087,12 @@ We'll fit both models here:
 
 
 ```{r}
-lrn_xgboost_prevtuned = lrn("regr.xgboost", objective="reg:tweedie", nrounds=233, 
+lrn_xgboost_prevtuned = lrn("regr.xgboost", objective="reg:tweedie", nrounds=233,
                             tweedie_variance_power=1.01, eta=0.3, gamma=0, max_depth=3)
 lrn_xgboost_prevtuned$train(task)
 
 
-lrn_xgboost_tuned = lrn("regr.xgboost", objective="reg:tweedie", nrounds=265, 
+lrn_xgboost_tuned = lrn("regr.xgboost", objective="reg:tweedie", nrounds=265,
                             tweedie_variance_power=1.011768, eta=0.2310797, gamma=0, max_depth=3)
 lrn_xgboost_tuned$train(task)
 
@@ -1122,7 +1119,7 @@ Now we will consolidate results for these models. We will gather together:
 * RMSE for past and future data
 * predictions for each model.
 
-Note that **mlr3** has various benchmarking tools which we haven't used here - partially because we want to focus on the concepts rather than the code and partially because we want to compare the results to a couple of other models not fitted in the same framework. If you're interested in learning more then the section on [benchmarking](https://mlr3book.mlr-org.com/benchmarking.html) in the mlr3 book is a good start. 
+Note that **mlr3** has various benchmarking tools which we haven't used here - partially because we want to focus on the concepts rather than the code and partially because we want to compare the results to a couple of other models not fitted in the same framework. If you're interested in learning more then the section on [benchmarking](https://mlr3book.mlr-org.com/benchmarking.html) in the mlr3 book is a good start.
 [Pipelines](https://mlr3book.mlr-org.com/pipelines.html) offer more flexible functionality too.
 
 
@@ -1143,7 +1140,7 @@ for(l in lrnrs){
   #learner$predict(task, row_ids) is how to get predicted values, returns 3 cols with preds in response
   # use row_ids to tell it to use entire data set, ie "use" and validation rows
   #model_forecasts[, (nl) := l$predict(task, row_ids=1:nrow(dat))$response]
-  
+
   model_forecasts[, l$id := l$predict(task=task, row_ids=1:nrow(dat))$response]
 }
 
@@ -1181,9 +1178,9 @@ The Chainladder reserve can also be calculated using a GLM with:
 
 We've used this method here as it's easy to set up in R but practical work using the Chain ladder may be better done with a package like the [R ChainLadder package](https://cran.r-project.org/web/packages/ChainLadder/index.html).
 
-The easiest way to do this is to work outside **mlr3** and use the `glm()` function directly - this is because our mlr3 `task` doesn't contain `accf` and `devf`. 
+The easiest way to do this is to work outside **mlr3** and use the `glm()` function directly - this is because our mlr3 `task` doesn't contain `accf` and `devf`.
 
-Here's the code using `glm()` and the `predict()` method to add predicted values into `model_forecasts`. 
+Here's the code using `glm()` and the `predict()` method to add predicted values into `model_forecasts`.
 
 
 ```{r}
@@ -1193,7 +1190,7 @@ model_forecasts[, "regr.glm" := predict(cl, newdata=dat[, .(pmts, accf, devf)], 
 ```
 
 
-It is possible to fit this in **mlr3** too - but as we need to create a new task, it's easier to fit it directly uisng `glm()` as above. However, we've included the **mlr3** code below for those who are interested. There's a good bit more code here since we need to set up a new task and a new learner. 
+It is possible to fit this in **mlr3** too - but as we need to create a new task, it's easier to fit it directly uisng `glm()` as above. However, we've included the **mlr3** code below for those who are interested. There's a good bit more code here since we need to set up a new task and a new learner.
 
 It isn't necessary to run this code (we haven't used it below) but if you do, the end result will be that it recalculates the `regr.glm` variable in the `model_forecasts` data.table.
 
@@ -1282,19 +1279,19 @@ GetScaling <- function(vec) {
 
 # function to create the ramps for a particular primary vector
 GetRamps <- function(vec, vecname, np, scaling){
-  
+
   # vec = fundamental regressor
   # vecname = name of regressor
   # np = number of periods
   # scaling = scaling factor to use
-  
+
   # pre-allocate the matrix to hold the results for speed/efficiency
   n <- length(vec)
   nramps <- (np-1)
-  
+
   mat <- matrix(data=NA, nrow=n, ncol=nramps)
   cnames <- vector(mode="character", length=nramps)
-  
+
 
   col_indx <- 0
 
@@ -1304,49 +1301,49 @@ GetRamps <- function(vec, vecname, np, scaling){
     mat[, col_indx] <- LinearSpline(vec, i, 999) / scaling
     cnames[col_indx] <- paste0("L_", i, "_999_", vecname)
   }
-  
+
   colnames(mat) <- cnames
-  
+
   return(mat)
 }
 
 
 # create the step (heaviside) function interactions
 GetInts <- function(vec1, vec2, vecname1, vecname2, np, scaling1, scaling2) {
-  
+
   # pre-allocate the matrix to hold the results for speed/efficiency
   n <- length(vec1)
   nints <- (np-1)*(np-1)
-  
+
   mat <- matrix(data=NA_real_, nrow=n, ncol=nints)
   cnames <- vector(mode="character", length=nints)
-  
+
 
   col_indx <- 0
 
   for (i in 2:np){
-    
+
     ivec <- LinearSpline(vec1, i-1, i) / scaling1
     iname <- paste0("I_", vecname1, "_ge_", i)
-    
+
     if (length(ivec[is.na(ivec)]>0)) print(paste("NAs in ivec for", i))
-    
+
     for (j in 2:np){
       col_indx <- col_indx + 1  
       mat[, col_indx] <- ivec * LinearSpline(vec2, j-1, j) / scaling2
       cnames[col_indx] <- paste0(iname, "xI_", vecname2, "_ge_", j)
-      
+
       jvec <- LinearSpline(vec2, j-1, j) / scaling2
       if (length(jvec[is.na(jvec)]>0)) print(paste("NAs in jvec for", j))
 
     }
   }
-  
+
   colnames(mat) <- cnames
-  
+
   return(mat)
 
-  
+
 }
 ```
 
@@ -1370,19 +1367,19 @@ for (v in c("acc", "dev", "cal")){
 main_effects_acc <- GetRamps(vec = dat[, acc], vecname = "acc", np = num_periods, scaling = rho_factor_list[["acc"]])
 main_effects_dev <- GetRamps(vec = dat[, dev], vecname = "dev", np = num_periods, scaling = rho_factor_list[["dev"]])
 main_effects_cal <- GetRamps(vec = dat[, cal], vecname = "cal", np = num_periods, scaling = rho_factor_list[["cal"]])
-                             
+
 main_effects <- cbind(main_effects_acc, main_effects_dev, main_effects_cal)
 
 
 # interaction effects
 int_effects <- cbind(
-    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods, 
+    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods,
             vec2=dat[, dev], vecname2="dev", scaling2=rho_factor_list[["dev"]]),
 
-    GetInts(vec1=dat[, dev], vecname1="dev", scaling1=rho_factor_list[["dev"]], np=num_periods, 
+    GetInts(vec1=dat[, dev], vecname1="dev", scaling1=rho_factor_list[["dev"]], np=num_periods,
             vec2=dat[, cal], vecname2="cal", scaling2=rho_factor_list[["cal"]]),
-    
-    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods, 
+
+    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods,
             vec2=dat[, cal], vecname2="cal", scaling2=rho_factor_list[["cal"]])
 )
 
@@ -1443,17 +1440,17 @@ set.seed(777)  # for reproducibility
 
 # create the mlr3 learner
 lrn_cv_glmnet <- lrn(
-    "regr.cv_glmnet", 
+    "regr.cv_glmnet",
     family = "poisson",   
     nfolds = 6,
-    thresh = 1e-08, 
+    thresh = 1e-08,
     lambda.min.ratio = 0,
     # additional parameter for mlr3 - means that the model used when predicting is the min CV error model rather than default 1se model
     s="lambda.min",   
-    dfmax = use_dfmax, 
-    pmax = use_pmax, 
-    alpha = 1, 
-    standardize = FALSE, 
+    dfmax = use_dfmax,
+    pmax = use_pmax,
+    alpha = 1,
+    standardize = FALSE,
     maxit = 200000)    
 
 # train the model
@@ -1503,8 +1500,8 @@ data.table has a `melt` method for doing this. Tidyverse users may be more famil
 model_names <- names(model_forecasts)[ names(model_forecasts) %like% "regr"]
 
 # wide -> long
-model_forecasts_long <- melt(model_forecasts, 
-                             measure.vars = model_names, 
+model_forecasts_long <- melt(model_forecasts,
+                             measure.vars = model_names,
                              id.vars=c("acc", "dev", "cal", "pmts", "train_ind"))
 
 # rename columns
@@ -1525,8 +1522,8 @@ kable(tail(model_forecasts_long)) %>%
 
 Here's a reminder on the model names:
 
-* `regr.glm` - Chainladder 
-* `regr.cv_glmnet` - LASSO 
+* `regr.glm` - Chainladder
+* `regr.cv_glmnet` - LASSO
 * `regr.rpart` - decision tree
 * `regr.ranger` - random forest
 * `regr.xgboost` and `regr.xgboost_prev` - the two XGBoost models.
@@ -1619,7 +1616,7 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 actuals <- model_forecasts_long[model=="regr.glm",]
 actuals[, model := "actual"
         ][, fitted := pmts]
-          
+
 model_forecasts_long_plot <- rbind(actuals, model_forecasts_long)
 
 # calculate log_fitted
@@ -1675,24 +1672,24 @@ First, here's a function to draw the heatmaps.
 
 GraphHeatMap <- function(dat, x="dev", y="acc", facet="model", actual, fitted, lims=c(0.25, 4),
                          xlab="Development quarter", ylab="Accident Quarter"){
-  
+
   # copy data to avoid modifying original
   localdat <- copy(dat)
-  
+
   # get fails if there is a variable with the same name so make local copies
   local_x <- x
   local_y <- y
   local_actual <- actual
   local_fitted <- fitted
-  
+
   # make restricted Avs F for heatmap and set up past/future split line
   np <- max(localdat[[y]])
-  
+
   localdat[, .avsf := get(local_actual) / get(local_fitted)
            ][, .avsf_restrict_log := log(pmax(min(lims), pmin(max(lims), .avsf)))
              ][, .past_line := np + 1 - get(local_y)]
-  
-  
+
+
   g <- ggplot(data=localdat, aes_string(x=local_x, y=local_y)) +
     geom_tile(aes(fill = .avsf_restrict_log))+scale_y_reverse()+
     facet_wrap(~get(facet), ncol=2)+
@@ -1706,10 +1703,10 @@ GraphHeatMap <- function(dat, x="dev", y="acc", facet="model", actual, fitted, l
     theme(element_line(size=0.25, colour="grey30"))+
     theme(legend.position="none", )+  # legend.direction = "horizontal", legend.title=element_blank(), legend.text=element_text(size=8)
     NULL    
-  
+
 
   invisible(list(data=localdat, graph=g))
-  
+
 
 }
 
@@ -1724,7 +1721,7 @@ g$graph
 
 ```
 
-All models have shortcomings, but the LASSO and previously tuned XGBoost models outperform the others. 
+All models have shortcomings, but the LASSO and previously tuned XGBoost models outperform the others.
 
 
 
@@ -1747,41 +1744,41 @@ The second function (`QTracking`) generates the graphs for all models and uses t
 ```{r}
 
 
-GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_predictor_val, 
+GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_predictor_val,
                          xaxis_label, yaxis_label, var_names, log_values = TRUE, include_st=FALSE, include_legend=FALSE, font_size=6){
 
 
   # var_names must be list with names like this: list(actual="pmts", mean="mu", fitted="fitted")
-  
+
   # extract data we want to use
   use_dat <- dat[get(secondary_predictor) == secondary_predictor_val, ]
-  
+
   # turn into long format using melt.data.table since that works better with ggplot
   dat_long <- melt(dat[get(secondary_predictor) == secondary_predictor_val, ],
                    measure.vars = unlist(var_names),
                    id.vars = primary_predictor)
-  
+
   # make the names nicer - colnames and labels
   setnames(dat_long, primary_predictor, "predictor")
-  
+
   dat_long[variable == var_names$actual, variable := "Simulated"
            ][variable == var_names$mean, variable := "Underlying"
              ][variable == var_names$fitted, variable := "Fitted"]
-  
+
   # get the levels of the variables right so that they are plotted in the right order
   dat_long[, variable := factor(variable, levels=c("Fitted", "Simulated", "Underlying"))]
-  
-  
+
+
   if (log_values) dat_long[, value := log(value)]
-  
+
   # figure out past data rectangle coordinates
   xmin1 <- use_dat[train_ind == TRUE, min(get(primary_predictor))]
   xmax1 <- use_dat[train_ind == TRUE, max(get(primary_predictor))]
-  
+
   ymin1 <- dat_long[, min(value)]*0.95
   ymax1 <- dat_long[, max(value)]*1.05
-  
-  
+
+
   # draw the tracking plots
   g <- ggplot(data=dat_long, aes(x=predictor, y=value, group=variable))+
     geom_line(aes(linetype=variable, colour=variable, size=variable, alpha=variable))+
@@ -1794,12 +1791,12 @@ GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_
     annotate(geom="rect", xmin=xmin1, xmax=xmax1, ymin=ymin1, ymax=ymax1, alpha=0.1)+
     labs(x=xaxis_label, y=yaxis_label, title=paste(xaxis_label, "tracking for", secondary_predictor, "=", secondary_predictor_val)) +
     theme(axis.title = element_text(size = font_size), axis.text = element_text(size = font_size-1))
-         
+
   if(include_st==TRUE) g <- g + labs(subtitle="Past data in grey rectangle") + theme(plot.subtitle = element_text (size = font_size))
 
   g <- if(include_legend==TRUE) g + theme(legend.position=c(1.5, 0.5)) else g + theme(legend.position = "none")
-  
-  
+
+
 
   # return the results  
   invisible(list(data=dat_long, graph=g))
@@ -1830,35 +1827,35 @@ QTracking <- function(dat,
 
   # produce each plot  
   for (model in model_names){
-    
+
     # variable names in plot
     vn <- list(actual="pmts", mean="mu", fitted=model)
-    
+
     # include subtitle or not in the graph (first plot only)
     bool_st <- if(model == model_names[1]) TRUE else FALSE
-    
+
     # include legend or not in the graph (last plot only)
     bool_legend <- if(model == model_names[length(model_names)]) TRUE else FALSE
-    
+
     # draw plot
-    tracking_g[[model]] <- GraphModelVals(dat, 
-                                          primary_predictor = primary_predictor, 
-                                          secondary_predictor = secondary_predictor, 
-                                          secondary_predictor_val = secondary_predictor_val, 
-                                          xaxis_label = xaxis_label, 
-                                          yaxis_label = yaxis_label, 
-                                          var_names = vn, 
-                                          include_st = bool_st, 
+    tracking_g[[model]] <- GraphModelVals(dat,
+                                          primary_predictor = primary_predictor,
+                                          secondary_predictor = secondary_predictor,
+                                          secondary_predictor_val = secondary_predictor_val,
+                                          xaxis_label = xaxis_label,
+                                          yaxis_label = yaxis_label,
+                                          var_names = vn,
+                                          include_st = bool_st,
                                           include_legend = bool_legend,
                                           font_size = font_size)$graph +
-      ggtitle(paste("Modelled values for", model)) + 
+      ggtitle(paste("Modelled values for", model)) +
       theme (plot.title = element_text (size = (font_size+1)))
   }
 
   # use patchwork to wrap all plots into a single display  
   wrap_plots(tracking_g, ncol=2)
-  
-    
+
+
 }
 
 ```
@@ -1961,8 +1958,8 @@ QTracking(model_forecasts,
 
 Finally, we'll look at the reserve estimates from the different models. For convenience, here's the mapping of model name to model type again:
 
-* `regr.glm` - Chainladder 
-* `regr.cv_glmnet` - LASSO 
+* `regr.glm` - Chainladder
+* `regr.cv_glmnet` - LASSO
 * `regr.rpart` - decision tree
 * `regr.ranger` - random forest
 * `regr.xgboost` and `regr.xgboost_prev` - the two XGBoost models.
@@ -1982,7 +1979,7 @@ os_acc <- rbind(os_acc[model=="regr.glm",][, reserve := actual][, model := "actu
                 os_acc)
 
 # adjust levels of factor to ger correct ordering
-os_acc[, model := factor(as.character(model), level=c("actual", "regr.cv_glmnet", "regr.glm", "regr.ranger", 
+os_acc[, model := factor(as.character(model), level=c("actual", "regr.cv_glmnet", "regr.glm", "regr.ranger",
                                                       "regr.rpart", "regr.xgboost", "regr.xgboost_prev"))]
 
 setkey(os_acc, model, acc)
@@ -2071,7 +2068,7 @@ The grey rectangle marks the interaction.
 xydat <- data.table(acc = rep(1:num_periods, each = num_periods),
                     dev = rep(1:num_periods, times = num_periods),
                     row_id = 1:nrow(dat) )
-                      
+
 xydat[, past := TRUE][((acc+dev-1) > num_periods), past := FALSE]
 
 
@@ -2083,9 +2080,9 @@ for (i in 1:nf){
     data.table(row_id = (crossval$train_set(i)), train_ind = TRUE),
     data.table(row_id = (crossval$test_set(i)), train_ind = FALSE)
   )
-  
+
   setkey(tem, row_id)
-  
+
   nm <- paste0("fold", i)
   xydat[tem, on=.(row_id), (nm) := i.train_ind]
 }
@@ -2126,7 +2123,7 @@ The first thing that is apparent is that the interaction only applies to a very 
 So in that sense, it's quite remarkable that the models perform as well as they actually do - they all detect the interaction.
 Where they start to slip up is that they do not necessarily follow the development quarter shape in the tail.
 
-With cross-validation, all points are in the test data set once and once only. 
+With cross-validation, all points are in the test data set once and once only.
 So it seems to be the case that the particular allocation of data into folds in this notebook leads to poorer results for the XGBoost model.
 In other words, in our previous tuning for XGBoost we got lucky.
 
@@ -2145,7 +2142,7 @@ Success in machine learning often comes down to optimising the following:
 Reserving is a forecasting problem - we have a time series of payments and we want to forecast into the future.
 This suggests that cross-validation is not an ideal method for tuning reserving models - we would be better with a train/test split where the test data is in the future relative to the past data.
 
-This problem has been discussed in the context of time series modelling, where the use of rolling window cross-validation techniques has been advocated. 
+This problem has been discussed in the context of time series modelling, where the use of rolling window cross-validation techniques has been advocated.
 We'll be discussing this in a future article.
 
 
@@ -2178,7 +2175,7 @@ library(data.table)
 
 CreateSyntheticData<-function(whichsim, numperiods)
 {
-  
+
 	# create the acc/dev/cal parameters
 	kk <- rep(1:numperiods, each = numperiods) #AQ
 	jj <- rep(1:numperiods, times= numperiods) #DQ
@@ -2186,41 +2183,41 @@ CreateSyntheticData<-function(whichsim, numperiods)
 
 	# set alpha/beta/gamma - hard-code up the sim values
 	if (whichsim == 1){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
 		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj
 		gamma <- 0
 		mu <- exp( alpha + beta + gamma)  
 	}
 	else if (whichsim == 2){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma)  
 	}
 	else if (whichsim == 3){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma + 0.3*beta*ifelse(kk>16 & jj>20,1,0))  
 	}
 	else if (whichsim == 4){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma*((numperiods-1)-LinearSpline(jj,1,numperiods))/(numperiods-1) )  # need to check
 	}
-	
+
 	varbase <- (0.3 * mu[  kk==1 & jj ==16] )^2 # can scale variance up and down here
 	CC  <-  varbase / mu[  kk==1 & jj ==16]
-	
+
 	vars   <- CC*mu
 	tausq  <- log (vars / (mu^2) + 1)
-	
+
 	pmts <- exp( rnorm( numperiods^2, mean = log(mu)-0.5*tausq , sd = sqrt(tausq)  ) )
-	
+
 	# indicator for past/future = traint/test
 	train_ind<-(tt<=numperiods)
-	
+
 	### data fram for output
 	full<-data.table(pmts, acc=as.integer(kk), dev=as.integer(jj), cal=as.integer(tt), mu, train_ind )
 	full
@@ -2231,7 +2228,7 @@ CreateSyntheticData<-function(whichsim, numperiods)
 # function to generate calendar period effects used in CreateSyntheticData()
 
 gammafunc <- function(t){
-	gg <- 
+	gg <-
 		ifelse( t<=12, gg <- 0.0075*LinearSpline(t,1,12),
 				ifelse(t<=24,  gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (t-12)*(t-11)/2,
 					   ifelse(t<=32, gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (24-12)*(24-11)/2,
@@ -2283,6 +2280,3 @@ The details of the R session used to generate the results are below.
 ```{r}
 sessionInfo()
 ```
-
-
-
