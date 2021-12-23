@@ -15,8 +15,8 @@ parts:
   - file: docs/introductory_R.ipynb
   - file: docs/intermediate_R.ipynb
   - file: docs/top_ten_r_packages.ipynb
-  - file: docs/MLRWP_R_DataTable.ipynb
   - file: docs/MLRWP_R_Tidyverse.ipynb
+  - file: docs/MLRWP_R_DataTable.ipynb
 - caption: Workflow Management
   chapters:
   - file:  docs/version_control
@@ -34,7 +34,7 @@ parts:
   - file: docs/MLRWP_R_GLMs.ipynb
   - file: docs/MLRWP_R_Lasso.ipynb
   - file: docs/MLRWP_R_mlr3.ipynb
-  - file: docs/MLRWP_Py_triangles_example.ipynb  
+  - file: docs/MLRWP_Py_triangles_example.ipynb
 - caption: Unsupervised Learning
   chapters:
   - file:  docs/DAA_M06_CS1.ipynb
