@@ -1,28 +1,28 @@
-# R: Reserving with LASSO
-
-```{r active="", eval=FALSE}
 ---
 title: "Self-assembling claim reserving models using the LASSO"
 date: "2021-05-17T16:00:00Z"
 slug: f-lasso
-authors: 
+authors:
   - gmcguire
   - gtaylor
-tags: 
+tags:
   - foundations
   - lasso
   - R
 
 ---
-```
+
+# R: Reserving with LASSO
+
+
 
 *In this post we look at how regularised regression techniques such as the LASSO can be used to set reserves for triangles.*
 
 
-The [Foundation Workstream's first post](/mlr-blog/post/intro-to-foundations-blog/) set out a suggested path to getting to grips with machine learning. The first step was to start by applying GLMs to reserving and one way of doing this was covered in our most recent post ([Reserving with GLMs](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/glms/)). 
+The [Foundation Workstream's first post](/mlr-blog/post/intro-to-foundations-blog/) set out a suggested path to getting to grips with machine learning. The first step was to start by applying GLMs to reserving and one way of doing this was covered in our most recent post ([Reserving with GLMs](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/glms/)).
 
-In this post, we move onto the next step which is to use regularised regression methods. These allow us to build something that looks like a GLM but in a machine learning way - i.e. the machine selects the model. 
-Put simply, regularisation techniques shrink or regularise regression parameters towards zero (excluding the intercept - this is normally not regularised, so in effect, this means that the fitted values are regularised towards the constant term in the regression). This penalises more complex models and reduces the risk of overfitting. 
+In this post, we move onto the next step which is to use regularised regression methods. These allow us to build something that looks like a GLM but in a machine learning way - i.e. the machine selects the model.
+Put simply, regularisation techniques shrink or regularise regression parameters towards zero (excluding the intercept - this is normally not regularised, so in effect, this means that the fitted values are regularised towards the constant term in the regression). This penalises more complex models and reduces the risk of overfitting.
 
 Here we will be focussing on a particular type of regularised regression, called the LASSO. As well as shrinking the parameters towards zero, the LASSO also selects parameters (and their corresponding regressor) by explicitly setting some to zero. This makes it a particularly useful method.
 
@@ -35,7 +35,7 @@ The LASSO (**L**east **A**bsolute **S**hrinkage and **S**election **O**perator) 
 
 ## From GLMs ...
 
-The loss function associated with a GLM regression is the **deviance**, defined as 
+The loss function associated with a GLM regression is the **deviance**, defined as
 
 $$D(y; X, \hat{\beta}) = -\sum_{i=1}^N \ell (y_i; X, \hat{\beta})  + \text{other terms}$$
 
@@ -91,8 +91,8 @@ The LASSO is dealt with in more detail in [Hastie T, Tibshirani R and Friedman J
 
 # Using the LASSO for reserving
 
-In GIRO 2018 (and presented again at TIGI 2019), we, along with our co-author Hugh Miller, describe how the LASSO could be used to carry out reserving for a traditional triangle. 
-The motivation behind this work was to develop an automatic method to construct a general insurance claims reserving model for data sets with complex features where simple approaches such as the chain ladder fail. In the past we have advocated the use of GLM models for such data sets, but the construction of a GLM is a time-consuming process, even for a skilled analyst. Our aim was to develop a procedure that produced a model similar to a GLM, but using machine learning techniques. 
+In GIRO 2018 (and presented again at TIGI 2019), we, along with our co-author Hugh Miller, describe how the LASSO could be used to carry out reserving for a traditional triangle.
+The motivation behind this work was to develop an automatic method to construct a general insurance claims reserving model for data sets with complex features where simple approaches such as the chain ladder fail. In the past we have advocated the use of GLM models for such data sets, but the construction of a GLM is a time-consuming process, even for a skilled analyst. Our aim was to develop a procedure that produced a model similar to a GLM, but using machine learning techniques.
 
 We used the LASSO rather than other types of regularised regression, for the following reasons:
 
@@ -102,7 +102,7 @@ We used the LASSO rather than other types of regularised regression, for the fol
 This approach has performed well - as may be seen from the figures towards the end of this article, which show that the fitted curves can track the underlying specification quite closely, even in the presence of significant noise, or difficult to detect interactions. A paper describing the method is available on [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906). This contains much more technical detail around the choice, use and implementation of the LASSO for the reserving problem.
 
 For the rest of this post, we will work through this method in a tutorial example.
-This is based on an existing [worked example](https://grainnemcguire.github.io/post/self-assembling-claim-reserving-models/) so if you've seen that one, then you may already be familiar with a lot of the content below. 
+This is based on an existing [worked example](https://grainnemcguire.github.io/post/self-assembling-claim-reserving-models/) so if you've seen that one, then you may already be familiar with a lot of the content below.
 
 
 # Tutorial on how to use our LASSO technique for reserving
@@ -153,7 +153,7 @@ g_dev <- ggplot(data=dev_dt, aes(x=dev, y=dev_m)) +
 
 # cal
 gammafunc <- function(t){
-	gg <- 
+	gg <-
 		ifelse( t<=12, gg <- 0.0075*LinearSpline(t,1,12),
 				ifelse(t<=24,  gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (t-12)*(t-11)/2,
 					   ifelse(t<=32, gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (24-12)*(24-11)/2,
@@ -166,7 +166,7 @@ gammafunc <- function(t){
 
 cal_dt <- data.table(cal=1:40)
 cal_dt[, cal_m := gammafunc(cal)]
-         
+
 g_cal <- ggplot(data=cal_dt, aes(x=cal, y=cal_m)) +
   geom_line(size=1.5, colour=mblue) +
   theme_classic() +
@@ -183,7 +183,7 @@ g_int <- ggplot(data=int_dt, aes(x=dev, y=acc, colour=interaction)) +
   scale_colour_manual(values=c("white", mblue)) +
   scale_y_reverse()+
   theme_classic() +
-  theme(legend.position = "none") + 
+  theme(legend.position = "none") +
   labs(x="Development", y="Accident", title="Interaction")
 
 
@@ -242,7 +242,7 @@ violet <- "#8076cf"
 
 ## Generating the synthetic data set
 
-The functions defined below will generate data sets similar to those used in our paper. 
+The functions defined below will generate data sets similar to those used in our paper.
 Here we'll use simulated data set 3, but we've included the code to generate the other data sets so that you can experiment with others if you wish.
 
 The utility function `LinearSpline()` will be widely used in this example - it takes a vector `var` and produces a spline piece between `start` and `stop` - flat (and 0) up to `start`, thereafter increasing to `stop` and then levelling out at this point. This is used both in the data generation and in the generation of basis functions for the LASSO.
@@ -258,7 +258,7 @@ CreateSyntheticData<-function(whichsim, numperiods)
 
     # whichsim determins which data set to simulate
     # numperiods determines the size of the triangle
-      
+
 	# create the acc/dev/cal parameters
 	kk <- rep(1:numperiods, each = numperiods) #AQ
 	jj <- rep(1:numperiods, times= numperiods) #DQ
@@ -266,41 +266,41 @@ CreateSyntheticData<-function(whichsim, numperiods)
 
 	# set alpha/beta/gamma - hard-code up the sim values
 	if (whichsim == 1){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
 		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj
 		gamma <- 0
 		mu <- exp( alpha + beta + gamma)  
 	}
 	else if (whichsim == 2){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma)  
 	}
 	else if (whichsim == 3){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma + 0.3*beta*ifelse(kk>16 & jj>20,1,0))  
 	}
 	else if (whichsim == 4){
-		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40) 
-		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3 
+		alpha <- log(100000)+0.1*LinearSpline(kk,1,15)+0.2*LinearSpline(kk,15,20) - 0.05*LinearSpline(kk,30,40)
+		beta  <- (16/3 - 1)*log(jj)- (1/3)*jj  # a is 16/3, b is 1/3
 		gamma <- gammafunc(tt)
 		mu <- exp( alpha + beta + gamma*((numperiods-1)-LinearSpline(jj,1,numperiods))/(numperiods-1) )  # need to check
 	}
-	
+
 	varbase <- (0.3 * mu[  kk==1 & jj ==16] )^2 # can scale variance up and down here
 	CC  <-  varbase / mu[  kk==1 & jj ==16]
-	
+
 	vars   <- CC*mu
 	tausq  <- log (vars / (mu^2) + 1)
-	
+
 	pmts <- exp( rnorm( numperiods^2, mean = log(mu)-0.5*tausq , sd = sqrt(tausq)  ) )
-	
+
 	# indicator for past/future = traint/test
 	train_ind<-(tt<=numperiods)
-	
+
 	### data.table for output
 	full<-data.table(pmts, acc=as.integer(kk), dev=as.integer(jj), cal=as.integer(tt), mu, train_ind )
 	full
@@ -312,7 +312,7 @@ CreateSyntheticData<-function(whichsim, numperiods)
 # written as a seperate function for convenience
 
 gammafunc <- function(t){
-	gg <- 
+	gg <-
 		ifelse( t<=12, gg <- 0.0075*LinearSpline(t,1,12),
 				ifelse(t<=24,  gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (t-12)*(t-11)/2,
 					   ifelse(t<=32, gg <- 0.0075*LinearSpline(12,1,12) + 0.001* (24-12)*(24-11)/2,
@@ -355,8 +355,8 @@ Let's have a look at the data:
 
 # head(dat,10) gives the same information, the rest is just formatting
 
-head(dat, 10) %>% 
-    kable(digits=0, format.args = list(big.mark = ",", scientific = FALSE)) %>% 
+head(dat, 10) %>%
+    kable(digits=0, format.args = list(big.mark = ",", scientific = FALSE)) %>%
     kable_styling(full_width=FALSE, bootstrap_options = c("striped", "hover", "condensed")) %>%
     as.character() %>%
     display_html()
@@ -440,11 +440,11 @@ For the particular data set here, this means that our basis functions include:
 * 3 x 39 ramp functions, e.g.
   $$\max(\text{acc} - k, 0), \;\; k=1, 2, ..., 39$$
 
-  + and similar for `dev` and `cal`. 
+  + and similar for `dev` and `cal`.
 
-* 3 x 39 x 39 interactions 
+* 3 x 39 x 39 interactions
   $$I(\text{acc} \geq k)*I(\text{acc} \geq j), \;\; k, j = 2,3,..., 40$$
-  
+
    + similar for (`acc`, `cal`) and (`dev`, `cal`)
 
 * This leads to 4680(!) basis functions.
@@ -459,18 +459,18 @@ Referring back to the introduction of this article, the loss function to be mini
 $$\mathcal{L} (y; X, \hat{\beta}) = D(y; X, \hat{\beta}) + \lambda ||\hat{\beta}||_1$$
 
 We noted that $\lambda$ controlled the size of the penalty attaching to each parameter, and therefore each basis function.
-However, as the size of the parameters also features in this equation, it is important that the basis functions be on similar scales. 
+However, as the size of the parameters also features in this equation, it is important that the basis functions be on similar scales.
 Otherwise whether a parameter is included or not could depend on whether the corresponding basis function has large values (and therefore smaller $\hat{\beta}$) or small values (and therefore larger $\hat{\beta}$), which is clearly undesirable.
 
 Once you're aware of this issue, it should come as no surprise that scaling parameters is something that is common in machine learning work like this one. Indeed, the **glmnet** package which we will be using comes with an in-built scaling tool. However this scaling will scale each variable independently. This isn't what we want since the basis functions are not independent - we have over 4000 of these, but really we only have 3 fundamental regressors so we probably want all `acc` functions to be scaled similarly (and the same is true for `dev` and `cal`).
 
-Our paper has some more discussion around scaling. In a nutshell, we calculate a scaling factor for each of the 3 fundamental regressors and then apply that to all basis functions generated from that regressor. The scaling we use is $\rho$ scaling which is calculated as 
+Our paper has some more discussion around scaling. In a nutshell, we calculate a scaling factor for each of the 3 fundamental regressors and then apply that to all basis functions generated from that regressor. The scaling we use is $\rho$ scaling which is calculated as
 
 $$\sum_{i=1}^n {\frac{(x_i-\bar{x})^2}{n}}$$
 
-where 
+where
 
-* $\bar{x}$ is the mean of the regressor $x$ and 
+* $\bar{x}$ is the mean of the regressor $x$ and
 * $n$ is the number of elements in the regressor.
 
 Another nuance to note is that in the real world, the future data will not be available. So our fundamental regressors contain only past data and the scaling factors should therefore be calculated using past data only.
@@ -512,19 +512,19 @@ The output is a matrix with named columns - e.g. `L_1_999_acc`, `L_2_999_acc`, .
 
 # function to create the ramps for a particular primary vector
 GetRamps <- function(vec, vecname, np, scaling){
-  
+
   # vec = fundamental regressor
   # vecname = name of regressor
   # np = number of periods
   # scaling = scaling factor to use
-  
+
   # pre-allocate the matrix to hold the results for speed/efficiency
   n <- length(vec)
   nramps <- (np-1)
-  
+
   mat <- matrix(data=NA, nrow=n, ncol=nramps)
   cnames <- vector(mode="character", length=nramps)
-  
+
 
   col_indx <- 0
 
@@ -534,9 +534,9 @@ GetRamps <- function(vec, vecname, np, scaling){
     mat[, col_indx] <- LinearSpline(vec, i, 999) / scaling
     cnames[col_indx] <- paste0("L_", i, "_999_", vecname)
   }
-  
+
   colnames(mat) <- cnames
-  
+
   return(mat)
 }
 
@@ -545,7 +545,7 @@ GetRamps <- function(vec, vecname, np, scaling){
 
 
 We also need to calculate the interactions which the function does below for a given pair of input vectors, e.g. accident and development periods.
-The inputs are similar to those for the `GetRamps()` function, except that we have two sets, one for each input fundamental regressor. 
+The inputs are similar to those for the `GetRamps()` function, except that we have two sets, one for each input fundamental regressor.
 The output is also a column-named matrix where names are, e.g., `I_acc_ge_5xI_dev_ge_14`.
 
 ```{r}
@@ -560,41 +560,41 @@ GetInts <- function(vec1, vec2, vecname1, vecname2, np, scaling1, scaling2) {
   # np = number of periods
   # scaling1 = scaling factor to use for regressor 1
   # scaling2 = scaling factor to use for regressor 2
-    
-      
+
+
   # pre-allocate the matrix to hold the results for speed/efficiency
   n <- length(vec1)
   nints <- (np-1)*(np-1)
-  
+
   mat <- matrix(data=NA_real_, nrow=n, ncol=nints)
   cnames <- vector(mode="character", length=nints)
-  
+
 
   col_indx <- 0
 
   for (i in 2:np){
-    
+
     ivec <- LinearSpline(vec1, i-1, i) / scaling1
     iname <- paste0("I_", vecname1, "_ge_", i)
-    
+
     if (length(ivec[is.na(ivec)]>0)) print(paste("NAs in ivec for", i))
-    
+
     for (j in 2:np){
       col_indx <- col_indx + 1  
       mat[, col_indx] <- ivec * LinearSpline(vec2, j-1, j) / scaling2
       cnames[col_indx] <- paste0(iname, "xI_", vecname2, "_ge_", j)
-      
+
       jvec <- LinearSpline(vec2, j-1, j) / scaling2
       if (length(jvec[is.na(jvec)]>0)) print(paste("NAs in jvec for", j))
 
     }
   }
-  
+
   colnames(mat) <- cnames
-  
+
   return(mat)
 
-  
+
 }
 
 
@@ -628,19 +628,19 @@ for (v in c("acc", "dev", "cal")){
 main_effects_acc <- GetRamps(vec = dat[, acc], vecname = "acc", np = num_periods, scaling = rho_factor_list[["acc"]])
 main_effects_dev <- GetRamps(vec = dat[, dev], vecname = "dev", np = num_periods, scaling = rho_factor_list[["dev"]])
 main_effects_cal <- GetRamps(vec = dat[, cal], vecname = "cal", np = num_periods, scaling = rho_factor_list[["cal"]])
-                             
+
 main_effects <- cbind(main_effects_acc, main_effects_dev, main_effects_cal)
 
 
 # interaction effects
 int_effects <- cbind(
-    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods, 
+    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods,
             vec2=dat[, dev], vecname2="dev", scaling2=rho_factor_list[["dev"]]),
 
-    GetInts(vec1=dat[, dev], vecname1="dev", scaling1=rho_factor_list[["dev"]], np=num_periods, 
+    GetInts(vec1=dat[, dev], vecname1="dev", scaling1=rho_factor_list[["dev"]], np=num_periods,
             vec2=dat[, cal], vecname2="cal", scaling2=rho_factor_list[["cal"]]),
-    
-    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods, 
+
+    GetInts(vec1=dat[, acc], vecname1="acc", scaling1=rho_factor_list[["acc"]], np=num_periods,
             vec2=dat[, cal], vecname2="cal", scaling2=rho_factor_list[["cal"]])
 )
 
@@ -659,11 +659,11 @@ varset[1:10, 39:44]
 We can also look at the scaling factors used
 
 ```{r}
-rho_factor_list
+print(rho_factor_list)
 ```
 
 
-The factors are all equal in this case. In hindsight this makes sense - we have the complete 40 x 40 past triangle, and all regressors are numbered from 1, so all three regressors are permutations of the same numbers. 
+The factors are all equal in this case. In hindsight this makes sense - we have the complete 40 x 40 past triangle, and all regressors are numbered from 1, so all three regressors are permutations of the same numbers.
 
 <br>
 
@@ -693,7 +693,7 @@ varset <- varset[, !(colnames(varset) %in% colnames(rm_cols))]
 
 ## Fitting a LASSO
 
-The **glmnet** package has two functions for fitting a LASSO: `glmnet()` and `cv.glmnet()`. 
+The **glmnet** package has two functions for fitting a LASSO: `glmnet()` and `cv.glmnet()`.
 
 * `glmnet()` fits a regularised regression model for various values of the penalty parameter, $\lambda$.
 * `cv.glmnet()` adds a cross-validation ("CV") layer on top of this so helps us to select the particular value of $\lambda$ to use - $\lambda$ values that have lower cross-validation error values are preferred.
@@ -734,17 +734,17 @@ my_pmax <- num_periods^2   # max number of variables ever to be nonzero
 my_dfmax <- num_periods*10  #max number of vars in the model
 
 time1 <- Sys.time()
-cv_fit <- cv.glmnet(x = varset[dat$train_ind,], 
-                  y = dat[train_ind==TRUE, pmts], 
-                  family = "poisson", 
+cv_fit <- cv.glmnet(x = varset[dat$train_ind,],
+                  y = dat[train_ind==TRUE, pmts],
+                  family = "poisson",
                   nlambda = 200,  # default is 100 but often not enough for this type of problem
                   nfolds = 8,
                   thresh = 1e-08, # default is 1e-7 but we found we needed to reduce it from time to time
                   lambda.min.ratio = 0, # allow very small values in lambda
-                  dfmax = my_dfmax, 
-                  pmax = my_pmax, 
-                  alpha = 1, 
-                  standardize = FALSE, 
+                  dfmax = my_dfmax,
+                  pmax = my_pmax,
+                  alpha = 1,
+                  standardize = FALSE,
                   maxit = 200000)  # convergence can be slow so increase max number of iterations
 print("time taken for cross validation fit: ")
 Sys.time() - time1
@@ -786,8 +786,8 @@ ind_nz_min<-which(!(coefs_min == 0))
 nzcoefs_min <- data.table(Parameter = coefnames[ind_nz_min], Coefficient = coefs_min[ind_nz_min,])
 
 # print the table
-nzcoefs_min %>% 
-    kable(digits=4, format.args = list(scientific = FALSE)) %>% 
+nzcoefs_min %>%
+    kable(digits=4, format.args = list(scientific = FALSE)) %>%
     kable_styling(full_width=FALSE, bootstrap_options = c("striped", "hover", "condensed")) %>%
     as.character() %>%
     display_html()
@@ -804,9 +804,9 @@ We plot the model results in a number of different ways in the paper. Below we r
 First, we add the fitted values to the data.table.
 
 ```{r}
-dat[, fitted := as.vector(predict(cv_fit, 
-                                  newx = varset, 
-                                  s = cv_fit$lambda.min, 
+dat[, fitted := as.vector(predict(cv_fit,
+                                  newx = varset,
+                                  s = cv_fit$lambda.min,
                                   type="response"))]
 ```
 
@@ -819,8 +819,8 @@ The function below produces the tracking graphs shown in the paper - plot values
 ```{r}
 
 
-GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_predictor_val, 
-                         xaxis_label, yaxis_label, var_names, log_values = TRUE, 
+GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_predictor_val,
+                         xaxis_label, yaxis_label, var_names, log_values = TRUE,
                          include_st=FALSE, include_legend=FALSE, font_size=6){
 
   # dat = input data. Must be in wide format
@@ -838,36 +838,36 @@ GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_
   # (these last 3 variables + default values might seem odd - this function is used in a later article
   #    and the defaults are sensible in that context)    
 
-  
+
   # extract data we want to use
   use_dat <- dat[get(secondary_predictor) == secondary_predictor_val, ]
-  
+
   # turn into long format (tidy format in this case) using melt.data.table since that works better with ggplot
   dat_long <- melt(dat[get(secondary_predictor) == secondary_predictor_val, ],
                    measure.vars = unlist(var_names),
                    id.vars = primary_predictor)
-  
+
   # make the names nicer - colnames and labels
   setnames(dat_long, primary_predictor, "predictor")
-  
+
   dat_long[variable == var_names$actual, variable := "Simulated"
            ][variable == var_names$mean, variable := "Underlying"
              ][variable == var_names$fitted, variable := "Fitted"]
-  
+
   # get the levels of the variables right so that they are plotted in the right order
   dat_long[, variable := factor(variable, levels=c("Fitted", "Simulated", "Underlying"))]
-  
-  
+
+
   if (log_values) dat_long[, value := log(value)]
-  
+
   # figure out past data rectangle coordinates
   xmin1 <- use_dat[train_ind == TRUE, min(get(primary_predictor))]
   xmax1 <- use_dat[train_ind == TRUE, max(get(primary_predictor))]
-  
+
   ymin1 <- dat_long[, min(value)]*0.95
   ymax1 <- dat_long[, max(value)]*1.05
-  
-  
+
+
   # draw the tracking plots
   g <- ggplot(data=dat_long, aes(x=predictor, y=value, group=variable))+
     geom_line(aes(linetype=variable, colour=variable, size=variable, alpha=variable))+
@@ -880,12 +880,12 @@ GraphModelVals<-function(dat, primary_predictor, secondary_predictor, secondary_
     annotate(geom="rect", xmin=xmin1, xmax=xmax1, ymin=ymin1, ymax=ymax1, alpha=0.1)+
     labs(x=xaxis_label, y=yaxis_label, title=paste(xaxis_label, "tracking for", secondary_predictor, "=", secondary_predictor_val)) +
     theme(axis.title = element_text(size = font_size), axis.text = element_text(size = font_size-1))
-         
+
   if(include_st==TRUE) g <- g + labs(subtitle="Past data in grey rectangle") + theme(plot.subtitle = element_text (size = font_size))
 
   g <- if(include_legend==TRUE) g + theme(legend.position="bottom") else g + theme(legend.position = "none")
-  
-  
+
+
 
   # return the results  
   invisible(list(data=dat_long, graph=g))
@@ -901,10 +901,10 @@ Now let's look at development quarter when accident quarter is 20. Remember the 
 
 
 ```{r}
-dev_graph_list <- GraphModelVals(dat, 
-                                 primary_predictor = "dev", 
-                                 secondary_predictor = "acc", 
-                                 secondary_predictor_val = 20, 
+dev_graph_list <- GraphModelVals(dat,
+                                 primary_predictor = "dev",
+                                 secondary_predictor = "acc",
+                                 secondary_predictor_val = 20,
                                  xaxis_label = "Development quarter",
                                  yaxis_label = "Log(Payments)",
                                  var_names = list(actual="pmts", mean="mu", fitted="fitted"),
@@ -919,10 +919,10 @@ Similarly we can look at accident quarter tracking when development quarter is 2
 
 
 ```{r}
-acc_graph_list <- GraphModelVals(dat, 
-                                 primary_predictor = "acc", 
-                                 secondary_predictor = "dev", 
-                                 secondary_predictor_val = 24, 
+acc_graph_list <- GraphModelVals(dat,
+                                 primary_predictor = "acc",
+                                 secondary_predictor = "dev",
+                                 secondary_predictor_val = 24,
                                  xaxis_label = "Accident quarter",
                                  yaxis_label = "Log(Payments)",
                                  var_names = list(actual="pmts", mean="mu", fitted="fitted"),
@@ -938,7 +938,7 @@ You can explore other combinations of `primary_predictor`, `secondary_predictor`
 
 ### Heat map
 
-Plotting colour-coded actual/fitted values can be a useful way of looking at the model fit. The function below plots these values (subject to lower and upper bounds of 25% and 400%) and shades them with blue values being less than 100% and red values being greater than 100%. The darker the shading, the further from 100%. 
+Plotting colour-coded actual/fitted values can be a useful way of looking at the model fit. The function below plots these values (subject to lower and upper bounds of 25% and 400%) and shades them with blue values being less than 100% and red values being greater than 100%. The darker the shading, the further from 100%.
 
 The function below will draw the heatmap.
 
@@ -948,42 +948,42 @@ The function below will draw the heatmap.
 
 GraphHeatMap <- function(dat, x="dev", y="acc", actual, fitted, lims=c(0.25, 4),
                          xlab="Development quarter", ylab="Accident Quarter"){
-  
+
   # copy data to avoid modifying original
   localdat <- copy(dat)
-  
+
   # get fails if there is a variable with the same name so make local copies
   local_x <- x
   local_y <- y
   local_actual <- actual
   local_fitted <- fitted
-  
+
   # make restricted Avs F for heatmap and set up past/future split line
   np <- max(localdat[[y]])
-  
+
   localdat[, .avsf := get(local_actual) / get(local_fitted)
            ][, .avsf_restrict_log := log(pmax(min(lims), pmin(max(lims), .avsf)))
              ][, .past_line := np + 1 - get(local_y)]
-  
-  
+
+
   g <- ggplot(data=localdat, aes_string(x=local_x, y=local_y)) +
     geom_tile(aes(fill = .avsf_restrict_log))+scale_y_reverse()+
     theme_classic()+
-    scale_fill_gradient2(name="AvF_min", low=mblue, mid="white", high=red, midpoint=0, 
+    scale_fill_gradient2(name="AvF_min", low=mblue, mid="white", high=red, midpoint=0,
                          space="Lab", na.value=lgrey, guide="colourbar")+
     labs(x=xlab, y=ylab)+
     geom_line(aes_string(x=".past_line", y=local_y), colour=dgrey, size=2)+
-    theme(strip.text = element_text(size=8,colour=dgrey), 
+    theme(strip.text = element_text(size=8,colour=dgrey),
           strip.background = element_rect(colour="white", fill="white"))+
     theme(axis.title.x = element_text(size=10), axis.text.x  = element_text(size=10))+
     theme(axis.title.y = element_text(size=10), axis.text.y  = element_text(size=10))+
     theme(element_line(size=0.25, colour=dgrey))+
     theme(legend.position="none", )+  
     NULL    
-  
+
 
   invisible(list(data=localdat, graph=g))
-  
+
 
 }
 
@@ -1011,12 +1011,12 @@ The code below uses data.table functionality to sum up the reserves by accident 
 
 ```{r}
 
-os_acc <- dat[train_ind == FALSE, 
-              .(LASSO = sum(fitted), simulated = sum(pmts), underlying = sum(mu)), 
+os_acc <- dat[train_ind == FALSE,
+              .(LASSO = sum(fitted), simulated = sum(pmts), underlying = sum(mu)),
               keyby=.(acc)]
 
-os <- os_acc[, .(LASSO = sum(LASSO), 
-                 simulated = sum(simulated), 
+os <- os_acc[, .(LASSO = sum(LASSO),
+                 simulated = sum(simulated),
                  underlying = sum(underlying))]
 
 ```
@@ -1036,8 +1036,8 @@ dat[, cumpmts := cumsum(pmts), by=.(acc)][train_ind==FALSE, cumpmts := NA]
 cl_fac <- numeric(num_periods-1) # hold CL factors
 
 for (j in 1:num_periods-1){
-  
-  cl_fac[j] <- 
+
+  cl_fac[j] <-
       dat[train_ind==TRUE & dev == (j+1) & acc > (num_periods-8-j) & acc <= (num_periods-j), sum(cumpmts)] /
       dat[train_ind==TRUE & dev == (j) & acc > (num_periods-8-j) & acc <= (num_periods-j), sum(cumpmts)]
 }
@@ -1080,7 +1080,7 @@ os_acc_long <- melt(os_acc, id.vars = "acc")
 os_acc_long[, value := value/1e9]
 
 os_plot <-
-	ggplot(data=os_acc_long, aes(x=acc, y=value, colour=variable, 
+	ggplot(data=os_acc_long, aes(x=acc, y=value, colour=variable,
 	                             linetype=variable, size=variable, alpha=variable))+
 	geom_line()+
  	scale_linetype_manual(name="", values=c("solid", "dashed", "dotted", "solid" ))+
@@ -1093,7 +1093,7 @@ os_plot <-
  	labs(x="Accident quarter", y="Amount (B)")+
     annotate(geom="text", x=37, y=40, label="488B->")+
     ggtitle("Outstanding amounts")
-	
+
 os_plot
 ```
 
@@ -1102,8 +1102,8 @@ You can see from the graph that - despite the presence of an interaction affecti
 The table below displays these results also.
 
 ```{r}
-os_acc[, lapply(.SD, function(x) x/1e9)][, acc := acc*1e9] %>% 
-    kable(digits=2, format.args = list(big.mark = ",", scientific = FALSE)) %>% 
+os_acc[, lapply(.SD, function(x) x/1e9)][, acc := acc*1e9] %>%
+    kable(digits=2, format.args = list(big.mark = ",", scientific = FALSE)) %>%
     kable_styling(full_width=FALSE, bootstrap_options = c("striped", "hover", "condensed")) %>%
     as.character() %>%
     display_html()
@@ -1118,8 +1118,8 @@ The overall reserve values (in units of B) are
 
 ```{r}
 
-os[, lapply(.SD, function(x) x/1e9)] %>% 
-    kable(digits=1, format.args = list(big.mark = ",", scientific = FALSE)) %>% 
+os[, lapply(.SD, function(x) x/1e9)] %>%
+    kable(digits=1, format.args = list(big.mark = ",", scientific = FALSE)) %>%
     kable_styling(full_width=FALSE, bootstrap_options = c("striped", "hover", "condensed"))  %>%
     as.character() %>%
     display_html()
