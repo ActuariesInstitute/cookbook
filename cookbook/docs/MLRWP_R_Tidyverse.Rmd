@@ -13,7 +13,7 @@ tags: ["foundations", "R", "data"]
 *Our [previous post](/mlr-blog/post/topten-r-packages/) also has some comments on the tidyverse.*
 
 
-<br><br>
+# The tidyverse for actuaries (R)
 
 
 **A short introduction to how R’s “tidyverse” library makes data processing easy**

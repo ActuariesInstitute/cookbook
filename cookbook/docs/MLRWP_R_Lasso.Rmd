@@ -12,7 +12,7 @@ tags:
 
 ---
 
-
+# Reserving with LASSO (R)
 
 
 *In this post we look at how regularised regression techniques such as the LASSO can be used to set reserves for triangles.*

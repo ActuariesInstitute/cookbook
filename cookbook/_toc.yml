@@ -1,4 +1,4 @@
-format: jb-book 
+format: jb-book
 root: docs/index
 parts:
 - caption: Introduction to Python
@@ -15,6 +15,8 @@ parts:
   - file: docs/introductory_R.ipynb
   - file: docs/intermediate_R.ipynb
   - file: docs/top_ten_r_packages.ipynb
+  - file: docs/MLRWP_R_DataTable.ipynb
+  - file: docs/MLRWP_R_Tidyverse.ipynb
 - caption: Workflow Management
   chapters:
   - file:  docs/version_control
@@ -27,8 +29,14 @@ parts:
   chapters:
   - file:  docs/LifeRecipeBook.ipynb
   - file:  docs/life_stats.ipynb
+- caption: General Insurance
+  chapters:
+  - file: docs/MLRWP_R_GLMs.ipynb
+  - file: docs/MLRWP_R_Lasso.ipynb
+  - file: docs/MLRWP_R_mlr3.ipynb
+  - file: docs/MLRWP_Py_triangles.ipynb  
 - caption: Unsupervised Learning
-  chapters: 
+  chapters:
   - file:  docs/DAA_M06_CS1.ipynb
   - file:  docs/DAA_M06_CS2.ipynb
   - file:  docs/DAA_M06_Ex4.ipynb
@@ -40,7 +48,7 @@ parts:
   - file:  docs/DAA_M05_Ex10.ipynb
   - file:  docs/DAA_M05_Ex18.ipynb
   - file:  docs/DAA_M07_CS1.ipynb
-  - file:  docs/DAA_M07_CS2.ipynb  
+  - file:  docs/DAA_M07_CS2.ipynb
 - caption: Business Optimization
   chapters:
   - file: docs/DAA_2021_S2_Tutorial10_exercise_scipy.ipynb

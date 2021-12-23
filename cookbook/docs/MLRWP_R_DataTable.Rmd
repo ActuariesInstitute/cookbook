@@ -17,6 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+# data.table for actuaries (R)
 ## What is data.table?
 
 `data.table` is a package for carrying out data manipulations in R of tabular data. This includes:

@@ -15,7 +15,7 @@ tags:
 
 ---
 
-
+# Machine Learning Triangles (R)
 # Introduction
 
 In this article we look at applying different machine learning (ML) models to a data set.
