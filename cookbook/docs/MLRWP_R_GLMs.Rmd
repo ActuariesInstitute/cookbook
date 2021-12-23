@@ -1,0 +1,932 @@
+---
+title: 'Reserving with GLMs'
+date: "2021-04-26T17:00:00Z"
+slug: glms
+authors: 
+  - gmcguire
+tags: 
+  - foundations
+  - R
+output: html_document
+---
+
+
+An aim of the MLR working party is to promote the use of machine learning (ML) in reserving.
+So why then are we talking about using GLMs for reserving?
+Well, as noted in our [introductory post](/mlr-blog/post/intro-to-foundations-blog/), we consider that getting familiar with using GLMs for reserving is a good place to begin your ML journey - GLMs should already be familiar from pricing so making the switch to reserving with GLMs is a useful first step.
+
+This is longer than many of our recent articles. 
+However, this is because it contains a full worked example of the modelling and reserving process for a data set - as per the objectives of the working party, we want to include practical coding examples in our articles.
+There are also some concluding comments about the wider applicability of this type of process.
+
+
+## Introduction
+
+The first time I did a reserving job (back in 2001) I used GLMs.
+Coming from a statistical background and being new to the actuarial workplace at the time, this didn't seem unusual to me.
+Since then, most of my reserving jobs have used GLMs - personally I find it a lot easier and less error-prone than working with excel templates.
+Also, once you know what you are doing, you can do everything with a GLM that you can do with an excel-based model, and then more.
+
+However, some people reading this article may be new to the idea of using GLMs in reserving. 
+So I'm going to use an example where we start with a chain ladder model, fitted as a GLM and then explore the additional features that we can add using a GLM.
+All the R code will be shared here.
+
+The material is mostly based on a 2016 CAS monograph [*Stochastic Loss Reserving Using Generalized Linear Models*](https://www.casact.org/monograph/cas-monograph-no-3) that I co-authored with Greg Taylor, and an accompanying [personal blog post](https://grainnemcguire.github.io/post/traditional-style-reserving-using-glms/) that works through replicating some of the modelling in the monograph. Take a look at these if you want to see more about this example.
+
+
+Before we begin, let's attach the R packages that we need, and turn off scientific notation. 
+
+```{r message=FALSE, warning=FALSE, echo=TRUE}
+
+library(here)  # needed to download the data for now
+library(data.table)  # manipulate the data
+library(ggplot2)   # plot the data
+library(viridis)   # plot colours that are friendly to colour blindness
+library(patchwork) # easily combine plots
+library(magrittr)  # gives access to %>% pipe
+library(kableExtra) # formats tables nicely
+library(IRdisplay) # displays tables when in ipynb format
+
+options(scipen = 99)   # get rid of scientific notation
+
+```
+
+
+## Data
+
+The data used here were sourced from the Meyers and Shi (2011) database, and are the workers compensation triangle of the New Jersey Manufacturers Group. They are displayed in Section 1.3 of the monograph.
+We've made a CSV file of the data (in long format) available [here](/mlr-blog/csv/glms_meyershi.csv) for convenience. 
+If you want to load it in, then use the fread statement that points to the website address which is included in the comments below.
+
+
+```{r}
+# read in my personal copy of the data
+# msdata <- fread(here("docs/csv/glms_meyershi.csv"))
+
+# location of data on the website:
+msdata <- fread("https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/glms_meyershi.csv")
+
+
+setDT(msdata)
+
+#print(msdata) for a simple look
+
+# printing the table in a nicer format
+msdata %>% 
+  kableExtra::kable(format = "html", escape = F) %>%    
+  kableExtra::kable_styling(bootstrap_options = c("hover", "striped", "responsive"), 
+                            full_width = TRUE, 
+                            fixed_thead = TRUE) %>% 
+  identity() %>%
+  as.character() %>%
+  display_html()
+
+
+
+```
+
+So we have four columns:
+
+* `acc_year`: accident year, numbered from 1 to 10
+* `dev_year`: development year, also numbered from 1 to 10
+* `cumulative`: cumulative payments to date
+* `incremental`: incremental payments for that accident year, development year combination.
+
+
+We can also plot the data
+
+```{r}
+
+p1 <- ggplot(data=msdata, aes(x=dev_year, y=cumulative, colour=as.factor(acc_year))) +
+	geom_line(size=1) +
+	scale_color_viridis_d(begin=0.9, end=0) + 
+	ggtitle("Cumulative") + 
+	theme_bw() + 
+	theme(legend.position = "none", legend.title=element_blank(), legend.text=element_text(size=8))
+
+
+p2 <- ggplot(data=msdata, aes(x=dev_year, y=incremental, colour=as.factor(acc_year))) +
+	geom_line(size=1) +
+	scale_color_viridis_d(begin=0.9, end=0) + 
+	ggtitle("Incremental") + 
+	theme_bw() + 
+	theme(legend.position = "right", legend.title=element_blank(), legend.text=element_text(size=8))
+
+p1 + p2   # combine the plots using patchwork
+
+```
+
+The data look quite well behaved - each year seems to have a similar development pattern.
+
+
+## Chain ladder model
+
+### Fitting the model
+
+Our first model will be the familiar chain ladder (volume all) model.
+The monograph (and references therein) note that certain types of GLM gives exactly the same result as the chain ladder so I'm going to use that to get the chain ladder result. 
+
+The specific model I'm using that replicates the chain ladder result is the Over-dispersed Poisson (ODP) cross classified (cc) model (Sections 3.3.2 and 3.3.3 of the monograph).
+
+To apply the model, we will use the `glm` function from the base R **stats** package. The cross-classified model requires separate levels for each of accident and development year so we first make a factor version of these variates. I'm also going to add a calendar year term (`cal_year`) for later use in model diagnostics.
+
+I use **data.table** for data manipulation. 
+For those not familiar with it, `:=` is an assignment operator and the syntax `dt[, a := b]` creates a new variable called `a` in the `dt` data.table (which is also a data.frame), and sets it equal to `b`. 
+The comma at the start is there because the first part of a data.table command subsets the data and is left blank if there is no subsetting required.
+
+
+```{r}
+
+msdata[, acc_year_factor := as.factor(acc_year)
+	   ][, dev_year_factor := as.factor(dev_year)
+	     ][, cal_year := acc_year + dev_year - 1]
+
+head(msdata)
+
+```
+
+
+Now we fit the model and look at the results via `summary`.
+
+* The family is the *quasipoisson* - this is how we fit an ODP model with `glm()`.
+* The link is log
+* The formula is simply `incremental ~ 0 + acc_year_factor + dev_year_factor`
+    + The 0 tells `glm()` to fit a model without an intercept - which is how we fit the model in the monograph
+
+
+```{r}
+
+glm_fit1 <- glm(data = msdata, 
+	family = quasipoisson(link = "log"),
+	formula = "incremental ~ 0 + acc_year_factor + dev_year_factor")
+
+
+summary(glm_fit1)
+
+```
+
+I'm now going to save a more `data.table` version of the coefficient table in the `glm_fit1` object - this will be used later and having the coefficients available in a data.table makes things easier. I'll call this `coeff_table`.
+
+
+```{r}
+
+# save the data for later use as a data.table
+# variable 1 = parameter name
+# variable 2 = parameter estimates
+glm_fit1$coeff_table <- data.table(parameter = names(glm_fit1$coefficients), 
+								   coeff_glm_fit1 = glm_fit1$coefficients)
+
+
+head(glm_fit1$coeff_table)
+
+```
+
+
+### Loss reserve
+
+Now we'll have a look at the loss reserve. If you've done the chain ladder calculations, you should find this gives the same answer.
+
+
+```{r}
+
+# first make the lower triangle data set
+ay <- NULL
+dy <- NULL
+
+
+for(i in 2:10){
+	ay <- c(ay, rep(i, times=(i-1)))
+	dy <- c(dy, (10-i+2):10)
+}
+
+
+futdata <- data.table(acc_year = ay, dev_year = dy)
+
+# make factors
+futdata[, cal_year := acc_year + dev_year
+		][, acc_year_factor := as.factor(acc_year)
+		  ][, dev_year_factor := as.factor(dev_year)]
+
+# make the prediction and sum by acc_year
+x <- predict(glm_fit1, newdata = futdata, type="response")
+futdata[, incremental := x]
+
+
+# data.table syntax to get summary by accident year
+ocl_year <- futdata[,  lapply(.SD, sum), .SDcols=c("incremental"), by="acc_year"]
+
+# total ocl
+ocl_total <- futdata[, sum(incremental)]
+
+# print the acc year table with total
+ocl_year[, acc_year := as.character(acc_year) ]  # to make a table with total row
+ocl_year_print <- rbind(ocl_year, data.table(acc_year="Total", incremental=ocl_total))
+setnames(ocl_year_print, "incremental", "OCL")  # rename column for printing
+
+ocl_year_print %>% 
+  knitr::kable(digits=c(0, 0)) %>%
+  as.character() %>%
+  display_html()
+
+
+```
+
+
+
+
+### Model diagnostics
+
+
+#### Calculations
+
+So far, we've fitted a model and have calculated the loss reserve.
+We can do all this with the chain ladder algorithm.
+Now we start looking at some of the extras that using a GLM gives us - for a start the statistical model structure means that we can calculate residuals with known properties, assuming the assumptions underlying the model are valid. 
+
+If the model assumptions are satisfied by the data, then the residuals should not have any remaining structure. 
+Plots of residuals can therefore be useful to detect violations of model assumptions.
+Note that we need to be careful to use the right types of residuals - in many cases we want to use standardised deviance residuals:
+
+* Deviance residuals because the more recognisable Pearson residuals (based on actual - fitted) are difficult to interpret for non-normal models.
+* Standardised because the raw residuals are on different scales depending on the scale of the underlying values.
+
+Some more details may be found in Chapter 6 of the monograph and also in Chapter 5 of [A Practitioner's Introduction to Stochastic Reserving](http://mages.github.io/PSRWP/IFoA_PSRWP-PDF.pdf).
+
+Here we look at the following:
+
+* Residual Scatterplots
+   + by linear predictor
+   + by accident, development and calendar years
+   + if the model assumptions are satisfied then the residuals should look homogeneous (or in layperson's language, like a random cloud), centred around zero)
+   
+* Heat map of actual vs fitted laid out in triangular form
+   + In this we get the actual/fitted ratio in each (acc, dev) cell (subject to lower and upper bounds of [0.5, 2]) and then plot the colour-coded triangle of the actual/fitted values
+   + heat maps are helpful to check for model fit and may help to identify missing interactions.
+
+
+We have to prepare the data by adding the fitted values and residuals. 
+
+* Because this model has a lot of parameters, there are two observations where the fitted is exactly equal to the actual -- (acc_year=1, dev_year=10) and (acc_year=10, dev_year=1). This is because these observations have a unique parameter.
+
+* The deviance calculations below return `NaN` (not a number) for these points, but the residual should really be 0 so this adjustment is made manually. 
+
+* Also add actual/fitted ratios and the log of these (restricted to the range [log(0.5), log(2)]) - these will be used for a heatmap later. 
+  + The restricted range is used to generate easier to read shadings in the heat-map, while the conversion to log means that the shading scales will be similar intensity for $x$% and $1/x$ % 
+
+
+
+*Technical note on residuals with `glm()`*
+
+* The residuals in a glm object accessed with `$residuals` are residuals used in the model fitting algorithm.
+* For diagnostic purposes, we require the standardised deviance residuals.
+  + These are the signed square roots of the contribution of the i*th* observation to the deviance, divided by hat matrix values.
+  + The `stats::rstandard()` function may be used with glm objects to extract the standardised deviance residuals.
+
+<br>
+
+
+```{r}
+msdata[, residuals1 := rstandard(glm_fit1)
+	   ][, fitted1 := glm_fit1$fitted.values
+	     ][, linear_predictor1 := log(fitted1)
+	       ][, AvsF1 := incremental / fitted1
+	         ][, AvsF_restricted1 := log(pmax(0.5, pmin(2,AvsF1)))]
+
+# check for NaN residuals
+msdata[is.nan(residuals1),]
+
+# these occur where we expect them so so replace with 0
+# the is.nan(residuals1) in an example of data.table subsetting - we only set the NaN resids to 0
+msdata[is.nan(residuals1), residuals1 := 0]
+
+
+```
+
+
+Look at first 10 rows
+
+```{r}
+head(msdata, 10)  # look at first 10 rows
+
+```
+
+
+#### Plotting
+
+Now let's look at the residual scatterplots.
+In the linear predictor scatterplot, the points are colour coded so that the lighter points belong to the earlier development years, and the darker points belong to the later ones.
+
+
+```{r fig.height=6, fig.width=9}
+
+p1 <- ggplot(data=msdata, aes(x=linear_predictor1, y=residuals1, colour=dev_year)) +
+	geom_point(size=2) +
+	scale_colour_viridis(begin=0.9, end=0) +
+	theme_bw() + 
+	theme(legend.position = "none") +
+	ggtitle("Linear predictor")
+
+
+p2 <- ggplot(data=msdata, aes(x=acc_year, y=residuals1)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Accident year")
+
+p3 <- ggplot(data=msdata, aes(x=dev_year, y=residuals1)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Development year")
+
+p4 <- ggplot(data=msdata, aes(x=cal_year, y=residuals1)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Calendar year")
+
+#p <- plot_grid(p1, p2, p3, p4, nrow=2, rel_widths = c(1,1,1,1))
+
+(p1 + p2) / (p3 + p4)
+
+```
+
+These results are quite good - bear in mind there are only a small number of points so plots must be interpreted in relation to this. 
+In particular:
+
+* The residuals do not appear to fan out or fan in (once you take into account that later development years have small number of points)
+* They appear centred around 0
+
+
+Now construct and draw the heat map. Note that the colours are:
+
+* blue (A/F = 50%)
+* white (A/F = 100%)
+* red (A/F = 200%)
+
+with shading for in-between values
+
+
+```{r}
+
+# heatmap code
+# to get the correct shading I've plotted the log of the restricted A/F values
+
+p_hm <- ggplot(data=msdata, aes(x=dev_year, y=acc_year)) + 
+	geom_tile(aes(fill = AvsF_restricted1))+scale_y_reverse()+
+	scale_fill_gradient2(name="AvF_min", low="royalblue", mid="white", high="red", midpoint=0, space="Lab", na.value="grey50", guide="colourbar")+
+	labs(x="Development year", y="Accident year")+
+	theme(legend.position = "none")+
+	theme(axis.title.x = element_text(size=8), axis.text.x  = element_text(size=7))+
+	theme(axis.title.y = element_text(size=8), axis.text.y  = element_text(size=7))+
+	theme(panel.background = element_rect(fill = "grey", colour = "grey", size = 2, linetype = "solid"),
+		  panel.grid = element_line(colour="grey")) + 
+	NULL
+
+print(p_hm)
+
+
+```
+
+In a heat map for a reserving triangle, we look for a random scattering of red and blue points. 
+This plot looks quite good (though we'll revisit this shortly).
+
+
+
+## Refining the model
+
+We could stop here - and just use the results from this model, which match those produced by the chain ladder. 
+The diagnostics suggest that the model fits quite well.
+However, because this is a GLM, we have more options than just replicating the chain ladder.
+
+In particular, can we:
+
+* identify simplifications to the model to make it more parsimonious (i.e. reduce the number of parameters)?
+* identify any areas of poorer fit that may suggest missing model terms including interactions?
+
+
+### Simplifying the model
+
+First we consider if we can use a parametric shape for the accident and development year parameters.
+The end result should be something similar to the chain ladder approach but with far fewer parameters.
+
+
+#### Accident year
+
+First plot the accident year parameters.
+
+
+```{r}
+
+# extract the data
+dt_acc_year <- glm_fit1$coeff_table[grepl("acc_year", parameter),  
+									][, acc_year := as.integer(gsub("acc_year_factor", "", parameter))]
+
+
+# plot
+ggplot(data=dt_acc_year, aes(x=acc_year, y=coeff_glm_fit1)) +
+	geom_line(size=2, colour="#440154ff") +
+	geom_point(size=4, colour="#440154ff") + 
+	theme_bw() + 
+	ggtitle("Accident year parameters")
+
+
+```
+
+* Note that their shape closely resembles that of a parabola.
+* This suggests that we can replace the 10 accident year parameters by
+    + the overall intercept
+    + an `acc_year` term
+    + an `acc_year` squared term
+
+* So refit the model on this basis.
+    + Drop the 0 from the glm_fit1 formula to allow the model to have an intercept
+    + Replace the acc_year_factor term with the parabola terms.
+
+
+```{r}
+
+# add an x^2 term (we already have the x - acc_year)
+msdata[, acc_year_2 := acc_year^2]
+
+glm_fit2 <- glm(data = msdata, 
+	family = quasipoisson(link = "log"),
+	formula = "incremental ~ acc_year + acc_year_2 + dev_year_factor")
+
+
+summary(glm_fit2)
+
+
+```
+
+We see in the coefficient table part of the summary that the two acc_year terms are highly significant.
+
+<br>
+
+Now extract the coefficients and compare the previous and current fits.
+
+* Remember that the intercept must be included in these calculations.
+* Again, save the coefficient table as a data.table in the glm_fit2 object for later use.
+
+
+```{r}
+# extract the coefficient table
+glm_fit2$coeff_table <- data.table(parameter = names(glm_fit2$coefficients), 
+                                   coeff_glm_fit2 = glm_fit2$coefficients)
+
+#print(glm_fit2$coeff_table)  # easy print
+
+# printing the table in a nicer format
+glm_fit2$coeff_table %>% 
+  kableExtra::kable(format = "html", escape = F) %>%    
+  kableExtra::kable_styling(bootstrap_options = c("hover", "striped", "responsive"), 
+                            full_width = FALSE, 
+                            fixed_thead = TRUE) %>% 
+  identity() %>%
+  as.character() %>%
+  display_html()
+
+
+```
+
+
+Now compare the past and current parameter estimates for accident year.
+
+```{r}
+
+# pull out the acc year coefficinents only
+dt_acc_year[, coeff_glm_fit2 := glm_fit2$coeff_table[parameter == "acc_year", coeff_glm_fit2]*acc_year + 
+				glm_fit2$coeff_table[parameter == "acc_year_2", coeff_glm_fit2]*acc_year^2 + 
+				glm_fit2$coeff_table[parameter == "(Intercept)", coeff_glm_fit2]]
+
+# make long for ggplot
+dt_acc_year_plot <- melt(dt_acc_year, 
+                         id.vars = "acc_year", 
+                         measure.vars = c("coeff_glm_fit1", "coeff_glm_fit2"), 
+                         variable.name="model", 
+                         value = "estimate")
+
+# remove the coeff_ from the model names
+dt_acc_year_plot[, model := gsub("coeff_", "", model, fixed=TRUE)]
+
+ggplot(data=dt_acc_year_plot, aes(x=acc_year, y=estimate, colour=model)) +
+	geom_line(size=2) +
+	geom_point(size=4) +
+	scale_colour_viridis_d(begin=0, end=0.5) + 
+	theme_bw() + 
+	ggtitle("Accident year parameters")
+
+
+
+```
+
+This looks very good - the fit is very similar, but we have 7 fewer parameters.
+
+
+#### Development year
+
+* Now we do the same thing for development year
+* Note that the glm_fit2 model (and the glm_fit1 model too) do not have a parameter for dev_year = 1 as this is the base level.
+    + This means that the parameter is really 0, so we must remember to include this.
+
+
+```{r}
+
+# extract the data
+dt_dev_year <- glm_fit2$coeff_table[grepl("dev_year", parameter),  
+									][, dev_year := as.integer(gsub("dev_year_factor", "", parameter))][]   # known data.table printing bug
+
+# add year 1
+dt_dev_year <- rbind(dt_dev_year, data.table(parameter="dev_year_factor1", coeff_glm_fit2=0, dev_year=1))
+setorder(dt_dev_year, dev_year)
+
+
+# plot
+ggplot(data=dt_dev_year, aes(x=dev_year, y=coeff_glm_fit2)) +
+	geom_line(size=2, colour="#440154ff") +
+	geom_point(size=4, colour="#440154ff") +
+	theme_bw() +
+	ggtitle("Development year parameters")
+
+
+```
+
+
+* Looking at this plot, it appears that a straight line would fit quite well
+* This fit would be improved by allowing the straight line to bend (have a knot) at dev_year = 7
+    + So let's try this below
+    + note we actually fit dev_year - 1 rather than dev_year
+        - this means that the parameter estimate at dev_year = 1 is 0, just as it is in the glm_fit2 model, so it makes the results comparable
+        - if we fit dev_year, then the parameter estimate at dev_year=1 would be non-zero, so the two fits would be shifted relative to each other and we would need to adjust for that.
+
+
+```{r}
+
+# add dev-1 and dev-7 terms
+msdata[, dev_year_m1 := dev_year - 1]
+msdata[, dev_year_ge_7 := pmax(dev_year-7.5, 0)]
+
+# fit the model
+glm_fit3 <- glm(data = msdata, 
+	family = quasipoisson(link = "log"),
+	formula = "incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7")
+
+# extract and save the coefficient table
+glm_fit3$coeff_table <- data.table(parameter = names(glm_fit3$coefficients), 
+                                   coeff_glm_fit3 = glm_fit3$coefficients)
+
+# display a summary of the model
+summary(glm_fit3)
+
+
+```
+
+
+* Assuming the fit is satisfactory, our original model with 19 parameters has now been simplified to 5 parameters - much more parsimonious and robust.
+* Let's check the fit by dev_year to see.
+
+
+```{r}
+
+# get the dev_year fit under the new model and add to the data.table containing the factor level parameters
+p1 <- glm_fit3$coeff_table[parameter == "dev_year_m1", coeff_glm_fit3]
+p2 <- glm_fit3$coeff_table[parameter == "dev_year_ge_7", coeff_glm_fit3]
+dt_dev_year[, coeff_glm_fit3 := p1*(dev_year-1) + p2*pmax(0, dev_year-7.5) ]
+
+
+# make long for ggplot
+dt_dev_year_plot <- melt(dt_dev_year, id.vars = "dev_year", measure.vars = c("coeff_glm_fit2", "coeff_glm_fit3"), variable.name="model", value = "estimate")
+
+# remove the coeff_ from the model names
+dt_dev_year_plot[, model := gsub("coeff_", "", model, fixed=TRUE)]
+
+
+ggplot(data=dt_dev_year_plot, aes(x=dev_year, y=estimate, colour=model)) +
+	geom_line(size=2) +
+	geom_point(size=4) +
+	scale_colour_viridis_d(begin=0, end=0.5) +
+	theme_bw() +
+	ggtitle("Development year parameters")
+
+
+
+```
+
+* This looks good.
+* However dev_year = 2 is a bit underfit in the latest model, so we can add something to improve this fit (a term at dev_year=2)
+* So refit and replot.
+
+
+```{r}
+
+msdata[, dev_year_eq_2 := as.integer(dev_year == 2)]
+
+glm_fit4 <- glm(data = msdata, 
+	family = quasipoisson(link = "log"),
+	formula = "incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7 + dev_year_eq_2")
+
+
+glm_fit4$coeff_table <- data.table(parameter = names(glm_fit4$coefficients), coeff_glm_fit4 = glm_fit4$coefficients)
+
+
+p1 <- glm_fit4$coeff_table[parameter == "dev_year_m1", coeff_glm_fit4]
+p2 <- glm_fit4$coeff_table[parameter == "dev_year_ge_7", coeff_glm_fit4]
+p3 <- glm_fit4$coeff_table[parameter == "dev_year_eq_2", coeff_glm_fit4]
+dt_dev_year[, coeff_glm_fit4 := p1*(dev_year-1) + p2*pmax(0, dev_year-7.5) + p3*(dev_year == 2) ]
+
+
+# make long for ggplot
+dt_dev_year_plot <- melt(dt_dev_year, id.vars = "dev_year", measure.vars = c("coeff_glm_fit2", "coeff_glm_fit4"), variable.name="model", value = "estimate")
+
+# remove the coeff_ from the model names
+dt_dev_year_plot[, model := gsub("coeff_", "", model, fixed=TRUE)]
+
+
+ggplot(data=dt_dev_year_plot, aes(x=dev_year, y=estimate, colour=model)) +
+	geom_line(size=2) +
+	geom_point(size=4) +
+	scale_colour_viridis_d(begin=0, end=0.5) +
+	theme_bw() +
+	ggtitle("Development year parameters")
+
+
+
+```
+
+Looks good! Fitting `dev_year`=2 better has also improved the tail fitting (`dev_year`>7).
+
+
+### Identifying missing structure
+
+* The second part of the model refining process involves checking for missing structure.
+* Let's have a better look at the heat map, as it stands after the model simplification process
+
+
+```{r}
+msdata[, residuals4 := rstandard(glm_fit4)
+	   ][, fitted4 := glm_fit4$fitted.values
+	     ][, linear_predictor4 := log(fitted4)
+	       ][, AvsF4 := incremental / fitted4
+	         ][, AvsF_restricted4 := log(pmax(0.5, pmin(2,AvsF4)))]
+
+
+p_hm <- ggplot(data=msdata, aes(x=dev_year, y=acc_year)) + 
+	geom_tile(aes(fill = AvsF_restricted4))+scale_y_reverse()+
+	scale_fill_gradient2(name="AvF_min", low="royalblue", mid="white", high="red", midpoint=0, space="Lab", na.value="grey50", guide="colourbar")+
+	labs(x="Development year", y="Accident year")+
+	theme(legend.position = "none")+
+	theme(axis.title.x = element_text(size=8), axis.text.x  = element_text(size=7))+
+	theme(axis.title.y = element_text(size=8), axis.text.y  = element_text(size=7))+
+	theme(panel.background = element_rect(fill = "grey", colour = "grey", size = 2, linetype = "solid"),
+		  panel.grid = element_line(colour="grey")) + 
+	NULL
+
+print(p_hm)
+
+
+```
+Let's add some annotations to highlight some structure
+
+
+```{r}
+
+p_hm + 
+	annotate(geom="rect", xmin= 0.5, xmax=1.5, ymin=0.5, ymax=6.5, colour="darkblue", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 0.5, xmax=1.5, ymin=6.5, ymax=10.5, colour="darkred", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 1.5, xmax=2.5, ymin=0.5, ymax=6.5, colour="darkred", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 1.5, xmax=2.5, ymin=6.5, ymax=9.5, colour="darkblue", alpha=0.1, size=1.5) +
+	annotate(geom="segment", x=3, xend=3, y=1, yend=8, arrow=arrow(), colour="darkblue", size=2) +
+	annotate(geom="rect", xmin= 3.5, xmax=4.5, ymin=0.5, ymax=7.5, colour="darkred", alpha=0.1, size=1.5) 
+
+
+
+```
+
+We see:
+
+* development year 1, a distinct area of blue in the earlier accident years (A < F), followed by red (A > F)
+* development year 2, a distinct area of red in the earlier accident years (A > F), followed by blue (A < F)
+* development year 3, a possible progression from red to blue with increasing accident year (F increasing relative to A)
+* development year 4, nearly all red (A > F)
+
+This suggests the payment pattern has altered and can be accommodated by (mostly) interaction terms within the GLM. Consider adding the following terms:
+
+* (development year = 1) * (accident year is between 1 and 6)
+* (development year = 2) * (accident year is between 1 and 6)
+* (development year = 3) * (accident year linear trend)
+* (development year = 4) 
+
+
+So, let's refit the model with terms to capture these and have a look at the heat map again
+
+
+```{r}
+
+# add the new terms
+msdata[, dev_year_eq_1 := as.integer(dev_year == 1)]
+msdata[, dev_year_eq_3 := as.integer(dev_year == 3)]
+msdata[, dev_year_eq_4 := as.integer(dev_year == 4)]
+msdata[, acc_year_1_6 := as.integer(acc_year >= 1 & acc_year <= 6)]
+
+
+glm_fit5 <- glm(data = msdata, 
+	family = quasipoisson(link = "log"),
+	formula = "incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7 + dev_year_eq_2 + dev_year_eq_4 +
+	dev_year_eq_1:acc_year_1_6 +  dev_year_eq_2:acc_year_1_6 + dev_year_eq_3:acc_year ")
+
+
+summary(glm_fit5)
+
+# save for later use
+glm_fit5$coeff_table <- data.table(parameter = names(glm_fit5$coefficients), coeff_glm_fit5 = glm_fit5$coefficients)
+
+
+```
+
+
+This model should match that displayed in Table 7-5 of the monograph - and indeed it does (some very minor differences in parameter values - the model in the monograph was fitted in SAS).
+
+Look at the updated heat map again with the annotations - has the model resolved the identified issues?
+
+
+```{r}
+# attach fitteds and residuals
+msdata[, residuals5 := rstandard(glm_fit5)
+	   ][, fitted5 := glm_fit5$fitted.values
+	     ][, linear_predictor5 := log(fitted5)
+	       ][, AvsF5 := incremental / fitted5
+	         ][, AvsF_restricted5 := log(pmax(0.5, pmin(2,AvsF5)))]
+
+
+
+p_hm <- ggplot(data=msdata, aes(x=dev_year, y=acc_year)) + 
+	geom_tile(aes(fill = AvsF_restricted5))+scale_y_reverse()+
+	scale_fill_gradient2(name="AvF_min", low="royalblue", mid="white", high="red", midpoint=0, space="Lab", na.value="grey50", guide="colourbar")+
+	labs(x="Development year", y="Accident year")+
+	theme(legend.position = "none")+
+	theme(axis.title.x = element_text(size=8), axis.text.x  = element_text(size=7))+
+	theme(axis.title.y = element_text(size=8), axis.text.y  = element_text(size=7))+
+	theme(panel.background = element_rect(fill = "grey", colour = "grey", size = 2, linetype = "solid"),
+		  panel.grid = element_line(colour="grey")) + 
+	annotate(geom="rect", xmin= 0.5, xmax=1.5, ymin=0.5, ymax=6.5, colour="darkblue", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 0.5, xmax=1.5, ymin=6.5, ymax=10.5, colour="darkred", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 1.5, xmax=2.5, ymin=0.5, ymax=6.5, colour="darkred", alpha=0.1, size=1.5) +
+	annotate(geom="rect", xmin= 1.5, xmax=2.5, ymin=6.5, ymax=9.5, colour="darkblue", alpha=0.1, size=1.5) +
+	annotate(geom="segment", x=3, xend=3, y=1, yend=8, arrow=arrow(), colour="darkblue", size=2) +
+	annotate(geom="rect", xmin= 3.5, xmax=4.5, ymin=0.5, ymax=7.5, colour="darkred", alpha=0.1, size=1.5) 
+
+
+print(p_hm)
+
+
+
+```
+This looks much better.
+
+We should also look at the residual plots again
+
+
+```{r fig.height=6, fig.width=9}
+
+p1 <- ggplot(data=msdata, aes(x=linear_predictor5, y=residuals5, colour=dev_year)) +
+	geom_point(size=2) +
+	scale_colour_viridis(begin=0.9, end=0) +
+	theme_bw() + 
+	theme(legend.position = "none") +
+	ggtitle("Linear predictor")
+
+
+p2 <- ggplot(data=msdata, aes(x=acc_year, y=residuals5)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Accident year")
+
+p3 <- ggplot(data=msdata, aes(x=dev_year, y=residuals5)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Development year")
+
+p4 <- ggplot(data=msdata, aes(x=cal_year, y=residuals5)) +
+	geom_point(size=2, colour="#2d708eff") +
+	theme_bw() + 
+	ggtitle("Calendar year")
+
+(p1 + p2) / (p3 + p4)
+
+
+```
+
+These residuals do look better than those from the chain ladder model. 
+
+
+### Loss reserve
+
+Now that we have a model, let's produce the estimate of the outstanding claims by accident year and in total.
+
+* Take the lower triangle data [futdata] created above
+* Add on the new variates we created
+* Score the model on this data
+* Summarise the results
+
+
+Create the data and score using `predict()`. Store the predicted values in the incremental column.
+
+
+```{r}
+
+# add all model variates
+futdata[, acc_year_2 := acc_year^2
+		][, dev_year_m1 := dev_year - 1
+		  ][, dev_year_ge_7 := pmax(0, dev_year - 7.5)
+		    ][, dev_year_eq_1 := as.integer(dev_year == 1)
+		      ][, dev_year_eq_2 := as.integer(dev_year == 2)
+		        ][, dev_year_eq_3 := as.integer(dev_year == 3)
+		          ][, dev_year_eq_4 := as.integer(dev_year == 4)
+		            ][, acc_year_1_6 := as.integer(acc_year>=1 & acc_year <=6)]
+
+
+x <- predict(glm_fit5, newdata = futdata, type="response")
+futdata[, incremental := x]
+
+head(futdata)
+
+
+```
+
+
+Get reserves by accident year and in total 
+
+```{r}
+
+ocl_year <- futdata[,  lapply(.SD, sum), .SDcols=c("incremental"), by="acc_year"]
+ocl_total <- ocl_year[, sum(incremental)]
+
+
+ocl_year %>% 
+  knitr::kable(digits=c(0, 0)) %>%
+  as.character() %>%
+  display_html()
+
+```
+
+
+The total reserve is `r ocl_total %>% round(0)`.
+
+
+
+## Reviewing this example
+
+Looking back over this example, what we have done is started with a chain ladder model and then shown how we can use a GLM to fit a more parsimonious model (i.e. fewer parameters).
+It may then be possible to reconcile the shape of the parametric fit by accident year to underlying experience in the book - here we saw higher payments in the middle accident years. Is this due to higher claims experience or higher premium volumes? Does this give us an insight that allows us to better extrapolate into the future when setting reserves?
+
+We have also used model diagnostics to identify areas of misfit and then used GLM interactions to capture these changes. 
+
+<br>
+
+## Practical use of GLMs in traditional reserving
+
+### Modelling
+
+The ideas in this simple example extend to more complex traditional scenarios. By traditional I mean that the data you have available to you are classified by accident (or underwriting), development and calendar periods only. 
+
+First decide what you are going to model. Here we had a single model of incremental payments. However you could fit a *Payments Per Claim Finalised (PPCF)* model which consists of 3 submodels - numbers of claims incurred by accident period, number of claims finalised by (accident, development period) and payments per claim finalised by (accident, development period). Each of these could then be fitted by a GLM.
+
+For whatever you're modelling, you then pick the two triangle directions that you think are most critical for that experience. 
+You can't include all 3 at the start since they are correlated. 
+
+So, for PPCF submodels:
+
+* for number of claims incurred models, accident and development period effects are likely to be where you start.
+* numbers of claims finalised will usually depend on development period (type of claim) and calendar period (to take account of changes in claim settlement processes)
+* for claim size models, you will probably want development and calendar period effects. For these models you could use operational time instead of development period to avoid changes in the timing of claims finalisations impacting your model.
+
+Then fit the models by starting with the modelled effects as factors and use methods such as those outlined above to reduce the number of parameters by using parametric shapes.
+Look for missing structure and consider adding interactions or (carefully) adding limited functions of the third triangular direction.
+Take advantage of GLM tools to refine your model. Use what you know about the portfolio to inform your model - if you know that there was a period of rapid claims inflation, then include that in your model.
+
+
+### Setting reserves
+
+It is possible to overlay judgement onto a GLM's predictions. 
+At the end of the day, the predictions are just based on a mathematical formula.
+So, taking claims inflation as an example, if you've been seeing 5% p.a. over the last 3 years, but you think this is going to moderate going forward, then you can adjust the projections by removing the 5% p.a. rate into the future and replacing it with, say, 2% p.a.
+Once you get familiar with using GLMs, you might find it easier to incorporate judgement - the GLM can capture more granularity about past experience which in turn may make it easier to work out how things might change in future and how to numerically include these changes.
+
+
+### Additional References
+
+The references below have further examples of fitting GLMs in this way, and show how to capture quite complex experience.
+Although both use individual data, the methodology can be used in a similar manner for aggregate data.
+
+* [Loss Reserving with GLMs: A Case Study](https://www.casact.org/sites/default/files/2021-02/pubs_dpp_dpp04_04dpp327.pdf)
+* [Individual Claim modelling of CTP data](https://actuaries.asn.au/Library/6.a_ACS07_paper_McGuire_Individual%20claim%20modellingof%20CTP%20data.pdf)
+* [Predictive modeling applications in actuarial science, Frees and Derig, 2004](https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm) - in particular see Chapter 18 in Volume 1 and Chapter 3 in Volume 2.
+
+Please feel free to add references to other useful material in the comments.
+
+
+## Session information
+
+To assist with reproducibility in future, here are details of my R session.
+
+
+```{r}
+sessionInfo()  
+```

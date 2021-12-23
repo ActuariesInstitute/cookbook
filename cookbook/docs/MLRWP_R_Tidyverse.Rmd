@@ -1,0 +1,90 @@
+---
+title: 'The tidyverse for actuaries'
+date: "2020-10-06T17:00:00Z"
+slug: tidyverse
+authors: 
+  - ogrossman
+tags: ["foundations", "R", "data"]
+
+---
+
+*This is the first of two articles that will discuss packages in R that are useful for data manipulation.*
+*The second article will discuss the data.table package.*
+*Our [previous post](/mlr-blog/post/topten-r-packages/) also has some comments on the tidyverse.*
+
+
+<br><br>
+
+
+**A short introduction to how R’s “tidyverse” library makes data processing easy**
+
+The [tidyverse](https://www.tidyverse.org/), developed by Hadley Wickham, is a collection of R packages designed to make every step of data analysis clear and easy to perform. 
+Throughout this blog, I introduce the three packages from the tidyverse library that I have found most useful for my own actuarial work and explain how they can help overcome the shortcomings of more traditional methods such as Excel:
+
+* `readr` – for reading and writing data quickly
+* `tidyr` – for cleaning data
+* `dplyr` – for summarising and transforming data
+
+You can download the full contents of the tidyverse in one go by installing the tidyverse “mega-package” directly.
+Alternatively you can download each package separately, as and when needed. 
+For more information about using R, in general, our blog [Introduction to R](/mlr-blog/post/intro-to-r/), provides a helpful introduction.
+
+
+## readr
+
+Datasets with billions of data points are no longer uncommon. 
+Just 20 years of a company’s premium data can easily exceed this. 
+By specifying the number of rows and columns to be imported, `readr`’s `read_csv` function allows users to import large datasets (or subsets of the data) into R quickly. 
+It is faster than opening the same files in Excel, particularly when your only purpose is to check the first few rows of content. 
+This becomes especially practical when the number of rows of data exceed the number of rows in an Excel spreadsheet. 
+Similarly, once you’ve used R to import and play around with your data, you can quickly write the file back out using the `write_csv` function.
+
+## tidyr
+
+`tidyr` contains a collection of tools for transforming data into an easy-to-process format. 
+To list a few, there are functions that can remove/replace NAs; separate out individual column entries; and expand/contract datasets into more manageable formats. 
+Rather than resort to Excel, where these operations can often require hard coding or complex functions, `tidyr` provides a clear and reproducible way of transforming data. 
+
+One of my favourite `tidyr` functions is the complete function, which can be used to populate an incomplete table of triangular claims data with missing cohort and development period entries.
+
+## dplyr
+
+Once data has been imported and tidied, `dplyr` contains the functions to filter, group, merge and summarise data. 
+The speed of operations is also less sensitive to dataset size than Excel – unlike Index Match, which will break down on a few thousand rows of data, `dplyr`’s equivalent `left_join` function can handle millions of rows in a matter of seconds. 
+
+If, for example, you have separate claims data files for individual lines of business, `left_join` provides a convenient way of aligning all datasets with their appropriate development periods and cohorts in one table.
+
+The `dplyr` syntax sits at the heart of the tidyverse and is therefore a great first package to learn. 
+The function names are deliberately interpretable making collaborative projects easy to follow. 
+For those already familiar with `dplyr`, take a look at the blog post accompanying the [most recent major update](https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/), which lists some useful new features.
+
+Since all tidyverse packages share the same design philosophy, each new package learned can naturally be incorporated into your existing models/processes.
+
+It's also possible to use `dplyr` with other backends for accessing code. 
+In particular:
+
+* `dtplyr` works with `data.table` so you have access to `data.table`'s speed while using `dplyr` syntax
+* `dbplyr` translates your dplyr code to SQL for data stored in relational databases
+
+
+## Where to look next
+
+All packages have their pros and cons, although the tidyverse is both fast and easy to read, there is a trade-off present, namely speed and dependencies.
+If processing speed is your number one priority and you want to limit your dependencies, then the [data.table package](https://rdatatable.gitlab.io/data.table/) may be of particular interest.
+The performances of popular data processing packages are benchmarked at https://h2oai.github.io/db-benchmark/, which can be a useful page to check before deciding what package to use for a certain piece of work.
+
+
+I encourage anyone wishing to learn more to read [R for data science](https://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham, which is available for free online. 
+It formally introduces the points above as well as other tidyverse tools for data science including the `ggplot2` package for data visualisation, the `stringr` package for working with strings and the `purrr` package for more advanced functional programming. 
+There is an active tidyverse community on Twitter and Stack Overflow with answers to practical problems other users have already faced and the packages themselves are constantly being developed and improved. 
+I also recommend following Keith McNulty, who shares a lot of useful material on LinkedIn, [Towards Data Science](https://towardsdatascience.com/) and his [own blog](https://drkeithmcnulty.com/) as well as having a look at the [tidyverse website](https://www.tidyverse.org/) itself.
+
+
+## Final take away
+
+Whether you work with big data or not, the tidyverse provides a great framework to write reproducible, easy-to-follow code for manipulating and summarising data. 
+It will certainly help to:
+
+* avoid hard coding and misinterpreting complex excel functions
+* improve the interpretation and speed of existing R models
+* construct new models/data processing systems in a harmonious framework
