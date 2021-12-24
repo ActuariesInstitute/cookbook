@@ -482,7 +482,7 @@ task$col_roles$feature <- setdiff(task$feature_names, "train_ind")
 task
 
 # check alll the col_roles
-task$col_roles
+print(task$col_roles)
 ```
 
 
