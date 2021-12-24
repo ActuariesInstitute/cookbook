@@ -6,3 +6,5 @@ cookbook/docs/test.parquet
 cookbook/docs/DAA_M07_CS1_data.json
 cookbook/docs/DAA_M05_Fig11.dot
 cookbook/docs/DAA_M05_Fig11.png
+cookbook/docs/dt_claim.rda
+cookbook/docs/dt_policy.rda
