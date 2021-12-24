@@ -871,7 +871,7 @@ The parameters in the best fit may be accessed here:
 
 ```{r}
 
-instance_rpart$result_learner_param_vals
+print(instance_rpart$result_learner_param_vals)
 
 ```
 
@@ -1053,7 +1053,7 @@ Get the best fit:
 
 ```{r}
 
-instance_xgboost$result_learner_param_vals
+print(instance_xgboost$result_learner_param_vals)
 
 ```
 
