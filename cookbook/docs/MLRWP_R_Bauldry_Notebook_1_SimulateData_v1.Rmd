@@ -18,6 +18,7 @@ This is the first notebook of a series of three that outlines and elaborates upo
 CLAIM RESERVING IN INSURANCE"
 
 [https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&fg=1](https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&fg=1)  
+
 [http://chaire-dami.fr/files/2016/10/Reserving-article.pdf]([http://chaire-dami.fr/files/2016/10/Reserving-article.pdf)
 
 Below we step through the process to create a single simulated dataset, as set out in Section 5 of Baudry's paper. Having stepped through the data creation process, at the end, we present the code in the form of a function that returns a simulated policy and claim dataset. 
