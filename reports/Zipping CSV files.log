@@ -44,7 +44,7 @@ for csv_filename in csv_files(source_dir):
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3197/2622171480.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_3139/2622171480.py[0m in [0;36m<module>[0;34m[0m
 [1;32m     13[0m [0mdest_dir[0m [0;34m=[0m [0;34m'~/Downloads/drive-download-20211120T082520Z-001'[0m[0;34m[0m[0;34m[0m[0m
 [1;32m     14[0m [0;34m[0m[0m
 [0;32m---> 15[0;31m [0mos[0m[0;34m.[0m[0mchdir[0m[0;34m([0m[0mdest_dir[0m[0;34m)[0m  [0;31m# To work around zipfile limitations[0m[0;34m[0m[0;34m[0m[0m
