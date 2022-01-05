@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -361,7 +361,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -419,7 +419,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -684,7 +684,1124 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Py/R: Multitasking Risk Pricing Using Deep Learning</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-and-r">
+   Python and R
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages">
+   Packages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#r">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reproducibility">
+   Reproducibility
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-optional">
+     Python (Optional)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     R
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     R
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-network">
+   Neural Network
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings">
+     Embeddings
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       R
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       R
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-inputs">
+     Other inputs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       R
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       R
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dense-layers">
+     Dense layers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       R
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#output">
+     Output
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       R
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-definition">
+     Model Definition
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       R
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       R
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r-text-summary-only">
+       R (text summary only)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flexibility-in-inputs-and-outputs">
+     Flexibility in Inputs and Outputs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fit">
+     Fit
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       R
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-validation">
+   Model Validation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-this-code-in-your-browser">
+   Run this code in your browser!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#afterward">
+   Afterward
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="py-r-multitasking-risk-pricing-using-deep-learning">
+<h1>Py/R: Multitasking Risk Pricing Using Deep Learning<a class="headerlink" href="#py-r-multitasking-risk-pricing-using-deep-learning" title="Permalink to this headline">¶</a></h1>
+<p>By Jacky Poon. Originally published in Actuaries Digital as <a class="reference external" href="https://www.actuaries.digital/2018/08/23/analytics-snippet-multitasking-risk-pricing-using-deep-learning/">Analytics Snippet: Multitasking Risk Pricing Using Deep Learning</a>.</p>
+<p>So, you have been asked to build a risk premium pricing model for a motor portfolio - a classic GI problem.</p>
+<p>The standard approach would be to:</p>
+<ul class="simple">
+<li><p>Split the claims into perils, or peril groups based on the cause of loss</p></li>
+<li><p>Build separate generalised linear models (GLMs) of the frequency and severity of each peril group.</p></li>
+<li><p>Calibrate non-linear effects such as curves and interactions (typically manually).</p></li>
+</ul>
+<p>This approach has its challenges. Key limitations would be:</p>
+<ul class="simple">
+<li><p>Choice of peril groups - finer groups increases granularity, but decreases the data available to each model as they are estimated independently</p></li>
+<li><p>In the event that frequency and severity are correlated, there is no clear way to model expected cost other than to create a third, independent Tweedie model</p></li>
+<li><p>Challenges in finding the right interactions and curves based on the data.</p></li>
+</ul>
+<p>What if, there was a model structure that:</p>
+<ul class="simple">
+<li><p>Can estimate multiple frequency, severity and expected cost responses in a single model</p></li>
+<li><p>While sharing commonalities between those outputs</p></li>
+<li><p>Is a <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_approximation_theorem">universal approximator</a> so non-linear effects can be captured automatically</p></li>
+<li><p>Can be expanded to use freeform text, photos, voice, or time series data as inputs?</p></li>
+</ul>
+<p>In this analytics snippet, we introduce <b>multi-task deep learning for general insurance risk pricing</b>.</p>
+<p>We apply the flexible structure of deep learning - in particular, multi-task learning, a variation where the model has multiple outputs - to predict all of the expected claims outcomes in a general insurance scenario.</p>
+<div class="section" id="python-and-r">
+<h2>Python and R<a class="headerlink" href="#python-and-r" title="Permalink to this headline">¶</a></h2>
+<p>The tutorial below includes code to implement the model, with the option for readers to pick from Python or R.</p>
+<p>Python is generally considered to be better for neural network modelling due to its better support for deep learning packages. Consequently it is the recommended language for this snippet and only the output for the Python version is shown. However, R code that implements similar functionality is also included for those who prefer to work exclusively in R. If you are completely new to Python, and feel that the code below a bit intimidating, I would recommend the excellent free introductory tutorial by <a class="reference external" href="https://www.datacamp.com/courses/intro-to-python-for-data-science">DataCamp</a>.</p>
+<p>Python is free software - you can download it and run it on your pc - either through a distribution which comes with an installer and complete set of packages like <a class="reference external" href="https://www.anaconda.com/download/">Anaconda</a> or a more barebones download directly from <a class="reference external" href="https://www.python.org/downloads/">python.org</a>. Alternatively, you can also run it online through a web “notebook” interface which works on any device including phones and tablets. Free services includes <a class="reference external" href="https://colab.research.google.com/">Google Colaboratory</a> which links in with Google Drive, <a class="reference external" href="https://notebooks.azure.com/">Microsoft Azure Notebooks</a> which links in with OneDrive, and <a class="reference external" href="https://mybinder.org/">Binder</a> which links to Github.</p>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>This example uses keras with Google’s tensorflow library to build the neural networks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://keras.io/">keras</a>, a neural network framework, and</p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/">tensorflow</a> Google’s computational library which works with Keras.</p></li>
+</ul>
+<p>Other standard packages include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a>, the “panel data” data frames library for python,</p></li>
+<li><p><a class="reference external" href="http://www.numpy.org/">numpy</a> for array based calculations,</p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/index.html">sci-kit learn</a>, a framework for machine learning,</p></li>
+<li><p><a class="reference external" href="http://jupyter.org/">jupyter</a>, a common tool to viewing and reproducing code</p></li>
+<li><p><a class="reference external" href="https://github.com/erocarrera/pydot">pydot</a>, required to plot the neural network graph, which relies on:</p></li>
+<li><p><a class="reference external" href="https://graphviz.gitlab.io/_pages/Download/Download_windows.html">graphwiz</a>. For Graphwiz installation on Windows, you may need to manually add the “bin” subfolder of the installed folder location to your PATH for pydot to access.</p></li>
+</ul>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Reshape</span><span class="p">,</span> <span class="n">concatenate</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.utils.vis_utils</span> <span class="kn">import</span> <span class="n">model_to_dot</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\Anaconda3\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="r">
+<h3>R<a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h3>
+<p>In R, we can interface with keras as well using one of two packages, either through Rstudio’s <a class="reference external" href="https://keras.rstudio.com/">“keras”</a> or alternatively <a class="reference external" href="https://cran.r-project.org/web/packages/kerasR/vignettes/introduction.html">“kerasR”</a>. The R code below uses the “keras” package. See <a class="reference external" href="https://keras.rstudio.com/">website</a> for installation instructions.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">keras</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reproducibility">
+<h2>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this headline">¶</a></h2>
+<p>Neural network trainings include randomisation in the starting conditions and evolution.</p>
+<p>Including the code below (Python only) will fix the random number generation to a specific value by defining the ‘seeds’ ahead of model fitting, which should lead to a model result that is very close to the results in the article. However, calculations may run slower when fixing seeds.</p>
+<div class="section" id="python-optional">
+<h3>Python (Optional)<a class="headerlink" href="#python-optional" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rn</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYTHONHASHSEED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rn</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">session_conf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConfigProto</span><span class="p">(</span><span class="n">intra_op_parallelism_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inter_op_parallelism_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">set_random_seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">(),</span> <span class="n">config</span><span class="o">=</span><span class="n">session_conf</span><span class="p">)</span>
+<span class="n">K</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately, there are very few public insurance datasets that have a great amount of detail. The example dataset we will use is the “Third party motor insurance claims in Sweden in 1977”, a real-life motor insurance dataset. More information on the dataset can be found <a class="reference external" href="http://www.statsci.org/data/general/motorins.html">here</a>.</p>
+<p>This has no perils to split by, however we will create a deep learning model that estimates both claim frequency and average risk premium in a single model. First we will read in and inspect the data:</p>
+<div class="section" id="id1">
+<h3>Python<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.statsci.org/data/general/motorins.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+        <span class="n">severity</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span><span class="p">),</span>
+        <span class="n">risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Kilometres</th>
+      <th>Zone</th>
+      <th>Bonus</th>
+      <th>Make</th>
+      <th>Insured</th>
+      <th>Claims</th>
+      <th>Payment</th>
+      <th>frequency</th>
+      <th>severity</th>
+      <th>risk_premium</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>455.13</td>
+      <td>108</td>
+      <td>392491</td>
+      <td>0.237295</td>
+      <td>3634.175926</td>
+      <td>862.371191</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>69.17</td>
+      <td>19</td>
+      <td>46221</td>
+      <td>0.274686</td>
+      <td>2432.684211</td>
+      <td>668.223218</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>72.88</td>
+      <td>13</td>
+      <td>15694</td>
+      <td>0.178375</td>
+      <td>1207.230769</td>
+      <td>215.340285</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1292.39</td>
+      <td>124</td>
+      <td>422201</td>
+      <td>0.095946</td>
+      <td>3404.846774</td>
+      <td>326.682348</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>191.01</td>
+      <td>40</td>
+      <td>119373</td>
+      <td>0.209413</td>
+      <td>2984.325000</td>
+      <td>624.956809</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>R<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="nf">url</span><span class="p">(</span><span class="s">&quot;http://www.statsci.org/data/general/motorins.txt&quot;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">frequency</span> <span class="o">=</span> <span class="n">Claims</span> <span class="o">/</span> <span class="n">Insured</span><span class="p">,</span> 
+         <span class="n">severity</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">Claims</span> <span class="o">==</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">Payment</span> <span class="o">/</span> <span class="n">Claims</span><span class="p">),</span> 
+         <span class="n">risk_premium</span> <span class="o">=</span> <span class="n">Payment</span> <span class="o">/</span> <span class="n">Insured</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we will split the dataset up into a training dataset and set aside a test dataset for validating our model.</p>
+<p>This will also conveniently randomise the ordering of the data. Neural networks train on batches of data records, so we would prefer the data to be in a random order so that each batch is a representative sample rather than the neatly sorted table above.</p>
+</div>
+<div class="section" id="id3">
+<h3>Python<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>R<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">train_ind</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">seq_len</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="m">0.8</span> <span class="o">*</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+
+<span class="n">train</span> <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="n">train_ind</span><span class="p">,]</span>
+<span class="n">test</span>  <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="n">train_ind</span><span class="p">,]</span>
+</pre></div>
+</div>
+<p>To rescale the output data, the average frequency, severity and risk premium in the training dataset is calculated.</p>
+</div>
+<div class="section" id="id5">
+<h3>Python<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">totals</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">,</span> <span class="s2">&quot;Claims&quot;</span><span class="p">,</span> <span class="s2">&quot;Payment&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_average_frequency</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Claims&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">]</span>
+<span class="n">train_average_severity</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Payment&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Claims&quot;</span><span class="p">]</span>
+<span class="n">train_average_risk_premium</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Payment&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_severity</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04749109486158422 4959.405313081085 235.52758818057862
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>R<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">&lt;-</span> <span class="n">train</span> <span class="o">%&gt;%</span> <span class="nf">summarise</span><span class="p">(</span>
+  <span class="n">train_average_frequency</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Claims</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">),</span>
+  <span class="n">train_average_severity</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Payment</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Claims</span><span class="p">),</span>
+  <span class="n">train_average_risk_premium</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Payment</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">))</span>
+  
+<span class="n">summary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="neural-network">
+<h2>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">¶</a></h2>
+<p>Designing a neural network architecture is analogous to piecing some building blocks together. We will design the model using the functional API of Keras, which allows us to composite neural network layers to form our model architecture.</p>
+<div class="section" id="embeddings">
+<h3>Embeddings<a class="headerlink" href="#embeddings" title="Permalink to this headline">¶</a></h3>
+<p>When fitting statistical models, categorical variables typically need to be converted to a series of numerical vectors. Often for GLMs, <a class="reference external" href="https://en.wikipedia.org/wiki/Dummy_variable_(statistics)">indicator variables</a> are set.</p>
+<p>In deep learning we can use an “embedding” encoding, which will encode the sequence down to a small number of vectors and gets fit as part of the model. We will do this for zone and make.</p>
+<div class="section" id="id7">
+<h4>Python<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zone_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;zone_input&#39;</span><span class="p">)</span>
+<span class="n">make_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;make_input&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>R<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">zone_input</span> <span class="o">=</span> <span class="nf">layer_input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;zone_input&#39;</span><span class="p">)</span>
+<span class="n">make_input</span> <span class="o">=</span> <span class="nf">layer_input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;make_input&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>According to Google’s Tensorflow guide, a rough rule of thumb for setting the size of the output vector of an embedding would be the quartic root (^0.25) of the number of categories. However since the the number of categories is so small, we will just keep to output dimensions of 2.</p>
+</div>
+<div class="section" id="id9">
+<h4>Python<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zone_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">7</span><span class="p">)(</span><span class="n">zone_input</span><span class="p">)</span>
+<span class="n">zone_embedding</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))(</span><span class="n">zone_embedding</span><span class="p">)</span>
+                         
+<span class="n">make_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">9</span><span class="p">)(</span><span class="n">make_input</span><span class="p">)</span>
+<span class="n">make_embedding</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))(</span><span class="n">make_embedding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>R<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">zone_embedding</span> <span class="o">=</span> <span class="nf">layer_embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="m">7</span><span class="p">)(</span><span class="n">zone_input</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">layer_reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+
+<span class="n">make_embedding</span> <span class="o">=</span> <span class="nf">layer_embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="m">9</span><span class="p">)(</span><span class="n">make_input</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">layer_reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="other-inputs">
+<h3>Other inputs<a class="headerlink" href="#other-inputs" title="Permalink to this headline">¶</a></h3>
+<p>Kilometres and Bonus already have an implicit relationship between the value of the factor and the meaning - i.e. higher Kilometres factors represents a higher amount of kilometres driven, so we will put in the data as is.</p>
+<div class="section" id="id11">
+<h4>Python<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kilometres_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kilometres_input&#39;</span><span class="p">)</span>
+<span class="n">bonus_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;bonus_input&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>R<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">kilometres_input</span> <span class="o">=</span> <span class="nf">layer_input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;kilometres_input&#39;</span><span class="p">)</span>
+<span class="n">bonus_input</span> <span class="o">=</span> <span class="nf">layer_input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;bonus_input&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We then concatenate the inputs together.</p>
+</div>
+<div class="section" id="id13">
+<h4>Python<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">([</span><span class="n">zone_embedding</span><span class="p">,</span> <span class="n">make_embedding</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h4>R<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">layer_concatenate</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">zone_embedding</span><span class="p">,</span> <span class="n">make_embedding</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dense-layers">
+<h3>Dense layers<a class="headerlink" href="#dense-layers" title="Permalink to this headline">¶</a></h3>
+<p>Next we get to the actual “brains” of the deep learning model. For the example we will keep it simple with a sequential series of dense layers, however it is possible to use more complex structures or choices of layers which may improve prediction performance.</p>
+<div class="section" id="id15">
+<h4>Python<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h4>R<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%&gt;%</span> <span class="nf">layer_dense</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">layer_dense</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">layer_dense</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we have added three hidden “layers”, with each layer consisting of 64 nodes (or “neurons”).</p>
+<p>This should give enough flexibility for non-linear effects and interactions, while not adding too much complexity, given the scale of the dataset.</p>
+<p>Each node uses a [rectified linear unit](<a class="reference external" href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">https://en.wikipedia.org/wiki/Rectifier_(neural_networks)</a>, or “ReLU” activation function, which is akin to a truncated linear model, with the truncation giving the overal network its non-linear capabilties.</p>
+<p>Ideas to potentially explore with the goal of improving predictivness include adjusting the number of layers, or adding drop out, batch normalisation, or skip layer structures into the model.</p>
+<p>The deep learning approach also opens the possibility of using more complex data such as images as inputs into the model. Even a small image dataset can be leveraged to provide insights by connecting it to one of many publically available pre-trained image recognition networks and then “fine-tuned” to provide insights into your motor risk rating.</p>
+</div>
+</div>
+<div class="section" id="output">
+<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we add the output regression layer that describes our three outcomes of interest:</p>
+<div class="section" id="id17">
+<h4>Python<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">severity_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;severity&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">risk_premium_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>R<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_output</span>    <span class="o">=</span> <span class="n">x</span> <span class="o">%&gt;%</span> <span class="nf">layer_dense</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">severity_output</span>     <span class="o">=</span> <span class="n">x</span> <span class="o">%&gt;%</span> <span class="nf">layer_dense</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;severity&#39;</span><span class="p">)</span>
+<span class="n">risk_premium_output</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%&gt;%</span> <span class="nf">layer_dense</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;risk_premium&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>More outputs can be added - if there are multiple risk perils, you could then include each of the frequency, severity and risk premium values as an additional output.</p>
+<p>It is also possible to include input variables as outputs to infer missing values or just help the model “understand” the features - in fact the winning solution of a claims prediction Kaggle competition heavily used denoising autoencoders together with model stacking and ensembling - read more <a class="reference external" href="https://www.kaggle.com/c/porto-seguro-safe-driver-prediction/discussion/44629">here</a>.</p>
+</div>
+</div>
+<div class="section" id="model-definition">
+<h3>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h4>Python<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">zone_input</span><span class="p">,</span> <span class="n">make_input</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">],</span> 
+              <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">frequency_output</span><span class="p">,</span> <span class="n">severity_output</span><span class="p">,</span> <span class="n">risk_premium_output</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>R<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="nf">keras_model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">zone_input</span><span class="p">,</span> <span class="n">make_input</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">),</span> 
+              <span class="n">outputs</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">frequency_output</span><span class="p">,</span> <span class="n">severity_output</span><span class="p">,</span> <span class="n">risk_premium_output</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The standard poisson will be used for frequency.
+A simple mean squared error will be used for risk premium.</p>
+<p>Keras allows definition of custom loss functions, so it would be possible to improve this by potentially including a gamma claim size (as suggested by the paper from which the dataset comes from) and a tweedie risk premium model.</p>
+<p>However for this snippet we will just keep it simple and use the available standard losses.</p>
+</div>
+<div class="section" id="id21">
+<h4>Python<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="s1">&#39;mean_squared_logarithmic_error&#39;</span><span class="p">},</span> 
+              <span class="n">loss_weights</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id22">
+<h4>R<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">%&gt;%</span> <span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">&#39;adam&#39;</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">risk_premium</span><span class="o">=</span><span class="s">&#39;mean_squared_error&#39;</span><span class="p">,</span> 
+                        <span class="n">frequency</span><span class="o">=</span><span class="s">&#39;poisson&#39;</span><span class="p">,</span> 
+                        <span class="n">severity</span><span class="o">=</span><span class="s">&#39;mean_squared_logarithmic_error&#39;</span><span class="p">),</span> 
+              <span class="n">loss_weights</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">risk_premium</span><span class="o">=</span> <span class="m">1.0</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span> <span class="m">1.0</span><span class="p">,</span> <span class="n">severity</span><span class="o">=</span> <span class="m">1.0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This is how our model looks like diagrammatically:</p>
+</div>
+<div class="section" id="id23">
+<h4>Python<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SVG</span><span class="p">(</span><span class="n">model_to_dot</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;dot&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multitasking_risk_pricing_75_0.svg" src="../_images/multitasking_risk_pricing_75_0.svg" /></div>
+</div>
+</div>
+<div class="section" id="r-text-summary-only">
+<h4>R (text summary only)<a class="headerlink" href="#r-text-summary-only" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="flexibility-in-inputs-and-outputs">
+<h3>Flexibility in Inputs and Outputs<a class="headerlink" href="#flexibility-in-inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
+<p>While it is not possible with our example dataset based on historical data, it is worth noting the flexibility that a neural network can give to your model inputs - for example:</p>
+<ul class="simple">
+<li><p>images (e.g. photos of the vehicle),</p></li>
+<li><p>freeform text descriptions (e.g. claims diary of accident history),</p></li>
+<li><p>time series (e.g. driving behaviours)</p></li>
+</ul>
+<p>These can all be included as predictors if they were available - leveraging image recognition and natural language processing models and other advances in deep learning.</p>
+<p>Outputs can also be the images, freeform texts or time series. They can also include the missing data in inputs - for example, the first place solution in the <a class="reference external" href="https://www.kaggle.com/c/porto-seguro-safe-driver-prediction/discussion/44629">Porto Seguro Kaggle data mining competition</a> was based on auto-encoders which predicts the inputs as outputs.</p>
+</div>
+<div class="section" id="fit">
+<h3>Fit<a class="headerlink" href="#fit" title="Permalink to this headline">¶</a></h3>
+<p>Fitting the model. Some things to note are:</p>
+<ul class="simple">
+<li><p>keras factors for embeddings count from 0, 1, 2… but our data is set up as 1, 2 3 so we need to subtract 1 from each predictor,</p></li>
+<li><p>sample weights are set individually - frequency and risk premium use the same exposure weights, but had we included claim size, that would use claim count as the weight,</p></li>
+<li><p>do some basic normalising - on the Bonus and Kilometres inputs and particularly on the outputs to get frequency and risk premium to be in the same scale.</p></li>
+</ul>
+<div class="section" id="id24">
+<h4>Python<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">InputDataTransformer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;kilometres_input&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Kilometres</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;zone_input&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Zone</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;bonus_input&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Bonus</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s1">&#39;make_input&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Make</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">InputDataTransformer</span><span class="p">(</span><span class="n">train</span><span class="p">),</span>
+    <span class="p">{</span><span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_frequency</span><span class="p">,</span>
+     <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">severity</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_severity</span><span class="p">,</span>
+     <span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">risk_premium</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_risk_premium</span><span class="p">},</span> 
+    <span class="n">sample_weight</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Insured</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Claims</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Insured</span><span class="o">.</span><span class="n">values</span>
+    <span class="p">},</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/40
+1745/1745 [==============================] - 1s 378us/step - loss: 2576.4842 - frequency_loss: 1495.8723 - severity_loss: 15.2120 - risk_premium_loss: 1065.3999
+Epoch 2/40
+1745/1745 [==============================] - 0s 75us/step - loss: 1579.1398 - frequency_loss: 1146.6263 - severity_loss: 2.6367 - risk_premium_loss: 429.8768
+Epoch 3/40
+1745/1745 [==============================] - 0s 69us/step - loss: 1286.9174 - frequency_loss: 1045.1732 - severity_loss: 3.3395 - risk_premium_loss: 238.4046
+Epoch 4/40
+1745/1745 [==============================] - 0s 80us/step - loss: 1211.8722 - frequency_loss: 1020.3159 - severity_loss: 3.3936 - risk_premium_loss: 188.1627
+Epoch 5/40
+1745/1745 [==============================] - 0s 69us/step - loss: 1176.7366 - frequency_loss: 1008.0177 - severity_loss: 3.0215 - risk_premium_loss: 165.6974
+Epoch 6/40
+1745/1745 [==============================] - 0s 57us/step - loss: 1160.6227 - frequency_loss: 1003.7292 - severity_loss: 2.5391 - risk_premium_loss: 154.3544
+Epoch 7/40
+1745/1745 [==============================] - 0s 69us/step - loss: 1150.7917 - frequency_loss: 1000.5314 - severity_loss: 2.2280 - risk_premium_loss: 148.0323
+Epoch 8/40
+1745/1745 [==============================] - 0s 46us/step - loss: 1148.0303 - frequency_loss: 999.7820 - severity_loss: 1.7652 - risk_premium_loss: 146.4831
+Epoch 9/40
+1745/1745 [==============================] - 0s 39us/step - loss: 1145.7089 - frequency_loss: 999.1424 - severity_loss: 1.5042 - risk_premium_loss: 145.0623
+Epoch 10/40
+1745/1745 [==============================] - 0s 34us/step - loss: 1142.1324 - frequency_loss: 998.8911 - severity_loss: 1.2705 - risk_premium_loss: 141.9709
+Epoch 11/40
+1745/1745 [==============================] - 0s 46us/step - loss: 1137.5478 - frequency_loss: 997.9134 - severity_loss: 1.1348 - risk_premium_loss: 138.4996
+Epoch 12/40
+1745/1745 [==============================] - 0s 34us/step - loss: 1137.4215 - frequency_loss: 997.7291 - severity_loss: 1.0760 - risk_premium_loss: 138.6164
+Epoch 13/40
+1745/1745 [==============================] - 0s 40us/step - loss: 1133.3355 - frequency_loss: 996.5345 - severity_loss: 0.9844 - risk_premium_loss: 135.8166
+Epoch 14/40
+1745/1745 [==============================] - 0s 40us/step - loss: 1131.6330 - frequency_loss: 996.5850 - severity_loss: 0.9626 - risk_premium_loss: 134.0853
+Epoch 15/40
+1745/1745 [==============================] - 0s 37us/step - loss: 1132.3984 - frequency_loss: 996.4491 - severity_loss: 0.9251 - risk_premium_loss: 135.0242
+Epoch 16/40
+1745/1745 [==============================] - 0s 43us/step - loss: 1131.7467 - frequency_loss: 996.9224 - severity_loss: 0.9063 - risk_premium_loss: 133.9181
+Epoch 17/40
+1745/1745 [==============================] - 0s 46us/step - loss: 1129.9941 - frequency_loss: 995.8470 - severity_loss: 0.8818 - risk_premium_loss: 133.2653
+Epoch 18/40
+1745/1745 [==============================] - 0s 115us/step - loss: 1136.2895 - frequency_loss: 997.5839 - severity_loss: 0.8912 - risk_premium_loss: 137.8144
+Epoch 19/40
+1745/1745 [==============================] - 0s 75us/step - loss: 1130.5242 - frequency_loss: 996.5334 - severity_loss: 0.8940 - risk_premium_loss: 133.0969
+Epoch 20/40
+1745/1745 [==============================] - 0s 50us/step - loss: 1127.7015 - frequency_loss: 995.9074 - severity_loss: 0.8783 - risk_premium_loss: 130.9158
+Epoch 21/40
+1745/1745 [==============================] - 0s 53us/step - loss: 1125.8479 - frequency_loss: 995.1697 - severity_loss: 0.8580 - risk_premium_loss: 129.8203
+Epoch 22/40
+1745/1745 [==============================] - 0s 43us/step - loss: 1127.6638 - frequency_loss: 995.6313 - severity_loss: 0.8427 - risk_premium_loss: 131.1897
+Epoch 23/40
+1745/1745 [==============================] - 0s 40us/step - loss: 1124.9932 - frequency_loss: 994.5914 - severity_loss: 0.8554 - risk_premium_loss: 129.5464
+Epoch 24/40
+1745/1745 [==============================] - 0s 35us/step - loss: 1127.6583 - frequency_loss: 995.0747 - severity_loss: 0.8425 - risk_premium_loss: 131.7410
+Epoch 25/40
+1745/1745 [==============================] - 0s 46us/step - loss: 1124.8433 - frequency_loss: 994.2487 - severity_loss: 0.8253 - risk_premium_loss: 129.7693
+Epoch 26/40
+1745/1745 [==============================] - 0s 74us/step - loss: 1127.7154 - frequency_loss: 996.0589 - severity_loss: 0.8291 - risk_premium_loss: 130.8273
+Epoch 27/40
+1745/1745 [==============================] - 0s 98us/step - loss: 1127.4021 - frequency_loss: 996.5992 - severity_loss: 0.8513 - risk_premium_loss: 129.9517
+Epoch 28/40
+1745/1745 [==============================] - 0s 45us/step - loss: 1127.3233 - frequency_loss: 996.1896 - severity_loss: 0.8132 - risk_premium_loss: 130.3205
+Epoch 29/40
+1745/1745 [==============================] - 0s 40us/step - loss: 1122.5198 - frequency_loss: 994.2507 - severity_loss: 0.8180 - risk_premium_loss: 127.4511
+Epoch 30/40
+1745/1745 [==============================] - 0s 40us/step - loss: 1121.7726 - frequency_loss: 993.9928 - severity_loss: 0.8055 - risk_premium_loss: 126.9742
+Epoch 31/40
+1745/1745 [==============================] - 0s 82us/step - loss: 1122.6986 - frequency_loss: 993.6934 - severity_loss: 0.7891 - risk_premium_loss: 128.2160
+Epoch 32/40
+1745/1745 [==============================] - 0s 89us/step - loss: 1122.3087 - frequency_loss: 994.4129 - severity_loss: 0.7747 - risk_premium_loss: 127.1210
+Epoch 33/40
+1745/1745 [==============================] - 0s 52us/step - loss: 1126.8087 - frequency_loss: 995.5003 - severity_loss: 0.7701 - risk_premium_loss: 130.5384
+Epoch 34/40
+1745/1745 [==============================] - 0s 52us/step - loss: 1122.1210 - frequency_loss: 994.2129 - severity_loss: 0.7666 - risk_premium_loss: 127.1415
+Epoch 35/40
+1745/1745 [==============================] - 0s 45us/step - loss: 1123.9050 - frequency_loss: 995.0833 - severity_loss: 0.7603 - risk_premium_loss: 128.0613
+Epoch 36/40
+1745/1745 [==============================] - 0s 51us/step - loss: 1119.8890 - frequency_loss: 993.2532 - severity_loss: 0.7509 - risk_premium_loss: 125.8849
+Epoch 37/40
+1745/1745 [==============================] - 0s 46us/step - loss: 1119.8933 - frequency_loss: 993.8133 - severity_loss: 0.7344 - risk_premium_loss: 125.3456
+Epoch 38/40
+1745/1745 [==============================] - 0s 51us/step - loss: 1119.7043 - frequency_loss: 993.3680 - severity_loss: 0.7384 - risk_premium_loss: 125.5979
+Epoch 39/40
+1745/1745 [==============================] - 0s 52us/step - loss: 1119.2908 - frequency_loss: 993.1987 - severity_loss: 0.7300 - risk_premium_loss: 125.3621
+Epoch 40/40
+1745/1745 [==============================] - 0s 45us/step - loss: 1119.1891 - frequency_loss: 993.4587 - severity_loss: 0.7206 - risk_premium_loss: 125.0097
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;keras.callbacks.History at 0x1e20349e6d8&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id25">
+<h4>R<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">InputDataTransformer</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+  <span class="nf">list</span><span class="p">(</span>
+    <span class="n">kilometres_input</span><span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">Kilometres</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> <span class="m">5</span><span class="p">,</span>
+    <span class="n">zone_input</span><span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">Zone</span> <span class="o">-</span> <span class="m">1</span><span class="p">),</span>
+    <span class="n">bonus_input</span><span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">Bonus</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> <span class="m">7</span><span class="p">,</span>
+    <span class="n">make_input</span><span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">Make</span> <span class="o">-</span> <span class="m">1</span>
+  <span class="p">)}</span>
+</pre></div>
+</div>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">%&gt;%</span> <span class="nf">fit</span><span class="p">(</span>
+  <span class="n">x</span><span class="o">=</span><span class="nf">InputDataTransformer</span><span class="p">(</span><span class="n">train</span><span class="p">),</span>
+  <span class="n">y</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span>
+    <span class="n">frequency</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">frequency</span> <span class="o">/</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_frequency</span><span class="p">,</span>
+    <span class="n">severity</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">severity</span> <span class="o">/</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_severity</span><span class="p">,</span>
+    <span class="n">risk_premium</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">risk_premium</span> <span class="o">/</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_risk_premium</span><span class="p">),</span>
+  <span class="n">sample_weight</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span>
+    <span class="n">frequency</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">Insured</span><span class="p">,</span>
+    <span class="n">severity</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">Claims</span><span class="p">,</span>
+    <span class="n">risk_premium</span><span class="o">=</span><span class="n">train</span><span class="o">$</span><span class="n">Insured</span><span class="p">),</span>
+  <span class="n">epochs</span><span class="o">=</span><span class="m">40</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="m">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-validation">
+<h2>Model Validation<a class="headerlink" href="#model-validation" title="Permalink to this headline">¶</a></h2>
+<p>We will now apply this to the test set to see how well the model has worked.</p>
+<p>The plots below show the observations ordered from least risky to most risky, with the modelled vs actual frequency and risk premiums, for the training and test sets.</p>
+<div class="section" id="id26">
+<h3>Python<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_and_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">):</span>
+    <span class="n">model_frequency</span><span class="p">,</span> <span class="n">model_severity</span><span class="p">,</span> <span class="n">model_risk_premium</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">InputDataTransformer</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+    <span class="c1"># Reverse the normalisation</span>
+    <span class="c1"># Score, sort by lowest to higher</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="n">model_frequency</span> <span class="o">*</span> <span class="n">train_average_frequency</span><span class="p">,</span> 
+                       <span class="n">model_risk_premium</span> <span class="o">=</span> <span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">train_average_risk_premium</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_payment</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+                <span class="n">model_claim_count</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_frequency</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model_frequency&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_claim_count_band</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model_risk_premium&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_payment_band</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">model_payment</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">model_payment</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+        
+    <span class="c1"># Summarise and plot frequency by weighted decile rank</span>
+    <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_claim_count_band&#39;</span><span class="p">,</span> <span class="s1">&#39;Insured&#39;</span><span class="p">,</span> <span class="s1">&#39;Claims&#39;</span><span class="p">,</span> <span class="s1">&#39;model_claim_count&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model_claim_count_band&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+               <span class="n">actual_frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_frequency&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_frequency&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+                
+    <span class="c1"># Summarise and plot risk premium by weighted decile rank</span>
+    <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_payment_band&#39;</span><span class="p">,</span> <span class="s1">&#39;Insured&#39;</span><span class="p">,</span> <span class="s1">&#39;Payment&#39;</span><span class="p">,</span> <span class="s1">&#39;model_payment&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model_payment_band&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+               <span class="n">actual_risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_risk_premium&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_risk_premium&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">predict_and_plot</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multitasking_risk_pricing_91_0.png" src="../_images/multitasking_risk_pricing_91_0.png" />
+<img alt="../_images/multitasking_risk_pricing_91_1.png" src="../_images/multitasking_risk_pricing_91_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">predict_and_plot</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multitasking_risk_pricing_92_0.png" src="../_images/multitasking_risk_pricing_92_0.png" />
+<img alt="../_images/multitasking_risk_pricing_92_1.png" src="../_images/multitasking_risk_pricing_92_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id27">
+<h3>R<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">predict_and_plot</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">){</span>
+  <span class="n">predictions</span> <span class="o">&lt;-</span> <span class="n">model</span> <span class="o">%&gt;%</span> <span class="nf">predict</span><span class="p">(</span><span class="nf">InputDataTransformer</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="nf">as.data.frame</span><span class="p">()</span>
+  <span class="nf">colnames</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;model_frequency&quot;</span><span class="p">,</span> <span class="s">&quot;model_severity&quot;</span><span class="p">,</span> <span class="s">&quot;model_risk_premium&quot;</span><span class="p">)</span>
+  
+  <span class="c1"># Reverse the normalisation</span>
+  <span class="n">df_new</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="n">model_frequency</span> <span class="o">*</span> <span class="n">train_average_frequency</span><span class="p">,</span>
+           <span class="n">model_risk_premium</span> <span class="o">=</span> <span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">train_average_risk_premium</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">model_payment</span> <span class="o">=</span> <span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">Insured</span><span class="p">,</span>
+           <span class="n">model_claim_count</span> <span class="o">=</span> <span class="n">model_frequency</span> <span class="o">*</span> <span class="n">Insured</span><span class="p">)</span>
+  
+  <span class="n">df_summary</span> <span class="o">&lt;-</span> <span class="n">df_new</span> <span class="o">%&gt;%</span>
+    <span class="nf">summarise</span><span class="p">(</span><span class="n">model_claim_count_sum</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">model_claim_count</span><span class="p">),</span>
+              <span class="n">model_payment_sum</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">model_payment</span><span class="p">))</span>
+  
+  <span class="c1"># Score, sort by lowest to higher</span>
+  <span class="n">df_new</span> <span class="o">&lt;-</span> <span class="n">df_new</span> <span class="o">%&gt;%</span>
+    <span class="nf">arrange</span><span class="p">(</span><span class="n">model_frequency</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">model_claim_count_band</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">model_claim_count</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_summary</span><span class="o">$</span><span class="n">model_claim_count_sum</span> <span class="o">*</span> <span class="m">10</span><span class="p">)</span> <span class="o">/</span> <span class="m">10</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">arrange</span><span class="p">(</span><span class="n">model_risk_premium</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">model_payment_band</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">model_payment</span><span class="p">)</span> <span class="o">/</span> <span class="n">df_summary</span><span class="o">$</span><span class="n">model_payment_sum</span> <span class="o">*</span> <span class="m">10</span><span class="p">)</span> <span class="o">/</span> <span class="m">10</span><span class="p">)</span>
+  
+  <span class="c1"># Summarise and plot frequency by weighted decile rank</span>
+  <span class="n">df_new</span> <span class="o">%&gt;%</span> <span class="nf">group_by</span><span class="p">(</span><span class="n">model_claim_count_band</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">summarise</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">model_claim_count</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">),</span>
+              <span class="n">actual_frequency</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Claims</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">model_claim_count_band</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">as.matrix</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">t</span><span class="p">()</span> <span class="o">%&gt;%</span>
+    <span class="nf">barplot</span><span class="p">(</span><span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Frequency Decile&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Frequency&quot;</span><span class="p">,</span> <span class="n">beside</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+  <span class="c1"># Summarise and plot risk premium by weighted decile rank</span>
+  <span class="n">df_new</span> <span class="o">%&gt;%</span> <span class="nf">group_by</span><span class="p">(</span><span class="n">model_payment_band</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="nf">summarise</span><span class="p">(</span><span class="n">model_risk_premium</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">model_payment</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">),</span>
+              <span class="n">actual_risk_premium</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Payment</span><span class="p">)</span> <span class="o">/</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Insured</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">model_payment_band</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">as.matrix</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">t</span><span class="p">()</span> <span class="o">%&gt;%</span>
+    <span class="nf">barplot</span><span class="p">(</span><span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;Risk Premium Decile&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Risk Premium&quot;</span><span class="p">,</span> <span class="n">beside</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+  <span class="n">df_new</span>
+<span class="p">}</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="nf">predict_and_plot</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_risk_premium</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="nf">predict_and_plot</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">summary</span><span class="o">$</span><span class="n">train_average_risk_premium</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Neural networks can be fragile. Data needs to be transformed in the right way, and the model architecture and optimiser settings can all have impact on the model performance. This makes validation tests such as the test data testing above especially important.</p>
+<p>The model appears to be performing well even on the test data set, with the best and worse having a wide differential in predicted outcomes, and actual matching well to those predictions. Try and see the variations if you remove the reproducible constraint at the start and train it multiple times. Does the model fit well every time?</p>
+<p>In the event a neural network model behaves oddly, some good resources for diagnosing issues can be found <a class="reference external" href="http://theorangeduck.com/page/neural-network-not-working">here</a> and <a class="reference external" href="https://blog.slavv.com/37-reasons-why-your-neural-network-is-not-working-4020854bd607">here</a>.</p>
+</div>
+</div>
+<div class="section" id="run-this-code-in-your-browser">
+<h2>Run this code in your browser!<a class="headerlink" href="#run-this-code-in-your-browser" title="Permalink to this headline">¶</a></h2>
+<p>All the Python and R code from this snippet can be run interactively in your browser.</p>
+<p>For Python, use the rocket icon at the top of the page and select Colab (fairly quick, requires Google account) or Live Code (slower).</p>
+<p>Alternatively, you can use the links below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/ActuariesInstitute/analytics-snippet-multitask/master?filepath=Multitasking%20Risk%20Pricing.ipynb">Python</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/ActuariesInstitute/analytics-snippet-multitask/master?filepath=multitask_risk_pricing.R&amp;urlpath=rstudio">R</a></p></li>
+</ul>
+<p>Some loading time is expected with the latter, as the <a class="reference external" href="https://mybinder.org/">Binder</a> server needs to load and start up a virtual machine with all the packages and code installed.</p>
+</div>
+<div class="section" id="afterward">
+<h2>Afterward<a class="headerlink" href="#afterward" title="Permalink to this headline">¶</a></h2>
+<p>Often media article tends to describe “AI” in science-fiction or occult terms, but it is important to recognise that it is only a particular class of models. Just like other models, actuaries should ask tough questions about its appropriateness - such as on the quality of data inputs, the understanding of outliers, and the distribution assumptions.</p>
+<p>It is also a model with some very useful properties. As we have seen above, a fully functional, multi-tasking neural network for potentially automating general insurance pricing is possible in only around 100 lines of Python or R code. It is not too hard for actuaries with good grounding in statistics to learn, and perhaps it may be useful for your next project!</p>
+<p>To learn more on neural networks from first principles, Google’s <a class="reference external" href="https://www.udacity.com/course/deep-learning--ud730">Intro to Deep Learning</a> seems like a good choice. Alternatively, for those who prefer to plunge straight into applications, there is the <a class="reference external" href="http://course17.fast.ai/">fast.ai course</a> - the older v1 of the course uses Keras similar to this tutorial.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -1553,17 +2670,15 @@ Epoch 40/40
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By YDAWG, DAPC, YAC and other contributors.<br/>
-        
-          <div class="extra_footer">
-             The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-          </div>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
 </main>
 
 

@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -361,7 +361,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -419,7 +419,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -508,7 +508,230 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Useful Python packages for Data Science</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-processing">
+   Data processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas">
+     pandas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy">
+     numpy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qgrid">
+     qgrid
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphing">
+   Graphing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matplotlib">
+     matplotlib
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#seaborn">
+     seaborn
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotly">
+     plotly
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelling">
+   Modelling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statsmodels">
+     statsmodels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scikit-learn">
+     scikit-learn
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lightgbm">
+     lightgbm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lime">
+     lime
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="useful-python-packages-for-data-science">
+<h1>Useful Python packages for Data Science<a class="headerlink" href="#useful-python-packages-for-data-science" title="Permalink to this headline">¶</a></h1>
+<p>By Zeming Yu</p>
+<p><em>This article was originally published on <a class="reference external" href="https://www.actuaries.digital/2019/04/11/my-top-10-python-packages-for-data-science/">Actuaries Digital</a>, the magazine of the Actuaries Institute Australia, on 11 April 2019 as “My top 10 Python packages for data science”.</em></p>
+<p>There are a lot of benefits of adopting these open source packages, including:</p>
+<ul class="simple">
+<li><p>Everything is free</p></li>
+<li><p>Most likely they are constantly being updated and improved</p></li>
+<li><p>There’s a large community offering support to each other on websites like Stack Overflow</p></li>
+</ul>
+<p>It does take some time to get familiar with these packages. However, if you are the kind of person who gets excited about learning new things, you’ll actually enjoy the process. Hopefully you find it useful!</p>
+<div class="section" id="data-processing">
+<h2>Data processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pandas">
+<h3>pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
+<p>Developed by Wes McKinney more than a decade ago, this package offers powerful data table processing capabilities. For people with a SAS background, it offers something like SAS data steps functionality. You can do sorting, merging, filtering etc. The key difference is in pandas, you call a function to perform these tasks.</p>
+<p>By the way, I was really amazed to know that Wes McKinney was able to develop pandas after only a few years of Python experience. Some people are just really gifted!</p>
+<p>His book <a class="reference external" href="https://www.oreilly.com/library/view/python-for-data/9781491957653/">Python for Data Analysis</a> is highly recommended if you are just starting out your Python data science journey.</p>
+</div>
+<div class="section" id="numpy">
+<h3>numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h3>
+<p>Pandas builds on top of another important package, numpy. So when you work with data you will often rely on this package for basic data manipulations. For example when you need to create a new column based on the age of the customer, you need to do something like:</p>
+<p>df[‘isRetired’] = np.where(df[‘age’]&gt;=65, ‘yes’, ‘no’)</p>
+</div>
+<div class="section" id="qgrid">
+<h3>qgrid<a class="headerlink" href="#qgrid" title="Permalink to this headline">¶</a></h3>
+<p>An amazing package which allows you to sort, filter, and edit DataFrames in Jupyter Notebooks.</p>
+</div>
+</div>
+<div class="section" id="graphing">
+<h2>Graphing<a class="headerlink" href="#graphing" title="Permalink to this headline">¶</a></h2>
+<p>The next three packages are all to do with graphing — which is a key step in exploratory data analysis.</p>
+<div class="section" id="matplotlib">
+<h3>matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>This package allows you to do all sorts of graphs. If you are using it in a Jupyter Notebook, remember to run this line of code to enable the display of the graphs:</p>
+</div>
+<div class="section" id="seaborn">
+<h3>seaborn<a class="headerlink" href="#seaborn" title="Permalink to this headline">¶</a></h3>
+<p>With the help of this package, you can make matplotlib graphs look much more attractive.</p>
+</div>
+<div class="section" id="plotly">
+<h3>plotly<a class="headerlink" href="#plotly" title="Permalink to this headline">¶</a></h3>
+<p>Nowadays we come across interactive graphs everywhere. They offer a much better user experience. For example:</p>
+<ul class="simple">
+<li><p>when we hover the mouse over a line plot we expect some text to pop up.</p></li>
+<li><p>when we select a line, we expect it to stand out from the other lines.</p></li>
+<li><p>sometimes we would like to zoom into parts of the graph.
+plotly allows you to build these interactive graphs easily within a Jupyter Notebook. A great way to share work with your colleagues and stakeholders is sending a webpage (a Jupyter Notebook) with beautiful, interactive plotly graphs embedded.</p></li>
+</ul>
+<p>The best part is there is no need for the recipient to install any special software other than a modern internet browser.</p>
+</div>
+</div>
+<div class="section" id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="statsmodels">
+<h3>statsmodels<a class="headerlink" href="#statsmodels" title="Permalink to this headline">¶</a></h3>
+<p>This package allows you to build Generalized Linear Models (GLMs) which are still widely used by actuaries today.</p>
+<p>It also offers time series analysis and other statistical modelling capabilities.</p>
+</div>
+<div class="section" id="scikit-learn">
+<h3>scikit-learn<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>This is the main machine learning package allowing you to complete most machine learning tasks, including classification, regression, clustering, and dimensionality reduction.</p>
+<p>I also use the model selection and pre-processing functions. From k-fold cross validation to scaling data and encoding categorical features, it has so much to offer.</p>
+</div>
+<div class="section" id="lightgbm">
+<h3>lightgbm<a class="headerlink" href="#lightgbm" title="Permalink to this headline">¶</a></h3>
+<p>This is one of my favourite machine learning packages for Gradient Boost Machine (GBM). I gave a <a class="reference external" href="https://www.youtube.com/watch?v=pzwE1WBOAnU&amp;feature=youtu.be">talk</a> in the 2018 Data Analytics seminar about this package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;pzwE1WBOAnU&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="800"
+    height="300"
+    src="https://www.youtube.com/embed/pzwE1WBOAnU"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>For a fraction of the time and effort needed to build GLMs, you could run a GBM, look at the importance matrix to find out the most important features for your model and have a good initial understanding of the problem. This can be a standalone step, or a quick first step before building a full GLM that’s more readily accepted by the stakeholders.</p>
+</div>
+<div class="section" id="lime">
+<h3>lime<a class="headerlink" href="#lime" title="Permalink to this headline">¶</a></h3>
+<p>Model interpretation is still a challenge for machine learning models like GBM. When stakeholders don’t understand a model they can’t trust it and as a result there’s no adoption.</p>
+<p>However, I feel model interpretation packages like lime are starting to change this. They allow you to examine each model prediction and work out what’s driving the prediction.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>I’ve listed my top 10 packages. Have you come across any other useful packages? Please share in your comments below.</p>
+<p><font size="3"><font color='blue'>“Exploration is really the essence of the human spirit.” – Frank Borman</font></p>
+<p>This article was originally published on <a class="reference external" href="https://medium.com/&#64;zemingyu/my-top-10-python-packages-for-data-science-2dee7f3dee94?sk=9caeabaceb9e360162d3abe21b6d3bf7">Medium.com</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -659,17 +882,15 @@ plotly allows you to build these interactive graphs easily within a Jupyter Note
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By YDAWG, DAPC, YAC and other contributors.<br/>
-        
-          <div class="extra_footer">
-             The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-          </div>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
 </main>
 
 

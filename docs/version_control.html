@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -364,7 +364,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -417,7 +417,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -519,7 +519,331 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Version control</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">
+   What is version control and why should I bother?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-foo-insurance-ltd">
+   Example: FOO Insurance Ltd
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#administrative-and-security-issues">
+     Administrative and Security Issues
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#registering-and-installing">
+     Registering and Installing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repository">
+     Repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#git-clone">
+     Git Clone
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#git-add">
+     Git Add
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#git-commit-and-push">
+     Git Commit and Push
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branching">
+     Branching
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-requests-and-merging">
+     Pull Requests and Merging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Version Control
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-of-github">
+   Limitations of GitHub
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-tools-available">
+   Other tools available
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scripting">
+     Scripting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excel-spreadsheets">
+     Excel Spreadsheets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datasets">
+     Datasets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="version-control">
+<h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
+<p>By Jonathan Tan. Originally published in Actuaries Digital as <a class="reference external" href="https://www.actuaries.digital/2019/04/17/analytics-snippet-version-control-because-the-recycle-bin-doesnt-count/">Analytics Snippet: Version control, because the Recycle Bin doesn’t count</a>.</p>
+<div class="section" id="what-is-version-control-and-why-should-i-bother">
+<h2>What is version control and why should I bother?<a class="headerlink" href="#what-is-version-control-and-why-should-i-bother" title="Permalink to this headline">¶</a></h2>
+<p>Version control, also known as revision control or source control, is the management of changes to programs, files, documents and other collections of information.</p>
+<p>As actuaries, our models and analysis come in many forms and vary in size depending on the task at hand. For example, a simple exercise of analysing loss ratios for a given period and product could consist only of a small R script or SQL query. On the other hand, something like a functional reserving model could easily be a one gigabyte-sized set of Excel workbooks.</p>
+<p>The rest of the article will go through a simple example concerning a small team of 3 actuaries and how the Git system (implemented using GitHub) is to version control scripts in their day to day tasks.</p>
+</div>
+<div class="section" id="example-foo-insurance-ltd">
+<h2>Example: FOO Insurance Ltd<a class="headerlink" href="#example-foo-insurance-ltd" title="Permalink to this headline">¶</a></h2>
+<p>It is the beginning of a new financial year for FOO insurance Ltd, and its products are due for a pricing review, which is handled by the actuarial team consisting of:</p>
+<ul class="simple">
+<li><p>Esther, Actuarial Manager</p></li>
+<li><p>Jimmy, Analyst</p></li>
+<li><p>Michelle, Analyst</p></li>
+</ul>
+<p>The first step of this project is to review the age curve independently with some historical data, then produce a model to be deployed into production. After getting briefed on the relevant details and timelines, the team then spends the next week discussing and iterating through various parameters and hypotheses, and finally comes up with the agreed upon model to use:</p>
+<p><img alt="messy_files" src="../_images/messy_files.png" /></p>
+<p>So which exactly is the final model here? What if Esther wanted to revisit a particular iteration of the model? Does this look vaguely familiar to your old college submissions or some of the shared drives in your office? If so, you probably already practice version control in one way or another. The most primitive and clunky (but useful) method would be the “Save As” button, where another version of the working file is the snapshot, and the user is free to modify the currently opened document which produces a result similar to that shown above.</p>
+<p>Note that these files could be the product of a small team of 3 actuaries working on a simple and straight forward project. You could imagine how much more convoluted it could get with a bigger team and a multi-stage analytics task.</p>
+<p>The goal of the article then, is to give the reader a quick and practical way to go from that screenshot above to this:</p>
+<p><img alt="ideal_folder" src="../_images/ideal_folder.png" /></p>
+<p>Would you believe that the folder in the second screenshot contains the same amount of historical information as the first and more? This is however, limited to scripts and small files. For bigger files like excel workbooks, the article will recommend some alternative tools for the reader but will not go into detail its implementations and mechanics.</p>
+<p>The tool we will be using for version control is Git, via the Git hosting service <a class="reference external" href="https://github.com/">Github</a>.</p>
+<div class="section" id="administrative-and-security-issues">
+<h3>Administrative and Security Issues<a class="headerlink" href="#administrative-and-security-issues" title="Permalink to this headline">¶</a></h3>
+<p>Let’s rewind to a week ago before the actuarial team breaks away to work on the model. The first step towards a more sustainable file structure would be for the team (or Esther) to consult the company’s IT/Tech department. This is because there is a good chance that they are already utilizing the Git system and one of the many platforms for their day-to-day version control needs and would be able to provide the actuarial team with some guidance.</p>
+<p>If this is not the case, the team must consult the appropriate authorities within the company to make sure that Git (and the GitHub platform in the context of this article) is a white listed service program or provider and ensure data security risks are appropriately managed. It may assist the discussion with upper management to note, as of October 2018, GitHub is officially owned by Microsoft and have a enterprise service offering.</p>
+<p>If cloud services are ruled out, another alternative that could be hosted on local servers is <a class="reference external" href="https://www.gitlab.com">Gitlab Community Edition</a>.</p>
+</div>
+<div class="section" id="registering-and-installing">
+<h3>Registering and Installing<a class="headerlink" href="#registering-and-installing" title="Permalink to this headline">¶</a></h3>
+<p>After settling all the aforementioned administrative issues, the actuarial team can now proceed to download and register for GitHub. To start off, they would want to go into the <a class="reference external" href="https://github.com/">GitHub website</a> and create an account, or sign in if an account was already created.</p>
+<p><img alt="github_homepage" src="../_images/github_homepage.png" /></p>
+<p>Assuming FOO Insurance Ltd does not have an existing corporate account with GitHub Enterprise, signing up for personal accounts in GitHub is totally free with a paid option as at time of writing (March 2019). All GitHub accounts also have the ability to create private repositories, which would be absolutely necessary for the team. (They might as well e-mail their pricing models to their competitors otherwise.)</p>
+</div>
+<div class="section" id="repository">
+<h3>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">¶</a></h3>
+<p>Great! Now that all 3 of them have GitHub accounts, the next step would be to create a “location” to store all the relevant project files. In the world of Git, this is called a Repository or “Repo” for short, and repositories can be generally grouped into 2 main categories</p>
+<ul class="simple">
+<li><p>Local</p></li>
+<li><p>Remote</p></li>
+</ul>
+<p>A local repository is just a file location residing in your local system, much like a folder in your local drive, whereas a remote repository is the “online” version which everyone sees. Esther now proceeds to create (initialize) a remote repository with the following steps so the team can start to work on the model.</p>
+<p><img alt="Initial repo" src="../_images/init_repo.png" /></p>
+<p>There are no restrictions to naming and describing the repositories created, but the best practice would be to keep them short and concise. Also, note that “Private” was selected in this case as the folder is going to contain potentially sensitive information about FOO Insurance’s pricing. The bottom 2 options can generally be left as None. In simple terms, all they are saying is:</p>
+<ul class="simple">
+<li><p>Esther has chosen <strong>not</strong> to add a .gitignore file in the new repo which tells GitHub to always ignore the changes in certain specified files.</p></li>
+<li><p>Esther has chosen <strong>not</strong> to add a license to the new repository, which means that the default copyright laws apply, and she retains all rights to the source code such that no one may reproduce, distribute, or create derivative works from it. The repo is set to private anyway, so it does not really matter.</p></li>
+</ul>
+<p>For more information on different licenses, the official GitHub page can be found <a class="reference external" href="https://help.github.com/en/articles/licensing-a-repository">here</a>.</p>
+<p><img alt="Empty repo" src="../_images/empty_repo.png" /></p>
+<p>We now have an empty remote repository in which the team can put all their project files into! There are generally 4 ways of using the features available on GitHub, and these are the:</p>
+<ul class="simple">
+<li><p>Git CLI (Command-line interface)</p></li>
+<li><p>Github Desktop application GUI (Graphic User Interface) <br></p></li>
+<li><p>Github website<br></p></li>
+<li><p>Certain IDEs with Git integration</p></li>
+</ul>
+<p>In this article, we will try to avoid using the CLI as it can be daunting for the users who are new to Git and the concept of a version control system. Just as an example, creating a repository using the Git CLI alone would require the user to install Git from <a class="reference external" href="https://git-scm.com/downloads">here</a>, and the steps shown below correspond to the creation of a GitHub repository shown above.</p>
+<p><img alt="Create repo via CLI" src="../_images/create_repo_cli.png" /></p>
+<p>In the article, we will also not use any IDEs for the version control process as they all function differently and Git integration is only available for some of them.</p>
+<p>Okay, enough of that scary stuff, let’s stick with using the very friendly GitHub Desktop GUI and the website. GitHub Desktop is basically an application which can be downloaded from <a class="reference external" href="https://desktop.github.com/">here</a> and allows the user to interact and use the GitHub features without having to go onto your web browser every single time. After all of them have installed the application, they should see a screen that looks similar to this - except that for new users, “Your Repositories” should start off empty.</p>
+<p><img alt="git GUI homepage" src="../_images/gitgui_homepage.png" /></p>
+<p>Okay, let’s say Esther (Manager) has created an initial script on her own computer for the age curve in R called “model.r”, which uses Simple Linear Regression to model the relationship between policyholders’ age and the average claims incurred. The contents of model.r looks something like this:</p>
+<p><img alt="initial model" src="../_images/initial_model.png" /></p>
+<p>Nothing fancy, all the script does is to read the dataset in, instantiate a simple linear regression model and print the calculated coefficients.</p>
+</div>
+<div class="section" id="git-clone">
+<h3>Git Clone<a class="headerlink" href="#git-clone" title="Permalink to this headline">¶</a></h3>
+<p>Esther now wants both Jimmy and Michelle to work on improving it and can do that by uploading the current script into the remote repository created so all 3 of them have access to it. Remember, she created a remote repository before on the GitHub website, but will need a file in her local machine which she can use to sync the documents (The local repository). Think of it as dropping some files into a local DropBox or GoogleDrive folder to sync them into your online storage. Esther can do this by simply clicking on the “Clone a Repository from the Internet” button, which would bring up the screen below.</p>
+<p><img alt="clone repo" src="../_images/clone_repo_gui.png" /></p>
+<p>Here, she should be able to see the newly created remote repository. Now she has to decide on a local path to store this “syncing” folder and hit clone.</p>
+<p><img alt="local repo" src="../_images/local_repo.png" /></p>
+<p>We can see that the <a class="reference external" href="http://README.md">README.md</a> file which was created on the GitHub website has been cloned into Esther’s local file path.</p>
+<p><img alt="empty repo" src="../_images/empty_repo_gui.png" /></p>
+<p>Also, the GitHub application now has an interface in which Esther can make and track changes. Let’s see what happens when Esther drops her model.r file into the local foo_actuarial_model folder:</p>
+</div>
+<div class="section" id="git-add">
+<h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this headline">¶</a></h3>
+<p><img alt="git add" src="../_images/git_add_gui.png" /></p>
+<p>We can see that the GitHub application automatically tracked all the difference within the local repository, and there is now an option to “commit” those changes. A commit is just a set of changes to a file or files within a repository. Think of it as a local “Save As” function, but way cooler sounding and every time you save, it allows you to keep records of what changes were made when and by whom. After checking through to make sure that those are indeed the files that she wants to sync, she can simply type a summary and description of the update on the bottom left of the window, and hit the “commit to master” button. (There are a set of industry best practices with regards to the format of commit messages and descriptions, but we will not go into that in this article) <br></p>
+</div>
+<div class="section" id="git-commit-and-push">
+<h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this headline">¶</a></h3>
+<p><img alt="git commit" src="../_images/git_commit_gui.png" /></p>
+<p>After committing the changes/ additions, she just needs to hit the “push to origin” button and the files will be synced to the online repository.</p>
+<p>Let’s go back to the GitHub website to make sure that the files were indeed synced up.</p>
+<p><img alt="git meme" src="../_images/git_meme.png" />
+<a class="reference external" href="https://www.google.com/search?q=in+case+of+fire+git+commit&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwir95y8lY7hAhW74HMBHcxMASQQ_AUIDigB&amp;biw=1288&amp;bih=761#imgrc=Z1O_vpZyL8lgVM">source</a></p>
+<p>Generally, contributors of any project are encouraged to keep their commits byte-sized (pun intended) and frequent instead of a sudden 2000-line commit. This way, changes are easier to track, and it gives the reviewer a lot more options for reverting to any particular previous iteration.</p>
+<p><img alt="github sync" src="../_images/github_synced.png" /></p>
+<p>Now, Esther can open that bottle of wine, relax and check back in a week while Jimmy and Michelle begin to work on the model… just kidding - being an actuarial manager, there’s another fire for her to put out elsewhere!</p>
+</div>
+<div class="section" id="branching">
+<h3>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h3>
+<p>Jimmy and Michelle, both having GitHub accounts and the desktop application, can now clone the repository (as shown before) with Esther’s model into their respective local drives to start working on it. Each of them would then proceed to create a new “branch” of the project from their respective GitHub applications.</p>
+<p><img alt="branch GUI" src="../_images/branch_gui.png" /></p>
+<p>So, what is a branch? A Git branch can be somewhat seen as parallel universes for documents. When creating a new repository, a default “Master” branch is always created. Let’s say that:</p>
+<ul class="simple">
+<li><p>Jimmy thinks that the age curve is non-existent within the portfolio and decides to use a flat average claim size, whilst:</p></li>
+<li><p>Michelle thinks that SLR is reasonable but insufficient, and proceeds to do a more complex GLM model with training and testing datasets.</p></li>
+</ul>
+<p>Their respective scripts will then look something like this:</p>
+<p><img alt="different work in branches" src="../_images/different_work.png" /></p>
+<p>As we can see, both Jimmy and Michelle have changed the script according to what he/ she believes the model ought to be. However, they would not be changing the original script or “Master” branch but instead, would create a new branch (which is just a copy of master) and make their changes there. Back to the parallel universe analogy, in one of the parallel universes the script remained a SLR, but in another the script would have been a GLM!</p>
+<p><img alt="different work in branches" src="../_images/digraphs.png" /></p>
+<p>So how does GitHub know which branch to make the official one on the website?</p>
+</div>
+<div class="section" id="pull-requests-and-merging">
+<h3>Pull Requests and Merging<a class="headerlink" href="#pull-requests-and-merging" title="Permalink to this headline">¶</a></h3>
+<p>The short answer is, it does not. Let’s initially follow Jimmy’s workflow for now. Assuming he has successfully created a new branch and made his changes to the script, he can proceed to commit and push his changes to the “Jimmy branch” normally as shown before with Esther (except that Esther was pushing to Master branch).</p>
+<p><img alt="jimmy branch" src="../_images/jimmy_branch_add.png" /></p>
+<p>Now, Jimmy’s GitHub repository page will look like this.</p>
+<p><img alt="jimmy branch repo" src="../_images/jimmy_branch_repo.png" /></p>
+<p>Notice that there is an extra “Compare and pull request” button, when clicked, should bring up a page like:</p>
+<p><img alt="jimmy pull request" src="../_images/jimmy_pull.png" /></p>
+<p>By creating a pull request, Jimmy is essentially asking Esther to review his changes and:</p>
+<ul class="simple">
+<li><p>If she is happy with them, <em>merge</em> them into the master branch to make his changes “official”, or:</p></li>
+<li><p>If more work needs to be done, specify the issues and discuss through comments if necessary.</p></li>
+</ul>
+<p>Now after a week, Esther will go onto the GitHub website and see that there is a pull request made by Jimmy. When opened, it will bring up a page like this:</p>
+<p><img alt="jimmy pull discussion" src="../_images/jimmy_pull_discussion.png" /></p>
+<p>Michelle, having gone through the same process as Jimmy, would also have a pull request for Esther to review. If Esther, thinks that Michelle’s model is reasonable and no further adjustments are required, she would then merge Michelle’s branch into master.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
+&lt;img src=&quot;/_static/version_control_img/michelle_merge.png&quot;, width=450, height=450&gt;
+&lt;img src=&quot;/_static/version_control_img/repo_final.png&quot;, width=450, height=450&gt;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="/_static/version_control_img/michelle_merge.png", width=450, height=450>
+<img src="/_static/version_control_img/repo_final.png", width=450, height=450>
+</div></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Version Control<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Now, the master branch will consist of <a class="reference external" href="http://model.py">model.py</a> which is a GLM model. So, you might be asking, where does the version control aspect of this tool come in? If you take a closer look at the screenshot above, you would notice “4 commits” label on the top left. If we were to click on that, it would bring us to the screen below, where we can see all previous commits made to the repository. This can also be accessed from the GitHub application under the “History” tab.</p>
+<p><img alt="commit history" src="../_images/commit_history.png" />
+<img alt="git commits" src="../_images/gitgui_commit_history.png" /></p>
+<p>When clicking on these previous commits, it reverts the repository to any previous states, allowing Esther to:</p>
+<ul class="simple">
+<li><p>Review the changes that have been made at that point of time</p></li>
+<li><p>Download any older versions of files if required</p></li>
+<li><p>Revert the repository back to any of the previous states if required <br></p></li>
+</ul>
+<p>Now, Esther can rest easy knowing that any previous decisions and changes to models are saved within the Git system without cluttering up the folders in the company drives!</p>
+</div>
+</div>
+<div class="section" id="limitations-of-github">
+<h2>Limitations of GitHub<a class="headerlink" href="#limitations-of-github" title="Permalink to this headline">¶</a></h2>
+<p>All of the examples shown so far have used scripts of code, which usually are not file size intensive and, being plain text, is recognizable by GitHub. Actuaries however, deal with large spreadsheets often. Git is unable to track differences within Excel - treating them as binary files - and and has an upload size limit of 100MB. This potentially limiting its ability to version control these workbooks.</p>
+</div>
+<div class="section" id="other-tools-available">
+<h2>Other tools available<a class="headerlink" href="#other-tools-available" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scripting">
+<h3>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned above, Git is the underlying version control system behind Github Destop, but there are many platforms which implement this, each with their own advantages and disadvantages. The article is only using GitHub as a specific example. The list of available GUI clients can be found <a class="reference external" href="https://git-scm.com/downloads/guis">here</a>.</p>
+<p>As an alternative to the GitHub GUI application, the Git command line interface is another popular interface. Also, many text editors like Atom (By GitHub) and VSCode will have downloadable plugins or have Git functionalities built into them, which makes the whole process more seamless when integrating into a workflow. If you are using SAS, then Git may already be built in.</p>
+</div>
+<div class="section" id="excel-spreadsheets">
+<h3>Excel Spreadsheets<a class="headerlink" href="#excel-spreadsheets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Creating a “Changelog” sheet to record details of the user and the changes made if past versions are not required</p></li>
+<li><p>Using regular backups to keep older versions of the spreadsheet when changes are made</p></li>
+<li><p>Unzipping .xlsx and .xlsm files (it is little known that they are actually zip files) and using git to track the resulting plain XML text within</p></li>
+<li><p>Using xltrail (Paid solution) which uses the same Git system <br></p></li>
+</ul>
+</div>
+<div class="section" id="datasets">
+<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Save a copy of tables to back up older versions</p></li>
+<li><p>OrpheusDB</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>It is my personal belief that, beneath all the data hype, actuaries are to some extent the data scientists for the insurance industry - as we draw out insights with financial value based on models and data - and the data science and analytics pipeline is more than just fancy machine learning algorithms.</p>
+<p>Documentation is an extremely important part of the actuarial process and as our models become more complex and too complex for excel to handle efficiently, our “housekeeping” and documentation processes must evolve alongside them.</p>
+<p>The Git system is widely used in data science to maintain robust version controls for programs and scripts and could be an invaluable tool for any actuary who works with programs and code too.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -758,17 +1082,15 @@
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By YDAWG, DAPC, YAC and other contributors.<br/>
-        
-          <div class="extra_footer">
-             The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-          </div>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
 </main>
 
 

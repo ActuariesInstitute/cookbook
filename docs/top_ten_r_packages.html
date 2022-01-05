@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -361,7 +361,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -419,7 +419,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -520,7 +520,415 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Useful Packages</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general">
+   General
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tidyverse">
+     1. Tidyverse
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#need-for-speed-dtplyr">
+     2. Need for speed? dtplyr
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#out-of-memory-disk-frame">
+     3. Out of Memory? disk.frame
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parking-it-with-parquet-and-arrow">
+     4. Parking it with parquet and Arrow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelling">
+   Modelling
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trees-xgboost">
+     6. Trees: xgboost
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nets-keras">
+     7. Nets: keras
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multimodel-mlr">
+     8. Multimodel: MLR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualisation-and-presentation">
+   Visualisation and Presentation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#too-technical-for-tableau-or-too-poor-flexdashboard">
+     8. Too technical for Tableau (or too poor)? flexdashboard
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#html-charts-plotly">
+     9. HTML Charts: plotly
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explain-it-like-i-m-five-dalex">
+     10. Explain it Like I’m Five: DALEX
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concluding-thoughts">
+   Concluding thoughts
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="useful-packages">
+<h1>Useful Packages<a class="headerlink" href="#useful-packages" title="Permalink to this headline">¶</a></h1>
+<p>By Jacky Poon.</p>
+<p><em>This article was originally published on <a class="reference external" href="https://www.actuaries.digital/2019/09/26/my-top-10-r-packages-for-data-analytics/">Actuaries Digital</a> (the magazine of the Actuaries Institute Australia), on 26/09/2019 as “My Top 10 R Packages for Data Analytics”.</em>
+<em>It was been updated for changes in packages since that time and republished on the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">IFoA Machine Learning for Reserving blog</a>, on 29/09/2020.</em>
+<em>Further updates have been added on 26/09/2021 for this version.</em></p>
+<p><em>Those new to R or machine learning may wish to treat this article as a preview for how to do different tasks in R since it is pitched at a more advanced level.</em></p>
+<p>A few months ago Zeming Yu wrote <a class="reference external" href="https://www.actuaries.digital/2019/04/11/my-top-10-python-packages-for-data-science/">“My top 10 Python packages for data science”</a> where he shared his top Python packages for Data Science. Like him, my preferred way of doing data analysis has shifted away from proprietary tools to these amazing freely available packages - except extending beyond data science and into traditional actuarial applications as well.</p>
+<p>I’d like to take the opportunity now to share some of my old-time favourites and exciting new packages for R. Whether you are an experienced R user or new to the game, I think there may be something here for you to take away.</p>
+<p>Use install.packages (e.g. <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;arrow&quot;)</span></code>) to install packages from <a class="reference external" href="https://cran.r-project.org/">CRAN</a>.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tidyverse">
+<h2>1. Tidyverse<a class="headerlink" href="#tidyverse" title="Permalink to this headline">¶</a></h2>
+<p>No discussion of top R packages would be complete without the <a class="reference external" href="https://www.tidyverse.org/">tidyverse</a>. In a way, this is cheating because there are multiple packages included in this - data analysis with <a class="reference external" href="https://dplyr.tidyverse.org/">dplyr</a>, visualisation with <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2</a>, some basic modelling functionality, and comes with a fairly comprehensive <a class="reference external" href="https://r4ds.had.co.nz/">book</a> that provides an excellent introduction to usage.</p>
+<p>If you were getting started with R, it’s hard to go wrong with the tidyverse toolkit. And if you are just getting started, check out our recent Insights - Starting the Data Analytics Journey - Data Collection <a class="reference external" href="https://youtu.be/tyj4ov7EuFI">video</a> <a class="reference external" href="https://www.actuaries.asn.au/Library/Events/Insights/2018/INS180717IntroToDataAnalyticsAudio.mp3">audio</a> <a class="reference external" href="https://www.actuaries.asn.au/Library/Events/Insights/2018/180717StartingTheDataAnalyticsJourneyPresentation.pdf">presentation</a>. That and more can be found on our <a class="reference external" href="https://actuaries.asn.au/knowledge-bank/past-events/2019">knowledge bank page.</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cyl</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.1 ──
+
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.4
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.2     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.7
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.1.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.0
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.1
+
+── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+</pre></div>
+</div>
+<img alt="../_images/top_ten_r_packages_5_1.png" src="../_images/top_ten_r_packages_5_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="need-for-speed-dtplyr">
+<h2>2. Need for speed? dtplyr<a class="headerlink" href="#need-for-speed-dtplyr" title="Permalink to this headline">¶</a></h2>
+<p>There has been a perception that R is slow, but with packages like <a class="reference external" href="https://github.com/Rdatatable/data.table/wiki">data.table</a>, R has the <a class="reference external" href="https://h2oai.github.io/db-benchmark/">fastest data extraction and transformation package in the West.</a> However, the dplyr syntax may more familiar for those who use SQL heavily, and personally I find it more intuitive. So, <a class="reference external" href="https://github.com/tidyverse/dtplyr">dtplyr</a> provides the best of both worlds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install from github as at time of writing.</span>
+<span class="c1"># install.packages(&quot;devtools&quot;)</span>
+<span class="c1"># devtools::install_github(&quot;tidyverse/dtplyr&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dtplyr</span><span class="p">)</span> 
+<span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+<span class="n">mtcars</span> <span class="o">%&gt;%</span> 
+  <span class="nf">lazy_dt</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">cyl</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">summarise</span><span class="p">(</span><span class="n">total.count</span> <span class="o">=</span> <span class="nf">n</span><span class="p">())</span> <span class="o">%&gt;%</span>
+  <span class="nf">as.data.table</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘data.table’
+
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 3 × 2</caption>
+<thead>
+	<tr><th scope=col>cyl</th><th scope=col>total.count</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>4</td><td>11</td></tr>
+	<tr><td>6</td><td> 7</td></tr>
+	<tr><td>8</td><td>14</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="out-of-memory-disk-frame">
+<h2>3. Out of Memory? disk.frame<a class="headerlink" href="#out-of-memory-disk-frame" title="Permalink to this headline">¶</a></h2>
+<p>One major limitation of r data frames and Python’s pandas is that they are in memory datasets - consequently, medium sized datasets that SAS can easily handle will max out your work laptop’s measly 4GB RAM. The ideal solution would be to do those transformations on the data warehouse server, which would reduce data transfer and also should, in theory, have more capacity. If it runs with SQL, dplyr probably has a backend through <a class="reference external" href="https://cran.r-project.org/web/packages/dbplyr/vignettes/sql.html">dbplyr</a>. Alternatively, with cloud computing, it is possible to rent computers with up to 3,904 GB of RAM.</p>
+<p>But for those with a habit of exploding the data warehouse or those with cloud solutions being blocked by IT policy, <a class="reference external" href="https://github.com/xiaodaigh/disk.frame">disk.frame</a> is an exciting new alternative. It does require some additional planning with respect to data chunks, but maintains a familiar syntax - check out the examples on the page.</p>
+<p>The package stores data on disk, and so is only limited by disk space rather than memory…</p>
+</div>
+<div class="section" id="parking-it-with-parquet-and-arrow">
+<h2>4. Parking it with parquet and Arrow<a class="headerlink" href="#parking-it-with-parquet-and-arrow" title="Permalink to this headline">¶</a></h2>
+<p>Running low on disk space once, I asked my senior actuarial analyst to do some benchmarking of different data storage formats: the “Parquet” format beat out sqlite, hdf5 and plain CSV - the latter by a wide margin. That experience is also likely not unique as well, considering this <a class="reference external" href="https://tech.marksblogg.com/billion-nyc-taxi-rides-sqlite-parquet-hdfs.html">article</a> where the author squashes a 500GB dataset to a mere fifth of its original size.</p>
+<p>If you were working with a heavy workload with a need for distributed cluster computing, then <a class="reference external" href="https://blog.rstudio.com/2019/03/15/sparklyr-1-0/">sparklyr</a> could be a good full stack solution, with integrations for Spark-SQL, and machine learning models <a class="reference external" href="https://github.com/rstudio/sparkxgb">xgboost</a>, <a class="reference external" href="https://github.com/rstudio/sparktf">tensorflow</a> and <a class="reference external" href="https://spark.rstudio.com/guides/h2o/">h2o</a>.</p>
+<p>But often you just want to write a file to disk, and all you need for that is <a class="reference external" href="https://github.com/apache/arrow/tree/master/r">Apache Arrow</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
+<span class="nf">write_parquet</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="s">&quot;test.parquet&quot;</span><span class="p">)</span> <span class="c1"># Done!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘arrow’
+
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="modelling">
+<h1>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="trees-xgboost">
+<h2>6. Trees: xgboost<a class="headerlink" href="#trees-xgboost" title="Permalink to this headline">¶</a></h2>
+<p>You may have seen earlier videos from Zeming Yu on <a class="reference external" href="https://www.youtube.com/watch?v=pzwE1WBOAnU">Lightgbm</a>, myself on <a class="reference external" href="https://www.youtube.com/watch?v=1cqTMqtun0c">XGBoost</a> and of course Minh Phan on <a class="reference external" href="https://www.youtube.com/watch?v=G-HQ9HLV8HY">CatBoost</a>. Perhaps you’ve heard me extolling the virtues of <span class="xref myst">h2o.ai</span> for beginners and prototyping as well.</p>
+<p>LightGBM has become my favourite now in Python. It is incredibly fast, and although it has the limitation that it can only do leaf-wise models - unlike XGBoost which has the flexibility to use traditional depth-wise growth models as well - but a lower memory usage allows you to be greedier in putting large datasets into the model.</p>
+<p>Installation in R was originally quite difficult when the article was first written, but in 2021, it can now be installed from CRAN simply using <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;lightgbm&quot;)</span></code>.</p>
+<p>With either XGBoost or LightGBM it is fairly straightforward to build a model - here we use <code class="docutils literal notranslate"><span class="pre">model.matrix</span></code> to convert categorical variables, then model with xgboost.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
+<span class="c1"># Road fatalities data - as previously seen in the YAP-YDAWG course</span>
+<span class="n">deaths</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/ActuariesInstitute/YAP-YDAWG-R-Workshop/master/bitre_ardd_fatalities_dec_2018.csv&quot;</span><span class="p">)</span>
+<span class="c1"># Explain age of the fatality based on speed limit, road user and crash type</span>
+<span class="n">model_matrix</span> <span class="o">=</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">Age</span> <span class="o">~</span> <span class="n">Speed.Limit</span> <span class="o">+</span> <span class="n">Road.User</span> <span class="o">+</span> <span class="n">Crash.Type</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">deaths</span><span class="p">)[,</span><span class="m">-1</span><span class="p">]</span>
+<span class="n">bst</span> <span class="o">&lt;-</span> <span class="nf">xgboost</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">model_matrix</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">deaths</span><span class="o">$</span><span class="n">Age</span><span class="p">,</span> <span class="n">nrounds</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">objective</span><span class="o">=</span><span class="s">&quot;reg:squarederror&quot;</span><span class="p">)</span>
+<span class="nf">xgb.importance</span><span class="p">(</span><span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">model_matrix</span><span class="p">),</span> 
+               <span class="n">model</span> <span class="o">=</span> <span class="n">bst</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">xgb.plot.importance</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘xgboost’
+
+
+The following object is masked from ‘package:dplyr’:
+
+    slice
+
+
+
+Attaching package: ‘Matrix’
+
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-rmse:34.509953 
+[2]	train-rmse:28.322361 
+[3]	train-rmse:24.726925 
+[4]	train-rmse:22.752447 
+[5]	train-rmse:21.716965 
+[6]	train-rmse:21.189470 
+[7]	train-rmse:20.914919 
+[8]	train-rmse:20.779711 
+[9]	train-rmse:20.712818 
+[10]	train-rmse:20.679955 
+</pre></div>
+</div>
+<img alt="../_images/top_ten_r_packages_12_2.png" src="../_images/top_ten_r_packages_12_2.png" />
+</div>
+</div>
+<p>Generally, <code class="docutils literal notranslate"><span class="pre">sparse.model.matrix</span></code> is more memory efficient than <code class="docutils literal notranslate"><span class="pre">model.matrix</span></code> with XGBoost, especially with large categorical levels. However, the code for the model explanation with the DALEX package (featured later) is made more complex. See <a class="reference external" href="https://github.com/ModelOriented/DALEX/issues/331#issuecomment-694773105">this comment</a> by the package author for an example of how to use <code class="docutils literal notranslate"><span class="pre">sparse.model.matrix</span></code> with <code class="docutils literal notranslate"><span class="pre">xgboost</span></code> and <code class="docutils literal notranslate"><span class="pre">DALEX</span></code>.</p>
+</div>
+<div class="section" id="nets-keras">
+<h2>7. Nets: keras<a class="headerlink" href="#nets-keras" title="Permalink to this headline">¶</a></h2>
+<p>Neural network models are generally better done in Python rather than R, since Facebook’s Pytorch and Google’s Tensorflow are built with it in mind. However in writing <a class="reference external" href="https://www.actuaries.digital/2018/08/23/analytics-snippet-multitasking-risk-pricing-using-deep-learning/">Analytics Snippet: Multitasking Risk Pricing Using Deep Learning</a> I found Rstudio’s <a class="reference external" href="https://keras.rstudio.com/">keras</a> interface to be pretty easy to pick up.</p>
+<p>While most example usage and online tutorials will be in Python, they translate reasonably well to their R counterparts. The Rstudio team were also incredibly responsive when I filed a <a class="reference external" href="https://github.com/rstudio/keras/issues/471">bug report</a> and had it fixed within a day.</p>
+<p>For another example of keras usage, the Swiss <a class="reference external" href="https://actuarialdatascience.org/ADS-Tutorials/">“Actuarial Data Science” Tutorial</a> includes another example with <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3320525">paper</a> and <a class="reference external" href="https://github.com/JSchelldorfer/ActuarialDataScience/tree/master/3%20-%20Nesting%20Classical%20Actuarial%20Models%20into%20Neural%20Networks">code</a>.</p>
+</div>
+<div class="section" id="multimodel-mlr">
+<h2>8. Multimodel: MLR<a class="headerlink" href="#multimodel-mlr" title="Permalink to this headline">¶</a></h2>
+<p>Working with multiple models - say a linear model and a GBM - and being able to calibrate hyperparameters, compare results, benchmark and blending models can be tricky. This video on <a class="reference external" href="https://youtu.be/dB-JHhEJvQA">Applied Predictive Modeling</a> by the author of the <a class="reference external" href="https://cran.r-project.org/web/packages/caret/index.html">caret</a> package explains a little more on what’s involved.</p>
+<p>If you want to get up and running quickly, and are okay to work with just GLM, GBM and dense neural networks and prefer an all-in-one solution, <a class="reference external" href="http://h2o.ai">h2o.ai</a> works well. It does all those models, has good feature importance plots, and ensembles it for you with autoML too, as explained in <a class="reference external" href="https://youtu.be/IO-3CYnk-Mo">this video by Jun Chen</a> from the 2018 Weapons of Mass Deduction video competition. Ensembling h2o models got me second place in the 2015 Actuaries Institute Kaggle competition, so I can attest to its usefulness.</p>
+<p><a class="reference external" href="https://mlr.mlr-org.com/">mlr</a> comes in for something more in-depth, with detailed feature importance, partial dependence plots, cross validation and ensembling techniques. It integrates with over 100 models by default and it is not too hard to write your own.</p>
+<p>There is a handy <a class="reference external" href="https://github.com/mlr-org/mlr/blob/master/addon/cheatsheet/MlrCheatsheet.pdf">cheat sheet</a>.</p>
+<p><em><strong>Update for 2020: the successor package <a class="reference external" href="https://github.com/mlr-org/mlr3">mlr3</a> has matured significantly. It is now available on CRAN and the <a class="reference external" href="https://mlr3book.mlr-org.com/">documentation</a> has developed to become quite comprehensive. It has its own cheat sheets which can be found <a class="reference external" href="https://cheatsheets.mlr-org.com/">here</a>. Like the original mlr package, it has many useful features for better model fitting. New users would generally benefit from using mlr3 for new projects today.</strong></em></p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="visualisation-and-presentation">
+<h1>Visualisation and Presentation<a class="headerlink" href="#visualisation-and-presentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="too-technical-for-tableau-or-too-poor-flexdashboard">
+<h2>8. Too technical for Tableau (or too poor)? flexdashboard<a class="headerlink" href="#too-technical-for-tableau-or-too-poor-flexdashboard" title="Permalink to this headline">¶</a></h2>
+<p>To action insights from modelling analysis generally involves some kind of report or presentation. Rarely you may want to serve R model predictions directly - in which case <a class="reference external" href="https://www.opencpu.org/">OpenCPU</a> may get your attention - but generally it is a distillation of the analysis that is needed to justify business change recommendations to stakeholders.</p>
+<p><a class="reference external" href="https://rmarkdown.rstudio.com/flexdashboard/">Flexdashboard</a> offers a template for creating dashboards from Rstudio with the click of a button. This extends R Markdown to use Markdown headings and code to signpost the panels of your dashboard.</p>
+<p>Interactivity similar to Excel slicers or VBA-enabled dropdowns can be added to R Markdown documents using Shiny. To do so, add ‘runtime: shiny’ to the header section of the R Markdown document. This is great for live or daily dashboards. It is also possible to produce static dashboards using only Flexdashboard and distribute over email for reporting with a monthly cadence.</p>
+<p>Previously with the YAP-YDAWG R Workshop <a class="reference external" href="https://youtu.be/_SvfEdp8_1c">video</a> <a class="reference external" href="https://actuaries.logicaldoc.cloud/download-ticket?ticketId=db8440d1-06b5-476a-b0f5-d07aa87f38e3">presentation</a>, we included an example of flexdashboard usage as a take-home exercise. Take a look at the <a class="reference external" href="https://github.com/ActuariesInstitute/YAP-YDAWG-R-Workshop">code repository</a> under “09_advanced_viz_ii.Rmd”!</p>
+</div>
+<div class="section" id="html-charts-plotly">
+<h2>9. HTML Charts: plotly<a class="headerlink" href="#html-charts-plotly" title="Permalink to this headline">¶</a></h2>
+<p>Different language, same package. <a class="reference external" href="https://plot.ly/r/getting-started/">Plot.ly</a> is a great package for web charts in both Python and R. The documentation steers towards the paid server-hosted options but using for charting functionality offline is free even for commercial purposes. The interface is clean, and charts embeds well in RMarkdown documents.</p>
+<p>Check out an older example using plotly with <a class="reference external" href="https://www.actuaries.digital/2018/06/14/analytics-snippet-in-the-library/">Analytics Snippet: In the Library</a></p>
+<p>One notable downside is the hefty file size which may not be great for email. If that is an issue I would consider the <a class="reference external" href="https://github.com/vegawidget/altair">R interface for Altair</a> - it is a bit of a loop to go from R to Python to Javascript but the <a class="reference external" href="https://vega.github.io/vega-lite/">vega-lite</a> javascript library it is based on is fantastic - user friendly interface, and what I use for my personal blog so that it loads fast on mobile. <a class="reference external" href="https://rstudio.github.io/leaflet/">Leaflet</a> is also great for maps.</p>
+</div>
+<div class="section" id="explain-it-like-i-m-five-dalex">
+<h2>10. Explain it Like I’m Five: DALEX<a class="headerlink" href="#explain-it-like-i-m-five-dalex" title="Permalink to this headline">¶</a></h2>
+<p>Also featured in the <a class="reference external" href="https://github.com/ActuariesInstitute/YAP-YDAWG-R-Workshop">YAP-YDAWG-R-Workshop</a>, the DALEX package helps explain model prediction. Like mlr above, there is feature importance, actual vs model predictions, partial dependence plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">DALEX</span><span class="p">)</span>
+<span class="n">xgb_expl</span> <span class="o">&lt;-</span> <span class="nf">explain</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="n">bst</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">model_matrix</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">deaths</span><span class="o">$</span><span class="n">Age</span><span class="p">)</span>
+<span class="c1"># Variable splits type is either dependent on data by default, or </span>
+<span class="c1"># with uniform splits, shows an even split for plotting purposes</span>
+<span class="n">resp</span> <span class="o">&lt;-</span> <span class="nf">model_profile</span><span class="p">(</span><span class="n">xgb_expl</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="s">&quot;Speed.Limit&quot;</span><span class="p">,</span> <span class="n">variable_splits_type</span> <span class="o">=</span> <span class="s">&quot;uniform&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to DALEX (version: 2.3.0).
+Find examples and detailed introduction at: http://ema.drwhy.ai/
+Additional features will be available after installation of: ggpubr.
+Use &#39;install_dependencies()&#39; to get all suggested dependencies
+
+
+Attaching package: ‘DALEX’
+
+
+The following object is masked from ‘package:dplyr’:
+
+    explain
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparation of a new explainer is initiated
+  -&gt; model label       :  xgb.Booster  ( <span class=" -Color -Color-Yellow"> default </span> )
+  -&gt; data              :  49734  rows  14  cols 
+  -&gt; target variable   :  49734  values 
+  -&gt; predict function  :  yhat.default will be used ( <span class=" -Color -Color-Yellow"> default </span> )
+  -&gt; predicted values  :  No value for predict function target column. ( <span class=" -Color -Color-Yellow"> default </span> )
+  -&gt; model_info        :  package Model of class: xgb.Booster package unrecognized , ver. Unknown , task regression ( <span class=" -Color -Color-Yellow"> default </span> ) 
+  -&gt; predicted values  :  numerical, min =  17.38693 , mean =  38.26188 , max =  64.52395  
+  -&gt; residual function :  difference between y and yhat ( <span class=" -Color -Color-Yellow"> default </span> )
+  -&gt; residuals         :  numerical, min =  -57.70045 , mean =  1.101735 , max =  72.88297  
+ <span class=" -Color -Color-Green"> A new explainer has been created! </span> 
+</pre></div>
+</div>
+<img alt="../_images/top_ten_r_packages_14_2.png" src="../_images/top_ten_r_packages_14_2.png" />
+</div>
+</div>
+<p>Yep, the data looks like it needs a bit of cleaning - check out the course materials! … but the key use of DALEX in addition to mlr is individual prediction explanations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">brk</span> <span class="o">&lt;-</span> <span class="nf">predict_parts</span><span class="p">(</span><span class="n">xgb_expl</span><span class="p">,</span> <span class="n">new_observation</span><span class="o">=</span><span class="n">model_matrix</span><span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="p">,</span><span class="n">drop</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">])</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">brk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/top_ten_r_packages_16_0.png" src="../_images/top_ten_r_packages_16_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="concluding-thoughts">
+<h1>Concluding thoughts<a class="headerlink" href="#concluding-thoughts" title="Permalink to this headline">¶</a></h1>
+<p>We have taken a journey with ten amazing packages covering the full data analysis cycle, from data preparation, with a few solutions for managing “medium” data, then to models - with crowd favourites for gradient boosting and neural network prediction, and finally to actioning business change - through dashboard and explanatory visualisations - and most of the runners up too…</p>
+<p>I would recommend exploring the resources in the many links as well, there is a lot of content that I have found to be quite informative. Did I miss any of your favourites? Let me know in the comments!</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -844,17 +1252,15 @@ The following object is masked from ‘package:dplyr’:
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By YDAWG, DAPC, YAC and other contributors.<br/>
-        
-          <div class="extra_footer">
-             The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-          </div>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
 </main>
 
 

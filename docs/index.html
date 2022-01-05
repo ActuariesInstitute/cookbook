@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe,.cell"
@@ -360,7 +360,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -393,7 +393,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -411,7 +411,100 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Actuaries’ Analytical Cookbook</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribution-review-process">
+   Contribution Review Process
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="actuaries-analytical-cookbook">
+<h1>Actuaries’ Analytical Cookbook<a class="headerlink" href="#actuaries-analytical-cookbook" title="Permalink to this headline">¶</a></h1>
+<p><em>“Actuaries can be at a loss as to where to begin. But they often have the problem statement already.  What my teams have found useful are a few simple off the shelf solutions tailored to them that they can expand on. Given that, they usually pick it up and run with it.”</em></p>
+<p>This is a cookbook of data and analytics recipes to help actuaries quickly get started with a new project, this site is intended to be a resource to actuaries in both data science and traditional fields. It is an initiative of the <a class="reference external" href="https://actuaries.asn.au/microsites/actuaries-in-data-analytics/people-and-network/young-data-analytics-working-group-%28ydawg%29">Young Data Analytics Working Group</a>, a working group with the <a class="reference external" href="https://actuaries.asn.au/">Actuaries Institute</a>.</p>
+<p><em>Use the left sidebar (on desktop) to navigate materials. In the top right, the download icon allows downloading of files as .ipynb or .pdf, and the rocket icon allows running the code - as live code and in Google Colab. Currently both work for Python snippets only and Colab requires a Google account.</em></p>
+<div class="section" id="contribution-review-process">
+<h2>Contribution Review Process<a class="headerlink" href="#contribution-review-process" title="Permalink to this headline">¶</a></h2>
+<p><em>Contributions are welcome - the project can be found on Github at <a class="reference external" href="https://github.com/ActuariesInstitute/cookbook">https://github.com/ActuariesInstitute/cookbook</a>.</em></p>
+<p>Any member of the public can propose a change request (“pull request”) via <a class="reference external" href="https://github.com/ActuariesInstitute/cookbook/pulls">https://github.com/ActuariesInstitute/cookbook/pulls</a>. See <a class="reference external" href="https://actuariesinstitute.github.io/cookbook/docs/contributing.html">https://actuariesinstitute.github.io/cookbook/docs/contributing.html</a> for a tutorial on how to create one. With these instructions, changes will include a preview of how the edited Cookbook would appear which should be linked in the request.</p>
+<p>Changes must be reviewed and approved by a YDAWG or DAPC member (other than the proposer) before it is applied. The list of YDAWG or DAPC members with write access to the repository is managed by the Institute, they are:</p>
+<ul class="simple">
+<li><p>Jacky Poon</p></li>
+<li><p>Jin Cui</p></li>
+<li><p>Josh Jaroudy</p></li>
+<li><p>Kriti Khullar</p></li>
+<li><p>Zeming Yu</p></li>
+</ul>
+<p>There is also an ‘ActuariesInstitute’ account and others will be added to the ActuariesInstitute ‘organisation.’</p>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -496,17 +589,15 @@
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By YDAWG, DAPC, YAC and other contributors.<br/>
-        
-          <div class="extra_footer">
-             The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-          </div>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
 </main>
 
 
