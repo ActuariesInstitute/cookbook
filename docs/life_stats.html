@@ -457,19 +457,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>R: Life Industry Stats in Tableau and R</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Life Industry Stats in Tableau and R</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    R: Life Industry Stats in Tableau and R
@@ -497,7 +498,9 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
@@ -639,153 +642,8 @@
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="r-life-industry-stats-in-tableau-and-r">
-<h1>R: Life Industry Stats in Tableau and R<a class="headerlink" href="#r-life-industry-stats-in-tableau-and-r" title="Permalink to this headline">¶</a></h1>
-<p>By Pat Reen - originally published on his GitHub site <a class="reference external" href="https://pat-reen.github.io/More-Modelling-Recipes/">here</a>, which has the <a class="reference external" href="https://github.com/Pat-Reen/More-Modelling-Recipes">original code</a>.</p>
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Add icon font -->
-<p style="position:absolute; top:0; right:20px; ">
-    <a href="https://www.linkedin.com/in/patrick-reen/" target="_blank" class="fa fa-linkedin" style="font-size:24px"></a>
-    <a href="https://github.com/Pat-Reen/" target="_blank" class="fa fa-github" style="font-size:24px"></a>
-</p></div>
-<div class="tex2jax_ignore mathjax_ignore section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>APRA release Australian life industry data on performance quarterly at a product level as well as aggregated results by company. Bi-annually APRA release other statistics on lapse rates, new business rates, decline rates and market share. This section presents a visualisation of these datasources in Tableau. Also included is an R script which could be used to extract results from the APRA data.</p>
-<p>Tableau public is a free to use visualisation tool that can ingest data in a number of different formats and is useful at creating flexible visualisation.</p>
-<p>See link above to GitHub repository which has data and tableau workbook for this recipe.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introducing-radial-bar-charts">
-<h1>Introducing radial bar charts<a class="headerlink" href="#introducing-radial-bar-charts" title="Permalink to this headline">¶</a></h1>
-<p>A radial bar chart is a bar chart plotted in polar co-ordinates rather than a Cartesian plane. <a class="reference external" href="https://www.thedataschool.co.uk/jack-parry/create-a-radial-bar-chart-in-tableau">This site</a> sets out a very simple approach, which are  used here.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="the-result">
-<h1>The result<a class="headerlink" href="#the-result" title="Permalink to this headline">¶</a></h1>
-<p>A preview of the final visualisation is below (click through to Tableau):</p>
-<p><a class="reference external" href="https://public.tableau.com/app/profile/pat5787/viz/AustralianLifeInsuranceReporting/LifeStats"><img alt="" src="../_images/prev_life.png" /></a></p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="using-r-to-view-industry-stats">
-<h1>Using r to view industry stats<a class="headerlink" href="#using-r-to-view-industry-stats" title="Permalink to this headline">¶</a></h1>
-<p>As with most data sources, an alternative visualisation tool is R. The below extracts the individual disability income profits and revenue and calculates the margin.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
-<span class="c1"># this script reads in the APRA data and produces a few graphs for presentation</span>
-
-<span class="n">packages</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span> <span class="s">&quot;ggplot2&quot;</span><span class="p">,</span> <span class="s">&quot;readxl&quot;</span><span class="p">,</span> <span class="s">&quot;lubridate&quot;</span><span class="p">,</span> <span class="s">&quot;scales&quot;</span><span class="p">,</span> <span class="s">&quot;xtable&quot;</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="nf">rownames</span><span class="p">(</span><span class="nf">installed.packages</span><span class="p">())))</span>  
-<span class="nf">for </span><span class="p">(</span><span class="n">package</span> <span class="n">in</span> <span class="n">packages</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">library</span><span class="p">(</span><span class="n">package</span><span class="p">,</span> <span class="n">character.only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="n">percent0</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nf">return</span><span class="p">(</span><span class="nf">percent</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">))</span>
-<span class="p">}</span>
-
-<span class="c1"># update names</span>
-<span class="c1"># [1] &quot;Reporting date&quot;      &quot;Industry sector&quot;     &quot;Subject&quot;</span>
-<span class="c1"># [4] &quot;Category&quot;            &quot;Data item&quot;           &quot;Reporting Structure&quot;</span>
-<span class="c1"># [7] &quot;Class of business&quot;   &quot;Product Group&quot;       &quot;Calculation basis&quot;</span>
-<span class="c1"># [10] &quot;Value&quot;               &quot;Notes&quot;</span>
-
-<span class="n">qrt_col_name</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
-  <span class="s">&quot;rep_date&quot;</span><span class="p">,</span> <span class="s">&quot;sector&quot;</span><span class="p">,</span> <span class="s">&quot;subject&quot;</span><span class="p">,</span> <span class="s">&quot;category&quot;</span><span class="p">,</span> <span class="s">&quot;data_item&quot;</span><span class="p">,</span>
-  <span class="s">&quot;rep_struc&quot;</span><span class="p">,</span> <span class="s">&quot;class&quot;</span><span class="p">,</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="s">&quot;calc_basis&quot;</span><span class="p">,</span> <span class="s">&quot;value&quot;</span><span class="p">,</span>
-  <span class="s">&quot;notes&quot;</span>
-<span class="p">)</span>
-<span class="n">qrt_col_type</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span> <span class="s">&quot;numeric&quot;</span><span class="p">,</span> <span class="s">&quot;text&quot;</span><span class="p">)</span>
-
-<span class="c1">#---------- read in quarterly data</span>
-<span class="n">qrt_data</span> <span class="o">&lt;-</span> <span class="nf">read_xlsx</span><span class="p">(</span>
-<span class="c1"># update to relevant path</span>
-  <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;Quarterly life insurance performance statistics database - June 2008 to June 2021.xlsx&quot;</span><span class="p">,</span>
-  <span class="n">sheet</span> <span class="o">=</span> <span class="s">&quot;Data&quot;</span><span class="p">,</span> 
-  <span class="n">col_names</span> <span class="o">=</span> <span class="n">qrt_col_name</span><span class="p">,</span> 
-  <span class="n">skip</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> 
-  <span class="n">col_types</span> <span class="o">=</span> <span class="n">qrt_col_type</span><span class="p">,</span>
-  <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">na</span> <span class="o">=</span> <span class="s">&quot;N/A&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># add fiscal years</span>
-<span class="n">qrt_data</span><span class="o">$</span><span class="n">fin_year</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;FY&quot;</span><span class="p">,</span> <span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span> <span class="o">+</span>
-  <span class="nf">as.integer</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">6</span><span class="p">)))</span>
-<span class="c1"># also add calendar year as an alternative aggregation</span>
-<span class="n">qrt_data</span><span class="o">$</span><span class="n">cal_year</span> <span class="o">&lt;-</span> <span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">))</span>
-
-
-
-<span class="c1"># DI Profit by Year -----------------------------------------------------</span>
-
-<span class="n">DI_risk_type</span> <span class="o">&lt;-</span> <span class="s">&quot;Individual Disability Income Insurance&quot;</span>
-
-<span class="n">data_items</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
-    <span class="s">&quot;Profit / loss before tax ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Profit / loss before tax&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Premiums after reinsurance ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Net policy revenue&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Premiums before reinsurance ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Gross policy revenue&quot;</span>
-<span class="p">)</span>
-
-<span class="n">DI_profit</span> <span class="o">&lt;-</span> <span class="n">qrt_data</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="n">data_item</span> <span class="o">%in%</span> <span class="n">data_items</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">class</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="n">product</span> <span class="o">==</span> <span class="n">DI_risk_type</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">group_by</span><span class="p">(</span><span class="n">`Fin year`</span> <span class="o">=</span> <span class="n">fin_year</span><span class="p">,</span> <span class="n">data_item</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">summarise</span><span class="p">(</span><span class="n">risk_value</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">spread</span><span class="p">(</span><span class="n">data_item</span><span class="p">,</span> <span class="n">risk_value</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="nf">mutate</span><span class="p">(</span><span class="n">`Margin (%)`</span> <span class="o">=</span> <span class="nf">percent0</span><span class="p">(</span><span class="n">`Profit / loss before tax`</span> <span class="o">/</span>
-  <span class="n">`Net policy revenue`</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">rename</span><span class="p">(</span><span class="n">data_items</span><span class="p">)</span>
-
-<span class="n">DI_profit_print</span> <span class="o">&lt;-</span> <span class="nf">xtable</span><span class="p">(</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">DI_profit</span><span class="p">,</span>
-    <span class="n">caption</span> <span class="o">=</span> <span class="s">&quot;Individual Disability Income Industry Profit&quot;</span><span class="p">,</span>
-    <span class="n">align</span> <span class="o">=</span> <span class="s">&quot;llrrrr&quot;</span><span class="p">,</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="m">0</span>
-<span class="p">)</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="n">DI_profit_print</span><span class="p">,</span> 
-      <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;html&quot;</span><span class="p">,</span>
-      <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;DI_profit&quot;</span><span class="p">,</span>
-      <span class="n">include.rownames</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
-      <span class="p">)</span> 
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "ActuariesInstitute/cookbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "r"
-        },
-        kernelOptions: {
-            kernelName: "ir",
-            path: "./docs"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'ir'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="LifeRecipeBook.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -802,7 +660,7 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

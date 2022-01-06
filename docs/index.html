@@ -411,19 +411,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Actuaries’ Analytical Cookbook</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Actuaries’ Analytical Cookbook</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#contribution-review-process">
    Contribution Review Process
@@ -431,7 +432,9 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
@@ -501,81 +504,8 @@
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="actuaries-analytical-cookbook">
-<h1>Actuaries’ Analytical Cookbook<a class="headerlink" href="#actuaries-analytical-cookbook" title="Permalink to this headline">¶</a></h1>
-<p><em>“Actuaries can be at a loss as to where to begin. But they often have the problem statement already.  What my teams have found useful are a few simple off the shelf solutions tailored to them that they can expand on. Given that, they usually pick it up and run with it.”</em></p>
-<p>This is a cookbook of data and analytics recipes to help actuaries quickly get started with a new project, this site is intended to be a resource to actuaries in both data science and traditional fields. It is an initiative of the <a class="reference external" href="https://actuaries.asn.au/microsites/actuaries-in-data-analytics/people-and-network/young-data-analytics-working-group-%28ydawg%29">Young Data Analytics Working Group</a>, a working group with the <a class="reference external" href="https://actuaries.asn.au/">Actuaries Institute</a>.</p>
-<p><em>Use the left sidebar (on desktop) to navigate materials. In the top right, the download icon allows downloading of files as .ipynb or .pdf, and the rocket icon allows running the code - as live code and in Google Colab. Currently both work for Python snippets only and Colab requires a Google account.</em></p>
-<div class="section" id="contribution-review-process">
-<h2>Contribution Review Process<a class="headerlink" href="#contribution-review-process" title="Permalink to this headline">¶</a></h2>
-<p><em>Contributions are welcome - the project can be found on Github at <a class="reference external" href="https://github.com/ActuariesInstitute/cookbook">https://github.com/ActuariesInstitute/cookbook</a>.</em></p>
-<p>Any member of the public can propose a change request (“pull request”) via <a class="reference external" href="https://github.com/ActuariesInstitute/cookbook/pulls">https://github.com/ActuariesInstitute/cookbook/pulls</a>. See <a class="reference external" href="https://actuariesinstitute.github.io/cookbook/docs/contributing.html">https://actuariesinstitute.github.io/cookbook/docs/contributing.html</a> for a tutorial on how to create one. With these instructions, changes will include a preview of how the edited Cookbook would appear which should be linked in the request.</p>
-<p>Changes must be reviewed and approved by a YDAWG or DAPC member (other than the proposer) before it is applied. The list of YDAWG or DAPC members with write access to the repository is managed by the Institute, they are:</p>
-<ul class="simple">
-<li><p>Jacky Poon</p></li>
-<li><p>Jin Cui</p></li>
-<li><p>Josh Jaroudy</p></li>
-<li><p>Kriti Khullar</p></li>
-<li><p>Zeming Yu</p></li>
-</ul>
-<p>There is also an ‘ActuariesInstitute’ account and others will be added to the ActuariesInstitute ‘organisation.’</p>
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "ActuariesInstitute/cookbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./docs"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
     <a class='right-next' id="next-link" href="about_py.html" title="next page">
     <div class="prev-next-info">
@@ -585,7 +515,7 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">

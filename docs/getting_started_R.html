@@ -462,19 +462,20 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Setting Up R</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setting Up R</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#step-1-install-base-r">
    Step 1 – Install base R
@@ -509,7 +510,9 @@
  </li>
 </ul>
 
-                </nav>
+                        </nav>
+                    </div>
+                </div>
             </div>
             
               <div>
@@ -599,101 +602,8 @@
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="setting-up-r">
-<h1>Setting Up R<a class="headerlink" href="#setting-up-r" title="Permalink to this headline">¶</a></h1>
-<p>By YAP and YDAWG members.</p>
-<p>This document will help you to get ready with R. Original version as a Word document can be found <a class="reference external" href="https://github.com/ActuariesInstitute/YAP-YDAWG-R-Workshop/raw/master/R_Session_Prework.docx">here</a>.</p>
-<div class="section" id="step-1-install-base-r">
-<h2>Step 1 – Install base R<a class="headerlink" href="#step-1-install-base-r" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Download the Windows R installer from <a class="reference external" href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a></p></li>
-</ul>
-<p><img alt="image.png" src="../_images/install_R_win.png" /></p>
-<ul class="simple">
-<li><p>Run the installer</p></li>
-</ul>
-<p><img alt="image.png" src="../_images/install_R_win2.png" /></p>
-</div>
-<div class="section" id="macos">
-<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
-<p><img alt="image.png" src="../_images/install_R_mac.png" /></p>
-<ul class="simple">
-<li><p>Run the installer</p></li>
-</ul>
-<p><img alt="image.png" src="../_images/install_R_mac2.png" /></p>
-</div>
-</div>
-<div class="section" id="step-2-install-rstudio">
-<h2>Step 2 – Install RStudio<a class="headerlink" href="#step-2-install-rstudio" title="Permalink to this headline">¶</a></h2>
-<p>RStudio is an open source development environment for R. It adds functionality to make R coding easier and faster.</p>
-<ul class="simple">
-<li><p>Download the RStudio installer from <a class="reference external" href="https://www.rstudio.com/products/rstudio/download/#download">https://www.rstudio.com/products/rstudio/download/#download</a> (Windows marked in red, use the one below for MacOS.</p></li>
-</ul>
-<p><img alt="image.png" src="../_images/dl_Rstudio_win.png" /></p>
-<ul class="simple">
-<li><p>Install RStudio (Windows)</p></li>
-</ul>
-<p><img alt="image.png" src="../_images/install_Rstudio_win.png" /></p>
-<ul class="simple">
-<li><p>Install Rstudio (MacOS)
-<img alt="image.png" src="../_images/install_Rstudio_mac.png" /></p></li>
-</ul>
-</div>
-<div class="section" id="step-3-setup-package-installation-location">
-<h2>Step 3 – Setup package installation location<a class="headerlink" href="#step-3-setup-package-installation-location" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Open RStudio</p></li>
-</ul>
-<p><img alt="image.png" src="../_images/code_editor.png" /></p>
-<p>Packages are additional functions and tools that extend R’s functionality.  They are critical to making full use of R and RStudio.</p>
-</div>
-<div class="section" id="step-4-install-the-packages">
-<h2>Step 4 – Install the packages<a class="headerlink" href="#step-4-install-the-packages" title="Permalink to this headline">¶</a></h2>
-<p>You may now run code or commands by typing it into editor and using <code class="docutils literal notranslate"><span class="pre">Ctrl+Enter</span></code> to run, or directly into the R console and pressing <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">install.packages</span></code> command will download and install R packages</p></li>
-<li><p>Packages that require other packages will install all dependencies at once</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">install.packages(&lt;&lt;package</span> <span class="pre">name&gt;&gt;)</span></code> for each of the packages listed above → This will download and install the packages into your library</p></li>
-<li><p>Finally, run the <code class="docutils literal notranslate"><span class="pre">library(&lt;&lt;package</span> <span class="pre">name&gt;&gt;)</span></code> command to load the library into your R session</p></li>
-</ul>
-<p>You can use the <code class="docutils literal notranslate"><span class="pre">sessionInfo()</span></code> command to list out the packages your R session has attached.</p>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "ActuariesInstitute/cookbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "r"
-        },
-        kernelOptions: {
-            kernelName: "ir",
-            path: "./docs"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'ir'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="about_R.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -710,7 +620,7 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
