@@ -12,9 +12,9 @@ tags: ["foundations", "R", "data"]
 ---
 ```
 
-*This is the first of two articles that will discuss packages in R that are useful for data manipulation.*
-*The second article will discuss the data.table package.*
-*Our [previous post](/mlr-blog/post/topten-r-packages/) also has some comments on the tidyverse.*
+*This article was originally created by Oli Grossman and published in the [General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/). The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the [blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/) further for additional content including detailed walkthroughs of more advanced models.*
+
+*[Useful Packages](https://actuariesinstitute.github.io/cookbook/docs/top_ten_r_packages.html) also has some comments on the tidyverse.*
 
 
 **A short introduction to how R’s “tidyverse” library makes data processing easy**
