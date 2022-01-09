@@ -8,6 +8,7 @@ parts:
   - file: docs/python_by_example
   - file: docs/learn_more
   - file: docs/Useful_Python_packages.ipynb
+  - file: docs/DAA_2021_S2_Sample_Assignment.ipynb
 - caption: Introduction to R
   chapters:
   - file: docs/about_R.ipynb
