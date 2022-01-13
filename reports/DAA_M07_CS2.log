@@ -54,12 +54,12 @@ from sklearn.metrics import silhouette_score
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3355/2719385691.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      5[0m [0;31m# Packages to be used in pre-processing the text.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      6[0m [0;32mimport[0m [0mre[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 7[0;31m [0;32mimport[0m [0mnltk[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      8[0m [0mnltk[0m[0;34m.[0m[0mdownload[0m[0;34m([0m[0;34m'stopwords'[0m[0;34m)[0m [0;31m# For a standard list of stopwords.[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      9[0m [0mnltk[0m[0;34m.[0m[0mdownload[0m[0;34m([0m[0;34m'wordnet'[0m[0;34m)[0m [0;31m# For lemmatisation.[0m[0;34m[0m[0;34m[0m[0m
+Input [0;32mIn [1][0m, in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [38;5;66;03m# Packages to be used in pre-processing the text.[39;00m
+[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mre[39;00m
+[0;32m----> 7[0m [38;5;28;01mimport[39;00m [38;5;21;01mnltk[39;00m
+[1;32m      8[0m nltk[38;5;241m.[39mdownload([38;5;124m'[39m[38;5;124mstopwords[39m[38;5;124m'[39m) [38;5;66;03m# For a standard list of stopwords.[39;00m
+[1;32m      9[0m nltk[38;5;241m.[39mdownload([38;5;124m'[39m[38;5;124mwordnet[39m[38;5;124m'[39m) [38;5;66;03m# For lemmatisation.[39;00m
 
 [0;31mModuleNotFoundError[0m: No module named 'nltk'
 ModuleNotFoundError: No module named 'nltk'
