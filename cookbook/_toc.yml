@@ -29,3 +29,4 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
+  - file:  docs/DAA_Sem_2_2021_Sample_Assignment_colab_orig.ipynb
