@@ -1,10 +1,10 @@
 title : Actuaries' Analytical Cookbook
-author: YDAWG, DAPC, YAC and other contributors. The Institute wishes it to be understood that any opinions put forward in this publication are not necessarily those of the Institute.
+author: YDAWG, DAPC, YAC and other contributors.
 logo: 'actuaries-logo.svg'
 
 # Short description about the book
 description: >-
-  A cookbook for actuaries for data and analytics
+  A cookbook for actuaries for data and analytics.
 
 execute:
   execute_notebooks           : cache
@@ -14,7 +14,7 @@ html:
   home_page_in_navbar         : false
   use_repository_button         : true
   use_edit_page_button          : true
-
+  extra_footer                          : " The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved."
 # Interact link settings
 notebook_interface            : "notebook"
 
@@ -41,3 +41,8 @@ launch_buttons:
   # binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
   colab_url: "https://colab.research.google.com"
   thebe                  : true
+
+# Copyright already shown in extra_footer, do not need duplicates
+sphinx:
+  config:
+    html_show_copyright: false
