@@ -39,12 +39,12 @@ plt.ioff()
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<module>[0;34m[0m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m----> 4[0m [38;5;28;01mimport[39;00m [38;5;21;01mshap[39;00m
-[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mwarnings[39;00m
-[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m Image
+[0;32m/tmp/ipykernel_4137/3448348812.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0;32mimport[0m [0mshap[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;32mimport[0m [0mwarnings[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0;34m[0m[0m
 
 [0;31mModuleNotFoundError[0m: No module named 'shap'
 ModuleNotFoundError: No module named 'shap'
