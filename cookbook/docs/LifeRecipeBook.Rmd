@@ -13,15 +13,6 @@ link-citations: yes
 
 <!-- #region name="htmlHeader" tags=["remove_input"] -->
 By Pat Reen - originally published on his GitHub site [here](https://pat-reen.github.io/Modelling-Recipes/), which has the [original code](https://github.com/Pat-Reen/Modelling-Recipes/blob/main/RecipeBook.Rmd).
-
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- Add icon font -->
-<p style="position:absolute; top:0; right:20px; ">
-    <a href="https://www.linkedin.com/in/patrick-reen/" target="_blank" class="fa fa-linkedin" style="font-size:24px"></a>
-    <a href="https://github.com/Pat-Reen/" target="_blank" class="fa fa-github" style="font-size:24px"></a>
-</p>
 <!-- #endregion -->
 
 <!-- #region -->
@@ -44,7 +35,7 @@ As with other recipes, the code can be found on [GitHub](https://github.com/Actu
 A list of packages used in the recipe book.
 <!-- #endregion -->
 
-```{r Setup, results='hide', class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Setup, results='hide', class.source="fold-show", message=FALSE, warning=FALSE}
 library(rmdformats) # theme for the HTML doc
 library(bookdown)   # bibliography formatting
 library(kableExtra) # formatting tables
@@ -69,7 +60,7 @@ library(MASS)       # statistics
 
 ```
 
-```{r Setup - remove object if exists, echo=FALSE, class.source="fold-show", message=FALSE, results=FALSE, warning=FALSE}
+```{python Setup - remove object if exists, echo=FALSE, class.source="fold-show", message=FALSE, results=FALSE, warning=FALSE}
 ifrm <- function(x, env = globalenv()) 
 {
   if(exists(x, envir = env)) 
@@ -94,7 +85,7 @@ More detail on the techniques used can be found in the section on data manipulat
 ## Simulating policies
 We start by simulating a mix of 200k policies over 3 years. Some simplifying assumptions e.g. nil lapse / new business (no allowance for part years of exposure), no indexation. Mix of business assumptions for benefit period, waiting period and occupation taken  taken from [@BusMix], with the remainder based on an anecdotal view of industry mix not intended to be reflective of any one business. 
 
-```{r Generate dataframe}
+```{python Generate dataframe}
 # set the seed value (for the random number generator) so that the simulated data frame can be replicated later
 set.seed(10)
 # create 200k policies
@@ -130,7 +121,7 @@ df <- rbind(df,df2,df3)
 ## Expected claim rate 
 Set p values from which to simulate claims. The crude p values below were derived from the Society of Actuaries Analysis of USA Individual Disability Claim Incidence Experience from 2006 to 2014 [@SOA_study], with some allowance for Australian industry differentials [@BusMix_FSC].
 
-```{r Expected claim rate}
+```{python Expected claim rate}
 # by cause, age and sex, based upon polynomials fitted to crude actual rates
 # sickness
 f_sick_age_m <- function(age) {-0.0000003*age^3 + 0.000047*age^2 - 0.00203*age + 0.02715}
@@ -161,7 +152,7 @@ f_pol_yr_acc <- function(policy_year) {case_when(policy_year<=5 ~ 1, policy_year
 ## Expected claims
 Add the crude p values to the data and simulate 1 draw from a binomial with prob = p for each record. Gives us a vector of claim/no-claim for each policy. Some simplifying assumptions like independence of sample across years for each policy and independence of accident and sickness incidences.
 
-```{r Expected claims}
+```{python Expected claims}
 # add crude expected
 df$inc_sick_expected=f_sick_age(df$age,df$sex)*f_smoker(df$smoker)*f_wp(df$waiting_period)*f_occ_sick(df$occupation)*f_sa_sick(df$sum_assured)*f_pol_yr_sick(df$policy_year)
 df$inc_acc_expected=f_acc_age(df$age,df$sex)*f_smoker(df$smoker)*f_wp(df$waiting_period)*f_occ_acc(df$occupation)*f_sa_acc(df$sum_assured)*f_pol_yr_acc(df$policy_year)
@@ -179,7 +170,7 @@ df$inc_amount_tot =  df$inc_count_tot * df$sum_assured
 
 The data generated above are records for each individual policy, however data like this is often grouped as it is easier to store and computation is easier [@GLM_Insurance, p49, 105]. Later we will consider the differences between a model on ungrouped vs grouped data.
 
-```{r Grouped Data}
+```{python Grouped Data}
 # group data (see section on data manipulation below)
 df_grp <- df %>% group_by(cal_year, policy_year, sex, smoker, benefit_period, waiting_period, occupation, age) %>% 
 summarise(sum_assured=sum(sum_assured),inc_count_sick_exp=sum(inc_sick_expected),inc_count_acc_exp=sum(inc_acc_expected),        inc_count_sick=sum(inc_count_sick),inc_count_acc=sum(inc_count_acc),inc_count_tot=sum(inc_count_tot),inc_amount_sick=sum(inc_amount_sick),inc_amount_acc=sum(inc_amount_acc),inc_amount_tot=sum(inc_amount_tot), exposure=n(),.groups = 'drop') 
@@ -187,12 +178,12 @@ summarise(sum_assured=sum(sum_assured),inc_count_sick_exp=sum(inc_sick_expected)
 ```
 
 Check that the exposure for the grouped data is the same as the total on ungrouped:
-```{r Grouped Data - exposure}
+```{python Grouped Data - exposure}
 # check count - same as total row count of the main df
 sum(df_grp$exposure)
 ```
 And that the number of rows of data are significantly lower:
-```{r Grouped Data - row count}
+```{python Grouped Data - row count}
 # number of rows of the grouped data is significantly lower
 nrow(df_grp)
 ```
@@ -204,22 +195,22 @@ The sections below rely heavily upon the dplyr package.
 ## Data structure
 Looking at the metadata for the data frame and a sample of the contents.
 
-```{r}
+```{python}
 # MASS package interferes with select()
 select <- dplyr::select
 ```
 
-```{r Data structure, class.source="fold-show"}
+```{python Data structure, class.source="fold-show"}
 # glimpse() or str() returns detail on the structure of the data frame. Our data consists of 600k rows and 15 columns. The columns are policy ID, several explanatory variables like sex and smoker, expected counts of claim (inc_sick_expected and inc_acc_expected) and actual counts of claim (inc_count_sick/acc/tot).
 glimpse(df)
 ```
 
-```{r Data structure, class.source="fold-show"}
+```{python Data structure, class.source="fold-show"}
 # head() returns the first 6 rows of the data frame. Similar to head(), sample_n() returns rows from our data frame, however these are chosen randomly. e.g. sample_n(df,5,replace=FALSE)
 head(df)
 ```
 
-```{r Data structure, class.source="fold-show"}
+```{python Data structure, class.source="fold-show"}
 # class() returns the class of a column.
 class(df$benefit_period)
 ```
@@ -229,13 +220,13 @@ From the above you'll note that the categorical columns are stored as characters
 
 ``table()`` returns a table of counts at each combination of column values. ``prop.table()`` converts these to a proportion. For example, applying this to the column "sex" shows us that ~75% of our data is "m" and that the other data are either "f" or "u" (unknown).
 
-```{r Factorise columns - proportions, class.source="fold-show"}
+```{python Factorise columns - proportions, class.source="fold-show"}
 table(df$sex)
 prop.table(table(df$sex))
 ```
 
 We can then convert the columns to factors based upon the values of the column and ordering by frequency. Base level should be chosen such that it has sufficient observations for an intercept to be computed meaningfully.
-```{r Factorise columns - factors, class.source="fold-show"}
+```{python Factorise columns - factors, class.source="fold-show"}
 df$sex <- factor(df$sex, levels = c("m","f","u"))
 df$smoker <- factor(df$smoker, levels = c("n","s","u"))
 df$benefit_period <- factor(df$benefit_period, levels = c("a65","2yr","5yr"))
@@ -251,14 +242,14 @@ df_grp$occupation <- factor(df_grp$occupation, labels = c("prof", "sed","techn",
 ```
 
 If the column is already a factor, you can extract the levels to show what order they will be used in our models
-```{r Factorise columns - levels, class.source="fold-show"}
+```{python Factorise columns - levels, class.source="fold-show"}
 table(levels(df$sex))
 ```
 
 ## Selection methods
 ``table()`` is a method of summarizing data, returning a count at each combination of values in a column. ``sample()`` and ``sample_n()`` are other examples of selection methods. This section (not exhaustive) looks at a few more selection methods in ``dplyr``.
 
-```{r Selection Methods, class.source="fold-show", eval=FALSE}
+```{python Selection Methods, class.source="fold-show", eval=FALSE}
 not_run_sample_only <- function(){
 # data subsets:  e.g. select from df where age <25 or >60 
     subset(df, age <25 | age > 60) 
@@ -282,7 +273,7 @@ not_run_sample_only <- function(){
 ## Manipulation methods
 We might want to modify our data frame to prepare it for fitting our models. The section below looks at a few simple data manipulations. Here we also introduce the infix operator (``%>%``); this operator passes the argument to the left of it over to the code on the right, so ``df %>%`` "operation" passes the data frame "df" over to the operation on the right.
 
-```{r Manipulation Methods, class.source="fold-show", eval=FALSE}
+```{python Manipulation Methods, class.source="fold-show", eval=FALSE}
 not_run_sample_only <- function(){
 # create a copy of the dataframe to work from
   new_df <- df
@@ -325,7 +316,7 @@ not_run_sample_only <- function(){
 ## Missing data
 By default, the regression model will exclude any observation with missing values on its predictors. Missing values can be treated as a separate category for categorical data. For missing numeric data, imputation is a potential solution. In the example below we replace missing age with an average and add an indicator to the data to flag records that have been imputed.
 
-```{r Missing data, class.source="fold-show", eval=FALSE}
+```{python Missing data, class.source="fold-show", eval=FALSE}
 # find the average age among non-missing values
 summary(df$age)
 # impute missing age values with the mean age
@@ -345,7 +336,7 @@ Data might need to be [transformed](https://en.wikipedia.org/wiki/Data_transform
 
 Look at distribution by single rating factors.
 
-```{r Detatch MASS, echo=FALSE, class.source="fold-show", results=FALSE, warning=FALSE}
+```{python Detatch MASS, echo=FALSE, class.source="fold-show", results=FALSE, warning=FALSE}
 # MASS package interferes with pairs() and cor() and others
 require(arm) # package
 detach(package:arm)
@@ -355,7 +346,7 @@ detach(package:MASS)
 
 ### Benefit period mix
 
-```{r Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
 df %>% count(benefit_period, wt = NULL, sort = TRUE) %>% 
    mutate(freq = percent(round(n / sum(n),2))) %>% 
    format(n, big.mark=",") 
@@ -363,7 +354,7 @@ df %>% count(benefit_period, wt = NULL, sort = TRUE) %>%
 
 ### Waiting period mix
 
-```{r Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
 df %>% count(waiting_period, wt = NULL, sort = TRUE) %>% 
    mutate(freq = percent(round(n / sum(n),2))) %>% 
    format(n, big.mark=",")
@@ -371,7 +362,7 @@ df %>% count(waiting_period, wt = NULL, sort = TRUE) %>%
 
 ### Occupation mix
 
-```{r Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - proportions, class.source="fold-show", message=FALSE, warning=FALSE}
 df %>% count(occupation, wt = NULL, sort = TRUE) %>% 
    mutate(freq = percent(round(n / sum(n),2))) %>% 
    format(n, big.mark=",")
@@ -379,7 +370,7 @@ df %>% count(occupation, wt = NULL, sort = TRUE) %>%
 
 Consider a histogram to show the distribution of numeric data.
 
-```{r Review exposure data - hist, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - hist, class.source="fold-show", message=FALSE, warning=FALSE}
 hist(df$age, main = "Histogram of age", xlab = "Age", ylab = "Frequency")
 hist(df$sum_assured, main = "Histogram of sum assured", xlab = "Sum assured", ylab = "Frequency")
 hist(df$policy_year, main = "Histogram of policy year", xlab = "Policy year", ylab = "Frequency")
@@ -387,7 +378,7 @@ hist(df$policy_year, main = "Histogram of policy year", xlab = "Policy year", yl
 
 Consider the correlation of ordered numeric explanatory variables.
 
-```{r Review exposure data - correlation, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - correlation, class.source="fold-show", message=FALSE, warning=FALSE}
 # correlation of ordered numeric explanatory variables
 #	pairs() gives correlation matrix and plots; test on a random sample from our data
 df_sample <- sample_n(df,10000,replace=FALSE) 
@@ -407,7 +398,7 @@ corrplot(cor,
 
 ggpairs() similarly shows correlations for ordered numeric data as well as other summary stats:
 
-```{r Review exposure data - ggpairs, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - ggpairs, class.source="fold-show", message=FALSE, warning=FALSE}
 #ggpairs() similarly shows correlations for ordered numeric data as well as other summary stats
 df_sample %>% select(age,policy_year,sum_assured,sex, smoker) %>% 
 ggpairs(columns = 1:3, aes(color = sex, alpha = 0.5),
@@ -420,7 +411,7 @@ ggpairs(columns = c("sum_assured", "smoker"), aes(color = sex, alpha = 0.5))
 
 Review summary statistics for subsets of data.
 
-```{r Review exposure data - summary, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review exposure data - summary, class.source="fold-show", message=FALSE, warning=FALSE}
 head(aggregate(df$sum_assured~df$age,data=df,mean))
 ```
 
@@ -435,7 +426,7 @@ There are several tidyverse functions that can help with restructuring data, for
 
 ### Wide data format example
 
-```{r Data format, class.source="fold-show"}
+```{python Data format, class.source="fold-show"}
 head(spread(df_sample, sex, inc_count_tot, fill = 0))
 ```
 
@@ -450,7 +441,7 @@ This section sets out some simple visualisation methods using ggplot(). ggplot()
 
 Examples below use ggplot to explore the exposure data.
 
-```{r Visualisation methods, class.source="fold-show"}
+```{python Visualisation methods, class.source="fold-show"}
 
 # data argument passes the data frame to be visualised
 # mapping argument defines a list of aesthetics for the visualisation - all subsequent layers use those unless overridden
@@ -495,7 +486,7 @@ Or alternatively count overlapping points with geom_count().
 
 A full list of layers is available [here](https://ggplot2.tidyverse.org/reference/).
 
-```{r Visualisation methods - layers, class.source="fold-show"}
+```{python Visualisation methods - layers, class.source="fold-show"}
 
 ggplot(data=df_sample, aes(x=age, y=sum_assured)) +
 geom_point() + 
@@ -518,7 +509,7 @@ You can add a themes layer to your graph [@ggplot_themes], for example
 
 Other packages like ggthemes carry many more options. Example of added themes layer below. See also these examples [these examples](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) from ggthemes.
 
-```{r Visualisation methods - themes, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Visualisation methods - themes, class.source="fold-show", message=FALSE, warning=FALSE}
 
 # add an occupation group to the data
 df_sample <- df_sample %>% mutate(occ_group = factor(case_when(occupation %in% c("white","prof","sed") ~ "WC", TRUE ~ "BC")))
@@ -537,7 +528,7 @@ theme_pander() + scale_color_gdocs()
 ### 3D visualisations with plotly
 ggplot does not cater to 3D visualisations, but this can be done through plotly simply. 
 
-```{r Visualisation methods - 3D, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Visualisation methods - 3D, class.source="fold-show", message=FALSE, warning=FALSE}
 plot_base <- plot_ly(data=df_sample, z= ~sum_assured, x= ~age, y=~policy_year, opacity=0.6) %>%
 add_markers(color = ~occ_group,colors= c("blue", "red"), marker=list(size=2)) 
 # show graph
@@ -549,7 +540,7 @@ embed_notebook(plot_base)
 
 We can add a modeled outcome to the 3D chart. For detail on the model fit, see later sections. 
 
-```{r Visualisation methods - 3D plane, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Visualisation methods - 3D plane, class.source="fold-show", message=FALSE, warning=FALSE}
 
 # to add a plane we need to define the points on the plane. To do that, we first create a grid of x and y values, where x and y are defined as earlier.
 x_grid <- seq(from = min(df_sample$age), to = max(df_sample$age), length = 50)
@@ -583,13 +574,13 @@ plot_base %>%
 
 Consider claim vs no claim. should be close to nil overlapping clams. actual claim rate is ~0.003-0.005.
 
-```{r Review claim data, class.source="fold-show"}
+```{python Review claim data, class.source="fold-show"}
 df %>% select(inc_count_acc,inc_count_sick) %>% table()
 ```
 
 Plotting claim vs no claim by age and sex:
 
-```{r Review claim data - plots, class.source="fold-show"}
+```{python Review claim data - plots, class.source="fold-show"}
 # use ggplot to plot inc_count_sick by age and sex; using df_sample from earlier
 # clearly all of the points are going to be at 0 or 1 and will overlap at each age -> not useful.
 df_sample %>% ggplot(aes(x=age,y=inc_count_sick,color=sex)) +
@@ -599,7 +590,7 @@ theme_pander() + scale_color_gdocs()
 
 As above but add some random noise around the points to separate them:
 
-```{r Review claim data - plots jitter, class.source="fold-show"}
+```{python Review claim data - plots jitter, class.source="fold-show"}
 df_sample %>% ggplot(aes(x=age,y=inc_count_sick,color=sex)) +
 geom_point(position=position_jitter(height=0.1)) +
 theme_pander() + scale_color_gdocs()
@@ -607,7 +598,7 @@ theme_pander() + scale_color_gdocs()
 
 As above but excluding unknown sex and adding a smoothing line:
 
-```{r Review claim data - plots jitter refined, class.source="fold-show"}
+```{python Review claim data - plots jitter refined, class.source="fold-show"}
 # as above but excluding unknown sex (as there are very few claims observed for that group) and adding a smoothing line (setting method as glm)
 # because the claim rate is so low, the smoothed line is very close to zero and so not a particularly useful visualisation.
 df_sample %>% filter(sex != "u") %>% ggplot(aes(x=age,y=inc_count_sick,color=sex)) +
@@ -618,7 +609,7 @@ theme_pander() + scale_color_gdocs()
 
 Looking at total count of claim rather than just sickness shows a slight trend by age:
 
-```{r Review claim data - plots jitter total count, class.source="fold-show"}
+```{python Review claim data - plots jitter total count, class.source="fold-show"}
 df_sample %>% filter(sex != "u") %>% ggplot(aes(x=age,y=inc_count_tot,color=sex)) +
 geom_point(position=position_jitter(height=0.1)) + 
 geom_smooth(method="glm", method.args = list(family = "binomial")) + # or list(family = binomial(link='logit')
@@ -627,7 +618,7 @@ theme_pander() + scale_color_gdocs()
 
 Consider claim rate:
 
-```{r Review claim data - plot claim rate, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review claim data - plot claim rate, class.source="fold-show", message=FALSE, warning=FALSE}
 # given the actual count of claims is so low, it might be more useful to consider the claim rate
 # use the manipulation methods from earlier to get claim rates by age and sex for accident and sickness; filter out unknown sex and age with low exposure
 # this shows a clear trend by age for males and females
@@ -647,7 +638,7 @@ theme_pander() + scale_color_gdocs()
 
 We can split the graph above into a few tiles to show the rates by other explanatory variables like occupation using [facet_wrap](https://ggplot2-book.org/facet.html); see also "facet_grid". Can use grid.arrange(plot_1,plot_2, plot_3) from the pdp package to arrange unrelated pplot items.
 
-```{r Review claim data - more vis, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review claim data - more vis, class.source="fold-show", message=FALSE, warning=FALSE}
 # as above, but adding occupation
 df_grouped <- df %>% filter(sex != "u", between(age, 30,60)) %>% group_by(age,sex,occupation) %>% summarise(total_sick=sum(inc_count_sick),total_acc=sum(inc_count_acc), exposure=n(),.groups = 'drop') %>% mutate(sick_rate = total_sick/exposure, acc_rate = total_acc/exposure) 
 
@@ -665,7 +656,7 @@ facet_wrap(~occupation, ncol=2, nrow=3)
 
 Consider sickness rate by occupation:
 
-```{r Review claim data - boxplot, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Review claim data - boxplot, class.source="fold-show", message=FALSE, warning=FALSE}
 
 df_grouped %>%
 # used ggplot to graph the results
@@ -687,7 +678,7 @@ The sections below provide a refresher on linear and logistic regression; some c
 ### Training vs testing data
 Split data into training and testing data sets. We will used 75% of the data for training and the rest for testing.
 
-```{r Split data, class.source="fold-show"}
+```{python Split data, class.source="fold-show"}
 # Determine the number of rows for training
 nrow(df)
 # Create a random sample of row IDs
@@ -701,7 +692,7 @@ df_test <- df[-sample_rows,]
 ### Class imbalance
 Looking at the random sample we have created, we have a significant imbalance between successes and failures. 
 
-```{r Split data - review, class.source="fold-show"}
+```{python Split data - review, class.source="fold-show"}
 df_train %>% select(inc_count_acc,inc_count_sick) %>% table()
 ```
 
@@ -717,12 +708,12 @@ To do that we need to refine our sampling method
 
 Showing a method for down sampling below - this is more useful for pure classification models; not that useful for insurance applications.
 
-```{r Split data - class imbalance, class.source="fold-show"}
+```{python Split data - class imbalance, class.source="fold-show"}
 # Determine the number of rows for training
 df_train_ds <- downSample(df_train,factor(df_train$inc_count_sick)) 
 ```
 
-```{r Split data - class imbalance, class.source="fold-show"}
+```{python Split data - class imbalance, class.source="fold-show"}
 df_train_ds %>% select(inc_count_sick) %>% table()
 ```
 
@@ -767,20 +758,20 @@ Other output
 * vcov(model) gives the variance-covariance matrix for fitted model (diagonals are variance and off diagonals are covariance - 0 if all variables are orthogonal).
 * coef(model) returns the model coefficients.
 
-```{r Logistic regression - base, class.source="fold-show"}
+```{python Logistic regression - base, class.source="fold-show"}
 model_1 <- glm(inc_count_sick~age,data=df_train,family="binomial") # use the default link
 summary(model_1)
 ```
 
 Choice of [link function](https://en.wikipedia.org/wiki/Generalized_linear_model): the link function defines the relationship of response variables to mean. It is usually sufficient to use the standard link. Section below shows a model with the link specified (results are the same as the model above).
 
-```{r Logistic regression - link function, results='hide', class.source="fold-show"}
+```{python Logistic regression - link function, results='hide', class.source="fold-show"}
 model_2 <- glm(inc_count_sick~age,data=df_train,family=binomial(link="logit")) # specify the link, logit is default for binomial
 summary(model_2)
 ```
 
 Adding more response variables: When deciding on explanatory variables to model, consider the properties of the data (like correlation or colinearity). 
-```{r Logistic regression - more variables, class.source="fold-show"}
+```{python Logistic regression - more variables, class.source="fold-show"}
 model_3 <- glm(inc_count_sick~age+policy_year+sex+waiting_period,data=df_train,family=binomial(link="logit")) 
 summary(model_3)
 ```
@@ -790,7 +781,7 @@ Choice of response distribution: In the logistic regression example above we con
 
 * [Poisson](https://en.wikipedia.org/wiki/Poisson_distribution) distribution: mean and variance are equal. 
 
-```{r Response distribution - count densities - poisson}
+```{python Response distribution - count densities - poisson}
 lower<-qpois(0.001, lambda=5)
 upper<-qpois(0.999, lambda=5)
 x<-seq(lower,upper,1)
@@ -802,7 +793,7 @@ theme_pander() + scale_color_gdocs()
 
 * [Negative Binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution) distribution: can handle Poission overdispersion (where the variance is bigger than expected).
 
-```{r Response distribution - count densities - negative binomial}
+```{python Response distribution - count densities - negative binomial}
 lower<-qnbinom(0.001, size=2, mu=10)
 upper<-qnbinom(0.999, size=2, mu=10)
 x<-seq(lower,upper,1)
@@ -816,7 +807,7 @@ And amount
 
 * [Normal](https://en.wikipedia.org/wiki/Normal_distribution) distribution
 
-```{r Response distribution - amount densities - normal}
+```{python Response distribution - amount densities - normal}
 x<-seq(-3.5,3.5,0.1)  
 data.frame(x,y=dnorm(x, mean=0, sd=1)) %>% ggplot(mapping=aes(y=y,x=x)) + geom_line()+
 labs(x=NULL, y="Density", title = "Density, standard normal [dnorm(x, mean=0, sd=1)]")+
@@ -825,7 +816,7 @@ theme_pander() + scale_color_gdocs()
 
 * [Gamma](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html) distribution: allows for a fatter tail.
 
-```{r Response distribution - amount densities - gamma}
+```{python Response distribution - amount densities - gamma}
 lower<-qgamma(0.001, shape=5, rate=3)
 upper<-qgamma(0.999, shape=5, rate=3)
 x<-seq(lower,upper,0.01)
@@ -837,7 +828,7 @@ theme_pander() + scale_color_gdocs()
 
 An example of an amount model, assuming a normal response distribution
 
-```{r Linear regression, class.source="fold-show"}
+```{python Linear regression, class.source="fold-show"}
 amount_model_3 <- glm(inc_amount_sick~age+sex+waiting_period,data=df_train) 
 tidy(amount_model_3)
 ```
@@ -850,7 +841,7 @@ The example below compares a model of counts by age and sex on the grouped and s
 
 ### Modeled result - grouped data
 
-```{r Logistic regression - grouped}
+```{python Logistic regression - grouped}
 # grouped model
 model_4 <- glm(cbind(inc_count_sick,exposure-inc_count_sick)~age+sex,data=df_grp,family=binomial(link="logit")) # cbind gives a matrix of successes and failures
 # use tidy to visualise the modelled result
@@ -858,7 +849,7 @@ tidy(model_4)
 ```
 ### Modeled result - ungrouped data
 
-```{r Logistic regression - grouped}
+```{python Logistic regression - grouped}
 # ungrouped model, coefficients materially similar
 model_5 <- glm(inc_count_sick~age+sex,data=df,family=binomial(link="logit")) 
 tidy(model_5) 
@@ -866,7 +857,7 @@ tidy(model_5)
 ### Offsets
 When the data are grouped, it is important to consider the level of exposure in a given group. This can be achieved with an [offset](https://towardsdatascience.com/offsetting-the-model-logic-to-implementation-7e333bc25798) term (@GLM_Insurance, p66-67). This is important in an insurance context where we are often interested in modelling rates of claim. 
 
-```{r Logistic regression - offset}
+```{python Logistic regression - offset}
 df_grp_filtered <- df_grp %>% filter(inc_count_tot>1, exposure>10)
 model_6 <- glm(inc_amount_tot~age+sex+offset(sum_assured),data=df_grp_filtered) 
 tidy(model_6)
@@ -880,7 +871,7 @@ The models we have fitted above are based upon actual claim incidences. We can c
 
 Using the grouped data again, we model A/E with a normal response distribution. The model shows that none of the coeffients are significant indicating no material difference to expected, which is consistent with the data as the observations were derived from the expected probabilities initially.
 
-```{r Logistic regression - grouped A/E}
+```{python Logistic regression - grouped A/E}
 # grouped model
 model_8 <- glm(inc_count_sick/inc_count_sick_exp~age+sex,data=df_grp) 
 # use tidy to visualise the modelled result
@@ -890,7 +881,7 @@ summary(model_8)
 ## Stepwise regression
 This method builds a regression model from a set of candidate predictor variables by entering predictors based on p values, in a stepwise manner until there are no variables left to enter any more. Model may over / under-state the importance of predictors and the direction of stepping (forward or backward) can impact the outcome - so some degree of interpretation is necessary.
 
-```{r Stepwise regression, class.source="fold-show"}
+```{python Stepwise regression, class.source="fold-show"}
 # specify a null model with no predictors
 null_model_sick <- glm(inc_count_sick ~ 1, data = df_train, family = "binomial")
 
@@ -912,14 +903,14 @@ The form of the final step model is glm(formula = inc_count_sick ~ poly(age, 3) 
 ## Confidence intervals
 We can compute the confidence intervals for one or more parameters in a fitted model.
 
-```{r Stepwise regression - confidence intervals, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Stepwise regression - confidence intervals, class.source="fold-show", message=FALSE, warning=FALSE}
 confint(step_model_sick) # add second argument specifying which parameters we need a confint for
 ```
 
 ## Predictions
 predict() is a generic function that can be used to predict results from various model forms. The function takes the form below. For logistic regression, setting prediction type to response produces a probability rather than log odds (which are difficult to interpret).
 
-```{r Predictions, class.source="fold-show"}
+```{python Predictions, class.source="fold-show"}
 # predictions
 pred_inc_count_sick <- as.data.frame(
   predict(step_model_sick, data= df_train, # model and data
@@ -939,7 +930,7 @@ df_train_pred <- cbind(df_train,pred_inc_count_sick)
 
 We can plot the results by age and sex against the crude rates from earlier:
 
-```{r Predictions - graph}
+```{python Predictions - graph}
 # from earlier, summarise data by age and sex
 df_train_pred %>% filter(sex != "u", between(age, 30,60)) %>% group_by(age,sex) %>% 
 summarise(total_sick=sum(inc_count_sick),total_acc=sum(inc_count_acc), pred_total_sick=sum(pred_rate_inc_count_sick),exposure=n(),.groups = 'drop') %>% 
@@ -956,7 +947,7 @@ theme_pander() + scale_color_gdocs()
 ### Out of sample predictions
 Earlier we split the data into “training” data used to create the model and “test” data which we intended to use for performance validation. Adding predictions to test data below.
 
-```{r Predictions for validation, message=FALSE, warning=FALSE}
+```{python Predictions for validation, message=FALSE, warning=FALSE}
 # predictions
 pred_inc_count_sick <- as.data.frame(
   predict(step_model_sick, data= df_test, # test data
@@ -981,7 +972,7 @@ summary(df_test_pred$pred_rate_inc_count_sick)
 
 To translate the predicted probabilities into a vector of claim/no-claim for each policy we could define a claim as occurring if modelled / predicted probability of claim is greater than some threshold value. More on this later under evaluation techniques. 
 
-```{r Binary predictions, class.source="fold-show"}
+```{python Binary predictions, class.source="fold-show"}
 # add binary prediction based upon a threshold probability
 df_test_pred$pred_inc_count_sick <- ifelse(df_test_pred$pred_rate_inc_count_sick>0.003,1,0) # example threshold is ~3rd quartile probability of claim. for balanced data this should be closer to 0.5.
 ```
@@ -994,7 +985,7 @@ For least squares regression the $R^{2}$ statistic ([coefficient of determinatio
 
 AIC stands for [Akaike Information Criteria](https://en.wikipedia.org/wiki/Akaike_information_criterion). $AIC = -2l+2p$ where $l$ is the log likelihood and $p$ are the number of parameters. It is analogous to adjusted $R^{2}$ and is the measure of fit which penalizes model for the number of independent variables. We prefer a model with a lower AIC value.
 
-```{r Re-attatch MASS, echo=FALSE, class.source="fold-show", message=FALSE, results=FALSE, warning=FALSE}
+```{python Re-attatch MASS, echo=FALSE, class.source="fold-show", message=FALSE, results=FALSE, warning=FALSE}
 # MASS package interferes with pairs() and cor(), reload here for stats tests later
 library("MASS")
 library("arm")
@@ -1003,7 +994,7 @@ library("msme")
 
 The results below show the AIC for model 3 is lower than model 1 and that the final step model has the lowest AIC of those evaluated (preferred).
 
-```{r Evaluation - AIC, class.source="fold-show"}
+```{python Evaluation - AIC, class.source="fold-show"}
 AIC(model_1)
 AIC(model_3)
 stepAIC(step_model_sick)
@@ -1013,7 +1004,7 @@ stepAIC(step_model_sick)
 
 An anova comparison below between model_3 and the step model using a Chi-squared test shows a small p value for the stepped model - indicating that the model is an improvement. F-test can be used on continuous response models.
 
-```{r Evaluation - anova, class.source="fold-show"}
+```{python Evaluation - anova, class.source="fold-show"}
 anova(model_3,step_model_sick, test="Chisq")
 ```
 
@@ -1022,7 +1013,7 @@ The [likelihood ratio test](https://en.wikipedia.org/wiki/Likelihood-ratio_test)
 
 The test below concludes that the step model is more accurate than the less complex model.
 
-```{r Evaluation - likelihood ratio, class.source="fold-show"}
+```{python Evaluation - likelihood ratio, class.source="fold-show"}
 lrtest(model_3,step_model_sick)
 ```
 
@@ -1035,14 +1026,14 @@ Residuals / errors are the observed less fitted values. Traditional residual plo
 ### Standard model plots
 Plots, linear regression example:
 
-```{r Evaluation - traditional plots linear reg}
+```{python Evaluation - traditional plots linear reg}
 par(mfrow = c(2, 2))
 plot(amount_model_3)
 ```
 
 Logistic regression example:
 
-```{r Evaluation - traditional plots logistic reg}
+```{python Evaluation - traditional plots logistic reg}
 par(mfrow = c(2, 2))
 plot(step_model_sick)
 ```
@@ -1050,20 +1041,20 @@ plot(step_model_sick)
 ### Alternatives
 For logistic regression we can try other tools to test the residuals against the model assumptions. GLMs assume that the residuals / errors are normally distributed. Plotting the density of the residuals gives us:
 
-```{r Evaluation - histogram of residuals}
+```{python Evaluation - histogram of residuals}
 hist(rstandard(step_model_sick),breaks= c(seq(-1,1,by=0.001),seq(2,5, by=1)),freq=FALSE,main = "Histogram of residuals",xlab = "Residuals")
 curve(dnorm, add = TRUE)
 ```
 
 Focusing the x axis range:
 
-```{r Evaluation - histogram of residuals focussed}
+```{python Evaluation - histogram of residuals focussed}
 hist(rstandard(step_model_sick),breaks= c(seq(-1,1,by=0.001),seq(2,5, by=1)), xlim = c(-0.5,0.5),freq=FALSE,main = "Histogram of residuals",xlab = "Residuals")
 ```
 
 A binned residual plot divides data into bins based upon their fitted values, showing the average residuals vs fitted value for each bin [@stats_notes]:
 
-```{r Evaluation - binned residual}
+```{python Evaluation - binned residual}
 # from the arm package
 binnedplot(fitted(step_model_sick), 
            residuals(step_model_sick, type = "response"), 
@@ -1081,7 +1072,7 @@ Grey lines are 2 se bands (~95%). Apart from a few outliers, most of the residua
 ### P-P plots
 The P-P (probability–probability) plot is a visualization that plots CDFs of the two distributions (empirical and theoretical) against each other, an unrelated dummy example below. It can be used to assess the residuals for normality.
 
-```{r Evaluation - pp plot}
+```{python Evaluation - pp plot}
 x <- rnorm(100)
 probDist <- pnorm(x)
 #create PP plot
@@ -1094,7 +1085,7 @@ abline(0,1)
 
 [Pearson dispersion test](https://search.r-project.org/CRAN/refmans/msme/html/P__disp.html): This function calculates Pearson Chi2 statistic and the Pearson-based dipersion statistic. Values of the dispersion greater than 1 indicate model overdispersion. Values under 1 indicate under-dispersion.
 
-```{r Evaluation - pearson dispersion}
+```{python Evaluation - pearson dispersion}
 print(P__disp(step_model_sick))
 ```
 
@@ -1113,7 +1104,7 @@ A perfect classification model could have Sensitivity and Specificity close to 1
 
 A confusion matrix is a tabular representation of Observed vs Predicted values. It helps to quantify the efficiency (or accuracy) of the model.
 
-```{r Detatch MASS - 2, echo=FALSE, class.source="fold-show", results=FALSE, warning=FALSE}
+```{python Detatch MASS - 2, echo=FALSE, class.source="fold-show", results=FALSE, warning=FALSE}
 # MASS package interferes with pairs() and cor() and others
 require(arm) # package
 detach(package:arm)
@@ -1121,12 +1112,12 @@ detach(package:msme)
 detach(package:MASS)
 ```
 
-```{r Evaluation - confusion matrix}
+```{python Evaluation - confusion matrix}
 confusion_matrix <- df_test_pred %>% select(inc_count_sick,pred_inc_count_sick) %>% table()
 confusion_matrix
 ```
 
-```{r Evaluation - confusion matrix - detail}
+```{python Evaluation - confusion matrix - detail}
 cat("Accuracy Rate =",(confusion_matrix[1,1]+confusion_matrix[2,2])/sum(confusion_matrix[]),
 "; Missclasification Rate =",(confusion_matrix[1,2]+confusion_matrix[2,1])/sum(confusion_matrix[]),
 "; True Positive Rate/Sensitivity  =",confusion_matrix[2,2]/sum(confusion_matrix[2,]),
@@ -1144,7 +1135,7 @@ ROC curves start at 0 on the x and y axis and rise to 1. The faster the curve re
 
 In our binary model, the AUC is not much better than 0.5, indicating a very weak predictive ability. It isn't hugely surprising that our model is not very effective at predicting individual claims. As noted earlier, for insurance applications, we are usually more concerned with predicting the claim rate and how it varies by predictors like age and sex [@GLM_Insurance, p108-109].
 
-```{r Evaluation - ROC, class.source="fold-show", message=FALSE, warning=FALSE}
+```{python Evaluation - ROC, class.source="fold-show", message=FALSE, warning=FALSE}
 par(mfrow = c(1,1))
 roc = roc(df_test_pred$inc_count_sick, df_test_pred$pred_rate_inc_count_sick, plot = TRUE, print.auc = TRUE)
 as.numeric(roc$auc)

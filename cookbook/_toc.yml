@@ -27,6 +27,8 @@ parts:
   chapters:
   - file:  docs/LifeRecipeBook.ipynb 
   - file:  docs/life_stats.ipynb
+  - file:  docs/bayesian-applications.ipynb
+  - file:  docs/trees.ipynb
 - caption: Unsupervised Learning
   chapters: 
   - file:  docs/DAA_M06_CS1.ipynb
