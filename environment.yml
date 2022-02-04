@@ -1,6 +1,6 @@
 name: main-conda-env
 channels:
-  - default
+  - conda-forge  
 dependencies:
   - python=3.8
   - sphinx
