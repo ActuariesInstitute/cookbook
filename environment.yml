@@ -4,8 +4,7 @@ channels:
 dependencies:
   - python=3.8
   - sphinx
-  - pip  # Daily build job was working until Jan 29, broke on Jan 30, coincidentally when pip 22.0 was released. But conda does not have pip 22.0
   - pandas
   - matplotlib
-  - quantecon  # Use conda version, see if the breakage is pip related
+  - quantecon 
   - jupyter-book
