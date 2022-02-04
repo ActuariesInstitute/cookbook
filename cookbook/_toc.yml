@@ -25,7 +25,7 @@ parts:
   - file:  docs/py_shap_values.ipynb
 - caption: Life Insurance
   chapters:
-  - file:  docs/LifeRecipeBook.ipynb
+  - file:  docs/LifeRecipeBook.ipynb 
   - file:  docs/life_stats.ipynb
 - caption: Unsupervised Learning
   chapters: 
