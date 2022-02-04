@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.8
   - sphinx
-  - pip
+  - pip=21.3.1  # Daily build job was working until Jan 29, broke on Jan 30, coincidentally when pip 22.0 was released
   - pandas
   - matplotlib
   - pip:
