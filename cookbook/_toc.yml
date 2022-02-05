@@ -50,15 +50,9 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
-
-- caption: DAA assngment notebook 2021 sem 2
-  chapters:
-  - file: docs/DAA_Sem_2_2021_Sample_Assignment_colab_orig.ipynb
-  
-=======
 - caption: Contributing
   chapters:
   - file: docs/contributing.ipynb
-
-
-
+- caption: DAA assngment notebook 2021 sem 2
+  chapters:
+  - file: docs/DAA_Sem_2_2021_Sample_Assignment_colab_orig.ipynb
