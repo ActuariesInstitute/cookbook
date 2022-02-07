@@ -1,0 +1,161 @@
+# R: data.table for actuaries
+
+```{r active="", eval=FALSE}
+---
+title: "R's data.table - a useful package for actuaries"
+date: "2020-10-19T16:00:00Z"
+slug: datatable
+authors: 
+  - gmcguire
+tags: ["foundations", "R", "data"]
+
+---
+```
+
+*This article was originally created by Grainne McGuire discussing packages in R that are useful for data manipulation and published in the [General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/). The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the [blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/) further for additional content including detailed walkthroughs of more advanced models.*
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## What is data.table?
+
+`data.table` is a package for carrying out data manipulations in R of tabular data. This includes:
+
+* adding and removing columns in a data set
+* filtering columns 
+* sorting data
+* joining different data sources
+* rolling joins
+* summarising data
+
+Tabular structure includes columns of data where that data column is actually a list (unsurprisingly, called a list column). 
+This greatly increases what you can do with your data.
+Essentially, if you need to do any type of data manipulation, you can probably do it with `data.table`.
+
+
+## Why use data.table?
+
+There are a number of reasons for choosing `data.table`:
+
+* It is very fast and memory efficient, even for large data sets
+* Actively maintained and used by many people
+* No dependencies other than baseR
+* Flexible
+* Concise syntax
+
+Of course, there are other options for manipulating data. 
+Popular choices include dplyr from the tidyverse suite, SQL software, or even just the tools in baseR. 
+In this post we will focus on `data.table`.
+
+## Now for the details
+
+### data.table is fast
+
+`data.table` is much faster than dplyr or baseR for data manipulation tasks and can handle larger datasets.
+All development of data.table is done with speed in mind. It uses a number of tricks to produce better performance:
+
+* Adding or removing columns from a data.table are done by reference or modifying in place, rather than by copying the entire table to a new location in memory.
+* A data.table may have a key - once the key is created, extracting subgroups or joining tables by that key are extremely quick. Similarly, secondary indices allow fast access for other variables.
+* `data.table` supplies a number of optimised functions - e.g. `fread()` and `fwrite()` to read/write CSV files, `fifelse()`, `fcoalesce()`. `fread()` and `fwrite()` are so fast that there are many people who use the `data.table` package solely to access these functions.
+    
+Some benchmarks for data manipulation are maintained at https://h2oai.github.io/db-benchmark/. 
+Timings are given for datasets of different sizes - as data sets get larger, `data.table` really shines. 
+Google data.table performance and you will find this message repeated in many places.
+
+Machine learning and large amounts of data often go hand-in-hand. 
+So if you are doing your data manipulation in R, and have large amounts of data, you should strongly consider using `data.table`.
+
+Similarly, if a lot of your work involves programming with large amounts of data, or where speed and memory optimisation is important, then `data.table` has a lot to offer.
+
+
+### data.table is actively maintained
+
+In the open source world, it is important to consider carefully the packages you are using before selecting a tool for repeat use. 
+
+* Are they actively maintained? 
+* Are bugs quickly fixed?
+* Are new features regularly added?
+* Are lots of people using the package to find the bugs / missing features?
+
+`data.table` is a very popular package and is regularly maintained.
+
+
+### data.table has no dependencies
+
+Strictly speaking, it has no dependencies other than baseR, with a policy to make the dependency on baseR as old as possible for as long as possible.
+For example, the current release of data.table (V1.31.1 as at October 2020) will still work with R v3.1.0 which was released in April 2014.
+This leads to a more stable product - code that you write now to manipulate data will most likely still work in 2 or 3 years time - and you won't have to update 20 different packages before running that code either.
+
+
+
+
+### data.table is flexible
+
+As noted above, `data.table` contains a full suite of data manipulation tools.
+Furthermore, a data.table is also a data.frame so any data.frame code will work on a data.table. 
+So you lose nothing, but gain a lot.
+
+
+### Concise syntax
+
+`data.table` syntax is very concise and minimalist. 
+Whether this is a pro or con is subjective - this will appeal to some but the steep learning curve will be off-putting for others.
+Speaking for myself, verbose code such as `dplyr` or SQL or SAS make my head and fingers hurt(!) - terse data.table code is much more appealing to me.
+It's fast to read and fast to type. However, the functions in `dplyr` are more transparent to newcomers.
+
+For those new to `data.table`, there are plenty of online resources to draw on. In my experience, I've managed to find example code for many complex data manipulation jobs on StackOverflow; the difficult part has been coming up with the appropriate search phrase.
+
+As an example of the syntax, the code below:
+
+* extracts the subset of the iris data where Sepal.Length < 6
+* groups the data by Species
+* calculates the number and the mean of the Sepal.Width and Petal.Length in each group and assigns column names to these summary statistics
+
+```{r}
+# setup
+library(data.table)
+
+data(iris)
+setDT(iris)    # make iris a data.table
+
+# now do the data manipulation operations
+iris[Sepal.Length < 6.0, 
+     .(num=.N, 
+       mean_sepal_width = mean(Sepal.Width), 
+       mean_petal_length = mean(Petal.Length)), 
+     keyby=.(Species)]
+
+```
+
+<br>
+
+
+## Conclusion
+
+If you or your team use R, then you should consider having `data.table` in your toolkit, particularly if:
+
+* you work with large data sets in R
+* you need fast, efficient code
+* You need to optimise your use of RAM
+* you are writing packages, software or repeatable tasks and want to minimise your dependencies for more robust and easier to maintain code.
+* you want shorter code
+
+
+
+
+## Resources to learn data.table
+
+The obvious place to start is with the package itself and its help documentation (links below), but there are many additional on-line resources to learn data.table. 
+
+
+* [Package home on github](https://github.com/Rdatatable/data.table) including news, updates, a brief guide and a cheat sheet.
+
+* [CRAN home with links to vignettes](https://cran.r-project.org/web/packages/data.table/index.html). 
+   Vignettes also available in R via `browseVignettes(package="data.table")` after you have installed the package.
+   There are currently 9 of these covering a wide range of topics.
+   
+* If you are more comfortable with `dplyr` code and don't mind the dependencies, then [dtplyr](https://cran.r-project.org/web/packages/dtplyr/index.html) provides a `data.table` backend to `dplyr`.   
+   
