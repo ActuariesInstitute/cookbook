@@ -1,0 +1,2474 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R: Reserving with GLMs &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="R: Reserving with LASSO" href="MLRWP_R_Lasso.html" />
+    <link rel="prev" title="R: Life Industry Stats in Tableau and R" href="life_stats.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_DataTable.html">
+   R: data.table for actuaries
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="life_stats.html">
+   R: Life Industry Stats in Tableau and R
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Insurance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   R: Reserving with GLMs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Lasso.html">
+   R: Reserving with LASSO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_mlr3.html">
+   R: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
+   Py: Machine Learning Triangles
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_GLMs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_GLMs.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_GLMs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_GLMs.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chain-ladder-model">
+   Chain ladder model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fitting-the-model">
+     Fitting the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-reserve">
+     Loss reserve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-diagnostics">
+     Model diagnostics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculations">
+       Calculations
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting">
+       Plotting
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#refining-the-model">
+   Refining the model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplifying-the-model">
+     Simplifying the model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#accident-year">
+       Accident year
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#development-year">
+       Development year
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identifying-missing-structure">
+     Identifying missing structure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Loss reserve
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviewing-this-example">
+   Reviewing this example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-use-of-glms-in-traditional-reserving">
+   Practical use of GLMs in traditional reserving
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelling">
+     Modelling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-reserves">
+     Setting reserves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-references">
+     Additional References
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#session-information">
+   Session information
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Reserving with GLMs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chain-ladder-model">
+   Chain ladder model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fitting-the-model">
+     Fitting the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-reserve">
+     Loss reserve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-diagnostics">
+     Model diagnostics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculations">
+       Calculations
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting">
+       Plotting
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#refining-the-model">
+   Refining the model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplifying-the-model">
+     Simplifying the model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#accident-year">
+       Accident year
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#development-year">
+       Development year
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identifying-missing-structure">
+     Identifying missing structure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Loss reserve
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviewing-this-example">
+   Reviewing this example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practical-use-of-glms-in-traditional-reserving">
+   Practical use of GLMs in traditional reserving
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelling">
+     Modelling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-reserves">
+     Setting reserves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-references">
+     Additional References
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#session-information">
+   Session information
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-reserving-with-glms">
+<h1>R: Reserving with GLMs<a class="headerlink" href="#r-reserving-with-glms" title="Permalink to this headline">¶</a></h1>
+<p><em>This article was originally created by Grainne McGuire and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
+<p>An aim of the MLR working party is to promote the use of machine learning (ML) in reserving.
+So why then are we talking about using GLMs for reserving?
+Well, as noted in our <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/intro-to-foundations-blog/">introductory post</a>, we consider that getting familiar with using GLMs for reserving is a good place to begin your ML journey - GLMs should already be familiar from pricing so making the switch to reserving with GLMs is a useful first step.</p>
+<p>This is longer than many of our recent articles.
+However, this is because it contains a full worked example of the modelling and reserving process for a data set - as per the objectives of the working party, we want to include practical coding examples in our articles.
+There are also some concluding comments about the wider applicability of this type of process.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The first time I did a reserving job (back in 2001) I used GLMs.
+Coming from a statistical background and being new to the actuarial workplace at the time, this didn’t seem unusual to me.
+Since then, most of my reserving jobs have used GLMs - personally I find it a lot easier and less error-prone than working with excel templates.
+Also, once you know what you are doing, you can do everything with a GLM that you can do with an excel-based model, and then more.</p>
+<p>However, some people reading this article may be new to the idea of using GLMs in reserving.
+So I’m going to use an example where we start with a chain ladder model, fitted as a GLM and then explore the additional features that we can add using a GLM.
+All the R code will be shared here.</p>
+<p>The material is mostly based on a 2016 CAS monograph <a class="reference external" href="https://www.casact.org/monograph/cas-monograph-no-3"><em>Stochastic Loss Reserving Using Generalized Linear Models</em></a> that I co-authored with Greg Taylor, and an accompanying <a class="reference external" href="https://grainnemcguire.github.io/post/traditional-style-reserving-using-glms/">personal blog post</a> that works through replicating some of the modelling in the monograph. Take a look at these if you want to see more about this example.</p>
+<p>Before we begin, let’s attach the R packages that we need, and turn off scientific notation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">here</span><span class="p">)</span>  <span class="c1"># needed to download the data for now</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>  <span class="c1"># manipulate the data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>   <span class="c1"># plot the data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span>   <span class="c1"># plot colours that are friendly to colour blindness</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span> <span class="c1"># easily combine plots</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>  <span class="c1"># gives access to %&gt;% pipe</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span> <span class="c1"># formats tables nicely</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRdisplay</span><span class="p">)</span> <span class="c1"># displays tables when in ipynb format</span>
+
+<span class="nf">options</span><span class="p">(</span><span class="n">scipen</span> <span class="o">=</span> <span class="m">99</span><span class="p">)</span>   <span class="c1"># get rid of scientific notation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>here() starts at /Users/Jacky/GitHub/cookbookK
+
+Loading required package: viridisLite
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>The data used here were sourced from the Meyers and Shi (2011) database, and are the workers compensation triangle of the New Jersey Manufacturers Group. They are displayed in Section 1.3 of the monograph.
+We’ve made a CSV file of the data (in long format) available <span class="xref myst">here</span> for convenience.
+If you want to load it in, then use the fread statement that points to the website address which is included in the comments below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in my personal copy of the data</span>
+<span class="c1"># msdata &lt;- fread(here(&quot;docs/csv/glms_meyershi.csv&quot;))</span>
+
+<span class="c1"># location of data on the website:</span>
+<span class="n">msdata</span> <span class="o">&lt;-</span> <span class="nf">fread</span><span class="p">(</span><span class="s">&quot;https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/glms_meyershi.csv&quot;</span><span class="p">)</span>
+
+
+<span class="nf">setDT</span><span class="p">(</span><span class="n">msdata</span><span class="p">)</span>
+
+<span class="c1">#print(msdata) for a simple look</span>
+
+<span class="c1"># printing the table in a nicer format</span>
+<span class="n">msdata</span> <span class="o">%&gt;%</span> 
+  <span class="n">kableExtra</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;html&quot;</span><span class="p">,</span> <span class="n">escape</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>    
+  <span class="n">kableExtra</span><span class="o">::</span><span class="nf">kable_styling</span><span class="p">(</span><span class="n">bootstrap_options</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;hover&quot;</span><span class="p">,</span> <span class="s">&quot;striped&quot;</span><span class="p">,</span> <span class="s">&quot;responsive&quot;</span><span class="p">),</span> 
+                            <span class="n">full_width</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> 
+                            <span class="n">fixed_thead</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">identity</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">display_html</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="table table-hover table-striped table-responsive" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> acc_year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> dev_year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> cumulative </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> incremental </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 41821 </td>
+   <td style="text-align:right;"> 41821 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 76550 </td>
+   <td style="text-align:right;"> 34729 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 96697 </td>
+   <td style="text-align:right;"> 20147 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 112662 </td>
+   <td style="text-align:right;"> 15965 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 123947 </td>
+   <td style="text-align:right;"> 11285 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 129871 </td>
+   <td style="text-align:right;"> 5924 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 134646 </td>
+   <td style="text-align:right;"> 4775 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 138388 </td>
+   <td style="text-align:right;"> 3742 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 141823 </td>
+   <td style="text-align:right;"> 3435 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 144781 </td>
+   <td style="text-align:right;"> 2958 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 48167 </td>
+   <td style="text-align:right;"> 48167 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 87662 </td>
+   <td style="text-align:right;"> 39495 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 112106 </td>
+   <td style="text-align:right;"> 24444 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 130284 </td>
+   <td style="text-align:right;"> 18178 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 141124 </td>
+   <td style="text-align:right;"> 10840 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 148503 </td>
+   <td style="text-align:right;"> 7379 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 154186 </td>
+   <td style="text-align:right;"> 5683 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 158944 </td>
+   <td style="text-align:right;"> 4758 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 162903 </td>
+   <td style="text-align:right;"> 3959 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 52058 </td>
+   <td style="text-align:right;"> 52058 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 99517 </td>
+   <td style="text-align:right;"> 47459 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 126876 </td>
+   <td style="text-align:right;"> 27359 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 144792 </td>
+   <td style="text-align:right;"> 17916 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 156240 </td>
+   <td style="text-align:right;"> 11448 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 165086 </td>
+   <td style="text-align:right;"> 8846 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 170955 </td>
+   <td style="text-align:right;"> 5869 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 176346 </td>
+   <td style="text-align:right;"> 5391 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 57251 </td>
+   <td style="text-align:right;"> 57251 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 106761 </td>
+   <td style="text-align:right;"> 49510 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 133797 </td>
+   <td style="text-align:right;"> 27036 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 154668 </td>
+   <td style="text-align:right;"> 20871 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 168972 </td>
+   <td style="text-align:right;"> 14304 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 179524 </td>
+   <td style="text-align:right;"> 10552 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 187266 </td>
+   <td style="text-align:right;"> 7742 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 59213 </td>
+   <td style="text-align:right;"> 59213 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 113342 </td>
+   <td style="text-align:right;"> 54129 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 142908 </td>
+   <td style="text-align:right;"> 29566 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 165392 </td>
+   <td style="text-align:right;"> 22484 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 179506 </td>
+   <td style="text-align:right;"> 14114 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 189506 </td>
+   <td style="text-align:right;"> 10000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 59475 </td>
+   <td style="text-align:right;"> 59475 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 111551 </td>
+   <td style="text-align:right;"> 52076 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 138387 </td>
+   <td style="text-align:right;"> 26836 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 160719 </td>
+   <td style="text-align:right;"> 22332 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 175475 </td>
+   <td style="text-align:right;"> 14756 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 65607 </td>
+   <td style="text-align:right;"> 65607 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 110255 </td>
+   <td style="text-align:right;"> 44648 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 137317 </td>
+   <td style="text-align:right;"> 27062 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 159972 </td>
+   <td style="text-align:right;"> 22655 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 56748 </td>
+   <td style="text-align:right;"> 56748 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 96063 </td>
+   <td style="text-align:right;"> 39315 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 122811 </td>
+   <td style="text-align:right;"> 26748 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 52212 </td>
+   <td style="text-align:right;"> 52212 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 92242 </td>
+   <td style="text-align:right;"> 40030 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 43962 </td>
+   <td style="text-align:right;"> 43962 </td>
+  </tr>
+</tbody>
+</table></div></div>
+</div>
+<p>So we have four columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">acc_year</span></code>: accident year, numbered from 1 to 10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dev_year</span></code>: development year, also numbered from 1 to 10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cumulative</span></code>: cumulative payments to date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">incremental</span></code>: incremental payments for that accident year, development year combination.</p></li>
+</ul>
+<p>We can also plot the data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">cumulative</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">acc_year</span><span class="p">)))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_color_viridis_d</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0.9</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Cumulative&quot;</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">,</span> <span class="n">legend.title</span><span class="o">=</span><span class="nf">element_blank</span><span class="p">(),</span> <span class="n">legend.text</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">))</span>
+
+
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">incremental</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">acc_year</span><span class="p">)))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_color_viridis_d</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0.9</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Incremental&quot;</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;right&quot;</span><span class="p">,</span> <span class="n">legend.title</span><span class="o">=</span><span class="nf">element_blank</span><span class="p">(),</span> <span class="n">legend.text</span><span class="o">=</span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">))</span>
+
+<span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span>   <span class="c1"># combine the plots using patchwork</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_10_0.png" src="../_images/MLRWP_R_GLMs_10_0.png" />
+</div>
+</div>
+<p>The data look quite well behaved - each year seems to have a similar development pattern.</p>
+</div>
+<div class="section" id="chain-ladder-model">
+<h2>Chain ladder model<a class="headerlink" href="#chain-ladder-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fitting-the-model">
+<h3>Fitting the model<a class="headerlink" href="#fitting-the-model" title="Permalink to this headline">¶</a></h3>
+<p>Our first model will be the familiar chain ladder (volume all) model.
+The monograph (and references therein) note that certain types of GLM gives exactly the same result as the chain ladder so I’m going to use that to get the chain ladder result.</p>
+<p>The specific model I’m using that replicates the chain ladder result is the Over-dispersed Poisson (ODP) cross classified (cc) model (Sections 3.3.2 and 3.3.3 of the monograph).</p>
+<p>To apply the model, we will use the <code class="docutils literal notranslate"><span class="pre">glm</span></code> function from the base R <strong>stats</strong> package. The cross-classified model requires separate levels for each of accident and development year so we first make a factor version of these variates. I’m also going to add a calendar year term (<code class="docutils literal notranslate"><span class="pre">cal_year</span></code>) for later use in model diagnostics.</p>
+<p>I use <strong>data.table</strong> for data manipulation.
+For those not familiar with it, <code class="docutils literal notranslate"><span class="pre">:=</span></code> is an assignment operator and the syntax <code class="docutils literal notranslate"><span class="pre">dt[,</span> <span class="pre">a</span> <span class="pre">:=</span> <span class="pre">b]</span></code> creates a new variable called <code class="docutils literal notranslate"><span class="pre">a</span></code> in the <code class="docutils literal notranslate"><span class="pre">dt</span></code> data.table (which is also a data.frame), and sets it equal to <code class="docutils literal notranslate"><span class="pre">b</span></code>.
+The comma at the start is there because the first part of a data.table command subsets the data and is left blank if there is no subsetting required.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">msdata</span><span class="p">[,</span> <span class="n">acc_year_factor</span> <span class="o">:=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">acc_year</span><span class="p">)</span>
+	   <span class="p">][,</span> <span class="n">dev_year_factor</span> <span class="o">:=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">dev_year</span><span class="p">)</span>
+	     <span class="p">][,</span> <span class="n">cal_year</span> <span class="o">:=</span> <span class="n">acc_year</span> <span class="o">+</span> <span class="n">dev_year</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">msdata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 7</caption>
+<thead>
+	<tr><th scope=col>acc_year</th><th scope=col>dev_year</th><th scope=col>cumulative</th><th scope=col>incremental</th><th scope=col>acc_year_factor</th><th scope=col>dev_year_factor</th><th scope=col>cal_year</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>1</td><td> 41821</td><td>41821</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><td>1</td><td>2</td><td> 76550</td><td>34729</td><td>1</td><td>2</td><td>2</td></tr>
+	<tr><td>1</td><td>3</td><td> 96697</td><td>20147</td><td>1</td><td>3</td><td>3</td></tr>
+	<tr><td>1</td><td>4</td><td>112662</td><td>15965</td><td>1</td><td>4</td><td>4</td></tr>
+	<tr><td>1</td><td>5</td><td>123947</td><td>11285</td><td>1</td><td>5</td><td>5</td></tr>
+	<tr><td>1</td><td>6</td><td>129871</td><td> 5924</td><td>1</td><td>6</td><td>6</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Now we fit the model and look at the results via <code class="docutils literal notranslate"><span class="pre">summary</span></code>.</p>
+<ul class="simple">
+<li><p>The family is the <em>quasipoisson</em> - this is how we fit an ODP model with <code class="docutils literal notranslate"><span class="pre">glm()</span></code>.</p></li>
+<li><p>The link is log</p></li>
+<li><p>The formula is simply <code class="docutils literal notranslate"><span class="pre">incremental</span> <span class="pre">~</span> <span class="pre">0</span> <span class="pre">+</span> <span class="pre">acc_year_factor</span> <span class="pre">+</span> <span class="pre">dev_year_factor</span></code></p>
+<ul>
+<li><p>The 0 tells <code class="docutils literal notranslate"><span class="pre">glm()</span></code> to fit a model without an intercept - which is how we fit the model in the monograph</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">glm_fit1</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">msdata</span><span class="p">,</span> 
+	<span class="n">family</span> <span class="o">=</span> <span class="nf">quasipoisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">&quot;log&quot;</span><span class="p">),</span>
+	<span class="n">formula</span> <span class="o">=</span> <span class="s">&quot;incremental ~ 0 + acc_year_factor + dev_year_factor&quot;</span><span class="p">)</span>
+
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">glm_fit1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = &quot;incremental ~ 0 + acc_year_factor + dev_year_factor&quot;, 
+    family = quasipoisson(link = &quot;log&quot;), data = msdata)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-21.493   -5.534    0.000    5.136   21.059  
+
+Coefficients:
+                  Estimate Std. Error t value             Pr(&gt;|t|)    
+acc_year_factor1  10.65676    0.03164 336.794 &lt; 0.0000000000000002 ***
+acc_year_factor2  10.79533    0.02994 360.507 &lt; 0.0000000000000002 ***
+acc_year_factor3  10.89919    0.02887 377.465 &lt; 0.0000000000000002 ***
+acc_year_factor4  10.98904    0.02808 391.326 &lt; 0.0000000000000002 ***
+acc_year_factor5  11.03883    0.02783 396.654 &lt; 0.0000000000000002 ***
+acc_year_factor6  11.01590    0.02855 385.867 &lt; 0.0000000000000002 ***
+acc_year_factor7  11.00808    0.02945 373.734 &lt; 0.0000000000000002 ***
+acc_year_factor8  10.89050    0.03266 333.463 &lt; 0.0000000000000002 ***
+acc_year_factor9  10.83613    0.03669 295.348 &lt; 0.0000000000000002 ***
+acc_year_factor10 10.69108    0.05104 209.454 &lt; 0.0000000000000002 ***
+dev_year_factor2  -0.20466    0.02276  -8.993  0.00000000009767316 ***
+dev_year_factor3  -0.74741    0.02819 -26.512 &lt; 0.0000000000000002 ***
+dev_year_factor4  -1.01667    0.03284 -30.954 &lt; 0.0000000000000002 ***
+dev_year_factor5  -1.45160    0.04214 -34.446 &lt; 0.0000000000000002 ***
+dev_year_factor6  -1.83254    0.05471 -33.495 &lt; 0.0000000000000002 ***
+dev_year_factor7  -2.14026    0.07150 -29.933 &lt; 0.0000000000000002 ***
+dev_year_factor8  -2.34827    0.09312 -25.218 &lt; 0.0000000000000002 ***
+dev_year_factor9  -2.51317    0.12673 -19.831 &lt; 0.0000000000000002 ***
+dev_year_factor10 -2.66449    0.19930 -13.369  0.00000000000000158 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 114.5364)
+
+    Null deviance: 27479374.2  on 55  degrees of freedom
+Residual deviance:     4128.1  on 36  degrees of freedom
+AIC: NA
+
+Number of Fisher Scoring iterations: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>I’m now going to save a more <code class="docutils literal notranslate"><span class="pre">data.table</span></code> version of the coefficient table in the <code class="docutils literal notranslate"><span class="pre">glm_fit1</span></code> object - this will be used later and having the coefficients available in a data.table makes things easier. I’ll call this <code class="docutils literal notranslate"><span class="pre">coeff_table</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># save the data for later use as a data.table</span>
+<span class="c1"># variable 1 = parameter name</span>
+<span class="c1"># variable 2 = parameter estimates</span>
+<span class="n">glm_fit1</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">glm_fit1</span><span class="o">$</span><span class="n">coefficients</span><span class="p">),</span> 
+								   <span class="n">coeff_glm_fit1</span> <span class="o">=</span> <span class="n">glm_fit1</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+
+
+<span class="nf">head</span><span class="p">(</span><span class="n">glm_fit1</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 2</caption>
+<thead>
+	<tr><th scope=col>parameter</th><th scope=col>coeff_glm_fit1</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>acc_year_factor1</td><td>10.65676</td></tr>
+	<tr><td>acc_year_factor2</td><td>10.79533</td></tr>
+	<tr><td>acc_year_factor3</td><td>10.89919</td></tr>
+	<tr><td>acc_year_factor4</td><td>10.98904</td></tr>
+	<tr><td>acc_year_factor5</td><td>11.03883</td></tr>
+	<tr><td>acc_year_factor6</td><td>11.01590</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="loss-reserve">
+<h3>Loss reserve<a class="headerlink" href="#loss-reserve" title="Permalink to this headline">¶</a></h3>
+<p>Now we’ll have a look at the loss reserve. If you’ve done the chain ladder calculations, you should find this gives the same answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># first make the lower triangle data set</span>
+<span class="n">ay</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+<span class="n">dy</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+
+
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">2</span><span class="o">:</span><span class="m">10</span><span class="p">){</span>
+	<span class="n">ay</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">ay</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="m">-1</span><span class="p">)))</span>
+	<span class="n">dy</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="p">(</span><span class="m">10</span><span class="o">-</span><span class="n">i</span><span class="m">+2</span><span class="p">)</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+<span class="p">}</span>
+
+
+<span class="n">futdata</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">acc_year</span> <span class="o">=</span> <span class="n">ay</span><span class="p">,</span> <span class="n">dev_year</span> <span class="o">=</span> <span class="n">dy</span><span class="p">)</span>
+
+<span class="c1"># make factors</span>
+<span class="n">futdata</span><span class="p">[,</span> <span class="n">cal_year</span> <span class="o">:=</span> <span class="n">acc_year</span> <span class="o">+</span> <span class="n">dev_year</span>
+		<span class="p">][,</span> <span class="n">acc_year_factor</span> <span class="o">:=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">acc_year</span><span class="p">)</span>
+		  <span class="p">][,</span> <span class="n">dev_year_factor</span> <span class="o">:=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">dev_year</span><span class="p">)]</span>
+
+<span class="c1"># make the prediction and sum by acc_year</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">glm_fit1</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">futdata</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="n">futdata</span><span class="p">[,</span> <span class="n">incremental</span> <span class="o">:=</span> <span class="n">x</span><span class="p">]</span>
+
+
+<span class="c1"># data.table syntax to get summary by accident year</span>
+<span class="n">ocl_year</span> <span class="o">&lt;-</span> <span class="n">futdata</span><span class="p">[,</span>  <span class="nf">lapply</span><span class="p">(</span><span class="n">.SD</span><span class="p">,</span> <span class="n">sum</span><span class="p">),</span> <span class="n">.SDcols</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;incremental&quot;</span><span class="p">),</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;acc_year&quot;</span><span class="p">]</span>
+
+<span class="c1"># total ocl</span>
+<span class="n">ocl_total</span> <span class="o">&lt;-</span> <span class="n">futdata</span><span class="p">[,</span> <span class="nf">sum</span><span class="p">(</span><span class="n">incremental</span><span class="p">)]</span>
+
+<span class="c1"># print the acc year table with total</span>
+<span class="n">ocl_year</span><span class="p">[,</span> <span class="n">acc_year</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">acc_year</span><span class="p">)</span> <span class="p">]</span>  <span class="c1"># to make a table with total row</span>
+<span class="n">ocl_year_print</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">ocl_year</span><span class="p">,</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">acc_year</span><span class="o">=</span><span class="s">&quot;Total&quot;</span><span class="p">,</span> <span class="n">incremental</span><span class="o">=</span><span class="n">ocl_total</span><span class="p">))</span>
+<span class="nf">setnames</span><span class="p">(</span><span class="n">ocl_year_print</span><span class="p">,</span> <span class="s">&quot;incremental&quot;</span><span class="p">,</span> <span class="s">&quot;OCL&quot;</span><span class="p">)</span>  <span class="c1"># rename column for printing</span>
+
+<span class="n">ocl_year_print</span> <span class="o">%&gt;%</span> 
+  <span class="n">knitr</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">display_html</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> acc_year </th>
+   <th style="text-align:right;"> OCL </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:right;"> 3398 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3 </td>
+   <td style="text-align:right;"> 8155 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:right;"> 14579 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:right;"> 22645 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:right;"> 31865 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 7 </td>
+   <td style="text-align:right;"> 45753 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 8 </td>
+   <td style="text-align:right;"> 60093 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 9 </td>
+   <td style="text-align:right;"> 80983 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:right;"> 105874 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 373346 </td>
+  </tr>
+</tbody>
+</table></div></div>
+</div>
+</div>
+<div class="section" id="model-diagnostics">
+<h3>Model diagnostics<a class="headerlink" href="#model-diagnostics" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="calculations">
+<h4>Calculations<a class="headerlink" href="#calculations" title="Permalink to this headline">¶</a></h4>
+<p>So far, we’ve fitted a model and have calculated the loss reserve.
+We can do all this with the chain ladder algorithm.
+Now we start looking at some of the extras that using a GLM gives us - for a start the statistical model structure means that we can calculate residuals with known properties, assuming the assumptions underlying the model are valid.</p>
+<p>If the model assumptions are satisfied by the data, then the residuals should not have any remaining structure.
+Plots of residuals can therefore be useful to detect violations of model assumptions.
+Note that we need to be careful to use the right types of residuals - in many cases we want to use standardised deviance residuals:</p>
+<ul class="simple">
+<li><p>Deviance residuals because the more recognisable Pearson residuals (based on actual - fitted) are difficult to interpret for non-normal models.</p></li>
+<li><p>Standardised because the raw residuals are on different scales depending on the scale of the underlying values.</p></li>
+</ul>
+<p>Some more details may be found in Chapter 6 of the monograph and also in Chapter 5 of <a class="reference external" href="http://mages.github.io/PSRWP/IFoA_PSRWP-PDF.pdf">A Practitioner’s Introduction to Stochastic Reserving</a>.</p>
+<p>Here we look at the following:</p>
+<ul class="simple">
+<li><p>Residual Scatterplots</p>
+<ul>
+<li><p>by linear predictor</p></li>
+<li><p>by accident, development and calendar years</p></li>
+<li><p>if the model assumptions are satisfied then the residuals should look homogeneous (or in layperson’s language, like a random cloud), centred around zero)</p></li>
+</ul>
+</li>
+<li><p>Heat map of actual vs fitted laid out in triangular form</p>
+<ul>
+<li><p>In this we get the actual/fitted ratio in each (acc, dev) cell (subject to lower and upper bounds of [0.5, 2]) and then plot the colour-coded triangle of the actual/fitted values</p></li>
+<li><p>heat maps are helpful to check for model fit and may help to identify missing interactions.</p></li>
+</ul>
+</li>
+</ul>
+<p>We have to prepare the data by adding the fitted values and residuals.</p>
+<ul class="simple">
+<li><p>Because this model has a lot of parameters, there are two observations where the fitted is exactly equal to the actual – (acc_year=1, dev_year=10) and (acc_year=10, dev_year=1). This is because these observations have a unique parameter.</p></li>
+<li><p>The deviance calculations below return <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (not a number) for these points, but the residual should really be 0 so this adjustment is made manually.</p></li>
+<li><p>Also add actual/fitted ratios and the log of these (restricted to the range [log(0.5), log(2)]) - these will be used for a heatmap later.</p>
+<ul>
+<li><p>The restricted range is used to generate easier to read shadings in the heat-map, while the conversion to log means that the shading scales will be similar intensity for <span class="math notranslate nohighlight">\(x\)</span>% and <span class="math notranslate nohighlight">\(1/x\)</span> %</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Technical note on residuals with <code class="docutils literal notranslate"><span class="pre">glm()</span></code></em></p>
+<ul class="simple">
+<li><p>The residuals in a glm object accessed with <code class="docutils literal notranslate"><span class="pre">$residuals</span></code> are residuals used in the model fitting algorithm.</p></li>
+<li><p>For diagnostic purposes, we require the standardised deviance residuals.</p>
+<ul>
+<li><p>These are the signed square roots of the contribution of the i<em>th</em> observation to the deviance, divided by hat matrix values.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">stats::rstandard()</span></code> function may be used with glm objects to extract the standardised deviance residuals.</p></li>
+</ul>
+</li>
+</ul>
+<br>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">msdata</span><span class="p">[,</span> <span class="n">residuals1</span> <span class="o">:=</span> <span class="nf">rstandard</span><span class="p">(</span><span class="n">glm_fit1</span><span class="p">)</span>
+	   <span class="p">][,</span> <span class="n">fitted1</span> <span class="o">:=</span> <span class="n">glm_fit1</span><span class="o">$</span><span class="n">fitted.values</span>
+	     <span class="p">][,</span> <span class="n">linear_predictor1</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="n">fitted1</span><span class="p">)</span>
+	       <span class="p">][,</span> <span class="n">AvsF1</span> <span class="o">:=</span> <span class="n">incremental</span> <span class="o">/</span> <span class="n">fitted1</span>
+	         <span class="p">][,</span> <span class="n">AvsF_restricted1</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="nf">pmax</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="nf">pmin</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="n">AvsF1</span><span class="p">)))]</span>
+
+<span class="c1"># check for NaN residuals</span>
+<span class="n">msdata</span><span class="p">[</span><span class="nf">is.nan</span><span class="p">(</span><span class="n">residuals1</span><span class="p">),]</span>
+
+<span class="c1"># these occur where we expect them so so replace with 0</span>
+<span class="c1"># the is.nan(residuals1) in an example of data.table subsetting - we only set the NaN resids to 0</span>
+<span class="n">msdata</span><span class="p">[</span><span class="nf">is.nan</span><span class="p">(</span><span class="n">residuals1</span><span class="p">),</span> <span class="n">residuals1</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 2 × 12</caption>
+<thead>
+	<tr><th scope=col>acc_year</th><th scope=col>dev_year</th><th scope=col>cumulative</th><th scope=col>incremental</th><th scope=col>acc_year_factor</th><th scope=col>dev_year_factor</th><th scope=col>cal_year</th><th scope=col>residuals1</th><th scope=col>fitted1</th><th scope=col>linear_predictor1</th><th scope=col>AvsF1</th><th scope=col>AvsF_restricted1</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 1</td><td>10</td><td>144781</td><td> 2958</td><td>1 </td><td>10</td><td>10</td><td>NaN</td><td> 2958</td><td> 7.992269</td><td>1</td><td>-0.0000000000000019984014</td></tr>
+	<tr><td>10</td><td> 1</td><td> 43962</td><td>43962</td><td>10</td><td>1 </td><td>10</td><td>NaN</td><td>43962</td><td>10.691081</td><td>1</td><td> 0.0000000000000008881784</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Look at first 10 rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">msdata</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>  <span class="c1"># look at first 10 rows</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 10 × 12</caption>
+<thead>
+	<tr><th scope=col>acc_year</th><th scope=col>dev_year</th><th scope=col>cumulative</th><th scope=col>incremental</th><th scope=col>acc_year_factor</th><th scope=col>dev_year_factor</th><th scope=col>cal_year</th><th scope=col>residuals1</th><th scope=col>fitted1</th><th scope=col>linear_predictor1</th><th scope=col>AvsF1</th><th scope=col>AvsF_restricted1</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td> 1</td><td> 41821</td><td>41821</td><td>1</td><td>1 </td><td> 1</td><td>-0.37704981</td><td>42478.725</td><td>10.656759</td><td>0.9845164</td><td>-0.015604749951508145936</td></tr>
+	<tr><td>1</td><td> 2</td><td> 76550</td><td>34729</td><td>1</td><td>2 </td><td> 2</td><td> 0.06821815</td><td>34616.808</td><td>10.452095</td><td>1.0032410</td><td> 0.003235741327323749146</td></tr>
+	<tr><td>1</td><td> 3</td><td> 96697</td><td>20147</td><td>1</td><td>3 </td><td> 3</td><td> 0.02211088</td><td>20117.514</td><td> 9.909346</td><td>1.0014657</td><td> 0.001464610789021573859</td></tr>
+	<tr><td>1</td><td> 4</td><td>112662</td><td>15965</td><td>1</td><td>4 </td><td> 4</td><td> 0.50192703</td><td>15368.757</td><td> 9.640092</td><td>1.0387958</td><td> 0.038062125103388820546</td></tr>
+	<tr><td>1</td><td> 5</td><td>123947</td><td>11285</td><td>1</td><td>5 </td><td> 5</td><td> 1.36344235</td><td> 9948.355</td><td> 9.205163</td><td>1.1343584</td><td> 0.126067171138098593763</td></tr>
+	<tr><td>1</td><td> 6</td><td>129871</td><td> 5924</td><td>1</td><td>6 </td><td> 6</td><td>-1.13119533</td><td> 6796.876</td><td> 8.824218</td><td>0.8715769</td><td>-0.137451186377785167236</td></tr>
+	<tr><td>1</td><td> 7</td><td>134646</td><td> 4775</td><td>1</td><td>7 </td><td> 7</td><td>-0.33754581</td><td> 4996.553</td><td> 8.516503</td><td>0.9556589</td><td>-0.045354245283910396558</td></tr>
+	<tr><td>1</td><td> 8</td><td>138388</td><td> 3742</td><td>1</td><td>8 </td><td> 8</td><td>-0.56680264</td><td> 4058.159</td><td> 8.308485</td><td>0.9220929</td><td>-0.081109303248732236846</td></tr>
+	<tr><td>1</td><td> 9</td><td>141823</td><td> 3435</td><td>1</td><td>9 </td><td> 9</td><td>-0.01379476</td><td> 3441.253</td><td> 8.143591</td><td>0.9981829</td><td>-0.001818723883641001036</td></tr>
+	<tr><td>1</td><td>10</td><td>144781</td><td> 2958</td><td>1</td><td>10</td><td>10</td><td> 0.00000000</td><td> 2958.000</td><td> 7.992269</td><td>1.0000000</td><td>-0.000000000000001998401</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="plotting">
+<h4>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h4>
+<p>Now let’s look at the residual scatterplots.
+In the linear predictor scatterplot, the points are colour coded so that the lighter points belong to the earlier development years, and the darker points belong to the later ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">linear_predictor1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals1</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">dev_year</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_colour_viridis</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0.9</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Linear predictor&quot;</span><span class="p">)</span>
+
+
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">acc_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals1</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Accident year&quot;</span><span class="p">)</span>
+
+<span class="n">p3</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals1</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Development year&quot;</span><span class="p">)</span>
+
+<span class="n">p4</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cal_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals1</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Calendar year&quot;</span><span class="p">)</span>
+
+<span class="c1">#p &lt;- plot_grid(p1, p2, p3, p4, nrow=2, rel_widths = c(1,1,1,1))</span>
+
+<span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p3</span> <span class="o">+</span> <span class="n">p4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_29_0.png" src="../_images/MLRWP_R_GLMs_29_0.png" />
+</div>
+</div>
+<p>These results are quite good - bear in mind there are only a small number of points so plots must be interpreted in relation to this.
+In particular:</p>
+<ul class="simple">
+<li><p>The residuals do not appear to fan out or fan in (once you take into account that later development years have small number of points)</p></li>
+<li><p>They appear centred around 0</p></li>
+</ul>
+<p>Now construct and draw the heat map. Note that the colours are:</p>
+<ul class="simple">
+<li><p>blue (A/F = 50%)</p></li>
+<li><p>white (A/F = 100%)</p></li>
+<li><p>red (A/F = 200%)</p></li>
+</ul>
+<p>with shading for in-between values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># heatmap code</span>
+<span class="c1"># to get the correct shading I&#39;ve plotted the log of the restricted A/F values</span>
+
+<span class="n">p_hm</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">acc_year</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="nf">geom_tile</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">AvsF_restricted1</span><span class="p">))</span><span class="o">+</span><span class="nf">scale_y_reverse</span><span class="p">()</span><span class="o">+</span>
+	<span class="nf">scale_fill_gradient2</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;AvF_min&quot;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="s">&quot;royalblue&quot;</span><span class="p">,</span> <span class="n">mid</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">,</span> <span class="n">na.value</span><span class="o">=</span><span class="s">&quot;grey50&quot;</span><span class="p">,</span> <span class="n">guide</span><span class="o">=</span><span class="s">&quot;colourbar&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Development year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Accident year&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.x</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.y</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">panel.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="s">&quot;solid&quot;</span><span class="p">),</span>
+		  <span class="n">panel.grid</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="kc">NULL</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">p_hm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_32_0.png" src="../_images/MLRWP_R_GLMs_32_0.png" />
+</div>
+</div>
+<p>In a heat map for a reserving triangle, we look for a random scattering of red and blue points.
+This plot looks quite good (though we’ll revisit this shortly).</p>
+</div>
+</div>
+</div>
+<div class="section" id="refining-the-model">
+<h2>Refining the model<a class="headerlink" href="#refining-the-model" title="Permalink to this headline">¶</a></h2>
+<p>We could stop here - and just use the results from this model, which match those produced by the chain ladder.
+The diagnostics suggest that the model fits quite well.
+However, because this is a GLM, we have more options than just replicating the chain ladder.</p>
+<p>In particular, can we:</p>
+<ul class="simple">
+<li><p>identify simplifications to the model to make it more parsimonious (i.e. reduce the number of parameters)?</p></li>
+<li><p>identify any areas of poorer fit that may suggest missing model terms including interactions?</p></li>
+</ul>
+<div class="section" id="simplifying-the-model">
+<h3>Simplifying the model<a class="headerlink" href="#simplifying-the-model" title="Permalink to this headline">¶</a></h3>
+<p>First we consider if we can use a parametric shape for the accident and development year parameters.
+The end result should be something similar to the chain ladder approach but with far fewer parameters.</p>
+<div class="section" id="accident-year">
+<h4>Accident year<a class="headerlink" href="#accident-year" title="Permalink to this headline">¶</a></h4>
+<p>First plot the accident year parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the data</span>
+<span class="n">dt_acc_year</span> <span class="o">&lt;-</span> <span class="n">glm_fit1</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&quot;acc_year&quot;</span><span class="p">,</span> <span class="n">parameter</span><span class="p">),</span>  
+									<span class="p">][,</span> <span class="n">acc_year</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;acc_year_factor&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">parameter</span><span class="p">))]</span>
+
+
+<span class="c1"># plot</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dt_acc_year</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">acc_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">coeff_glm_fit1</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#440154ff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#440154ff&quot;</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Accident year parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_37_0.png" src="../_images/MLRWP_R_GLMs_37_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Note that their shape closely resembles that of a parabola.</p></li>
+<li><p>This suggests that we can replace the 10 accident year parameters by</p>
+<ul>
+<li><p>the overall intercept</p></li>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">acc_year</span></code> term</p></li>
+<li><p>an <code class="docutils literal notranslate"><span class="pre">acc_year</span></code> squared term</p></li>
+</ul>
+</li>
+<li><p>So refit the model on this basis.</p>
+<ul>
+<li><p>Drop the 0 from the glm_fit1 formula to allow the model to have an intercept</p></li>
+<li><p>Replace the acc_year_factor term with the parabola terms.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add an x^2 term (we already have the x - acc_year)</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">acc_year_2</span> <span class="o">:=</span> <span class="n">acc_year</span><span class="o">^</span><span class="m">2</span><span class="p">]</span>
+
+<span class="n">glm_fit2</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">msdata</span><span class="p">,</span> 
+	<span class="n">family</span> <span class="o">=</span> <span class="nf">quasipoisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">&quot;log&quot;</span><span class="p">),</span>
+	<span class="n">formula</span> <span class="o">=</span> <span class="s">&quot;incremental ~ acc_year + acc_year_2 + dev_year_factor&quot;</span><span class="p">)</span>
+
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">glm_fit2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = &quot;incremental ~ acc_year + acc_year_2 + dev_year_factor&quot;, 
+    family = quasipoisson(link = &quot;log&quot;), data = msdata)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-28.5517   -5.1747    0.2691    4.5827   24.5421  
+
+Coefficients:
+                   Estimate Std. Error t value             Pr(&gt;|t|)    
+(Intercept)       10.470978   0.034414 304.264 &lt; 0.0000000000000002 ***
+acc_year           0.200075   0.014219  14.071 &lt; 0.0000000000000002 ***
+acc_year_2        -0.017907   0.001356 -13.210 &lt; 0.0000000000000002 ***
+dev_year_factor2  -0.205555   0.021276  -9.661     0.00000000000243 ***
+dev_year_factor3  -0.750108   0.026492 -28.314 &lt; 0.0000000000000002 ***
+dev_year_factor4  -1.014806   0.030982 -32.755 &lt; 0.0000000000000002 ***
+dev_year_factor5  -1.451958   0.039797 -36.484 &lt; 0.0000000000000002 ***
+dev_year_factor6  -1.830488   0.051662 -35.432 &lt; 0.0000000000000002 ***
+dev_year_factor7  -2.142154   0.067504 -31.734 &lt; 0.0000000000000002 ***
+dev_year_factor8  -2.352674   0.087924 -26.758 &lt; 0.0000000000000002 ***
+dev_year_factor9  -2.513722   0.119637 -21.011 &lt; 0.0000000000000002 ***
+dev_year_factor10 -2.660878   0.187820 -14.167 &lt; 0.0000000000000002 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 102.5776)
+
+    Null deviance: 750824  on 54  degrees of freedom
+Residual deviance:   4427  on 43  degrees of freedom
+AIC: NA
+
+Number of Fisher Scoring iterations: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see in the coefficient table part of the summary that the two acc_year terms are highly significant.</p>
+<br>
+<p>Now extract the coefficients and compare the previous and current fits.</p>
+<ul class="simple">
+<li><p>Remember that the intercept must be included in these calculations.</p></li>
+<li><p>Again, save the coefficient table as a data.table in the glm_fit2 object for later use.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the coefficient table</span>
+<span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">glm_fit2</span><span class="o">$</span><span class="n">coefficients</span><span class="p">),</span> 
+                                   <span class="n">coeff_glm_fit2</span> <span class="o">=</span> <span class="n">glm_fit2</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+
+<span class="c1">#print(glm_fit2$coeff_table)  # easy print</span>
+
+<span class="c1"># printing the table in a nicer format</span>
+<span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">%&gt;%</span> 
+  <span class="n">kableExtra</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;html&quot;</span><span class="p">,</span> <span class="n">escape</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>    
+  <span class="n">kableExtra</span><span class="o">::</span><span class="nf">kable_styling</span><span class="p">(</span><span class="n">bootstrap_options</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;hover&quot;</span><span class="p">,</span> <span class="s">&quot;striped&quot;</span><span class="p">,</span> <span class="s">&quot;responsive&quot;</span><span class="p">),</span> 
+                            <span class="n">full_width</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+                            <span class="n">fixed_thead</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="nf">identity</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">display_html</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="table table-hover table-striped table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> parameter </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> coeff_glm_fit2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> (Intercept) </td>
+   <td style="text-align:right;"> 10.4709782 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> acc_year </td>
+   <td style="text-align:right;"> 0.2000750 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> acc_year_2 </td>
+   <td style="text-align:right;"> -0.0179069 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor2 </td>
+   <td style="text-align:right;"> -0.2055551 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor3 </td>
+   <td style="text-align:right;"> -0.7501082 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor4 </td>
+   <td style="text-align:right;"> -1.0148062 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor5 </td>
+   <td style="text-align:right;"> -1.4519575 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor6 </td>
+   <td style="text-align:right;"> -1.8304877 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor7 </td>
+   <td style="text-align:right;"> -2.1421539 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor8 </td>
+   <td style="text-align:right;"> -2.3526736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor9 </td>
+   <td style="text-align:right;"> -2.5137216 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> dev_year_factor10 </td>
+   <td style="text-align:right;"> -2.6608777 </td>
+  </tr>
+</tbody>
+</table></div></div>
+</div>
+<p>Now compare the past and current parameter estimates for accident year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># pull out the acc year coefficinents only</span>
+<span class="n">dt_acc_year</span><span class="p">[,</span> <span class="n">coeff_glm_fit2</span> <span class="o">:=</span> <span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;acc_year&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit2</span><span class="p">]</span><span class="o">*</span><span class="n">acc_year</span> <span class="o">+</span> 
+				<span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;acc_year_2&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit2</span><span class="p">]</span><span class="o">*</span><span class="n">acc_year</span><span class="o">^</span><span class="m">2</span> <span class="o">+</span> 
+				<span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit2</span><span class="p">]]</span>
+
+<span class="c1"># make long for ggplot</span>
+<span class="n">dt_acc_year_plot</span> <span class="o">&lt;-</span> <span class="nf">melt</span><span class="p">(</span><span class="n">dt_acc_year</span><span class="p">,</span> 
+                         <span class="n">id.vars</span> <span class="o">=</span> <span class="s">&quot;acc_year&quot;</span><span class="p">,</span> 
+                         <span class="n">measure.vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;coeff_glm_fit1&quot;</span><span class="p">,</span> <span class="s">&quot;coeff_glm_fit2&quot;</span><span class="p">),</span> 
+                         <span class="n">variable.name</span><span class="o">=</span><span class="s">&quot;model&quot;</span><span class="p">,</span> 
+                         <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;estimate&quot;</span><span class="p">)</span>
+
+<span class="c1"># remove the coeff_ from the model names</span>
+<span class="n">dt_acc_year_plot</span><span class="p">[,</span> <span class="n">model</span> <span class="o">:=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;coeff_&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)]</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dt_acc_year_plot</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">acc_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">estimate</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">model</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_colour_viridis_d</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> 
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Accident year parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_43_0.png" src="../_images/MLRWP_R_GLMs_43_0.png" />
+</div>
+</div>
+<p>This looks very good - the fit is very similar, but we have 7 fewer parameters.</p>
+</div>
+<div class="section" id="development-year">
+<h4>Development year<a class="headerlink" href="#development-year" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Now we do the same thing for development year</p></li>
+<li><p>Note that the glm_fit2 model (and the glm_fit1 model too) do not have a parameter for dev_year = 1 as this is the base level.</p>
+<ul>
+<li><p>This means that the parameter is really 0, so we must remember to include this.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the data</span>
+<span class="n">dt_dev_year</span> <span class="o">&lt;-</span> <span class="n">glm_fit2</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&quot;dev_year&quot;</span><span class="p">,</span> <span class="n">parameter</span><span class="p">),</span>  
+									<span class="p">][,</span> <span class="n">dev_year</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;dev_year_factor&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">parameter</span><span class="p">))][]</span>   <span class="c1"># known data.table printing bug</span>
+
+<span class="c1"># add year 1</span>
+<span class="n">dt_dev_year</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_dev_year</span><span class="p">,</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="s">&quot;dev_year_factor1&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit2</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">dev_year</span><span class="o">=</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">setorder</span><span class="p">(</span><span class="n">dt_dev_year</span><span class="p">,</span> <span class="n">dev_year</span><span class="p">)</span>
+
+
+<span class="c1"># plot</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dt_dev_year</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">coeff_glm_fit2</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#440154ff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#440154ff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Development year parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_46_0.png" src="../_images/MLRWP_R_GLMs_46_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Looking at this plot, it appears that a straight line would fit quite well</p></li>
+<li><p>This fit would be improved by allowing the straight line to bend (have a knot) at dev_year = 7</p>
+<ul>
+<li><p>So let’s try this below</p></li>
+<li><p>note we actually fit dev_year - 1 rather than dev_year</p>
+<ul>
+<li><p>this means that the parameter estimate at dev_year = 1 is 0, just as it is in the glm_fit2 model, so it makes the results comparable</p></li>
+<li><p>if we fit dev_year, then the parameter estimate at dev_year=1 would be non-zero, so the two fits would be shifted relative to each other and we would need to adjust for that.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add dev-1 and dev-7 terms</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_m1</span> <span class="o">:=</span> <span class="n">dev_year</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_ge_7</span> <span class="o">:=</span> <span class="nf">pmax</span><span class="p">(</span><span class="n">dev_year</span><span class="m">-7.5</span><span class="p">,</span> <span class="m">0</span><span class="p">)]</span>
+
+<span class="c1"># fit the model</span>
+<span class="n">glm_fit3</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">msdata</span><span class="p">,</span> 
+	<span class="n">family</span> <span class="o">=</span> <span class="nf">quasipoisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">&quot;log&quot;</span><span class="p">),</span>
+	<span class="n">formula</span> <span class="o">=</span> <span class="s">&quot;incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7&quot;</span><span class="p">)</span>
+
+<span class="c1"># extract and save the coefficient table</span>
+<span class="n">glm_fit3</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">glm_fit3</span><span class="o">$</span><span class="n">coefficients</span><span class="p">),</span> 
+                                   <span class="n">coeff_glm_fit3</span> <span class="o">=</span> <span class="n">glm_fit3</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+
+<span class="c1"># display a summary of the model</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">glm_fit3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = &quot;incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7&quot;, 
+    family = quasipoisson(link = &quot;log&quot;), data = msdata)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-25.301   -9.262   -2.080    5.893   42.841  
+
+Coefficients:
+               Estimate Std. Error t value             Pr(&gt;|t|)    
+(Intercept)   10.509475   0.052096 201.734 &lt; 0.0000000000000002 ***
+acc_year       0.204224   0.021608   9.451     0.00000000000104 ***
+acc_year_2    -0.018295   0.002058  -8.891     0.00000000000719 ***
+dev_year_m1   -0.364073   0.008845 -41.160 &lt; 0.0000000000000002 ***
+dev_year_ge_7  0.238860   0.088426   2.701              0.00941 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 242.0614)
+
+    Null deviance: 750824  on 54  degrees of freedom
+Residual deviance:  11879  on 50  degrees of freedom
+AIC: NA
+
+Number of Fisher Scoring iterations: 4
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Assuming the fit is satisfactory, our original model with 19 parameters has now been simplified to 5 parameters - much more parsimonious and robust.</p></li>
+<li><p>Let’s check the fit by dev_year to see.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the dev_year fit under the new model and add to the data.table containing the factor level parameters</span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">glm_fit3</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;dev_year_m1&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit3</span><span class="p">]</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="n">glm_fit3</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;dev_year_ge_7&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit3</span><span class="p">]</span>
+<span class="n">dt_dev_year</span><span class="p">[,</span> <span class="n">coeff_glm_fit3</span> <span class="o">:=</span> <span class="n">p1</span><span class="o">*</span><span class="p">(</span><span class="n">dev_year</span><span class="m">-1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p2</span><span class="o">*</span><span class="nf">pmax</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">dev_year</span><span class="m">-7.5</span><span class="p">)</span> <span class="p">]</span>
+
+
+<span class="c1"># make long for ggplot</span>
+<span class="n">dt_dev_year_plot</span> <span class="o">&lt;-</span> <span class="nf">melt</span><span class="p">(</span><span class="n">dt_dev_year</span><span class="p">,</span> <span class="n">id.vars</span> <span class="o">=</span> <span class="s">&quot;dev_year&quot;</span><span class="p">,</span> <span class="n">measure.vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;coeff_glm_fit2&quot;</span><span class="p">,</span> <span class="s">&quot;coeff_glm_fit3&quot;</span><span class="p">),</span> <span class="n">variable.name</span><span class="o">=</span><span class="s">&quot;model&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;estimate&quot;</span><span class="p">)</span>
+
+<span class="c1"># remove the coeff_ from the model names</span>
+<span class="n">dt_dev_year_plot</span><span class="p">[,</span> <span class="n">model</span> <span class="o">:=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;coeff_&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)]</span>
+
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dt_dev_year_plot</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">estimate</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">model</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_colour_viridis_d</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Development year parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_50_0.png" src="../_images/MLRWP_R_GLMs_50_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>This looks good.</p></li>
+<li><p>However dev_year = 2 is a bit underfit in the latest model, so we can add something to improve this fit (a term at dev_year=2)</p></li>
+<li><p>So refit and replot.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_eq_2</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">2</span><span class="p">)]</span>
+
+<span class="n">glm_fit4</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">msdata</span><span class="p">,</span> 
+	<span class="n">family</span> <span class="o">=</span> <span class="nf">quasipoisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">&quot;log&quot;</span><span class="p">),</span>
+	<span class="n">formula</span> <span class="o">=</span> <span class="s">&quot;incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7 + dev_year_eq_2&quot;</span><span class="p">)</span>
+
+
+<span class="n">glm_fit4</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">glm_fit4</span><span class="o">$</span><span class="n">coefficients</span><span class="p">),</span> <span class="n">coeff_glm_fit4</span> <span class="o">=</span> <span class="n">glm_fit4</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+
+
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="n">glm_fit4</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;dev_year_m1&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit4</span><span class="p">]</span>
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="n">glm_fit4</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;dev_year_ge_7&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit4</span><span class="p">]</span>
+<span class="n">p3</span> <span class="o">&lt;-</span> <span class="n">glm_fit4</span><span class="o">$</span><span class="n">coeff_table</span><span class="p">[</span><span class="n">parameter</span> <span class="o">==</span> <span class="s">&quot;dev_year_eq_2&quot;</span><span class="p">,</span> <span class="n">coeff_glm_fit4</span><span class="p">]</span>
+<span class="n">dt_dev_year</span><span class="p">[,</span> <span class="n">coeff_glm_fit4</span> <span class="o">:=</span> <span class="n">p1</span><span class="o">*</span><span class="p">(</span><span class="n">dev_year</span><span class="m">-1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p2</span><span class="o">*</span><span class="nf">pmax</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">dev_year</span><span class="m">-7.5</span><span class="p">)</span> <span class="o">+</span> <span class="n">p3</span><span class="o">*</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">2</span><span class="p">)</span> <span class="p">]</span>
+
+
+<span class="c1"># make long for ggplot</span>
+<span class="n">dt_dev_year_plot</span> <span class="o">&lt;-</span> <span class="nf">melt</span><span class="p">(</span><span class="n">dt_dev_year</span><span class="p">,</span> <span class="n">id.vars</span> <span class="o">=</span> <span class="s">&quot;dev_year&quot;</span><span class="p">,</span> <span class="n">measure.vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;coeff_glm_fit2&quot;</span><span class="p">,</span> <span class="s">&quot;coeff_glm_fit4&quot;</span><span class="p">),</span> <span class="n">variable.name</span><span class="o">=</span><span class="s">&quot;model&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;estimate&quot;</span><span class="p">)</span>
+
+<span class="c1"># remove the coeff_ from the model names</span>
+<span class="n">dt_dev_year_plot</span><span class="p">[,</span> <span class="n">model</span> <span class="o">:=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;coeff_&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)]</span>
+
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dt_dev_year_plot</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">estimate</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">model</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_colour_viridis_d</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Development year parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_52_0.png" src="../_images/MLRWP_R_GLMs_52_0.png" />
+</div>
+</div>
+<p>Looks good! Fitting <code class="docutils literal notranslate"><span class="pre">dev_year</span></code>=2 better has also improved the tail fitting (<code class="docutils literal notranslate"><span class="pre">dev_year</span></code>&gt;7).</p>
+</div>
+</div>
+<div class="section" id="identifying-missing-structure">
+<h3>Identifying missing structure<a class="headerlink" href="#identifying-missing-structure" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The second part of the model refining process involves checking for missing structure.</p></li>
+<li><p>Let’s have a better look at the heat map, as it stands after the model simplification process</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">msdata</span><span class="p">[,</span> <span class="n">residuals4</span> <span class="o">:=</span> <span class="nf">rstandard</span><span class="p">(</span><span class="n">glm_fit4</span><span class="p">)</span>
+	   <span class="p">][,</span> <span class="n">fitted4</span> <span class="o">:=</span> <span class="n">glm_fit4</span><span class="o">$</span><span class="n">fitted.values</span>
+	     <span class="p">][,</span> <span class="n">linear_predictor4</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="n">fitted4</span><span class="p">)</span>
+	       <span class="p">][,</span> <span class="n">AvsF4</span> <span class="o">:=</span> <span class="n">incremental</span> <span class="o">/</span> <span class="n">fitted4</span>
+	         <span class="p">][,</span> <span class="n">AvsF_restricted4</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="nf">pmax</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="nf">pmin</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="n">AvsF4</span><span class="p">)))]</span>
+
+
+<span class="n">p_hm</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">acc_year</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="nf">geom_tile</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">AvsF_restricted4</span><span class="p">))</span><span class="o">+</span><span class="nf">scale_y_reverse</span><span class="p">()</span><span class="o">+</span>
+	<span class="nf">scale_fill_gradient2</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;AvF_min&quot;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="s">&quot;royalblue&quot;</span><span class="p">,</span> <span class="n">mid</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">,</span> <span class="n">na.value</span><span class="o">=</span><span class="s">&quot;grey50&quot;</span><span class="p">,</span> <span class="n">guide</span><span class="o">=</span><span class="s">&quot;colourbar&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Development year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Accident year&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.x</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.y</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">panel.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="s">&quot;solid&quot;</span><span class="p">),</span>
+		  <span class="n">panel.grid</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="kc">NULL</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">p_hm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_55_0.png" src="../_images/MLRWP_R_GLMs_55_0.png" />
+</div>
+</div>
+<p>Let’s add some annotations to highlight some structure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p_hm</span> <span class="o">+</span> 
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">10.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">2.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">2.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">9.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;segment&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">xend</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">yend</span><span class="o">=</span><span class="m">8</span><span class="p">,</span> <span class="n">arrow</span><span class="o">=</span><span class="nf">arrow</span><span class="p">(),</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">3.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">4.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">7.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_57_0.png" src="../_images/MLRWP_R_GLMs_57_0.png" />
+</div>
+</div>
+<p>We see:</p>
+<ul class="simple">
+<li><p>development year 1, a distinct area of blue in the earlier accident years (A &lt; F), followed by red (A &gt; F)</p></li>
+<li><p>development year 2, a distinct area of red in the earlier accident years (A &gt; F), followed by blue (A &lt; F)</p></li>
+<li><p>development year 3, a possible progression from red to blue with increasing accident year (F increasing relative to A)</p></li>
+<li><p>development year 4, nearly all red (A &gt; F)</p></li>
+</ul>
+<p>This suggests the payment pattern has altered and can be accommodated by (mostly) interaction terms within the GLM. Consider adding the following terms:</p>
+<ul class="simple">
+<li><p>(development year = 1) * (accident year is between 1 and 6)</p></li>
+<li><p>(development year = 2) * (accident year is between 1 and 6)</p></li>
+<li><p>(development year = 3) * (accident year linear trend)</p></li>
+<li><p>(development year = 4)</p></li>
+</ul>
+<p>So, let’s refit the model with terms to capture these and have a look at the heat map again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the new terms</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_eq_1</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">1</span><span class="p">)]</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_eq_3</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">3</span><span class="p">)]</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">dev_year_eq_4</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">4</span><span class="p">)]</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">acc_year_1_6</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">acc_year</span> <span class="o">&gt;=</span> <span class="m">1</span> <span class="o">&amp;</span> <span class="n">acc_year</span> <span class="o">&lt;=</span> <span class="m">6</span><span class="p">)]</span>
+
+
+<span class="n">glm_fit5</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">msdata</span><span class="p">,</span> 
+	<span class="n">family</span> <span class="o">=</span> <span class="nf">quasipoisson</span><span class="p">(</span><span class="n">link</span> <span class="o">=</span> <span class="s">&quot;log&quot;</span><span class="p">),</span>
+	<span class="n">formula</span> <span class="o">=</span> <span class="s">&quot;incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7 + dev_year_eq_2 + dev_year_eq_4 +</span>
+<span class="s">	dev_year_eq_1:acc_year_1_6 +  dev_year_eq_2:acc_year_1_6 + dev_year_eq_3:acc_year &quot;</span><span class="p">)</span>
+
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">glm_fit5</span><span class="p">)</span>
+
+<span class="c1"># save for later use</span>
+<span class="n">glm_fit5</span><span class="o">$</span><span class="n">coeff_table</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="nf">names</span><span class="p">(</span><span class="n">glm_fit5</span><span class="o">$</span><span class="n">coefficients</span><span class="p">),</span> <span class="n">coeff_glm_fit5</span> <span class="o">=</span> <span class="n">glm_fit5</span><span class="o">$</span><span class="n">coefficients</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = &quot;incremental ~ acc_year + acc_year_2 + dev_year_m1 + dev_year_ge_7 + dev_year_eq_2 + dev_year_eq_4 +\n\tdev_year_eq_1:acc_year_1_6 +  dev_year_eq_2:acc_year_1_6 + dev_year_eq_3:acc_year &quot;, 
+    family = quasipoisson(link = &quot;log&quot;), data = msdata)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-13.7416   -3.8986   -0.4483    5.3380   13.4570  
+
+Coefficients:
+                            Estimate Std. Error t value             Pr(&gt;|t|)
+(Intercept)                10.490384   0.032004 327.787 &lt; 0.0000000000000002
+acc_year                    0.206624   0.010871  19.007 &lt; 0.0000000000000002
+acc_year_2                 -0.018333   0.001140 -16.078 &lt; 0.0000000000000002
+dev_year_m1                -0.368487   0.006911 -53.317 &lt; 0.0000000000000002
+dev_year_ge_7               0.271988   0.044265   6.145           0.00000019
+dev_year_eq_2               0.037485   0.024691   1.518              0.13596
+dev_year_eq_4               0.052800   0.023821   2.217              0.03175
+dev_year_eq_1:acc_year_1_6 -0.067134   0.028071  -2.392              0.02102
+dev_year_eq_2:acc_year_1_6  0.127316   0.031042   4.101              0.00017
+acc_year:dev_year_eq_3     -0.011262   0.003866  -2.913              0.00556
+                              
+(Intercept)                ***
+acc_year                   ***
+acc_year_2                 ***
+dev_year_m1                ***
+dev_year_ge_7              ***
+dev_year_eq_2                 
+dev_year_eq_4              *  
+dev_year_eq_1:acc_year_1_6 *  
+dev_year_eq_2:acc_year_1_6 ***
+acc_year:dev_year_eq_3     ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for quasipoisson family taken to be 53.93331)
+
+    Null deviance: 750824.1  on 54  degrees of freedom
+Residual deviance:   2426.9  on 45  degrees of freedom
+AIC: NA
+
+Number of Fisher Scoring iterations: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>This model should match that displayed in Table 7-5 of the monograph - and indeed it does (some very minor differences in parameter values - the model in the monograph was fitted in SAS).</p>
+<p>Look at the updated heat map again with the annotations - has the model resolved the identified issues?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># attach fitteds and residuals</span>
+<span class="n">msdata</span><span class="p">[,</span> <span class="n">residuals5</span> <span class="o">:=</span> <span class="nf">rstandard</span><span class="p">(</span><span class="n">glm_fit5</span><span class="p">)</span>
+	   <span class="p">][,</span> <span class="n">fitted5</span> <span class="o">:=</span> <span class="n">glm_fit5</span><span class="o">$</span><span class="n">fitted.values</span>
+	     <span class="p">][,</span> <span class="n">linear_predictor5</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="n">fitted5</span><span class="p">)</span>
+	       <span class="p">][,</span> <span class="n">AvsF5</span> <span class="o">:=</span> <span class="n">incremental</span> <span class="o">/</span> <span class="n">fitted5</span>
+	         <span class="p">][,</span> <span class="n">AvsF_restricted5</span> <span class="o">:=</span> <span class="nf">log</span><span class="p">(</span><span class="nf">pmax</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="nf">pmin</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="n">AvsF5</span><span class="p">)))]</span>
+
+
+
+<span class="n">p_hm</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">acc_year</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="nf">geom_tile</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">AvsF_restricted5</span><span class="p">))</span><span class="o">+</span><span class="nf">scale_y_reverse</span><span class="p">()</span><span class="o">+</span>
+	<span class="nf">scale_fill_gradient2</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;AvF_min&quot;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="s">&quot;royalblue&quot;</span><span class="p">,</span> <span class="n">mid</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">,</span> <span class="n">na.value</span><span class="o">=</span><span class="s">&quot;grey50&quot;</span><span class="p">,</span> <span class="n">guide</span><span class="o">=</span><span class="s">&quot;colourbar&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Development year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Accident year&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.x</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.x</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">axis.title.y</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">),</span> <span class="n">axis.text.y</span>  <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">))</span><span class="o">+</span>
+	<span class="nf">theme</span><span class="p">(</span><span class="n">panel.background</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="s">&quot;solid&quot;</span><span class="p">),</span>
+		  <span class="n">panel.grid</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;grey&quot;</span><span class="p">))</span> <span class="o">+</span> 
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">10.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">2.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">2.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">6.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">9.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;segment&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">xend</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">yend</span><span class="o">=</span><span class="m">8</span><span class="p">,</span> <span class="n">arrow</span><span class="o">=</span><span class="nf">arrow</span><span class="p">(),</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkblue&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">annotate</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s">&quot;rect&quot;</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span> <span class="m">3.5</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="m">4.5</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="m">7.5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;darkred&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> 
+
+
+<span class="nf">print</span><span class="p">(</span><span class="n">p_hm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_62_0.png" src="../_images/MLRWP_R_GLMs_62_0.png" />
+</div>
+</div>
+<p>This looks much better.</p>
+<p>We should also look at the residual plots again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">linear_predictor5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals5</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">dev_year</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">scale_colour_viridis</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="m">0.9</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="m">0</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Linear predictor&quot;</span><span class="p">)</span>
+
+
+<span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">acc_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals5</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Accident year&quot;</span><span class="p">)</span>
+
+<span class="n">p3</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">dev_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals5</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Development year&quot;</span><span class="p">)</span>
+
+<span class="n">p4</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msdata</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cal_year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">residuals5</span><span class="p">))</span> <span class="o">+</span>
+	<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="s">&quot;#2d708eff&quot;</span><span class="p">)</span> <span class="o">+</span>
+	<span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+	<span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Calendar year&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p3</span> <span class="o">+</span> <span class="n">p4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_GLMs_64_0.png" src="../_images/MLRWP_R_GLMs_64_0.png" />
+</div>
+</div>
+<p>These residuals do look better than those from the chain ladder model.</p>
+</div>
+<div class="section" id="id1">
+<h3>Loss reserve<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have a model, let’s produce the estimate of the outstanding claims by accident year and in total.</p>
+<ul class="simple">
+<li><p>Take the lower triangle data [futdata] created above</p></li>
+<li><p>Add on the new variates we created</p></li>
+<li><p>Score the model on this data</p></li>
+<li><p>Summarise the results</p></li>
+</ul>
+<p>Create the data and score using <code class="docutils literal notranslate"><span class="pre">predict()</span></code>. Store the predicted values in the incremental column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add all model variates</span>
+<span class="n">futdata</span><span class="p">[,</span> <span class="n">acc_year_2</span> <span class="o">:=</span> <span class="n">acc_year</span><span class="o">^</span><span class="m">2</span>
+		<span class="p">][,</span> <span class="n">dev_year_m1</span> <span class="o">:=</span> <span class="n">dev_year</span> <span class="o">-</span> <span class="m">1</span>
+		  <span class="p">][,</span> <span class="n">dev_year_ge_7</span> <span class="o">:=</span> <span class="nf">pmax</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">dev_year</span> <span class="o">-</span> <span class="m">7.5</span><span class="p">)</span>
+		    <span class="p">][,</span> <span class="n">dev_year_eq_1</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span>
+		      <span class="p">][,</span> <span class="n">dev_year_eq_2</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">2</span><span class="p">)</span>
+		        <span class="p">][,</span> <span class="n">dev_year_eq_3</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">3</span><span class="p">)</span>
+		          <span class="p">][,</span> <span class="n">dev_year_eq_4</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">dev_year</span> <span class="o">==</span> <span class="m">4</span><span class="p">)</span>
+		            <span class="p">][,</span> <span class="n">acc_year_1_6</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">acc_year</span><span class="o">&gt;=</span><span class="m">1</span> <span class="o">&amp;</span> <span class="n">acc_year</span> <span class="o">&lt;=</span><span class="m">6</span><span class="p">)]</span>
+
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">glm_fit5</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">futdata</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="n">futdata</span><span class="p">[,</span> <span class="n">incremental</span> <span class="o">:=</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">futdata</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 14</caption>
+<thead>
+	<tr><th scope=col>acc_year</th><th scope=col>dev_year</th><th scope=col>cal_year</th><th scope=col>acc_year_factor</th><th scope=col>dev_year_factor</th><th scope=col>incremental</th><th scope=col>acc_year_2</th><th scope=col>dev_year_m1</th><th scope=col>dev_year_ge_7</th><th scope=col>dev_year_eq_1</th><th scope=col>dev_year_eq_2</th><th scope=col>dev_year_eq_3</th><th scope=col>dev_year_eq_4</th><th scope=col>acc_year_1_6</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2</td><td>10</td><td>12</td><td>2</td><td>10</td><td>3618.769</td><td> 4</td><td>9</td><td>2.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>3</td><td> 9</td><td>12</td><td>3</td><td>9 </td><td>4470.907</td><td> 9</td><td>8</td><td>1.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>3</td><td>10</td><td>13</td><td>3</td><td>10</td><td>4059.635</td><td> 9</td><td>9</td><td>2.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>4</td><td> 8</td><td>12</td><td>4</td><td>8 </td><td>5324.841</td><td>16</td><td>7</td><td>0.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>4</td><td> 9</td><td>13</td><td>4</td><td>9 </td><td>4835.016</td><td>16</td><td>8</td><td>1.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>4</td><td>10</td><td>14</td><td>4</td><td>10</td><td>4390.250</td><td>16</td><td>9</td><td>2.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Get reserves by accident year and in total</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ocl_year</span> <span class="o">&lt;-</span> <span class="n">futdata</span><span class="p">[,</span>  <span class="nf">lapply</span><span class="p">(</span><span class="n">.SD</span><span class="p">,</span> <span class="n">sum</span><span class="p">),</span> <span class="n">.SDcols</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;incremental&quot;</span><span class="p">),</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;acc_year&quot;</span><span class="p">]</span>
+<span class="n">ocl_total</span> <span class="o">&lt;-</span> <span class="n">ocl_year</span><span class="p">[,</span> <span class="nf">sum</span><span class="p">(</span><span class="n">incremental</span><span class="p">)]</span>
+
+
+<span class="n">ocl_year</span> <span class="o">%&gt;%</span> 
+  <span class="n">knitr</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">digits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">display_html</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> acc_year </th>
+   <th style="text-align:right;"> incremental </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3619 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 8531 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 14550 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 22173 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 32458 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:right;"> 45695 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 62955 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 79301 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 101212 </td>
+  </tr>
+</tbody>
+</table></div></div>
+</div>
+<p>The total reserve is <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ocl_total</span> <span class="pre">%&gt;%</span> <span class="pre">round(0)</span></code>.</p>
+</div>
+</div>
+<div class="section" id="reviewing-this-example">
+<h2>Reviewing this example<a class="headerlink" href="#reviewing-this-example" title="Permalink to this headline">¶</a></h2>
+<p>Looking back over this example, what we have done is started with a chain ladder model and then shown how we can use a GLM to fit a more parsimonious model (i.e. fewer parameters).
+It may then be possible to reconcile the shape of the parametric fit by accident year to underlying experience in the book - here we saw higher payments in the middle accident years. Is this due to higher claims experience or higher premium volumes? Does this give us an insight that allows us to better extrapolate into the future when setting reserves?</p>
+<p>We have also used model diagnostics to identify areas of misfit and then used GLM interactions to capture these changes.</p>
+<br>
+</div>
+<div class="section" id="practical-use-of-glms-in-traditional-reserving">
+<h2>Practical use of GLMs in traditional reserving<a class="headerlink" href="#practical-use-of-glms-in-traditional-reserving" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modelling">
+<h3>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h3>
+<p>The ideas in this simple example extend to more complex traditional scenarios. By traditional I mean that the data you have available to you are classified by accident (or underwriting), development and calendar periods only.</p>
+<p>First decide what you are going to model. Here we had a single model of incremental payments. However you could fit a <em>Payments Per Claim Finalised (PPCF)</em> model which consists of 3 submodels - numbers of claims incurred by accident period, number of claims finalised by (accident, development period) and payments per claim finalised by (accident, development period). Each of these could then be fitted by a GLM.</p>
+<p>For whatever you’re modelling, you then pick the two triangle directions that you think are most critical for that experience.
+You can’t include all 3 at the start since they are correlated.</p>
+<p>So, for PPCF submodels:</p>
+<ul class="simple">
+<li><p>for number of claims incurred models, accident and development period effects are likely to be where you start.</p></li>
+<li><p>numbers of claims finalised will usually depend on development period (type of claim) and calendar period (to take account of changes in claim settlement processes)</p></li>
+<li><p>for claim size models, you will probably want development and calendar period effects. For these models you could use operational time instead of development period to avoid changes in the timing of claims finalisations impacting your model.</p></li>
+</ul>
+<p>Then fit the models by starting with the modelled effects as factors and use methods such as those outlined above to reduce the number of parameters by using parametric shapes.
+Look for missing structure and consider adding interactions or (carefully) adding limited functions of the third triangular direction.
+Take advantage of GLM tools to refine your model. Use what you know about the portfolio to inform your model - if you know that there was a period of rapid claims inflation, then include that in your model.</p>
+</div>
+<div class="section" id="setting-reserves">
+<h3>Setting reserves<a class="headerlink" href="#setting-reserves" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to overlay judgement onto a GLM’s predictions.
+At the end of the day, the predictions are just based on a mathematical formula.
+So, taking claims inflation as an example, if you’ve been seeing 5% p.a. over the last 3 years, but you think this is going to moderate going forward, then you can adjust the projections by removing the 5% p.a. rate into the future and replacing it with, say, 2% p.a.
+Once you get familiar with using GLMs, you might find it easier to incorporate judgement - the GLM can capture more granularity about past experience which in turn may make it easier to work out how things might change in future and how to numerically include these changes.</p>
+</div>
+<div class="section" id="additional-references">
+<h3>Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline">¶</a></h3>
+<p>The references below have further examples of fitting GLMs in this way, and show how to capture quite complex experience.
+Although both use individual data, the methodology can be used in a similar manner for aggregate data.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.casact.org/sites/default/files/2021-02/pubs_dpp_dpp04_04dpp327.pdf">Loss Reserving with GLMs: A Case Study</a></p></li>
+<li><p><a class="reference external" href="https://actuaries.asn.au/Library/6.a_ACS07_paper_McGuire_Individual%20claim%20modellingof%20CTP%20data.pdf">Individual Claim modelling of CTP data</a></p></li>
+<li><p><a class="reference external" href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm">Predictive modeling applications in actuarial science, Frees and Derig, 2004</a> - in particular see Chapter 18 in Volume 1 and Chapter 3 in Volume 2.</p></li>
+</ul>
+<p>Please feel free to add references to other useful material in the comments.</p>
+</div>
+</div>
+<div class="section" id="session-information">
+<h2>Session information<a class="headerlink" href="#session-information" title="Permalink to this headline">¶</a></h2>
+<p>To assist with reproducibility in future, here are details of my R session.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS High Sierra 10.13.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] IRdisplay_1.0     kableExtra_1.3.4  magrittr_2.0.1    patchwork_1.1.1  
+[5] viridis_0.6.1     viridisLite_0.4.0 ggplot2_3.3.4     data.table_1.14.0
+[9] here_1.0.1       
+
+loaded via a namespace (and not attached):
+ [1] pbdZMQ_0.3-5      tidyselect_1.1.1  xfun_0.23         repr_1.1.3       
+ [5] purrr_0.3.4       colorspace_2.0-1  vctrs_0.3.8       generics_0.1.0   
+ [9] htmltools_0.5.1.1 base64enc_0.1-3   utf8_1.2.1        rlang_0.4.11     
+[13] pillar_1.6.1      glue_1.4.2        withr_2.4.2       DBI_1.1.1        
+[17] uuid_0.1-4        lifecycle_1.0.0   stringr_1.4.0     munsell_0.5.0    
+[21] gtable_0.3.0      rvest_1.0.0       evaluate_0.14     labeling_0.4.2   
+[25] knitr_1.33        curl_4.3.1        fansi_0.5.0       highr_0.9        
+[29] scales_1.1.1      IRkernel_1.2      webshot_0.5.2     jsonlite_1.7.2   
+[33] farver_2.1.0      systemfonts_1.0.2 gridExtra_2.3     digest_0.6.27    
+[37] stringi_1.6.2     dplyr_1.0.7       grid_4.1.0        rprojroot_2.0.2  
+[41] tools_4.1.0       tibble_3.1.2      crayon_1.4.1      pkgconfig_2.0.3  
+[45] ellipsis_0.3.2    xml2_1.3.2        assertthat_0.2.1  rmarkdown_2.9    
+[49] svglite_2.0.0     httr_1.4.2        rstudioapi_0.13   R6_2.5.0         
+[53] compiler_4.1.0   
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="life_stats.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R: Life Industry Stats in Tableau and R</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MLRWP_R_Lasso.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R: Reserving with LASSO</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
