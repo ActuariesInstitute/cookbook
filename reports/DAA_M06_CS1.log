@@ -58,7 +58,7 @@ data2 = pd.read_excel(infolder+file2, sheet_name='Table 1', header = 5,
 During handling of the above exception, another exception occurred:
 
 [0;31mImportError[0m                               Traceback (most recent call last)
-[0;32m/tmp/ipykernel_4134/1302526057.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_3941/1302526057.py[0m in [0;36m<module>[0;34m[0m
 [1;32m     12[0m [0;31m# Read in the data from your folder.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [1;32m     13[0m [0mdata1[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0minfolder[0m[0;34m+[0m[0mfile1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 14[0;31m data2 = pd.read_excel(infolder+file2, sheet_name='Table 1', header = 5,
