@@ -17,29 +17,89 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Import pandas and numpy for data management.
-import numpy as np
-import pandas as pd
+# Import the data files for the case study.
+# The first data set ('file1' below) contains the features to be used in the 
+# modelling for each SA1.
+# The second data set ('file2' below) contains the ABS's reported
+# IRSD index value for each SA1 which will be used later for comparison to
+# the index derived in this notebook.
 
-# Import library functions that will be required for the PCA modelling.
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+# Specify the filenames.
+file1 = 'DAA_M06_CS1_data1.csv'
+file2 = 'DAA_M06_CS1_data2.xls'
 
-# For calculating correlation between the ABS index and the recreated index.
-from scipy.stats import pearsonr
-
+# Read in the data from your folder.
+data1 = pd.read_csv(infolder+file1)
+data2 = pd.read_excel(infolder+file2, sheet_name='Table 1', header = 5,
+                      usecols='A:C',
+                      names = ['SA1_7DIGITCODE_2016', 'SA1_11DIGITCODE_2016', 'IRSD_ABS'])
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_3976/717460324.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[1;32m      5[0m [0;31m# Import library functions that will be required for the PCA modelling.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 6[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdecomposition[0m [0;32mimport[0m [0mPCA[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      7[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mpreprocessing[0m [0;32mimport[0m [0mStandardScaler[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      8[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py[0m in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    125[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 126[0;31m         [0mmodule[0m [0;34m=[0m [0mimportlib[0m[0;34m.[0m[0mimport_module[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    127[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'sklearn'
-ModuleNotFoundError: No module named 'sklearn'
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/importlib/__init__.py[0m in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    126[0m             [0mlevel[0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 127[0;31m     [0;32mreturn[0m [0m_bootstrap[0m[0;34m.[0m[0m_gcd_import[0m[0;34m([0m[0mname[0m[0;34m[[0m[0mlevel[0m[0;34m:[0m[0;34m][0m[0;34m,[0m [0mpackage[0m[0;34m,[0m [0mlevel[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    128[0m [0;34m[0m[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/importlib/_bootstrap.py[0m in [0;36m_gcd_import[0;34m(name, package, level)[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/importlib/_bootstrap.py[0m in [0;36m_find_and_load[0;34m(name, import_)[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/importlib/_bootstrap.py[0m in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'xlrd'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m/tmp/ipykernel_4084/1302526057.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     12[0m [0;31m# Read in the data from your folder.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0mdata1[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0minfolder[0m[0;34m+[0m[0mfile1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m data2 = pd.read_excel(infolder+file2, sheet_name='Table 1', header = 5,
+[0m[1;32m     15[0m                       [0musecols[0m[0;34m=[0m[0;34m'A:C'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m                       names = ['SA1_7DIGITCODE_2016', 'SA1_11DIGITCODE_2016', 'IRSD_ABS'])
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    309[0m                     [0mstacklevel[0m[0;34m=[0m[0mstacklevel[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    310[0m                 )
+[0;32m--> 311[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    312[0m [0;34m[0m[0m
+[1;32m    313[0m         [0;32mreturn[0m [0mwrapper[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py[0m in [0;36mread_excel[0;34m(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, decimal, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)[0m
+[1;32m    455[0m     [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mio[0m[0;34m,[0m [0mExcelFile[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    456[0m         [0mshould_close[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 457[0;31m         [0mio[0m [0;34m=[0m [0mExcelFile[0m[0;34m([0m[0mio[0m[0;34m,[0m [0mstorage_options[0m[0;34m=[0m[0mstorage_options[0m[0;34m,[0m [0mengine[0m[0;34m=[0m[0mengine[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    458[0m     [0;32melif[0m [0mengine[0m [0;32mand[0m [0mengine[0m [0;34m!=[0m [0mio[0m[0;34m.[0m[0mengine[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    459[0m         raise ValueError(
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py[0m in [0;36m__init__[0;34m(self, path_or_buffer, engine, storage_options)[0m
+[1;32m   1417[0m         [0mself[0m[0;34m.[0m[0mstorage_options[0m [0;34m=[0m [0mstorage_options[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1418[0m [0;34m[0m[0m
+[0;32m-> 1419[0;31m         [0mself[0m[0;34m.[0m[0m_reader[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_engines[0m[0;34m[[0m[0mengine[0m[0;34m][0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_io[0m[0;34m,[0m [0mstorage_options[0m[0;34m=[0m[0mstorage_options[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1420[0m [0;34m[0m[0m
+[1;32m   1421[0m     [0;32mdef[0m [0m__fspath__[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_xlrd.py[0m in [0;36m__init__[0;34m(self, filepath_or_buffer, storage_options)[0m
+[1;32m     22[0m         """
+[1;32m     23[0m         [0merr_msg[0m [0;34m=[0m [0;34m"Install xlrd >= 1.0.0 for Excel support"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 24[0;31m         [0mimport_optional_dependency[0m[0;34m([0m[0;34m"xlrd"[0m[0;34m,[0m [0mextra[0m[0;34m=[0m[0merr_msg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     25[0m         [0msuper[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m,[0m [0mstorage_options[0m[0;34m=[0m[0mstorage_options[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     26[0m [0;34m[0m[0m
+
+[0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py[0m in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    127[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    128[0m         [0;32mif[0m [0merrors[0m [0;34m==[0m [0;34m"raise"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 129[0;31m             [0;32mraise[0m [0mImportError[0m[0;34m([0m[0mmsg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    130[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    131[0m             [0;32mreturn[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
+ImportError: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
 
