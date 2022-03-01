@@ -4,6 +4,8 @@
 
 A cookbook to help actuaries get started with data and analytics projects in both data science and traditional fields, using [Jupyter Book 2.0](https://jupyterbook.org/).
 
+Here is the link to the Actuaries' Analytical Cookbook website: https://actuariesinstitute.github.io/cookbook/docs/index.html
+
 ## Workflow
 
 ### Adding notebooks to the cookbook
