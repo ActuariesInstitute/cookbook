@@ -57,7 +57,7 @@ File [0;32m<frozen importlib._bootstrap>:973[0m, in [0;36m_find_and_load_unlo
 During handling of the above exception, another exception occurred:
 
 [0;31mImportError[0m                               Traceback (most recent call last)
-Input [0;32mIn [4][0m, in [0;36m<module>[0;34m[0m
+Input [0;32mIn [4][0m, in [0;36m<cell line: 14>[0;34m()[0m
 [1;32m     12[0m [38;5;66;03m# Read in the data from your folder.[39;00m
 [1;32m     13[0m data1 [38;5;241m=[39m pd[38;5;241m.[39mread_csv(infolder[38;5;241m+[39mfile1)
 [0;32m---> 14[0m data2 [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_excel[49m[43m([49m[43minfolder[49m[38;5;241;43m+[39;49m[43mfile2[49m[43m,[49m[43m [49m[43msheet_name[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mTable 1[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mheader[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;241;43m5[39;49m[43m,[49m
