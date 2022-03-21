@@ -33,7 +33,7 @@ parts:
   - file:  docs/LifeRecipeBook.ipynb
   - file:  docs/life_stats.ipynb
   - file:  docs/bayesian-applications.ipynb
-  - file:  docs/trees.ipynb
+  - file:  docs/trees.ipynb 
 - caption: General Insurance
   chapters:
   - file: docs/MLRWP_R_GLMs.ipynb
