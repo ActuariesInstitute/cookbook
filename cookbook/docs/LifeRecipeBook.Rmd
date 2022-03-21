@@ -13,15 +13,6 @@ link-citations: yes
 
 <!-- #region name="htmlHeader" tags=["remove_input"] -->
 By Pat Reen - originally published on his GitHub site [here](https://pat-reen.github.io/Modelling-Recipes/), which has the [original code](https://github.com/Pat-Reen/Modelling-Recipes/blob/main/RecipeBook.Rmd).
-
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- Add icon font -->
-<p style="position:absolute; top:0; right:20px; ">
-    <a href="https://www.linkedin.com/in/patrick-reen/" target="_blank" class="fa fa-linkedin" style="font-size:24px"></a>
-    <a href="https://github.com/Pat-Reen/" target="_blank" class="fa fa-github" style="font-size:24px"></a>
-</p>
 <!-- #endregion -->
 
 <!-- #region -->
