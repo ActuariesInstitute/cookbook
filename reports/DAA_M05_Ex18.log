@@ -31,13 +31,12 @@ from tensorflow.keras.layers import Dense
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 6>[0;34m()[0m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      5[0m [38;5;66;03m# Used to build the neural network and evaluate it.[39;00m
-[0;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m [38;5;28;01mimport[39;00m train_test_split
+Input [0;32mIn [1][0m, in [0;36m<cell line: 9>[0;34m()[0m
 [1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m StandardScaler
 [1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m OneHotEncoder
+[0;32m----> 9[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mkeras[39;00m [38;5;28;01mimport[39;00m Sequential
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtensorflow[39;00m[38;5;21;01m.[39;00m[38;5;21;01mkeras[39;00m[38;5;21;01m.[39;00m[38;5;21;01mlayers[39;00m [38;5;28;01mimport[39;00m Dense
 
-[0;31mModuleNotFoundError[0m: No module named 'sklearn'
-ModuleNotFoundError: No module named 'sklearn'
+[0;31mModuleNotFoundError[0m: No module named 'tensorflow'
+ModuleNotFoundError: No module named 'tensorflow'
 
