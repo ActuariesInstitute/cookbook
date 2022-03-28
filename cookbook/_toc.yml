@@ -69,7 +69,7 @@ parts:
   - file:  docs/automated_decision
 - caption: Reference
   chapters:
-  - file: docs/zbibliography.mb
+  - file: docs/zbibliography
 - caption: Contributing
   chapters:
   - file: docs/contributing.ipynb
