@@ -5,7 +5,7 @@ author: "[Pat Reen](https://www.linkedin.com/in/patrick-reen/)"
 output: 
     self_contained: false
     code_folding: hide
-bibliography: references.bib 
+bibliography: ../_bibliography/references.bib 
 link-citations: yes
 ---
 
