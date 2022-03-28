@@ -67,6 +67,9 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
+- caption: Reference
+  chapters:
+  - file: docs/zbibliography.mb
 - caption: Contributing
   chapters:
   - file: docs/contributing.ipynb
