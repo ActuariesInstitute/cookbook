@@ -1,0 +1,2339 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R: Bauldry ML Reserving Pt 3 &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Py: Socio-Economic Index Construction" href="DAA_M06_CS1.html" />
+    <link rel="prev" title="R: Bauldry ML Reserving Pt 2" href="MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_DataTable.html">
+   R: data.table for actuaries
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="life_stats.html">
+   R: Life Industry Stats in Tableau and R
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Insurance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_GLMs.html">
+   R: Reserving with GLMs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Lasso.html">
+   R: Reserving with LASSO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_mlr3.html">
+   R: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
+   Py: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html">
+   R: Bauldry ML Reserving Pt 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.html">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparations-before-modelling">
+   Preparations before modelling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-data-and-prepare-database">
+   Simulate data and prepare database
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
+     Simulate policy and claim data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#join-policy-and-claim-data">
+     Join policy and claim data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeslice-policy-claim">
+     Timeslice policy claim
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-valuation-date">
+     Select valuation date
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-rbns-dataset">
+     Creating RBNS dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
+     Creating IBNR dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-build">
+   Model build
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-model">
+     RBNS model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-xgboost-dataset">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#inspect-model-fit">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-rbns-reserves">
+       Summarising RBNS reserves
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-frequency-model">
+     IBNR Frequency model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">
+       Summarising IBNR claim counts
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-severity-model">
+     IBNR Severity model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">
+       Summarising IBNR claim costs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Bauldry ML Reserving Pt 3</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparations-before-modelling">
+   Preparations before modelling
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-data-and-prepare-database">
+   Simulate data and prepare database
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
+     Simulate policy and claim data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#join-policy-and-claim-data">
+     Join policy and claim data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeslice-policy-claim">
+     Timeslice policy claim
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-valuation-date">
+     Select valuation date
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-rbns-dataset">
+     Creating RBNS dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
+     Creating IBNR dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-build">
+   Model build
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-model">
+     RBNS model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-xgboost-dataset">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#inspect-model-fit">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-rbns-reserves">
+       Summarising RBNS reserves
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-frequency-model">
+     IBNR Frequency model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">
+       Summarising IBNR claim counts
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-severity-model">
+     IBNR Severity model
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Creating xgboost dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Fit initial model using cross validation
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Fit final model on all training data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Inspect model fit
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">
+       Summarising IBNR claim costs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-bauldry-ml-reserving-pt-3">
+<h1>R: Bauldry ML Reserving Pt 3<a class="headerlink" href="#r-bauldry-ml-reserving-pt-3" title="Permalink to this headline">¶</a></h1>
+<p><em>This article was originally created by Nigel Carpenter and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is the third notebook of a series of three that outlines and elaborates upon code used to replicate the central scenario in the paper of Maximilien Baudry “NON-PARAMETRIC INDIVIDUAL
+CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&amp;fg=1">Presentation</a> <a class="reference external" href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/%24FILE/Reserving-article.pdf">Paper</a>)</p>
+<p>In this notebook we step through the process to apply machine learning techniques in order to create reserve estimates following the techniques set out in sections 3 and 4 of Baudry’s paper.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="preparations-before-modelling">
+<h1>Preparations before modelling<a class="headerlink" href="#preparations-before-modelling" title="Permalink to this headline">¶</a></h1>
+<p>The reserving data structures built in this notebook are from a simulated phone insurance dataset. The creation of that simulated data and machine learning data structures for reserving have been set out in the first and second notebooks of this series.</p>
+<p>Rather than repeat that code in this notebook the key routines and functions have been put into the r script <em>Baudry_functions_v2.R</em> enabling us to quickly load them for use in this notebook.</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing packages</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rmdformats</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">repr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">formattable</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRdisplay</span><span class="p">)</span> <span class="c1"># displays tables when in ipynb format</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">SHAPforxgboost</span><span class="p">)</span>
+
+<span class="nf">source</span><span class="p">(</span><span class="s">&quot;./Baudry_functions_v2.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="simulate-data-and-prepare-database">
+<h1>Simulate data and prepare database<a class="headerlink" href="#simulate-data-and-prepare-database" title="Permalink to this headline">¶</a></h1>
+<p>We can now quickly repeat the process from Notebooks 1 and 2 using the functions in the script.</p>
+<div class="section" id="simulate-policy-and-claim-data">
+<h2>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this headline">¶</a></h2>
+<p>We start with a simulated phone insurance policy and claim dataset. I am calling the function from Notebook 1 of this series to create the dataset. Using a fixed seed will ensure you get a reproducible simulated dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_PhoneData</span> <span class="o">&lt;-</span> <span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="join-policy-and-claim-data">
+<h2>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this headline">¶</a></h2>
+<p>We then join the simulated phone insurance policy and claim dataset. I have taken the code from Notebook 2 and wrapped it in to a function to perform the join  and subsequent data tidying.</p>
+<p>Note that if you are working with your own company data you would likely need to amend this function to work with the specifics of your data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_polclaim</span> <span class="o">&lt;-</span> <span class="nf">join_policy_claim</span><span class="p">(</span><span class="n">dt_PhoneData</span><span class="p">,</span>
+                                 <span class="n">date_pol_start</span> <span class="o">=</span> <span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
+                                 <span class="n">date_pol_end</span> <span class="o">=</span> <span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
+                                 <span class="n">date_occur</span> <span class="o">=</span> <span class="s">&quot;date_occur&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="timeslice-policy-claim">
+<h2>Timeslice policy claim<a class="headerlink" href="#timeslice-policy-claim" title="Permalink to this headline">¶</a></h2>
+<p>We then time slice the joined policy and claim dataset. Again, I have taken the code from Notebook 2 and wrapped it into a function to perform the time slicing, given a set of dates that define the time slice periods.</p>
+<p>Again, note that this function would need to be re-written to work with your own company data and more importantly it currently would not work correctly with partial payment claims.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span> <span class="o">&lt;-</span> <span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019/06/30&quot;</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">30</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)</span> 
+<span class="n">dt_polclaim</span> <span class="o">&lt;-</span> <span class="nf">time_slice_polclaim</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="select-valuation-date">
+<h2>Select valuation date<a class="headerlink" href="#select-valuation-date" title="Permalink to this headline">¶</a></h2>
+<p>Before we create the RBNS and IBNER datasets we must pick a valuation point from the available timeslices. I’m selecting the 10th point for illustration, which is the 10th 30 day period from 01/01/2016, ie a valuation date of 27/09/2016.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">&lt;-</span> <span class="n">valuation</span> <span class="o">&lt;-</span> <span class="m">10</span>
+<span class="n">t_i</span> <span class="o">&lt;-</span> <span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+<span class="n">delta</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-rbns-dataset">
+<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this headline">¶</a></h2>
+<p>We start with the RBNS dataset and by defining the list of features that will be used in the RBNS model dataset.</p>
+<p>As you follow this example you may observe that we are not using the historic claim payment information as an explanatory feature in the RBNS reserve prediction model. Baudry’s paper and approach does allow for the inclusion of such information so it may seem somewhat strange not to include it in this worked example.</p>
+<p>I believe the reason that it is not included is a result of the way data has been simulated, specifically that simulated claims are settled with a single payment. That assumption combined with the fact that this method is being applied to individual claim level data prevents the previous time period’s payment information being used by a machine learning model. That is because the previous period’s payment amount can only ever take the value zero for a claim requiring an RBNS reserve. (Claims where the previous paid is non-zero have been paid and settled ie no longer require an RBNS reserve). Consequently, in this central simulated example, prior payment amount is uninformative in the machine learning process and therefore cannot be included as a feature in the RBNS dataset.</p>
+<p>The final point to note is that the code shared here deals only with the simplified payment process from Baudry’s central scenario, ie claims are settled with a single payment. Real world data with partial payments and prior payments as explanatory features would require material changes to be made to the code we have shared. Such changes are left for interested readers to make.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define modelVars</span>
+<span class="n">RBNS_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;target&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_RBNS_train</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+
+<span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_RBNS_test</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The train and test datasets are then joined into a single dataset and a small amount of tidying is done to make them ready for use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a flag to determine which rows are from the trainset and which from the test set</span>
+<span class="n">dt_RBNS_train</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">dt_RBNS_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+
+<span class="c1"># combine into a single RBNS dataset   </span>
+<span class="n">dt_All_RBNS</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_RBNS_train</span><span class="p">,</span> <span class="n">dt_RBNS_test</span><span class="p">)</span>
+<span class="c1">#write.csv(dt_All_RBNS,&quot;dt_All_RBNS.csv&quot;, row.names = F)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The important aspects of the tidying relate to creating useable delay metrics from the numerous dates and converting some character features such as cover and claim type into factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    
+<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+
+<span class="c1">#create delay measures and convert time measures from intervals of seconds to intervals of days</span>
+<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span>
+  <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                        <span class="m">-1</span><span class="p">,</span>
+                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
+                        <span class="p">),</span>
+  <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                         <span class="m">-1</span><span class="p">,</span>
+                         <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
+                         <span class="p">),</span>
+  <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  
+  <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span>  <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">),</span>
+  <span class="n">claim_type</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">claim_type</span><span class="p">)</span>
+  <span class="p">)]</span>
+  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-ibnr-dataset">
+<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this headline">¶</a></h2>
+<p>We can then create the IBNR dataset following a similar procedure starting by defining the list of features that will be used in the IBNR model. Then we call the functions that convert the timesliced policy and claim data into the IBNR train and test datasets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define IBNR modelVars</span>
+<span class="n">IBNR_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;exposure&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;target&quot;</span><span class="p">)</span>
+    
+<span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
+<span class="n">lst_IBNR_train</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+
+<span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_IBNR_test</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The train and test datasets are then joined into a single dataset and a small amount of tidying is done to make them ready for use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">2</span><span class="p">]</span>
+<span class="n">dt_IBNR_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+
+<span class="n">dt_All_IBNR</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">,</span>
+                     <span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">,</span>
+                     <span class="n">dt_IBNR_test</span><span class="p">)</span>
+<span class="c1">#write.csv(dt_All_IBNR,&quot;dt_All_IBNR.csv&quot;, row.names = F)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># tidy up</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="p">)</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">dt_IBNR_test</span><span class="p">)</span>
+<span class="nf">gc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 7 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>used</th><th scope=col>(Mb)</th><th scope=col>gc trigger</th><th scope=col>(Mb)</th><th scope=col>limit (Mb)</th><th scope=col>max used</th><th scope=col>(Mb)</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Ncells</th><td> 2945462</td><td>157.4</td><td>  5633064</td><td> 300.9</td><td>   NA</td><td>  4008351</td><td>214.1</td></tr>
+	<tr><th scope=row>Vcells</th><td>75769710</td><td>578.1</td><td>149517738</td><td>1140.8</td><td>16384</td><td>123984472</td><td>946.0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The important aspects of the tidying relate to creating useable delay metrics from the numerous dates and converting some character features such as cover and claim type into factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_IBNR</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    
+<span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">&#39;:=&#39;</span><span class="p">(</span> <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                        <span class="m">-1</span><span class="p">,</span>
+                                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                          <span class="m">-1</span><span class="p">,</span>
+                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                          <span class="m">-1</span><span class="p">,</span>
+                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+                   <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+                   <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>That finishes the data preparation. We can now move onto the process of building models of RBNS and IBNR and using them to predict the current reserve requirements.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="model-build">
+<h1>Model build<a class="headerlink" href="#model-build" title="Permalink to this headline">¶</a></h1>
+<p>I will use the xgboost R machine learning  package to build the models. In Baudry’s original paper he used the extraTrees package; a variant upon Random Forests.</p>
+<p>Xgboost has been selected as it is the most popular implementation of the gradient boosting machine (GBM) algorithm. GBMs have been known since around 2015 to be the most accurate algorithmic technique for regression and classification tasks.</p>
+<p>The code and modeling process for each reserve type is very similar so they are shown in the tabbed sections below rather that repeating in-line.</p>
+<div class="section" id="rbns-model">
+<h2>RBNS model<a class="headerlink" href="#rbns-model" title="Permalink to this headline">¶</a></h2>
+<p>Starting with the RBNS reserves we will first build a model upon the training data using a cross validated approach to enable selection of key xgboost hyperparameters.</p>
+<p>Then using optimal parameters we retrain on the complete training dataset. This trained model is then scored against the test data in order to create predictions from which the RBNS reserve can be calculated.</p>
+<div class="section" id="creating-xgboost-dataset">
+<h3>Creating xgboost dataset<a class="headerlink" href="#creating-xgboost-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Xgboost requires it’s data to be in a specific format; a special matrix form called a DMatrix, for which there is a function <code class="docutils literal notranslate"><span class="pre">xgb.DMatrix</span></code>. Not all variable types can be passed to <code class="docutils literal notranslate"><span class="pre">xgb.DMatrix</span></code> in particular categorical or nominal variables such as <strong>Brand</strong> have to be converted from text to numeric values.</p>
+<p>For this example I’ve chosen to use the <code class="docutils literal notranslate"><span class="pre">parsnip</span></code> package and create a recipe that converts nominal predictor values into a <strong>one-hot-encoded</strong> form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="c1">#&quot;date_uw&quot;,</span>
+                     <span class="c1">#&quot;delay_uw_occ&quot;,</span>
+                     <span class="s">&quot;delay_occ_rep&quot;</span><span class="p">)</span>
+
+<span class="n">rowList_RBNS</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
+                <span class="n">test</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+                <span class="n">all</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">))</span>
+
+
+<span class="n">RBNS_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">RBNS_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
+  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">prep</span><span class="p">()</span>
+
+
+<span class="n">df.RBNS_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.RBNS_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.RBNS_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span> <span class="p">)</span>
+
+
+<span class="n">xgb.RBNS_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">),</span>
+                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+
+<span class="n">xgb.RBNS_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_test</span><span class="p">),</span>
+                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+
+<span class="n">xgb.RBNS_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_all</span><span class="p">),</span>
+                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">target</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fit-initial-model-using-cross-validation">
+<h3>Fit initial model using cross validation<a class="headerlink" href="#fit-initial-model-using-cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
+<p>I have used the <strong>reg:tweedie</strong> objective function based upon inspection of the target variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.00    0.00   76.44    0.00  913.00 
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_30_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_30_1.png" />
+</div>
+</div>
+<p>In a real world example a process of hyper-parameter tuning would be undertaken in order to select more optimal xgboost hyper-parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;reg:tweedie&quot;</span><span class="p">,</span>
+  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>            <span class="c1"># tree-depth</span>
+  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.75</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
+  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>    <span class="c1"># randomly sample columns before fitting each tree</span>
+  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>     <span class="c1"># minimum weight per leaf</span>
+  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>                  <span class="c1"># Learning rate</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Train model with cross validation</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+
+<span class="n">xgb_RBNS_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
+  <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+  <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
+  <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">500</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
+  <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+  <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">10L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in </span>
+  <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">10L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
+  <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-tweedie-nloglik@1.5:197.200147+1.066135	test-tweedie-nloglik@1.5:197.212884+4.843435 
+Multiple eval metrics are present. Will use test_tweedie_nloglik@1.5 for early stopping.
+Will train until test_tweedie_nloglik@1.5 hasn&#39;t improved in 10 rounds.
+
+[11]	train-tweedie-nloglik@1.5:76.197815+0.211998	test-tweedie-nloglik@1.5:76.203892+2.163219 
+[21]	train-tweedie-nloglik@1.5:34.536194+0.258204	test-tweedie-nloglik@1.5:34.527821+1.059959 
+[31]	train-tweedie-nloglik@1.5:22.707742+0.180634	test-tweedie-nloglik@1.5:22.711464+0.644633 
+[41]	train-tweedie-nloglik@1.5:20.142523+0.042449	test-tweedie-nloglik@1.5:20.169496+0.415564 
+[51]	train-tweedie-nloglik@1.5:19.651481+0.052902	test-tweedie-nloglik@1.5:19.680118+0.344643 
+[61]	train-tweedie-nloglik@1.5:19.508132+0.061030	test-tweedie-nloglik@1.5:19.550804+0.321765 
+[71]	train-tweedie-nloglik@1.5:19.449044+0.065773	test-tweedie-nloglik@1.5:19.501728+0.312207 
+[81]	train-tweedie-nloglik@1.5:19.419057+0.070073	test-tweedie-nloglik@1.5:19.484397+0.310898 
+[91]	train-tweedie-nloglik@1.5:19.400698+0.071544	test-tweedie-nloglik@1.5:19.473326+0.308729 
+[101]	train-tweedie-nloglik@1.5:19.388735+0.071780	test-tweedie-nloglik@1.5:19.470725+0.307247 
+[111]	train-tweedie-nloglik@1.5:19.376003+0.072908	test-tweedie-nloglik@1.5:19.467906+0.299997 
+[121]	train-tweedie-nloglik@1.5:19.360954+0.073267	test-tweedie-nloglik@1.5:19.473449+0.295966 
+Stopping. Best iteration:
+[112]	train-tweedie-nloglik@1.5:19.374443+0.072647	test-tweedie-nloglik@1.5:19.467368+0.300002
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having fit the model we store the out-of-fold predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof</span> <span class="o">:=</span> <span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fit-final-model-on-all-training-data">
+<h3>Fit final model on all training data<a class="headerlink" href="#fit-final-model-on-all-training-data" title="Permalink to this headline">¶</a></h3>
+<p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_RBNS_CV$best_iteration</span></code>.</p>
+<p>We can then use this to train a final model on all the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_RBNS_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
+  <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+  <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
+  <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<span class="c1"># base_score             = 1,</span>
+  <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.test</span><span class="p">)</span> <span class="p">,</span>
+  <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">10</span>
+<span class="p">)</span>
+
+<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">preds_full</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="n">xgb.RBNS_DMat.all</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-tweedie-nloglik@1.5:197.147781	test-tweedie-nloglik@1.5:82.766273 
+[11]	train-tweedie-nloglik@1.5:75.850830	test-tweedie-nloglik@1.5:32.106102 
+[21]	train-tweedie-nloglik@1.5:34.154110	test-tweedie-nloglik@1.5:14.514384 
+[31]	train-tweedie-nloglik@1.5:22.479488	test-tweedie-nloglik@1.5:9.615996 
+[41]	train-tweedie-nloglik@1.5:20.106234	test-tweedie-nloglik@1.5:8.624282 
+[51]	train-tweedie-nloglik@1.5:19.618027	test-tweedie-nloglik@1.5:8.393838 
+[61]	train-tweedie-nloglik@1.5:19.490944	test-tweedie-nloglik@1.5:8.321967 
+[71]	train-tweedie-nloglik@1.5:19.442141	test-tweedie-nloglik@1.5:8.283491 
+[81]	train-tweedie-nloglik@1.5:19.419815	test-tweedie-nloglik@1.5:8.265779 
+[91]	train-tweedie-nloglik@1.5:19.399960	test-tweedie-nloglik@1.5:8.258656 
+[101]	train-tweedie-nloglik@1.5:19.387503	test-tweedie-nloglik@1.5:8.257319 
+[111]	train-tweedie-nloglik@1.5:19.373995	test-tweedie-nloglik@1.5:8.257586 
+[112]	train-tweedie-nloglik@1.5:19.373476	test-tweedie-nloglik@1.5:8.257521 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="inspect-model-fit">
+<h3>Inspect model fit<a class="headerlink" href="#inspect-model-fit" title="Permalink to this headline">¶</a></h3>
+<p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
+<span class="n">featImp_RBNS</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_RBNS</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - RBNS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_38_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_38_0.png" />
+</div>
+</div>
+<p>An increasingly popular and more robust approach is to use SHAP values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
+<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_RBNS_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
+
+<span class="c1"># Prepare the long-format data:</span>
+<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
+
+<span class="c1"># **SHAP summary plot**</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_40_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_40_0.png" />
+</div>
+</div>
+<p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
+<p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
+                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
+                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
+                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at -0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 1.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  3.0861e-30”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 1.01”
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at 0.985”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 2.015”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  1.3565e-15”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 4”
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_42_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_42_1.png" />
+</div>
+</div>
+<p>The feature importance and partial dependency plots provide quick insight into the model.</p>
+<ul class="simple">
+<li><p>We see that claim development period, j, is the most important feature and that the RBNS reserve is smaller for larger values of j.</p></li>
+<li><p>The second most important feature is claimtype where breakage claims are associated with lower RBNS reserves. This is as expected from the data generating process where breakage claims come from a Beta distribution with a lower mean.</p></li>
+<li><p>The third most important feature is phone price where there is linear increase in RBNS reserve with increasing phone price. This is also as expected from the data generating process.</p></li>
+<li><p>The fourth feature is phone brand which again follows expectations from the data generating process.</p></li>
+</ul>
+<p>SHAP values can also be used to show the components of a single prediction. In the following plot we show the top 4 components for each row of the data and zoom in at row 500.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
+<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
+                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
+  
+<span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
+<span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 8 features were summed into variable &#39;rest_variables&#39;.
+
+
+Data has N = 833 | zoom in length is 83 at location 500.
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_45_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_45_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="summarising-rbns-reserves">
+<h3>Summarising RBNS reserves<a class="headerlink" href="#summarising-rbns-reserves" title="Permalink to this headline">¶</a></h3>
+<p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the RBNS predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span> <span class="p">[,</span> <span class="n">date_occur_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+
+<span class="n">dt_RBNS_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_occur_YYYYMM</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> date_occur_YYYYMM </th>
+   <th style="text-align:right;"> preds </th>
+   <th style="text-align:right;"> target </th>
+   <th style="text-align:right;"> Diff </th>
+   <th style="text-align:left;"> Diff_pcnt </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2016.04 </td>
+   <td style="text-align:right;"> 1,341 </td>
+   <td style="text-align:right;"> 911 </td>
+   <td style="text-align:right;"> 430 </td>
+   <td style="text-align:left;"> 47.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.05 </td>
+   <td style="text-align:right;"> 5,442 </td>
+   <td style="text-align:right;"> 5,188 </td>
+   <td style="text-align:right;"> 254 </td>
+   <td style="text-align:left;"> 4.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.06 </td>
+   <td style="text-align:right;"> 12,704 </td>
+   <td style="text-align:right;"> 14,257 </td>
+   <td style="text-align:right;"> -1,553 </td>
+   <td style="text-align:left;"> -10.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.07 </td>
+   <td style="text-align:right;"> 56,579 </td>
+   <td style="text-align:right;"> 53,815 </td>
+   <td style="text-align:right;"> 2,764 </td>
+   <td style="text-align:left;"> 5.1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.08 </td>
+   <td style="text-align:right;"> 325,344 </td>
+   <td style="text-align:right;"> 326,631 </td>
+   <td style="text-align:right;"> -1,287 </td>
+   <td style="text-align:left;"> -0.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.09 </td>
+   <td style="text-align:right;"> 619,875 </td>
+   <td style="text-align:right;"> 622,179 </td>
+   <td style="text-align:right;"> -2,304 </td>
+   <td style="text-align:left;"> -0.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1,021,285 </td>
+   <td style="text-align:right;"> 1,022,981 </td>
+   <td style="text-align:right;"> -1,696 </td>
+   <td style="text-align:left;"> -0.2% </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+<p>You can now jump back up to the beginning of the modeling section and select the IBNR frequency modeling tab.</p>
+</div>
+</div>
+<div class="section" id="ibnr-frequency-model">
+<h2>IBNR Frequency model<a class="headerlink" href="#ibnr-frequency-model" title="Permalink to this headline">¶</a></h2>
+<p>IBNR reserves are built by multiplying the outpts of a claim frequency and claim severity model. The general process of building the model follows that of the RBNS reserves.</p>
+<div class="section" id="id1">
+<h3>Creating xgboost dataset<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Again we convert the data into a specific matrix form called a DMatrix. However before doing so we aggregate the data for efficiency of model fit times. There could be a loss of accuracy in aggregating data, so in practice this is something you would want to experiment with.</p>
+<p>The other point to note is the values of <strong>flgTrain</strong> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training rows have a value of 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+
+<span class="c1"># aggregate the data ... does this lead to loss of variance and accuracy?</span>
+<span class="n">dt_All_IBNR</span> <span class="p">[,</span> <span class="n">date_pol_start_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+
+<span class="n">dt_All_IBNR_F</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">),</span>
+                                   <span class="n">target_cost</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
+                                   <span class="n">target_count</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)),</span>
+                               <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span> <span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span> <span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+
+<span class="n">dt_All_IBNR_F</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
+
+
+<span class="c1"># setup train and test rows</span>
+<span class="n">rowList_IBNR_F</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
+                     <span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+                     <span class="n">all</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">2</span><span class="p">)])</span>
+
+<span class="c1"># setup data for xgboost</span>
+<span class="n">IBNR_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="n">IBNR_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
+  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">prep</span><span class="p">()</span>
+
+<span class="n">df.IBNR_F_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_F_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_F_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span> <span class="p">)</span>
+
+<span class="n">xgb.IBNR_F_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">),</span>
+                              <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+
+<span class="n">xgb.IBNR_F_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_test</span><span class="p">),</span>
+                             <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+
+<span class="n">xgb.IBNR_F_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_all</span><span class="p">),</span>
+                            <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Fit initial model using cross validation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
+<p>I have used the <strong>count:poisson</strong> objective function based upon inspection of the target variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_52_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_52_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;count:poisson&quot;</span><span class="p">,</span>
+  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>           <span class="c1"># tree-depth</span>
+  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
+  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>   <span class="c1"># randomly sample columns before fitting each tree</span>
+  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>    <span class="c1"># minimum weight per leaf</span>
+  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>               <span class="c1"># Learning rate</span>
+  <span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Train model with cross validation</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+
+<span class="n">xgb_IBNR_F_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
+ <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+ <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
+ <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
+ <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+
+ <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
+ <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
+ <span class="c1">#base_score             = 0.001,       # Model starting point</span>
+   <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-poisson-nloglik:0.509639+0.000413	test-poisson-nloglik:0.509646+0.001705 
+Multiple eval metrics are present. Will use test_poisson_nloglik for early stopping.
+Will train until test_poisson_nloglik hasn&#39;t improved in 50 rounds.
+
+[51]	train-poisson-nloglik:0.161843+0.002167	test-poisson-nloglik:0.162117+0.005715 
+[101]	train-poisson-nloglik:0.136649+0.002226	test-poisson-nloglik:0.137008+0.008028 
+[151]	train-poisson-nloglik:0.132533+0.002259	test-poisson-nloglik:0.133765+0.008356 
+[201]	train-poisson-nloglik:0.130754+0.002232	test-poisson-nloglik:0.133048+0.008725 
+[251]	train-poisson-nloglik:0.129527+0.002201	test-poisson-nloglik:0.132851+0.008859 
+[301]	train-poisson-nloglik:0.128530+0.002113	test-poisson-nloglik:0.132896+0.009030 
+Stopping. Best iteration:
+[266]	train-poisson-nloglik:0.129220+0.002207	test-poisson-nloglik:0.132820+0.008904
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having fit the model we store the out-of-fold predictions for both the claim frequency and the claim counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_F</span> <span class="o">:=</span> <span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+ <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_Nos</span> <span class="o">:=</span> <span class="n">exposure</span> <span class="o">*</span> <span class="n">preds_oof_IBNR_F</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Fit final model on all training data<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_IBNR_F_CV$best_iteration</span></code>.</p>
+<p>We can then use this to train a final model on all the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_F_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
+   <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+   <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
+   <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<span class="c1"># base_score             = 1,</span>
+   <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span> <span class="p">,</span>
+   <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50</span>
+ <span class="p">)</span>
+ 
+ <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">preds_full_IBNR_Nos</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_F_DMat.all</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-poisson-nloglik:0.509602	test-poisson-nloglik:0.497374 
+[51]	train-poisson-nloglik:0.161682	test-poisson-nloglik:0.119256 
+[101]	train-poisson-nloglik:0.136589	test-poisson-nloglik:0.087910 
+[151]	train-poisson-nloglik:0.132685	test-poisson-nloglik:0.083935 
+[201]	train-poisson-nloglik:0.131112	test-poisson-nloglik:0.083199 
+[251]	train-poisson-nloglik:0.129959	test-poisson-nloglik:0.083135 
+[266]	train-poisson-nloglik:0.129688	test-poisson-nloglik:0.083093 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Inspect model fit<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
+<span class="n">featImp_IBNR_F</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_F</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Frequency&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_59_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_59_0.png" />
+</div>
+</div>
+<p>An increasingly popular and more robust approach is to use SHAP  values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
+<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
+
+<span class="c1"># Prepare the long-format data:</span>
+<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
+
+<span class="c1"># **SHAP summary plot**</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_61_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_61_0.png" />
+</div>
+</div>
+<p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
+<p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
+                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
+                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
+                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at -0.015”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 2.015”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  2.3627e-15”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 4.0602”
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at -0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 1.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  2.6301e-29”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 1.01”
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_63_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_63_1.png" />
+</div>
+</div>
+<p>The feature importance and partial dependency plots provide quick insight into the model.</p>
+<ul class="simple">
+<li><p>We see that claim development period, j, is the most important feature and that the IBNR frequency is smaller for larger values of j.</p></li>
+<li><p>The second most important feature is phone price with the IBNR claim count increasing as price increases. Although this is not a direct feature in the data generating process there is a link with higher theft frequencies and higher phone prices.</p></li>
+<li><p>The third most important feature is phone model with IBNR frequency increasing with model type. This is expected from the data generating process as theft claim frequency increases with model type.</p></li>
+<li><p>The fourth feature is phone cover and it should be no suprise to see that Breakage only, the most basic cover level is associated with lower IBNR claim counts.</p></li>
+</ul>
+<p>SHAP values can also be used to show the components of a single predction. In the following plot we show the top 4 components for each row of the data and zoom in at row 500.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
+<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
+                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
+  
+<span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
+<span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable &#39;rest_variables&#39;.
+
+
+Data has N = 1111 | zoom in length is 111 at location 500.
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_66_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_66_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="summarising-ibnr-claim-counts">
+<h3>Summarising IBNR claim counts<a class="headerlink" href="#summarising-ibnr-claim-counts" title="Permalink to this headline">¶</a></h3>
+<p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim count predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_F_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Nos</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target_count</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> date_pol_start_YYYYMM </th>
+   <th style="text-align:right;"> preds </th>
+   <th style="text-align:right;"> target </th>
+   <th style="text-align:right;"> Diff </th>
+   <th style="text-align:left;"> Diff_pcnt </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2016.01 </td>
+   <td style="text-align:right;"> 216 </td>
+   <td style="text-align:right;"> 168 </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:left;"> 28.7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.02 </td>
+   <td style="text-align:right;"> 189 </td>
+   <td style="text-align:right;"> 176 </td>
+   <td style="text-align:right;"> 13 </td>
+   <td style="text-align:left;"> 7.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.03 </td>
+   <td style="text-align:right;"> 187 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 27 </td>
+   <td style="text-align:left;"> 16.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.04 </td>
+   <td style="text-align:right;"> 181 </td>
+   <td style="text-align:right;"> 164 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:left;"> 10.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.05 </td>
+   <td style="text-align:right;"> 173 </td>
+   <td style="text-align:right;"> 195 </td>
+   <td style="text-align:right;"> -22 </td>
+   <td style="text-align:left;"> -11.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.06 </td>
+   <td style="text-align:right;"> 161 </td>
+   <td style="text-align:right;"> 179 </td>
+   <td style="text-align:right;"> -18 </td>
+   <td style="text-align:left;"> -10.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.07 </td>
+   <td style="text-align:right;"> 113 </td>
+   <td style="text-align:right;"> 170 </td>
+   <td style="text-align:right;"> -57 </td>
+   <td style="text-align:left;"> -33.5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.08 </td>
+   <td style="text-align:right;"> 93 </td>
+   <td style="text-align:right;"> 162 </td>
+   <td style="text-align:right;"> -69 </td>
+   <td style="text-align:left;"> -42.7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.09 </td>
+   <td style="text-align:right;"> 90 </td>
+   <td style="text-align:right;"> 59 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:left;"> 53.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1,404 </td>
+   <td style="text-align:right;"> 1,433 </td>
+   <td style="text-align:right;"> -29 </td>
+   <td style="text-align:left;"> -2.0% </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+<p>You can now jump back up to the beginning of the modeling section and select the IBNR severity modeling tab.</p>
+</div>
+</div>
+<div class="section" id="ibnr-severity-model">
+<h2>IBNR Severity model<a class="headerlink" href="#ibnr-severity-model" title="Permalink to this headline">¶</a></h2>
+<p>IBNR reserves are built by multiplying the outputs of a claim frequency and claim severity model. The general process of building the model follows that of the RBNS reserves.</p>
+<div class="section" id="id5">
+<h3>Creating xgboost dataset<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Again we convert the data into a specific matrix form called a DMatrix.</p>
+<p>The other point to note is the values of <em>flgTrain</em> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training roes have a value of 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+
+<span class="n">dt_All_IBNR</span> <span class="p">[,</span> <span class="n">date_pol_start_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+
+<span class="n">dt_All_IBNR_S</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span>
+                                 <span class="n">target_cost</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span>
+                            <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span> <span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span> <span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+
+<span class="n">dt_All_IBNR_S</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
+
+<span class="c1"># setup train and test rows</span>
+<span class="n">rowList_IBNR_S</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">2</span><span class="p">)],</span>
+                     <span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+                     <span class="n">all</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">1</span><span class="p">)])</span>
+
+<span class="c1"># setup data for xgboost</span>
+
+<span class="n">IBNR_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="n">IBNR_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
+  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">prep</span><span class="p">()</span>
+
+<span class="n">df.IBNR_S_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_S_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_S_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span> <span class="p">)</span>
+
+
+
+<span class="n">xgb.IBNR_S_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span>
+                              <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+
+<span class="n">xgb.IBNR_S_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_test</span><span class="p">),</span>
+                             <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+
+<span class="n">xgb.IBNR_S_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_all</span><span class="p">),</span>
+                            <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Fit initial model using cross validation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
+<p>I have used the <strong>reg:gamma</strong> objective function based upon inspection of the target variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    3.0   125.5   255.0   353.9   486.5  2011.0 
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_74_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_74_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;reg:gamma&quot;</span><span class="p">,</span>
+  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>           <span class="c1"># tree-depth</span>
+  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
+  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>   <span class="c1"># randomly sample columns before fitting each tree</span>
+  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>    <span class="c1"># minimum weight per leaf</span>
+  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>               <span class="c1"># Learning rate</span>
+  <span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
+<span class="p">)</span>
+
+<span class="c1"># Train model with cross validation</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+
+<span class="n">xgb_IBNR_S_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
+ <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+ <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
+ <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
+ <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+
+ <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
+ <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
+ <span class="c1">#base_score             = 0.001,       # Model starting point</span>
+   <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
+<span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-gamma-nloglik:727.366760+11.680331	test-gamma-nloglik:726.538232+48.084103 
+Multiple eval metrics are present. Will use test_gamma_nloglik for early stopping.
+Will train until test_gamma_nloglik hasn&#39;t improved in 50 rounds.
+
+[51]	train-gamma-nloglik:6.846936+0.079307	test-gamma-nloglik:6.850900+0.394632 
+[101]	train-gamma-nloglik:2.031303+0.001389	test-gamma-nloglik:2.039524+0.065692 
+[151]	train-gamma-nloglik:2.001972+0.001599	test-gamma-nloglik:2.018300+0.062185 
+Stopping. Best iteration:
+[133]	train-gamma-nloglik:2.002924+0.001819	test-gamma-nloglik:2.016062+0.064368
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having fitted an initial model the out-of-fold predictions are stored.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_S</span> <span class="o">:=</span> <span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+<span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_Cost</span> <span class="o">:=</span> <span class="n">exposure</span> <span class="o">*</span> <span class="n">preds_oof_IBNR_S</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Fit final model on all training data<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_IBNR_S_CV$best_iteration</span></code>.</p>
+<p>We can then us this to train a final model on all the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_S_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
+   <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
+   <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
+   <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<span class="c1"># base_score             = 1,</span>
+   <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span> <span class="p">,</span>
+   <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-gamma-nloglik:1.072412	test-gamma-nloglik:1.046510 
+[51]	train-gamma-nloglik:1.000593	test-gamma-nloglik:1.000379 
+[101]	train-gamma-nloglik:1.000120	test-gamma-nloglik:1.000075 
+[133]	train-gamma-nloglik:1.000126	test-gamma-nloglik:1.000079 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having trained the model the predictions are stored.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">preds_full_IBNR_Cost</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_S_DMat.all</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Inspect model fit<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
+<span class="n">featImp_IBNR_S</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_S</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Severity&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_83_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_83_0.png" />
+</div>
+</div>
+<p>An increasingly popular and more robust approach is to use SHAP values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
+<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
+
+<span class="c1"># Prepare the long-format data:</span>
+<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
+
+<span class="c1"># **SHAP summary plot**</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span><span class="m">10000</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_85_0.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_85_0.png" />
+</div>
+</div>
+<p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
+<p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
+                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
+                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
+                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at -0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 1.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  0”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 1.01”
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“at  -0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“radius  2.5e-05”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“all data on boundary of neighborhood. make span bigger”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at -0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 0.005”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  1”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 1.01”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“zero-width neighborhood. make span bigger”
+Warning message:
+“Computation failed in `stat_smooth()`:
+NA/NaN/Inf in foreign function call (arg 5)”
+`geom_smooth()` using formula &#39;y ~ x&#39;
+
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“pseudoinverse used at 0.985”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“neighborhood radius 2.015”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“reciprocal condition number  3.4701e-15”
+Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
+“There are other near singularities as well. 4”
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_87_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_87_1.png" />
+</div>
+</div>
+<p>The feature importance and partial dependency plots provide quick insight into the model.</p>
+<ul class="simple">
+<li><p>We see that phone price is the most important feature and has a linear relationship with IBNR severity as we would expect from the data generating process.</p></li>
+<li><p>The second and third most important features relate to phone cover. We see that cover BOT is associated with higher IBNR costs whereas cover B is associated with lower.</p></li>
+<li><p>The fourth feature is phone brand and follows the pattern we would expect from the data simulation process.</p></li>
+</ul>
+<p>SHAP values can also be used to show the components of a single prediction. In the following plot we show the top 4 components for each row of the data and zoom in at row 500.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
+<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span><span class="m">10000</span><span class="p">),</span>
+                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
+  
+<span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
+<span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable &#39;rest_variables&#39;.
+
+
+Data has N = 1111 | zoom in length is 111 at location 500.
+</pre></div>
+</div>
+<img alt="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_89_1.png" src="../_images/MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1_89_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="summarising-ibnr-claim-costs">
+<h3>Summarising IBNR claim costs<a class="headerlink" href="#summarising-ibnr-claim-costs" title="Permalink to this headline">¶</a></h3>
+<p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim cost predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Cost</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target_cost</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> date_pol_start_YYYYMM </th>
+   <th style="text-align:right;"> preds </th>
+   <th style="text-align:right;"> target </th>
+   <th style="text-align:right;"> Diff </th>
+   <th style="text-align:left;"> Diff_pcnt </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2016.01 </td>
+   <td style="text-align:right;"> 57,417 </td>
+   <td style="text-align:right;"> 52,782 </td>
+   <td style="text-align:right;"> 4,635 </td>
+   <td style="text-align:left;"> 8.8% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.02 </td>
+   <td style="text-align:right;"> 55,351 </td>
+   <td style="text-align:right;"> 55,615 </td>
+   <td style="text-align:right;"> -264 </td>
+   <td style="text-align:left;"> -0.5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.03 </td>
+   <td style="text-align:right;"> 52,700 </td>
+   <td style="text-align:right;"> 47,200 </td>
+   <td style="text-align:right;"> 5,500 </td>
+   <td style="text-align:left;"> 11.7% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.04 </td>
+   <td style="text-align:right;"> 55,108 </td>
+   <td style="text-align:right;"> 56,975 </td>
+   <td style="text-align:right;"> -1,867 </td>
+   <td style="text-align:left;"> -3.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.05 </td>
+   <td style="text-align:right;"> 64,834 </td>
+   <td style="text-align:right;"> 64,833 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> 0.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.06 </td>
+   <td style="text-align:right;"> 53,147 </td>
+   <td style="text-align:right;"> 52,989 </td>
+   <td style="text-align:right;"> 158 </td>
+   <td style="text-align:left;"> 0.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.07 </td>
+   <td style="text-align:right;"> 51,445 </td>
+   <td style="text-align:right;"> 50,276 </td>
+   <td style="text-align:right;"> 1,169 </td>
+   <td style="text-align:left;"> 2.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.08 </td>
+   <td style="text-align:right;"> 51,825 </td>
+   <td style="text-align:right;"> 53,502 </td>
+   <td style="text-align:right;"> -1,677 </td>
+   <td style="text-align:left;"> -3.1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016.09 </td>
+   <td style="text-align:right;"> 18,725 </td>
+   <td style="text-align:right;"> 18,989 </td>
+   <td style="text-align:right;"> -264 </td>
+   <td style="text-align:left;"> -1.4% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 460,551 </td>
+   <td style="text-align:right;"> 453,161 </td>
+   <td style="text-align:right;"> 7,390 </td>
+   <td style="text-align:left;"> 1.6% </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>In this third notebook we have stepped through the process to apply machine learning techniques in order to create reserve estimates following the techniques set out in sections 3 and 4 of Baudry’s paper.</p>
+<p>Specifically we have shown how to apply the xgboost machine learning algorithm and illustrated how it can, with little human input, create reasonable reserve estimates as shown below.</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Reserve </th>
+   <th style="text-align:right;"> Prediction </th>
+   <th style="text-align:right;"> Ground_Truth </th>
+   <th style="text-align:right;"> Diff </th>
+   <th style="text-align:left;"> Diff_pcnt </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> RBNS </td>
+   <td style="text-align:right;"> 1,021,285 </td>
+   <td style="text-align:right;"> 1,022,981 </td>
+   <td style="text-align:right;"> -1,696 </td>
+   <td style="text-align:left;"> -0.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IBNR </td>
+   <td style="text-align:right;"> 460,551 </td>
+   <td style="text-align:right;"> 453,161 </td>
+   <td style="text-align:right;"> 7,390 </td>
+   <td style="text-align:left;"> 1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> TOTAL </td>
+   <td style="text-align:right;"> 1,481,836 </td>
+   <td style="text-align:right;"> 1,476,142 </td>
+   <td style="text-align:right;"> 5,694 </td>
+   <td style="text-align:left;"> 0.4% </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+<p>In addition we have seen how we can create explanations for the reserve predictions using feature importance and partial dependence plots. We have also used SHAP values which can be used to explain both global features and individual predictions.</p>
+<p>In so doing, it is hoped that this series of notebooks encourage further exploration of Baudry’s paper and the wider field of machine learning in reserving. The code supporting this notebook along with the supporting files and folders available in a zip file <span class="xref myst">here</span>.</p>
+<p>Download and extract the zip file to a local directory and then open the R project file Baudry_3.rproj in your local R software installation. In the root of the project folder you will see two files;</p>
+<ul class="simple">
+<li><p>Notebook_3_ApplyMachineLearningReserving_v1.Rmd - which is the source code used to recreate this notebook</p></li>
+<li><p>Notebook_3_ApplyMachineLearningReserving_v1.R - the equivalent code provided as an R script</p></li>
+</ul>
+<p>Please note that, depending upon your R installation , you may have to install R libraries before you can run the code provided. R will warn you if you have missing dependencies and you can then install them from CRAN.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R: Bauldry ML Reserving Pt 2</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DAA_M06_CS1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Py: Socio-Economic Index Construction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

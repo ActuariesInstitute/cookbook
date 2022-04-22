@@ -1,0 +1,1890 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R: Bauldry ML Reserving Pt 2 &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="R: Bauldry ML Reserving Pt 3" href="MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.html" />
+    <link rel="prev" title="R: Bauldry ML Reserving Pt 1" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_DataTable.html">
+   R: data.table for actuaries
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="life_stats.html">
+   R: Life Industry Stats in Tableau and R
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Insurance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_GLMs.html">
+   R: Reserving with GLMs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Lasso.html">
+   R: Reserving with LASSO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_mlr3.html">
+   R: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
+   Py: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html">
+   R: Bauldry ML Reserving Pt 1
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.html">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-few-words-before-we-start">
+   A few words before we start
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
+   Simulate policy and claim data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy">
+     Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#claim">
+     Claim
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#join-policy-and-claim-data">
+   Join policy and claim data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-for-multi-claim-policies">
+     Check for multi-claim policies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#timeslicing-claim-payments">
+   Timeslicing claim payments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-rbns-and-ibner-datasets">
+   Creating RBNS and IBNER datasets
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-rbns-dataset">
+     Creating RBNS dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-dataset-functions-tabset">
+     RBNS dataset functions {.tabset}
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rbns-train">
+       RBNS_Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rbns-test">
+       RBNS_Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-function-calls">
+     RBNS function calls
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
+     Creating IBNR dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-dataset-functions-tabset">
+     IBNR dataset functions {.tabset}
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-frequency-train">
+       IBNR_Frequency Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-loss-train">
+       IBNR_Loss Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-test">
+       IBNR Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-function-calls">
+     IBNR function calls
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-inspection-tabset">
+   Dataset inspection{.tabset}
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns">
+     RBNS
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr">
+     IBNR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Bauldry ML Reserving Pt 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-few-words-before-we-start">
+   A few words before we start
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
+   Simulate policy and claim data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#policy">
+     Policy
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#claim">
+     Claim
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#join-policy-and-claim-data">
+   Join policy and claim data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-for-multi-claim-policies">
+     Check for multi-claim policies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#timeslicing-claim-payments">
+   Timeslicing claim payments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-rbns-and-ibner-datasets">
+   Creating RBNS and IBNER datasets
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-rbns-dataset">
+     Creating RBNS dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-dataset-functions-tabset">
+     RBNS dataset functions {.tabset}
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rbns-train">
+       RBNS_Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rbns-test">
+       RBNS_Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns-function-calls">
+     RBNS function calls
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
+     Creating IBNR dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-dataset-functions-tabset">
+     IBNR dataset functions {.tabset}
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-frequency-train">
+       IBNR_Frequency Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-loss-train">
+       IBNR_Loss Train
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ibnr-test">
+       IBNR Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr-function-calls">
+     IBNR function calls
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-inspection-tabset">
+   Dataset inspection{.tabset}
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rbns">
+     RBNS
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ibnr">
+     IBNR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-bauldry-ml-reserving-pt-2">
+<h1>R: Bauldry ML Reserving Pt 2<a class="headerlink" href="#r-bauldry-ml-reserving-pt-2" title="Permalink to this headline">¶</a></h1>
+<p><em>This article was originally created by Nigel Carpenter and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is the second notebook of a series of three that outlines and elaborates upon code used to replicate the central scenario in the paper of Maximilien Baudry “NON-PARAMETRIC INDIVIDUAL
+CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&amp;fg=1">Presentation</a> <a class="reference external" href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/%24FILE/Reserving-article.pdf">Paper</a>)</p>
+<p>In this notebook we step through the process to create the underlying data structures that will be used in the machine learning reserving process, as set out in sections 2 and 3 of Baudry’s paper.</p>
+<p>The reserving data structures built in this notebook are from a simulated phone insurance dataset. The creation of that simulated dataset has been set out in detail in the first R Notebook of this series. The third Notebook outlines the process for creating reserves using machine learning.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-few-words-before-we-start">
+<h1>A few words before we start<a class="headerlink" href="#a-few-words-before-we-start" title="Permalink to this headline">¶</a></h1>
+<p>Baudry assumes that a policy follows a <a class="reference external" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7DA57FED4B4CFE953E7DA31B29844967/S0515036100003317a.pdf/claims_reserving_in_continuous_time_a_nonparametric_bayesian_approach.pdf">Position Dependent Marked Poisson Process</a> for which he uses the following graphical representation.</p>
+<p><img alt="Graphical representation of the PDMPP." src="../_images/image_1.PNG" />
+Baudry explains the notation and database build in sections 2 and 3 of his paper. It is worth taking the time to familiarise yourself with this way of presenting reserving data as it is a different perspective on the traditional claim triangle.</p>
+<p>When I first tried to code this paper I had to re-read the approach to building the reserving database many times. Even then the overall process of getting the code to work took weeks and many iterations before it came together for me. So from personal experience I’d say it may take time to understand and follow the details of the approach.  Hopefully this series of notebooks will help speed up that process of familiarisation and having made the investment of time exhibits such as the one below will become intuitive.</p>
+<p><img alt="Graphical representation of IBNR and RBNS claims." src="../_images/image_2.PNG" /></p>
+<p>The data requirements for this approach to reserving are more akin to those used in Pricing. Policy underwriting features are directly used in the reserving process requiring policy and claim records to be joined at the policy exposure period level of granularity. In fact I’d say the data requirements are equivalent to a pricing dataset with two added levels of complexity.</p>
+<p>The first additional complexity is that the history of claim transactions are not aggregated over dimensions of time as they would be in Pricing. The second level of complexity is that by keeping those time dimensions we can include additional data sources in the analysis that would not normally be relevant to Pricing annual policies.</p>
+<p>So, for example, explicit use of:</p>
+<ul class="simple">
+<li><p>weather information can be included by joining on the claim occurrence time dimension which, you could imagine, would improve IBNR forecasting;</p></li>
+<li><p>claim settlement features such as claim handler hours worked or claims system downtime can be included by joining on claim processing date. This, you could imagine, would help explain internal variation in claim payment patterns.</p></li>
+</ul>
+<p>The table below summarises the reserve models Baudry builds and the classes of explanatory data features each model uses.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Feature</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+<th class="text-align:center head"><p>RBNS</p></th>
+<th class="text-align:center head"><p>IBNR Frequency</p></th>
+<th class="text-align:center head"><p>IBNR Severity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(T_{0,p}\)</span></p></td>
+<td class="text-align:left"><p>Underwriting features and policy underwriting date</p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(t_i - T_{0,p}\)</span></p></td>
+<td class="text-align:left"><p>Policy exposure from underwriting date <span class="math notranslate nohighlight">\(T_0\)</span> to valuation date <span class="math notranslate nohighlight">\(t_i\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(F_{t_{i,p}}\)</span></p></td>
+<td class="text-align:left"><p>Policy risk features at valuation date <span class="math notranslate nohighlight">\(t_i\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(E_{T_{0,p}}\)</span></p></td>
+<td class="text-align:left"><p>External information at policy underwriting date <span class="math notranslate nohighlight">\(T_0\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>Y</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(E_{T_{1,p}}\)</span></p></td>
+<td class="text-align:left"><p>External information at claim occurrence <span class="math notranslate nohighlight">\(T_1\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>N</p></td>
+<td class="text-align:center"><p>N</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(E_{T_{2,p}}\)</span></p></td>
+<td class="text-align:left"><p>External information at claim reporting date <span class="math notranslate nohighlight">\(T_2\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>N</p></td>
+<td class="text-align:center"><p>N</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(I_{t_{i,p}}\)</span></p></td>
+<td class="text-align:left"><p>Internal claim related information up to valuation date <span class="math notranslate nohighlight">\(t_i\)</span></p></td>
+<td class="text-align:center"><p>Y</p></td>
+<td class="text-align:center"><p>N</p></td>
+<td class="text-align:center"><p>N</p></td>
+</tr>
+</tbody>
+</table>
+<p>Baudry shows how this extra data can benefit the reserving process and recognises that it is the adoption of machine learning techniques that enable us to work with larger and more granular volumes of data than we are able to with  traditional chain ladder reserving techniques.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="simulate-policy-and-claim-data">
+<h1>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this headline">¶</a></h1>
+<p>We start with the simulated phone insurance policy and claim dataset. I am calling the function from Notebook 1 of this series to create the dataset. Using a fixed seed will ensure you get a reproducible simulated dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_PhoneData</span> <span class="o">&lt;-</span> <span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now inspect the returned Policy dataset and similarly inspect the returned Claim dataset.</p>
+<p>Both have been created to be somewhat similar to standard policy and claim datasets that insurers would extract from their policy and claim administration systems.</p>
+<div class="section" id="policy">
+<h2>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> pol_number </th>
+   <th style="text-align:left;"> date_UW </th>
+   <th style="text-align:left;"> date_lapse </th>
+   <th style="text-align:left;"> Cover </th>
+   <th style="text-align:right;"> Brand </th>
+   <th style="text-align:right;"> Model </th>
+   <th style="text-align:right;"> Price </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 201601010001 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201601010002 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201601010003 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201601010004 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201601010005 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201601010006 </td>
+   <td style="text-align:left;"> 2016-01-01 </td>
+   <td style="text-align:left;"> 2017-01-01 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 913 </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+</div>
+<div class="section" id="claim">
+<h2>Claim<a class="headerlink" href="#claim" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> clm_number </th>
+   <th style="text-align:left;"> pol_number </th>
+   <th style="text-align:left;"> claim_type </th>
+   <th style="text-align:right;"> claim_count </th>
+   <th style="text-align:right;"> claim_sev </th>
+   <th style="text-align:left;"> date_occur </th>
+   <th style="text-align:left;"> date_report </th>
+   <th style="text-align:left;"> date_pay </th>
+   <th style="text-align:right;"> claim_cost </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 201606080001 </td>
+   <td style="text-align:left;"> 201601010001 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.3337923 </td>
+   <td style="text-align:left;"> 2016-06-08 </td>
+   <td style="text-align:left;"> 2016-06-08 </td>
+   <td style="text-align:left;"> 2016-07-21 </td>
+   <td style="text-align:right;"> 305 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201609150001 </td>
+   <td style="text-align:left;"> 201601010014 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.3692034 </td>
+   <td style="text-align:left;"> 2016-09-15 </td>
+   <td style="text-align:left;"> 2016-09-15 </td>
+   <td style="text-align:left;"> 2016-10-17 </td>
+   <td style="text-align:right;"> 309 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201609090001 </td>
+   <td style="text-align:left;"> 201601010025 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.4496012 </td>
+   <td style="text-align:left;"> 2016-09-09 </td>
+   <td style="text-align:left;"> 2016-09-09 </td>
+   <td style="text-align:left;"> 2016-10-07 </td>
+   <td style="text-align:right;"> 357 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201602190001 </td>
+   <td style="text-align:left;"> 201601010027 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.4019731 </td>
+   <td style="text-align:left;"> 2016-01-25 </td>
+   <td style="text-align:left;"> 2016-02-19 </td>
+   <td style="text-align:left;"> 2016-03-21 </td>
+   <td style="text-align:right;"> 319 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201605140001 </td>
+   <td style="text-align:left;"> 201601010043 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.2146653 </td>
+   <td style="text-align:left;"> 2016-05-14 </td>
+   <td style="text-align:left;"> 2016-05-14 </td>
+   <td style="text-align:left;"> 2016-06-15 </td>
+   <td style="text-align:right;"> 196 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 201612110001 </td>
+   <td style="text-align:left;"> 201601010045 </td>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.2783313 </td>
+   <td style="text-align:left;"> 2016-12-11 </td>
+   <td style="text-align:left;"> 2016-12-11 </td>
+   <td style="text-align:left;"> 2017-01-06 </td>
+   <td style="text-align:right;"> 254 </td>
+  </tr>
+</tbody>
+</table></div></div></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="join-policy-and-claim-data">
+<h1>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this headline">¶</a></h1>
+<p>We wish to join claims to the appropriate policy exposure period. This will be a familiar process to pricing actuaries but may not be familiar to reserving actuaries as it is not a requirement in traditional chain ladder reserving.</p>
+<p>For speed and convenience we will use the <code class="docutils literal notranslate"><span class="pre">foverlaps</span></code> R function, which needs the tables being joined to have common keys for policy number and time periods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">setnames</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;date_UW&#39;</span><span class="p">,</span> <span class="s">&#39;date_lapse&#39;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;date_pol_start&#39;</span><span class="p">,</span> <span class="s">&#39;date_pol_end&#39;</span><span class="p">))</span>
+  
+<span class="c1"># set policy start and end dates in foverlap friendly format</span>
+<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">date_pol_start</span><span class="o">:=</span> <span class="nf">floor_date</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">date_pol_end</span><span class="o">:=</span> <span class="nf">floor_date</span><span class="p">(</span><span class="n">date_pol_end</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span>
+  
+<span class="c1"># create a dummy end claim occurrence date for foverlap</span>
+<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_occur</span><span class="o">:=</span> <span class="nf">floor_date</span><span class="p">(</span><span class="n">date_occur</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_occur_end</span><span class="o">:=</span> <span class="n">date_occur</span><span class="p">]</span>
+<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_report</span><span class="o">:=</span> <span class="nf">floor_date</span><span class="p">(</span><span class="n">date_report</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_pay</span><span class="o">:=</span> <span class="nf">floor_date</span><span class="p">(</span><span class="n">date_pay</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)]</span>
+  
+<span class="c1"># set keys for claim join (by policy and dates)</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">,</span> <span class="n">date_occur</span><span class="p">,</span> <span class="n">date_occur_end</span><span class="p">)</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">,</span> <span class="n">date_pol_start</span><span class="p">,</span> <span class="n">date_pol_end</span><span class="p">)</span>
+  
+<span class="c1"># use foverlaps to attach claim to right occurrence period and policy</span>
+<span class="n">dt_polclaim</span> <span class="o">&lt;-</span> <span class="nf">foverlaps</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span> <span class="n">dt_claim</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;any&quot;</span><span class="p">)</span> <span class="c1">## return overlap indices</span>
+<span class="n">dt_polclaim</span><span class="p">[,</span> <span class="n">date_occur_end</span> <span class="o">:=</span> <span class="kc">NULL</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first few rows of the resulting table are shown below where we can see the first policy has an attached claim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 61</caption>
+<thead>
+	<tr><th scope=col>pol_number</th><th scope=col>clm_number</th><th scope=col>claim_type</th><th scope=col>claim_count</th><th scope=col>claim_sev</th><th scope=col>date_occur</th><th scope=col>date_report</th><th scope=col>date_pay</th><th scope=col>claim_cost</th><th scope=col>date_pol_start</th><th scope=col>⋯</th><th scope=col>P_t_20180917</th><th scope=col>P_t_20181017</th><th scope=col>P_t_20181116</th><th scope=col>P_t_20181216</th><th scope=col>P_t_20190115</th><th scope=col>P_t_20190214</th><th scope=col>P_t_20190316</th><th scope=col>P_t_20190415</th><th scope=col>P_t_20190515</th><th scope=col>P_t_20190614</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>201601010001</td><td>201606080001</td><td>B </td><td>1</td><td>0.3337923</td><td>2016-06-08 00:00:00</td><td>2016-06-08 00:00:00</td><td>2016-07-21 00:00:00</td><td>305</td><td>2016-01-01</td><td>⋯</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td></tr>
+	<tr><td>201601010002</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010003</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010004</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010005</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010006</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="check-for-multi-claim-policies">
+<h2>Check for multi-claim policies<a class="headerlink" href="#check-for-multi-claim-policies" title="Permalink to this headline">¶</a></h2>
+<p>In a real world situation it is possible for policies to have multiple claims in an insurance period. In such circumstances care needs to be taken in matching policy exposure periods and claims, typically this is done by splitting a policy into sequences that stop at the date of each claim.</p>
+<p>Our simulated data does not have this complication, as this check shows, the max number or sequences is 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">setkey</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">,</span> <span class="n">date_pol_start</span><span class="p">)</span>
+  
+<span class="c1"># create 2 new cols that count how many claims against each policy</span>
+<span class="n">dt_polclaim</span><span class="p">[,</span>
+            <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">pol_seq</span> <span class="o">=</span> <span class="nf">seq_len</span><span class="p">(</span><span class="n">.N</span><span class="p">),</span>
+                 <span class="n">pol_seq_max</span> <span class="o">=</span> <span class="n">.N</span><span class="p">),</span>
+            <span class="n">by</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;pol_number&#39;</span><span class="p">,</span> <span class="s">&#39;date_pol_start&#39;</span><span class="p">)</span> <span class="p">]</span>
+  
+<span class="nf">table</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">[,</span> <span class="n">pol_seq_max</span><span class="p">])</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     1 
+512246 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not all policies have claims, resulting in NA fields in the joined dataset. To facilitate future processing we need to deal with NA fields in the joined policy and claims dataset. Missing dates are set to a long dated future point. Where there are no claims, we set claim counts and costs to zero, resulting in the following table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#set NA dates to 31/12/2999</span>
+<span class="n">lst_datefields</span> <span class="o">&lt;-</span> <span class="nf">grep</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+  
+<span class="nf">for </span><span class="p">(</span><span class="n">datefield</span> <span class="n">in</span> <span class="n">lst_datefields</span><span class="p">)</span>
+  <span class="nf">set</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">[[</span><span class="n">datefield</span><span class="p">]])),</span><span class="n">datefield</span><span class="p">,</span><span class="nf">as_datetime</span><span class="p">(</span><span class="s">&quot;2199-12-31 23:59:59 UTC&quot;</span><span class="p">))</span>
+ 
+<span class="c1">#set other NAs to zero (claim counts and costs)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">field</span> <span class="n">in</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;claim_count&quot;</span><span class="p">,</span> <span class="s">&quot;claim_sev&quot;</span><span class="p">,</span> <span class="s">&quot;claim_cost&quot;</span><span class="p">))</span>
+  <span class="nf">set</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">[[</span><span class="n">field</span><span class="p">]])),</span><span class="n">field</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 61</caption>
+<thead>
+	<tr><th scope=col>pol_number</th><th scope=col>clm_number</th><th scope=col>claim_type</th><th scope=col>claim_count</th><th scope=col>claim_sev</th><th scope=col>date_occur</th><th scope=col>date_report</th><th scope=col>date_pay</th><th scope=col>claim_cost</th><th scope=col>date_pol_start</th><th scope=col>⋯</th><th scope=col>P_t_20180917</th><th scope=col>P_t_20181017</th><th scope=col>P_t_20181116</th><th scope=col>P_t_20181216</th><th scope=col>P_t_20190115</th><th scope=col>P_t_20190214</th><th scope=col>P_t_20190316</th><th scope=col>P_t_20190415</th><th scope=col>P_t_20190515</th><th scope=col>P_t_20190614</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>201601010001</td><td>201606080001</td><td>B </td><td>1</td><td>0.3337923</td><td>2016-06-08 00:00:00</td><td>2016-06-08 00:00:00</td><td>2016-07-21 00:00:00</td><td>305</td><td>2016-01-01</td><td>⋯</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td></tr>
+	<tr><td>201601010002</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010003</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010004</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010005</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010006</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="timeslicing-claim-payments">
+<h1>Timeslicing claim payments<a class="headerlink" href="#timeslicing-claim-payments" title="Permalink to this headline">¶</a></h1>
+<p>Although this paper works with individual policy and claim transactions those transactions are collated into time slices.</p>
+<p>Baudry selected time slices of 30 days in length starting from 01 Jan 2016 (Section 5 page 13).</p>
+<p><img alt="Graphical representation of the PDMPP." src="../_images/image_3.PNG" /></p>
+<p>In the code below, for every individual policy and claim transaction; ie row in <code class="docutils literal notranslate"><span class="pre">dt_polclaim</span></code>, we are creating an extra column for each possible timeslice and recording in the column the cumulative claim cost up to that time slice.</p>
+<p>Given that in the simple simulated dataset we only have one claim payment for any claim, the code to do this is rather more simple than would otherwise be the case. The code below would need to be amended if there are partial claim payments.</p>
+<p>This time sliced dataset becomes the source of our RBNS and IBNER datasets used in subsequent machine learning steps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span> <span class="o">&lt;-</span> <span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019/06/30&quot;</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">30</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)</span> 
+
+<span class="c1"># Time slice Policy &amp; claims </span>
+ 
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">)){</span>
+  <span class="n">dt_polclaim</span><span class="p">[</span><span class="n">date_pay</span><span class="o">&lt;=</span> <span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;P_t_&#39;</span><span class="p">,</span> <span class="nf">format</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;%Y%m%d&quot;</span><span class="p">))</span><span class="o">:=</span> <span class="n">claim_cost</span><span class="p">]</span>
+  <span class="nf">set</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="nf">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">[[</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;P_t_&#39;</span><span class="p">,</span> <span class="nf">format</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;%Y%m%d&quot;</span><span class="p">))]])),</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;P_t_&#39;</span><span class="p">,</span> <span class="nf">format</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;%Y%m%d&quot;</span><span class="p">)),</span><span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+  
+<span class="c1"># sort data by policynumber</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at the data can see the output of timeslicing. You’ll need to scroll to the right of the table to see the columns labeled <strong>P_t_20160101</strong> through to <strong>P_t_20190614</strong>.</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 61</caption>
+<thead>
+	<tr><th scope=col>pol_number</th><th scope=col>clm_number</th><th scope=col>claim_type</th><th scope=col>claim_count</th><th scope=col>claim_sev</th><th scope=col>date_occur</th><th scope=col>date_report</th><th scope=col>date_pay</th><th scope=col>claim_cost</th><th scope=col>date_pol_start</th><th scope=col>⋯</th><th scope=col>P_t_20180917</th><th scope=col>P_t_20181017</th><th scope=col>P_t_20181116</th><th scope=col>P_t_20181216</th><th scope=col>P_t_20190115</th><th scope=col>P_t_20190214</th><th scope=col>P_t_20190316</th><th scope=col>P_t_20190415</th><th scope=col>P_t_20190515</th><th scope=col>P_t_20190614</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>201601010001</td><td>201606080001</td><td>B </td><td>1</td><td>0.3337923</td><td>2016-06-08 00:00:00</td><td>2016-06-08 00:00:00</td><td>2016-07-21 00:00:00</td><td>305</td><td>2016-01-01</td><td>⋯</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td><td>305</td></tr>
+	<tr><td>201601010002</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010003</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010004</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010005</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+	<tr><td>201601010006</td><td>NA          </td><td>NA</td><td>0</td><td>0.0000000</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>  0</td><td>2016-01-01</td><td>⋯</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td><td>  0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="creating-rbns-and-ibner-datasets">
+<h1>Creating RBNS and IBNER datasets<a class="headerlink" href="#creating-rbns-and-ibner-datasets" title="Permalink to this headline">¶</a></h1>
+<p>Before we create the RBNS and IBNER datasets we must pick a valuation point from the available timeslices. I’m selecting the 10th point for illustration, which is the 10th 30 day period from 01/01/2016, ie a valuation date of 27/09/2016.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#_ 2.1 Set initial variables ----</span>
+<span class="c1">#~~~~~~~~~~~~~~~~~~~~~~~</span>
+    
+<span class="n">i</span> <span class="o">&lt;-</span> <span class="n">valuation</span> <span class="o">&lt;-</span> <span class="m">10</span>
+<span class="n">t_i</span> <span class="o">&lt;-</span> <span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+<span class="n">delta</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In a traditional approach we would be creating reserving triangles with 10, 30 day duration development periods.</p>
+<p>As we will see the approach adopted by Baudry, in section 3 of his paper, is somewhat different and is much closer to the sort of datasets that Pricing Actuaries are familiar with.</p>
+<div class="section" id="creating-rbns-dataset">
+<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this headline">¶</a></h2>
+<p>We start with the RBNS dataset.</p>
+<p>The training data for the for the RBNS reserves will consist of all claims reported prior to the valuation date. This data has been joined to the policy exposure data to enable policy related features to be used as explanatory variables in the RBNS reserve calculation.</p>
+<p>A training dataset will enable us to build a model of RBNS reserve requirements at historic valuation dates. But what we really require is a view of the RBNS reserve at the valuation date. To calculate this we need to create a test dataset that contains values of the explanatory features at each future claim payment period.</p>
+<p>By making model prediction for each row of the test dataset we can calculate the RBNS reserve as the sum of predicted future payments.</p>
+</div>
+<div class="section" id="rbns-dataset-functions-tabset">
+<h2>RBNS dataset functions {.tabset}<a class="headerlink" href="#rbns-dataset-functions-tabset" title="Permalink to this headline">¶</a></h2>
+<p>To create the RBNS train and test datasets we have provided two functions <code class="docutils literal notranslate"><span class="pre">RBNS_Train_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test_ijk</span></code> which take as an input the joined policy and claims dataset and return data in a format suitable for applying machine learning.</p>
+<p>They are actually returning the ‘triangle’ data for all occurrence periods, <strong>i</strong>, for a specified:</p>
+<ul class="simple">
+<li><p>claim development delay, <strong>j</strong>; and</p></li>
+<li><p>model type <strong>k</strong></p></li>
+</ul>
+<p>For values of <strong>k</strong> equal to 1 claim transactions up to the valuation date are included. When <strong>k</strong> is set to 2 transactions in the calendar period immediately prior to the valuation date are excluded. Although in this example only models with a <strong>k</strong> value of 1 are created, Baudry’s framework allows for multiple <strong>k</strong> value models to be built. In doing so multiple models are created, effectively using aged data which would allow an ensemble modeling approach to be used. Such use of multiple <strong>k</strong> values would be similar to a Bornhuetter-Ferguson approach to modeling.</p>
+<div class="section" id="rbns-train">
+<h3>RBNS_Train<a class="headerlink" href="#rbns-train" title="Permalink to this headline">¶</a></h3>
+<p>The code for creating the RBNS datasets is rather involved so detailed explanation has been skipped over here.<br />
+Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
+<p>I should call out that the code shared here deals only with the simplified payment process from Baudry’s central scenario, ie claims are settled with a single payment. Real world data with partial payments would require material changes to be made to the code we have shared. Such changes are left for interested readers to make.</p>
+<p>I’ll also flag here, and expand in notebook 3, that the “settled with a single payment assumption” prevents claim payment information from being used as an explanatory feature in the subsequent machine learning process of notebook 3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_Train_ijk</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># # debugging</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1"># dt_policy_claim = dt_polclaim</span>
+  <span class="c1"># date_i = t_i</span>
+  <span class="c1"># j_dev_period = 1</span>
+  <span class="c1"># k = 1</span>
+  <span class="c1"># reserving_dates = lst_Date_slice</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1">#   </span>
+  
+  <span class="n">date_i</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">date_i</span><span class="p">)</span>
+  <span class="n">date_k</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_i</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span>
+  <span class="n">date_j</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_k</span><span class="p">)</span> <span class="o">-</span> <span class="n">j_dev_period</span><span class="p">])</span>
+  
+  <span class="c1">#i - j - k + 1 (predictor as at date)</span>
+  <span class="n">date_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">j_dev_period</span> <span class="o">-</span><span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> 
+  
+  <span class="c1">#i - k to calculate target incremental paid</span>
+  <span class="n">target_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span><span class="p">])</span> 
+  
+  <span class="c1">#i -k + 1 to calculate target incremental paid</span>
+  <span class="n">target_lookup_next</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> 
+  
+  <span class="c1">#definition of reported but not settled</span>
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span><span class="p">[(</span><span class="n">date_report</span> <span class="o">&lt;=</span> <span class="n">date_lookup</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">date_pay</span> <span class="o">&gt;</span> <span class="n">date_lookup</span><span class="p">)]</span> 
+  
+  <span class="c1">#simulated data assumes one payment so just need to check date paid in target calc</span>
+  <span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">=</span> <span class="n">date_lookup</span><span class="p">,</span>
+                         <span class="n">delay_train</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">-</span> <span class="n">date_pol_start</span><span class="p">),</span> <span class="c1">#extra feature</span>
+                         <span class="n">j</span> <span class="o">=</span> <span class="n">j_dev_period</span><span class="p">,</span>
+                         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span>
+                         <span class="n">target</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">date_pay</span><span class="o">&lt;=</span><span class="n">target_lookup</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">date_pay</span><span class="o">&lt;=</span><span class="n">target_lookup_next</span><span class="p">,</span><span class="n">claim_cost</span><span class="p">,</span><span class="m">0</span><span class="p">)))]</span>
+  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rbns-test">
+<h3>RBNS_Test<a class="headerlink" href="#rbns-test" title="Permalink to this headline">¶</a></h3>
+<p>The code for creating the RBNS datasets is rather involved so detailed explanation has been skipped over here.<br />
+Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
+<p>I should call out that the code shared here deals only with the simplified payment process from Baudry’s central scenario, ie claims are settled with a single payment. Real world data with partial payments would require material changes to be made to the code we have shared. Such changes are left for interested readers to make.</p>
+<p>I’ll also flag here, and expand in notebook 3, that the “settled with a single payment assumption” prevents claim payment information from being used as an explanatory feature in the subsequent machine learning process of notebook 3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_Test_ijk</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span><span class="n">j_dev_period</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># # debugging</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1"># dt_policy_claim = dt_polclaim</span>
+  <span class="c1"># date_i = t_i</span>
+  <span class="c1"># j_dev_period = 1</span>
+  <span class="c1"># k = 1</span>
+  <span class="c1"># reserving_dates = lst_Date_slice</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1">#   </span>
+  <span class="n">date_i</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">date_i</span><span class="p">)</span>
+  
+  <span class="c1">#i - j - k + 1 (predictor as at date)</span>
+  <span class="n">date_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))])</span> 
+  
+  <span class="c1">#i - k to calculate target incremental paid</span>
+  <span class="n">target_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">+</span><span class="n">j_dev_period</span> <span class="o">-</span> <span class="m">1</span><span class="p">])</span> 
+  
+  <span class="c1">#i -k + 1 to calculate target incremental paid  </span>
+  <span class="n">target_lookup_next</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">+</span> <span class="n">j_dev_period</span><span class="p">])</span> 
+  
+  <span class="c1">#definition of reported but not settled</span>
+  <span class="c1"># P_te_RBNS rowids of policies needing an RBNS reserve</span>
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span><span class="p">[</span><span class="n">date_report</span> <span class="o">&lt;=</span> <span class="n">date_lookup</span> <span class="o">&amp;</span> <span class="n">date_lookup</span> <span class="o">&lt;</span> <span class="n">date_pay</span><span class="p">]</span> 
+  
+  <span class="c1">#model assumes one payment so just need to check date paid</span>
+  <span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">=</span> <span class="n">date_lookup</span><span class="p">,</span>
+                         <span class="n">delay_train</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">-</span> <span class="n">date_pol_start</span><span class="p">),</span> <span class="c1">#extra feature</span>
+                         <span class="n">j</span> <span class="o">=</span> <span class="n">j_dev_period</span><span class="p">,</span>
+                         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span>
+                         <span class="n">target</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">date_pay</span><span class="o">&lt;=</span><span class="n">target_lookup</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">date_pay</span><span class="o">&lt;=</span><span class="n">target_lookup_next</span><span class="p">,</span><span class="n">claim_cost</span><span class="p">,</span><span class="m">0</span><span class="p">)))]</span> 
+  
+<span class="nf">return</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span>
+  
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rbns-function-calls">
+<h2>RBNS function calls<a class="headerlink" href="#rbns-function-calls" title="Permalink to this headline">¶</a></h2>
+<p>The RBNS train and test datasets are created by calling the <code class="docutils literal notranslate"><span class="pre">RBNS_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test</span></code> functions passing, as parameters to them, the names of the joined policy and claim dataset, valuation dates and model features.</p>
+<p>The functions  <code class="docutils literal notranslate"><span class="pre">RBNS_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test</span></code> iterate over valid values of j and k calling the <code class="docutils literal notranslate"><span class="pre">RBNS_Train_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test_ijk</span></code> functions to create the complete train and test datasets as illustrated below.</p>
+<p><img alt="train" src="../_images/image_5a.png" /></p>
+<p><img alt="test" src="../_images/image_6a.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_Train</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1"># Create a combined TRAIN dataset across all k and j combos</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="m">1</span><span class="p">)</span> <span class="n">dt_train</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">)){</span>
+      <span class="n">dt_train</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_train</span><span class="p">,</span> <span class="nf">RBNS_Train_ijk</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_train</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_Test</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># Create a combined TEST dataset across all k and j combos</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="m">1</span><span class="p">)</span> <span class="n">dt_test</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">delta</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">)){</span>
+      <span class="n">dt_test</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_test</span><span class="p">,</span> <span class="nf">RBNS_Test_ijk</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_test</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The animation below attempts to summarise the overall data preparation and model prediction process.</p>
+<p><img alt="Triangles" src="../_images/Triangles.gif" /></p>
+<p>So having given a rough outline of the data creation process let’s now call the functions to create the RBNS datasets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define modelVars</span>
+<span class="n">RBNS_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;target&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_RBNS_train</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+
+<span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_RBNS_test</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The train and test datasets are then joined into a single dataset and a small amount of tidying is done to make them ready for use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a flag to determine which rows are from the trainset and which from the test set</span>
+<span class="n">dt_RBNS_train</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">dt_RBNS_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+
+<span class="c1"># combine into a single RBNS dataset   </span>
+<span class="n">dt_All_RBNS</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_RBNS_train</span><span class="p">,</span> <span class="n">dt_RBNS_test</span><span class="p">)</span>
+<span class="c1">#write.csv(dt_All_RBNS,&quot;dt_All_RBNS.csv&quot;, row.names = F)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>The important aspects of the tidying relate to creating useable delay metrics from the numerous dates and converting some character features such as cover and claim type into factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    
+<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+
+<span class="c1">#create date and delay measure by converting from source seconds since 01/01/1970 to day periods</span>
+
+<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span>
+  <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                        <span class="m">-1</span><span class="p">,</span>
+                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
+                        <span class="p">),</span>
+  <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                         <span class="m">-1</span><span class="p">,</span>
+                         <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
+                         <span class="p">),</span>
+  
+  <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span>  <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
+  
+  <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">),</span>
+  <span class="n">claim_type</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">claim_type</span><span class="p">)</span>
+  <span class="p">)]</span>
+  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-ibnr-dataset">
+<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this headline">¶</a></h2>
+<p>The IBNR dataset creation follows a similar process to RBNS but is a little more complex. Any policy with a live exposure can give rise to an IBNR claim so the training dataset consists of all policy exposure periods prior to the valuation date.</p>
+<p>From this we train two models:</p>
+<ul class="simple">
+<li><p>a frequency model to predict if there will be an IBNR claim; and</p></li>
+<li><p>a severity model to predict the expected cost of any IBNR claim</p></li>
+</ul>
+<p>This is very similar to the traditional pricing approach except that we can add information relating to the claim occurrence date (eg weather information could be useful for Storm losses) and we also predict the incremental run-off of the exposure period.</p>
+</div>
+<div class="section" id="ibnr-dataset-functions-tabset">
+<h2>IBNR dataset functions {.tabset}<a class="headerlink" href="#ibnr-dataset-functions-tabset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ibnr-frequency-train">
+<h3>IBNR_Frequency Train<a class="headerlink" href="#ibnr-frequency-train" title="Permalink to this headline">¶</a></h3>
+<p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
+Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_Freq_Train_ijk</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># # debugging</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1"># dt_policy_claim = dt_polclaim</span>
+  <span class="c1"># date_i = t_i</span>
+  <span class="c1"># j_dev_period = 1</span>
+  <span class="c1"># k = 1</span>
+  <span class="c1"># reserving_dates = lst_Date_slice</span>
+  <span class="c1"># model_vars &lt;- IBNR_model_vars</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  
+  <span class="n">date_i</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">date_i</span><span class="p">)</span>
+  <span class="n">date_k</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_i</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span>
+  <span class="n">date_j</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_k</span><span class="p">)</span> <span class="o">-</span> <span class="n">j_dev_period</span><span class="p">])</span>
+  <span class="n">date_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">j_dev_period</span> <span class="o">-</span><span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> <span class="c1">#i - j - k + 1 (predictor as at date)</span>
+  <span class="n">target_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span><span class="p">])</span> <span class="c1">#i - k to calculate target incremental paid</span>
+  <span class="n">target_lookup_next</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> <span class="c1">#i -k + 1 to calculate targte incremental paid</span>
+  
+  <span class="nf">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span> <span class="nf">cat</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Valn date&quot;</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="s">&quot;, j = &quot;</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="s">&quot;, k =&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">))</span>
+  
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span><span class="p">[</span><span class="n">date_pol_start</span> <span class="o">&lt;</span> <span class="n">date_lookup</span>  <span class="o">&amp;</span> <span class="n">date_lookup</span> <span class="o">&lt;</span> <span class="n">date_report</span><span class="p">]</span> <span class="c1">#definition of IBNR</span>
+  
+  <span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">=</span> <span class="n">date_lookup</span><span class="p">,</span>
+                         <span class="n">delay_train</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">-</span> <span class="n">date_pol_start</span><span class="p">),</span> <span class="c1">#extra feature</span>
+                         <span class="n">j</span> <span class="o">=</span> <span class="n">j_dev_period</span><span class="p">,</span>
+                         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span>
+                         <span class="n">exposure</span> <span class="o">=</span> <span class="nf">round</span><span class="p">((</span><span class="nf">pmin</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_end</span><span class="p">)),</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">floor_date</span><span class="p">(</span><span class="n">date_i</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)))</span>
+                                             <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">365</span><span class="p">),</span> <span class="m">3</span><span class="p">),</span>
+                         <span class="n">target</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">target_lookup</span> <span class="o">&lt;=</span> <span class="n">date_pay</span> <span class="o">&amp;</span>  <span class="n">date_pay</span><span class="o">&lt;</span> <span class="n">target_lookup_next</span> <span class="o">&amp;</span> <span class="n">date_occur</span> <span class="o">&lt;=</span> <span class="n">date_lookup</span> <span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">))]</span>
+  
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span> <span class="p">[,</span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">)),</span> <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">model_vars</span><span class="p">,</span> <span class="s">&#39;exposure&#39;</span><span class="p">))</span> <span class="p">]</span>
+  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span>
+  
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ibnr-loss-train">
+<h3>IBNR_Loss Train<a class="headerlink" href="#ibnr-loss-train" title="Permalink to this headline">¶</a></h3>
+<p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
+Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_Loss_Train_ijk</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+  
+  
+  <span class="c1"># # debugging</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  <span class="c1"># dt_policy_claim = dt_polclaim</span>
+  <span class="c1"># date_i = t_i</span>
+  <span class="c1"># j_dev_period = 1</span>
+  <span class="c1"># k = 1</span>
+  <span class="c1"># reserving_dates = lst_Date_slice</span>
+  <span class="c1"># model_vars &lt;- IBNR_model_vars</span>
+  <span class="c1"># #~~~~~~~~~~~~~</span>
+  
+  <span class="n">date_i</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">date_i</span><span class="p">)</span>
+  <span class="n">date_k</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_i</span><span class="p">)</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span>
+  <span class="n">date_j</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="n">date_k</span><span class="p">)</span> <span class="o">-</span> <span class="n">j_dev_period</span><span class="p">])</span>
+  <span class="n">date_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">j_dev_period</span> <span class="o">-</span><span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> <span class="c1">#i - j - k + 1 (predictor as at date)</span>
+  <span class="n">target_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span><span class="p">])</span> <span class="c1">#i - k to calculate target incremental paid</span>
+  <span class="n">target_lookup_next</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">])</span> <span class="c1">#i -k + 1 to calculate targte incremental paid</span>
+  
+  <span class="nf">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span> <span class="nf">cat</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Valn date&quot;</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="s">&quot;, j = &quot;</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="s">&quot;, k =&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">))</span>
+  
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span><span class="p">[(</span><span class="n">date_lookup</span> <span class="o">&lt;</span> <span class="n">date_report</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">date_occur</span> <span class="o">&lt;</span> <span class="n">date_lookup</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">target_lookup</span> <span class="o">&gt;=</span> <span class="n">date_pay</span>  <span class="o">&amp;</span> <span class="n">date_pay</span> <span class="o">&lt;</span> <span class="n">target_lookup_next</span><span class="p">)]</span> <span class="c1">#definition of reported but not settled</span>
+  <span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">=</span> <span class="n">date_lookup</span><span class="p">,</span>
+                         <span class="n">delay_train</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">-</span> <span class="n">date_pol_start</span><span class="p">),</span> <span class="c1">#extra feature</span>
+                         <span class="n">j</span> <span class="o">=</span> <span class="n">j_dev_period</span><span class="p">,</span>
+                         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span>
+                         <span class="n">exposure</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="c1">#all claims trated equal</span>
+                         
+                         <span class="n">target</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">target_lookup</span> <span class="o">&gt;=</span> <span class="n">date_pay</span> <span class="o">&amp;</span> <span class="n">date_pay</span> <span class="o">&lt;</span> <span class="n">target_lookup_next</span><span class="p">,</span><span class="n">claim_cost</span><span class="p">,</span><span class="m">0</span><span class="p">)</span> <span class="c1">#model assumes one payment so just need to check date paid</span>
+                         
+  <span class="p">)]</span>
+  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ibnr-test">
+<h3>IBNR Test<a class="headerlink" href="#ibnr-test" title="Permalink to this headline">¶</a></h3>
+<p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
+Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_Test_ijk</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span><span class="n">j_dev_period</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1">## debugging</span>
+  <span class="c1">##~~~~~~~~~~~~~</span>
+  <span class="c1">#dt_policy_claim = dt_polclaim</span>
+  <span class="c1">#date_i = t_i</span>
+  <span class="c1">#j_dev_period = 8</span>
+  <span class="c1">#k = 1</span>
+  <span class="c1">#reserving_dates = lst_Date_slice</span>
+  <span class="c1">#model_vars &lt;- IBNR_model_vars</span>
+  <span class="c1">##~~~~~~~~~~~~~</span>
+  
+  <span class="n">date_i</span> <span class="o">&lt;-</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">date_i</span><span class="p">)</span>
+  <span class="n">date_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))])</span> <span class="c1">#i - j - k + 1 (predictor as at date)</span>
+  <span class="n">target_lookup</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">+</span><span class="n">j_dev_period</span> <span class="o">-</span> <span class="m">1</span><span class="p">])</span> <span class="c1">#i - k to calculate target incremental paid</span>
+  <span class="n">target_lookup_next</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">reserving_dates</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">reserving_dates</span> <span class="o">==</span> <span class="p">(</span><span class="n">date_i</span><span class="p">))</span> <span class="o">+</span> <span class="n">j_dev_period</span><span class="p">])</span> <span class="c1">#i -k + 1 to calculate targte incremental paid  </span>
+  
+  <span class="nf">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span> <span class="nf">cat</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Valn date&quot;</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="s">&quot;, j = &quot;</span><span class="p">,</span> <span class="n">j_dev_period</span><span class="p">,</span> <span class="s">&quot;, k =&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">))</span>
+  
+  <span class="c1"># P_te_IBNR rowids of policies needing an RBNS reserve</span>
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span><span class="p">[</span><span class="n">date_pol_start</span> <span class="o">&lt;=</span> <span class="n">date_lookup</span> <span class="o">&amp;</span> <span class="n">date_lookup</span> <span class="o">&lt;</span> <span class="n">date_report</span><span class="p">]</span> <span class="c1">#IBNR</span>
+  
+  <span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">=</span> <span class="n">date_lookup</span><span class="p">,</span>
+                         <span class="n">delay_train</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_lookup</span> <span class="o">-</span> <span class="n">date_pol_start</span><span class="p">),</span> <span class="c1">#extra feature</span>
+                         <span class="n">j</span> <span class="o">=</span> <span class="n">j_dev_period</span><span class="p">,</span>
+                         <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span>
+                         <span class="n">exposure</span> <span class="o">=</span> <span class="nf">round</span><span class="p">((</span><span class="nf">pmin</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_end</span><span class="p">)),</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">floor_date</span><span class="p">(</span><span class="n">date_i</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)))</span>
+                                             <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">365</span><span class="p">),</span><span class="m">3</span><span class="p">),</span>
+                         <span class="n">target</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">target_lookup</span> <span class="o">&lt;=</span> <span class="n">date_pay</span> <span class="o">&amp;</span>  <span class="n">date_pay</span> <span class="o">&lt;</span> <span class="n">target_lookup_next</span> <span class="o">&amp;</span> <span class="n">date_occur</span> <span class="o">&lt;=</span> <span class="n">date_lookup</span> <span class="p">,</span><span class="n">claim_cost</span><span class="p">,</span><span class="m">0</span><span class="p">))]</span>  <span class="c1">#model assumes one payment so just need to check date paid</span>
+  
+  <span class="n">dt_policy_claim</span> <span class="o">&lt;-</span> <span class="n">dt_policy_claim</span> <span class="p">[,</span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">)),</span> <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">model_vars</span><span class="p">,</span> <span class="s">&#39;exposure&#39;</span><span class="p">))</span> <span class="p">]</span>
+  
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">[,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span>
+  
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ibnr-function-calls">
+<h2>IBNR function calls<a class="headerlink" href="#ibnr-function-calls" title="Permalink to this headline">¶</a></h2>
+<p>The IBNR train and test datasets are created by calling the <code class="docutils literal notranslate"><span class="pre">IBNR_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test</span></code> functions passing, as parameters to them, the names of the joined policy and claim dataset, valuation dates and model features.</p>
+<p>The functions  <code class="docutils literal notranslate"><span class="pre">IBNR_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test</span></code> iterate over valid values of j and k calling the <code class="docutils literal notranslate"><span class="pre">IBNR_Freq_ijk</span></code>, <code class="docutils literal notranslate"><span class="pre">IBNR_Loss_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test_ijk</span></code> functions to create the complete train and test datasets as set out in the code below.</p>
+<p>The princple and code is similar to that of RBNS, except that the training data covers both claim counts and costs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_Train</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1"># Create a combined TRAIN dataset across all k and j combos</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="m">1</span><span class="p">){</span>
+        <span class="n">dt_train_Freq</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+        <span class="n">dt_train_Loss</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+      <span class="p">}</span>
+      
+      <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">)){</span>
+        <span class="n">dt_train_Freq</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_train_Freq</span><span class="p">,</span> <span class="nf">IBNR_Freq_Train_ijk</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span><span class="p">))</span>
+        <span class="n">dt_train_Loss</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_train_Loss</span><span class="p">,</span> <span class="nf">IBNR_Loss_Train_ijk</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span><span class="p">))</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+  <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">Freq</span> <span class="o">=</span> <span class="n">dt_train_Freq</span><span class="p">,</span> <span class="n">Loss</span> <span class="o">=</span> <span class="n">dt_train_Loss</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_Test</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+ 
+  <span class="c1"># Create a combined TEST dataset across all k and j combos</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">k</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">k</span><span class="o">==</span><span class="m">1</span><span class="p">)</span> <span class="n">dt_test</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">delta</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="m">1</span><span class="p">)){</span>
+      <span class="n">dt_test</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_test</span><span class="p">,</span> <span class="nf">IBNR_Test_ijk</span><span class="p">(</span><span class="n">dt_policy_claim</span><span class="p">,</span> <span class="n">date_i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">reserving_dates</span><span class="p">,</span> <span class="n">model_vars</span><span class="p">,</span> <span class="n">verbose</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">dt_test</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So having given a rough outline of the data creation process lets now call the functions to create the IBNR datasets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define IBNR modelVars</span>
+<span class="n">IBNR_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;exposure&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
+                     <span class="s">&quot;target&quot;</span><span class="p">)</span>
+    
+<span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
+<span class="n">lst_IBNR_train</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+
+<span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
+<span class="n">dt_IBNR_test</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The train and test datasets are then joined into a single dataset and a small amount of tidying is done to make them ready for use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">2</span><span class="p">]</span>
+<span class="n">dt_IBNR_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+
+<span class="n">dt_All_IBNR</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">dt_train_Freq</span><span class="p">,</span> <span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">dt_train_Loss</span><span class="p">,</span> <span class="n">dt_IBNR_test</span><span class="p">)</span>
+<span class="c1">#write.csv(dt_All_IBNR,&quot;dt_All_IBNR.csv&quot;, row.names = F)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># tidy up</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="p">)</span>
+<span class="nf">rm</span><span class="p">(</span><span class="n">dt_IBNR_test</span><span class="p">)</span>
+<span class="nf">gc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 7 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>used</th><th scope=col>(Mb)</th><th scope=col>gc trigger</th><th scope=col>(Mb)</th><th scope=col>limit (Mb)</th><th scope=col>max used</th><th scope=col>(Mb)</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Ncells</th><td> 1619093</td><td> 86.5</td><td>  3663570</td><td> 195.7</td><td>   NA</td><td>  3663570</td><td> 195.7</td></tr>
+	<tr><th scope=row>Vcells</th><td>63896458</td><td>487.5</td><td>137735801</td><td>1050.9</td><td>16384</td><td>137583642</td><td>1049.7</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The important aspects of the tidying relate to creating useable delay metrics from the numerous dates and converting some character features such as cover and claim type into factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_IBNR</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    
+<span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">&#39;:=&#39;</span><span class="p">(</span> <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                        <span class="m">-1</span><span class="p">,</span>
+                                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                          <span class="m">-1</span><span class="p">,</span>
+                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
+                                          <span class="m">-1</span><span class="p">,</span>
+                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span>
+                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+                                          <span class="p">),</span>
+                   <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+                   <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+                   <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dataset-inspection-tabset">
+<h1>Dataset inspection{.tabset}<a class="headerlink" href="#dataset-inspection-tabset" title="Permalink to this headline">¶</a></h1>
+<p>So we now have two datasets;</p>
+<ul class="simple">
+<li><p>dt_ALL_RBNS for calculating RBNS reserves</p></li>
+<li><p>dt_ALL_IBNR for calculating IBNR reserves</p></li>
+</ul>
+<p>Each dataset contains both training rows and test rows. The test rows are used for model prediction; which in this case means RBNS or IBNR reserve calculation.</p>
+<p>IBNR reserves are calculated using a frequency * severity model approach. IBNR therefore requires two models and two training datasets. Training rows for the claim frequency model are identified as rows with a flgTrain column value of 1. Training rows for the claim severity model are identified as rows with a flgTrain column value of 2.</p>
+<p>In both datsets the test rows are identified as rows with a flgTrain column value of 0.</p>
+<p>Let’s have a quick look at the datasets.</p>
+<div class="section" id="rbns">
+<h2>RBNS<a class="headerlink" href="#rbns" title="Permalink to this headline">¶</a></h2>
+<p>The RBNS dataset has <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ncol(dt_All_RBNS)</span></code> columns and <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">format(nrow(dt_All_RBNS),</span> <span class="pre">big.mark=&quot;,&quot;)</span></code> rows.</p>
+<p>In a traditional reserving exercise this would have been summarised as a 10 x 10 triangle ie 55 rows. We have far more rows of data for 3 main reasons;</p>
+<ol class="simple">
+<li><p>training data is presented without aggregation so there is a row for each one of the <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">format(dt_polclaim[date_report</span> <span class="pre">&lt;=</span> <span class="pre">t_i,</span> <span class="pre">sum(claim_count)],big.mark=&quot;,&quot;)</span></code> claims that have been reported up until <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">t_i</span></code></p></li>
+<li><p>the machine learning training dataset is not just the latest triangle of data as at the valuation date. It is also every possible historic triangle prior to the valuation date as illustrated in the animation above.</p></li>
+<li><p>the dataset also contains test rows ie the features needed to predict each future period from the current valuation date.</p></li>
+</ol>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 21</caption>
+<thead>
+	<tr><th scope=col>clm_number</th><th scope=col>pol_number</th><th scope=col>j</th><th scope=col>k</th><th scope=col>date_pol_start</th><th scope=col>date_occur</th><th scope=col>date_report</th><th scope=col>date_pay</th><th scope=col>Cover</th><th scope=col>claim_type</th><th scope=col>⋯</th><th scope=col>Model</th><th scope=col>Price</th><th scope=col>target</th><th scope=col>flgTrain</th><th scope=col>Count</th><th scope=col>delay_uw_occ</th><th scope=col>delay_occ_rep</th><th scope=col>delay_uw_val</th><th scope=col>delay_rep_pay</th><th scope=col>date_uw</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>201601060001</td><td>201601050343</td><td>8</td><td>1</td><td>2016-01-05</td><td>2016-01-06</td><td>2016-01-06</td><td>2016-02-08</td><td>BOT</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>266</td><td>33</td><td>16805</td></tr>
+	<tr><td>201601080001</td><td>201601040365</td><td>8</td><td>1</td><td>2016-01-04</td><td>2016-01-08</td><td>2016-01-08</td><td>2016-02-13</td><td>BOT</td><td>B</td><td>⋯</td><td>2</td><td>728</td><td>0</td><td>1</td><td>1</td><td>4</td><td>0</td><td>267</td><td>36</td><td>16804</td></tr>
+	<tr><td>201601080002</td><td>201601040629</td><td>8</td><td>1</td><td>2016-01-04</td><td>2016-01-08</td><td>2016-01-08</td><td>2016-02-07</td><td>BO </td><td>B</td><td>⋯</td><td>2</td><td>728</td><td>0</td><td>1</td><td>1</td><td>4</td><td>0</td><td>267</td><td>30</td><td>16804</td></tr>
+	<tr><td>201601090001</td><td>201601010222</td><td>8</td><td>1</td><td>2016-01-01</td><td>2016-01-09</td><td>2016-01-09</td><td>2016-02-05</td><td>BOT</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>1</td><td>1</td><td>8</td><td>0</td><td>270</td><td>27</td><td>16801</td></tr>
+	<tr><td>201601090002</td><td>201601030514</td><td>8</td><td>1</td><td>2016-01-03</td><td>2016-01-07</td><td>2016-01-09</td><td>2016-02-09</td><td>BO </td><td>O</td><td>⋯</td><td>3</td><td>837</td><td>0</td><td>1</td><td>1</td><td>4</td><td>2</td><td>268</td><td>31</td><td>16803</td></tr>
+	<tr><td>201601100001</td><td>201601010095</td><td>8</td><td>1</td><td>2016-01-01</td><td>2016-01-10</td><td>2016-01-10</td><td>2016-02-06</td><td>B  </td><td>B</td><td>⋯</td><td>3</td><td>837</td><td>0</td><td>1</td><td>1</td><td>9</td><td>0</td><td>270</td><td>27</td><td>16801</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="ibnr">
+<h2>IBNR<a class="headerlink" href="#ibnr" title="Permalink to this headline">¶</a></h2>
+<p>The IBNR dataset has <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ncol(dt_All_IBNR)</span></code> columns and <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">format(nrow(dt_All_IBNR),</span> <span class="pre">big.mark=&quot;,&quot;)</span></code> rows.</p>
+<p>In a traditional reserving exercise this would have been summarised as a 10 x 10 triangle ie 50 rows. We have far more rows of data and far more that we did for the RBNS dataset.</p>
+<p>Again the the same 3 principles apply to the IBNR row count. However this will lead to many more rows of data  because we are training two models and the  claim frequency model will require a row for every past policy exposure period and of course there should be orders of magnitude more exposure rows than claim rows!</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.table: 6 × 21</caption>
+<thead>
+	<tr><th scope=col>clm_number</th><th scope=col>pol_number</th><th scope=col>j</th><th scope=col>k</th><th scope=col>exposure</th><th scope=col>date_pol_start</th><th scope=col>date_occur</th><th scope=col>date_report</th><th scope=col>date_pay</th><th scope=col>Cover</th><th scope=col>⋯</th><th scope=col>Model</th><th scope=col>Price</th><th scope=col>target</th><th scope=col>flgTrain</th><th scope=col>Count</th><th scope=col>delay_uw_occ</th><th scope=col>delay_occ_rep</th><th scope=col>delay_rep_pay</th><th scope=col>delay_uw_val</th><th scope=col>date_uw</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>NA</td><td>201601010002</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+	<tr><td>NA</td><td>201601010003</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+	<tr><td>NA</td><td>201601010004</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+	<tr><td>NA</td><td>201601010005</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+	<tr><td>NA</td><td>201601010006</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+	<tr><td>NA</td><td>201601010007</td><td>1</td><td>1</td><td>0.74</td><td>2016-01-01</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>2199-12-31 23:59:59</td><td>B</td><td>⋯</td><td>3</td><td>913</td><td>0</td><td>0</td><td>1479120</td><td>-1</td><td>-1</td><td>-1</td><td>270</td><td>16801</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>I’ve deliberately rushed through the creation of the datasets so we can see the end output shown above. Interested readers are encouraged to revisit and review the RBNS and IBNER data creation process to gain a deeper understanding. In doing so they will be better placed to adapt the code provided to their own circumstances.</p>
+<p>To aid that deeper understanding, if you wish to try out this code in your own local instance of R then we have made this code and the supporting files and folders available in a zip file <span class="xref myst">here</span>.</p>
+<p>Download and extract the zip file to a local directory and then open the R project file <code class="docutils literal notranslate"><span class="pre">Baudry_2.rproj</span></code> in your local R software installation. In the root of the project folder you will see two files;</p>
+<ol class="simple">
+<li><p>Notebook_2_CreateReservingDatabase_v1.Rmd - which is the source code used to recreate this notebook</p></li>
+<li><p>Notebook_2_CreateReservingDatabase_v1.R - the equivalent code provided as an R script</p></li>
+</ol>
+<p>Please note that, depending upon your R installation , you may have to install R libraries before you can run the code provided. R will warn you if you have missing dependencies and you can then install them from CRAN.</p>
+<p>The above code can be wrapped into a series of functions which, given a  joined policy and claim dataset and a valuation date, will return the reserving datasets needed for machine learning. In notebook 3 of this series we will create and use such functions prior to fitting a machine learning model to the training data and then use it to make reserve predictions.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R: Bauldry ML Reserving Pt 1</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R: Bauldry ML Reserving Pt 3</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
