@@ -18,10 +18,7 @@ date: "November 2020"
 # Introduction
 
 This is the second notebook of a series of three that outlines and elaborates upon code used to replicate the central scenario in the paper of Maximilien Baudry "NON-PARAMETRIC INDIVIDUAL
-CLAIM RESERVING IN INSURANCE"
-
-[https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&fg=1](https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&fg=1)  
-[http://chaire-dami.fr/files/2016/10/Reserving-article.pdf](http://chaire-dami.fr/files/2016/10/Reserving-article.pdf)
+CLAIM RESERVING IN INSURANCE" ([Presentation](https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&fg=1) [Paper](http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/$FILE/Reserving-article.pdf))
 
 In this notebook we step through the process to create the underlying data structures that will be used in the machine learning reserving process, as set out in sections 2 and 3 of Baudry's paper. 
 
