@@ -83,7 +83,7 @@ This section sets out a method for generating dummy data. The simulated data is 
 More detail on the techniques used can be found in the section on data manipulation.
 
 ## Simulating policies
-We start by simulating a mix of 200k policies over 3 years. Some simplifying assumptions e.g. nil lapse / new business (no allowance for part years of exposure), no indexation. Mix of business assumptions for benefit period, waiting period and occupation taken  taken from {cite} 'BusMix', with the remainder based on an anecdotal view of industry mix not intended to be reflective of any one business. 
+We start by simulating a mix of 200k policies over 3 years. Some simplifying assumptions e.g. nil lapse / new business (no allowance for part years of exposure), no indexation. Mix of business assumptions for benefit period, waiting period and occupation taken  taken from James Louw. 2012, with the remainder based on an anecdotal view of industry mix not intended to be reflective of any one business. 
 
 ```{r Generate dataframe}
 # set the seed value (for the random number generator) so that the simulated data frame can be replicated later
@@ -119,7 +119,7 @@ df <- rbind(df,df2,df3)
 ```
 
 ## Expected claim rate 
-Set p values from which to simulate claims. The crude p values below were derived from the Society of Actuaries Analysis of USA Individual Disability Claim Incidence Experience from 2006 to 2014 {cite} 'SOA_study', with some allowance for Australian industry differentials {cite} 'BusMix_FSC'.
+Set p values from which to simulate claims. The crude p values below were derived from the Society of Actuaries Analysis of USA Individual Disability Claim Incidence Experience from 2006 to 2014 (SOA, 2019), with some allowance for Australian industry differentials (Ian Welch. 2020).
 
 ```{r Expected claim rate}
 # by cause, age and sex, based upon polynomials fitted to crude actual rates
@@ -168,7 +168,7 @@ df$inc_amount_tot =  df$inc_count_tot * df$sum_assured
 
 ## Grouped data
 
-The data generated above are records for each individual policy, however data like this is often grouped as it is easier to store and computation is easier {cite} 'GLM_Insurance', p49, 105]. Later we will consider the differences between a model on ungrouped vs grouped data.
+The data generated above are records for each individual policy, however data like this is often grouped as it is easier to store and computation is easier (Piet de Jong, Gillian Z. Heller, 2008, p49, 105). Later we will consider the differences between a model on ungrouped vs grouped data.
 
 ```{r Grouped Data}
 # group data (see section on data manipulation below)
@@ -435,7 +435,7 @@ head(spread(df_sample, sex, inc_count_tot, fill = 0))
 ## Visualisation methods
 
 ### Introduction to ggplot
-This section sets out some simple visualisation methods using ggplot(). ggplot() Initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden {cite} 'ggplot'. The form of ggplot is:
+This section sets out some simple visualisation methods using ggplot(). ggplot() Initializes a ggplot object. It can be used to declare the input data frame for a graphic and to specify the set of plot aesthetics intended to be common throughout all subsequent layers unless specifically overridden. The form of ggplot is:
 
 ``ggplot(data = df, mapping = aes(x,y, other aesthetics), ...)``
 
@@ -498,7 +498,7 @@ geom_smooth(method = "glm", se=FALSE)
 ```
 
 ### Themes
-You can add a themes layer to your graph {cite} 'ggplot_themes', for example 
+You can add a themes layer to your graph (ggplot_themes), for example 
 
 * theme_gray()        |Gray background and white grid lines.
 * theme_bw()          |White background and gray grid lines. 
@@ -696,7 +696,7 @@ Looking at the random sample we have created, we have a significant imbalance be
 df_train %>% select(inc_count_acc,inc_count_sick) %>% table()
 ```
 
-Generally, "in insurance applications, the prediction of a claim or no claim on an individual policy is rarely the point of statistical modelling ... The model is useful provided it explains the variability in claims behaviour, as a function of risk factors. " {cite} 'GLM_Insurance', p108-109. So, as long as we have sufficient actual claims to justify the level of predictor variables fitted to the model we should be ok.
+Generally, "in insurance applications, the prediction of a claim or no claim on an individual policy is rarely the point of statistical modelling ... The model is useful provided it explains the variability in claims behaviour, as a function of risk factors. " (Piet de Jong, Gillian Z. Heller, 2008, p108-109). So, as long as we have sufficient actual claims to justify the level of predictor variables fitted to the model we should be ok.
 
 However, in some cases where it is important to correctly predict the binary categorical response variable, we may need to create a sample that has a roughly equal proportion of classes (of successes and failures) and then fit our model to that data. E.g. where we are looking to accurately predict fraud within banking transactions data.
 
@@ -834,7 +834,7 @@ tidy(amount_model_3)
 ```
 
 ## (Un)grouped data
-The models above were based upon ungrouped data, but earlier we noted that data are often grouped. In grouping data, some detail is usually lost e.g. we no longer have any true continuous categorical response variables. In this case, the columns relating to actual events (here claims) are a sum of the individual instance; more at {cite} 'GLM_Insurance', p49, 105.
+The models above were based upon ungrouped data, but earlier we noted that data are often grouped. In grouping data, some detail is usually lost e.g. we no longer have any true continuous categorical response variables. In this case, the columns relating to actual events (here claims) are a sum of the individual instance; more at (Piet de Jong, Gillian Z. Heller, 2008, p49, 105).
 
 The example below compares a model of counts by age and sex on the grouped and shows that the derived parameters are materially similar.
 
@@ -855,7 +855,7 @@ model_5 <- glm(inc_count_sick~age+sex,data=df,family=binomial(link="logit"))
 tidy(model_5) 
 ```
 ### Offsets
-When the data are grouped, it is important to consider the level of exposure in a given group. This can be achieved with an [offset](https://towardsdatascience.com/offsetting-the-model-logic-to-implementation-7e333bc25798) term ({cite} 'GLM_Insurance', p66-67). This is important in an insurance context where we are often interested in modelling rates of claim. 
+When the data are grouped, it is important to consider the level of exposure in a given group. This can be achieved with an [offset](https://towardsdatascience.com/offsetting-the-model-logic-to-implementation-7e333bc25798) term (Piet de Jong, Gillian Z. Heller, 2008, p66-67). This is important in an insurance context where we are often interested in modelling rates of claim. 
 
 ```{r Logistic regression - offset}
 df_grp_filtered <- df_grp %>% filter(inc_count_tot>1, exposure>10)
@@ -1009,7 +1009,7 @@ anova(model_3,step_model_sick, test="Chisq")
 ```
 
 ### Likelihood ratio test
-The [likelihood ratio test](https://en.wikipedia.org/wiki/Likelihood-ratio_test) compares two models based upon log likelihoods; more at {cite} 'GLM_Insurance', p74.
+The [likelihood ratio test](https://en.wikipedia.org/wiki/Likelihood-ratio_test) compares two models based upon log likelihoods; more at (Piet de Jong, Gillian Z. Heller, 2008, p74).
 
 The test below concludes that the step model is more accurate than the less complex model.
 
@@ -1018,7 +1018,7 @@ lrtest(model_3,step_model_sick)
 ```
 
 ### Other tests
-Other validations tests could be considered like the [Wald test](https://en.wikipedia.org/wiki/Wald_test), [Score test](https://en.wikipedia.org/wiki/Score_test); see {cite} 'GLM_Insurance', p74-77.
+Other validations tests could be considered like the [Wald test](https://en.wikipedia.org/wiki/Wald_test), [Score test](https://en.wikipedia.org/wiki/Score_test); see (Piet de Jong, Gillian Z. Heller, 2008, p74-77).
 
 ## Residual checks
 Residuals / errors are the observed less fitted values. Traditional residual plots (shown below) are usually a good starting point (we expect to see no trend in the plot of residuals vs fitted values), but are not as informative for logistic regression or for data with a low probability outcome. 
@@ -1052,7 +1052,7 @@ Focusing the x axis range:
 hist(rstandard(step_model_sick),breaks= c(seq(-1,1,by=0.001),seq(2,5, by=1)), xlim = c(-0.5,0.5),freq=FALSE,main = "Histogram of residuals",xlab = "Residuals")
 ```
 
-A binned residual plot divides data into bins based upon their fitted values, showing the average residuals vs fitted value for each bin {cite} 'stats_notes':
+A binned residual plot divides data into bins based upon their fitted values, showing the average residuals vs fitted value for each bin (Jeff Webb, 2017):
 
 ```{r Evaluation - binned residual}
 # from the arm package
@@ -1100,7 +1100,7 @@ Where:
 * Sensitivity = True Positive Rate
 * Specificity = 1 – False Positive Rate
 
-A perfect classification model could have Sensitivity and Specificity close to 1. However, we noted earlier, in insurance applications we are not often interested in in an accurate prediction as to whether a given policy gives rise to a claim. Rather we are interested in understanding the claim rates and how they are explained by the response variables / risk factors {cite} 'GLM_Insurance', p108-109.
+A perfect classification model could have Sensitivity and Specificity close to 1. However, we noted earlier, in insurance applications we are not often interested in in an accurate prediction as to whether a given policy gives rise to a claim. Rather we are interested in understanding the claim rates and how they are explained by the response variables / risk factors (Piet de Jong, Gillian Z. Heller, 2008, p108-109).
 
 A confusion matrix is a tabular representation of Observed vs Predicted values. It helps to quantify the efficiency (or accuracy) of the model.
 
@@ -1133,7 +1133,7 @@ The ROC (Receiver Operating Characteristic) curve is a graph with:
 
 ROC curves start at 0 on the x and y axis and rise to 1. The faster the curve reaches a True Positive Rate of 1, the better the curve generally. A model on the diagonal is only showing a 50/50 chance of correctly guessing the probability of claim.  Area under an ROC curve (AUC) is a measure of the usefulness of a model in general, where a greater area means more useful. AUC is a tool for comparing models (generally, the closer the AUC is to 1, the better, but there are some cases where AUC can be misleading; AUC = 0.5 is a model on the diagonal).
 
-In our binary model, the AUC is not much better than 0.5, indicating a very weak predictive ability. It isn't hugely surprising that our model is not very effective at predicting individual claims. As noted earlier, for insurance applications, we are usually more concerned with predicting the claim rate and how it varies by predictors like age and sex {cite} 'GLM_Insurance', p108-109.
+In our binary model, the AUC is not much better than 0.5, indicating a very weak predictive ability. It isn't hugely surprising that our model is not very effective at predicting individual claims. As noted earlier, for insurance applications, we are usually more concerned with predicting the claim rate and how it varies by predictors like age and sex Piet de Jong, Gillian Z. Heller, 2008, p108-109).
 
 ```{r Evaluation - ROC, class.source="fold-show", message=FALSE, warning=FALSE}
 par(mfrow = c(1,1))
