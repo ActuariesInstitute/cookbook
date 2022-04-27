@@ -32,6 +32,8 @@ parts:
   chapters:
   - file:  docs/LifeRecipeBook.ipynb
   - file:  docs/life_stats.ipynb
+  - file:  docs/bayesian-applications.ipynb
+  - file:  docs/trees.ipynb 
 - caption: General Insurance
   chapters:
   - file: docs/MLRWP_R_GLMs.ipynb
@@ -64,6 +66,9 @@ parts:
 - caption: Data Ethics
   chapters:
   - file:  docs/automated_decision
+- caption: Reference
+  chapters:
+  - file: docs/zbibliography
 - caption: Contributing
   chapters:
   - file: docs/contributing.ipynb
