@@ -1,0 +1,1505 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R: Decision Tree Applications &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="R: Reserving with GLMs" href="MLRWP_R_GLMs.html" />
+    <link rel="prev" title="R: Bayesian Applications" href="bayesian-applications.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_DataTable.html">
+   R: data.table for actuaries
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="life_stats.html">
+   R: Life Industry Stats in Tableau and R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bayesian-applications.html">
+   R: Bayesian Applications
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   R: Decision Tree Applications
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_GLMs.html">
+   R: Reserving with GLMs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Lasso.html">
+   R: Reserving with LASSO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_mlr3.html">
+   R: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
+   Py: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html">
+   R: Bauldry ML Reserving Pt 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.html">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.html">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/trees.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/trees.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/trees.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/trees.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Decision Tree Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background">
+     Background
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#libraries">
+     Libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data">
+   Prepare Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-tree">
+   Decision tree
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-decision-trees">
+     Introduction to decision trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gini-impurity">
+       Gini impurity
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#entropy">
+       Entropy
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#information-gain">
+       Information gain
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#information-gain-ratio">
+       Information gain ratio
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-tree-example">
+     Classification tree example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree">
+     Regression tree
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-square-error-mse">
+       Mean square error (MSE)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree-example">
+     Regression tree example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-prep">
+       Data prep
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-regression-tree">
+       Fit regression tree
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   Random forest
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-of-random-forest">
+     Introduction of random forest
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-random-forest-model">
+     Train random forest model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xgboost">
+   XGBoost
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-gentle-intro-to-gradient-boosting">
+     A gentle intro to gradient boosting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros-and-cons-of-gbdt">
+     Pros and cons of GBDT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gbdt-vs-random-forest">
+     GBDT vs Random Forest
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-of-xgboost">
+     Introduction of XGBoost
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xgboost-vs-original-gbdt">
+     XGBoost vs Original GBDT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-xgboost-model">
+     Train XGBoost model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Decision Tree Applications</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Decision Tree Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#background">
+     Background
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#libraries">
+     Libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data">
+   Prepare Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-tree">
+   Decision tree
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-decision-trees">
+     Introduction to decision trees
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gini-impurity">
+       Gini impurity
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#entropy">
+       Entropy
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#information-gain">
+       Information gain
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#information-gain-ratio">
+       Information gain ratio
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-tree-example">
+     Classification tree example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree">
+     Regression tree
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-square-error-mse">
+       Mean square error (MSE)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-tree-example">
+     Regression tree example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-prep">
+       Data prep
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-regression-tree">
+       Fit regression tree
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forest">
+   Random forest
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-of-random-forest">
+     Introduction of random forest
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-random-forest-model">
+     Train random forest model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xgboost">
+   XGBoost
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-gentle-intro-to-gradient-boosting">
+     A gentle intro to gradient boosting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros-and-cons-of-gbdt">
+     Pros and cons of GBDT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gbdt-vs-random-forest">
+     GBDT vs Random Forest
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-of-xgboost">
+     Introduction of XGBoost
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xgboost-vs-original-gbdt">
+     XGBoost vs Original GBDT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-xgboost-model">
+     Train XGBoost model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-decision-tree-applications">
+<h1>R: Decision Tree Applications<a class="headerlink" href="#r-decision-tree-applications" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>A decision tree is a flowchart-like structure which models the decisions and their possible consequences, including chance of event outcomes, resource costs, and utility.</p>
+<p>In a decision tree, each internal node is split by a single feature. The tree then develops branches leading to lower level of subgroups that increases the homogeneity of the elements within that group. The split on a feature is not influenced by other features. Such division process is repeated until all leaf nodes are reached. The paths from root to leaf represent classification rules.</p>
+<p><img alt="Evolution of Tree-based Algorithms (source: https://www.kaggle.com/prashant111/xgboost-k-fold-cv-feature-importance)" src="../_images/tree_based_algorithms.jpeg" /></p>
+</div>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<p>A list of packages used in the recipes below.</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">rmdformats</span><span class="p">)</span>     <span class="c1"># theme for the HTML doc</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bookdown</span><span class="p">)</span>       <span class="c1"># bibliography formatting</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>         <span class="c1"># data formatting  </span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>          <span class="c1"># tidyverse: data manipulation</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>          <span class="c1"># tidyverse: tidy messy data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>           <span class="c1"># statistics</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>        <span class="c1"># tidyverse: graphs</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span>       <span class="c1"># tidyverse: additional themes for ggplot, optional</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span>           <span class="c1"># visualising ROC curves</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>          <span class="c1"># for Classification And REgression Training</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span>          <span class="c1"># Decision tree algorithm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>     <span class="c1"># Plot for decision tree</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">randomForest</span><span class="p">)</span>   <span class="c1"># random forest algorithm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>        <span class="c1"># XGBoost algorithm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="prepare-data">
+<h1>Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h1>
+<p>Let’s use the same dataset as in the “Regression” article. That data looked at disability income insurance experience.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span> <span class="o">=</span> <span class="nf">ls</span><span class="p">())</span>
+<span class="nf">load</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&quot;../_static/trees/data.RData&quot;</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Split data into training and testing sets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determine the number of rows for training</span>
+<span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># Create a random sample of row IDs</span>
+<span class="n">sample_rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="m">0.75</span><span class="o">*</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="c1"># Create the training dataset</span>
+<span class="n">df_train</span> <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="n">sample_rows</span><span class="p">,]</span>
+<span class="c1"># Create the test dataset</span>
+<span class="n">df_test</span> <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="n">sample_rows</span><span class="p">,]</span>
+
+
+<span class="n">samp_cv</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_test</span><span class="p">),</span><span class="m">100000</span><span class="p">)</span>
+<span class="n">df_cv</span> <span class="o">&lt;-</span> <span class="n">df_test</span><span class="p">[</span><span class="n">samp_cv</span><span class="p">,]</span>
+<span class="n">df_test2</span> <span class="o">&lt;-</span> <span class="n">df_test</span><span class="p">[</span><span class="o">-</span><span class="n">samp_cv</span><span class="p">,]</span>
+
+<span class="c1"># One hot encoding</span>
+<span class="n">train_label</span> <span class="o">&lt;-</span> <span class="n">df_train</span><span class="o">$</span><span class="n">inc_count_tot</span>
+<span class="n">cv_label</span> <span class="o">&lt;-</span> <span class="n">df_cv</span><span class="o">$</span><span class="n">inc_count_tot</span>
+<span class="n">test_label</span> <span class="o">&lt;-</span> <span class="n">df_test2</span><span class="o">$</span><span class="n">inc_count_tot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">600000</div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="decision-tree">
+<h1>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction-to-decision-trees">
+<h2>Introduction to decision trees<a class="headerlink" href="#introduction-to-decision-trees" title="Permalink to this headline">¶</a></h2>
+<p>Decision trees uses a technique called “divide-and-conquer”, which divides the dataset into partitions with similar values for the outcome of interest. To divide-and-conquer, the algorithm looks for an initial split that creates the two most homogeneous groups, and repeat this process till all the leaf nodes are reached.</p>
+<p>Leaf nodes represent the final outcome of all the determinations, which are the lowest levels of decision trees. It describes the classes (or types) of the output variable in classification problems, or its predicted values in regression problems.</p>
+<p>An obvious question is how does the algorithm decide where to split the dataset? For example, if one of the factors is “age”, how does the model know to split it at age 30, 40, or 50, in order to achieve the best “two most homogeneous” groups? For classification trees, the common solutions are Gini impurity and Entropy.</p>
+<div class="section" id="gini-impurity">
+<h3>Gini impurity<a class="headerlink" href="#gini-impurity" title="Permalink to this headline">¶</a></h3>
+<p>Gini impurity is a common approach to calculate the goodness of split in a numeric way, which helps decide where to split the dataset.</p>
+<p>Gini impurity is a measurement of the likelihood of an incorrect classification of the sample randomly selected. The lower the Gini impurity, the less likely a mis-classification will occur, and the subgroup is “purer”. It reaches 0 when the dataset contains only one class (“purest” scenario).</p>
+<p>Gini impurity is denoted as
+<span class="math notranslate nohighlight">\(G(x) = \sum_{i=1}^n P(x_i)(1 - P(x_i)) = 1 - \sum^n_{i=1} P(x_i)^2\)</span>
+where <span class="math notranslate nohighlight">\(p_k\)</span> is the probability of a correct classification within the subgroup.</p>
+<p><img alt="Gini Impurity calculation" src="../_images/gini_impurity.png" /></p>
+<p>In the example of whether having chest pain in relation to heart disease, the Gini impurity can be calculated as follows:</p>
+<p><span class="math notranslate nohighlight">\(P_1 = P\text{(Has heart disease with chest pain)} = \frac{105}{105 + 39} = 0.7862\)</span>
+<span class="math notranslate nohighlight">\(P_2 = P\text{(No heart disease with chest pain)} = \frac{39}{105 + 39} = 0.2708\)</span>
+<span class="math notranslate nohighlight">\(P_3 = P\text{(Has heart disease without chest pain)} = \frac{34}{34 + 125} = 0.2138\)</span>
+<span class="math notranslate nohighlight">\(P_4 = P\text{(No heart disease without chest pain)} = \frac{125}{34 + 125} = 0.7292\)</span>
+The Gini impurity for the left group is
+<span class="math notranslate nohighlight">\( G(Left) = 1 - P_1^2 - P_2^2 = 0.3950\)</span></p>
+<p>The Gini impurity for the right group is
+<span class="math notranslate nohighlight">\( G(Right) = 1 - P_3^2 - P_4^2 = 0.3362\)</span></p>
+<p>The overall Gini impurity for the division is a weighted average of the Gini impurity of the two groups, based on the number of observations within each group.</p>
+<p><span class="math notranslate nohighlight">\( G = \frac{144}{144 + 159} \times G(Left) + \frac{159}{144 + 159} \times G(Right) = 0.364\)</span></p>
+<p>Similarly, the Gini impurity for whether having good blood circulation as condition is 0.360. In this case, it is a slightly better indicator than whether having chest pain.</p>
+</div>
+<div class="section" id="entropy">
+<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h3>
+<p>Entropy is a concept in information theory introduced by Claude Shannon in his 1948 paper “A Methematical Theory of Communication”. It is denoted as follows
+<span class="math notranslate nohighlight">\( H(x) =  - \sum_{i=1}^n P(x_i)ln(P(x_i))\)</span></p>
+<p>Entropy varies between <span class="math notranslate nohighlight">\([0, 1]\)</span> while Gini impurity varies <span class="math notranslate nohighlight">\([0,0.5]\)</span>. The two have very similar distribution especially when Entropy is compared to twice of the Gini impurity. The conclusion from the two are mostly the same (only disagree in 2% of time). In many cases Gini impurity is favoured, as Entropy requires more computational power for using log function.</p>
+</div>
+<div class="section" id="information-gain">
+<h3>Information gain<a class="headerlink" href="#information-gain" title="Permalink to this headline">¶</a></h3>
+<p>After we get (information) entropy, we can calculate the information gain for a particular feature when learning.</p>
+<p>Suppose one of the features is gender. If we choose to split dataset by gender, then can be sub-divided into 2 groups, <span class="math notranslate nohighlight">\(D_{male}\)</span> and <span class="math notranslate nohighlight">\(D_{female}\)</span>. So the entropy after splitting by gender, is the weighted average of the entropy of the two sets</p>
+<p><span class="math notranslate nohighlight">\( \frac{D_{male}}{D}H(D_{male}) + \frac{D_{female}}{D}H(D_{female}) \)</span></p>
+<p>When compared to the information entropy prior to the split, the reduction is the information gain, denoted as</p>
+<p><span class="math notranslate nohighlight">\( Gain(D, feature)=H(D)-\sum^{N}_{i=1}\frac{D_i}{D}H(D_i) \)</span></p>
+<p>The information gain is then used to determine whether it’s better or worse off to perform a further split, and which feature yields higher gain.</p>
+</div>
+<div class="section" id="information-gain-ratio">
+<h3>Information gain ratio<a class="headerlink" href="#information-gain-ratio" title="Permalink to this headline">¶</a></h3>
+<p>One potential issue with information gain is that it prefers features with more categories. For instance, if we choose to split by personal ID which is a unique value, the entire dataset will be divided into <span class="math notranslate nohighlight">\(N\)</span> groups where <span class="math notranslate nohighlight">\(N\)</span> is also the number of data points. In this case, the entropy of each group will be zero given there is only 1 observation and the accuracy of classification reaches 100%, which then makes the second term (average entropy after split) of above formula zero. Apparently such division is not meaningful even though it maximises the information gain.</p>
+<p>To improve this, the information gain ratio was developed. It is written as</p>
+<p><span class="math notranslate nohighlight">\( Gain\_ratio(D, feature)=\frac{Gain(D, feature)}{IV(feature)}\)</span>
+where <span class="math notranslate nohighlight">\(IV(feature)\)</span> can be further denoted as</p>
+<p><span class="math notranslate nohighlight">\( IV(feature)=-\sum_{i=1}^N \frac{D_i}{D}ln(\frac{D_i}{D})\)</span></p>
+<p>This looks similar to information entropy, which essentially evaluates the purity of the feature. If the feature only has few categories, it’s “purer” and the <span class="math notranslate nohighlight">\(IV\)</span> values is smaller, vice versa. Therefore it adds a penalty on selecting features with many categories.</p>
+<p>However, information gain ratio is still not perfect, as it tends to choose features with less categories. Therefore, C4.5, a typical algorithm that uses information gain ratio, also uses information gain. It first calculates the average of information gain of all possible splits, and then choose the split with information gain above this average but also has the maximum information gain ratio, as the best split.</p>
+</div>
+</div>
+<div class="section" id="classification-tree-example">
+<h2>Classification tree example<a class="headerlink" href="#classification-tree-example" title="Permalink to this headline">¶</a></h2>
+<p>Let’s model whether a policy has any claim incident, by looking at indicator of sickness (<span class="math notranslate nohighlight">\(\text{inc_count_sick}\)</span>) and accident (<span class="math notranslate nohighlight">\(\text{inc_count_acc}\)</span>). Apparently the dependent variable (<span class="math notranslate nohighlight">\(\text{inc_count_tot}\)</span>) is fully determined by the two indicators. “Class” method is used here to train the classification tree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">classi_tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">inc_count_tot</span> <span class="o">~</span> <span class="n">inc_count_acc</span> <span class="o">+</span> <span class="n">inc_count_sick</span><span class="p">,</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">,</span>
+                        <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;class&quot;</span><span class="p">)</span>
+
+<span class="nf">plotcp</span><span class="p">(</span><span class="n">classi_tree</span><span class="p">,</span> <span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rpart.plot</span><span class="p">(</span><span class="n">classi_tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_10_0.png" src="../_images/trees_10_0.png" />
+<img alt="../_images/trees_10_1.png" src="../_images/trees_10_1.png" />
+</div>
+</div>
+<p>As shown above, any policy having sickness or accident has a claim incident, in line with expectation.</p>
+</div>
+<div class="section" id="regression-tree">
+<h2>Regression tree<a class="headerlink" href="#regression-tree" title="Permalink to this headline">¶</a></h2>
+<p>A regression tree is basically a decision tree that is used for the task of regression which can be used to predict continuous valued outputs instead of discrete outputs.</p>
+<p>Unlike classification tree, we cannot calculate the Gini impurity or entropy since we are predicting continuous variables. Therefore, another measure is required to tell how much our predictions deviate from the original target and that’s the entry-point of mean square error.</p>
+<div class="section" id="mean-square-error-mse">
+<h3>Mean square error (MSE)<a class="headerlink" href="#mean-square-error-mse" title="Permalink to this headline">¶</a></h3>
+<p>Mean square error is defined as
+<span class="math notranslate nohighlight">\( MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \)</span>
+where <span class="math notranslate nohighlight">\(y_i\)</span> is the actual value and <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> is the predicted value. This is the same approach used in linear regression, which aims to minimise the difference between the actual and predicted values.</p>
+<p>Note that regression tree uses piecewise linear functions, which fits a linear function to a certain interval. if we keep dividing the dataset, the tree is able to depict any kind of non-linear trends asymptotically. This is more flexible than simple linear regression.</p>
+</div>
+</div>
+<div class="section" id="regression-tree-example">
+<h2>Regression tree example<a class="headerlink" href="#regression-tree-example" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create a scenario where termination of claims is driven by age of the claimant. Decision tree will be used to split the dataset based on age and see if result is in line with our expectation.</p>
+<div class="section" id="data-prep">
+<h3>Data prep<a class="headerlink" href="#data-prep" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select all claims</span>
+<span class="n">df_term</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span> <span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> 
+
+<span class="c1"># add dummy claim duration data. Duration (i.e. in days) is usually considered following </span>
+<span class="c1"># an exponential distribution but in our recent study it follows a gamma distribution better. </span>
+<span class="c1"># To simplify, here we use exponential distribution CDF to back solve the x. </span>
+<span class="c1"># Assume lambda is 1/180 so that the average claim duration is 180 days.</span>
+<span class="n">df_term</span> <span class="o">&lt;-</span> <span class="n">df_term</span> <span class="o">%&gt;%</span> 
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">term_day</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span><span class="n">age</span> <span class="o">&lt;=</span> <span class="m">45</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">90</span><span class="p">)),</span>
+                              <span class="n">age</span> <span class="o">&lt;=</span> <span class="m">50</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">180</span><span class="p">)),</span>
+                                   <span class="kc">TRUE</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">360</span><span class="p">))</span>
+                              <span class="p">))</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">df_term</span><span class="o">$</span><span class="n">age</span><span class="p">,</span> <span class="n">df_term</span><span class="o">$</span><span class="n">term_day</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;AGE&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Time to Recover (Days)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_13_0.png" src="../_images/trees_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="fit-regression-tree">
+<h3>Fit regression tree<a class="headerlink" href="#fit-regression-tree" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ageGroup_split</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">term_day</span> <span class="o">~</span> <span class="n">age</span><span class="p">,</span>
+                        <span class="n">data</span> <span class="o">=</span> <span class="n">df_term</span><span class="p">,</span>
+                        <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;anova&quot;</span><span class="p">,</span>
+                        <span class="n">control</span> <span class="o">=</span> <span class="nf">rpart.control</span><span class="p">(</span><span class="n">xval</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">minbucket</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="m">0.0005</span><span class="p">))</span>
+
+<span class="nf">plotcp</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span> <span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">rpart.plot</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">)</span>
+<span class="nf">printcp</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">)</span>
+
+<span class="c1"># increase cp the learning rate to prune the trees</span>
+<span class="n">ageGroup_pruned</span> <span class="o">&lt;-</span> <span class="nf">prune</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="m">0.005</span><span class="p">)</span>
+<span class="nf">rpart.plot</span><span class="p">(</span><span class="n">ageGroup_pruned</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_15_0.png" src="../_images/trees_15_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Regression tree:
+rpart(formula = term_day ~ age, data = df_term, method = &quot;anova&quot;, 
+    control = rpart.control(xval = 5, minbucket = 4, cp = 5e-04))
+
+Variables actually used in tree construction:
+[1] age
+
+Root node error: 172016888/2453 = 70125
+
+n= 2453 
+
+          CP nsplit rel error  xerror     xstd
+1 0.17203375      0   1.00000 1.00165 0.078322
+2 0.02148370      1   0.82797 0.83236 0.065199
+3 0.00398784      2   0.80648 0.81096 0.064604
+4 0.00136321      4   0.79851 0.81948 0.066336
+5 0.00081531      5   0.79714 0.81562 0.065884
+6 0.00079889      6   0.79633 0.81574 0.065899
+7 0.00075895      7   0.79553 0.81557 0.065889
+8 0.00050000      8   0.79477 0.81557 0.065889
+</pre></div>
+</div>
+<img alt="../_images/trees_15_2.png" src="../_images/trees_15_2.png" />
+<img alt="../_images/trees_15_3.png" src="../_images/trees_15_3.png" />
+</div>
+</div>
+<p>The pruned tree splits the dataset into 3 subgroups which are exactly same as what has been defined in the data prep.</p>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="random-forest">
+<h1>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction-of-random-forest">
+<h2>Introduction of random forest<a class="headerlink" href="#introduction-of-random-forest" title="Permalink to this headline">¶</a></h2>
+<p>Random forest is an ensemble learning method that applies bootstrap aggregating, or Bagging, and a random selection of features, to enhance the overall performance by creating a number of trees. For classification tasks, the output of the random forest is the class selected by most trees. For regression tasks, the mean or average prediction of the individual trees is returned.</p>
+<p>Bootstrap is a sampling technique. Sampling is to randomly pick data points from a known sample as such to form a new sample, either with or without replacement. Random forest uses sampling with replacement, which is to choose from a set (or original data) of size <span class="math notranslate nohighlight">\(n\)</span>, to form a new set (or sample) of size <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>With replacement, each data point has a chance of <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> to be selected, and after <span class="math notranslate nohighlight">\(n\)</span> selections, the probability that a data point is not selected, is <span class="math notranslate nohighlight">\((1 - \frac{1}{n})^n\)</span>. When <span class="math notranslate nohighlight">\(n \to \infty\)</span>, this converges to <span class="math notranslate nohighlight">\(\frac{1}{e} \approx 0.368\)</span>. This means around 36.8% data will not be selected into the new sample, which are called “Out of Bag” (OOB) data.</p>
+<p>The earlier random decision forests by Tin Kam Ho used the “random subspace method”, where each tree got a random subset of features. However, a few years later, Leo Breiman described the procedure of selecting different subsets of features for each node (while a tree was given the full set of features). Leo Breiman’s formulation has become the “trademark” random forest algorithm that we typically refer to these days when we speak of “random forest”.</p>
+<p>With the randomness in sampling of data points and features, random forest can control over-fitting well. Meanwhile, as random forest uses multiple decision trees, it also helps reduce the variance. If we treat each tree as a <span class="math notranslate nohighlight">\(iid\)</span> random variable <span class="math notranslate nohighlight">\(X_i\)</span> with variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, variance of their mean is
+<span class="math notranslate nohighlight">\( Var(\frac{1}{n} \sum X_i) = \frac{\sigma^2}{n}\)</span>
+where <span class="math notranslate nohighlight">\(n\)</span> denotes the number of trees.</p>
+</div>
+<div class="section" id="train-random-forest-model">
+<h2>Train random forest model<a class="headerlink" href="#train-random-forest-model" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
+                      <span class="o">+</span> <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">)</span>
+
+<span class="n">new_cv2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
+                      <span class="o">+</span> <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_cv</span><span class="p">)</span>
+
+<span class="n">new_test2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
+                      <span class="o">+</span> <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_test2</span><span class="p">)</span>
+
+<span class="n">new_train2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_train2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+<span class="n">new_cv2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_cv2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+<span class="n">new_test2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_test2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+
+<span class="n">rf.fit</span> <span class="o">=</span> <span class="nf">randomForest</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="p">)</span> <span class="o">~</span><span class="n">.</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_train2</span><span class="p">,</span> 
+                      <span class="n">ntree</span><span class="o">=</span><span class="m">100</span><span class="p">,</span> 
+                      <span class="n">sampsize</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">500</span><span class="p">,</span><span class="m">500</span><span class="p">),</span>
+                      <span class="n">importance</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+ randomForest(formula = as.factor(inc_count_tot) ~ ., data = new_train2,      ntree = 100, sampsize = c(500, 500), importance = T) 
+               Type of random forest: classification
+                     Number of trees: 100
+No. of variables tried at each split: 4
+
+        OOB estimate of  error rate: 38.13%
+Confusion matrix:
+       0      1 class.error
+0 276844 170703   0.3814192
+1    863   1590   0.3518141
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting variable importance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">varImpPlot</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_19_0.png" src="../_images/trees_19_0.png" />
+</div>
+</div>
+<p>Confusion matrix and ROC:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rf.predict</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span> <span class="n">new_test2</span><span class="p">)</span>
+<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">rf.predict</span><span class="p">),</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span><span class="p">))</span>
+
+<span class="n">rf.predict2</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span> <span class="n">new_test2</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;prob&quot;</span><span class="p">)</span>
+<span class="nf">roc</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span> <span class="o">~</span> <span class="n">rf.predict2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">plot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">print.auc</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix and Statistics
+
+          Reference
+Prediction     0     1
+         0 30786   102
+         1 18945   167
+                                          
+               Accuracy : 0.6191          
+                 95% CI : (0.6148, 0.6233)
+    No Information Rate : 0.9946          
+    P-Value [Acc &gt; NIR] : 1               
+                                          
+                  Kappa : 0.0067          
+                                          
+ Mcnemar&#39;s Test P-Value : &lt;2e-16          
+                                          
+            Sensitivity : 0.619050        
+            Specificity : 0.620818        
+         Pos Pred Value : 0.996698        
+         Neg Pred Value : 0.008738        
+             Prevalence : 0.994620        
+         Detection Rate : 0.615720        
+   Detection Prevalence : 0.617760        
+      Balanced Accuracy : 0.619934        
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting levels: control = 0, case = 1
+
+Setting direction: controls &lt; cases
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+roc.formula(formula = new_test2$inc_count_tot ~ rf.predict2[,     2], plot = TRUE, print.auc = TRUE)
+
+Data: rf.predict2[, 2] in 49731 controls (new_test2$inc_count_tot 0) &lt; 269 cases (new_test2$inc_count_tot 1).
+Area under the curve: 0.6683
+</pre></div>
+</div>
+<img alt="../_images/trees_21_3.png" src="../_images/trees_21_3.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="xgboost">
+<h1>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-gentle-intro-to-gradient-boosting">
+<h2>A gentle intro to gradient boosting<a class="headerlink" href="#a-gentle-intro-to-gradient-boosting" title="Permalink to this headline">¶</a></h2>
+<p>Before talking about XGBoost, let’s take a look at gradient boosting decision trees (GBDT). Unlike Bagging technique used by random forest, Boosting sums up all the trees instead of taking majority vote. All the trees (or weak learners) are dependent. At every training iteration, the misclassified samples at the previous training step will be assigned higher weight. The predicted outcome is the weighted sum of all the learners.</p>
+<p>As an example, to predict the age of a person (say actual value is 40):</p>
+<ul class="simple">
+<li><p>the GBDT model trains the first weak learner (or tree) to make a prediction of 30. Apparently the variance of this prediction against actual value is 10.</p></li>
+<li><p>Then in the next tree, it makes another prediction of age 6 (out of 10), which reduces the variance to 4.</p></li>
+<li><p>Then in the third tree, the predicted age is 3 (out of 4), with variance down to 1.</p></li>
+<li><p>The last tree predicts the age of 1 (out of 1).</p></li>
+<li><p>Finally, if we add up all the 4 trees, we will end up having a predicted value of age 40.</p></li>
+</ul>
+<p><img alt="Intuition behind gradient boosting (source: https://explained.ai/gradient-boosting/index.html)" src="../_images/golf-gbdt.png" /></p>
+<p>Just like playing golf, GBDT model tries to explain the residual of the previous fitting. Actually, the algorithm uses negative gradient to approximate the residual. For each sample point, the loss function is in the form of
+<span class="math notranslate nohighlight">\( l(y_i, \hat{y}_i) = \frac{1}{2}(y_i - \hat{y}_i)^2\)</span>
+Note that this is just same as mean square error, the <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> at the front is just to offset the coefficient 2 that will emerge when calculating derivative, without changing the overall trend. Thus, the negative gradient is
+<span class="math notranslate nohighlight">\( -\frac{\partial l}{\partial \hat{y}_i} = (y_i - \hat{y}_i)\)</span>
+which is exactly the variance between the actual and predicted value.</p>
+</div>
+<div class="section" id="pros-and-cons-of-gbdt">
+<h2>Pros and cons of GBDT<a class="headerlink" href="#pros-and-cons-of-gbdt" title="Permalink to this headline">¶</a></h2>
+<p>Pros:</p>
+<ul class="simple">
+<li><p>Fast predicting process, allowing multi-thread computation.</p></li>
+<li><p>Works well on dense data.</p></li>
+<li><p>Good interpretability and robustness, can automatically find higher order relationships between the features.</p></li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li><p>SVM and neural network may perform better than GBDT on sparse data.</p></li>
+<li><p>Training takes longer as trees are inter-dependent.</p></li>
+</ul>
+</div>
+<div class="section" id="gbdt-vs-random-forest">
+<h2>GBDT vs Random Forest<a class="headerlink" href="#gbdt-vs-random-forest" title="Permalink to this headline">¶</a></h2>
+<p>Similarity:</p>
+<ul class="simple">
+<li><p>Both contains multiple trees, and all trees are involved in determining final result.</p></li>
+<li><p>Both can handle classification or regression problems.</p></li>
+</ul>
+<p>Difference:</p>
+<ul class="simple">
+<li><p>Trees in random forest can be derived in parallel, however for GBDT they need to come one after another.</p></li>
+<li><p>Random forest uses majority vote, while GBDT takes weighted sum of all trees.</p></li>
+<li><p>Random forest is not sensitive to outliers, but GBDT is.</p></li>
+<li><p>Random forest reduces the model variance, and GBDT reduces the model bias.</p></li>
+</ul>
+</div>
+<div class="section" id="introduction-of-xgboost">
+<h2>Introduction of XGBoost<a class="headerlink" href="#introduction-of-xgboost" title="Permalink to this headline">¶</a></h2>
+<p>XGBoost stands for eXtreme Gradient Boosting and is developed on the framework of gradient boosting by Tianqi Chen et. al. It inherits the nature of GBDT model and has made several enhancements to be more powerful and efficient.</p>
+<p>One of the main features about XGBoost is that it has enabled parallel computing. Unlike random forest where each tree is mutually independent, XGBoost as a variant of GBDT still needs to generate trees in sequence. The way it realises parallel learning is by introducing a block structure. As stated in the paper, the most timing consuming part of tree learning is to get the data into sorted order. The algorithm stores data in in-memory units called “block”, with each column sorted by the corresponding feature value. By doing so, the input data only needs to be computed once before training, and the blocks can be re-used in later iterations.</p>
+<p>While machine learning algorithms have support for tuning and can work with external programs, XGBoost has built-in parameters for regularisation and cross-validation to make sure both bias and variance is kept at a minimal.</p>
+</div>
+<div class="section" id="xgboost-vs-original-gbdt">
+<h2>XGBoost vs Original GBDT<a class="headerlink" href="#xgboost-vs-original-gbdt" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>XGBoost uses L2 norm which controls over-fitting and allows model to converge faster than L1 norm. For more information about regularisation, this article is a good reading <a class="reference external" href="https://www.kaggle.com/residentmario/l1-norms-versus-l2-norms">https://www.kaggle.com/residentmario/l1-norms-versus-l2-norms</a></p></li>
+<li><p>The original GBDT only uses the first order derivative of the loss function, while XGBoost uses both the first and second order derivatives (by Taylor series). Second order derivative allows gradient to descend faster in the right direction.</p></li>
+<li><p>The original GBDT uses tree base learner, while XGBoost also supports other types such as linear learner. Though in most cases, we may not use linear learner as a base learner, because adding multiple linear models together still yields a linear model.</p></li>
+<li><p>The original GBDT uses all data points in every iteration. XGBoost randomly samples the data to prevent over-fitting.</p></li>
+<li><p>XGBoost can handle missing values. Common treatments are to: 1) use median values, or 2) do so but also consider the similarity of the data point against all others (proximity measures). The strategy in XGBoost is to put all samples where the value of the split feature is unknown in one of the two children (left or right sub-tree), whichever side gives optimised training loss. Clever isn’t it? This assumes that the training data and predicting data have same distribution.</p></li>
+</ul>
+</div>
+<div class="section" id="train-xgboost-model">
+<h2>Train XGBoost model<a class="headerlink" href="#train-xgboost-model" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
+                        <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">)</span>
+
+<span class="n">new_cv</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
+                        <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_cv</span><span class="p">)</span>
+
+<span class="n">new_test</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
+                        <span class="n">cal_year</span>
+                      <span class="o">+</span> <span class="n">policy_year</span>
+                      <span class="o">+</span> <span class="n">sex</span>                           
+                      <span class="o">+</span> <span class="n">smoker</span>
+                      <span class="o">+</span> <span class="n">benefit_period</span>
+                      <span class="o">+</span> <span class="n">waiting_period</span>
+                      <span class="o">+</span> <span class="n">occupation</span>
+                      <span class="o">+</span> <span class="n">age</span>          
+                      <span class="o">+</span> <span class="n">sum_assured</span>             
+                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_test2</span><span class="p">)</span>
+
+
+<span class="c1"># prepare xgb matrix </span>
+<span class="n">DM_train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_train</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">train_label</span><span class="p">)</span> 
+<span class="n">DM_cv</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_cv</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">cv_label</span><span class="p">)</span>
+<span class="n">DM_test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_test</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">test_label</span><span class="p">)</span>
+
+<span class="c1"># Given the dataset is highly imbalanced, we use &#39;scale_pos_weight&#39; </span>
+<span class="c1"># to re-balance it which is the number of negative observations (i.e. &quot;0&quot;) </span>
+<span class="c1"># over the number of positive observations (i.e. &quot;1&quot;).</span>
+<span class="n">n_pos</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
+<span class="n">n_neg</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">0</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
+
+<span class="n">params</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">booster</span> <span class="o">=</span> <span class="s">&quot;gbtree&quot;</span>
+               <span class="p">,</span> <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;binary:logistic&quot;</span>
+               <span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="m">0.1</span>
+               <span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="m">0</span>
+               <span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="m">6</span>
+               <span class="p">,</span> <span class="n">min_child_weight</span><span class="o">=</span><span class="m">1</span>
+               <span class="p">,</span> <span class="n">subsample</span><span class="o">=</span><span class="m">1</span>
+               <span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="m">1</span>
+               <span class="p">,</span> <span class="n">scale_pos_weight</span><span class="o">=</span><span class="n">n_neg</span><span class="o">/</span><span class="n">n_pos</span><span class="p">)</span>
+
+<span class="c1"># xgb training with watchlist to show cross-validation</span>
+<span class="n">xgb1</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">DM_train</span><span class="p">,</span> <span class="n">nrounds</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">watchlist</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">DM_train</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">DM_cv</span><span class="p">)</span>
+                   <span class="p">,</span><span class="n">print_every_n</span> <span class="o">=</span> <span class="m">10</span>
+                   <span class="p">,</span><span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="m">50</span>
+                   <span class="p">,</span><span class="n">maximize</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">eval_metric</span> <span class="o">=</span> <span class="s">&quot;logloss&quot;</span><span class="p">)</span>
+
+<span class="nf">summary</span><span class="p">(</span><span class="n">xgb1</span><span class="p">)</span>
+<span class="n">xgb_pred1</span> <span class="o">&lt;-</span> <span class="nf">predict </span><span class="p">(</span><span class="n">xgb1</span><span class="p">,</span> <span class="n">DM_test</span><span class="p">)</span>
+
+<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">xgb_pred1</span> <span class="o">&gt;</span><span class="m">0.5</span><span class="p">)),</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">test_label</span><span class="p">))</span>
+
+<span class="nf">roc</span><span class="p">(</span><span class="n">test_label</span> <span class="o">~</span> <span class="n">xgb_pred1</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">print.auc</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-logloss:0.680530	val-logloss:0.680454 
+Multiple eval metrics are present. Will use val_logloss for early stopping.
+Will train until val_logloss hasn&#39;t improved in 50 rounds.
+
+[11]	train-logloss:0.626824	val-logloss:0.627098 
+[21]	train-logloss:0.608418	val-logloss:0.609160 
+[31]	train-logloss:0.596263	val-logloss:0.597342 
+[41]	train-logloss:0.585442	val-logloss:0.586823 
+[51]	train-logloss:0.577694	val-logloss:0.579185 
+[61]	train-logloss:0.571021	val-logloss:0.572678 
+[71]	train-logloss:0.565651	val-logloss:0.567431 
+[81]	train-logloss:0.558594	val-logloss:0.560511 
+[91]	train-logloss:0.553997	val-logloss:0.556084 
+[100]	train-logloss:0.550225	val-logloss:0.552311 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Length Class              Mode       
+handle               1 xgb.Booster.handle externalptr
+raw             556926 -none-             raw        
+best_iteration       1 -none-             numeric    
+best_ntreelimit      1 -none-             numeric    
+best_score           1 -none-             numeric    
+best_msg             1 -none-             character  
+niter                1 -none-             numeric    
+evaluation_log       3 data.table         list       
+call                 9 -none-             call       
+params              11 -none-             list       
+callbacks            3 -none-             list       
+feature_names       18 -none-             character  
+nfeatures            1 -none-             numeric    
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix and Statistics
+
+          Reference
+Prediction     0     1
+         0 33350   112
+         1 16381   157
+                                         
+               Accuracy : 0.6701         
+                 95% CI : (0.666, 0.6743)
+    No Information Rate : 0.9946         
+    P-Value [Acc &gt; NIR] : 1              
+                                         
+                  Kappa : 0.0082         
+                                         
+ Mcnemar&#39;s Test P-Value : &lt;2e-16         
+                                         
+            Sensitivity : 0.670608       
+            Specificity : 0.583643       
+         Pos Pred Value : 0.996653       
+         Neg Pred Value : 0.009493       
+             Prevalence : 0.994620       
+         Detection Rate : 0.667000       
+   Detection Prevalence : 0.669240       
+      Balanced Accuracy : 0.627125       
+                                         
+       &#39;Positive&#39; Class : 0              
+                                         
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting levels: control = 0, case = 1
+
+Setting direction: controls &lt; cases
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+roc.formula(formula = test_label ~ xgb_pred1, plot = TRUE, print.auc = TRUE)
+
+Data: xgb_pred1 in 49731 controls (test_label 0) &lt; 269 cases (test_label 1).
+Area under the curve: 0.6811
+</pre></div>
+</div>
+<img alt="../_images/trees_23_5.png" src="../_images/trees_23_5.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="bayesian-applications.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R: Bayesian Applications</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="MLRWP_R_GLMs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R: Reserving with GLMs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

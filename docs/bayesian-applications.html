@@ -1,0 +1,2341 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R: Bayesian Applications &#8212; Actuaries&#39; Analytical Cookbook</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="R: Decision Tree Applications" href="trees.html" />
+    <link rel="prev" title="R: Life Industry Stats in Tableau and R" href="life_stats.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to Python
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_py.html">
+   About Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started.html">
+   Setting up Your Python Environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_by_example.html">
+   An Introductory Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="learn_more.html">
+   Learn More
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Useful_Python_packages.html">
+   Useful Python packages for Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction to R
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about_R.html">
+   About R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started_R.html">
+   Setting Up R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introductory_R.html">
+   Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="intermediate_R.html">
+   Next Steps With R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="top_ten_r_packages.html">
+   Useful Packages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_DataTable.html">
+   R: data.table for actuaries
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Workflow Management
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="version_control.html">
+   Version control
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Regression, Classification and Technical Price
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS1.html">
+   Py: Customer Churn Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multitasking_risk_pricing.html">
+   Py/R: Multitasking Risk Pricing Using Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="py_shap_values.html">
+   Py: Explainable Models with SHAP
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Life Insurance
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LifeRecipeBook.html">
+   R: Life Modelling Recipes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="life_stats.html">
+   R: Life Industry Stats in Tableau and R
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   R: Bayesian Applications
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="trees.html">
+   R: Decision Tree Applications
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  General Insurance
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_GLMs.html">
+   R: Reserving with GLMs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Lasso.html">
+   R: Reserving with LASSO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_mlr3.html">
+   R: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
+   Py: Machine Learning Triangles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html">
+   R: Bauldry ML Reserving Pt 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.html">
+   R: Bauldry ML Reserving Pt 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MLRWP_R_Bauldry_Notebook_3_ApplyMachineLearningReserving_v1.html">
+   R: Bauldry ML Reserving Pt 3
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Unsupervised Learning
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS1.html">
+   Py: Socio-Economic Index Construction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_CS2.html">
+   Py: Clustering Credit Card Fraud
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex4.html">
+   Py: K-means clustering of COVID dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M06_Ex5.html">
+   Py: Hierarchical clustering on COVID dataset
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Natural Language Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="R_case_study_word_cloud.html">
+   R: Word Cloud Case Study
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="textClassificationEntry.html">
+   Py: Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex10.html">
+   Py: Decision Tree Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_Ex18.html">
+   Py: Neural Net Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS1.html">
+   Py: Classifying review sentiment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M07_CS2.html">
+   Py: Customer Sentiment Analysis
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Business Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
+   Py: Linear Programming
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Recognition
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DAA_M05_CS2.html">
+   Py: Image Recognition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Ethics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="automated_decision.html">
+   Automated Decision-Making Systems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contributing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/bayesian-applications.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/bayesian-applications.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/bayesian-applications.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/bayesian-applications.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bayesian Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#libraries">
+     Libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mental-health-example">
+     Mental health example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choosing-a-prior">
+       Choosing a prior
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#non-informative-prior-uniform">
+         Non-informative prior, uniform
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">
+         Weakly informative prior, bimodial
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#informative-prior-failure-more-likely">
+         Informative prior, “failure” more likely
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deriving-posterior">
+       Deriving posterior
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-logistic">
+     Regression - logistic
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Background
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#heart-disease-data">
+       Heart disease data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">
+       Adjusting scales and changing priors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-fit">
+       Model fit
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-linear">
+     Regression - linear
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">
+     Estimating COVID 19 infections in NSW, Australia
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">
+   Common issues in MCMC projections
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further reading
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>R: Bayesian Applications</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   R: Bayesian Applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#libraries">
+     Libraries
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mental-health-example">
+     Mental health example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choosing-a-prior">
+       Choosing a prior
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#non-informative-prior-uniform">
+         Non-informative prior, uniform
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">
+         Weakly informative prior, bimodial
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#informative-prior-failure-more-likely">
+         Informative prior, “failure” more likely
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deriving-posterior">
+       Deriving posterior
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-logistic">
+     Regression - logistic
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Background
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#heart-disease-data">
+       Heart disease data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">
+       Adjusting scales and changing priors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-fit">
+       Model fit
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-linear">
+     Regression - linear
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">
+     Estimating COVID 19 infections in NSW, Australia
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">
+   Common issues in MCMC projections
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further reading
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="r-bayesian-applications">
+<h1>R: Bayesian Applications<a class="headerlink" href="#r-bayesian-applications" title="Permalink to this headline">¶</a></h1>
+<p>By Pat Reen - originally published on his GitHub site <a class="reference external" href="https://pat-reen.github.io/More-Modelling-Recipes/">here</a>, which has the <a class="reference external" href="https://github.com/Pat-Reen/More-Modelling-Recipes">original code</a>.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="background">
+<h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
+<p>Bayesian statistics reflects uncertainty about model parameters by assuming some prior probability distribution for those parameters. That prior uncertainty is adjusted for observed data to produce a posterior distribution.</p>
+<p>Under a frequentest approach, model parameters are fixed and the observations are assumed to be sampled from a probability distribution with those parameters.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes theorem refresher</a>:</p>
+<p><span class="math notranslate nohighlight">\(\Huge {p}(\theta,x) = \frac{{p}(x,\theta){p}(\theta)}{{p}(x)}\)</span></p>
+<p>Where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({p}(\theta,x)\)</span> is the posterior, a combination of the likelihood, prior and evidence. Probability distribution of <span class="math notranslate nohighlight">\(\theta\)</span> given the observed data, <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\({p}(x,\theta)\)</span> is the likelihood which summarizes the likelihood of observing data <span class="math notranslate nohighlight">\(x\)</span> under different values of the underlying support parameter <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\({p}(\theta)\)</span> is the prior, the probability distribution of <span class="math notranslate nohighlight">\(\theta\)</span>, independent of the observed data.</p></li>
+<li><p><span class="math notranslate nohighlight">\({p}(x)\)</span> is the evidence (normalising term), the probability of the observed data <span class="math notranslate nohighlight">\(x\)</span>, independent of <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+</ul>
+<p>The evidence term is proportional to the likelihood and therefore the theorem is often stated as</p>
+<p><span class="math notranslate nohighlight">\(\Huge p(\theta | x) \propto p(x | \theta) p(\theta)\)</span></p>
+<p>A paper presented at the <a class="reference external" href="https://actuaries.logicaldoc.cloud/download-ticket?ticketId=4fda7653-5e3d-4514-a79f-ed0070a0f9be">2021 Actuaries (Institute) Summit</a> (p2) sets out the ‘tensions’ that exist between Frequentest and Bayesian approaches and suggests that:</p>
+<blockquote>
+<div><p>“Despite actuaries being pioneers in early work on credibility theory, Bayesian approaches have largely given way to frequentist approaches. This is to our loss, since such methods have advanced substantially over the past couple of decades and they are well-suited to problems with latent variables or noise around underlying ‘true’ values.”</p>
+</div></blockquote>
+<p>Here we’ll look at a few simple applications of Bayesian techniques.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="applications">
+<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<p>The sections below set out a simple example Bayesian refresher, regression models and other applications.</p>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<p>A list of packages used in the recipes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>         <span class="c1"># Base r functions</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">fitdistrplus</span><span class="p">)</span> <span class="c1"># Fit of univariate distributions to non-censored data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>    <span class="c1"># tidyverse: dealing with dates</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>      <span class="c1"># tidyverse: graphs</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>    <span class="c1"># tidyverse: arranging graphs</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span>     <span class="c1"># tidyverse: additional themes for ggplot, optional</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>        <span class="c1"># tidyverse: data manipulation</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>        <span class="c1"># tidyverse: tidy messy data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span>        <span class="c1"># tidyverse: visualising statistical objects</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DataExplorer</span><span class="p">)</span> <span class="c1"># package for exploratory data analysis</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>       <span class="c1"># data formatting</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>        <span class="c1"># statistical functions</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rstan</span><span class="p">)</span>        <span class="c1"># interface for stan platform</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bayesplot</span><span class="p">)</span>    <span class="c1"># Plotting bayesian models (ggplot extension)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rjags</span><span class="p">)</span>        <span class="c1"># alternative interface for stan platform, regression applications</span>
+
+<span class="c1"># library(EpiNow2)    # epidemiological model with stan backend; not called here as we&#39;ll use a pre-run model</span>
+<span class="c1"># library(rstanarm)   # interface for stan platform, regression applications; not called here</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: MASS
+
+Loading required package: survival
+
+
+Attaching package: &#39;lubridate&#39;
+
+
+The following objects are masked from &#39;package:base&#39;:
+
+    date, intersect, setdiff, union
+
+
+
+Attaching package: &#39;dplyr&#39;
+
+
+The following object is masked from &#39;package:gridExtra&#39;:
+
+    combine
+
+
+The following object is masked from &#39;package:MASS&#39;:
+
+    select
+
+
+The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag
+
+
+The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union
+
+
+Loading required package: StanHeaders
+
+rstan (Version 2.21.2, GitRev: 2e1f913d3ca3)
+
+For execution on a local, multicore CPU with excess RAM we recommend calling
+options(mc.cores = parallel::detectCores()).
+To avoid recompilation of unchanged Stan programs, we recommend calling
+rstan_options(auto_write = TRUE)
+
+Do not specify &#39;-march=native&#39; in &#39;LOCAL_CPPFLAGS&#39; or a Makevars file
+
+
+Attaching package: &#39;rstan&#39;
+
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    extract
+
+
+This is bayesplot version 1.8.0
+
+- Online documentation and vignettes at mc-stan.org/bayesplot
+
+- bayesplot theme set to bayesplot::theme_default()
+
+   * Does _not_ affect other ggplot2 plots
+
+   * See ?bayesplot_theme_set for details on theme setting
+
+Warning message:
+&quot;package &#39;rjags&#39; was built under R version 4.0.5&quot;
+Loading required package: coda
+
+
+Attaching package: &#39;coda&#39;
+
+
+The following object is masked from &#39;package:rstan&#39;:
+
+    traceplot
+
+
+Linked to JAGS 4.2.0
+
+Loaded modules: basemod,bugs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mental-health-example">
+<h2>Mental health example<a class="headerlink" href="#mental-health-example" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.actuaries.asn.au/Library/Miscellaneous/2017/GPMENTALHEALTHWEBRCopy.pdf">2017 Actuaries Institute Green Paper on Mental Health and Insurance</a> talks about some of the challenges in obtaining reliable data and projections on mental health in insurance (p26):</p>
+<blockquote>
+<div><p>“There are sources of data and research about the prevalence and profile of people with different mental health conditions, such as the 2007 National Survey of Mental Health and Wellbeing and many other epidemiological and clinical studies… [T]o have a complete and informed view of all this information is a difficult task for a full-time academic, let alone for an insurer.</p>
+<p>Even then, the nature and granularity of the data needed for insurance applications is different from that for population, public health or clinical purposes. Firstly, the ‘exposure’ (the number of insured people and their characteristics) needs to be recorded. There is probably a lot of relevant information that is not collected at the start of an insurance policy and can therefore never be analysed.</p>
+<p>Secondly, the claims information needs to be available at a detailed level regarding the nature and cause of the claim and other characteristics of the individual, their history and the cover provided. There is a clear need for consistency in definition, language and data standards to improve the quality of information available across the system.</p>
+<p>Naturally, when the insurance cover for mental health conditions is not provided (as in the case of most travel insurance products) there will not be relevant data from the insurance history. However, even when relevant data exists within insurers there are practical and commercial difficulties in turning it into a useful form.”</p>
+</div></blockquote>
+<p>The paper goes on to talk about some of the insurance challenges in detail including</p>
+<ul class="simple">
+<li><p>subjectivity in diagnosis</p></li>
+<li><p>reliance on self-reporting</p></li>
+<li><p>varying severity and prospects of recovery</p></li>
+<li><p>impact of co-morbidities</p></li>
+<li><p>correlation with financial incentive</p></li>
+</ul>
+<p>Based upon data from a single insurer ~19% of IP and TPD claims relate to mental health, with mental health claims contributing 26% to the total cost of claims (in 2015, p17). This is roughly consistent with the proportion of the general population that experiences an episode of mental illness in a 12 month period, from the <a class="reference external" href="https://www.pc.gov.au/inquiries/completed/mental-health/report/mental-health-volume2.pdf">Productivity Commission</a>, p110.</p>
+<p>In this simple example, we want to know what the rate of mental illness, <span class="math notranslate nohighlight">\(\theta\)</span> is in the insured population. Assume some true underlying <span class="math notranslate nohighlight">\(\theta\)</span>, here a fixed value of 20%.  Create a population, <span class="math notranslate nohighlight">\(X\)</span> with <span class="math notranslate nohighlight">\(X \sim B(N,\theta)\)</span> where N=100000. Pull a random sample from population.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">theta_true</span> <span class="o">&lt;-</span> <span class="m">0.2</span> 
+<span class="n">pop</span> <span class="o">&lt;-</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">100000</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="n">theta_true</span><span class="p">)</span>
+<span class="n">sample_n</span> <span class="o">=</span> <span class="m">500</span>
+<span class="n">sample</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span><span class="n">sample_n</span><span class="p">)</span>
+<span class="n">sample_success</span> <span class="o">&lt;-</span> <span class="nf">sum</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">sample_p</span> <span class="o">&lt;-</span> <span class="n">sample_success</span><span class="o">/</span><span class="n">sample_n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="choosing-a-prior">
+<h3>Choosing a prior<a class="headerlink" href="#choosing-a-prior" title="Permalink to this headline">¶</a></h3>
+<p>The posterior is proportional to the product of the prior and the likelihood. The beta distribution is a <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_prior">conjugate prior</a> for the binomial distribution (posterior is the same probability distribution family as prior). Assume <span class="math notranslate nohighlight">\(\theta \sim {\sf Beta}(\alpha, \beta)\)</span>, then:</p>
+<p><span class="math notranslate nohighlight">\(f(\theta;\alpha,\beta) = \theta^{\alpha-1}(1-\theta)^{\beta-1}\)</span></p>
+<p>It represents the probabilities assigned to values of <span class="math notranslate nohighlight">\(\theta\)</span> in the domain (0,1) given values for the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. The binomial posterior distribution represents the probability of values of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span>. Varying the values of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> can represent a wide range of different prior beliefs about the distribution of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Priors can be “informative” “uninformative” or “weakly informative”, e.g.</p>
+<ul class="simple">
+<li><p>non-informative - uniform dist =&gt; <span class="math notranslate nohighlight">\(\theta\)</span> could be anywhere in (0,1)</p></li>
+<li><p>weakly informative uniform prior =&gt; believe <span class="math notranslate nohighlight">\(\theta\)</span> more likely to be at either end of the ranges (less likely to be in the middle)</p></li>
+<li><p>strongly informative prior</p>
+<ul>
+<li><p>a and b both high (bimodial) =&gt; true theta likely to be at center of range</p></li>
+<li><p>a higher than b (strong “success”) =&gt; success more likely than failure (where “success” is a mental health claim)</p></li>
+<li><p>b higher than a (strong “failure”) =&gt; failure more likely than success</p></li>
+</ul>
+</li>
+</ul>
+<p>Defining prior plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">plot_prior</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">){</span>
+  <span class="n">theta</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">)</span>
+  <span class="n">p_theta</span> <span class="o">=</span> <span class="nf">dbeta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">qplot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">p_theta</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="s">&#39;line&#39;</span><span class="p">)</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">p</span> <span class="o">+</span> <span class="nf">theme_bw</span><span class="p">()</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">p</span> <span class="o">+</span> <span class="nf">ylab</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&#39;p(&#39;</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">)))</span>
+  <span class="n">p</span> <span class="o">&lt;-</span> <span class="n">p</span> <span class="o">+</span> <span class="nf">xlab</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">p</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="non-informative-prior-uniform">
+<h4>Non-informative prior, uniform<a class="headerlink" href="#non-informative-prior-uniform" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_prior</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Uniform Prior, a= 1 and b = 1&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_11_0.png" src="../_images/bayesian-applications_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="weakly-informative-prior-bimodial">
+<h4>Weakly informative prior, bimodial<a class="headerlink" href="#weakly-informative-prior-bimodial" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_prior</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Bimodial Prior, a= 0.5 and b = 0.5&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_13_0.png" src="../_images/bayesian-applications_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="informative-prior-failure-more-likely">
+<h4>Informative prior, “failure” more likely<a class="headerlink" href="#informative-prior-failure-more-likely" title="Permalink to this headline">¶</a></h4>
+<p>The higher the number of observations, the greater the influence on the posterior</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_prior</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">30</span><span class="p">)</span> <span class="o">+</span> <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Uniform Prior, a= 5 and b = 30&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+<span class="nf">plot_prior</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="m">120</span><span class="p">)</span> <span class="o">+</span> <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Uniform Prior, a= 20 and b = 120&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_15_0.png" src="../_images/bayesian-applications_15_0.png" />
+<img alt="../_images/bayesian-applications_15_1.png" src="../_images/bayesian-applications_15_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deriving-posterior">
+<h3>Deriving posterior<a class="headerlink" href="#deriving-posterior" title="Permalink to this headline">¶</a></h3>
+<p>Prior plot values. Re-express binomial as beta dist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>  <span class="n">prior_a</span> <span class="o">=</span> <span class="m">50</span> <span class="c1">#successes</span>
+  <span class="n">prior_b</span> <span class="o">=</span> <span class="m">250</span> <span class="c1">#failures</span>
+  <span class="n">prior_n</span> <span class="o">=</span> <span class="n">prior_a</span> <span class="o">+</span> <span class="n">prior_b</span> <span class="c1">#observations</span>
+  <span class="n">prior_theta</span> <span class="o">=</span> <span class="n">prior_a</span><span class="o">/</span><span class="n">prior_n</span>
+  <span class="n">prior</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#39;Dist&#39;</span><span class="o">=</span><span class="s">&#39;Prior&#39;</span><span class="p">,</span><span class="s">&#39;x&#39;</span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span> <span class="s">&#39;y&#39;</span><span class="o">=</span><span class="nf">dbeta</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span><span class="n">prior_a</span><span class="p">,</span><span class="n">prior_b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observations are taken from the earlier binomial sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>  <span class="n">obs_a</span> <span class="o">&lt;-</span> <span class="n">sample_success</span> <span class="o">+</span> <span class="m">1</span>
+  <span class="n">obs_b</span> <span class="o">&lt;-</span> <span class="n">sample_n</span> <span class="o">-</span> <span class="n">sample_success</span> <span class="o">+</span> <span class="m">1</span>
+  <span class="n">observations</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#39;Dist&#39;</span><span class="o">=</span><span class="s">&#39;Observations&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="nf">dbeta</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span><span class="n">obs_a</span><span class="p">,</span><span class="n">obs_b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, the posterior is a simple combination of the prior and observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>  <span class="n">post_a</span> <span class="o">&lt;-</span> <span class="n">sample_success</span> <span class="o">+</span> <span class="n">prior_a</span> <span class="o">-</span> <span class="m">1</span> <span class="c1">#combination of prior and observed successes</span>
+  <span class="n">post_b</span> <span class="o">&lt;-</span> <span class="n">sample_n</span> <span class="o">-</span> <span class="n">sample_success</span> <span class="o">+</span> <span class="n">prior_b</span> <span class="o">-</span> <span class="m">1</span>
+  <span class="n">post_theta</span> <span class="o">&lt;-</span> <span class="n">post_a</span> <span class="o">/</span> <span class="p">(</span><span class="n">post_a</span> <span class="o">+</span> <span class="n">post_b</span><span class="p">)</span>
+  <span class="n">posterior</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#39;Dist&#39;</span><span class="o">=</span><span class="s">&#39;Posterior&#39;</span><span class="p">,</span><span class="s">&#39;x&#39;</span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span> <span class="s">&#39;y&#39;</span><span class="o">=</span><span class="nf">dbeta</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.005</span><span class="p">),</span><span class="n">post_a</span><span class="p">,</span><span class="n">post_b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This can be plotted as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model_plot</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span><span class="n">observations</span><span class="p">,</span><span class="n">posterior</span><span class="p">)</span>
+<span class="nf">with</span><span class="p">(</span><span class="n">model_plot</span><span class="p">,</span> <span class="n">Dist</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">Dist</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;Prior&#39;</span><span class="p">,</span> <span class="s">&#39;Observations&#39;</span><span class="p">,</span><span class="s">&#39;Posterior&#39;</span><span class="p">),</span> <span class="n">ordered</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+
+<span class="nf">qplot</span><span class="p">(</span><span class="n">model_plot</span><span class="o">$</span><span class="n">x</span><span class="p">,</span> <span class="n">model_plot</span><span class="o">$</span><span class="n">y</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="s">&#39;line&#39;</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">model_plot</span><span class="o">$</span><span class="n">Dist</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">ylab</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&#39;p(&#39;</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">)))</span> <span class="o">+</span>
+<span class="nf">xlab</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span> <span class="o">=</span> <span class="n">post_theta</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&quot;blah&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">scale_color_discrete</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Dist&quot;</span><span class="p">)</span>  <span class="o">+</span> 
+<span class="nf">annotate</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">post_theta</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nf">label_percent</span><span class="p">()(</span><span class="n">post_theta</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Informative prior&quot;</span><span class="p">,</span> <span class="n">subtitle</span><span class="o">=</span><span class="s">&quot;Low success&quot;</span><span class="p">)</span> <span class="o">+</span> 
+<span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">theme</span><span class="p">(</span><span class="n">plot.subtitle</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Ignoring unknown parameters: label&quot;
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_23_1.png" src="../_images/bayesian-applications_23_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="regression-logistic">
+<h2>Regression - logistic<a class="headerlink" href="#regression-logistic" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Background<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>RSTANARM is an interface in R for STAN where <a class="reference external" href="https://mc-stan.org/">Stan</a> is a platform for Bayesian inference - it is a probabilistic programming framework where the guts of the inference method happens in the background, while the user focuses on parameterising the model in R. RJAGS is an interface in R for JAGS (Just Another Gibbs Sample) where <a class="reference external" href="https://mcmc-jags.sourceforge.io/">JAGS</a> is similarly a platform for Bayesian modeling.</p>
+<p>Models in both STAN and JAGS can make use of Markov chains Monte Carlo (MCMC) methods. MCMC methods provide a way to take random samples approximately from a posterior distribution. Such samples can be used to summarize any aspect of the posterior distribution of a statistical model.</p>
+<p>RSTANARM and RJAGS have pre-written code for common models like regression.</p>
+<p>Under a Frequentest approach to linear regression, for a given set of response variables y, the relationship between y and a set of regressor variables x is assumed to be linear (informed by a set of parameters <span class="math notranslate nohighlight">\(\beta\)</span>), with an error term, i.e. <span class="math notranslate nohighlight">\(y = X\beta + \epsilon\)</span>.</p>
+<p>The error term, <span class="math notranslate nohighlight">\(\epsilon\)</span> is assumed to be normally distributed and the regression co-efficients are estimated by minimising the error term commonly using ordinary least squares (OLS). We make some other assumptions about the error term - not correlated with X and i.i.d.; and define <span class="math notranslate nohighlight">\(Var(\epsilon)=\sigma^2\)</span>. The generalised form allows the response variable to have an error that is not normal - this is achieved by allowing the linear model to be related to the response variable via a link function and by allowing the magnitude of the variance of each measurement to be a function of its predicted value.</p>
+<p>With Bayesian inference we are interested in the posterior <em>distributions</em> of the parameters <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, rather than point estimates. We also want to influence those distributions with some prior knowledge of their behaviour:</p>
+<p><span class="math notranslate nohighlight">\(p(\beta,\sigma|y,X) \propto p(y|\beta,\sigma)p(\beta,\sigma)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(\beta,\sigma|y,X)\)</span> is not a normalised probability density function (i.e. is proportional to the likelihood and prior). However, we can sample from it and therefore estimate any quantity of interest e.g. mean or variance, <a class="reference external" href="https://www.amazon.com.au/Numerical-Recipes-3rd-Scientific-Computing/dp/0521880688">Numerical Recipes, p825</a>. For this we use MCMC:</p>
+<blockquote>
+<div><p>“MCMC is a random sampling method… the goal is to visit a point <span class="math notranslate nohighlight">\(x\)</span> with a probability proportional to some given distribution function <span class="math notranslate nohighlight">\(\pi(x)\)</span> [not necessarily a probability]. Why would we want to sample a distribution in this way? THe answer is that Bayesian methods, often implemented using MCMC, provide a powerful way of estimating the parameters of a model and their degree of uncertainty.”</p>
+</div></blockquote>
+</div>
+<div class="section" id="heart-disease-data">
+<h3>Heart disease data<a class="headerlink" href="#heart-disease-data" title="Permalink to this headline">¶</a></h3>
+<p>The Framingham Heart Study is a longitudinal study of cardiovastular disease in a sample population within Framingham, Massachusetts. A subset of data for teaching is available at request from the <a class="reference external" href="https://biolincc.nhlbi.nih.gov/teaching/">U.S. National Heart, Lung and Blood Institute</a>. This dataset is not appropriate for publication and has been anonymised, but is nevertheless useful for illustrative purposes here. The dataset:</p>
+<blockquote>
+<div><p>“..is a subset of the data collected as part of the Framingham study and includes laboratory, clinic, questionnaire, and adjudicated event data on 4,434 participants. Participant clinic data was collected during three examination periods, approximately 6 years apart, from roughly 1956 to 1968. Each participant was followed for a total of 24 years for the outcome of the following events: Angina Pectoris, Myocardial Infarction, Atherothrombotic Infarction or Cerebral Hemorrhage (Stroke) or death.”</p>
+</div></blockquote>
+<p>We’ll look at a logistic regression model example using predefined Bayesian models in RSTANARM.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_heart</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#39;../_static/bayesian_applications/frmgham2.csv&#39;</span><span class="p">)</span> 
+<span class="n">df_heart</span> <span class="o">&lt;-</span> <span class="n">df_heart</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">23</span><span class="p">)]</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">PERIOD</span><span class="o">==</span><span class="m">2</span><span class="p">)</span> <span class="c1"># ignoring health event data, only looking at observations at period == 2 (observations for participants are not independent over time; this does have limitations e.g. observations are truncated at death which could be due to heart disease)</span>
+<span class="n">ignore_cols</span> <span class="o">&lt;-</span> <span class="nf">names</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;PERIOD&quot;</span><span class="p">,</span><span class="s">&quot;RANDID&quot;</span><span class="p">,</span><span class="s">&quot;TIME&quot;</span><span class="p">,</span> <span class="s">&quot;PREVMI&quot;</span><span class="p">,</span> <span class="s">&quot;PREVAP&quot;</span><span class="p">)</span> <span class="c1">#exclude identifier and time columns; exclude  PREVMI and PREVAP as they are a subset of PREVCHD</span>
+<span class="n">df_heart</span> <span class="o">&lt;-</span> <span class="n">df_heart</span><span class="p">[</span><span class="o">!</span><span class="n">ignore_cols</span><span class="p">]</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>SEX</th><th scope=col>TOTCHOL</th><th scope=col>AGE</th><th scope=col>SYSBP</th><th scope=col>DIABP</th><th scope=col>CURSMOKE</th><th scope=col>CIGPDAY</th><th scope=col>BMI</th><th scope=col>DIABETES</th><th scope=col>BPMEDS</th><th scope=col>HEARTRTE</th><th scope=col>GLUCOSE</th><th scope=col>educ</th><th scope=col>PREVCHD</th><th scope=col>PREVSTRK</th><th scope=col>PREVHYP</th><th scope=col>HDLC</th><th scope=col>LDLC</th></tr></thead>
+<tbody>
+	<tr><td>2    </td><td>260  </td><td>52   </td><td>105  </td><td> 69.5</td><td>0    </td><td> 0   </td><td>29.43</td><td>0    </td><td>0    </td><td> 80  </td><td>86   </td><td>2    </td><td>0    </td><td>0    </td><td>0    </td><td>NA   </td><td>NA   </td></tr>
+	<tr><td>1    </td><td>283  </td><td>54   </td><td>141  </td><td> 89.0</td><td>1    </td><td>30   </td><td>25.34</td><td>0    </td><td>0    </td><td> 75  </td><td>87   </td><td>1    </td><td>0    </td><td>0    </td><td>0    </td><td>NA   </td><td>NA   </td></tr>
+	<tr><td>2    </td><td>232  </td><td>67   </td><td>183  </td><td>109.0</td><td>1    </td><td>20   </td><td>30.18</td><td>0    </td><td>0    </td><td> 60  </td><td>89   </td><td>3    </td><td>0    </td><td>0    </td><td>1    </td><td>NA   </td><td>NA   </td></tr>
+	<tr><td>2    </td><td>343  </td><td>51   </td><td>109  </td><td> 77.0</td><td>1    </td><td>30   </td><td>23.48</td><td>0    </td><td>0    </td><td> 90  </td><td>72   </td><td>3    </td><td>0    </td><td>0    </td><td>0    </td><td>NA   </td><td>NA   </td></tr>
+	<tr><td>2    </td><td>230  </td><td>49   </td><td>177  </td><td>102.0</td><td>0    </td><td> 0   </td><td>31.36</td><td>0    </td><td>1    </td><td>120  </td><td>86   </td><td>2    </td><td>0    </td><td>0    </td><td>1    </td><td>NA   </td><td>NA   </td></tr>
+	<tr><td>2    </td><td>220  </td><td>70   </td><td>149  </td><td> 81.0</td><td>0    </td><td> 0   </td><td>36.76</td><td>0    </td><td>0    </td><td> 80  </td><td>98   </td><td>1    </td><td>1    </td><td>0    </td><td>1    </td><td>NA   </td><td>NA   </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Data description (available at the NHLBI at the link above) highlights:</p>
+<ul class="simple">
+<li><p>RANDIND: unique identifier.</p></li>
+<li><p>SEX: 1=male; 2=female (categorical, 1/2).</p></li>
+<li><p>TIME: number of days since baseline exam (continuous).</p></li>
+<li><p>PERIOD: examination cycle (categorical, 1,2 or 3). We’ll focus on period 2 - observations for the same participant are not independent over time.</p></li>
+<li><p>TOTCHOL: total cholesterol level (continuous).</p></li>
+<li><p>AGE: Age of the patient rounded to nearest year (continuous).</p></li>
+<li><p>SYSBP: systolic blood pressure (continuous).</p></li>
+<li><p>DIABP: diastolic blood pressure (continuous).</p></li>
+<li><p>CURSMOKE: whether or not the patient is a current smoker (categorical, 0/1).</p></li>
+<li><p>CIGPDAY: the number of cigarettes smoked per day on average (continuous).</p></li>
+<li><p>BMI: Body Mass Index (continuous).</p></li>
+<li><p>DIABETES: whether or not the patient had diabetes (categorical, 0/1).</p></li>
+<li><p>BPMEDS: whether or not the patient was on blood pressure medication (categorical, 0/1).</p></li>
+<li><p>HEARTRTE: heart rate (continuous).</p></li>
+<li><p>GLUCOSE: glucose level (continuous).</p></li>
+<li><p>EDU: attained Education (categorical, 1=0-11 year; 2=High School Diploma, GED; 3=Some College, Vocational School; 4=College (BS, BA) degree or more).</p></li>
+<li><p>HDLC: High Density Lipoprotein Cholesterol - only available for period 3 (continuous).</p></li>
+<li><p>LDLC: Low Density Lipoprotein Cholesterol - only available for period 3 (continuous).</p></li>
+<li><p>PREVCHD: prevalence of Coronary Heart Disease (categorical, 0/1).</p></li>
+<li><p>PREVAP: prevalence of Angina Pectoris (categorical, 0/1). Excluded from model as it is a subset of PREVCHD.</p></li>
+<li><p>PREVMI: Prevalence of Myocardial Infarction (categorical, 0/1). Excluded from model as it is a subset of PREVCHD.</p></li>
+<li><p>PREVSTRK: whether or not the patient had previously had a stroke (categorical, 0/1).</p></li>
+<li><p>PREVHYP: whether or not the patient was hypertensive (categorical, 0/1).</p></li>
+</ul>
+<p>Using the <a class="reference external" href="https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html">DataExplore package</a>, we can see that the data is mostly complete apart from missing entries in ‘glucose’ and to a lesser extent ‘education’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">introduce</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span>
+<span class="nf">plot_intro</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span>
+<span class="nf">plot_missing</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>rows</th><th scope=col>columns</th><th scope=col>discrete_columns</th><th scope=col>continuous_columns</th><th scope=col>all_missing_columns</th><th scope=col>total_missing_values</th><th scope=col>complete_rows</th><th scope=col>total_observations</th><th scope=col>memory_usage</th></tr></thead>
+<tbody>
+	<tr><td>3930  </td><td>18    </td><td>0     </td><td>16    </td><td>2     </td><td>8720  </td><td>0     </td><td>70740 </td><td>334464</td></tr>
+</tbody>
+</table>
+</div><img alt="../_images/bayesian-applications_27_1.png" src="../_images/bayesian-applications_27_1.png" />
+<img alt="../_images/bayesian-applications_27_2.png" src="../_images/bayesian-applications_27_2.png" />
+</div>
+</div>
+<p>Given around 12% of glucose records are missing as well as all of HDL and LDL (only available for period 3), drop the columns. Also drop rows with other missing data as these are small in number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_heart</span><span class="o">$</span><span class="n">GLUCOSE</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+<span class="n">df_heart</span><span class="o">$</span><span class="n">HDLC</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+<span class="n">df_heart</span><span class="o">$</span><span class="n">LDLC</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+<span class="n">df_heart</span> <span class="o">&lt;-</span> <span class="nf">na.omit</span><span class="p">(</span><span class="n">df_heart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plots of the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_bar</span><span class="p">(</span><span class="n">df_heart</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Barplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_31_0.png" src="../_images/bayesian-applications_31_0.png" />
+</div>
+</div>
+<p>Of the 3.6k remaining records, ~7% have a flag for heart disease:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">table</span><span class="p">(</span><span class="n">df_heart</span><span class="o">$</span><span class="n">PREVCHD</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   0    1 
+3319  253 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Further plots and checking distributions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_histogram</span><span class="p">(</span><span class="n">df_heart</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Histogram for continuous&quot;</span><span class="p">)</span>
+
+<span class="n">qq_data</span> <span class="o">&lt;-</span> <span class="n">df_heart</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;BMI&quot;</span><span class="p">,</span> <span class="s">&quot;DIABP&quot;</span><span class="p">,</span> <span class="s">&quot;HEARTRTE&quot;</span><span class="p">,</span> <span class="s">&quot;SYSBP&quot;</span><span class="p">,</span> <span class="s">&quot;TOTCHOL&quot;</span><span class="p">)]</span>
+<span class="nf">plot_qq</span><span class="p">(</span><span class="n">qq_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;QQ plot&quot;</span><span class="p">)</span>
+<span class="n">log_qq_data</span> <span class="o">&lt;-</span> <span class="nf">update_columns</span><span class="p">(</span><span class="n">qq_data</span><span class="p">,</span> <span class="m">2</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="m">1</span><span class="p">))</span>
+<span class="nf">plot_qq</span><span class="p">(</span><span class="n">log_qq_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;QQ plot, logged data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_35_0.png" src="../_images/bayesian-applications_35_0.png" />
+<img alt="../_images/bayesian-applications_35_1.png" src="../_images/bayesian-applications_35_1.png" />
+<img alt="../_images/bayesian-applications_35_2.png" src="../_images/bayesian-applications_35_2.png" />
+</div>
+</div>
+<p>Most significantly correlated with heart disease are AGE, SYSBP, DIABETES, BPMEDS and PREVHYP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_correlation</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">df_heart</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_37_0.png" src="../_images/bayesian-applications_37_0.png" />
+</div>
+</div>
+<p>Split data into training and testing data sets.</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a random sample of row IDs</span>
+<span class="n">sample_rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_heart</span><span class="p">),</span><span class="m">0.75</span><span class="o">*</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_heart</span><span class="p">))</span>
+<span class="c1"># Create the training dataset</span>
+<span class="n">df_heart_train</span> <span class="o">&lt;-</span> <span class="n">df_heart</span><span class="p">[</span><span class="n">sample_rows</span><span class="p">,]</span>
+<span class="c1"># Create the test dataset</span>
+<span class="n">df_heart_test</span> <span class="o">&lt;-</span> <span class="n">df_heart</span><span class="p">[</span><span class="o">-</span><span class="n">sample_rows</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fit a simple GLM using all data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">full_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">PREVCHD</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_heart_train</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">full_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = PREVCHD ~ ., family = &quot;binomial&quot;, data = df_heart_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.3274  -0.4061  -0.2666  -0.1721   3.0678  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -7.771752   1.252690  -6.204 5.50e-10 ***
+SEX         -1.163457   0.179755  -6.472 9.64e-11 ***
+TOTCHOL      0.002251   0.001766   1.274  0.20250    
+AGE          0.086854   0.011635   7.465 8.34e-14 ***
+SYSBP        0.010511   0.005092   2.064  0.03900 *  
+DIABP       -0.014227   0.009529  -1.493  0.13544    
+CURSMOKE     0.340968   0.255911   1.332  0.18274    
+CIGPDAY     -0.006939   0.010363  -0.670  0.50315    
+BMI          0.053302   0.020091   2.653  0.00798 ** 
+DIABETES     0.392274   0.291334   1.346  0.17815    
+BPMEDS       0.531433   0.222946   2.384  0.01714 *  
+HEARTRTE    -0.013636   0.006523  -2.090  0.03659 *  
+educ         0.099809   0.076119   1.311  0.18978    
+PREVSTRK     0.218284   0.490566   0.445  0.65635    
+PREVHYP      0.374206   0.221446   1.690  0.09106 .  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1366.6  on 2678  degrees of freedom
+Residual deviance: 1174.0  on 2664  degrees of freedom
+AIC: 1204
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use stepwise regression to reduce the explanatory variables:</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify a null model with no predictors</span>
+<span class="n">null_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">PREVCHD</span> <span class="o">~</span> <span class="m">1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_heart_train</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">)</span>
+<span class="c1"># use a forward stepwise algorithm to build a parsimonious model</span>
+<span class="n">step_model_glm</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">null_model_glm</span><span class="p">,</span> <span class="n">scope</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span> <span class="n">null_model_glm</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">full_model_glm</span><span class="p">),</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;forward&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Summary of the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">step_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = PREVCHD ~ AGE + SEX + SYSBP + BPMEDS + BMI + HEARTRTE + 
+    PREVHYP + DIABP, family = &quot;binomial&quot;, data = df_heart_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.2381  -0.4063  -0.2700  -0.1729   3.0992  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -6.776549   1.106023  -6.127 8.96e-10 ***
+AGE          0.084172   0.011073   7.601 2.93e-14 ***
+SEX         -1.134134   0.170509  -6.651 2.90e-11 ***
+SYSBP        0.011127   0.005026   2.214   0.0268 *  
+BPMEDS       0.538117   0.218937   2.458   0.0140 *  
+BMI          0.047248   0.019361   2.440   0.0147 *  
+HEARTRTE    -0.012867   0.006413  -2.006   0.0448 *  
+PREVHYP      0.367789   0.220910   1.665   0.0959 .  
+DIABP       -0.014075   0.009425  -1.493   0.1353    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1366.6  on 2678  degrees of freedom
+Residual deviance: 1181.3  on 2670  degrees of freedom
+AIC: 1199.3
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dropping BPMEDS, HEARTRTE and BMI as little impact on AIC:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">final_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">PREVCHD</span> <span class="o">~</span> <span class="n">AGE</span> <span class="o">+</span> <span class="n">SEX</span> <span class="o">+</span> <span class="n">PREVHYP</span> <span class="o">+</span> <span class="n">DIABETES</span> <span class="o">+</span> <span class="n">TOTCHOL</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">,</span><span class="n">data</span> <span class="o">=</span> <span class="n">df_heart_train</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = PREVCHD ~ AGE + SEX + PREVHYP + DIABETES + TOTCHOL, 
+    family = &quot;binomial&quot;, data = df_heart_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.1702  -0.4182  -0.2772  -0.1830   3.0145  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -7.371509   0.734203 -10.040  &lt; 2e-16 ***
+AGE          0.091994   0.010190   9.028  &lt; 2e-16 ***
+SEX         -1.084013   0.168352  -6.439  1.2e-10 ***
+PREVHYP      0.622003   0.176473   3.525 0.000424 ***
+DIABETES     0.543020   0.282690   1.921 0.054744 .  
+TOTCHOL      0.002377   0.001755   1.354 0.175643    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1366.6  on 2678  degrees of freedom
+Residual deviance: 1198.5  on 2673  degrees of freedom
+AIC: 1210.5
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fit a Bayes glm using the same explanatory variables. Here parameter estimates no longer have test statistics and p-values as in the frequentist regression. This is because Bayesian estimation samples from the posterior distribution. This means that instead of a point estimate and a test statistic, we get a distribution of plausible values for the parameters, and the estimates section of the summary summarizes those distributions.</p>
+<p>Further documentation on Bayesian generalised linear models via Stan <a class="reference external" href="https://mc-stan.org/rstanarm/reference/stan_glm.html">is here</a>. Documentation on choice of priors <a class="reference external" href="http://mc-stan.org/rstanarm/articles/priors.html">is here</a>. If priors are not specified, default weekly informative priors are used - you can call a summary of the modeled priors (see below). Default priors are autoscaled to make them less informative (see below for notes on scaling).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="n">model_bayes_glm_heart</span> <span class="o">&lt;-</span> <span class="nf">stan_glm</span><span class="p">(</span><span class="n">PREVCHD</span> <span class="o">~</span> <span class="n">AGE</span> <span class="o">+</span> <span class="n">SEX</span> <span class="o">+</span> <span class="n">PREVHYP</span> <span class="o">+</span> <span class="n">DIABETES</span> <span class="o">+</span> <span class="n">TOTCHOL</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_heart_train</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> <span class="n">warmup</span><span class="o">=</span><span class="m">500</span><span class="p">)}</span>
+<span class="c1"># chains is number of sample paths from posterior; iter is number of samples within a chain; warmup is number of iterations to discard</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A summary of the model below. “Sigma” is the standard deviation of the errors; “mean_PPD” is the mean of the posterior predictive samples.MCMC diagnostics - “RHat” is a measure of within chain variance compared to across chain variance (&lt;1.1 implies convergence); “log-posterior” is similar to likelihood.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">),</span><span class="n">digits</span><span class="o">=</span><span class="m">4</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The stan model used default normal priors for intercepts and coefficients. Default priors are automatically scaled to limit how informative they are - below we can see the adjusted (scaled) prior for the coefficients differs from the default 2.5:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># summary of priors</span>
+<span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="nf">print</span><span class="p">(</span><span class="nf">prior_summary</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">),</span><span class="n">digits</span><span class="o">=</span><span class="m">4</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Credible intervals express the probability that a parameter falls within a given range (vs a confidence interval which is the probability that a range contains the true value of the parameter). These credible intervals are computed by finding the relevant quantiles of the draws from the posterior distribution. They produce similar ranges to the confidence intervals from the frequentist approach.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">confint</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span>
+<span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="nf">posterior_interval</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="m">0.95</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Waiting for profiling to be done...
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<thead><tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr></thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>-8.83403551</td><td>-5.95320077</td></tr>
+	<tr><th scope=row>AGE</th><td> 0.07229529</td><td> 0.11228084</td></tr>
+	<tr><th scope=row>SEX</th><td>-1.41856263</td><td>-0.75773533</td></tr>
+	<tr><th scope=row>PREVHYP</th><td> 0.28161591</td><td> 0.97470859</td></tr>
+	<tr><th scope=row>DIABETES</th><td>-0.03837607</td><td> 1.07525870</td></tr>
+	<tr><th scope=row>TOTCHOL</th><td>-0.00110349</td><td> 0.00577671</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="adjusting-scales-and-changing-priors">
+<h3>Adjusting scales and changing priors<a class="headerlink" href="#adjusting-scales-and-changing-priors" title="Permalink to this headline">¶</a></h3>
+<p>stan_glm allows a selection of prior distributions for the coefficients, intercept, and auxiliary parameters. The prior distributions can be altered by specifying different locations/scales/dfs, but all the prior take the form of a single chosen probability distribution.</p>
+<p>Some drivers for wanting to specify a prior:</p>
+<ul class="simple">
+<li><p>Available information/ research might suggest a base value for our parameters. Particularly valuable if our own observed data is sparse.</p></li>
+<li><p>We may not have a good idea of the value, but know that it is constrained in some way e.g. is positive.</p></li>
+</ul>
+<p>The scale is the standard deviation of the prior. As noted earlier, the model autoscales to ensure priors are not too informative. We can turn this off when we specify our own priors. Documentation on choice of priors <a class="reference external" href="http://mc-stan.org/rstanarm/articles/priors.html">is here</a>.</p>
+<p>To allow for varying distributions across the priors, we need to define the model in STAN or JAGS. See the linear regression example below for an example of this in JAGS.</p>
+<p>Specifying our own priors below. Little impact on the posterior estimates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="n">model_bayes_glm_scale</span> <span class="o">&lt;-</span> <span class="nf">stan_glm</span><span class="p">(</span><span class="n">PREVCHD</span> <span class="o">~</span> <span class="n">AGE</span> <span class="o">+</span> <span class="n">SEX</span> <span class="o">+</span> <span class="n">PREVHYP</span> <span class="o">+</span> <span class="n">DIABETES</span> <span class="o">+</span> <span class="n">TOTCHOL</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_heart_train</span><span class="p">,</span> <span class="n">iter</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> <span class="n">warmup</span><span class="o">=</span><span class="m">500</span><span class="p">,</span>
+                            <span class="n">prior_intercept</span> <span class="o">=</span> <span class="nf">normal</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">autoscale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">),</span>
+                            <span class="n">prior</span> <span class="o">=</span> <span class="nf">normal</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">autoscale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">),</span>
+                            <span class="n">prior_aux</span> <span class="o">=</span> <span class="nf">exponential</span><span class="p">(</span><span class="n">rate</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">autoscale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+                            <span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">model_bayes_glm_scale</span><span class="p">),</span><span class="n">digits</span><span class="o">=</span><span class="m">4</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-fit">
+<h3>Model fit<a class="headerlink" href="#model-fit" title="Permalink to this headline">¶</a></h3>
+<p>We are able to extract predictions from each iteration of the posterior sampling. We can extract predictions for new data. Could be tested against the observations for goodness of fit. The follwing from the <a class="reference external" href="https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf">rstanarm manual, p43</a>:</p>
+<blockquote>
+<div><p>“The posterior predictive distribution (posterior_predict) is the distribution of the outcome implied by the model after using the observed data to update our beliefs about the unknown parameters in the model. Simulating data from the posterior predictive distribution using the observed predictors is useful for checking the fit of the model. Drawing from the posterior predictive distribution at interesting values of the predictors also lets us visualize how a manipulation of a predictor affects (a function of)the outcome(s). With new observations of predictor variables we can use the posterior predictive distribution to generate predicted outcomes.”</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="n">posteriors</span> <span class="o">&lt;-</span> <span class="nf">posterior_predict</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">,</span><span class="n">newdata</span><span class="o">=</span><span class="n">df_heart_test</span><span class="p">)</span>
+<span class="n">posterior</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">posteriors</span><span class="p">)</span> <span class="c1"># each column is a data point from the dataset and each row is a prediction</span>
+<span class="c1"># Print 10 predictions for 5 lives</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;10 predictions for 5 lives&quot;</span><span class="p">)</span>
+<span class="n">posteriors</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can plot the posterior distributions for the model parameters from the samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="n">posterior</span> <span class="o">&lt;-</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">)</span>
+
+<span class="n">plot1</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;AGE&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot2</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;SEX&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot3</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;PREVHYP&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot4</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;DIABETES&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot5</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;TOTCHOL&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span><span class="n">plot2</span><span class="p">,</span> <span class="n">plot3</span><span class="p">,</span> <span class="n">plot4</span><span class="p">,</span> <span class="n">plot5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s">&quot;Posterior distributions (median + 80% intervals)&quot;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can extract the <span class="math notranslate nohighlight">\(R^2\)</span> from the posterior distribution and plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="n">r2_posterior</span> <span class="o">&lt;-</span> <span class="nf">bayes_R2</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">r2_posterior</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">r2_posterior</span><span class="p">)}</span> <span class="c1">#expect normal</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Posterior predictive checks can be extracted using “pp_check”</p>
+<ul class="simple">
+<li><p>“dens_overlay” - each light blue line represents the distribution of predicted scores from a single replication, and the dark blue line represents the observed data. If the model fits, the dark blue line should align closely with the light blue lines.</p></li>
+<li><p>“stat” in the “pp_check” function, we can get a distribution of the mean of the dependent variable from all replications. These are the light blue bars: the means from each replication plotted as a histogram. The mean from the observed data is then plotted on top as a dark blue bar.</p></li>
+</ul>
+<p>Here the outcome is binary so the density overlay outcomes are concentrated at one or zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="nf">pp_check</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">,</span> <span class="s">&quot;stat&quot;</span><span class="p">)</span>
+<span class="nf">pp_check</span><span class="p">(</span><span class="n">model_bayes_glm</span><span class="p">,</span> <span class="s">&quot;dens_overlay&quot;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Further considerations: The <a class="reference external" href="https://mc-stan.org/users/interfaces/loo">loo package</a> provides “efficient approximate leave-one-out cross-validation (LOO), approximate standard errors for estimated predictive errors (including comparisons), and the widely applicable information criterion (WAIC).The loo package can be used to estimate predictive error of any MCMC item-level log likelihood output”.</p>
+</div>
+</div>
+<div class="section" id="regression-linear">
+<h2>Regression - linear<a class="headerlink" href="#regression-linear" title="Permalink to this headline">¶</a></h2>
+<p>The above example looked at a binary response. In this example we’ll look at predicting a continuous variable using data on my household electricity consumption over 2016-2021. The above example used stan_glm in RSTANARM. Here we will use a model defined in RJAGS with additional flexibility around the choice of priors, which is also possible in a paramaterised model for STAN. RJAGS combines the power of R with the “Just Another Gibbs Sampler” or “JAGS” engine. To get started, first download the “JAGS” program, then set up the packages as above.</p>
+<p>Both JAGS and STAN allow for the parameterisation of a range of different models. The example below was chosen for comparison with a conventional GLM approach.</p>
+<p>Data prep:</p>
+<ul class="simple">
+<li><p>Daily electricity usage for a household in Sydney over 2019-21. Rows represent half hourly readings/ estimates.</p></li>
+<li><p>Data are grouped into daily usage.</p></li>
+<li><p>Also includes are temperatures, sunlight and rainfall data for the area taken from BOM.</p></li>
+<li><p>Calculated fields for weekdays vs weekends, seasons and a post-covid working from home indicator.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_usage</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#39;../_static/bayesian_applications/elec_usage.csv&#39;</span><span class="p">)</span>
+<span class="n">df_usage</span> <span class="o">&lt;-</span> <span class="n">df_usage</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">Date</span> <span class="o">=</span> <span class="nf">as.Date</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="p">),</span> <span class="n">EndDate</span> <span class="o">=</span> <span class="nf">parse_date_time</span><span class="p">(</span><span class="n">EndDate</span><span class="p">,</span> <span class="s">&#39;%Y-%m-%d %H:%M:%S&#39;</span><span class="p">),</span> <span class="n">StartDate</span> <span class="o">=</span> <span class="nf">parse_date_time</span><span class="p">(</span><span class="n">StartDate</span><span class="p">,</span> <span class="s">&#39;%Y-%m-%d %H:%M:%S&#39;</span><span class="p">))</span>
+<span class="n">df_usage</span> <span class="o">&lt;-</span> <span class="n">df_usage</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">-3</span><span class="p">,</span><span class="m">-4</span><span class="p">,</span><span class="m">-6</span><span class="p">)]</span> <span class="o">%&gt;%</span> <span class="c1"># drop start and end dates, rate type, duration</span>
+<span class="nf">group_by</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">summarise</span><span class="p">(</span><span class="n">Usage</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">Usage</span><span class="p">),</span> <span class="n">MaxTemp</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">MaxTemp</span><span class="p">),</span> <span class="n">MinTemp</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">MinTemp</span><span class="p">),</span> <span class="n">Rain_mm</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">Rain_mm</span><span class="p">),</span> <span class="n">Solar_Exposure</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">Solar_Exposure</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<span class="c1"># Add in fields to identify seasons, weekend/ weekday and an indicator for the post-covid/ work from home period</span>
+<span class="nf">mutate</span><span class="p">(</span><span class="n">Season</span><span class="o">=</span>
+  <span class="nf">if_else</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="o">&gt;=</span> <span class="m">3</span> <span class="o">&amp;</span> <span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span> <span class="o">&lt;</span> <span class="m">6</span><span class="p">,</span><span class="s">&quot;Autumn&quot;</span><span class="p">,</span> 
+  <span class="nf">if_else</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="o">&gt;=</span> <span class="m">6</span> <span class="o">&amp;</span> <span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span> <span class="o">&lt;</span> <span class="m">9</span><span class="p">,</span><span class="s">&quot;Winter&quot;</span><span class="p">,</span> 
+  <span class="nf">if_else</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="o">&gt;=</span> <span class="m">9</span> <span class="o">&amp;</span> <span class="nf">month</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span> <span class="o">&lt;</span> <span class="m">12</span><span class="p">,</span><span class="s">&quot;Spring&quot;</span><span class="p">,</span><span class="s">&quot;Summer&quot;</span><span class="p">))),</span>
+<span class="n">Covid_Ind</span><span class="o">=</span><span class="nf">if_else</span><span class="p">(</span><span class="n">Date</span><span class="o">&gt;=</span> <span class="s">&quot;2020-03-15&quot;</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>
+<span class="n">Weekend</span><span class="o">=</span>
+  <span class="nf">if_else</span><span class="p">(</span><span class="nf">wday</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="o">==</span><span class="m">7</span> <span class="o">|</span> <span class="nf">wday</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="o">==</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+
+<span class="n">df_usage</span><span class="o">$</span><span class="n">Season</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">df_usage</span><span class="o">$</span><span class="n">Season</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Summer&quot;</span><span class="p">,</span><span class="s">&quot;Autumn&quot;</span><span class="p">,</span><span class="s">&quot;Winter&quot;</span><span class="p">,</span><span class="s">&quot;Spring&quot;</span><span class="p">))</span> <span class="c1"># change season levels</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">df_usage</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>Date</th><th scope=col>Usage</th><th scope=col>MaxTemp</th><th scope=col>MinTemp</th><th scope=col>Rain_mm</th><th scope=col>Solar_Exposure</th><th scope=col>Season</th><th scope=col>Covid_Ind</th><th scope=col>Weekend</th></tr></thead>
+<tbody>
+	<tr><td>2019-12-21</td><td>21.064    </td><td>26.7      </td><td>21.0      </td><td>0.0       </td><td>27.1      </td><td>Summer    </td><td>0         </td><td>1         </td></tr>
+	<tr><td>2019-12-22</td><td> 9.529    </td><td>19.9      </td><td>18.6      </td><td>0.0       </td><td>11.9      </td><td>Summer    </td><td>0         </td><td>1         </td></tr>
+	<tr><td>2019-12-23</td><td>15.739    </td><td>22.1      </td><td>17.2      </td><td>0.0       </td><td>14.4      </td><td>Summer    </td><td>0         </td><td>0         </td></tr>
+	<tr><td>2019-12-24</td><td>18.652    </td><td>24.0      </td><td>18.6      </td><td>1.8       </td><td>18.3      </td><td>Summer    </td><td>0         </td><td>0         </td></tr>
+	<tr><td>2019-12-25</td><td>18.924    </td><td>23.2      </td><td>21.6      </td><td>0.2       </td><td>27.8      </td><td>Summer    </td><td>0         </td><td>0         </td></tr>
+	<tr><td>2019-12-26</td><td>14.584    </td><td>23.6      </td><td>21.4      </td><td>0.0       </td><td>30.8      </td><td>Summer    </td><td>0         </td><td>0         </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Data is mostly complete:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">introduce</span><span class="p">(</span><span class="n">df_usage</span><span class="p">)</span>
+<span class="nf">plot_intro</span><span class="p">(</span><span class="n">df_usage</span><span class="p">)</span>
+<span class="nf">plot_missing</span><span class="p">(</span><span class="n">df_usage</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>rows</th><th scope=col>columns</th><th scope=col>discrete_columns</th><th scope=col>continuous_columns</th><th scope=col>all_missing_columns</th><th scope=col>total_missing_values</th><th scope=col>complete_rows</th><th scope=col>total_observations</th><th scope=col>memory_usage</th></tr></thead>
+<tbody>
+	<tr><td>732  </td><td>9    </td><td>2    </td><td>7    </td><td>0    </td><td>23   </td><td>709  </td><td>6588 </td><td>53464</td></tr>
+</tbody>
+</table>
+</div><img alt="../_images/bayesian-applications_69_1.png" src="../_images/bayesian-applications_69_1.png" />
+<img alt="../_images/bayesian-applications_69_2.png" src="../_images/bayesian-applications_69_2.png" />
+</div>
+</div>
+<p>Drop records with NAs as they are few, also only include non-zero usage, review explanatory variables; Gamma dist potentially a better fit than normal for Usage given the skewness in the tail; alternatively use normal with a log link.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_usage</span> <span class="o">&lt;-</span> <span class="nf">na.omit</span><span class="p">(</span><span class="n">df_usage</span><span class="p">)</span>
+<span class="n">df_usage</span> <span class="o">&lt;-</span> <span class="n">df_usage</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">Usage</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span>
+
+<span class="nf">plot_bar</span><span class="p">(</span><span class="n">df_usage</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Barplot&quot;</span><span class="p">)</span>
+<span class="nf">plot_histogram</span><span class="p">(</span><span class="n">df_usage</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Histogram for continuous&quot;</span><span class="p">)</span>
+
+<span class="n">qq_data</span> <span class="o">&lt;-</span> <span class="n">df_usage</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;MaxTemp&quot;</span><span class="p">,</span> <span class="s">&quot;MinTemp&quot;</span><span class="p">,</span> <span class="s">&quot;Solar_Exposure&quot;</span><span class="p">,</span> <span class="s">&quot;Usage&quot;</span><span class="p">)]</span>
+<span class="nf">plot_qq</span><span class="p">(</span><span class="n">qq_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;QQ plot&quot;</span><span class="p">)</span>
+<span class="n">log_qq_data</span> <span class="o">&lt;-</span> <span class="nf">update_columns</span><span class="p">(</span><span class="n">qq_data</span><span class="p">,</span> <span class="m">2</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="m">1</span><span class="p">))</span>
+<span class="nf">plot_qq</span><span class="p">(</span><span class="n">log_qq_data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;QQ plot, logged data&quot;</span><span class="p">)</span>
+
+<span class="n">usage_fit_gamma</span> <span class="o">&lt;-</span> <span class="nf">fitdist</span><span class="p">(</span><span class="n">df_usage</span><span class="o">$</span><span class="n">Usage</span><span class="p">,</span> <span class="n">distr</span> <span class="o">=</span> <span class="s">&quot;gamma&quot;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;mme&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">usage_fit_gamma</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">usage_fit_gamma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 columns ignored with more than 50 categories.
+Date: 707 categories
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_71_1.png" src="../_images/bayesian-applications_71_1.png" />
+<img alt="../_images/bayesian-applications_71_2.png" src="../_images/bayesian-applications_71_2.png" />
+<img alt="../_images/bayesian-applications_71_3.png" src="../_images/bayesian-applications_71_3.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting of the distribution &#39; gamma &#39; by matching moments 
+Parameters : 
+       estimate
+shape 2.9114935
+rate  0.1164095
+Loglikelihood:  -2813.89   AIC:  5631.78   BIC:  5640.902 
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_71_5.png" src="../_images/bayesian-applications_71_5.png" />
+<img alt="../_images/bayesian-applications_71_6.png" src="../_images/bayesian-applications_71_6.png" />
+</div>
+</div>
+<p>Usage correlated with season, max/min temp and covid wfh indicator. Max and Min Temps are not surprisingly highly correlated with one another, with the seasons and with solar exposure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_correlation</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">df_usage</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 features with more than 20 categories ignored!
+Date: 707 categories
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_73_1.png" src="../_images/bayesian-applications_73_1.png" />
+</div>
+</div>
+<p>Split data into training and testing data sets:</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a random sample of row IDs</span>
+<span class="n">sample_rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_usage</span><span class="p">),</span><span class="m">0.75</span><span class="o">*</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_usage</span><span class="p">))</span>
+<span class="c1"># Create the training dataset</span>
+<span class="n">df_usage_train</span> <span class="o">&lt;-</span> <span class="n">df_usage</span><span class="p">[</span><span class="n">sample_rows</span><span class="p">,]</span>
+<span class="c1"># Create the test dataset</span>
+<span class="n">df_usage_test</span> <span class="o">&lt;-</span> <span class="n">df_usage</span><span class="p">[</span><span class="o">-</span><span class="n">sample_rows</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fit a simple GLM using all variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">full_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Usage</span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_usage_train</span><span class="p">[</span><span class="m">-1</span><span class="p">],</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;log&quot;</span><span class="p">))</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">full_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = Usage ~ ., family = gaussian(link = &quot;log&quot;), data = df_usage_train[-1])
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-46.096   -4.220    0.013    4.539   50.118  
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     5.398e+00  2.017e-01  26.766  &lt; 2e-16 ***
+MaxTemp        -2.440e-02  8.537e-03  -2.858  0.00444 ** 
+MinTemp        -9.728e-02  9.487e-03 -10.254  &lt; 2e-16 ***
+Rain_mm        -2.596e-06  1.343e-03  -0.002  0.99846    
+Solar_Exposure -1.989e-02  3.765e-03  -5.283 1.87e-07 ***
+SeasonAutumn    7.897e-02  8.573e-02   0.921  0.35740    
+SeasonWinter    4.277e-02  9.590e-02   0.446  0.65579    
+SeasonSpring    8.101e-02  8.540e-02   0.949  0.34326    
+Covid_Ind      -2.651e-02  1.103e-01  -0.240  0.81007    
+Weekend        -4.936e-02  3.338e-02  -1.479  0.13983    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 86.41346)
+
+    Null deviance: 118331  on 529  degrees of freedom
+Residual deviance:  44933  on 520  degrees of freedom
+AIC: 3879.3
+
+Number of Fisher Scoring iterations: 8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use stepwise regression to reduce the explanatory variables:</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify a null model with no predictors</span>
+<span class="n">null_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Usage</span> <span class="o">~</span> <span class="m">1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="p">,</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;log&quot;</span><span class="p">))</span>
+<span class="c1"># use a forward stepwise algorithm to build a parsimonious model</span>
+<span class="n">step_model_glm</span> <span class="o">&lt;-</span> <span class="nf">step</span><span class="p">(</span><span class="n">null_model_glm</span><span class="p">,</span> <span class="n">scope</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span> <span class="n">null_model_glm</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">full_model_glm</span><span class="p">),</span> <span class="n">direction</span> <span class="o">=</span> <span class="s">&quot;forward&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Summary of the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">step_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = Usage ~ MinTemp + Solar_Exposure + MaxTemp + Weekend, 
+    family = gaussian(link = &quot;log&quot;), data = df_usage_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-46.465   -4.196    0.078    4.629   49.779  
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     5.396219   0.096133  56.133  &lt; 2e-16 ***
+MinTemp        -0.095761   0.007011 -13.659  &lt; 2e-16 ***
+Solar_Exposure -0.019246   0.003249  -5.923 5.73e-09 ***
+MaxTemp        -0.024253   0.008169  -2.969  0.00313 ** 
+Weekend        -0.049882   0.033198  -1.503  0.13355    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 85.9083)
+
+    Null deviance: 118331  on 529  degrees of freedom
+Residual deviance:  45101  on 525  degrees of freedom
+AIC: 3871.3
+
+Number of Fisher Scoring iterations: 7
+</pre></div>
+</div>
+</div>
+</div>
+<p>For simplicity, we’ll assume a model defined by MaxTemp and MinTemp only, noting the significant correlation with other explanatory variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Usage</span> <span class="o">~</span> <span class="n">MaxTemp</span> <span class="o">+</span> <span class="n">MinTemp</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="nf">Gamma</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;inverse&quot;</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = PREVCHD ~ AGE + SEX + PREVHYP + DIABETES + TOTCHOL, 
+    family = &quot;binomial&quot;, data = df_heart_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.1702  -0.4182  -0.2772  -0.1830   3.0145  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -7.371509   0.734203 -10.040  &lt; 2e-16 ***
+AGE          0.091994   0.010190   9.028  &lt; 2e-16 ***
+SEX         -1.084013   0.168352  -6.439  1.2e-10 ***
+PREVHYP      0.622003   0.176473   3.525 0.000424 ***
+DIABETES     0.543020   0.282690   1.921 0.054744 .  
+TOTCHOL      0.002377   0.001755   1.354 0.175643    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1366.6  on 2678  degrees of freedom
+Residual deviance: 1198.5  on 2673  degrees of freedom
+AIC: 1210.5
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changing the family to gaussian with log link (later graph shows little change in predictions, although AIC is higher). Select gaussian for ease of comparison with the Bayes model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">final_model_glm</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">Usage</span> <span class="o">~</span> <span class="n">MaxTemp</span> <span class="o">+</span> <span class="n">MinTemp</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;log&quot;</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = Usage ~ MaxTemp + MinTemp, family = gaussian(link = &quot;log&quot;), 
+    data = df_usage_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-51.898   -4.306   -0.382    5.030   48.100  
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  5.414631   0.099962  54.167  &lt; 2e-16 ***
+MaxTemp     -0.041520   0.007992  -5.195 2.93e-07 ***
+MinTemp     -0.092090   0.007316 -12.587  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for gaussian family taken to be 92.09666)
+
+    Null deviance: 118331  on 529  degrees of freedom
+Residual deviance:  48534  on 527  degrees of freedom
+AIC: 3906.2
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Extract coefficients:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">final_model_glm_coeff</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">))</span>
+<span class="n">final_model_glm_coeff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th></th><th scope=col>coef(final_model_glm)</th></tr></thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 5.41463097</td></tr>
+	<tr><th scope=row>MaxTemp</th><td>-0.04152022</td></tr>
+	<tr><th scope=row>MinTemp</th><td>-0.09209007</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Project the result for a dummy record showing the link:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="s">&quot;Dummy prediction with min of 10 and max of 20:&quot;</span><span class="p">)</span>
+<span class="nf">predict</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">,</span> <span class="n">newdata</span><span class="o">=</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">MaxTemp</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="n">MinTemp</span><span class="o">=</span><span class="m">10</span><span class="p">)),</span> <span class="c1"># model and data</span>
+  <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">,</span> <span class="c1"># or terms for coefficients</span>
+  <span class="n">se.fit</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1"># replicate</span>
+<span class="nf">exp</span><span class="p">(</span><span class="n">final_model_glm_coeff</span><span class="p">[</span><span class="m">1</span><span class="p">,]</span> <span class="o">+</span> <span class="n">final_model_glm_coeff</span><span class="p">[</span><span class="m">2</span><span class="p">,]</span><span class="o">*</span><span class="m">20</span><span class="o">+</span><span class="n">final_model_glm_coeff</span><span class="p">[</span><span class="m">3</span><span class="p">,]</span><span class="o">*</span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Dummy prediction with min of 10 and max of 20:&quot;
+</pre></div>
+</div>
+<div class="output text_html"><strong>1:</strong> 38.9908026539508</div><div class="output text_html">38.9908026539508</div></div>
+</div>
+<p>Adding the predictions to the test data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># predictions, normal</span>
+<span class="n">pred_usage</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span>
+  <span class="nf">predict</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">,</span> <span class="n">newdata</span><span class="o">=</span> <span class="n">df_usage_test</span><span class="p">,</span> <span class="c1"># model and data</span>
+  <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">,</span> <span class="c1"># or terms for coefficients</span>
+  <span class="n">se.fit</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="c1"># default is false</span>
+  <span class="n">interval</span> <span class="o">=</span> <span class="s">&quot;confidence&quot;</span><span class="p">,</span> <span class="c1">#default &quot;none&quot;, also &quot;prediction&quot;</span>
+  <span class="n">level</span> <span class="o">=</span> <span class="m">0.95</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># predictions, gamma</span>
+<span class="n">usage_pred_gamma</span> <span class="o">&lt;-</span> 
+  <span class="nf">predict</span><span class="p">(</span><span class="n">gamma_model_glm</span><span class="p">,</span> <span class="n">newdata</span><span class="o">=</span> <span class="n">df_usage_test</span><span class="p">,</span> <span class="c1"># model and data</span>
+  <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">,</span> <span class="c1"># or terms for coefficients</span>
+  <span class="n">se.fit</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="c1"># default is false</span>
+  <span class="p">)</span>
+
+<span class="c1"># rename</span>
+<span class="n">pred_usage</span> <span class="o">&lt;-</span> <span class="nf">rename</span><span class="p">(</span><span class="n">pred_usage</span><span class="p">,</span><span class="n">usage_pred</span><span class="o">=</span><span class="n">fit</span><span class="p">,</span><span class="n">se_usage_pred</span><span class="o">=</span><span class="n">se.fit</span><span class="p">)</span>
+
+<span class="c1"># add back to data</span>
+<span class="n">df_usage_test_pred</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">df_usage_test</span><span class="p">,</span><span class="n">pred_usage</span><span class="p">,</span> <span class="n">usage_pred_gamma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting the results shows a poorer fit for winter when the usage spikes and in instances with outlier temperatures. Predictions for the test data are not hugely different to the gamma family model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_usage_test_pred</span>  <span class="o">%&gt;%</span>
+<span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Date</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Usage</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">Season</span><span class="p">))</span> <span class="o">+</span>
+<span class="c1"># add a modeled line</span>
+<span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Date</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">usage_pred</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Date</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">usage_pred_gamma</span><span class="p">),</span> <span class="n">linetype</span> <span class="o">=</span> <span class="s">&quot;dashed&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Usage&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Actual vs predicted usage by date and season&quot;</span><span class="p">,</span><span class="n">subtitle</span><span class="o">=</span><span class="s">&quot;Dashed=Gamma Pred; Solid=Normal Pred&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span> <span class="o">+</span> <span class="nf">scale_color_gdocs</span><span class="p">()</span>
+
+<span class="c1"># plot temperatures</span>
+<span class="n">df_usage_test_pred</span>  <span class="o">%&gt;%</span>
+<span class="nf">ggplot</span><span class="p">()</span> <span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Date</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">MaxTemp</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">Season</span><span class="p">))</span> <span class="o">+</span> 
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Usage&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;MaxTemp by date and season&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span> <span class="o">+</span> <span class="nf">scale_color_gdocs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_93_0.png" src="../_images/bayesian-applications_93_0.png" />
+<img alt="../_images/bayesian-applications_93_1.png" src="../_images/bayesian-applications_93_1.png" />
+</div>
+</div>
+<p>Plots show slightly higher residuals at higher predicted values for the step regression model and final selected. QQ plot suggests skewness in the data, which we could see earlier in the histogram of usage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">final_model_glm</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">step_model_glm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_95_0.png" src="../_images/bayesian-applications_95_0.png" />
+<img alt="../_images/bayesian-applications_95_1.png" src="../_images/bayesian-applications_95_1.png" />
+</div>
+</div>
+<p>Define a regression model in RJAGS. The structure here is more flexible than stan_glm which is predefined. This allows for a wider selection of prior distributions and a mixture of modeling choices. Also possible to specify model forms in this way for STAN.</p>
+<p><span class="math notranslate nohighlight">\(Y_i \propto N(m_i,s^2)\)</span></p>
+<p>Where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m_i = a + bX_1i +cX_2i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(a, b, c and s\)</span> have some assumed prior distributions.</p></li>
+</ul>
+<p>Note that the distribution syntax is slightly different to R, for example in R a normal distribution is specified using the mean and standard deviation, but in JAGS the second parameter of the dnorm command is the distribution’s precision (1 / variance).</p>
+<div class="cell tag_remove_output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">usage_model</span> <span class="o">&lt;-</span> <span class="s">&quot;model{</span>
+<span class="s">  #Likelihood model for Y[i]</span>
+<span class="s">  for (i in 1:length(Y)) {</span>
+<span class="s">      Y[i] ~ dnorm(m[i], s^(-2)) # link=log</span>
+<span class="s">      log(m[i]) &lt;- a + b*X_1[i] + c*X_2[i]</span>
+<span class="s">  }</span>
+
+<span class="s">  # Prior models for a, b, c, s</span>
+<span class="s">  a ~ dnorm(0, 0.001)     # Intercept</span>
+<span class="s">  b ~ dnorm(0, 0.001)     # MaxTemp</span>
+<span class="s">  c ~ dnorm(0, 0.001)     # MinTemp</span>
+<span class="s">  s ~ dunif(0, 10)        # Error</span>
+
+<span class="s">}&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Simulate from the model:</p>
+<ul class="simple">
+<li><p>burn-in period of 2k iterations aims for convergence and throws away these earlier test samples.</p></li>
+<li><p>10k iterations for 3 chains.</p></li>
+<li><p>saving every 10th sample only in order to save space.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">usage_sim</span> <span class="o">&lt;-</span> <span class="nf">jags.model</span><span class="p">(</span><span class="nf">textConnection</span><span class="p">(</span><span class="n">usage_model</span><span class="p">),</span>
+              <span class="n">data</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">Y</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="o">$</span><span class="n">Usage</span><span class="p">,</span> <span class="n">X_1</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="o">$</span><span class="n">MaxTemp</span><span class="p">,</span> <span class="n">X_2</span> <span class="o">=</span> <span class="n">df_usage_train</span><span class="o">$</span><span class="n">MinTemp</span><span class="p">),</span>
+			        <span class="n">n.chains</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+
+
+<span class="n">usage_posterior</span> <span class="o">&lt;-</span> <span class="nf">coda.samples</span><span class="p">(</span><span class="n">usage_sim</span><span class="p">,</span> 
+                                 <span class="n">variable.names</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="s">&quot;s&quot;</span><span class="p">),</span> 
+                                 <span class="n">n.iter</span> <span class="o">=</span> <span class="m">10000</span><span class="p">,</span> <span class="n">n.burnin</span> <span class="o">=</span> <span class="m">2000</span><span class="p">,</span> <span class="n">n.thin</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">DIC</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling model graph
+   Resolving undeclared variables
+   Allocating nodes
+Graph information:
+   Observed stochastic nodes: 530
+   Unobserved stochastic nodes: 4
+   Total graph size: 3458
+
+Initializing model
+</pre></div>
+</div>
+</div>
+</div>
+<p>Summary of the results below:</p>
+<ul class="simple">
+<li><p>The mean of the <code class="docutils literal notranslate"><span class="pre">b</span></code> chain value was -0.040. This is an <em>estimate</em> of the posterior mean of <code class="docutils literal notranslate"><span class="pre">b</span></code>. This is consistent with the GLM above</p></li>
+<li><p>The corresponding <em>naive standard error</em>, 0.000253, measures the potential <em>error</em> in this estimate. This error is calculated by dividing the standard deviation of the <code class="docutils literal notranslate"><span class="pre">b</span></code> chain values by the square root of the number of iterations (or sample size). This is a <em>naive</em> approach to calculating error in a setting with dependent samples.</p></li>
+</ul>
+<p>Also showing the density plots for the posteriors as well as the trace plots for each of the chains.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">usage_posterior</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">usage_posterior</span><span class="p">,</span><span class="n">trace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">usage_posterior</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterations = 1001:11000
+Thinning interval = 1 
+Number of chains = 3 
+Sample size per chain = 10000 
+
+1. Empirical mean and standard deviation for each variable,
+   plus standard error of the mean:
+
+      Mean       SD  Naive SE Time-series SE
+a  5.42368 0.107372 6.199e-04      0.0073562
+b -0.04263 0.008776 5.067e-05      0.0009216
+c -0.09124 0.007518 4.341e-05      0.0004607
+s  9.55992 0.244700 1.413e-03      0.0018704
+
+2. Quantiles for each variable:
+
+      2.5%      25%      50%      75%    97.5%
+a  5.21873  5.34977  5.42454  5.49497  5.63821
+b -0.06033 -0.04832 -0.04240 -0.03661 -0.02634
+c -0.10548 -0.09641 -0.09151 -0.08617 -0.07628
+s  9.04907  9.39190  9.57360  9.74782  9.96562
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_101_1.png" src="../_images/bayesian-applications_101_1.png" />
+<img alt="../_images/bayesian-applications_101_2.png" src="../_images/bayesian-applications_101_2.png" />
+</div>
+</div>
+<p>We can plot the posterior distributions for the model parameters from the samples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">posterior</span> <span class="o">&lt;-</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">usage_posterior</span><span class="p">)</span>
+
+<span class="n">plot1</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot2</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot3</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+<span class="n">plot4</span><span class="o">&lt;-</span> <span class="nf">mcmc_areas</span><span class="p">(</span><span class="n">posterior</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">),</span> <span class="n">prob</span> <span class="o">=</span> <span class="m">0.80</span><span class="p">)</span>
+
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span><span class="n">plot2</span><span class="p">,</span> <span class="n">plot3</span><span class="p">,</span> <span class="n">plot4</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="s">&quot;Posterior distributions (median + 80% intervals)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_103_0.png" src="../_images/bayesian-applications_103_0.png" />
+</div>
+</div>
+<p>Similar to the earlier example, we could extract the <span class="math notranslate nohighlight">\(R^2\)</span> from the posterior distribution as well as run posterior predictive checks.</p>
+<p>Further considerations: extracting the mean of the parameter projections, we could produce predictions for the test data. We could also produce predictions for test data point based upon each of the samples from the posterior, so above we would produce 2400 predictions for each data point (3x10k, discarding the first 2k from each chain and only saving 1/10 of the samples).</p>
+</div>
+<div class="section" id="estimating-covid-19-infections-in-nsw-australia">
+<h2>Estimating COVID 19 infections in NSW, Australia<a class="headerlink" href="#estimating-covid-19-infections-in-nsw-australia" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://actuaries.logicaldoc.cloud/download-ticket?ticketId=4fda7653-5e3d-4514-a79f-ed0070a0f9be">This paper</a> presented at the 2021 Actuaries (Institute) Summit discusses a method of forecasting COVID infections using the package <a class="reference external" href="https://epiforecasts.io/EpiNow2/index.html">“epinow2”</a>. The package makes use of STAN.</p>
+<blockquote>
+<div><p>“[Epinow2] estimates the time-varying reproduction number on cases by date of infection… Imputed infections are then mapped to observed data (for example cases by date of report) via a series of uncertain delay distributions…”</p>
+</div></blockquote>
+<p>That is to say, the model makes some assumptions about lags in symptoms and in reporting (assuming some distribution for those delays) in order to estimate the true underlying number of infections (backwards). Using that backcast it projects out how those infections might be reported over time. The model also estimates the effective reproduction number in order to predict future infections.</p>
+<p>Covid case and test data sourced from the department of <a class="reference external" href="https://data.nsw.gov.au/">NSW Website</a> on 17/01/2022.</p>
+<p>We should be careful in placing too heavy a reliance on any models of incidence which are based upon case data (particularly where case rates are expected to be under reported or where testing is incomplete). The example is purely illustrative and does not attempt to correct for gaps in the data.</p>
+<p>Case data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_cases</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#39;../_static/bayesian_applications/confirmed_cases_table1_location.csv&#39;</span><span class="p">)</span> 
+<span class="nf">head</span><span class="p">(</span><span class="n">df_cases</span><span class="p">)</span>
+<span class="n">df_tests</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#39;../_static/bayesian_applications/pcr_testing_table1_location_agg.csv&#39;</span><span class="p">)</span> 
+<span class="nf">head</span><span class="p">(</span><span class="n">df_tests</span><span class="p">)</span>
+
+<span class="c1"># cases</span>
+<span class="n">df_cases</span> <span class="o">&lt;-</span> <span class="n">df_cases</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">descr</span><span class="o">=</span><span class="s">&quot;cases&quot;</span><span class="p">,</span><span class="n">date</span><span class="o">=</span><span class="nf">as.Date</span><span class="p">(</span><span class="n">notification_date</span><span class="p">),</span><span class="n">cases</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<span class="nf">filter</span><span class="p">(</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s">&quot;2021-04-30&quot;</span><span class="p">,</span><span class="n">date</span> <span class="o">&lt;=</span> <span class="s">&quot;2021-12-31&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<span class="nf">group_by</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">descr</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<span class="nf">summarise</span><span class="p">(</span><span class="n">confirm</span><span class="o">=</span><span class="nf">sum</span><span class="p">(</span><span class="n">cases</span><span class="p">))</span> 
+<span class="nf">head</span><span class="p">(</span><span class="n">df_cases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<thead><tr><th scope=col>notification_date</th><th scope=col>postcode</th><th scope=col>lhd_2010_code</th><th scope=col>lhd_2010_name</th><th scope=col>lga_code19</th><th scope=col>lga_name19</th></tr></thead>
+<tbody>
+	<tr><td>2020-01-25          </td><td>2134                </td><td>X700                </td><td>Sydney              </td><td>11300               </td><td>Burwood (A)         </td></tr>
+	<tr><td>2020-01-25          </td><td>2121                </td><td>X760                </td><td>Northern Sydney     </td><td>16260               </td><td>Parramatta (C)      </td></tr>
+	<tr><td>2020-01-25          </td><td>2071                </td><td>X760                </td><td>Northern Sydney     </td><td>14500               </td><td>Ku-ring-gai (A)     </td></tr>
+	<tr><td>2020-01-27          </td><td>2033                </td><td>X720                </td><td>South Eastern Sydney</td><td>16550               </td><td>Randwick (C)        </td></tr>
+	<tr><td>2020-03-01          </td><td>2077                </td><td>X760                </td><td>Northern Sydney     </td><td>14000               </td><td>Hornsby (A)         </td></tr>
+	<tr><td>2020-03-01          </td><td>2163                </td><td>X710                </td><td>South Western Sydney</td><td>12850               </td><td>Fairfield (C)       </td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><table>
+<thead><tr><th scope=col>test_date</th><th scope=col>postcode</th><th scope=col>lhd_2010_code</th><th scope=col>lhd_2010_name</th><th scope=col>lga_code19</th><th scope=col>lga_name19</th><th scope=col>test_count</th></tr></thead>
+<tbody>
+	<tr><td>2020-01-01     </td><td>2038           </td><td>X700           </td><td>Sydney         </td><td>14170          </td><td>Inner West (A) </td><td>1              </td></tr>
+	<tr><td>2020-01-01     </td><td>2039           </td><td>X700           </td><td>Sydney         </td><td>14170          </td><td>Inner West (A) </td><td>1              </td></tr>
+	<tr><td>2020-01-01     </td><td>2040           </td><td>X700           </td><td>Sydney         </td><td>14170          </td><td>Inner West (A) </td><td>2              </td></tr>
+	<tr><td>2020-01-01     </td><td>2041           </td><td>X700           </td><td>Sydney         </td><td>14170          </td><td>Inner West (A) </td><td>1              </td></tr>
+	<tr><td>2020-01-01     </td><td>2069           </td><td>X760           </td><td>Northern Sydney</td><td>14500          </td><td>Ku-ring-gai (A)</td><td>1              </td></tr>
+	<tr><td>2020-01-01     </td><td>2074           </td><td>X760           </td><td>Northern Sydney</td><td>14500          </td><td>Ku-ring-gai (A)</td><td>1              </td></tr>
+</tbody>
+</table>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>date</th><th scope=col>descr</th><th scope=col>confirm</th></tr></thead>
+<tbody>
+	<tr><td>2021-05-01</td><td>cases     </td><td>2         </td></tr>
+	<tr><td>2021-05-02</td><td>cases     </td><td>8         </td></tr>
+	<tr><td>2021-05-03</td><td>cases     </td><td>9         </td></tr>
+	<tr><td>2021-05-04</td><td>cases     </td><td>7         </td></tr>
+	<tr><td>2021-05-05</td><td>cases     </td><td>9         </td></tr>
+	<tr><td>2021-05-06</td><td>cases     </td><td>4         </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Plotting recorded cases by date (PCR test outcomes only and only to 31 December 2021):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_cases</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">omicron</span><span class="o">=</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s">&quot;2021-11-26&quot;</span><span class="p">,</span><span class="s">&quot;first case+&quot;</span><span class="p">,</span><span class="s">&quot;pre&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">.</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">confirm</span><span class="p">))</span> <span class="o">+</span> 
+<span class="nf">geom_col</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">omicron</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">scale_x_date</span><span class="p">(</span><span class="n">date_breaks</span> <span class="o">=</span> <span class="s">&quot;months&quot;</span> <span class="p">,</span> <span class="n">date_labels</span> <span class="o">=</span> <span class="s">&quot;%b-%y&quot;</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-04-30&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-12-31&quot;</span><span class="p">)))</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Cases&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Covid cases by date, NSW&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span> <span class="o">+</span> <span class="nf">scale_color_gdocs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Removed 1 rows containing missing values (geom_col).&quot;
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_107_1.png" src="../_images/bayesian-applications_107_1.png" />
+</div>
+</div>
+<p>Test data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_tests</span> <span class="o">&lt;-</span> <span class="n">df_tests</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">descr</span><span class="o">=</span><span class="s">&quot;tests&quot;</span><span class="p">,</span><span class="n">date</span><span class="o">=</span><span class="nf">as.Date</span><span class="p">(</span><span class="n">test_date</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<span class="nf">filter</span><span class="p">(</span><span class="n">date</span> <span class="o">&gt;</span> <span class="s">&quot;2021-04-30&quot;</span><span class="p">,</span><span class="n">date</span> <span class="o">&lt;=</span> <span class="s">&quot;2021-12-31&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<span class="nf">group_by</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">descr</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<span class="nf">summarise</span><span class="p">(</span><span class="n">tests</span><span class="o">=</span><span class="nf">sum</span><span class="p">(</span><span class="n">test_count</span><span class="p">))</span> 
+<span class="nf">head</span><span class="p">(</span><span class="n">df_tests</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`summarise()` has grouped output by &#39;date&#39;. You can override using the `.groups` argument.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<thead><tr><th scope=col>date</th><th scope=col>descr</th><th scope=col>tests</th></tr></thead>
+<tbody>
+	<tr><td>2021-05-01</td><td>tests     </td><td> 4514     </td></tr>
+	<tr><td>2021-05-02</td><td>tests     </td><td> 4775     </td></tr>
+	<tr><td>2021-05-03</td><td>tests     </td><td>14877     </td></tr>
+	<tr><td>2021-05-04</td><td>tests     </td><td>10868     </td></tr>
+	<tr><td>2021-05-05</td><td>tests     </td><td>13126     </td></tr>
+	<tr><td>2021-05-06</td><td>tests     </td><td>24029     </td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Plotting tests by date (PCR tests only; to 31 December 2021):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_tests</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">tests</span><span class="p">))</span><span class="o">+</span> 
+<span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">scale_x_date</span><span class="p">(</span><span class="n">date_breaks</span> <span class="o">=</span> <span class="s">&quot;months&quot;</span> <span class="p">,</span> <span class="n">date_labels</span> <span class="o">=</span> <span class="s">&quot;%b-%y&quot;</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-04-30&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-12-31&quot;</span><span class="p">)))</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Tests&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;PCR tests by date, NSW&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span> <span class="o">+</span> <span class="nf">scale_color_gdocs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Removed 1 rows containing missing values (geom_bar).&quot;
+</pre></div>
+</div>
+<img alt="../_images/bayesian-applications_111_1.png" src="../_images/bayesian-applications_111_1.png" />
+</div>
+</div>
+<p>Merged to get positive test rate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># merge</span>
+<span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_cases</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df_tests</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="n">all.x</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<span class="nf">mutate</span><span class="p">(</span><span class="n">pos_rate</span><span class="o">=</span><span class="nf">pmin</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">confirm</span><span class="o">/</span><span class="n">tests</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<span class="nf">fill</span><span class="p">(</span><span class="n">pos_rate</span><span class="p">,</span> <span class="n">.direction</span> <span class="o">=</span> <span class="s">&quot;downup&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<span class="c1"># add smoothed positive rate</span>
+<span class="nf">mutate</span><span class="p">(</span><span class="n">pos_rate_sm</span> <span class="o">=</span> <span class="nf">fitted</span><span class="p">(</span><span class="nf">loess</span><span class="p">(</span><span class="n">pos_rate</span><span class="o">~</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date</span><span class="p">),</span><span class="n">span</span><span class="o">=</span><span class="m">0.1</span><span class="p">)))</span> <span class="c1"># loess - Local Polynomial Regression Fitting; span - the parameter which controls the degree of smoothing</span>
+<span class="c1"># drop descriptions</span>
+<span class="n">df</span><span class="o">$</span><span class="n">descr.x</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+<span class="n">df</span><span class="o">$</span><span class="n">descr.y</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot of positive rate shows that the proportion of tests returning a positive increases to above 5% from 25th December 2021, suggesting that the case data beyond this point is less complete.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># positive rate</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">))</span><span class="o">+</span> 
+<span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">pos_rate</span><span class="p">)))</span> <span class="o">+</span>
+<span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">pos_rate_sm</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">scale_x_date</span><span class="p">(</span><span class="n">date_breaks</span> <span class="o">=</span> <span class="s">&quot;months&quot;</span> <span class="p">,</span> <span class="n">date_labels</span> <span class="o">=</span> <span class="s">&quot;%b-%y&quot;</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-04-30&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2021-12-31&quot;</span><span class="p">)))</span> <span class="o">+</span>
+<span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">scales</span><span class="o">::</span><span class="nf">percent_format</span><span class="p">(</span><span class="n">accuracy</span> <span class="o">=</span> <span class="m">1</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Positive test rate&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Positive PCR test rate by date, NSW&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span> <span class="o">+</span> <span class="nf">scale_color_gdocs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_115_0.png" src="../_images/bayesian-applications_115_0.png" />
+</div>
+</div>
+<p>There are some pragmatic methods for adjusting the case numbers for <a class="reference external" href="http://freerangestats.info/blog/2020/05/09/covid-population-incidence">increasing test positivity rates</a>. For our purposes we will focus the model on case data before 23 December 2021 in order to exclude the period where the test data became less reliable/ complete, noting that underlying data completeness issues are likely present.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span><span class="c1"># Reporting delays (delay from symptom onset to reporting/ testing positive)</span>
+<span class="n">reporting_delay</span> <span class="o">&lt;-</span> <span class="nf">estimate_delay</span><span class="p">(</span><span class="nf">rlnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="nf">log</span><span class="p">(</span><span class="m">6</span><span class="p">),</span> <span class="m">1</span><span class="p">),</span> <span class="n">max_value</span> <span class="o">=</span> <span class="m">15</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mean reporting delay = &quot;</span><span class="p">,</span><span class="n">reporting_delay</span><span class="o">$</span><span class="n">mean</span><span class="p">,</span> <span class="s">&quot;; &quot;</span><span class="p">)</span>
+
+<span class="c1"># Symptom generation time (time between infection events in an infector-infectee pair) and incubation period (time between moment of infection and symptom onset)</span>
+<span class="n">generation_time</span> <span class="o">&lt;-</span> <span class="nf">get_generation_time</span><span class="p">(</span><span class="n">disease</span> <span class="o">=</span> <span class="s">&quot;SARS-CoV-2&quot;</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="s">&quot;ganyani&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mean generation time =&quot;</span><span class="p">,</span><span class="n">generation_time</span><span class="o">$</span><span class="n">mean</span><span class="p">,</span> <span class="s">&quot;; &quot;</span><span class="p">)</span>
+<span class="n">incubation_period</span> <span class="o">&lt;-</span> <span class="nf">get_incubation_period</span><span class="p">(</span><span class="n">disease</span> <span class="o">=</span> <span class="s">&quot;SARS-CoV-2&quot;</span><span class="p">,</span> <span class="n">source</span> <span class="o">=</span> <span class="s">&quot;lauer&quot;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Mean incubation period =&quot;</span><span class="p">,</span><span class="n">incubation_period</span><span class="o">$</span><span class="n">mean</span><span class="p">,</span> <span class="s">&quot;; &quot;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+<span class="n">df_cases_fit</span> <span class="o">&lt;-</span> <span class="n">df_cases</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">date</span> <span class="o">&lt;=</span> <span class="s">&quot;2021-12-22&quot;</span><span class="p">)</span> <span class="c1"># exclude data before 23 December 2021</span>
+
+<span class="n">estimates</span> <span class="o">&lt;-</span> <span class="nf">epinow</span><span class="p">(</span><span class="n">reported_cases</span> <span class="o">=</span> <span class="n">df_cases_fit</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="s">&quot;confirm&quot;</span><span class="p">)],</span> <span class="c1"># case data from NSW</span>
+                    <span class="n">generation_time</span> <span class="o">=</span> <span class="n">generation_time</span><span class="p">,</span>
+                    <span class="n">delays</span> <span class="o">=</span> <span class="nf">delay_opts</span><span class="p">(</span><span class="n">incubation_period</span><span class="p">,</span> <span class="n">reporting_delay</span><span class="p">),</span>
+                    <span class="n">rt</span> <span class="o">=</span> <span class="nf">rt_opts</span><span class="p">(</span><span class="n">prior</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)),</span>
+                    <span class="n">stan</span> <span class="o">=</span> <span class="nf">stan_opts</span><span class="p">(</span><span class="n">cores</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="m">3000</span><span class="p">,</span> <span class="n">warmup</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">chains</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">adapt_delta</span> <span class="o">=</span> <span class="m">0.95</span><span class="p">)))}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importing a previous run of the above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">load</span><span class="p">(</span><span class="s">&quot;../_static/bayesian_applications/covid_estimates_summary.RData&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>plot(estimates) produces predefined plots of cases by date reported and date of infection as well as the effective reproduction number. Given the dramatic increase in reported cases towards the end of the period, it is not surprising that the range of forecast cases is wide. Interestingly, the forecast/ partial forecast reproduction number reduces; presumably this is influenced by the earlier observations where case numbers were low. This issue has not been investigated further, however there are articles that discuss the <a class="reference external" href="https://epiforecasts.io/covid/methods.html">impact of changes to the testing procedures</a> and other limitations.</p>
+<p><img alt="" src="../_images/covid_estimates.jpg" />{width=100%}
+Merging forecast reported cases with the actual case data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df_reported</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="n">all.x</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">date</span> <span class="o">&lt;</span> <span class="s">&quot;2021-12-30&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting forecast vs actuals below - the week to 29 December is fully forecast from the model. Actual cases fall within the projected 90% confidence interval range, noting that the test positivity rate increased materially from 25th December so it is likely that the actual cases are under reported.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">colours</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;actual&quot;</span> <span class="o">=</span> <span class="s">&quot;#3366cc&quot;</span><span class="p">,</span><span class="s">&quot;modelled&quot;</span> <span class="o">=</span> <span class="s">&quot;#dc3912&quot;</span><span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">date</span> <span class="o">&gt;=</span> <span class="s">&quot;2021-12-01&quot;</span><span class="p">),</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">date</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">confirm</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;actual&quot;</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;modelled&quot;</span><span class="p">))</span> <span class="o">+</span>
+<span class="nf">geom_ribbon</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="n">lower_90</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">upper_90</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s">&quot;#dc3912&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&quot;Reported cases&quot;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Reported cases by date&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;Legend&quot;</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">colours</span><span class="p">)</span> <span class="o">+</span>
+<span class="nf">theme_pander</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-applications_124_0.png" src="../_images/bayesian-applications_124_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="common-issues-in-mcmc-projections">
+<h1>Common issues in MCMC projections<a class="headerlink" href="#common-issues-in-mcmc-projections" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Divergent transitions: Common fix is changing the step size using the adapt_delta argument in STAN.</p></li>
+<li><p>Exceeding maximum tree depth: the is a point of efficiency. See notes <a class="reference external" href="https://mc-stan.org/misc/warnings.html">here</a> for assistance in STAN and other potential warnings.</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="further-reading">
+<h1>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h1>
+<p>A few books and articles of interest on STAN:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mc-stan.org/users/documentation/">STAN documentation</a></p></li>
+<li><p><a class="reference external" href="https://m-clark.github.io/bayesian-basics/models.html">STAN linear regression model</a></p></li>
+<li><p><a class="reference external" href="https://www.r-bloggers.com/2020/01/applied-bayesian-statistics-using-stan-and-r/">Applied Bayesian Inference in r using STAN</a></p></li>
+<li><p><a class="reference external" href="https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations">Prior selections - STAN package</a></p></li>
+<li><p><a class="reference external" href="https://people.stat.sc.edu/hansont/stat740/jags_user_manual.pdf">JAGS user manual</a></p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ActuariesInstitute/cookbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="life_stats.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R: Life Industry Stats in Tableau and R</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="trees.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R: Decision Tree Applications</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By YDAWG, DAPC, YAC and other contributors.<br/>
+    
+      <div class="extra_footer">
+         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
