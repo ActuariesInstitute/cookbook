@@ -11,7 +11,7 @@ output:
 date: "November 2020"
 ---
 
-# R: Bauldry ML Reserving Pt 2
+# R: Baudry ML Reserving Pt 2
 
 *This article was originally created by Nigel Carpenter and published in the [General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/). The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the [blog](https://institute-and-faculty-of-actuaries.github.io/mlr-blog/) further for additional content including detailed walkthroughs of more advanced models.*
 
