@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Useful Packages &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -389,114 +403,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/top_ten_r_packages.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/top_ten_r_packages.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/top_ten_r_packages.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/top_ten_r_packages.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/top_ten_r_packages.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/top_ten_r_packages.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/top_ten_r_packages.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/top_ten_r_packages.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Useful Packages
@@ -587,12 +732,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Useful Packages</h1>
@@ -699,11 +843,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="useful-packages">
-<h1>Useful Packages<a class="headerlink" href="#useful-packages" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="useful-packages">
+<h1>Useful Packages<a class="headerlink" href="#useful-packages" title="Permalink to this headline">#</a></h1>
 <p>By Jacky Poon.</p>
 <p><em>This article was originally published on <a class="reference external" href="https://www.actuaries.digital/2019/09/26/my-top-10-r-packages-for-data-analytics/">Actuaries Digital</a> (the magazine of the Actuaries Institute Australia), on 26/09/2019 as “My Top 10 R Packages for Data Analytics”.</em>
 <em>It was been updated for changes in packages since that time and republished on the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">IFoA Machine Learning for Reserving blog</a>, on 29/09/2020.</em>
@@ -712,11 +857,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p>A few months ago Zeming Yu wrote <a class="reference external" href="https://www.actuaries.digital/2019/04/11/my-top-10-python-packages-for-data-science/">“My top 10 Python packages for data science”</a> where he shared his top Python packages for Data Science. Like him, my preferred way of doing data analysis has shifted away from proprietary tools to these amazing freely available packages - except extending beyond data science and into traditional actuarial applications as well.</p>
 <p>I’d like to take the opportunity now to share some of my old-time favourites and exciting new packages for R. Whether you are an experienced R user or new to the game, I think there may be something here for you to take away.</p>
 <p>Use install.packages (e.g. <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;arrow&quot;)</span></code>) to install packages from <a class="reference external" href="https://cran.r-project.org/">CRAN</a>.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="general">
-<h1>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="tidyverse">
-<h2>1. Tidyverse<a class="headerlink" href="#tidyverse" title="Permalink to this headline">¶</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this headline">#</a></h1>
+<section id="tidyverse">
+<h2>1. Tidyverse<a class="headerlink" href="#tidyverse" title="Permalink to this headline">#</a></h2>
 <p>No discussion of top R packages would be complete without the <a class="reference external" href="https://www.tidyverse.org/">tidyverse</a>. In a way, this is cheating because there are multiple packages included in this - data analysis with <a class="reference external" href="https://dplyr.tidyverse.org/">dplyr</a>, visualisation with <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2</a>, some basic modelling functionality, and comes with a fairly comprehensive <a class="reference external" href="https://r4ds.had.co.nz/">book</a> that provides an excellent introduction to usage.</p>
 <p>If you were getting started with R, it’s hard to go wrong with the tidyverse toolkit. And if you are just getting started, check out our recent Insights - Starting the Data Analytics Journey - Data Collection <a class="reference external" href="https://youtu.be/tyj4ov7EuFI">video</a> <a class="reference external" href="https://www.actuaries.asn.au/Library/Events/Insights/2018/INS180717IntroToDataAnalyticsAudio.mp3">audio</a> <a class="reference external" href="https://www.actuaries.asn.au/Library/Events/Insights/2018/180717StartingTheDataAnalyticsJourneyPresentation.pdf">presentation</a>. That and more can be found on our <a class="reference external" href="https://actuaries.asn.au/knowledge-bank/past-events/2019">knowledge bank page.</a></p>
 <div class="cell docutils container">
@@ -742,12 +887,12 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="../_images/top_ten_r_packages_5_1.png" src="../_images/top_ten_r_packages_5_1.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="data">
-<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="need-for-speed-dtplyr">
-<h2>2. Need for speed? dtplyr<a class="headerlink" href="#need-for-speed-dtplyr" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h1>
+<section id="need-for-speed-dtplyr">
+<h2>2. Need for speed? dtplyr<a class="headerlink" href="#need-for-speed-dtplyr" title="Permalink to this headline">#</a></h2>
 <p>There has been a perception that R is slow, but with packages like <a class="reference external" href="https://github.com/Rdatatable/data.table/wiki">data.table</a>, R has the <a class="reference external" href="https://h2oai.github.io/db-benchmark/">fastest data extraction and transformation package in the West.</a> However, the dplyr syntax may more familiar for those who use SQL heavily, and personally I find it more intuitive. So, <a class="reference external" href="https://github.com/tidyverse/dtplyr">dtplyr</a> provides the best of both worlds.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -792,15 +937,15 @@ The following object is masked from ‘package:purrr’:
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="out-of-memory-disk-frame">
-<h2>3. Out of Memory? disk.frame<a class="headerlink" href="#out-of-memory-disk-frame" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="out-of-memory-disk-frame">
+<h2>3. Out of Memory? disk.frame<a class="headerlink" href="#out-of-memory-disk-frame" title="Permalink to this headline">#</a></h2>
 <p>One major limitation of r data frames and Python’s pandas is that they are in memory datasets - consequently, medium sized datasets that SAS can easily handle will max out your work laptop’s measly 4GB RAM. The ideal solution would be to do those transformations on the data warehouse server, which would reduce data transfer and also should, in theory, have more capacity. If it runs with SQL, dplyr probably has a backend through <a class="reference external" href="https://cran.r-project.org/web/packages/dbplyr/vignettes/sql.html">dbplyr</a>. Alternatively, with cloud computing, it is possible to rent computers with up to 3,904 GB of RAM.</p>
 <p>But for those with a habit of exploding the data warehouse or those with cloud solutions being blocked by IT policy, <a class="reference external" href="https://github.com/xiaodaigh/disk.frame">disk.frame</a> is an exciting new alternative. It does require some additional planning with respect to data chunks, but maintains a familiar syntax - check out the examples on the page.</p>
 <p>The package stores data on disk, and so is only limited by disk space rather than memory…</p>
-</div>
-<div class="section" id="parking-it-with-parquet-and-arrow">
-<h2>4. Parking it with parquet and Arrow<a class="headerlink" href="#parking-it-with-parquet-and-arrow" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="parking-it-with-parquet-and-arrow">
+<h2>4. Parking it with parquet and Arrow<a class="headerlink" href="#parking-it-with-parquet-and-arrow" title="Permalink to this headline">#</a></h2>
 <p>Running low on disk space once, I asked my senior actuarial analyst to do some benchmarking of different data storage formats: the “Parquet” format beat out sqlite, hdf5 and plain CSV - the latter by a wide margin. That experience is also likely not unique as well, considering this <a class="reference external" href="https://tech.marksblogg.com/billion-nyc-taxi-rides-sqlite-parquet-hdfs.html">article</a> where the author squashes a 500GB dataset to a mere fifth of its original size.</p>
 <p>If you were working with a heavy workload with a need for distributed cluster computing, then <a class="reference external" href="https://blog.rstudio.com/2019/03/15/sparklyr-1-0/">sparklyr</a> could be a good full stack solution, with integrations for Spark-SQL, and machine learning models <a class="reference external" href="https://github.com/rstudio/sparkxgb">xgboost</a>, <a class="reference external" href="https://github.com/rstudio/sparktf">tensorflow</a> and <a class="reference external" href="https://spark.rstudio.com/guides/h2o/">h2o</a>.</p>
 <p>But often you just want to write a file to disk, and all you need for that is <a class="reference external" href="https://github.com/apache/arrow/tree/master/r">Apache Arrow</a>.</p>
@@ -822,12 +967,12 @@ The following object is masked from ‘package:utils’:
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="modelling">
-<h1>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="trees-xgboost">
-<h2>6. Trees: xgboost<a class="headerlink" href="#trees-xgboost" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modelling">
+<h1>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h1>
+<section id="trees-xgboost">
+<h2>6. Trees: xgboost<a class="headerlink" href="#trees-xgboost" title="Permalink to this headline">#</a></h2>
 <p>You may have seen earlier videos from Zeming Yu on <a class="reference external" href="https://www.youtube.com/watch?v=pzwE1WBOAnU">Lightgbm</a>, myself on <a class="reference external" href="https://www.youtube.com/watch?v=1cqTMqtun0c">XGBoost</a> and of course Minh Phan on <a class="reference external" href="https://www.youtube.com/watch?v=G-HQ9HLV8HY">CatBoost</a>. Perhaps you’ve heard me extolling the virtues of <span class="xref myst">h2o.ai</span> for beginners and prototyping as well.</p>
 <p>LightGBM has become my favourite now in Python. It is incredibly fast, and although it has the limitation that it can only do leaf-wise models - unlike XGBoost which has the flexibility to use traditional depth-wise growth models as well - but a lower memory usage allows you to be greedier in putting large datasets into the model.</p>
 <p>Installation in R was originally quite difficult when the article was first written, but in 2021, it can now be installed from CRAN simply using <code class="docutils literal notranslate"><span class="pre">install.packages(&quot;lightgbm&quot;)</span></code>.</p>
@@ -881,39 +1026,39 @@ The following objects are masked from ‘package:tidyr’:
 </div>
 </div>
 <p>Generally, <code class="docutils literal notranslate"><span class="pre">sparse.model.matrix</span></code> is more memory efficient than <code class="docutils literal notranslate"><span class="pre">model.matrix</span></code> with XGBoost, especially with large categorical levels. However, the code for the model explanation with the DALEX package (featured later) is made more complex. See <a class="reference external" href="https://github.com/ModelOriented/DALEX/issues/331#issuecomment-694773105">this comment</a> by the package author for an example of how to use <code class="docutils literal notranslate"><span class="pre">sparse.model.matrix</span></code> with <code class="docutils literal notranslate"><span class="pre">xgboost</span></code> and <code class="docutils literal notranslate"><span class="pre">DALEX</span></code>.</p>
-</div>
-<div class="section" id="nets-keras">
-<h2>7. Nets: keras<a class="headerlink" href="#nets-keras" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="nets-keras">
+<h2>7. Nets: keras<a class="headerlink" href="#nets-keras" title="Permalink to this headline">#</a></h2>
 <p>Neural network models are generally better done in Python rather than R, since Facebook’s Pytorch and Google’s Tensorflow are built with it in mind. However in writing <a class="reference external" href="https://www.actuaries.digital/2018/08/23/analytics-snippet-multitasking-risk-pricing-using-deep-learning/">Analytics Snippet: Multitasking Risk Pricing Using Deep Learning</a> I found Rstudio’s <a class="reference external" href="https://keras.rstudio.com/">keras</a> interface to be pretty easy to pick up.</p>
 <p>While most example usage and online tutorials will be in Python, they translate reasonably well to their R counterparts. The Rstudio team were also incredibly responsive when I filed a <a class="reference external" href="https://github.com/rstudio/keras/issues/471">bug report</a> and had it fixed within a day.</p>
 <p>For another example of keras usage, the Swiss <a class="reference external" href="https://actuarialdatascience.org/ADS-Tutorials/">“Actuarial Data Science” Tutorial</a> includes another example with <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3320525">paper</a> and <a class="reference external" href="https://github.com/JSchelldorfer/ActuarialDataScience/tree/master/3%20-%20Nesting%20Classical%20Actuarial%20Models%20into%20Neural%20Networks">code</a>.</p>
-</div>
-<div class="section" id="multimodel-mlr">
-<h2>8. Multimodel: MLR<a class="headerlink" href="#multimodel-mlr" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="multimodel-mlr">
+<h2>8. Multimodel: MLR<a class="headerlink" href="#multimodel-mlr" title="Permalink to this headline">#</a></h2>
 <p>Working with multiple models - say a linear model and a GBM - and being able to calibrate hyperparameters, compare results, benchmark and blending models can be tricky. This video on <a class="reference external" href="https://youtu.be/dB-JHhEJvQA">Applied Predictive Modeling</a> by the author of the <a class="reference external" href="https://cran.r-project.org/web/packages/caret/index.html">caret</a> package explains a little more on what’s involved.</p>
 <p>If you want to get up and running quickly, and are okay to work with just GLM, GBM and dense neural networks and prefer an all-in-one solution, <a class="reference external" href="http://h2o.ai">h2o.ai</a> works well. It does all those models, has good feature importance plots, and ensembles it for you with autoML too, as explained in <a class="reference external" href="https://youtu.be/IO-3CYnk-Mo">this video by Jun Chen</a> from the 2018 Weapons of Mass Deduction video competition. Ensembling h2o models got me second place in the 2015 Actuaries Institute Kaggle competition, so I can attest to its usefulness.</p>
 <p><a class="reference external" href="https://mlr.mlr-org.com/">mlr</a> comes in for something more in-depth, with detailed feature importance, partial dependence plots, cross validation and ensembling techniques. It integrates with over 100 models by default and it is not too hard to write your own.</p>
 <p>There is a handy <a class="reference external" href="https://github.com/mlr-org/mlr/blob/master/addon/cheatsheet/MlrCheatsheet.pdf">cheat sheet</a>.</p>
 <p><em><strong>Update for 2020: the successor package <a class="reference external" href="https://github.com/mlr-org/mlr3">mlr3</a> has matured significantly. It is now available on CRAN and the <a class="reference external" href="https://mlr3book.mlr-org.com/">documentation</a> has developed to become quite comprehensive. It has its own cheat sheets which can be found <a class="reference external" href="https://cheatsheets.mlr-org.com/">here</a>. Like the original mlr package, it has many useful features for better model fitting. New users would generally benefit from using mlr3 for new projects today.</strong></em></p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="visualisation-and-presentation">
-<h1>Visualisation and Presentation<a class="headerlink" href="#visualisation-and-presentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="too-technical-for-tableau-or-too-poor-flexdashboard">
-<h2>8. Too technical for Tableau (or too poor)? flexdashboard<a class="headerlink" href="#too-technical-for-tableau-or-too-poor-flexdashboard" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualisation-and-presentation">
+<h1>Visualisation and Presentation<a class="headerlink" href="#visualisation-and-presentation" title="Permalink to this headline">#</a></h1>
+<section id="too-technical-for-tableau-or-too-poor-flexdashboard">
+<h2>8. Too technical for Tableau (or too poor)? flexdashboard<a class="headerlink" href="#too-technical-for-tableau-or-too-poor-flexdashboard" title="Permalink to this headline">#</a></h2>
 <p>To action insights from modelling analysis generally involves some kind of report or presentation. Rarely you may want to serve R model predictions directly - in which case <a class="reference external" href="https://www.opencpu.org/">OpenCPU</a> may get your attention - but generally it is a distillation of the analysis that is needed to justify business change recommendations to stakeholders.</p>
 <p><a class="reference external" href="https://rmarkdown.rstudio.com/flexdashboard/">Flexdashboard</a> offers a template for creating dashboards from Rstudio with the click of a button. This extends R Markdown to use Markdown headings and code to signpost the panels of your dashboard.</p>
 <p>Interactivity similar to Excel slicers or VBA-enabled dropdowns can be added to R Markdown documents using Shiny. To do so, add ‘runtime: shiny’ to the header section of the R Markdown document. This is great for live or daily dashboards. It is also possible to produce static dashboards using only Flexdashboard and distribute over email for reporting with a monthly cadence.</p>
 <p>Previously with the YAP-YDAWG R Workshop <a class="reference external" href="https://youtu.be/_SvfEdp8_1c">video</a> <a class="reference external" href="https://actuaries.logicaldoc.cloud/download-ticket?ticketId=db8440d1-06b5-476a-b0f5-d07aa87f38e3">presentation</a>, we included an example of flexdashboard usage as a take-home exercise. Take a look at the <a class="reference external" href="https://github.com/ActuariesInstitute/YAP-YDAWG-R-Workshop">code repository</a> under “09_advanced_viz_ii.Rmd”!</p>
-</div>
-<div class="section" id="html-charts-plotly">
-<h2>9. HTML Charts: plotly<a class="headerlink" href="#html-charts-plotly" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="html-charts-plotly">
+<h2>9. HTML Charts: plotly<a class="headerlink" href="#html-charts-plotly" title="Permalink to this headline">#</a></h2>
 <p>Different language, same package. <a class="reference external" href="https://plot.ly/r/getting-started/">Plot.ly</a> is a great package for web charts in both Python and R. The documentation steers towards the paid server-hosted options but using for charting functionality offline is free even for commercial purposes. The interface is clean, and charts embeds well in RMarkdown documents.</p>
 <p>Check out an older example using plotly with <a class="reference external" href="https://www.actuaries.digital/2018/06/14/analytics-snippet-in-the-library/">Analytics Snippet: In the Library</a></p>
 <p>One notable downside is the hefty file size which may not be great for email. If that is an issue I would consider the <a class="reference external" href="https://github.com/vegawidget/altair">R interface for Altair</a> - it is a bit of a loop to go from R to Python to Javascript but the <a class="reference external" href="https://vega.github.io/vega-lite/">vega-lite</a> javascript library it is based on is fantastic - user friendly interface, and what I use for my personal blog so that it loads fast on mobile. <a class="reference external" href="https://rstudio.github.io/leaflet/">Leaflet</a> is also great for maps.</p>
-</div>
-<div class="section" id="explain-it-like-i-m-five-dalex">
-<h2>10. Explain it Like I’m Five: DALEX<a class="headerlink" href="#explain-it-like-i-m-five-dalex" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="explain-it-like-i-m-five-dalex">
+<h2>10. Explain it Like I’m Five: DALEX<a class="headerlink" href="#explain-it-like-i-m-five-dalex" title="Permalink to this headline">#</a></h2>
 <p>Also featured in the <a class="reference external" href="https://github.com/ActuariesInstitute/YAP-YDAWG-R-Workshop">YAP-YDAWG-R-Workshop</a>, the DALEX package helps explain model prediction. Like mlr above, there is feature importance, actual vs model predictions, partial dependence plots:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -969,13 +1114,13 @@ The following object is masked from ‘package:dplyr’:
 <img alt="../_images/top_ten_r_packages_16_0.png" src="../_images/top_ten_r_packages_16_0.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="concluding-thoughts">
-<h1>Concluding thoughts<a class="headerlink" href="#concluding-thoughts" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="concluding-thoughts">
+<h1>Concluding thoughts<a class="headerlink" href="#concluding-thoughts" title="Permalink to this headline">#</a></h1>
 <p>We have taken a journey with ten amazing packages covering the full data analysis cycle, from data preparation, with a few solutions for managing “medium” data, then to models - with crowd favourites for gradient boosting and neural network prediction, and finally to actioning business change - through dashboard and explanatory visualisations - and most of the runners up too…</p>
 <p>I would recommend exploring the resources in the many links as well, there is a lot of content that I have found to be quite informative. Did I miss any of your favourites? Let me know in the comments!</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -999,9 +1144,11 @@ The following object is masked from ‘package:dplyr’:
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="intermediate_R.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1017,26 +1164,30 @@ The following object is masked from ‘package:dplyr’:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

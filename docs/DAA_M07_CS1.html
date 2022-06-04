@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Py: Classifying review sentiment &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -389,114 +403,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/DAA_M07_CS1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M07_CS1.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M07_CS1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M07_CS1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M07_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M07_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M07_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/DAA_M07_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#purpose">
    Purpose:
@@ -588,12 +733,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Py: Classifying review sentiment</h1>
@@ -701,26 +845,27 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="py-classifying-review-sentiment">
-<h1>Py: Classifying review sentiment<a class="headerlink" href="#py-classifying-review-sentiment" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="py-classifying-review-sentiment">
+<h1>Py: Classifying review sentiment<a class="headerlink" href="#py-classifying-review-sentiment" title="Permalink to this headline">#</a></h1>
 <p><strong>This notebook was originally created by Rob Daly for the Data Analytics Applications subject, as <em>Case study 7.1 - Classifying automative reviews</em> in the <em>DAA M07 Natural language processing</em> module.</strong></p>
 <p><strong>Data Analytics Applications is a Fellowship Applications (Module 3) subject with the Actuaries Institute that aims to teach students how to apply a range of data analytics skills, such as neural networks, natural language processing, unsupervised learning and optimisation techniques, together with their professional judgement, to solve a variety of complex and challenging business problems. The business problems used as examples in this subject are drawn from a wide range of industries.</strong></p>
 <p><strong>Find out more about the course <a class="reference external" href="https://www.actuaries.asn.au/education-program/fellowship/subjects-and-syllabus/data-analytics-applications-subject">here</a>.</strong></p>
-<div class="section" id="purpose">
-<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<section id="purpose">
+<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">#</a></h2>
 <p>This notebook walks through the use of NLP to analyse customer sentiment. The objective of the case study is to identify ‘complaints’ from a sample of YELP reviews for automotive companies. YELP is a North American review service where customers review different service providers. Reviewers write a text review and are then asked to rate the service on a five point scale.</p>
-</div>
-<div class="section" id="references">
-<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>The dataset that is used in this case study was sourced from a Kaggle competition in which YELP provided a set of reviews: <a class="reference external" href="https://www.kaggle.com/yelp-dataset/yelp-dataset">https://www.kaggle.com/yelp-dataset/yelp-dataset</a>.</p>
 <p>It contains information about businesses across 8 metropolitan areas in the USA and Canada.</p>
 <p>For this case study, the dataset has been refined to contain 50,000 reviews for companies tagged as ‘automotive’.</p>
-</div>
-<div class="section" id="packages">
-<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h2>
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,9 +907,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,17 +1108,17 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
 <p>This section:</p>
 <ul class="simple">
 <li><p>imports the data that will be used in the modelling;</p></li>
 <li><p>explores the data; and</p></li>
 <li><p>prepares the data for modelling.</p></li>
 </ul>
-<div class="section" id="import-data">
-<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
+<section id="import-data">
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the URL of the dataset to be imported.</span>
@@ -1011,9 +1156,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="explore-data-eda">
-<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="explore-data-eda">
+<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <p>The following data exploration is performed below:</p>
 <ul class="simple">
 <li><p>look at the features available in the data;</p></li>
@@ -1321,9 +1466,9 @@ you          34,432
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="prepare-data">
-<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="prepare-data">
+<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h3>
 <p>This section performs the following NLP tasks:</p>
 <ul class="simple">
 <li><p>tokenisation;</p></li>
@@ -1333,8 +1478,8 @@ you          34,432
 <li><p>cleaning; and</p></li>
 <li><p>vectorisation.</p></li>
 </ul>
-<div class="section" id="tokenise">
-<h4>Tokenise<a class="headerlink" href="#tokenise" title="Permalink to this headline">¶</a></h4>
+<section id="tokenise">
+<h4>Tokenise<a class="headerlink" href="#tokenise" title="Permalink to this headline">#</a></h4>
 <p>In the data exploration sections above, tokenising was performed using the Python str function ‘split’. This function splits on white space and does not, for example, tokenise end of sentence markers such as ‘?’ or ‘.’ .</p>
 <p>The ‘word_tokenize’ tokeniser from the nltk package can provide a better tokenisation outcome than the ‘split’ function because it identifies items such as end of sentence markers.</p>
 <div class="cell docutils container">
@@ -1392,9 +1537,9 @@ Been going there for years, repairs always done fairly, until this week.  AC fan
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="clean-data">
-<h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="clean-data">
+<h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this headline">#</a></h4>
 <p>The ‘word_tokenize’ tokeniser distinguishes between upper and lower case words such that ‘Great’ and ‘great’ are considered as two separate tokens. For this data set, such distinction between case may not be warranted and the model might perform better if all words are converted to their lower case form.
 This is done in the code below.</p>
 <div class="cell docutils container">
@@ -1441,9 +1586,9 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="split-into-training-and-test-data">
-<h4>Split into training and test data<a class="headerlink" href="#split-into-training-and-test-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="split-into-training-and-test-data">
+<h4>Split into training and test data<a class="headerlink" href="#split-into-training-and-test-data" title="Permalink to this headline">#</a></h4>
 <p>Now the data is partioned into a training and a test set. The chosen partion is 50% training and 50% test. This is because the dataset is quite large, with
 50,0000 reviews and having a large training set can cause Colab to crash when fitting the model. In practice, if RAM was not an issue, you might want to fit the model with more training data using, for example, an 80%/20% split.</p>
 <p>Note that as has been shown in previous case studies in this subject, you might want to further split the training data into a training and validation set. The validation dataset can then be used to select different hyperparameters for your model. Alternatively, cross-validation can be used on the training data to help you select these hyperparameters.</p>
@@ -1464,9 +1609,9 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="define-response">
-<h4>Define response<a class="headerlink" href="#define-response" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="define-response">
+<h4>Define response<a class="headerlink" href="#define-response" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the response variable as 1 (a complaint) if the number of stars given</span>
@@ -1488,9 +1633,9 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="create-vocabulary">
-<h4>Create vocabulary<a class="headerlink" href="#create-vocabulary" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="create-vocabulary">
+<h4>Create vocabulary<a class="headerlink" href="#create-vocabulary" title="Permalink to this headline">#</a></h4>
 <p>A vocabulary is created, based on all reviews in the training dataset (the corpus).
 Note that the test data is not used to create the vocabulary as this is ‘held out’ until the end of the modelling process to test how well the model performs on unseen data.</p>
 <div class="cell docutils container">
@@ -1615,9 +1760,9 @@ promise
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="vectorise">
-<h4>Vectorise<a class="headerlink" href="#vectorise" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="vectorise">
+<h4>Vectorise<a class="headerlink" href="#vectorise" title="Permalink to this headline">#</a></h4>
 <p>This section vectorises the tokens in the corpus using the Bag of Words approach. This involves creating a vector, for each review, that is as long as the corpus’s vocabulary. The vector for each review shows how often each word in the vocabulary appears in the review.</p>
 <p>For example, assume a vocabulary contains the letters ‘a’ to ‘e’. The text ‘a, b, b, c, d’ would be vectorised as follows:
 {a:1, b:2, c:1, d:1, e:0}.</p>
@@ -1650,11 +1795,11 @@ promise
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="modelling">
-<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h2>
 <p>A logistic regression model is now trained. The aim of this model is to predict whether a review is a complaint (i.e. has less than 3 stars) based on the vectorised features for each review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1703,9 +1848,9 @@ Either way, the evaluation section below suggests that the solution found, while
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-model">
-<h2>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="evaluate-model">
+<h2>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">#</a></h2>
 <p>The next section prints key metrics for the predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1824,9 +1969,9 @@ fair                     -1.2
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="comments">
-<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">#</a></h2>
 <p>The model fitted provides a reasonable prediction of whether each review is a complaint (less than 3 stars) or a non-complaint (3 or more stars). The output of the model also makes sense in that the top ‘complaint’ words all have clear negative sentiment and the top ‘non-complaint’ words all have clear positive sentiment.</p>
 <p>As an exercise, you should experiment with the tokenisation of reviews by trying the following:</p>
 <ul class="simple">
@@ -1834,8 +1979,8 @@ fair                     -1.2
 <li><p>perform stemming or lemmatisation.</p></li>
 </ul>
 <p>You may like to review the code in Case Study 2 first and then come back to try the above.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1859,9 +2004,11 @@ fair                     -1.2
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="DAA_M05_Ex18.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1877,26 +2024,30 @@ fair                     -1.2
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

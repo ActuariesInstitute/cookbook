@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Version control &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -389,112 +403,262 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/docs/version_control.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/version_control.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/version_control.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/version_control.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/version_control.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/version_control.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/version_control.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/version_control.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/docs/version_control.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">
    What is version control and why should I bother?
@@ -586,12 +750,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Version control</h1>
@@ -699,20 +862,21 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="version-control">
-<h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="version-control">
+<h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">#</a></h1>
 <p>By Jonathan Tan. Originally published in Actuaries Digital as <a class="reference external" href="https://www.actuaries.digital/2019/04/17/analytics-snippet-version-control-because-the-recycle-bin-doesnt-count/">Analytics Snippet: Version control, because the Recycle Bin doesn’t count</a>.</p>
-<div class="section" id="what-is-version-control-and-why-should-i-bother">
-<h2>What is version control and why should I bother?<a class="headerlink" href="#what-is-version-control-and-why-should-i-bother" title="Permalink to this headline">¶</a></h2>
+<section id="what-is-version-control-and-why-should-i-bother">
+<h2>What is version control and why should I bother?<a class="headerlink" href="#what-is-version-control-and-why-should-i-bother" title="Permalink to this headline">#</a></h2>
 <p>Version control, also known as revision control or source control, is the management of changes to programs, files, documents and other collections of information.</p>
 <p>As actuaries, our models and analysis come in many forms and vary in size depending on the task at hand. For example, a simple exercise of analysing loss ratios for a given period and product could consist only of a small R script or SQL query. On the other hand, something like a functional reserving model could easily be a one gigabyte-sized set of Excel workbooks.</p>
 <p>The rest of the article will go through a simple example concerning a small team of 3 actuaries and how the Git system (implemented using GitHub) is to version control scripts in their day to day tasks.</p>
-</div>
-<div class="section" id="example-foo-insurance-ltd">
-<h2>Example: FOO Insurance Ltd<a class="headerlink" href="#example-foo-insurance-ltd" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="example-foo-insurance-ltd">
+<h2>Example: FOO Insurance Ltd<a class="headerlink" href="#example-foo-insurance-ltd" title="Permalink to this headline">#</a></h2>
 <p>It is the beginning of a new financial year for FOO insurance Ltd, and its products are due for a pricing review, which is handled by the actuarial team consisting of:</p>
 <ul class="simple">
 <li><p>Esther, Actuarial Manager</p></li>
@@ -727,20 +891,20 @@ const thebe_selector_output = ".output, .cell_output"
 <p><img alt="ideal_folder" src="../_images/ideal_folder.png" /></p>
 <p>Would you believe that the folder in the second screenshot contains the same amount of historical information as the first and more? This is however, limited to scripts and small files. For bigger files like excel workbooks, the article will recommend some alternative tools for the reader but will not go into detail its implementations and mechanics.</p>
 <p>The tool we will be using for version control is Git, via the Git hosting service <a class="reference external" href="https://github.com/">Github</a>.</p>
-<div class="section" id="administrative-and-security-issues">
-<h3>Administrative and Security Issues<a class="headerlink" href="#administrative-and-security-issues" title="Permalink to this headline">¶</a></h3>
+<section id="administrative-and-security-issues">
+<h3>Administrative and Security Issues<a class="headerlink" href="#administrative-and-security-issues" title="Permalink to this headline">#</a></h3>
 <p>Let’s rewind to a week ago before the actuarial team breaks away to work on the model. The first step towards a more sustainable file structure would be for the team (or Esther) to consult the company’s IT/Tech department. This is because there is a good chance that they are already utilizing the Git system and one of the many platforms for their day-to-day version control needs and would be able to provide the actuarial team with some guidance.</p>
 <p>If this is not the case, the team must consult the appropriate authorities within the company to make sure that Git (and the GitHub platform in the context of this article) is a white listed service program or provider and ensure data security risks are appropriately managed. It may assist the discussion with upper management to note, as of October 2018, GitHub is officially owned by Microsoft and have a enterprise service offering.</p>
 <p>If cloud services are ruled out, another alternative that could be hosted on local servers is <a class="reference external" href="https://www.gitlab.com">Gitlab Community Edition</a>.</p>
-</div>
-<div class="section" id="registering-and-installing">
-<h3>Registering and Installing<a class="headerlink" href="#registering-and-installing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="registering-and-installing">
+<h3>Registering and Installing<a class="headerlink" href="#registering-and-installing" title="Permalink to this headline">#</a></h3>
 <p>After settling all the aforementioned administrative issues, the actuarial team can now proceed to download and register for GitHub. To start off, they would want to go into the <a class="reference external" href="https://github.com/">GitHub website</a> and create an account, or sign in if an account was already created.</p>
 <p><img alt="github_homepage" src="../_images/github_homepage.png" /></p>
 <p>Assuming FOO Insurance Ltd does not have an existing corporate account with GitHub Enterprise, signing up for personal accounts in GitHub is totally free with a paid option as at time of writing (March 2019). All GitHub accounts also have the ability to create private repositories, which would be absolutely necessary for the team. (They might as well e-mail their pricing models to their competitors otherwise.)</p>
-</div>
-<div class="section" id="repository">
-<h3>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="repository">
+<h3>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">#</a></h3>
 <p>Great! Now that all 3 of them have GitHub accounts, the next step would be to create a “location” to store all the relevant project files. In the world of Git, this is called a Repository or “Repo” for short, and repositories can be generally grouped into 2 main categories</p>
 <ul class="simple">
 <li><p>Local</p></li>
@@ -770,9 +934,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Okay, let’s say Esther (Manager) has created an initial script on her own computer for the age curve in R called “model.r”, which uses Simple Linear Regression to model the relationship between policyholders’ age and the average claims incurred. The contents of model.r looks something like this:</p>
 <p><img alt="initial model" src="../_images/initial_model.png" /></p>
 <p>Nothing fancy, all the script does is to read the dataset in, instantiate a simple linear regression model and print the calculated coefficients.</p>
-</div>
-<div class="section" id="git-clone">
-<h3>Git Clone<a class="headerlink" href="#git-clone" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="git-clone">
+<h3>Git Clone<a class="headerlink" href="#git-clone" title="Permalink to this headline">#</a></h3>
 <p>Esther now wants both Jimmy and Michelle to work on improving it and can do that by uploading the current script into the remote repository created so all 3 of them have access to it. Remember, she created a remote repository before on the GitHub website, but will need a file in her local machine which she can use to sync the documents (The local repository). Think of it as dropping some files into a local DropBox or GoogleDrive folder to sync them into your online storage. Esther can do this by simply clicking on the “Clone a Repository from the Internet” button, which would bring up the screen below.</p>
 <p><img alt="clone repo" src="../_images/clone_repo_gui.png" /></p>
 <p>Here, she should be able to see the newly created remote repository. Now she has to decide on a local path to store this “syncing” folder and hit clone.</p>
@@ -780,14 +944,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p>We can see that the <a class="reference external" href="http://README.md">README.md</a> file which was created on the GitHub website has been cloned into Esther’s local file path.</p>
 <p><img alt="empty repo" src="../_images/empty_repo_gui.png" /></p>
 <p>Also, the GitHub application now has an interface in which Esther can make and track changes. Let’s see what happens when Esther drops her model.r file into the local foo_actuarial_model folder:</p>
-</div>
-<div class="section" id="git-add">
-<h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="git-add">
+<h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this headline">#</a></h3>
 <p><img alt="git add" src="../_images/git_add_gui.png" /></p>
 <p>We can see that the GitHub application automatically tracked all the difference within the local repository, and there is now an option to “commit” those changes. A commit is just a set of changes to a file or files within a repository. Think of it as a local “Save As” function, but way cooler sounding and every time you save, it allows you to keep records of what changes were made when and by whom. After checking through to make sure that those are indeed the files that she wants to sync, she can simply type a summary and description of the update on the bottom left of the window, and hit the “commit to master” button. (There are a set of industry best practices with regards to the format of commit messages and descriptions, but we will not go into that in this article) <br></p>
-</div>
-<div class="section" id="git-commit-and-push">
-<h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="git-commit-and-push">
+<h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this headline">#</a></h3>
 <p><img alt="git commit" src="../_images/git_commit_gui.png" /></p>
 <p>After committing the changes/ additions, she just needs to hit the “push to origin” button and the files will be synced to the online repository.</p>
 <p>Let’s go back to the GitHub website to make sure that the files were indeed synced up.</p>
@@ -796,9 +960,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Generally, contributors of any project are encouraged to keep their commits byte-sized (pun intended) and frequent instead of a sudden 2000-line commit. This way, changes are easier to track, and it gives the reviewer a lot more options for reverting to any particular previous iteration.</p>
 <p><img alt="github sync" src="../_images/github_synced.png" /></p>
 <p>Now, Esther can open that bottle of wine, relax and check back in a week while Jimmy and Michelle begin to work on the model… just kidding - being an actuarial manager, there’s another fire for her to put out elsewhere!</p>
-</div>
-<div class="section" id="branching">
-<h3>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="branching">
+<h3>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">#</a></h3>
 <p>Jimmy and Michelle, both having GitHub accounts and the desktop application, can now clone the repository (as shown before) with Esther’s model into their respective local drives to start working on it. Each of them would then proceed to create a new “branch” of the project from their respective GitHub applications.</p>
 <p><img alt="branch GUI" src="../_images/branch_gui.png" /></p>
 <p>So, what is a branch? A Git branch can be somewhat seen as parallel universes for documents. When creating a new repository, a default “Master” branch is always created. Let’s say that:</p>
@@ -811,9 +975,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p>As we can see, both Jimmy and Michelle have changed the script according to what he/ she believes the model ought to be. However, they would not be changing the original script or “Master” branch but instead, would create a new branch (which is just a copy of master) and make their changes there. Back to the parallel universe analogy, in one of the parallel universes the script remained a SLR, but in another the script would have been a GLM!</p>
 <p><img alt="different work in branches" src="../_images/digraphs.png" /></p>
 <p>So how does GitHub know which branch to make the official one on the website?</p>
-</div>
-<div class="section" id="pull-requests-and-merging">
-<h3>Pull Requests and Merging<a class="headerlink" href="#pull-requests-and-merging" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pull-requests-and-merging">
+<h3>Pull Requests and Merging<a class="headerlink" href="#pull-requests-and-merging" title="Permalink to this headline">#</a></h3>
 <p>The short answer is, it does not. Let’s initially follow Jimmy’s workflow for now. Assuming he has successfully created a new branch and made his changes to the script, he can proceed to commit and push his changes to the “Jimmy branch” normally as shown before with Esther (except that Esther was pushing to Master branch).</p>
 <p><img alt="jimmy branch" src="../_images/jimmy_branch_add.png" /></p>
 <p>Now, Jimmy’s GitHub repository page will look like this.</p>
@@ -841,9 +1005,9 @@ const thebe_selector_output = ".output, .cell_output"
 <img src="/_static/version_control_img/repo_final.png", width=450, height=450>
 </div></div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Version Control<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Version Control<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Now, the master branch will consist of <a class="reference external" href="http://model.py">model.py</a> which is a GLM model. So, you might be asking, where does the version control aspect of this tool come in? If you take a closer look at the screenshot above, you would notice “4 commits” label on the top left. If we were to click on that, it would bring us to the screen below, where we can see all previous commits made to the repository. This can also be accessed from the GitHub application under the “History” tab.</p>
 <p><img alt="commit history" src="../_images/commit_history.png" />
 <img alt="git commits" src="../_images/gitgui_commit_history.png" /></p>
@@ -854,43 +1018,43 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Revert the repository back to any of the previous states if required <br></p></li>
 </ul>
 <p>Now, Esther can rest easy knowing that any previous decisions and changes to models are saved within the Git system without cluttering up the folders in the company drives!</p>
-</div>
-</div>
-<div class="section" id="limitations-of-github">
-<h2>Limitations of GitHub<a class="headerlink" href="#limitations-of-github" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="limitations-of-github">
+<h2>Limitations of GitHub<a class="headerlink" href="#limitations-of-github" title="Permalink to this headline">#</a></h2>
 <p>All of the examples shown so far have used scripts of code, which usually are not file size intensive and, being plain text, is recognizable by GitHub. Actuaries however, deal with large spreadsheets often. Git is unable to track differences within Excel - treating them as binary files - and and has an upload size limit of 100MB. This potentially limiting its ability to version control these workbooks.</p>
-</div>
-<div class="section" id="other-tools-available">
-<h2>Other tools available<a class="headerlink" href="#other-tools-available" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="scripting">
-<h3>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="other-tools-available">
+<h2>Other tools available<a class="headerlink" href="#other-tools-available" title="Permalink to this headline">#</a></h2>
+<section id="scripting">
+<h3>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">#</a></h3>
 <p>As mentioned above, Git is the underlying version control system behind Github Destop, but there are many platforms which implement this, each with their own advantages and disadvantages. The article is only using GitHub as a specific example. The list of available GUI clients can be found <a class="reference external" href="https://git-scm.com/downloads/guis">here</a>.</p>
 <p>As an alternative to the GitHub GUI application, the Git command line interface is another popular interface. Also, many text editors like Atom (By GitHub) and VSCode will have downloadable plugins or have Git functionalities built into them, which makes the whole process more seamless when integrating into a workflow. If you are using SAS, then Git may already be built in.</p>
-</div>
-<div class="section" id="excel-spreadsheets">
-<h3>Excel Spreadsheets<a class="headerlink" href="#excel-spreadsheets" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="excel-spreadsheets">
+<h3>Excel Spreadsheets<a class="headerlink" href="#excel-spreadsheets" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Creating a “Changelog” sheet to record details of the user and the changes made if past versions are not required</p></li>
 <li><p>Using regular backups to keep older versions of the spreadsheet when changes are made</p></li>
 <li><p>Unzipping .xlsx and .xlsm files (it is little known that they are actually zip files) and using git to track the resulting plain XML text within</p></li>
 <li><p>Using xltrail (Paid solution) which uses the same Git system <br></p></li>
 </ul>
-</div>
-<div class="section" id="datasets">
-<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="datasets">
+<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Save a copy of tables to back up older versions</p></li>
 <li><p>OrpheusDB</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
 <p>It is my personal belief that, beneath all the data hype, actuaries are to some extent the data scientists for the insurance industry - as we draw out insights with financial value based on models and data - and the data science and analytics pipeline is more than just fancy machine learning algorithms.</p>
 <p>Documentation is an extremely important part of the actuarial process and as our models become more complex and too complex for excel to handle efficiently, our “housekeeping” and documentation processes must evolve alongside them.</p>
 <p>The Git system is widely used in data science to maintain robust version controls for programs and scripts and could be an invaluable tool for any actuary who works with programs and code too.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -914,9 +1078,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="MLRWP_R_DataTable.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -932,26 +1098,30 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

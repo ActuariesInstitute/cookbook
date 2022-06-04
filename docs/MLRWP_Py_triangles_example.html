@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Py: Machine Learning Triangles &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -389,114 +403,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_Py_triangles_example.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_Py_triangles_example.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_Py_triangles_example.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_Py_triangles_example.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_Py_triangles_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_Py_triangles_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_Py_triangles_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/MLRWP_Py_triangles_example.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Py: Machine Learning Triangles
@@ -783,12 +928,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Py: Machine Learning Triangles</h1>
@@ -1091,15 +1235,16 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="py-machine-learning-triangles">
-<h1>Py: Machine Learning Triangles<a class="headerlink" href="#py-machine-learning-triangles" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="py-machine-learning-triangles">
+<h1>Py: Machine Learning Triangles<a class="headerlink" href="#py-machine-learning-triangles" title="Permalink to this headline">#</a></h1>
 <p><em>This article was originally created by Jacky Poon and Grainne McGuire, and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>In this article we look at applying different machine learning (ML) models to a data set.
 Our goal is to illustrate a work flow for:</p>
 <ul class="simple">
@@ -1111,21 +1256,21 @@ Our goal is to illustrate a work flow for:</p>
 <p>A secondary goal is to demonstrate the utility of a multi-model machine learning framework which enables the user to easily “plug and play” different machine learning models within the same framework.</p>
 <p>We use the <strong>scikit-learn</strong> in Python here. Followers of the blog may see significant similarities with the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-mlr3example/">earlier <strong>mlr3</strong> article for R users</a>, except this article uses Python.</p>
 <p>You can download this notebook <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/f_notebooks/ML_triangles_example.ipynb">here</a> and run it on your local machine, or on a cloud service like Google Colab. If you are looking at such a downloaded copy, find the Machine Learning for Reserving blog <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">here</a>.</p>
-<div class="section" id="who-is-this-article-aimed-at">
-<h2>Who is this article aimed at?<a class="headerlink" href="#who-is-this-article-aimed-at" title="Permalink to this headline">¶</a></h2>
+<section id="who-is-this-article-aimed-at">
+<h2>Who is this article aimed at?<a class="headerlink" href="#who-is-this-article-aimed-at" title="Permalink to this headline">#</a></h2>
 <p>This article is aimed to Python users who know a little about some of the standard machine learning models, but who may not have done much hands-on analysis work. It will also be useful for those who have done some experimentation, but maybe not on a reserving data set.</p>
-</div>
-<div class="section" id="pre-requisites-to-this-article">
-<h2>Pre-requisites to this article<a class="headerlink" href="#pre-requisites-to-this-article" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pre-requisites-to-this-article">
+<h2>Pre-requisites to this article<a class="headerlink" href="#pre-requisites-to-this-article" title="Permalink to this headline">#</a></h2>
 <p>We’ve tried to make this article accessible to people new to ML, and to make this article stand-alone. Having some knowledge about basic machine learning techniques like decision trees, random forests and gradient boosting will help. Furthermore, we also fit the Chain Ladder model as a GLM (sometimes referred to as a Stochastic Chain Ladder) and fit a particular type of LASSO model. We’ve included limited details on these models here. Although our previous blog posts are in R, they have more details on the background of these:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/glms/">Reserving with GLMs</a></p></li>
 <li><p><a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-lasso/">Self-assembling claim reserving models using the LASSO</a></p></li>
 </ul>
 <p>We also fit some simple neural network models in this Python version.</p>
-</div>
-<div class="section" id="the-data-set">
-<h2>The data set<a class="headerlink" href="#the-data-set" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-data-set">
+<h2>The data set<a class="headerlink" href="#the-data-set" title="Permalink to this headline">#</a></h2>
 <p>Our example deals with using ML to set reserves for a single aggregate 40x40 triangle. We’ve selected the data set because:</p>
 <ul class="simple">
 <li><p>It’s small, so the code will run relatively quickly on your machine - there’s nothing worse than running through a worked example and having to wait hours for results!</p></li>
@@ -1138,21 +1283,21 @@ Our goal is to illustrate a work flow for:</p>
 <li><p>We can share the data set with you.</p></li>
 </ul>
 <p>The data set used is simulated data set 3 from the paper <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">Self-assembling insurance claim models using regularized regression and machine learning</a>. This is a 40x40 triangle of incremental quarterly payments over 10 years. Variables on the data set are accident, development and calendar quarters only. A copy of the data set is available <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata3.csv">here</a>.</p>
-</div>
-<div class="section" id="machine-learning-and-aggregate-triangles">
-<h2>Machine learning and aggregate triangles<a class="headerlink" href="#machine-learning-and-aggregate-triangles" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="machine-learning-and-aggregate-triangles">
+<h2>Machine learning and aggregate triangles<a class="headerlink" href="#machine-learning-and-aggregate-triangles" title="Permalink to this headline">#</a></h2>
 <p>Typically, ML and big data go hand-in-hand. By big data we mean lots of observations and lots of features (covariates / independent variables / regressors). Aggregate triangles are small in both senses - small numbers of observations and limited features (often just the 3 time features of accident/underwriting period, development period and calendar period).</p>
 <p>This is not to say that it is invalid to use machine learning for aggregate triangles - many people have demonstrated good results from machine learning for such data - there are many papers on this topic. But it’s also true that an experienced actuary using a Chainladder model (or other traditional) method, overlaid with judgement, will often get a similar answer to the best ML method, even for a complex triangle. However ML may be a more efficient way of getting to an answer. In the worked example below, we use a data set which deviates significantly from Chainladder assumptions. Therefore the unadjusted Chainladder projection is quite poor and would need a significant investment of time to yield a better model. In contrast, the better performing ML models we looked at have a better first estimate, so may not require as much intervention to produce a final estimate, thereby leading to a time-saving.</p>
-</div>
-<div class="section" id="don-t-rank-the-ml-models-used-based-on-this-example">
-<h2>Don’t rank the ML models used based on this example<a class="headerlink" href="#don-t-rank-the-ml-models-used-based-on-this-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="don-t-rank-the-ml-models-used-based-on-this-example">
+<h2>Don’t rank the ML models used based on this example<a class="headerlink" href="#don-t-rank-the-ml-models-used-based-on-this-example" title="Permalink to this headline">#</a></h2>
 <p>The purpose of this article is to demonstrate a workflow for fitting ML models in R. While we’ve done some work to improve model fitting, there are a lot more things we would consider if we were looking for the best models (e.g. feature engineering, train/test splits, performance measures). So, although we do look at the relative performance of the different models at the end, you should not make any conclusions about the relative performance of the different ML methods based on this work.</p>
 <p>You may find that by adjusting some hyper-parameters, or by revising the training/test data set split, you’re able to find better models.
 We’ll be discussing this point a bit further at the end of the article.</p>
 <p><em>A priori</em>, given the form of the data (simulated using a regression style structure) and that the LASSO model we used is based on previous work which did aim to establish a framework to fit good models to triangular data using the LASSO, we expected that the LASSO model would perform the best and (spoiler alert!) it did.</p>
-</div>
-<div class="section" id="the-scikit-learn-package">
-<h2>The scikit-learn package<a class="headerlink" href="#the-scikit-learn-package" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-scikit-learn-package">
+<h2>The scikit-learn package<a class="headerlink" href="#the-scikit-learn-package" title="Permalink to this headline">#</a></h2>
 <p>One strength of using Python for machine learning is the consistency in input specifications for data. The Python community have generally coalesced onto <strong>pandas</strong> for data frames, <strong>numpy</strong> for matrices and <strong>scikit-learn</strong> for machine learning.</p>
 <p>The benefit of these is apparent - set up the data in the aggregator and then switch models in and out at will.</p>
 <p>As a rough rule of thumb, when working with <strong>scikit-learn</strong> we:</p>
@@ -1169,9 +1314,9 @@ We’ll be discussing this point a bit further at the end of the article.</p>
 </ul>
 <p>When using Python code, your code editor may also display help and documentation (via “docstrings”). You can also get inline help by using the <code class="docutils literal notranslate"><span class="pre">help()</span></code> function on an object. This will bring you to help pages.</p>
 <p>E.g. <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sklearn;</span> <span class="pre">help(sklearn)</span></code> with get you help on sklearn in general.</p>
-</div>
-<div class="section" id="ml-methods-used">
-<h2>ML methods used<a class="headerlink" href="#ml-methods-used" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ml-methods-used">
+<h2>ML methods used<a class="headerlink" href="#ml-methods-used" title="Permalink to this headline">#</a></h2>
 <p>We’ve looked at the following methods:</p>
 <ul class="simple">
 <li><p>Decision trees</p></li>
@@ -1181,10 +1326,10 @@ We’ll be discussing this point a bit further at the end of the article.</p>
 <li><p>Chainladder - or rather, a GLM which is set up to replicate the chain ladder estimates (refer to this <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/glms/">post</a> for more details)</p></li>
 <li><p>LASSO</p></li>
 </ul>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="outline-of-the-workflow">
-<h1>Outline of the workflow<a class="headerlink" href="#outline-of-the-workflow" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="outline-of-the-workflow">
+<h1>Outline of the workflow<a class="headerlink" href="#outline-of-the-workflow" title="Permalink to this headline">#</a></h1>
 <p>The workflow we have set up consists of the following:</p>
 <ul class="simple">
 <li><p>Prepare the data for use in the models, including train and test partitions (past data) and hold-out or validation partitions (future data).</p></li>
@@ -1198,9 +1343,9 @@ We’ll be discussing this point a bit further at the end of the article.</p>
 <li><p>Run diagnostics on the predicted values for each model and look at the reserve estimates.</p></li>
 </ul>
 <p>We’ll now work through each of the stages below.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h1>
 <p>The first step is to import all the packages required for this work (and install them first if needed).</p>
 <p>This session uses <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>.</p>
 <p>The versions are shown below. If you are having problems running our code, check that your packages are the same as ours and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span></code> upgrade / downgrade them if needed.</p>
@@ -1344,9 +1489,9 @@ Required-by: seaborn
 </div>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="data-preparation">
-<h1>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+<h1>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h1>
 <p>We’re using a simulated data triangle with all values (past and future).</p>
 <p><img alt="past and future" src="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-07-mlr3example/index_files/figure-html/unnamed-chunk-3-1.png" /></p>
 <p>The data set we use is the simulated data set 3 from this <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">paper</a>.
@@ -1359,12 +1504,12 @@ It is available in CSV form <a class="reference external" href="https://institut
 <li><p>Have a step-up in payment size for accident quarters &gt; 16 and development quarters &gt; 20.</p></li>
 </ul>
 <p>The first two effects are captured by a Chainladder model but the last two effects depart from Chainladder assumptions.</p>
-<div class="section" id="the-pandas-package">
-<h2>The pandas package<a class="headerlink" href="#the-pandas-package" title="Permalink to this headline">¶</a></h2>
+<section id="the-pandas-package">
+<h2>The pandas package<a class="headerlink" href="#the-pandas-package" title="Permalink to this headline">#</a></h2>
 <p>We’ll be using the <strong>pandas</strong> package for manipulating the data. There’s an introduction to <strong>pandas</strong> on its <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html">website</a> if you are unfamiliar with it.</p>
-</div>
-<div class="section" id="load-the-data">
-<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="load-the-data">
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
 <p>First, load in the data and have a look at it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1502,9 +1647,9 @@ It’s likely, therefore, that the main differentiator between the performance o
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="train-and-test">
-<h2>Train and Test<a class="headerlink" href="#train-and-test" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="train-and-test">
+<h2>Train and Test<a class="headerlink" href="#train-and-test" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
@@ -1519,10 +1664,10 @@ It’s likely, therefore, that the main differentiator between the performance o
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="tuning-process-for-hyper-parameters">
-<h1>Tuning process for hyper-parameters<a class="headerlink" href="#tuning-process-for-hyper-parameters" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuning-process-for-hyper-parameters">
+<h1>Tuning process for hyper-parameters<a class="headerlink" href="#tuning-process-for-hyper-parameters" title="Permalink to this headline">#</a></h1>
 <p>Machine learning models have a number of hyper-parameters that control the model fit.
 Tweaking the hyper-parameters that control model fitting (e.g. for decision trees, the depth of the tree, or for random forests, the number of trees to average over) can have a significant impact on the quality of the fit.
 The standard way of doing this is to use a train and test data set where:</p>
@@ -1536,8 +1681,8 @@ Usually we would then select the hyper-parameters that lead to the best results 
 <p>There are various ways we can select the test and train data sets.
 For this work we use cross-validation. We’ll give a brief overview of it below.
 Note that we will be discussing validation options in a separate article.</p>
-<div class="section" id="cross-validation">
-<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
+<section id="cross-validation">
+<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h2>
 <p>The simplest implementation of a train and test partition is a random one where each point in the data set is allocated to train and test at random.
 Typically, the train part might be around 70-80% of the data and the test part the remainder.</p>
 <p><strong>Random test data set</strong></p>
@@ -1555,27 +1700,27 @@ Typically, the train part might be around 70-80% of the data and the test part t
 <p><img alt="n-fold CV" src="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-07-mlr3example/index_files/figure-html/unnamed-chunk-14-1.png" /></p>
 <p>Cross-validation provides an estimate of out-of-sample performance even though all the data is used for training and testing.
 It is often considered more robust due to its use of the full dataset for testing, but can be computationally expensive for larger datasets. Here we only have a small amount of data, so there is an advantage to using the full dataset, whilst the computational cost is manageable.</p>
-</div>
-<div class="section" id="cross-validation-in-scikit-learn">
-<h2>Cross-validation in scikit-learn<a class="headerlink" href="#cross-validation-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cross-validation-in-scikit-learn">
+<h2>Cross-validation in scikit-learn<a class="headerlink" href="#cross-validation-in-scikit-learn" title="Permalink to this headline">#</a></h2>
 <p>We will be setting up cross-validation resamplers in scikit-learn to apply to our models and find optimal hyper-parameters. As always, the documentation for <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross validation</a>, <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_grid_search_digits.html">grid search CV</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html">random search CV</a> are useful starting reference point.</p>
 <p>Here we will use 6-fold cross validation. As applied to our triangles, it will look something like this, where the yellow points are the training data and the blue the test data in each fold:</p>
 <p><img alt="6-fold-on-triangle" src="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-07-mlr3example/index_files/figure-html/unnamed-chunk-17-1.png" /></p>
-</div>
-<div class="section" id="performance-measure">
-<h2>Performance measure<a class="headerlink" href="#performance-measure" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="performance-measure">
+<h2>Performance measure<a class="headerlink" href="#performance-measure" title="Permalink to this headline">#</a></h2>
 <p>During the cross-validation process, we need to have a performance measure to optimise.</p>
 <p>Here we will use RMSE (root mean square error).</p>
-</div>
-<div class="section" id="searching-hyper-parameter-space">
-<h2>Searching hyper-parameter space<a class="headerlink" href="#searching-hyper-parameter-space" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="searching-hyper-parameter-space">
+<h2>Searching hyper-parameter space<a class="headerlink" href="#searching-hyper-parameter-space" title="Permalink to this headline">#</a></h2>
 <p>Searching hyper-parameter space needs to be customised to each model, so we can’t set up a common framework here. However, to control computations, it is useful to set a limit on the number of searches that can be performed in a tuning exercise.</p>
 <p>Given how we set up the tuning process below we need 25 evaluations for the decision tree and random forest models. We need many more evaluations for the GBM model since we tune more parameters. However, this can take a long time to run. In practice, using a more powerful computer, or running things in parallel can help.</p>
 <p>So we’ve set the number of evaluations to a low number here (25).</p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="fitting-some-ml-models">
-<h1>Fitting some ML models<a class="headerlink" href="#fitting-some-ml-models" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="fitting-some-ml-models">
+<h1>Fitting some ML models<a class="headerlink" href="#fitting-some-ml-models" title="Permalink to this headline">#</a></h1>
 <p>Now it’s time to fit and tune the following ML models using <strong>scikit-learn</strong>:</p>
 <ul class="simple">
 <li><p>Decision tree</p></li>
@@ -1583,14 +1728,14 @@ It is often considered more robust due to its use of the full dataset for testin
 <li><p>Gradient boosting machines (GBM)</p></li>
 <li><p>Neural Network</p></li>
 </ul>
-<div class="section" id="decision-tree">
-<h2>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h2>
+<section id="decision-tree">
+<h2>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">#</a></h2>
 <p>A decision tree is unlikely to be a very good model for this data, and tuning often doesn’t help much.
 Nonetheless, it’s a simple model, so it’s useful to fit it to see what happens.</p>
 <p>To illustrate the use of scikit-learn, we’ll first show how to fit a model using the default hyper-parameters.
 We’ll then move onto the code needed to run hyper-parameter tuning using cross-validation.</p>
-<div class="section" id="fitting-a-single-model">
-<h3>Fitting a single model<a class="headerlink" href="#fitting-a-single-model" title="Permalink to this headline">¶</a></h3>
+<section id="fitting-a-single-model">
+<h3>Fitting a single model<a class="headerlink" href="#fitting-a-single-model" title="Permalink to this headline">#</a></h3>
 <p>First let’s fit a simple decision tree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1633,9 +1778,9 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 </div>
 </div>
 <p>Let’s try tuning the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and ‘ccp_alpha’ parameters.</p>
-</div>
-<div class="section" id="tuning-the-decision-tree">
-<h3>Tuning the decision tree<a class="headerlink" href="#tuning-the-decision-tree" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tuning-the-decision-tree">
+<h3>Tuning the decision tree<a class="headerlink" href="#tuning-the-decision-tree" title="Permalink to this headline">#</a></h3>
 <p>To set up the tuning we need to specify:</p>
 <ul class="simple">
 <li><p>The ranges of values to search over</p></li>
@@ -1720,10 +1865,10 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <p>This model is much more complicated than the original and looks overfitted - we’ll see if this is the case when we evaluate the model performance later in the article.</p>
-</div>
-</div>
-<div class="section" id="random-forest-fitting">
-<h2>Random forest fitting<a class="headerlink" href="#random-forest-fitting" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="random-forest-fitting">
+<h2>Random forest fitting<a class="headerlink" href="#random-forest-fitting" title="Permalink to this headline">#</a></h2>
 <p>The random forest model for regression is <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.RandomForestRegressor</span></code>.</p>
 <p>Let’s have a look at the hyper-parameters.</p>
 <div class="cell docutils container">
@@ -1801,9 +1946,9 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="gbm">
-<h2>GBM<a class="headerlink" href="#gbm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="gbm">
+<h2>GBM<a class="headerlink" href="#gbm" title="Permalink to this headline">#</a></h2>
 <p>There are two GBM implementations in <strong>scikit-learn</strong>. The first is <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.GradientBoostingRegressor</span></code> which implements a “traditional” GBM.</p>
 <p>The other is <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.HistGradientBoostingRegressor</span></code> which implements a number of performance tricks to speed up model fitting, similar to <code class="docutils literal notranslate"><span class="pre">LightGBM</span></code> or the fast histogram method in <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code>. This is considered an experimental feature with the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> version we are using.</p>
 <p>Here are the GBM parameters.</p>
@@ -2009,9 +2154,9 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="neural-network">
-<h2>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="neural-network">
+<h2>Neural Network<a class="headerlink" href="#neural-network" title="Permalink to this headline">#</a></h2>
 <p>Neural networks - also known as deep learning models - are models based on interconnected neurons which take in inputs, apply a function and produce outputs used by other neurons, ultimately to predict response variables.</p>
 <p>In the <strong>R</strong> article with <strong>mlr3</strong> we skipped neural networks as these required keras which can be a little tricky to install. However, <strong>scikit-learn</strong> includes a simple <a class="reference external" href="https://scikit-learn.org/stable/modules/neural_networks_supervised.html">Multi-layer Perceptron</a> model so we will try that here.</p>
 <p>This is a simple feedforward model where each layer is connected in order.</p>
@@ -2122,14 +2267,14 @@ Another possible choice is Bayesian optimisation search.</p>
 <li><p>a Chainladder model</p></li>
 <li><p>a LASSO model</p></li>
 </ul>
-</div>
-<div class="section" id="chainladder-the-baseline-model">
-<h2>Chainladder - the baseline model<a class="headerlink" href="#chainladder-the-baseline-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="chainladder-the-baseline-model">
+<h2>Chainladder - the baseline model<a class="headerlink" href="#chainladder-the-baseline-model" title="Permalink to this headline">#</a></h2>
 <p>Since this is a traditional triangle, it seems natural to compare any results to the Chainladder result. So here, we will get the predicted values and reserve estimate for the Chainladder model.</p>
 <p>It’s important to note that we will just use a volume-all Chainladder (i.e. include all periods in the estimation of the development factors) and will not attempt to impose any judgement over the results. In practice, of course, models like the Chainladder are often subject to additional analysis, reasonableness tests and manual assumption selections, so it’s likely the actual result would be different, perhaps significantly, from that returned here.</p>
 <p>At the same time, no model, whether it be the Chainladder, or a more sophisticated ML model should be accepted without further testing, so on that basis, comparing Chainladder and ML results without modification is a reasonable thing to do. Better methods should require less human intervention to return a reasonable result.</p>
-<div class="section" id="getting-the-chainladder-reserve-estimates">
-<h3>Getting the Chainladder reserve estimates<a class="headerlink" href="#getting-the-chainladder-reserve-estimates" title="Permalink to this headline">¶</a></h3>
+<section id="getting-the-chainladder-reserve-estimates">
+<h3>Getting the Chainladder reserve estimates<a class="headerlink" href="#getting-the-chainladder-reserve-estimates" title="Permalink to this headline">#</a></h3>
 <p>The Chainladder reserve can also be calculated using a GLM with:</p>
 <ul class="simple">
 <li><p>Accident and development factors</p></li>
@@ -2167,10 +2312,10 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="lasso-regularised-regression">
-<h2>LASSO (regularised regression)<a class="headerlink" href="#lasso-regularised-regression" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="lasso-regularised-regression">
+<h2>LASSO (regularised regression)<a class="headerlink" href="#lasso-regularised-regression" title="Permalink to this headline">#</a></h2>
 <p>Finally, we will use the LASSO to fit a model. We are going to fit the same model as we did in our previous <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-lasso/">post</a>. We’ll include a bare-bones description of the model here. If you haven’t seen it before, then you may want to just take the model as given and skip ahead to the next section. Once you’ve read this entire article you may then wish to read the post on the LASSO model to understand the specifics of this model.</p>
 <p>The main things to note about this model are:</p>
 <ul class="simple">
@@ -2179,8 +2324,8 @@ Another possible choice is Bayesian optimisation search.</p>
 <li><p>We need to create a model that contains these basis functions as features.</p></li>
 <li><p>We then need to fit and predict using the values for a particular penalty setting (the regularisation parameter) - following the paper, we use the penalty value that leads to the lowest cross-validation error.</p></li>
 </ul>
-<div class="section" id="basis-functions">
-<h3>Basis functions<a class="headerlink" href="#basis-functions" title="Permalink to this headline">¶</a></h3>
+<section id="basis-functions">
+<h3>Basis functions<a class="headerlink" href="#basis-functions" title="Permalink to this headline">#</a></h3>
 <p>The first step is to create all the basis functions that we need. The functions below create the ramp and step functions needed (over 4000 of these!). The end result is a data.table of the original payments and all the basis functions. As noted above, all the details are in the blog post and paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2977,9 +3122,9 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="setup-for-lasso">
-<h3>Setup for LASSO<a class="headerlink" href="#setup-for-lasso" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="setup-for-lasso">
+<h3>Setup for LASSO<a class="headerlink" href="#setup-for-lasso" title="Permalink to this headline">#</a></h3>
 <p>First we need to set up the data for the model. This differs from the tree-based models task as follows in that the input variables are all the basis functions we created and not the raw accident / development / calendar quarter terms - the <code class="docutils literal notranslate"><span class="pre">dat_plus</span></code> data.table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2990,9 +3135,9 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="diy-glmnet-with-pytorch">
-<h3>DIY GLMnet with Pytorch<a class="headerlink" href="#diy-glmnet-with-pytorch" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="diy-glmnet-with-pytorch">
+<h3>DIY GLMnet with Pytorch<a class="headerlink" href="#diy-glmnet-with-pytorch" title="Permalink to this headline">#</a></h3>
 <p>The results will not be identical to those in the paper since the Python implementation is different and uses different hyper-parameters.</p>
 <p>We want to use GLM with LASSO regularization and CV, but at the time of writing, the implementation in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> has major limitations.</p>
 <p>The <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html">PoissonRegressor</a> does not have “warm restarts” which allows re-using the coefficients as it tests through different regularisation factors, so CV is slow. More importantly, its <code class="docutils literal notranslate"><span class="pre">alpha</span></code> regularization parameter is a l2 ridge regression penalty, not the l1 LASSO penalty.</p>
@@ -3206,9 +3351,9 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="previous-best-fit">
-<h3>Previous best fit<a class="headerlink" href="#previous-best-fit" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="previous-best-fit">
+<h3>Previous best fit<a class="headerlink" href="#previous-best-fit" title="Permalink to this headline">#</a></h3>
 <p>So, can we replicate the previously tuned model from R in Python?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3234,9 +3379,9 @@ Ran in 64.2999 seconds
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Cross Validation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Cross Validation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>With our new Regressor we can now do CV with something that resembles warm starts by putting an initial fit (here we will recycle the previous best GLM from R) as the starting weights for the search.</p>
 <p>The key parameter to tune in lasso is the regularisation penalty. With <strong>glmnet</strong> in R and in most academic literature, this is typically called <code class="docutils literal notranslate"><span class="pre">lambda</span></code>. However, with scikit-learn in Python, with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> being a reserved keyword for anonymous functions, we will call the same parameter <code class="docutils literal notranslate"><span class="pre">l1_penalty</span></code>.</p>
 <p>With our DIY “semi warm start” the training is faster but still takes a while. To keep a reasonable running time for running the example we will keep it to ten runs near the optimal lambda from the R run, but if we were building the model from scratch we would be testing many more values of lambda.</p>
@@ -3362,14 +3507,14 @@ Ran in 34.7665 seconds
 </div>
 </div>
 <p>We arrive back at the original value of <code class="docutils literal notranslate"><span class="pre">lambda</span></code>.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="model-analysis">
-<h1>Model analysis<a class="headerlink" href="#model-analysis" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="model-analysis">
+<h1>Model analysis<a class="headerlink" href="#model-analysis" title="Permalink to this headline">#</a></h1>
 <p>This is the interesting bit - let’s look at all the models to see how they’ve performed (but remember not to draw too many conclusions about model performance from this example as discussed earlier!).</p>
-<div class="section" id="consolidate-results">
-<h2>Consolidate results<a class="headerlink" href="#consolidate-results" title="Permalink to this headline">¶</a></h2>
+<section id="consolidate-results">
+<h2>Consolidate results<a class="headerlink" href="#consolidate-results" title="Permalink to this headline">#</a></h2>
 <p>Now we will consolidate results for these models. We will gather together:</p>
 <ul class="simple">
 <li><p>RMSE for past and future data</p></li>
@@ -3665,9 +3810,9 @@ Ran in 34.7665 seconds
 <p>1600 rows × 17 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="rmse">
-<h2>RMSE<a class="headerlink" href="#rmse" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rmse">
+<h2>RMSE<a class="headerlink" href="#rmse" title="Permalink to this headline">#</a></h2>
 <p>We are going to do these calculations by using the <strong>scikit-learn</strong> benchmark tools. Since the LASSO model is the only one using the <strong>plus</strong> datasets, we will use that as the starting example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3859,13 +4004,13 @@ Ran in 34.7665 seconds
 <p>The LASSO model performs the best. The CV tuned model is pretty similar to the previous model from the R run.</p>
 <p>The histogram GBM model follows. The “previously tuned” version has essentially identical performance to the XGBoost model from the R version of this article.</p>
 <p>The simple neural network follows that.</p>
-</div>
-<div class="section" id="visualising-the-fit">
-<h2>Visualising the fit<a class="headerlink" href="#visualising-the-fit" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visualising-the-fit">
+<h2>Visualising the fit<a class="headerlink" href="#visualising-the-fit" title="Permalink to this headline">#</a></h2>
 <p>Although useful, the RMSE is just a single number so it’s helpful to visualise the fit.
 In particular, because these are models for a reserving data set, we can take advantage of that structure when analysing how well each model is performing.</p>
-<div class="section" id="fitted-values">
-<h3>Fitted values<a class="headerlink" href="#fitted-values" title="Permalink to this headline">¶</a></h3>
+<section id="fitted-values">
+<h3>Fitted values<a class="headerlink" href="#fitted-values" title="Permalink to this headline">#</a></h3>
 <p>First, lets show visualise the fitted payments.
 The graphs below show the log(fitted values), or log(payments) in the case of the actual values.</p>
 <div class="cell docutils container">
@@ -3907,9 +4052,9 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 <li><p>The LASSO and neural network fits are the smoothest, which is not surprising since it consists of continuous functions.</p></li>
 <li><p>Visually, the LASSO seems to capture the interaction the best.</p></li>
 </ul>
-</div>
-<div class="section" id="actual-vs-fitted-heat-maps">
-<h3>Actual vs Fitted heat maps<a class="headerlink" href="#actual-vs-fitted-heat-maps" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="actual-vs-fitted-heat-maps">
+<h3>Actual vs Fitted heat maps<a class="headerlink" href="#actual-vs-fitted-heat-maps" title="Permalink to this headline">#</a></h3>
 <p>We can also look at the model fits via heat maps of the actual/fitted values.</p>
 <p>For triangular reserving data, these types of plots are very helpful when examining plot fit.</p>
 <p>First, here’s a function to draw the heatmaps.</p>
@@ -3947,9 +4092,9 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 </div>
 </div>
 <p>All models have shortcomings, but the LASSO and previously tuned XGBoost models outperform the others.</p>
-</div>
-<div class="section" id="quarterly-tracking">
-<h3>Quarterly tracking<a class="headerlink" href="#quarterly-tracking" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="quarterly-tracking">
+<h3>Quarterly tracking<a class="headerlink" href="#quarterly-tracking" title="Permalink to this headline">#</a></h3>
 <p>Finally, we will look at the predictions for specific parts of the data set.
 Quarterly tracking graphs:</p>
 <ul class="simple">
@@ -4088,11 +4233,11 @@ We’ll wrap this in another function since we want to call this for a few diffe
 </div>
 </div>
 <p>Again, the LASSO, the histogram GBM, and neural network are all able to capture the trend.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="reserves">
-<h1>Reserves<a class="headerlink" href="#reserves" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reserves">
+<h1>Reserves<a class="headerlink" href="#reserves" title="Permalink to this headline">#</a></h1>
 <p>Finally, we’ll look at the reserve estimates from the different models:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4215,9 +4360,9 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p>The overall reserve for the Chain Ladder model hides the fact that this result is actually significant under-estimation in most accident quarters balanced by significant over-estimation in the last.</p>
 <p>The neural network seems to be underfit overall, whilst the flat line projections by the decision tree, random forest and classic GBM are too conservative.</p>
 <p>Taking this into account, the best performers on this basis are the LASSO followed by the histogram GBM.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="commentary">
-<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="commentary">
+<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">#</a></h1>
 <p>What’s going on with the results? Can we improve matters?</p>
 <p>Success in machine learning often comes down to optimising the following:</p>
 <ul class="simple">
@@ -4226,8 +4371,8 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <li><p>Your performance measure</p></li>
 <li><p>Your train/test split.</p></li>
 </ul>
-<div class="section" id="models">
-<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<section id="models">
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">#</a></h2>
 <p><strong>scikit-learn</strong> is incredibly convenient in that it gives access to so many different models. The Python syntax is also quite clean and easy to use compared to R.</p>
 <p>But we ran into some limitations:</p>
 <ul class="simple">
@@ -4236,13 +4381,13 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <li><p>The histogram GBM held up well well. There are many more customisable functionality if we were to use XGBoost, LightGBM or CatBoost, but the performance was similar to the two XGBoost models from the R version.</p></li>
 <li><p>Similarly the neural network is quite basic with the notable absence of the selection of activation functions. The target transform is a workaround but a full-featured package like <strong>tensorflow</strong> or <strong>pytorch</strong> may do better.</p></li>
 </ul>
-</div>
-<div class="section" id="additional-features">
-<h2>Additional Features<a class="headerlink" href="#additional-features" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="additional-features">
+<h2>Additional Features<a class="headerlink" href="#additional-features" title="Permalink to this headline">#</a></h2>
 <p>More complex models such as GBMs and Neural Networks tend to perform better with bigger datasets. Our datasets in the example only include three factors - only two if you consider calendar quarter is just accident plus development. In real-world examples, you should be able to augment with additional rating factors or claims features to get a more predictive result.</p>
-</div>
-<div class="section" id="tuning-method-and-cross-validation">
-<h2>Tuning Method and Cross Validation<a class="headerlink" href="#tuning-method-and-cross-validation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tuning-method-and-cross-validation">
+<h2>Tuning Method and Cross Validation<a class="headerlink" href="#tuning-method-and-cross-validation" title="Permalink to this headline">#</a></h2>
 <p>As we noted earlier, there are a few components of randomness from one run to another, with different seeds:</p>
 <ol class="simple">
 <li><p>The cross validation folds will be different</p></li>
@@ -4250,8 +4395,8 @@ We’ll wrap this in another function since we want to call this for a few diffe
 </ol>
 <p>For a small data set like this one, this has the potential to alter the results - afterall, getting a good result on the future data depends on whether the tuning gets lucky in terms of estimating the magnitude of the interaction.</p>
 <p>We could reduce the variability by using a grid-search over a fixed set of parameters but - full disclosure - that led to even worse results.</p>
-<div class="section" id="so-what-s-going-on">
-<h3>So what’s going on?<a class="headerlink" href="#so-what-s-going-on" title="Permalink to this headline">¶</a></h3>
+<section id="so-what-s-going-on">
+<h3>So what’s going on?<a class="headerlink" href="#so-what-s-going-on" title="Permalink to this headline">#</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>It might be helpful to have another look at folds used in a cross-validation search.
 </pre></div>
 </div>
@@ -4259,21 +4404,21 @@ We’ll wrap this in another function since we want to call this for a few diffe
 The grey rectangle marks the interaction. These are actually the folds used in the R article; the folds used here will be different in specifics, but the same general ideas hold.</p>
 <p><img alt="interaction compared to available triangle" src="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-07-mlr3example/index_files/figure-html/unnamed-chunk-65-1.png" /></p>
 <p>The first thing that is apparent is that the interaction only applies to a very small number of points (10) in the past data. So in that sense, it’s quite remarkable that the models perform as well as they actually do - they all detect the interaction. Where they start to slip up is that they do not necessarily follow the development quarter shape in the tail.</p>
-</div>
-<div class="section" id="finer-fine-tuning">
-<h3>Finer fine-tuning<a class="headerlink" href="#finer-fine-tuning" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="finer-fine-tuning">
+<h3>Finer fine-tuning<a class="headerlink" href="#finer-fine-tuning" title="Permalink to this headline">#</a></h3>
 <p>It should be noted that to cut down the run time of this example, we only tuned over 25 sets of parameters for each model, kept models coarse via less trees, less rounds, less neurons, higher learn rates, and used five-fold cross-validation. Performance can possibly be improved by tuning over more sets of parameters, bigger models, and higher fold count CV.</p>
-</div>
-<div class="section" id="time-based-hold-out-testing">
-<h3>Time-based hold-out testing<a class="headerlink" href="#time-based-hold-out-testing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="time-based-hold-out-testing">
+<h3>Time-based hold-out testing<a class="headerlink" href="#time-based-hold-out-testing" title="Permalink to this headline">#</a></h3>
 <p>Reserving is a forecasting problem - we have a time series of payments and we want to forecast into the future.</p>
 <p>This suggests that cross-validation may not be an ideal method for tuning reserving models - we would be better with a train/test split where the test data is in the future relative to the past data.</p>
 <p>This problem has been discussed in the context of time series modelling, where the use of rolling window cross-validation techniques has been advocated. We’ll be discussing this in a future article.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
 <p>We set out to demonstrate how to fit a number of reserving models to a data set.
 Our results have been mixed - but we expected that in advance.
 This work lays a baseline for our upcoming articles where we will look at ways of improving the results through:</p>
@@ -4281,8 +4426,8 @@ This work lays a baseline for our upcoming articles where we will look at ways o
 <li><p>expanding the range of models</p></li>
 <li><p>considering more appropriate validation techniques.</p></li>
 </ul>
-<div class="section" id="what-next">
-<h2>What next?<a class="headerlink" href="#what-next" title="Permalink to this headline">¶</a></h2>
+<section id="what-next">
+<h2>What next?<a class="headerlink" href="#what-next" title="Permalink to this headline">#</a></h2>
 <p>You can try running this code and changing some things - e.g. the hyper-parameters tuned, search strategy, number of iterations etc.</p>
 <p>For those looking to use <strong>scikit-learn</strong>, it is worthwhile to read about some other limitations of the models <a class="reference external" href="https://ryxcommar.com/2019/08/30/scikit-learns-defaults-are-wrong/">here</a>.</p>
 <p>You can also try other data sets as described in the <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">LASSO paper</a>  by changing <code class="docutils literal notranslate"><span class="pre">dataset_number</span></code> near the start of the code. More details are in the paper, but in brief:</p>
@@ -4293,8 +4438,8 @@ This work lays a baseline for our upcoming articles where we will look at ways o
 <li><p>Data set 4 = data set 2 but where the strength of the calendar period effect varies by development period.</p></li>
 </ul>
 <p>There will be more Python content coming out on the blog, so keep an eye out for further <strong>developments</strong>!</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -4318,9 +4463,11 @@ This work lays a baseline for our upcoming articles where we will look at ways o
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="MLRWP_R_mlr3.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -4336,26 +4483,30 @@ This work lays a baseline for our upcoming articles where we will look at ways o
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

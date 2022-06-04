@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>R: Reserving with GLMs &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -391,114 +405,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_GLMs.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_GLMs.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_GLMs.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_GLMs.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_GLMs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_GLMs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_GLMs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/MLRWP_R_GLMs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -611,12 +756,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>R: Reserving with GLMs</h1>
@@ -745,11 +889,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="r-reserving-with-glms">
-<h1>R: Reserving with GLMs<a class="headerlink" href="#r-reserving-with-glms" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="r-reserving-with-glms">
+<h1>R: Reserving with GLMs<a class="headerlink" href="#r-reserving-with-glms" title="Permalink to this headline">#</a></h1>
 <p><em>This article was originally created by Grainne McGuire and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
 <p>An aim of the MLR working party is to promote the use of machine learning (ML) in reserving.
 So why then are we talking about using GLMs for reserving?
@@ -757,8 +902,8 @@ Well, as noted in our <a class="reference external" href="https://institute-and-
 <p>This is longer than many of our recent articles.
 However, this is because it contains a full worked example of the modelling and reserving process for a data set - as per the objectives of the working party, we want to include practical coding examples in our articles.
 There are also some concluding comments about the wider applicability of this type of process.</p>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>The first time I did a reserving job (back in 2001) I used GLMs.
 Coming from a statistical background and being new to the actuarial workplace at the time, this didn’t seem unusual to me.
 Since then, most of my reserving jobs have used GLMs - personally I find it a lot easier and less error-prone than working with excel templates.
@@ -791,9 +936,9 @@ Loading required package: viridisLite
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
 <p>The data used here were sourced from the Meyers and Shi (2011) database, and are the workers compensation triangle of the New Jersey Manufacturers Group. They are displayed in Section 1.3 of the monograph.
 We’ve made a CSV file of the data (in long format) available <span class="xref myst">here</span> for convenience.
 If you want to load it in, then use the fread statement that points to the website address which is included in the comments below.</p>
@@ -1200,11 +1345,11 @@ If you want to load it in, then use the fread statement that points to the websi
 </div>
 </div>
 <p>The data look quite well behaved - each year seems to have a similar development pattern.</p>
-</div>
-<div class="section" id="chain-ladder-model">
-<h2>Chain ladder model<a class="headerlink" href="#chain-ladder-model" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fitting-the-model">
-<h3>Fitting the model<a class="headerlink" href="#fitting-the-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="chain-ladder-model">
+<h2>Chain ladder model<a class="headerlink" href="#chain-ladder-model" title="Permalink to this headline">#</a></h2>
+<section id="fitting-the-model">
+<h3>Fitting the model<a class="headerlink" href="#fitting-the-model" title="Permalink to this headline">#</a></h3>
 <p>Our first model will be the familiar chain ladder (volume all) model.
 The monograph (and references therein) note that certain types of GLM gives exactly the same result as the chain ladder so I’m going to use that to get the chain ladder result.</p>
 <p>The specific model I’m using that replicates the chain ladder result is the Over-dispersed Poisson (ODP) cross classified (cc) model (Sections 3.3.2 and 3.3.3 of the monograph).</p>
@@ -1337,9 +1482,9 @@ Number of Fisher Scoring iterations: 3
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="loss-reserve">
-<h3>Loss reserve<a class="headerlink" href="#loss-reserve" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="loss-reserve">
+<h3>Loss reserve<a class="headerlink" href="#loss-reserve" title="Permalink to this headline">#</a></h3>
 <p>Now we’ll have a look at the loss reserve. If you’ve done the chain ladder calculations, you should find this gives the same answer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1436,11 +1581,11 @@ Number of Fisher Scoring iterations: 3
 </tbody>
 </table></div></div>
 </div>
-</div>
-<div class="section" id="model-diagnostics">
-<h3>Model diagnostics<a class="headerlink" href="#model-diagnostics" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="calculations">
-<h4>Calculations<a class="headerlink" href="#calculations" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="model-diagnostics">
+<h3>Model diagnostics<a class="headerlink" href="#model-diagnostics" title="Permalink to this headline">#</a></h3>
+<section id="calculations">
+<h4>Calculations<a class="headerlink" href="#calculations" title="Permalink to this headline">#</a></h4>
 <p>So far, we’ve fitted a model and have calculated the loss reserve.
 We can do all this with the chain ladder algorithm.
 Now we start looking at some of the extras that using a GLM gives us - for a start the statistical model structure means that we can calculate residuals with known properties, assuming the assumptions underlying the model are valid.</p>
@@ -1549,9 +1694,9 @@ Note that we need to be careful to use the right types of residuals - in many ca
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="plotting">
-<h4>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="plotting">
+<h4>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">#</a></h4>
 <p>Now let’s look at the residual scatterplots.
 In the linear predictor scatterplot, the points are colour coded so that the lighter points belong to the earlier development years, and the darker points belong to the later ones.</p>
 <div class="cell docutils container">
@@ -1628,11 +1773,11 @@ In particular:</p>
 </div>
 <p>In a heat map for a reserving triangle, we look for a random scattering of red and blue points.
 This plot looks quite good (though we’ll revisit this shortly).</p>
-</div>
-</div>
-</div>
-<div class="section" id="refining-the-model">
-<h2>Refining the model<a class="headerlink" href="#refining-the-model" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="refining-the-model">
+<h2>Refining the model<a class="headerlink" href="#refining-the-model" title="Permalink to this headline">#</a></h2>
 <p>We could stop here - and just use the results from this model, which match those produced by the chain ladder.
 The diagnostics suggest that the model fits quite well.
 However, because this is a GLM, we have more options than just replicating the chain ladder.</p>
@@ -1641,12 +1786,12 @@ However, because this is a GLM, we have more options than just replicating the c
 <li><p>identify simplifications to the model to make it more parsimonious (i.e. reduce the number of parameters)?</p></li>
 <li><p>identify any areas of poorer fit that may suggest missing model terms including interactions?</p></li>
 </ul>
-<div class="section" id="simplifying-the-model">
-<h3>Simplifying the model<a class="headerlink" href="#simplifying-the-model" title="Permalink to this headline">¶</a></h3>
+<section id="simplifying-the-model">
+<h3>Simplifying the model<a class="headerlink" href="#simplifying-the-model" title="Permalink to this headline">#</a></h3>
 <p>First we consider if we can use a parametric shape for the accident and development year parameters.
 The end result should be something similar to the chain ladder approach but with far fewer parameters.</p>
-<div class="section" id="accident-year">
-<h4>Accident year<a class="headerlink" href="#accident-year" title="Permalink to this headline">¶</a></h4>
+<section id="accident-year">
+<h4>Accident year<a class="headerlink" href="#accident-year" title="Permalink to this headline">#</a></h4>
 <p>First plot the accident year parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1854,9 +1999,9 @@ Number of Fisher Scoring iterations: 3
 </div>
 </div>
 <p>This looks very good - the fit is very similar, but we have 7 fewer parameters.</p>
-</div>
-<div class="section" id="development-year">
-<h4>Development year<a class="headerlink" href="#development-year" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="development-year">
+<h4>Development year<a class="headerlink" href="#development-year" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Now we do the same thing for development year</p></li>
 <li><p>Note that the glm_fit2 model (and the glm_fit1 model too) do not have a parameter for dev_year = 1 as this is the base level.</p>
@@ -2029,10 +2174,10 @@ Number of Fisher Scoring iterations: 4
 </div>
 </div>
 <p>Looks good! Fitting <code class="docutils literal notranslate"><span class="pre">dev_year</span></code>=2 better has also improved the tail fitting (<code class="docutils literal notranslate"><span class="pre">dev_year</span></code>&gt;7).</p>
-</div>
-</div>
-<div class="section" id="identifying-missing-structure">
-<h3>Identifying missing structure<a class="headerlink" href="#identifying-missing-structure" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="identifying-missing-structure">
+<h3>Identifying missing structure<a class="headerlink" href="#identifying-missing-structure" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>The second part of the model refining process involves checking for missing structure.</p></li>
 <li><p>Let’s have a better look at the heat map, as it stands after the model simplification process</p></li>
@@ -2239,9 +2384,9 @@ Number of Fisher Scoring iterations: 3
 </div>
 </div>
 <p>These residuals do look better than those from the chain ladder model.</p>
-</div>
-<div class="section" id="id1">
-<h3>Loss reserve<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Loss reserve<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Now that we have a model, let’s produce the estimate of the outstanding claims by accident year and in total.</p>
 <ul class="simple">
 <li><p>Take the lower triangle data [futdata] created above</p></li>
@@ -2351,19 +2496,19 @@ Number of Fisher Scoring iterations: 3
 </table></div></div>
 </div>
 <p>The total reserve is <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ocl_total</span> <span class="pre">%&gt;%</span> <span class="pre">round(0)</span></code>.</p>
-</div>
-</div>
-<div class="section" id="reviewing-this-example">
-<h2>Reviewing this example<a class="headerlink" href="#reviewing-this-example" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="reviewing-this-example">
+<h2>Reviewing this example<a class="headerlink" href="#reviewing-this-example" title="Permalink to this headline">#</a></h2>
 <p>Looking back over this example, what we have done is started with a chain ladder model and then shown how we can use a GLM to fit a more parsimonious model (i.e. fewer parameters).
 It may then be possible to reconcile the shape of the parametric fit by accident year to underlying experience in the book - here we saw higher payments in the middle accident years. Is this due to higher claims experience or higher premium volumes? Does this give us an insight that allows us to better extrapolate into the future when setting reserves?</p>
 <p>We have also used model diagnostics to identify areas of misfit and then used GLM interactions to capture these changes.</p>
 <br>
-</div>
-<div class="section" id="practical-use-of-glms-in-traditional-reserving">
-<h2>Practical use of GLMs in traditional reserving<a class="headerlink" href="#practical-use-of-glms-in-traditional-reserving" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="modelling">
-<h3>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="practical-use-of-glms-in-traditional-reserving">
+<h2>Practical use of GLMs in traditional reserving<a class="headerlink" href="#practical-use-of-glms-in-traditional-reserving" title="Permalink to this headline">#</a></h2>
+<section id="modelling">
+<h3>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h3>
 <p>The ideas in this simple example extend to more complex traditional scenarios. By traditional I mean that the data you have available to you are classified by accident (or underwriting), development and calendar periods only.</p>
 <p>First decide what you are going to model. Here we had a single model of incremental payments. However you could fit a <em>Payments Per Claim Finalised (PPCF)</em> model which consists of 3 submodels - numbers of claims incurred by accident period, number of claims finalised by (accident, development period) and payments per claim finalised by (accident, development period). Each of these could then be fitted by a GLM.</p>
 <p>For whatever you’re modelling, you then pick the two triangle directions that you think are most critical for that experience.
@@ -2377,16 +2522,16 @@ You can’t include all 3 at the start since they are correlated.</p>
 <p>Then fit the models by starting with the modelled effects as factors and use methods such as those outlined above to reduce the number of parameters by using parametric shapes.
 Look for missing structure and consider adding interactions or (carefully) adding limited functions of the third triangular direction.
 Take advantage of GLM tools to refine your model. Use what you know about the portfolio to inform your model - if you know that there was a period of rapid claims inflation, then include that in your model.</p>
-</div>
-<div class="section" id="setting-reserves">
-<h3>Setting reserves<a class="headerlink" href="#setting-reserves" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="setting-reserves">
+<h3>Setting reserves<a class="headerlink" href="#setting-reserves" title="Permalink to this headline">#</a></h3>
 <p>It is possible to overlay judgement onto a GLM’s predictions.
 At the end of the day, the predictions are just based on a mathematical formula.
 So, taking claims inflation as an example, if you’ve been seeing 5% p.a. over the last 3 years, but you think this is going to moderate going forward, then you can adjust the projections by removing the 5% p.a. rate into the future and replacing it with, say, 2% p.a.
 Once you get familiar with using GLMs, you might find it easier to incorporate judgement - the GLM can capture more granularity about past experience which in turn may make it easier to work out how things might change in future and how to numerically include these changes.</p>
-</div>
-<div class="section" id="additional-references">
-<h3>Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="additional-references">
+<h3>Additional References<a class="headerlink" href="#additional-references" title="Permalink to this headline">#</a></h3>
 <p>The references below have further examples of fitting GLMs in this way, and show how to capture quite complex experience.
 Although both use individual data, the methodology can be used in a similar manner for aggregate data.</p>
 <ul class="simple">
@@ -2395,10 +2540,10 @@ Although both use individual data, the methodology can be used in a similar mann
 <li><p><a class="reference external" href="https://instruction.bus.wisc.edu/jfrees/jfreesbooks/PredictiveModelingVol1/index.htm">Predictive modeling applications in actuarial science, Frees and Derig, 2004</a> - in particular see Chapter 18 in Volume 1 and Chapter 3 in Volume 2.</p></li>
 </ul>
 <p>Please feel free to add references to other useful material in the comments.</p>
-</div>
-</div>
-<div class="section" id="session-information">
-<h2>Session information<a class="headerlink" href="#session-information" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="session-information">
+<h2>Session information<a class="headerlink" href="#session-information" title="Permalink to this headline">#</a></h2>
 <p>To assist with reproducibility in future, here are details of my R session.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2445,8 +2590,8 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2470,9 +2615,11 @@ loaded via a namespace (and not attached):
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="trees.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2488,26 +2635,30 @@ loaded via a namespace (and not attached):
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

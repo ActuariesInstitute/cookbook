@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>R: Bauldry ML Reserving Pt 2 &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -391,114 +405,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/MLRWP_R_Bauldry_Notebook_2_CreateReservingDatabase_v1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    R: Bauldry ML Reserving Pt 2
@@ -638,12 +783,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>R: Bauldry ML Reserving Pt 2</h1>
@@ -799,22 +943,23 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="r-bauldry-ml-reserving-pt-2">
-<h1>R: Bauldry ML Reserving Pt 2<a class="headerlink" href="#r-bauldry-ml-reserving-pt-2" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="r-bauldry-ml-reserving-pt-2">
+<h1>R: Bauldry ML Reserving Pt 2<a class="headerlink" href="#r-bauldry-ml-reserving-pt-2" title="Permalink to this headline">#</a></h1>
 <p><em>This article was originally created by Nigel Carpenter and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>This is the second notebook of a series of three that outlines and elaborates upon code used to replicate the central scenario in the paper of Maximilien Baudry “NON-PARAMETRIC INDIVIDUAL
 CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&amp;fg=1">Presentation</a> <a class="reference external" href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/%24FILE/Reserving-article.pdf">Paper</a>)</p>
 <p>In this notebook we step through the process to create the underlying data structures that will be used in the machine learning reserving process, as set out in sections 2 and 3 of Baudry’s paper.</p>
 <p>The reserving data structures built in this notebook are from a simulated phone insurance dataset. The creation of that simulated dataset has been set out in detail in the first R Notebook of this series. The third Notebook outlines the process for creating reserves using machine learning.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="a-few-words-before-we-start">
-<h1>A few words before we start<a class="headerlink" href="#a-few-words-before-we-start" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="a-few-words-before-we-start">
+<h1>A few words before we start<a class="headerlink" href="#a-few-words-before-we-start" title="Permalink to this headline">#</a></h1>
 <p>Baudry assumes that a policy follows a <a class="reference external" href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7DA57FED4B4CFE953E7DA31B29844967/S0515036100003317a.pdf/claims_reserving_in_continuous_time_a_nonparametric_bayesian_approach.pdf">Position Dependent Marked Poisson Process</a> for which he uses the following graphical representation.</p>
 <p><img alt="Graphical representation of the PDMPP." src="../_images/image_1.PNG" />
 Baudry explains the notation and database build in sections 2 and 3 of his paper. It is worth taking the time to familiarise yourself with this way of presenting reserving data as it is a different perspective on the traditional claim triangle.</p>
@@ -883,9 +1028,9 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </tbody>
 </table>
 <p>Baudry shows how this extra data can benefit the reserving process and recognises that it is the adoption of machine learning techniques that enable us to work with larger and more granular volumes of data than we are able to with  traditional chain ladder reserving techniques.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="simulate-policy-and-claim-data">
-<h1>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="simulate-policy-and-claim-data">
+<h1>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this headline">#</a></h1>
 <p>We start with the simulated phone insurance policy and claim dataset. I am calling the function from Notebook 1 of this series to create the dataset. Using a fixed seed will ensure you get a reproducible simulated dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -896,8 +1041,8 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </div>
 <p>We can now inspect the returned Policy dataset and similarly inspect the returned Claim dataset.</p>
 <p>Both have been created to be somewhat similar to standard policy and claim datasets that insurers would extract from their policy and claim administration systems.</p>
-<div class="section" id="policy">
-<h2>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">¶</a></h2>
+<section id="policy">
+<h2>Policy<a class="headerlink" href="#policy" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped" style="margin-left: auto; margin-right: auto;">
@@ -970,9 +1115,9 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </tbody>
 </table></div></div></div>
 </div>
-</div>
-<div class="section" id="claim">
-<h2>Claim<a class="headerlink" href="#claim" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="claim">
+<h2>Claim<a class="headerlink" href="#claim" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -1059,10 +1204,10 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </tbody>
 </table></div></div></div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="join-policy-and-claim-data">
-<h1>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="join-policy-and-claim-data">
+<h1>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this headline">#</a></h1>
 <p>We wish to join claims to the appropriate policy exposure period. This will be a familiar process to pricing actuaries but may not be familiar to reserving actuaries as it is not a requirement in traditional chain ladder reserving.</p>
 <p>For speed and convenience we will use the <code class="docutils literal notranslate"><span class="pre">foverlaps</span></code> R function, which needs the tables being joined to have common keys for policy number and time periods.</p>
 <div class="cell docutils container">
@@ -1115,8 +1260,8 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </table>
 </div></div>
 </div>
-<div class="section" id="check-for-multi-claim-policies">
-<h2>Check for multi-claim policies<a class="headerlink" href="#check-for-multi-claim-policies" title="Permalink to this headline">¶</a></h2>
+<section id="check-for-multi-claim-policies">
+<h2>Check for multi-claim policies<a class="headerlink" href="#check-for-multi-claim-policies" title="Permalink to this headline">#</a></h2>
 <p>In a real world situation it is possible for policies to have multiple claims in an insurance period. In such circumstances care needs to be taken in matching policy exposure periods and claims, typically this is done by splitting a policy into sequences that stop at the date of each claim.</p>
 <p>Our simulated data does not have this complication, as this check shows, the max number or sequences is 1.</p>
 <div class="cell docutils container">
@@ -1176,10 +1321,10 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </table>
 </div></div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="timeslicing-claim-payments">
-<h1>Timeslicing claim payments<a class="headerlink" href="#timeslicing-claim-payments" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="timeslicing-claim-payments">
+<h1>Timeslicing claim payments<a class="headerlink" href="#timeslicing-claim-payments" title="Permalink to this headline">#</a></h1>
 <p>Although this paper works with individual policy and claim transactions those transactions are collated into time slices.</p>
 <p>Baudry selected time slices of 30 days in length starting from 01 Jan 2016 (Section 5 page 13).</p>
 <p><img alt="Graphical representation of the PDMPP." src="../_images/image_3.PNG" /></p>
@@ -1223,9 +1368,9 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </table>
 </div></div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="creating-rbns-and-ibner-datasets">
-<h1>Creating RBNS and IBNER datasets<a class="headerlink" href="#creating-rbns-and-ibner-datasets" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="creating-rbns-and-ibner-datasets">
+<h1>Creating RBNS and IBNER datasets<a class="headerlink" href="#creating-rbns-and-ibner-datasets" title="Permalink to this headline">#</a></h1>
 <p>Before we create the RBNS and IBNER datasets we must pick a valuation point from the available timeslices. I’m selecting the 10th point for illustration, which is the 10th 30 day period from 01/01/2016, ie a valuation date of 27/09/2016.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1241,15 +1386,15 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 </div>
 <p>In a traditional approach we would be creating reserving triangles with 10, 30 day duration development periods.</p>
 <p>As we will see the approach adopted by Baudry, in section 3 of his paper, is somewhat different and is much closer to the sort of datasets that Pricing Actuaries are familiar with.</p>
-<div class="section" id="creating-rbns-dataset">
-<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this headline">¶</a></h2>
+<section id="creating-rbns-dataset">
+<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this headline">#</a></h2>
 <p>We start with the RBNS dataset.</p>
 <p>The training data for the for the RBNS reserves will consist of all claims reported prior to the valuation date. This data has been joined to the policy exposure data to enable policy related features to be used as explanatory variables in the RBNS reserve calculation.</p>
 <p>A training dataset will enable us to build a model of RBNS reserve requirements at historic valuation dates. But what we really require is a view of the RBNS reserve at the valuation date. To calculate this we need to create a test dataset that contains values of the explanatory features at each future claim payment period.</p>
 <p>By making model prediction for each row of the test dataset we can calculate the RBNS reserve as the sum of predicted future payments.</p>
-</div>
-<div class="section" id="rbns-dataset-functions-tabset">
-<h2>RBNS dataset functions {.tabset}<a class="headerlink" href="#rbns-dataset-functions-tabset" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rbns-dataset-functions-tabset">
+<h2>RBNS dataset functions {.tabset}<a class="headerlink" href="#rbns-dataset-functions-tabset" title="Permalink to this headline">#</a></h2>
 <p>To create the RBNS train and test datasets we have provided two functions <code class="docutils literal notranslate"><span class="pre">RBNS_Train_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test_ijk</span></code> which take as an input the joined policy and claims dataset and return data in a format suitable for applying machine learning.</p>
 <p>They are actually returning the ‘triangle’ data for all occurrence periods, <strong>i</strong>, for a specified:</p>
 <ul class="simple">
@@ -1257,8 +1402,8 @@ Baudry explains the notation and database build in sections 2 and 3 of his paper
 <li><p>model type <strong>k</strong></p></li>
 </ul>
 <p>For values of <strong>k</strong> equal to 1 claim transactions up to the valuation date are included. When <strong>k</strong> is set to 2 transactions in the calendar period immediately prior to the valuation date are excluded. Although in this example only models with a <strong>k</strong> value of 1 are created, Baudry’s framework allows for multiple <strong>k</strong> value models to be built. In doing so multiple models are created, effectively using aged data which would allow an ensemble modeling approach to be used. Such use of multiple <strong>k</strong> values would be similar to a Bornhuetter-Ferguson approach to modeling.</p>
-<div class="section" id="rbns-train">
-<h3>RBNS_Train<a class="headerlink" href="#rbns-train" title="Permalink to this headline">¶</a></h3>
+<section id="rbns-train">
+<h3>RBNS_Train<a class="headerlink" href="#rbns-train" title="Permalink to this headline">#</a></h3>
 <p>The code for creating the RBNS datasets is rather involved so detailed explanation has been skipped over here.<br />
 Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
 <p>I should call out that the code shared here deals only with the simplified payment process from Baudry’s central scenario, ie claims are settled with a single payment. Real world data with partial payments would require material changes to be made to the code we have shared. Such changes are left for interested readers to make.</p>
@@ -1306,9 +1451,9 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="rbns-test">
-<h3>RBNS_Test<a class="headerlink" href="#rbns-test" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="rbns-test">
+<h3>RBNS_Test<a class="headerlink" href="#rbns-test" title="Permalink to this headline">#</a></h3>
 <p>The code for creating the RBNS datasets is rather involved so detailed explanation has been skipped over here.<br />
 Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
 <p>I should call out that the code shared here deals only with the simplified payment process from Baudry’s central scenario, ie claims are settled with a single payment. Real world data with partial payments would require material changes to be made to the code we have shared. Such changes are left for interested readers to make.</p>
@@ -1355,10 +1500,10 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="rbns-function-calls">
-<h2>RBNS function calls<a class="headerlink" href="#rbns-function-calls" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="rbns-function-calls">
+<h2>RBNS function calls<a class="headerlink" href="#rbns-function-calls" title="Permalink to this headline">#</a></h2>
 <p>The RBNS train and test datasets are created by calling the <code class="docutils literal notranslate"><span class="pre">RBNS_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test</span></code> functions passing, as parameters to them, the names of the joined policy and claim dataset, valuation dates and model features.</p>
 <p>The functions  <code class="docutils literal notranslate"><span class="pre">RBNS_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test</span></code> iterate over valid values of j and k calling the <code class="docutils literal notranslate"><span class="pre">RBNS_Train_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">RBNS_Test_ijk</span></code> functions to create the complete train and test datasets as illustrated below.</p>
 <p><img alt="train" src="../_images/image_5a.png" /></p>
@@ -1476,9 +1621,9 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="creating-ibnr-dataset">
-<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-ibnr-dataset">
+<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this headline">#</a></h2>
 <p>The IBNR dataset creation follows a similar process to RBNS but is a little more complex. Any policy with a live exposure can give rise to an IBNR claim so the training dataset consists of all policy exposure periods prior to the valuation date.</p>
 <p>From this we train two models:</p>
 <ul class="simple">
@@ -1486,11 +1631,11 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 <li><p>a severity model to predict the expected cost of any IBNR claim</p></li>
 </ul>
 <p>This is very similar to the traditional pricing approach except that we can add information relating to the claim occurrence date (eg weather information could be useful for Storm losses) and we also predict the incremental run-off of the exposure period.</p>
-</div>
-<div class="section" id="ibnr-dataset-functions-tabset">
-<h2>IBNR dataset functions {.tabset}<a class="headerlink" href="#ibnr-dataset-functions-tabset" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="ibnr-frequency-train">
-<h3>IBNR_Frequency Train<a class="headerlink" href="#ibnr-frequency-train" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ibnr-dataset-functions-tabset">
+<h2>IBNR dataset functions {.tabset}<a class="headerlink" href="#ibnr-dataset-functions-tabset" title="Permalink to this headline">#</a></h2>
+<section id="ibnr-frequency-train">
+<h3>IBNR_Frequency Train<a class="headerlink" href="#ibnr-frequency-train" title="Permalink to this headline">#</a></h3>
 <p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
 Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
 <div class="cell docutils container">
@@ -1535,9 +1680,9 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ibnr-loss-train">
-<h3>IBNR_Loss Train<a class="headerlink" href="#ibnr-loss-train" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ibnr-loss-train">
+<h3>IBNR_Loss Train<a class="headerlink" href="#ibnr-loss-train" title="Permalink to this headline">#</a></h3>
 <p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
 Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
 <div class="cell docutils container">
@@ -1581,9 +1726,9 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ibnr-test">
-<h3>IBNR Test<a class="headerlink" href="#ibnr-test" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ibnr-test">
+<h3>IBNR Test<a class="headerlink" href="#ibnr-test" title="Permalink to this headline">#</a></h3>
 <p>The code for creating the IBNR datasets is rather involved so detailed explanation has been skipped over here.<br />
 Interested readers are encouraged to come back to this stage and inspect the code and Baudry’s paper once they have an overview of the wider process.</p>
 <div class="cell docutils container">
@@ -1627,10 +1772,10 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="ibnr-function-calls">
-<h2>IBNR function calls<a class="headerlink" href="#ibnr-function-calls" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="ibnr-function-calls">
+<h2>IBNR function calls<a class="headerlink" href="#ibnr-function-calls" title="Permalink to this headline">#</a></h2>
 <p>The IBNR train and test datasets are created by calling the <code class="docutils literal notranslate"><span class="pre">IBNR_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test</span></code> functions passing, as parameters to them, the names of the joined policy and claim dataset, valuation dates and model features.</p>
 <p>The functions  <code class="docutils literal notranslate"><span class="pre">IBNR_Train</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test</span></code> iterate over valid values of j and k calling the <code class="docutils literal notranslate"><span class="pre">IBNR_Freq_ijk</span></code>, <code class="docutils literal notranslate"><span class="pre">IBNR_Loss_ijk</span></code> and <code class="docutils literal notranslate"><span class="pre">IBNR_Test_ijk</span></code> functions to create the complete train and test datasets as set out in the code below.</p>
 <p>The princple and code is similar to that of RBNS, except that the training data covers both claim counts and costs.</p>
@@ -1766,10 +1911,10 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dataset-inspection-tabset">
-<h1>Dataset inspection{.tabset}<a class="headerlink" href="#dataset-inspection-tabset" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dataset-inspection-tabset">
+<h1>Dataset inspection{.tabset}<a class="headerlink" href="#dataset-inspection-tabset" title="Permalink to this headline">#</a></h1>
 <p>So we now have two datasets;</p>
 <ul class="simple">
 <li><p>dt_ALL_RBNS for calculating RBNS reserves</p></li>
@@ -1779,8 +1924,8 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 <p>IBNR reserves are calculated using a frequency * severity model approach. IBNR therefore requires two models and two training datasets. Training rows for the claim frequency model are identified as rows with a flgTrain column value of 1. Training rows for the claim severity model are identified as rows with a flgTrain column value of 2.</p>
 <p>In both datsets the test rows are identified as rows with a flgTrain column value of 0.</p>
 <p>Let’s have a quick look at the datasets.</p>
-<div class="section" id="rbns">
-<h2>RBNS<a class="headerlink" href="#rbns" title="Permalink to this headline">¶</a></h2>
+<section id="rbns">
+<h2>RBNS<a class="headerlink" href="#rbns" title="Permalink to this headline">#</a></h2>
 <p>The RBNS dataset has <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ncol(dt_All_RBNS)</span></code> columns and <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">format(nrow(dt_All_RBNS),</span> <span class="pre">big.mark=&quot;,&quot;)</span></code> rows.</p>
 <p>In a traditional reserving exercise this would have been summarised as a 10 x 10 triangle ie 55 rows. We have far more rows of data for 3 main reasons;</p>
 <ol class="simple">
@@ -1807,9 +1952,9 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="ibnr">
-<h2>IBNR<a class="headerlink" href="#ibnr" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ibnr">
+<h2>IBNR<a class="headerlink" href="#ibnr" title="Permalink to this headline">#</a></h2>
 <p>The IBNR dataset has <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">ncol(dt_All_IBNR)</span></code> columns and <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">format(nrow(dt_All_IBNR),</span> <span class="pre">big.mark=&quot;,&quot;)</span></code> rows.</p>
 <p>In a traditional reserving exercise this would have been summarised as a 10 x 10 triangle ie 50 rows. We have far more rows of data and far more that we did for the RBNS dataset.</p>
 <p>Again the the same 3 principles apply to the IBNR row count. However this will lead to many more rows of data  because we are training two models and the  claim frequency model will require a row for every past policy exposure period and of course there should be orders of magnitude more exposure rows than claim rows!</p>
@@ -1832,10 +1977,10 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </table>
 </div></div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
 <p>I’ve deliberately rushed through the creation of the datasets so we can see the end output shown above. Interested readers are encouraged to revisit and review the RBNS and IBNER data creation process to gain a deeper understanding. In doing so they will be better placed to adapt the code provided to their own circumstances.</p>
 <p>To aid that deeper understanding, if you wish to try out this code in your own local instance of R then we have made this code and the supporting files and folders available in a zip file <span class="xref myst">here</span>.</p>
 <p>Download and extract the zip file to a local directory and then open the R project file <code class="docutils literal notranslate"><span class="pre">Baudry_2.rproj</span></code> in your local R software installation. In the root of the project folder you will see two files;</p>
@@ -1845,7 +1990,7 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 </ol>
 <p>Please note that, depending upon your R installation , you may have to install R libraries before you can run the code provided. R will warn you if you have missing dependencies and you can then install them from CRAN.</p>
 <p>The above code can be wrapped into a series of functions which, given a  joined policy and claim dataset and a valuation date, will return the reserving datasets needed for machine learning. In notebook 3 of this series we will create and use such functions prior to fitting a machine learning model to the training data and then use it to make reserve predictions.</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1869,9 +2014,11 @@ Interested readers are encouraged to come back to this stage and inspect the cod
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="MLRWP_R_Bauldry_Notebook_1_SimulateData_v1.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1887,26 +2034,30 @@ Interested readers are encouraged to come back to this stage and inspect the cod
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>R: Reserving with LASSO &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -391,114 +405,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/MLRWP_R_Lasso.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Lasso.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Lasso.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Lasso.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Lasso.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Lasso.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Lasso.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/MLRWP_R_Lasso.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    R: Reserving with LASSO
@@ -636,12 +781,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>R: Reserving with LASSO</h1>
@@ -795,11 +939,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="r-reserving-with-lasso">
-<h1>R: Reserving with LASSO<a class="headerlink" href="#r-reserving-with-lasso" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="r-reserving-with-lasso">
+<h1>R: Reserving with LASSO<a class="headerlink" href="#r-reserving-with-lasso" title="Permalink to this headline">#</a></h1>
 <p><em>This article was originally created by Grainne McGuire and Greg Taylor and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
 <p><em>In this post we look at how regularised regression techniques such as the LASSO can be used to set reserves for triangles.</em></p>
 <p>The <span class="xref myst">Foundation Workstream’s first post</span> set out a suggested path to getting to grips with machine learning. The first step was to start by applying GLMs to reserving and one way of doing this was covered in our most recent post (<a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/glms/">Reserving with GLMs</a>).</p>
@@ -807,12 +952,12 @@ const thebe_selector_output = ".output, .cell_output"
 Put simply, regularisation techniques shrink or regularise regression parameters towards zero (excluding the intercept - this is normally not regularised, so in effect, this means that the fitted values are regularised towards the constant term in the regression). This penalises more complex models and reduces the risk of overfitting.</p>
 <p>Here we will be focussing on a particular type of regularised regression, called the LASSO. As well as shrinking the parameters towards zero, the LASSO also selects parameters (and their corresponding regressor) by explicitly setting some to zero. This makes it a particularly useful method.</p>
 <p>Below we will first provide a brief technical overview of the LASSO for those interested, before moving onto a practical example.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-the-lasso">
-<h1>Introduction to the LASSO<a class="headerlink" href="#introduction-to-the-lasso" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-the-lasso">
+<h1>Introduction to the LASSO<a class="headerlink" href="#introduction-to-the-lasso" title="Permalink to this headline">#</a></h1>
 <p>The LASSO (<strong>L</strong>east <strong>A</strong>bsolute <strong>S</strong>hrinkage and <strong>S</strong>election <strong>O</strong>perator) is a form of regularised regression. This means that the regression is subject to a penalty for the addition of each additional term in the predictor. The purpose of this is to prevent over-fitting of the model to data.</p>
-<div class="section" id="from-glms">
-<h2>From GLMs …<a class="headerlink" href="#from-glms" title="Permalink to this headline">¶</a></h2>
+<section id="from-glms">
+<h2>From GLMs …<a class="headerlink" href="#from-glms" title="Permalink to this headline">#</a></h2>
 <p>The loss function associated with a GLM regression is the <strong>deviance</strong>, defined as</p>
 <div class="math notranslate nohighlight">
 \[D(y; X, \hat{\beta}) = -\sum_{i=1}^N \ell (y_i; X, \hat{\beta})  + \text{other terms}\]</div>
@@ -826,9 +971,9 @@ Put simply, regularisation techniques shrink or regularise regression parameters
 <li><p>the other terms are of no great interest here.</p></li>
 </ul>
 <p>Parameter estimation of a GLM can be performed by minimisation of the deviance with respect to <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>, which is equivalent to maximisation of the likelihood.</p>
-</div>
-<div class="section" id="to-the-lasso">
-<h2>… to the LASSO<a class="headerlink" href="#to-the-lasso" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="to-the-lasso">
+<h2>… to the LASSO<a class="headerlink" href="#to-the-lasso" title="Permalink to this headline">#</a></h2>
 <p>The loss function for the LASSO version of this GLM is:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L} (y; X, \hat{\beta}) = D(y; X, \hat{\beta}) + \lambda ||\hat{\beta}||_1\]</div>
@@ -839,9 +984,9 @@ Put simply, regularisation techniques shrink or regularise regression parameters
 <li><p><span class="math notranslate nohighlight">\(\lambda \geq 0\)</span> is a tuning parameter controlling the size of the penalty and therefore the amount of the regularisation.</p></li>
 </ul>
 <p>LASSO parameter estimation is effected by minimisation of <span class="math notranslate nohighlight">\(\mathcal{L} (y; X, \hat{\beta})\)</span> with respect to <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>. The quantity <span class="math notranslate nohighlight">\(\lambda ||\hat{\beta}||_1\)</span> adds a penalty for each non-zero coefficient.</p>
-</div>
-<div class="section" id="model-selection">
-<h2>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="model-selection">
+<h2>Model selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">#</a></h2>
 <p>The non-differentiability of the penalty function tends to cause the occurrence of corner solutions in the minimisation, so that some coefficients <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> are forced to zero.<br />
 The strength of this effect increases with <span class="math notranslate nohighlight">\(\lambda\)</span>. In the limit <span class="math notranslate nohighlight">\(\lambda=0\)</span>, the LASSO is the same as the GLM; in the limit <span class="math notranslate nohighlight">\(\lambda \rightarrow \infty\)</span>, the LASSO model becomes null, i.e. <span class="math notranslate nohighlight">\(\hat{\beta} = 0\)</span> (other than the intercept if this has not been regularised). Thus, as <span class="math notranslate nohighlight">\(\lambda\)</span> increases from 0 to <span class="math notranslate nohighlight">\(\infty\)</span>, the LASSO model shifts from the relatively complex GLM to increasingly simpler representations of the data.</p>
 <p>In practical use, models are fitted for a number of different possible values of <span class="math notranslate nohighlight">\(\lambda\)</span> (a path of values, from high to low).
@@ -850,10 +995,10 @@ Cross-validation may then be used to select a particular <span class="math notra
 <div class="math notranslate nohighlight">
 \[ \pi(\beta_j) = \frac{1}{2} \lambda \exp( -\lambda | \beta_j |), \space\space\space\space -\infty &lt; \beta_j &lt; \infty .\]</div>
 <p>The LASSO is dealt with in more detail in <a class="reference external" href="https://web.stanford.edu/~hastie/ElemStatLearn/">Hastie T, Tibshirani R and Friedman J. (2009). <strong>The Elements of Statistical Learning: Data Mining, Inference and Prediction</strong>. Springer, New York USA.</a></p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="using-the-lasso-for-reserving">
-<h1>Using the LASSO for reserving<a class="headerlink" href="#using-the-lasso-for-reserving" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-the-lasso-for-reserving">
+<h1>Using the LASSO for reserving<a class="headerlink" href="#using-the-lasso-for-reserving" title="Permalink to this headline">#</a></h1>
 <p>In GIRO 2018 (and presented again at TIGI 2019), we, along with our co-author Hugh Miller, describe how the LASSO could be used to carry out reserving for a traditional triangle.
 The motivation behind this work was to develop an automatic method to construct a general insurance claims reserving model for data sets with complex features where simple approaches such as the chain ladder fail. In the past we have advocated the use of GLM models for such data sets, but the construction of a GLM is a time-consuming process, even for a skilled analyst. Our aim was to develop a procedure that produced a model similar to a GLM, but using machine learning techniques.</p>
 <p>We used the LASSO rather than other types of regularised regression, for the following reasons:</p>
@@ -864,9 +1009,9 @@ The motivation behind this work was to develop an automatic method to construct 
 <p>This approach has performed well - as may be seen from the figures towards the end of this article, which show that the fitted curves can track the underlying specification quite closely, even in the presence of significant noise, or difficult to detect interactions. A paper describing the method is available on <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">SSRN</a>. This contains much more technical detail around the choice, use and implementation of the LASSO for the reserving problem.</p>
 <p>For the rest of this post, we will work through this method in a tutorial example.
 This is based on an existing <a class="reference external" href="https://grainnemcguire.github.io/post/self-assembling-claim-reserving-models/">worked example</a> so if you’ve seen that one, then you may already be familiar with a lot of the content below.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="tutorial-on-how-to-use-our-lasso-technique-for-reserving">
-<h1>Tutorial on how to use our LASSO technique for reserving<a class="headerlink" href="#tutorial-on-how-to-use-our-lasso-technique-for-reserving" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-on-how-to-use-our-lasso-technique-for-reserving">
+<h1>Tutorial on how to use our LASSO technique for reserving<a class="headerlink" href="#tutorial-on-how-to-use-our-lasso-technique-for-reserving" title="Permalink to this headline">#</a></h1>
 <p>In our paper we investigate the use of the LASSO using four synthetic (i.e. simulated) data sets as well as a real data set. This worked example will use the third simulated data set. The specifications for this data set are given in Section 4.2.1 of the paper. The main points to note are that this data set:</p>
 <ul class="simple">
 <li><p>is a 40x40 triangle, with</p></li>
@@ -880,8 +1025,8 @@ This is based on an existing <a class="reference external" href="https://grainne
 <img alt="../_images/MLRWP_R_Lasso_11_0.png" src="../_images/MLRWP_R_Lasso_11_0.png" />
 </div>
 </div>
-<div class="section" id="initial-setup">
-<h2>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this headline">¶</a></h2>
+<section id="initial-setup">
+<h2>Initial Setup<a class="headerlink" href="#initial-setup" title="Permalink to this headline">#</a></h2>
 <p>First we must open R and load any libraries required. These include:</p>
 <ul class="simple">
 <li><p><strong>data.table</strong> for manipulating data</p></li>
@@ -928,9 +1073,9 @@ Loaded glmnet 4.1-1
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="generating-the-synthetic-data-set">
-<h2>Generating the synthetic data set<a class="headerlink" href="#generating-the-synthetic-data-set" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="generating-the-synthetic-data-set">
+<h2>Generating the synthetic data set<a class="headerlink" href="#generating-the-synthetic-data-set" title="Permalink to this headline">#</a></h2>
 <p>The functions defined below will generate data sets similar to those used in our paper.
 Here we’ll use simulated data set 3, but we’ve included the code to generate the other data sets so that you can experiment with others if you wish.</p>
 <p>The utility function <code class="docutils literal notranslate"><span class="pre">LinearSpline()</span></code> will be widely used in this example - it takes a vector <code class="docutils literal notranslate"><span class="pre">var</span></code> and produces a spline piece between <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code> - flat (and 0) up to <code class="docutils literal notranslate"><span class="pre">start</span></code>, thereafter increasing to <code class="docutils literal notranslate"><span class="pre">stop</span></code> and then levelling out at this point. This is used both in the data generation and in the generation of basis functions for the LASSO.</p>
@@ -1163,13 +1308,13 @@ Here we’ll use simulated data set 3, but we’ve included the code to generate
 <img alt="../_images/MLRWP_R_Lasso_24_0.png" src="../_images/MLRWP_R_Lasso_24_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="specifying-the-lasso-model">
-<h2>Specifying the LASSO model<a class="headerlink" href="#specifying-the-lasso-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="specifying-the-lasso-model">
+<h2>Specifying the LASSO model<a class="headerlink" href="#specifying-the-lasso-model" title="Permalink to this headline">#</a></h2>
 <p>The LASSO model requires data (which we have), basis functions or regressors and model settings for the LASSO procedure. In our example we have 3 regressors - accident, development and calendar periods. If we use these as is, then all our model can potentially contain are a linear effect related to each of these. That won’t come anywhere close to modelling the data.
 Therefore, a key part of our paper was how to expand these 3 regressors into a flexible set of basis functions, capable of capturing a variety of shapes in the model experience.</p>
-<div class="section" id="set-of-basis-functions">
-<h3>Set of basis functions<a class="headerlink" href="#set-of-basis-functions" title="Permalink to this headline">¶</a></h3>
+<section id="set-of-basis-functions">
+<h3>Set of basis functions<a class="headerlink" href="#set-of-basis-functions" title="Permalink to this headline">#</a></h3>
 <p>In the paper we proposed creating a basis function set consisting of ramp functions and step (or heaviside) functions, as shown in the plot below:</p>
 <ul class="simple">
 <li><p>Ramps start flat at 0, then have a knot (turning point) after which they increase linearly</p></li>
@@ -1199,9 +1344,9 @@ $<span class="math notranslate nohighlight">\(I(\text{acc} \geq k)*I(\text{acc} 
 <li><p>This leads to 4680(!) basis functions.</p></li>
 </ul>
 <p>Since there are really only 2 regressors (as in, once you know two of accident, development and calendar, you know the third), there are a lot of correlated variables. For real problems (as in the real data example in the paper), where you have prior knowledge about what effects are likely to be in the data we would recommend more discernment in the selection of which of the effects to include. For example, if you expect only development and calendar effects, then do not include the accident period basis functions.</p>
-</div>
-<div class="section" id="scaling">
-<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="scaling">
+<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">#</a></h3>
 <p>Referring back to the introduction of this article, the loss function to be minimised for the LASSO is</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L} (y; X, \hat{\beta}) = D(y; X, \hat{\beta}) + \lambda ||\hat{\beta}||_1\]</div>
@@ -1219,9 +1364,9 @@ Otherwise whether a parameter is included or not could depend on whether the cor
 </ul>
 <p>Another nuance to note is that in the real world, the future data will not be available. So our fundamental regressors contain only past data and the scaling factors should therefore be calculated using past data only.</p>
 <p>In other implementations of the LASSO, it is often common to centre the variables as well. We don’t do that here as we want to preserve interactions having a zero level.</p>
-</div>
-<div class="section" id="code">
-<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="code">
+<h3>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h3>
 <p>Now we’ll go through the code used to generate the set of basis functions.</p>
 <p>We first write a function to do the <span class="math notranslate nohighlight">\(\rho\)</span>-scaling. The input is a vector and the output is a scaling factor.
 Having this as a function makes sense because we need to call it three times (once for each of <code class="docutils literal notranslate"><span class="pre">acc</span></code>, <code class="docutils literal notranslate"><span class="pre">dev</span></code> and <code class="docutils literal notranslate"><span class="pre">cal</span></code>).</p>
@@ -1454,10 +1599,10 @@ $cal
 </div>
 </div>
 <br>
-</div>
-</div>
-<div class="section" id="fitting-a-lasso">
-<h2>Fitting a LASSO<a class="headerlink" href="#fitting-a-lasso" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="fitting-a-lasso">
+<h2>Fitting a LASSO<a class="headerlink" href="#fitting-a-lasso" title="Permalink to this headline">#</a></h2>
 <p>The <strong>glmnet</strong> package has two functions for fitting a LASSO: <code class="docutils literal notranslate"><span class="pre">glmnet()</span></code> and <code class="docutils literal notranslate"><span class="pre">cv.glmnet()</span></code>.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">glmnet()</span></code> fits a regularised regression model for various values of the penalty parameter, <span class="math notranslate nohighlight">\(\lambda\)</span>.</p></li>
@@ -1523,11 +1668,11 @@ $cal
 </div>
 <p>Each point shows the average error across all folds, the bars show the standard deviation. The dashed lines represent the minimum CV error model (smaller <span class="math notranslate nohighlight">\(\lambda\)</span>, called <code class="docutils literal notranslate"><span class="pre">lambda.min</span></code>) and one a standard deviation away (<code class="docutils literal notranslate"><span class="pre">lambda.1se</span></code>). These are selections commonly used by modellers. The numbers across the upper y-axis are the number of non-zero parameters in the model for that value of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>Occasionally, the minimum CV value is the final point in the lambda sequence. In this case you should rerun <code class="docutils literal notranslate"><span class="pre">cv.glmnet()</span></code> with a longer lambda vector - one easy way to do this is to extract the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> vector from the <code class="docutils literal notranslate"><span class="pre">cv.glmnet</span></code> object, and then extend it by adding values at the end, e.g. using a decay factor. Then rerun the cross-validation fit with this longer vector (specify its use via the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function argument) and, all going well, the minimum CV error lambda will now be a true minimum, rather than the last evaluated point. The original article does something like this, if you would like to see some more details around this.</p>
-</div>
-<div class="section" id="analysing-the-model">
-<h2>Analysing the model<a class="headerlink" href="#analysing-the-model" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="model-coefficients">
-<h3>Model coefficients<a class="headerlink" href="#model-coefficients" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="analysing-the-model">
+<h2>Analysing the model<a class="headerlink" href="#analysing-the-model" title="Permalink to this headline">#</a></h2>
+<section id="model-coefficients">
+<h3>Model coefficients<a class="headerlink" href="#model-coefficients" title="Permalink to this headline">#</a></h3>
 <p>We used the model corresponding to the minimum CV error in the paper (<code class="docutils literal notranslate"><span class="pre">lambda.min</span></code> in the <code class="docutils literal notranslate"><span class="pre">cv.glmnet</span></code> results object, <code class="docutils literal notranslate"><span class="pre">cv_fit</span></code>). First let’s look at the coefficients in this model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1883,9 +2028,9 @@ $cal
 </table></div></div>
 </div>
 <p>Note the interactions at the end. Are these detecting the interaction that we know is in this simulated data set? We will find out below.</p>
-</div>
-<div class="section" id="tracking-plots">
-<h3>Tracking plots<a class="headerlink" href="#tracking-plots" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tracking-plots">
+<h3>Tracking plots<a class="headerlink" href="#tracking-plots" title="Permalink to this headline">#</a></h3>
 <p>We plot the model results in a number of different ways in the paper. Below we replicate some of these plots.</p>
 <p>First, we add the fitted values to the data.table.</p>
 <div class="cell docutils container">
@@ -2020,9 +2165,9 @@ $cal
 </div>
 </div>
 <p>You can explore other combinations of <code class="docutils literal notranslate"><span class="pre">primary_predictor</span></code>, <code class="docutils literal notranslate"><span class="pre">secondary_predictor</span></code> and <code class="docutils literal notranslate"><span class="pre">secondary_predictor_val</span></code> to see how the models track the past and future experience in other parts of the triangle</p>
-</div>
-<div class="section" id="heat-map">
-<h3>Heat map<a class="headerlink" href="#heat-map" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="heat-map">
+<h3>Heat map<a class="headerlink" href="#heat-map" title="Permalink to this headline">#</a></h3>
 <p>Plotting colour-coded actual/fitted values can be a useful way of looking at the model fit. The function below plots these values (subject to lower and upper bounds of 25% and 400%) and shades them with blue values being less than 100% and red values being greater than 100%. The darker the shading, the further from 100%.</p>
 <p>The function below will draw the heatmap.</p>
 <div class="cell docutils container">
@@ -2085,10 +2230,10 @@ $cal
 </div>
 </div>
 <p>You should, of course, carry out a full model validation exercise on any model prior to use. These plots may be helpful tools in this.</p>
-</div>
-</div>
-<div class="section" id="claims-reserves">
-<h2>Claims reserves<a class="headerlink" href="#claims-reserves" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="claims-reserves">
+<h2>Claims reserves<a class="headerlink" href="#claims-reserves" title="Permalink to this headline">#</a></h2>
 <p>Finally, let’s have a look at the claim reserve estimates and compare them to those from an 8-period chain ladder.</p>
 <p>The code below uses data.table functionality to sum up the reserves by accident period and overall.</p>
 <div class="cell docutils container">
@@ -2104,8 +2249,8 @@ $cal
 </div>
 </div>
 </div>
-<div class="section" id="chainladder-reserves">
-<h3>Chainladder reserves<a class="headerlink" href="#chainladder-reserves" title="Permalink to this headline">¶</a></h3>
+<section id="chainladder-reserves">
+<h3>Chainladder reserves<a class="headerlink" href="#chainladder-reserves" title="Permalink to this headline">#</a></h3>
 <p>In the paper we compared some of our results to the 8-period Chainladder reserve.
 This is calculated below.</p>
 <div class="cell docutils container">
@@ -2145,9 +2290,9 @@ This is calculated below.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="results-by-accident-period">
-<h3>Results by accident period<a class="headerlink" href="#results-by-accident-period" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="results-by-accident-period">
+<h3>Results by accident period<a class="headerlink" href="#results-by-accident-period" title="Permalink to this headline">#</a></h3>
 <p>Here’s a plot of the results (similar to that in the paper). Note that the y-axis is restricted for readability so that the actual chain ladder value (488 Bn) for accident period 40 does not display on the graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2480,9 +2625,9 @@ This is calculated below.</p>
 </tbody>
 </table></div></div>
 </div>
-</div>
-<div class="section" id="total-reserves">
-<h3>Total reserves<a class="headerlink" href="#total-reserves" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="total-reserves">
+<h3>Total reserves<a class="headerlink" href="#total-reserves" title="Permalink to this headline">#</a></h3>
 <p>The overall reserve values (in units of B) are</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2514,20 +2659,20 @@ This is calculated below.</p>
 </tbody>
 </table></div></div>
 </div>
-</div>
-<div class="section" id="commentary">
-<h3>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="commentary">
+<h3>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">#</a></h3>
 <p>In practice, no actuary would fit the 8-period chainladder (or any other estimating period) without significant review and likely modification based on actuarial judgement. So in an example like this, the gains from a method like the LASSO will not be as large as suggested by the results above. Furthermore, the large step change in this data set would likely result from something like a legislative change that the actuary should know about and be able to estimate its effect and then incorporate this into any projection.</p>
 <p>Nonetheless, there is benefit from the raw or naive model projection being closer to what we might want to project and in that sense, the LASSO model clearly outperforms the chainladder.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
 <p>The aim of this article has been to demonstrate the fitting of a claims reserving model using a LASSO approach in R and to produce some of the model diagnostic and results output that a user might wish to examine. If you would like to experiment some more, you could try modifying the synthetic data set code to produce other types of simulated data (such as those in our paper), or try it out on a real data example.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="session-information">
-<h1>Session information<a class="headerlink" href="#session-information" title="Permalink to this headline">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="session-information">
+<h1>Session information<a class="headerlink" href="#session-information" title="Permalink to this headline">#</a></h1>
 <p>To assist with reproducibility, here are the details of R session used to run the code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2574,7 +2719,7 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2598,9 +2743,11 @@ loaded via a namespace (and not attached):
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="MLRWP_R_GLMs.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2616,26 +2763,30 @@ loaded via a namespace (and not attached):
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

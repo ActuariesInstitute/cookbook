@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>R: Decision Tree Applications &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -391,114 +405,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/trees.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/trees.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/trees.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/trees.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/trees.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/trees.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/trees.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/trees.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    R: Decision Tree Applications
@@ -650,12 +795,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>R: Decision Tree Applications</h1>
@@ -823,22 +967,23 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="r-decision-tree-applications">
-<h1>R: Decision Tree Applications<a class="headerlink" href="#r-decision-tree-applications" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="r-decision-tree-applications">
+<h1>R: Decision Tree Applications<a class="headerlink" href="#r-decision-tree-applications" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h1>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
 <p>A decision tree is a flowchart-like structure which models the decisions and their possible consequences, including chance of event outcomes, resource costs, and utility.</p>
 <p>In a decision tree, each internal node is split by a single feature. The tree then develops branches leading to lower level of subgroups that increases the homogeneity of the elements within that group. The split on a feature is not influenced by other features. Such division process is repeated until all leaf nodes are reached. The paths from root to leaf represent classification rules.</p>
 <p><img alt="Evolution of Tree-based Algorithms (source: https://www.kaggle.com/prashant111/xgboost-k-fold-cv-feature-importance)" src="../_images/tree_based_algorithms.jpeg" /></p>
-</div>
-<div class="section" id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">#</a></h2>
 <p>A list of packages used in the recipes below.</p>
 <div class="cell tag_remove_output docutils container">
 <div class="cell_input docutils container">
@@ -860,10 +1005,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="prepare-data">
-<h1>Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="prepare-data">
+<h1>Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h1>
 <p>Let’s use the same dataset as in the “Regression” article. That data looked at disability income insurance experience.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -900,16 +1045,16 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell_output docutils container">
 <div class="output text_html">600000</div></div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="decision-tree">
-<h1>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction-to-decision-trees">
-<h2>Introduction to decision trees<a class="headerlink" href="#introduction-to-decision-trees" title="Permalink to this headline">¶</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="decision-tree">
+<h1>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">#</a></h1>
+<section id="introduction-to-decision-trees">
+<h2>Introduction to decision trees<a class="headerlink" href="#introduction-to-decision-trees" title="Permalink to this headline">#</a></h2>
 <p>Decision trees uses a technique called “divide-and-conquer”, which divides the dataset into partitions with similar values for the outcome of interest. To divide-and-conquer, the algorithm looks for an initial split that creates the two most homogeneous groups, and repeat this process till all the leaf nodes are reached.</p>
 <p>Leaf nodes represent the final outcome of all the determinations, which are the lowest levels of decision trees. It describes the classes (or types) of the output variable in classification problems, or its predicted values in regression problems.</p>
 <p>An obvious question is how does the algorithm decide where to split the dataset? For example, if one of the factors is “age”, how does the model know to split it at age 30, 40, or 50, in order to achieve the best “two most homogeneous” groups? For classification trees, the common solutions are Gini impurity and Entropy.</p>
-<div class="section" id="gini-impurity">
-<h3>Gini impurity<a class="headerlink" href="#gini-impurity" title="Permalink to this headline">¶</a></h3>
+<section id="gini-impurity">
+<h3>Gini impurity<a class="headerlink" href="#gini-impurity" title="Permalink to this headline">#</a></h3>
 <p>Gini impurity is a common approach to calculate the goodness of split in a numeric way, which helps decide where to split the dataset.</p>
 <p>Gini impurity is a measurement of the likelihood of an incorrect classification of the sample randomly selected. The lower the Gini impurity, the less likely a mis-classification will occur, and the subgroup is “purer”. It reaches 0 when the dataset contains only one class (“purest” scenario).</p>
 <p>Gini impurity is denoted as
@@ -928,24 +1073,24 @@ The Gini impurity for the left group is
 <p>The overall Gini impurity for the division is a weighted average of the Gini impurity of the two groups, based on the number of observations within each group.</p>
 <p><span class="math notranslate nohighlight">\( G = \frac{144}{144 + 159} \times G(Left) + \frac{159}{144 + 159} \times G(Right) = 0.364\)</span></p>
 <p>Similarly, the Gini impurity for whether having good blood circulation as condition is 0.360. In this case, it is a slightly better indicator than whether having chest pain.</p>
-</div>
-<div class="section" id="entropy">
-<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="entropy">
+<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">#</a></h3>
 <p>Entropy is a concept in information theory introduced by Claude Shannon in his 1948 paper “A Methematical Theory of Communication”. It is denoted as follows
 <span class="math notranslate nohighlight">\( H(x) =  - \sum_{i=1}^n P(x_i)ln(P(x_i))\)</span></p>
 <p>Entropy varies between <span class="math notranslate nohighlight">\([0, 1]\)</span> while Gini impurity varies <span class="math notranslate nohighlight">\([0,0.5]\)</span>. The two have very similar distribution especially when Entropy is compared to twice of the Gini impurity. The conclusion from the two are mostly the same (only disagree in 2% of time). In many cases Gini impurity is favoured, as Entropy requires more computational power for using log function.</p>
-</div>
-<div class="section" id="information-gain">
-<h3>Information gain<a class="headerlink" href="#information-gain" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="information-gain">
+<h3>Information gain<a class="headerlink" href="#information-gain" title="Permalink to this headline">#</a></h3>
 <p>After we get (information) entropy, we can calculate the information gain for a particular feature when learning.</p>
 <p>Suppose one of the features is gender. If we choose to split dataset by gender, then can be sub-divided into 2 groups, <span class="math notranslate nohighlight">\(D_{male}\)</span> and <span class="math notranslate nohighlight">\(D_{female}\)</span>. So the entropy after splitting by gender, is the weighted average of the entropy of the two sets</p>
 <p><span class="math notranslate nohighlight">\( \frac{D_{male}}{D}H(D_{male}) + \frac{D_{female}}{D}H(D_{female}) \)</span></p>
 <p>When compared to the information entropy prior to the split, the reduction is the information gain, denoted as</p>
 <p><span class="math notranslate nohighlight">\( Gain(D, feature)=H(D)-\sum^{N}_{i=1}\frac{D_i}{D}H(D_i) \)</span></p>
 <p>The information gain is then used to determine whether it’s better or worse off to perform a further split, and which feature yields higher gain.</p>
-</div>
-<div class="section" id="information-gain-ratio">
-<h3>Information gain ratio<a class="headerlink" href="#information-gain-ratio" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="information-gain-ratio">
+<h3>Information gain ratio<a class="headerlink" href="#information-gain-ratio" title="Permalink to this headline">#</a></h3>
 <p>One potential issue with information gain is that it prefers features with more categories. For instance, if we choose to split by personal ID which is a unique value, the entire dataset will be divided into <span class="math notranslate nohighlight">\(N\)</span> groups where <span class="math notranslate nohighlight">\(N\)</span> is also the number of data points. In this case, the entropy of each group will be zero given there is only 1 observation and the accuracy of classification reaches 100%, which then makes the second term (average entropy after split) of above formula zero. Apparently such division is not meaningful even though it maximises the information gain.</p>
 <p>To improve this, the information gain ratio was developed. It is written as</p>
 <p><span class="math notranslate nohighlight">\( Gain\_ratio(D, feature)=\frac{Gain(D, feature)}{IV(feature)}\)</span>
@@ -953,10 +1098,10 @@ where <span class="math notranslate nohighlight">\(IV(feature)\)</span> can be f
 <p><span class="math notranslate nohighlight">\( IV(feature)=-\sum_{i=1}^N \frac{D_i}{D}ln(\frac{D_i}{D})\)</span></p>
 <p>This looks similar to information entropy, which essentially evaluates the purity of the feature. If the feature only has few categories, it’s “purer” and the <span class="math notranslate nohighlight">\(IV\)</span> values is smaller, vice versa. Therefore it adds a penalty on selecting features with many categories.</p>
 <p>However, information gain ratio is still not perfect, as it tends to choose features with less categories. Therefore, C4.5, a typical algorithm that uses information gain ratio, also uses information gain. It first calculates the average of information gain of all possible splits, and then choose the split with information gain above this average but also has the maximum information gain ratio, as the best split.</p>
-</div>
-</div>
-<div class="section" id="classification-tree-example">
-<h2>Classification tree example<a class="headerlink" href="#classification-tree-example" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="classification-tree-example">
+<h2>Classification tree example<a class="headerlink" href="#classification-tree-example" title="Permalink to this headline">#</a></h2>
 <p>Let’s model whether a policy has any claim incident, by looking at indicator of sickness (<span class="math notranslate nohighlight">\(\text{inc_count_sick}\)</span>) and accident (<span class="math notranslate nohighlight">\(\text{inc_count_acc}\)</span>). Apparently the dependent variable (<span class="math notranslate nohighlight">\(\text{inc_count_tot}\)</span>) is fully determined by the two indicators. “Class” method is used here to train the classification tree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -975,24 +1120,24 @@ where <span class="math notranslate nohighlight">\(IV(feature)\)</span> can be f
 </div>
 </div>
 <p>As shown above, any policy having sickness or accident has a claim incident, in line with expectation.</p>
-</div>
-<div class="section" id="regression-tree">
-<h2>Regression tree<a class="headerlink" href="#regression-tree" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="regression-tree">
+<h2>Regression tree<a class="headerlink" href="#regression-tree" title="Permalink to this headline">#</a></h2>
 <p>A regression tree is basically a decision tree that is used for the task of regression which can be used to predict continuous valued outputs instead of discrete outputs.</p>
 <p>Unlike classification tree, we cannot calculate the Gini impurity or entropy since we are predicting continuous variables. Therefore, another measure is required to tell how much our predictions deviate from the original target and that’s the entry-point of mean square error.</p>
-<div class="section" id="mean-square-error-mse">
-<h3>Mean square error (MSE)<a class="headerlink" href="#mean-square-error-mse" title="Permalink to this headline">¶</a></h3>
+<section id="mean-square-error-mse">
+<h3>Mean square error (MSE)<a class="headerlink" href="#mean-square-error-mse" title="Permalink to this headline">#</a></h3>
 <p>Mean square error is defined as
 <span class="math notranslate nohighlight">\( MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \)</span>
 where <span class="math notranslate nohighlight">\(y_i\)</span> is the actual value and <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> is the predicted value. This is the same approach used in linear regression, which aims to minimise the difference between the actual and predicted values.</p>
 <p>Note that regression tree uses piecewise linear functions, which fits a linear function to a certain interval. if we keep dividing the dataset, the tree is able to depict any kind of non-linear trends asymptotically. This is more flexible than simple linear regression.</p>
-</div>
-</div>
-<div class="section" id="regression-tree-example">
-<h2>Regression tree example<a class="headerlink" href="#regression-tree-example" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="regression-tree-example">
+<h2>Regression tree example<a class="headerlink" href="#regression-tree-example" title="Permalink to this headline">#</a></h2>
 <p>Let’s create a scenario where termination of claims is driven by age of the claimant. Decision tree will be used to split the dataset based on age and see if result is in line with our expectation.</p>
-<div class="section" id="data-prep">
-<h3>Data prep<a class="headerlink" href="#data-prep" title="Permalink to this headline">¶</a></h3>
+<section id="data-prep">
+<h3>Data prep<a class="headerlink" href="#data-prep" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select all claims</span>
@@ -1016,9 +1161,9 @@ where <span class="math notranslate nohighlight">\(y_i\)</span> is the actual va
 <img alt="../_images/trees_13_0.png" src="../_images/trees_13_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="fit-regression-tree">
-<h3>Fit regression tree<a class="headerlink" href="#fit-regression-tree" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="fit-regression-tree">
+<h3>Fit regression tree<a class="headerlink" href="#fit-regression-tree" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ageGroup_split</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">term_day</span> <span class="o">~</span> <span class="n">age</span><span class="p">,</span>
@@ -1065,13 +1210,13 @@ n= 2453
 </div>
 </div>
 <p>The pruned tree splits the dataset into 3 subgroups which are exactly same as what has been defined in the data prep.</p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="random-forest">
-<h1>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction-of-random-forest">
-<h2>Introduction of random forest<a class="headerlink" href="#introduction-of-random-forest" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="random-forest">
+<h1>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">#</a></h1>
+<section id="introduction-of-random-forest">
+<h2>Introduction of random forest<a class="headerlink" href="#introduction-of-random-forest" title="Permalink to this headline">#</a></h2>
 <p>Random forest is an ensemble learning method that applies bootstrap aggregating, or Bagging, and a random selection of features, to enhance the overall performance by creating a number of trees. For classification tasks, the output of the random forest is the class selected by most trees. For regression tasks, the mean or average prediction of the individual trees is returned.</p>
 <p>Bootstrap is a sampling technique. Sampling is to randomly pick data points from a known sample as such to form a new sample, either with or without replacement. Random forest uses sampling with replacement, which is to choose from a set (or original data) of size <span class="math notranslate nohighlight">\(n\)</span>, to form a new set (or sample) of size <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <p>With replacement, each data point has a chance of <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> to be selected, and after <span class="math notranslate nohighlight">\(n\)</span> selections, the probability that a data point is not selected, is <span class="math notranslate nohighlight">\((1 - \frac{1}{n})^n\)</span>. When <span class="math notranslate nohighlight">\(n \to \infty\)</span>, this converges to <span class="math notranslate nohighlight">\(\frac{1}{e} \approx 0.368\)</span>. This means around 36.8% data will not be selected into the new sample, which are called “Out of Bag” (OOB) data.</p>
@@ -1079,9 +1224,9 @@ n= 2453
 <p>With the randomness in sampling of data points and features, random forest can control over-fitting well. Meanwhile, as random forest uses multiple decision trees, it also helps reduce the variance. If we treat each tree as a <span class="math notranslate nohighlight">\(iid\)</span> random variable <span class="math notranslate nohighlight">\(X_i\)</span> with variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, variance of their mean is
 <span class="math notranslate nohighlight">\( Var(\frac{1}{n} \sum X_i) = \frac{\sigma^2}{n}\)</span>
 where <span class="math notranslate nohighlight">\(n\)</span> denotes the number of trees.</p>
-</div>
-<div class="section" id="train-random-forest-model">
-<h2>Train random forest model<a class="headerlink" href="#train-random-forest-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="train-random-forest-model">
+<h2>Train random forest model<a class="headerlink" href="#train-random-forest-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
@@ -1216,12 +1361,12 @@ Area under the curve: 0.6683
 <img alt="../_images/trees_21_3.png" src="../_images/trees_21_3.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="xgboost">
-<h1>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="a-gentle-intro-to-gradient-boosting">
-<h2>A gentle intro to gradient boosting<a class="headerlink" href="#a-gentle-intro-to-gradient-boosting" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="xgboost">
+<h1>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">#</a></h1>
+<section id="a-gentle-intro-to-gradient-boosting">
+<h2>A gentle intro to gradient boosting<a class="headerlink" href="#a-gentle-intro-to-gradient-boosting" title="Permalink to this headline">#</a></h2>
 <p>Before talking about XGBoost, let’s take a look at gradient boosting decision trees (GBDT). Unlike Bagging technique used by random forest, Boosting sums up all the trees instead of taking majority vote. All the trees (or weak learners) are dependent. At every training iteration, the misclassified samples at the previous training step will be assigned higher weight. The predicted outcome is the weighted sum of all the learners.</p>
 <p>As an example, to predict the age of a person (say actual value is 40):</p>
 <ul class="simple">
@@ -1237,9 +1382,9 @@ Area under the curve: 0.6683
 Note that this is just same as mean square error, the <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> at the front is just to offset the coefficient 2 that will emerge when calculating derivative, without changing the overall trend. Thus, the negative gradient is
 <span class="math notranslate nohighlight">\( -\frac{\partial l}{\partial \hat{y}_i} = (y_i - \hat{y}_i)\)</span>
 which is exactly the variance between the actual and predicted value.</p>
-</div>
-<div class="section" id="pros-and-cons-of-gbdt">
-<h2>Pros and cons of GBDT<a class="headerlink" href="#pros-and-cons-of-gbdt" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pros-and-cons-of-gbdt">
+<h2>Pros and cons of GBDT<a class="headerlink" href="#pros-and-cons-of-gbdt" title="Permalink to this headline">#</a></h2>
 <p>Pros:</p>
 <ul class="simple">
 <li><p>Fast predicting process, allowing multi-thread computation.</p></li>
@@ -1251,9 +1396,9 @@ which is exactly the variance between the actual and predicted value.</p>
 <li><p>SVM and neural network may perform better than GBDT on sparse data.</p></li>
 <li><p>Training takes longer as trees are inter-dependent.</p></li>
 </ul>
-</div>
-<div class="section" id="gbdt-vs-random-forest">
-<h2>GBDT vs Random Forest<a class="headerlink" href="#gbdt-vs-random-forest" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="gbdt-vs-random-forest">
+<h2>GBDT vs Random Forest<a class="headerlink" href="#gbdt-vs-random-forest" title="Permalink to this headline">#</a></h2>
 <p>Similarity:</p>
 <ul class="simple">
 <li><p>Both contains multiple trees, and all trees are involved in determining final result.</p></li>
@@ -1266,15 +1411,15 @@ which is exactly the variance between the actual and predicted value.</p>
 <li><p>Random forest is not sensitive to outliers, but GBDT is.</p></li>
 <li><p>Random forest reduces the model variance, and GBDT reduces the model bias.</p></li>
 </ul>
-</div>
-<div class="section" id="introduction-of-xgboost">
-<h2>Introduction of XGBoost<a class="headerlink" href="#introduction-of-xgboost" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="introduction-of-xgboost">
+<h2>Introduction of XGBoost<a class="headerlink" href="#introduction-of-xgboost" title="Permalink to this headline">#</a></h2>
 <p>XGBoost stands for eXtreme Gradient Boosting and is developed on the framework of gradient boosting by Tianqi Chen et. al. It inherits the nature of GBDT model and has made several enhancements to be more powerful and efficient.</p>
 <p>One of the main features about XGBoost is that it has enabled parallel computing. Unlike random forest where each tree is mutually independent, XGBoost as a variant of GBDT still needs to generate trees in sequence. The way it realises parallel learning is by introducing a block structure. As stated in the paper, the most timing consuming part of tree learning is to get the data into sorted order. The algorithm stores data in in-memory units called “block”, with each column sorted by the corresponding feature value. By doing so, the input data only needs to be computed once before training, and the blocks can be re-used in later iterations.</p>
 <p>While machine learning algorithms have support for tuning and can work with external programs, XGBoost has built-in parameters for regularisation and cross-validation to make sure both bias and variance is kept at a minimal.</p>
-</div>
-<div class="section" id="xgboost-vs-original-gbdt">
-<h2>XGBoost vs Original GBDT<a class="headerlink" href="#xgboost-vs-original-gbdt" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="xgboost-vs-original-gbdt">
+<h2>XGBoost vs Original GBDT<a class="headerlink" href="#xgboost-vs-original-gbdt" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>XGBoost uses L2 norm which controls over-fitting and allows model to converge faster than L1 norm. For more information about regularisation, this article is a good reading <a class="reference external" href="https://www.kaggle.com/residentmario/l1-norms-versus-l2-norms">https://www.kaggle.com/residentmario/l1-norms-versus-l2-norms</a></p></li>
 <li><p>The original GBDT only uses the first order derivative of the loss function, while XGBoost uses both the first and second order derivatives (by Taylor series). Second order derivative allows gradient to descend faster in the right direction.</p></li>
@@ -1282,9 +1427,9 @@ which is exactly the variance between the actual and predicted value.</p>
 <li><p>The original GBDT uses all data points in every iteration. XGBoost randomly samples the data to prevent over-fitting.</p></li>
 <li><p>XGBoost can handle missing values. Common treatments are to: 1) use median values, or 2) do so but also consider the similarity of the data point against all others (proximity measures). The strategy in XGBoost is to put all samples where the value of the split feature is unknown in one of the two children (left or right sub-tree), whichever side gives optimised training loss. Clever isn’t it? This assumes that the training data and predicting data have same distribution.</p></li>
 </ul>
-</div>
-<div class="section" id="train-xgboost-model">
-<h2>Train XGBoost model<a class="headerlink" href="#train-xgboost-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="train-xgboost-model">
+<h2>Train XGBoost model<a class="headerlink" href="#train-xgboost-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
@@ -1437,8 +1582,8 @@ Area under the curve: 0.6811
 <img alt="../_images/trees_23_5.png" src="../_images/trees_23_5.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1462,9 +1607,11 @@ Area under the curve: 0.6811
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="bayesian-applications.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1480,26 +1627,30 @@ Area under the curve: 0.6811
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

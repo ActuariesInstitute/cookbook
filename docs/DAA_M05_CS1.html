@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Py: Customer Churn Classification &#8212; Actuaries&#39; Analytical Cookbook</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -64,7 +63,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +86,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -391,114 +405,245 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/DAA_M05_CS1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ActuariesInstitute/cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M05_CS1.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M05_CS1.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M05_CS1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M05_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M05_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M05_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/DAA_M05_CS1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#define-the-problem">
    Define the Problem:
@@ -666,12 +811,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Py: Customer Churn Classification</h1>
@@ -855,27 +999,28 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="py-customer-churn-classification">
-<h1>Py: Customer Churn Classification<a class="headerlink" href="#py-customer-churn-classification" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="py-customer-churn-classification">
+<h1>Py: Customer Churn Classification<a class="headerlink" href="#py-customer-churn-classification" title="Permalink to this headline">#</a></h1>
 <p><strong>This notebook was originally created by Josh Jaroudy for the Data Analytics Applications subject, as <em>Case Study 1</em> in the DAA M05 Classification and neural networks module.</strong></p>
 <p><strong>Data Analytics Applications is a Fellowship Applications (Module 3) subject with the Actuaries Institute that aims to teach students how to apply a range of data analytics skills, such as neural networks, natural language processing, unsupervised learning and optimisation techniques, together with their professional judgement, to solve a variety of complex and challenging business problems. The business problems used as examples in this subject are drawn from a wide range of industries.</strong></p>
 <p><strong>Find out more about the course <a class="reference external" href="https://www.actuaries.asn.au/education-program/fellowship/subjects-and-syllabus/data-analytics-applications-subject">here</a>.</strong></p>
-<div class="section" id="define-the-problem">
-<h2>Define the Problem:<a class="headerlink" href="#define-the-problem" title="Permalink to this headline">¶</a></h2>
+<section id="define-the-problem">
+<h2>Define the Problem:<a class="headerlink" href="#define-the-problem" title="Permalink to this headline">#</a></h2>
 <p>Customer churn, also known as customer attrition, customer turnover or customer defection, is the loss of clients or customers. For many businesses, a high level of customer churn can negatively impact their profits, particularly because it is often quite costly for a business to acquire new customers.</p>
 <p>For this reason, many businesses like to understand which customers are likely to churn in a given period. Armed with this information, businesses can employ different strategies to try to retain their customers.
 This case study investigates the use of neural networks and gradient boosting machines for predicting which customers are likely to churn.</p>
 <p>When trying to predict customer churn, it may seem like a relatively straightforward task to obtain some past customer data and use this to determine whether future customers will churn. However, the task of deciding exactly what the output of such a prediction model should be is quite complex, and heavily dependent on how the model will be used by the business.</p>
-</div>
-<div class="section" id="purpose">
-<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="purpose">
+<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">#</a></h2>
 <p>This notebook investigates the use of neural networks and gradient boosting machines for predicting which customers are likely to churn. This code is used in Case Study 1 in Module 5.</p>
-</div>
-<div class="section" id="references">
-<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>The dataset used in this notebook was sourced from a Kaggle competition  that aimed to predict customer churn behaviour for a telecommunications provider: <a class="reference external" href="https://www.kaggle.com/blastchar/telco-customer-churn">https://www.kaggle.com/blastchar/telco-customer-churn</a>.</p>
 <p>This dataset contains 7,043 rows (one for each customer) and 21 features, including information about each customer’s:</p>
 <ul class="simple">
@@ -884,9 +1029,9 @@ This case study investigates the use of neural networks and gradient boosting ma
 <li><p>demographic information, such as gender, age range, and whether they have a partner and dependents.</p></li>
 </ul>
 <p>The response variable in the dataset is labelled ‘Churn’. It represents whether each customer left the service provider in the month preceding the data extract date.</p>
-</div>
-<div class="section" id="packages">
-<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h2>
 <p>This section imports the packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -924,9 +1069,9 @@ This case study investigates the use of neural networks and gradient boosting ma
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <p>The section below defines some general functions that are used in this notebook.
 Other functions that are specific to each type of model are defined in the section for that model.</p>
 <div class="cell docutils container">
@@ -1011,17 +1156,17 @@ Other functions that are specific to each type of model are defined in the secti
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
 <p>This section:</p>
 <ul class="simple">
 <li><p>imports the data that will be used in the modelling;</p></li>
 <li><p>explores the data; and</p></li>
 <li><p>prepares the data for modelling.</p></li>
 </ul>
-<div class="section" id="import-data">
-<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
+<section id="import-data">
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <p>The below code will read it into a pandas data frame.</p>
 <p>We read directly from a URL, but pandas can also read from a file.</p>
 <div class="cell docutils container">
@@ -1033,9 +1178,9 @@ Other functions that are specific to each type of model are defined in the secti
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="explore-data-eda">
-<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="explore-data-eda">
+<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <p>Prior to commencing modelling, it is always a good idea to look at the data to get an understanding of the:</p>
 <ul class="simple">
 <li><p>available features;</p></li>
@@ -1295,9 +1440,9 @@ dtype: int64
 <p>5 rows × 21 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="prepare-data">
-<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="prepare-data">
+<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h3>
 <p>Some data preparation is needed before the modelling can begin.</p>
 <p>From the summaries in the EDA section above you can see that:</p>
 <ul class="simple">
@@ -1490,23 +1635,23 @@ dtype: object
 <img alt="../_images/DAA_M05_CS1_19_19.png" src="../_images/DAA_M05_CS1_19_19.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="modelling">
-<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h2>
 <p>This section:</p>
 <ul class="simple">
 <li><p>fits some models; and</p></li>
 <li><p>evaluates the fitted models.</p></li>
 </ul>
-<div class="section" id="gradient-boosting-machine-gbm">
-<h3>Gradient Boosting Machine (GBM)<a class="headerlink" href="#gradient-boosting-machine-gbm" title="Permalink to this headline">¶</a></h3>
+<section id="gradient-boosting-machine-gbm">
+<h3>Gradient Boosting Machine (GBM)<a class="headerlink" href="#gradient-boosting-machine-gbm" title="Permalink to this headline">#</a></h3>
 <p>The first model to be fitted is a Gradient Boosting Machine (GBM).
 GBM applies boosting (see Section 5.3.3 of Module 5) in the context of decision trees.</p>
 <p>The GBM will be used as a benchmark to compare to a neural network fitted later on.</p>
 <p>To fit the GBM, the <code class="docutils literal notranslate"><span class="pre">GradientBoostingClassifier()</span></code> from the sklearn package is used.</p>
-<div class="section" id="id1">
-<h4>Prepare data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<section id="id1">
+<h4>Prepare data<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <p>To prepare the data for the GBM model, the code below:</p>
 <ul class="simple">
 <li><p>one hot encodes the categorical features; and</p></li>
@@ -1526,9 +1671,9 @@ GBM applies boosting (see Section 5.3.3 of Module 5) in the context of decision 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fit-initial-gbm-gbm-1">
-<h4>Fit initial GBM (GBM 1)<a class="headerlink" href="#fit-initial-gbm-gbm-1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-initial-gbm-gbm-1">
+<h4>Fit initial GBM (GBM 1)<a class="headerlink" href="#fit-initial-gbm-gbm-1" title="Permalink to this headline">#</a></h4>
 <p>To create and train the model, 20% of the training data will be used as an (internal) validation set for early stopping, to prevent overfitting. The model will stop training if no improvement on this validation data has been observed for 50 consecutive iterations.
 This is specified with <code class="docutils literal notranslate"><span class="pre">validation_fraction</span> <span class="pre">=</span> <span class="pre">0.2</span></code> and <code class="docutils literal notranslate"><span class="pre">n_iter_no_change</span> <span class="pre">=</span> <span class="pre">50</span></code>.</p>
 <p>Other hyperparameters used in the training:</p>
@@ -1582,9 +1727,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-gbm-1">
-<h4>Evaluate GBM 1<a class="headerlink" href="#evaluate-gbm-1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-gbm-1">
+<h4>Evaluate GBM 1<a class="headerlink" href="#evaluate-gbm-1" title="Permalink to this headline">#</a></h4>
 <p>The code below looks at some basic goodness of fit measures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1656,9 +1801,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="estimate-feature-importance">
-<h4>Estimate feature importance<a class="headerlink" href="#estimate-feature-importance" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="estimate-feature-importance">
+<h4>Estimate feature importance<a class="headerlink" href="#estimate-feature-importance" title="Permalink to this headline">#</a></h4>
 <p>Feature importance provides a measure of how much the model predictions rely on a particular feature. The higher the importance of a feature, the more it contributes to the model’s performance.</p>
 <p>The code below plot the importance of each feature in the GBM.</p>
 <div class="cell docutils container">
@@ -1690,9 +1835,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <img alt="../_images/DAA_M05_CS1_34_1.png" src="../_images/DAA_M05_CS1_34_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="examine-effect-of-features">
-<h4>Examine effect of features<a class="headerlink" href="#examine-effect-of-features" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="examine-effect-of-features">
+<h4>Examine effect of features<a class="headerlink" href="#examine-effect-of-features" title="Permalink to this headline">#</a></h4>
 <p>It is important to understand the shape of the effects learned by the model, in order to:</p>
 <ul class="simple">
 <li><p>understand what the model is doing; and</p></li>
@@ -1758,9 +1903,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </ul>
 <p>Note that a PDP for a binary feature like ‘Contract_Month-to-month’ is a bit misleading, as the feature can only take values of 0 or 1, so there are only two points on this PDP that make sense. What is important to take away from this PDP is that people on a month-to-month contract are more likely to be predicted to churn than those on a one or two month contract.</p>
 <p>This finding can be used to sense check the model’s predictions. In this case, we have already seen from the Explore Data section above that, across the entire dataset, people on a month-to-month contract have a 43% churn rate, compared to 11% for those on a one year contract and 3% for those on a two year contract, so the direction of the PDP outcomes for the feature ‘Contract_Month-to-month’ makes sense.</p>
-</div>
-<div class="section" id="improve-the-model-gbm-2">
-<h4>Improve the model (GBM 2)<a class="headerlink" href="#improve-the-model-gbm-2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="improve-the-model-gbm-2">
+<h4>Improve the model (GBM 2)<a class="headerlink" href="#improve-the-model-gbm-2" title="Permalink to this headline">#</a></h4>
 <p>Check the documentation for <code class="docutils literal notranslate"><span class="pre">GradientBoostingClassifier()</span></code> to see the hyperparameters available and try a few combinations to improve the performance.</p>
 <p>The code below shows some experimentation with hyperparameter values.</p>
 <div class="cell docutils container">
@@ -1817,9 +1962,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-gbm-2">
-<h4>Evaluate GBM 2<a class="headerlink" href="#evaluate-gbm-2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-gbm-2">
+<h4>Evaluate GBM 2<a class="headerlink" href="#evaluate-gbm-2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Score the validation dataset.</span>
@@ -1885,9 +2030,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <p>The AUC and F1 scores shown above indicate that the changes made to create GBM 2 have had some small (relatively immaterial) improvements on the GBM’s performance.</p>
-</div>
-<div class="section" id="select-final-model-gbm-final">
-<h4>Select final model (GBM final)<a class="headerlink" href="#select-final-model-gbm-final" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="select-final-model-gbm-final">
+<h4>Select final model (GBM final)<a class="headerlink" href="#select-final-model-gbm-final" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the final model and call it `gbm_model_final`.</span>
@@ -1907,10 +2052,10 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="simple-neural-networks-built-from-first-principles">
-<h3>Simple neural networks built from first principles<a class="headerlink" href="#simple-neural-networks-built-from-first-principles" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="simple-neural-networks-built-from-first-principles">
+<h3>Simple neural networks built from first principles<a class="headerlink" href="#simple-neural-networks-built-from-first-principles" title="Permalink to this headline">#</a></h3>
 <p>In this section a neural network is built from first principles.
 While you will not generally need to build a network from first principles, by reviewing the code below, along with Sections 5.5.2, 5.5.3, and 5.5.4 of Module 5, you should obtain a good understanding of what is going on ‘under the hood’ of a neural network.</p>
 <p>To simplify the calculations below:</p>
@@ -1920,8 +2065,8 @@ While you will not generally need to build a network from first principles, by r
 <li><p>mean-squared error (MSE) is used as the loss function; and</p></li>
 <li><p>the loss function is optimised using backpropagation.</p></li>
 </ul>
-<div class="section" id="id2">
-<h4>Prepare data<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<section id="id2">
+<h4>Prepare data<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>Categorical features must be encoded as numeric.</p>
 <p>The categorical feature with <span class="math notranslate nohighlight">\(k\)</span> levels is encoded as follows:</p>
 <ul class="simple">
@@ -1971,9 +2116,9 @@ While you will not generally need to build a network from first principles, by r
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fit-a-single-layer-neural-network-nn-1">
-<h4>Fit a single layer neural network (NN 1)<a class="headerlink" href="#fit-a-single-layer-neural-network-nn-1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-a-single-layer-neural-network-nn-1">
+<h4>Fit a single layer neural network (NN 1)<a class="headerlink" href="#fit-a-single-layer-neural-network-nn-1" title="Permalink to this headline">#</a></h4>
 <p>In its simplest form, a neural network can be reduced to a basic regression model (see Exercise 5.16 in Module 5). In the example below, a logistic regression model is constructed within the framework of a single cell neural network.</p>
 <p>In this network, the single neuron performs the following operations on the <span class="math notranslate nohighlight">\(i^{th}\)</span> training observation (i.e. the <span class="math notranslate nohighlight">\(i^{th}\)</span> row of data):</p>
 <ul class="simple">
@@ -2220,9 +2365,9 @@ iter 475 MSE: 0.14313449424136288
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-nn-1">
-<h4>Evaluate NN 1<a class="headerlink" href="#evaluate-nn-1" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-nn-1">
+<h4>Evaluate NN 1<a class="headerlink" href="#evaluate-nn-1" title="Permalink to this headline">#</a></h4>
 <p>The cells below assess the module using the AUC measure and by plotting the confusion matrix.
 They also compare the single layer neural network to the final GBM model.</p>
 <div class="cell docutils container">
@@ -2291,9 +2436,9 @@ They also compare the single layer neural network to the final GBM model.</p>
 </div>
 </div>
 <p>The AUC is slighly higher (better) under the final GBM than under the single layer neural network. However, the very simple neural network isn’t far behind the more complicated GBM and has an AUC above 0.84, so this still seems to be a reasonable model for predicting churn.</p>
-</div>
-<div class="section" id="fit-a-multi-layer-neural-network-nn-2">
-<h4>Fit a multi-layer neural network (NN 2)<a class="headerlink" href="#fit-a-multi-layer-neural-network-nn-2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-a-multi-layer-neural-network-nn-2">
+<h4>Fit a multi-layer neural network (NN 2)<a class="headerlink" href="#fit-a-multi-layer-neural-network-nn-2" title="Permalink to this headline">#</a></h4>
 <p>The single layer neural network (NN 1) can now be extended to a more complex model in an attempt to improve the predictive capability of the neural network.</p>
 <p>This second neural network (NN 2) will have one hidden layer with four neurons. Again, the sigmoid activation function will be used in the hidden and output layers and mean-squared error will be used as the loss function.</p>
 <p>For the time-being, this will still be built and trained from first principles. Again, while it will rarely be necessary for you to build a neural network from first principles, you should review the code below to get a better sense of what is going on within a neural network with a hidden layer.</p>
@@ -2434,9 +2579,9 @@ iter 475 : 0.18941896598690924
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-nn-2">
-<h4>Evaluate NN 2<a class="headerlink" href="#evaluate-nn-2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-nn-2">
+<h4>Evaluate NN 2<a class="headerlink" href="#evaluate-nn-2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_nn2_train</span> <span class="o">=</span> <span class="n">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
@@ -2476,18 +2621,18 @@ iter 475 : 0.18941896598690924
 </div>
 </div>
 <p>The slightly more complex neural network with one hidden layer (NN 2) performed slightly worse on the validation data than the very simple one neuron neural network (NN 1). Both performaed slightly worse than the GBM but still had AUCs over 83%.</p>
-</div>
-</div>
-<div class="section" id="neural-networks-using-keras">
-<h3>Neural networks using Keras<a class="headerlink" href="#neural-networks-using-keras" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="neural-networks-using-keras">
+<h3>Neural networks using Keras<a class="headerlink" href="#neural-networks-using-keras" title="Permalink to this headline">#</a></h3>
 <p>This section demonstrates how to fit a neural network using Python’s Keras package. Keras, which runs on top of the TensorFlow library, does all of the calculations shown above for the simple neural networks, taking a lot of the hard work out of building a neural network.</p>
 <p>The following steps are used to build the neural networks using Keras:</p>
 <ul class="simple">
 <li><p>use <code class="docutils literal notranslate"><span class="pre">Sequential()</span></code> to specify a feedforward neural network;</p></li>
 <li><p>use the <code class="docutils literal notranslate"><span class="pre">.add()</span></code> method to add layers to the network, combined with <code class="docutils literal notranslate"><span class="pre">Dense()</span></code> to specify a dense layer (where all the neurons are fully connected to the preceding layer).</p></li>
 </ul>
-<div class="section" id="fit-a-single-layer-neural-network-with-keras-nn-3">
-<h4>Fit a single layer neural network with Keras (NN 3)<a class="headerlink" href="#fit-a-single-layer-neural-network-with-keras-nn-3" title="Permalink to this headline">¶</a></h4>
+<section id="fit-a-single-layer-neural-network-with-keras-nn-3">
+<h4>Fit a single layer neural network with Keras (NN 3)<a class="headerlink" href="#fit-a-single-layer-neural-network-with-keras-nn-3" title="Permalink to this headline">#</a></h4>
 <p>The following options are taken to align the first Keras model with NN 2:</p>
 <ul class="simple">
 <li><p>SGD optimiser: this optimises using stochastic gradient descent with momentum. By setting <code class="docutils literal notranslate"><span class="pre">momentum</span> <span class="pre">=</span> <span class="pre">0.0</span></code>, <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> to the input data size, and <code class="docutils literal notranslate"><span class="pre">steps_per_epoch</span> <span class="pre">=</span> <span class="pre">1</span></code> the basic backpropagation algorithm is recovered.</p></li>
@@ -3547,9 +3692,9 @@ Epoch 500/500
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-nn-3">
-<h4>Evaluate NN 3<a class="headerlink" href="#evaluate-nn-3" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-nn-3">
+<h4>Evaluate NN 3<a class="headerlink" href="#evaluate-nn-3" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
@@ -3583,9 +3728,9 @@ Epoch 500/500
 </div>
 </div>
 <p>As expected, the AUC for NN 3 (Neural network with 4 hidden neurons using Keras) is very similar to that for NN 2 (neural network with 4 hidden neurons built from first principles). All three neural networks underperform the GBM final model.</p>
-</div>
-<div class="section" id="fit-a-more-complex-model-with-keras">
-<h4>Fit a more complex model with Keras<a class="headerlink" href="#fit-a-more-complex-model-with-keras" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-a-more-complex-model-with-keras">
+<h4>Fit a more complex model with Keras<a class="headerlink" href="#fit-a-more-complex-model-with-keras" title="Permalink to this headline">#</a></h4>
 <p>Now, the power of Keras will be used to easily extend the simple single hidden layer model into a more complex neural network.</p>
 <p>There are many features available in Keras. The code below makes the following relatively simple adjustments to NN 3:</p>
 <ul class="simple">
@@ -3834,9 +3979,9 @@ Epoch 100/100
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="evaluate-nn-4">
-<h4>Evaluate NN 4<a class="headerlink" href="#evaluate-nn-4" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="evaluate-nn-4">
+<h4>Evaluate NN 4<a class="headerlink" href="#evaluate-nn-4" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
@@ -3886,16 +4031,16 @@ Epoch 100/100
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="evaluation-and-observations">
-<h2>Evaluation and observations<a class="headerlink" href="#evaluation-and-observations" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="evaluation-and-observations">
+<h2>Evaluation and observations<a class="headerlink" href="#evaluation-and-observations" title="Permalink to this headline">#</a></h2>
 <p>The Keras model provides the best performance (based on AUC) of the neural networks, but still underperforms the GBM.</p>
 <p>As an exercise, play around with some of the features available in Keras and try to build a neural network that outperforms the GBM on the validation data.</p>
 <p>You should note that the test data (20% of the original dataset) was not used in any of the modelling above. This is because it should be held-out until a final model has been selected. The test data can then be used to estimate the expected error of the final model on unseen data.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3919,9 +4064,11 @@ Epoch 100/100
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="version_control.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3937,26 +4084,30 @@ Epoch 100/100
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By YDAWG, DAPC, YAC and other contributors.<br/>
+  
+    <div class="extra_footer">
+       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
+    </div>
+</p>
+        </footer>
+    </div>
     
-      By YDAWG, DAPC, YAC and other contributors.<br/>
-    
-      <div class="extra_footer">
-         The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-      </div>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
