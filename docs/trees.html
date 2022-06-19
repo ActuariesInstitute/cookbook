@@ -1102,7 +1102,7 @@ where <span class="math notranslate nohighlight">\(IV(feature)\)</span> can be f
 </section>
 <section id="classification-tree-example">
 <h2>Classification tree example<a class="headerlink" href="#classification-tree-example" title="Permalink to this headline">#</a></h2>
-<p>Let’s model whether a policy has any claim incident, by looking at indicator of sickness (<span class="math notranslate nohighlight">\(\text{inc_count_sick}\)</span>) and accident (<span class="math notranslate nohighlight">\(\text{inc_count_acc}\)</span>). Apparently the dependent variable (<span class="math notranslate nohighlight">\(\text{inc_count_tot}\)</span>) is fully determined by the two indicators. “Class” method is used here to train the classification tree.</p>
+<p>Let’s model whether a policy has any claim incident, by looking at indicator of sickness <code class="docutils literal notranslate"><span class="pre">inc_count_sick</span></code> and accident <code class="docutils literal notranslate"><span class="pre">inc_count_acc</span></code>. Apparently the dependent variable <code class="docutils literal notranslate"><span class="pre">inc_count_tot</span></code> is fully determined by the two indicators. “Class” method is used here to train the classification tree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">classi_tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">inc_count_tot</span> <span class="o">~</span> <span class="n">inc_count_acc</span> <span class="o">+</span> <span class="n">inc_count_sick</span><span class="p">,</span>
