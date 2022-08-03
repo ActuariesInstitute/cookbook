@@ -17,26 +17,28 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+import pandas as pd # Used for data management.
 
-# Used to build the neural network and evaluate it.
-from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+%matplotlib inline 
+
+# The following scikit-learn libraries will be used
+# to standardise the features and run K-means clustering.
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Dense
+from sklearn.cluster import KMeans
+
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 6>[0;34m()[0m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      5[0m [38;5;66;03m# Used to build the neural network and evaluate it.[39;00m
-[0;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m [38;5;28;01mimport[39;00m train_test_split
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m StandardScaler
-[1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m OneHotEncoder
+Input [0;32mIn [1][0m, in [0;36m<cell line: 8>[0;34m()[0m
+[1;32m      4[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124mmatplotlib[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124minline[39m[38;5;124m'[39m)
+[1;32m      6[0m [38;5;66;03m# The following scikit-learn libraries will be used[39;00m
+[1;32m      7[0m [38;5;66;03m# to standardise the features and run K-means clustering.[39;00m
+[0;32m----> 8[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpipeline[39;00m [38;5;28;01mimport[39;00m make_pipeline
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m StandardScaler
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcluster[39;00m [38;5;28;01mimport[39;00m KMeans
 
 [0;31mModuleNotFoundError[0m: No module named 'sklearn'
 ModuleNotFoundError: No module named 'sklearn'
