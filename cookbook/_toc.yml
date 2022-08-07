@@ -36,6 +36,7 @@ parts:
   - file:  docs/trees.ipynb 
 - caption: General Insurance
   chapters:
+  - file: docs/SQL Query for Triangles.ipynb
   - file: docs/MLRWP_R_GLMs.ipynb
   - file: docs/MLRWP_R_Lasso.ipynb
   - file: docs/MLRWP_R_mlr3.ipynb
