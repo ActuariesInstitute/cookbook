@@ -1,19 +1,23 @@
 Traceback (most recent call last):
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
-    executenb(
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
-    await self.async_execute_cell(
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/asyncio/futures.py", line 178, in result
+    raise self._exception
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/asyncio/tasks.py", line 280, in __step
+    result = coro.send(None)
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/client.py", line 664, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+  File "/usr/share/miniconda3/envs/main-conda-env/lib/pypy3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -34,13 +38,13 @@ from IPython.display import Image
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 11>[0;34m()[0m
-[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mas[39;00m [38;5;21;01mmetrics[39;00m
-[1;32m     10[0m [38;5;66;03m# Used to graph the decision tree[39;00m
-[0;32m---> 11[0m [38;5;28;01mimport[39;00m [38;5;21;01mgraphviz[39;00m
-[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtree[39;00m [38;5;28;01mimport[39;00m export_graphviz
-[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m Image
+Input [0;32mIn [1][0m, in [0;36m<cell line: 5>[0;34m()[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      4[0m [38;5;66;03m# Used to build the decision tree and evaluate it[39;00m
+[0;32m----> 5[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m [38;5;28;01mimport[39;00m tree
+[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m [38;5;28;01mimport[39;00m train_test_split
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mimport[39;00m classification_report, confusion_matrix, accuracy_score
 
-[0;31mModuleNotFoundError[0m: No module named 'graphviz'
-ModuleNotFoundError: No module named 'graphviz'
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
 

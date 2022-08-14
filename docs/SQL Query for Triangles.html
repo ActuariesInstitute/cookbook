@@ -746,45 +746,21 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting duckdb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading duckdb-0.4.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (15.7 MB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/15.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.9/15.7 MB</span> <span class=" -Color -Color-Red">57.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">6.6/15.7 MB</span> <span class=" -Color -Color-Red">95.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">12.0/15.7 MB</span> <span class=" -Color -Color-Red">138.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">15.7/15.7 MB</span> <span class=" -Color -Color-Red">147.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">15.7/15.7 MB</span> <span class=" -Color -Color-Red">147.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">15.7/15.7 MB</span> <span class=" -Color -Color-Red">75.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.14 in /usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages (from duckdb) (1.22.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: duckdb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed duckdb-0.4.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: duckdb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting duckdb
+  Downloading duckdb-0.4.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (15.7 MB)
+     |████████████████████████████████| 15.7 MB 7.1 MB/s 
+?25hRequirement already satisfied: numpy&gt;=1.14 in /usr/local/lib/python3.7/dist-packages (from duckdb) (1.21.6)
+Installing collected packages: duckdb
+Successfully installed duckdb-0.4.0
+Name: duckdb
 Version: 0.4.0
 Summary: DuckDB embedded database
 Home-page: https://www.duckdb.org
-Author: 
-Author-email: 
+Author: None
+Author-email: None
 License: MIT
-Location: /usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages
+Location: /usr/local/lib/python3.7/dist-packages
 Requires: numpy
 Required-by: 
 </pre></div>
@@ -827,7 +803,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-4cf98d91-26c5-4f4c-9877-e65047f26c35">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1028,7 +1007,83 @@ Required-by:
   </tbody>
 </table>
 <p>18983 rows × 12 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-4cf98d91-26c5-4f4c-9877-e65047f26c35')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-4cf98d91-26c5-4f4c-9877-e65047f26c35 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-4cf98d91-26c5-4f4c-9877-e65047f26c35');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <p>This is a transactional dataset with payments. The dataset has times are represented as arbitrary time period units rather than dates, and some additional calculated fields are already available. However, for this exercise, we want to demonstrate how to create these columns in real world situations where the raw datasets are unlikely to include them. So the time periods will be converted to date formats with months from a start date of 2000-01-01 and some columns hidden to create a dataset that resembles real datasets in practice.</p>
 <div class="cell docutils container">
@@ -1073,7 +1128,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-4eba88b8-13e7-4b26-8f8a-b60c94807d79">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1190,7 +1248,83 @@ Required-by:
   </tbody>
 </table>
 <p>14951 rows × 5 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-4eba88b8-13e7-4b26-8f8a-b60c94807d79')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-4eba88b8-13e7-4b26-8f8a-b60c94807d79 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-4eba88b8-13e7-4b26-8f8a-b60c94807d79');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <section id="using-sql">
 <h3>Using SQL<a class="headerlink" href="#using-sql" title="Permalink to this headline">#</a></h3>
@@ -1234,7 +1368,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-41ed727c-ff2c-4840-8a71-1a623e12ea2b">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1339,7 +1476,83 @@ Required-by:
   </tbody>
 </table>
 <p>770 rows × 4 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-41ed727c-ff2c-4840-8a71-1a623e12ea2b')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-41ed727c-ff2c-4840-8a71-1a623e12ea2b button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-41ed727c-ff2c-4840-8a71-1a623e12ea2b');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <p>Whilst the above is perfect for further calculations or export, triangles are often displayed in the “wide” format as follows. Pivotting is easier in pandas in Python (or R with <code class="docutils literal notranslate"><span class="pre">dplyr::pivot_wider</span></code>), than in SQL.</p>
 <div class="cell docutils container">
@@ -1349,7 +1562,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-374c0392-8b58-42d0-9a22-11546d1b1f6b">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -2378,7 +2594,83 @@ Required-by:
   </tbody>
 </table>
 <p>40 rows × 39 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-374c0392-8b58-42d0-9a22-11546d1b1f6b')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-374c0392-8b58-42d0-9a22-11546d1b1f6b button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-374c0392-8b58-42d0-9a22-11546d1b1f6b');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <p>This can also be plotted easily with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
 <div class="cell docutils container">
@@ -2392,7 +2684,7 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6d74ec09a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8126cd2d50&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_19_1.png" src="../_images/SQL Query for Triangles_19_1.png" />
@@ -2415,7 +2707,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-eba3422c-a42f-488e-8352-9baf0a314266">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -2599,7 +2894,83 @@ Required-by:
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-eba3422c-a42f-488e-8352-9baf0a314266')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-eba3422c-a42f-488e-8352-9baf0a314266 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-eba3422c-a42f-488e-8352-9baf0a314266');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2609,7 +2980,7 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;duckdb.DuckDBPyConnection at 0x7f6d76271db0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;duckdb.DuckDBPyConnection at 0x7f813d8930b0&gt;
 </pre></div>
 </div>
 </div>
@@ -2657,7 +3028,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-2d2ea062-6492-4c30-86e9-d98baf18c3d2">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -2762,7 +3136,83 @@ Required-by:
   </tbody>
 </table>
 <p>820 rows × 4 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-2d2ea062-6492-4c30-86e9-d98baf18c3d2')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-2d2ea062-6492-4c30-86e9-d98baf18c3d2 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-2d2ea062-6492-4c30-86e9-d98baf18c3d2');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <p>Again, here is the triangle. You can see the accident/development cells with no payments are now zero instead of null.</p>
 <div class="cell docutils container">
@@ -2772,7 +3222,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-97bd843c-44ac-440c-b48e-51c3120463bf">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -3801,7 +4254,83 @@ Required-by:
   </tbody>
 </table>
 <p>40 rows × 40 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-97bd843c-44ac-440c-b48e-51c3120463bf')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-97bd843c-44ac-440c-b48e-51c3120463bf button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-97bd843c-44ac-440c-b48e-51c3120463bf');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="claims-ultimate-projections">
@@ -3863,7 +4392,7 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6d746eceb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f81266db350&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_33_1.png" src="../_images/SQL Query for Triangles_33_1.png" />
@@ -3880,7 +4409,7 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6d74491fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8126a4fa10&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_34_1.png" src="../_images/SQL Query for Triangles_34_1.png" />
@@ -3950,7 +4479,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-777734e1-4cdc-46a1-a730-8f8ad38d3758">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -4006,7 +4538,83 @@ Required-by:
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-777734e1-4cdc-46a1-a730-8f8ad38d3758')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-777734e1-4cdc-46a1-a730-8f8ad38d3758 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-777734e1-4cdc-46a1-a730-8f8ad38d3758');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4026,7 +4634,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-d38ccf86-7a9c-42e3-8161-0f094b98a2a9">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -4415,7 +5026,83 @@ Required-by:
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d38ccf86-7a9c-42e3-8161-0f094b98a2a9')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-d38ccf86-7a9c-42e3-8161-0f094b98a2a9 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-d38ccf86-7a9c-42e3-8161-0f094b98a2a9');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4424,7 +5111,10 @@ Required-by:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-13ea0c77-d4b6-476f-8048-466fa49124e5">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -4452,7 +5142,26 @@ Required-by:
       <th>8</th>
       <th>9</th>
       <th>10</th>
-      <th>...</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
       <th>31</th>
       <th>32</th>
       <th>33</th>
@@ -4466,6 +5175,25 @@ Required-by:
     </tr>
     <tr>
       <th>occurrence_period</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -4502,7 +5230,26 @@ Required-by:
       <td>2185.0</td>
       <td>2790.0</td>
       <td>2934.0</td>
-      <td>...</td>
+      <td>4022.0</td>
+      <td>5022.0</td>
+      <td>5439.0</td>
+      <td>5603.0</td>
+      <td>6282.0</td>
+      <td>6701.0</td>
+      <td>6858.0</td>
+      <td>7857.0</td>
+      <td>9210.0</td>
+      <td>10895.0</td>
+      <td>12255.0</td>
+      <td>13365.0</td>
+      <td>17229.0</td>
+      <td>17816.0</td>
+      <td>18258.0</td>
+      <td>18328.0</td>
+      <td>18358.0</td>
+      <td>18371.0</td>
+      <td>18398.0</td>
+      <td>20170.0</td>
       <td>20677.0</td>
       <td>21945.0</td>
       <td>22151.0</td>
@@ -4526,7 +5273,26 @@ Required-by:
       <td>4420.0</td>
       <td>4673.0</td>
       <td>5212.0</td>
-      <td>...</td>
+      <td>5298.0</td>
+      <td>5855.0</td>
+      <td>6566.0</td>
+      <td>6923.0</td>
+      <td>7054.0</td>
+      <td>7223.0</td>
+      <td>7392.0</td>
+      <td>7667.0</td>
+      <td>8434.0</td>
+      <td>8627.0</td>
+      <td>8812.0</td>
+      <td>8848.0</td>
+      <td>8861.0</td>
+      <td>9443.0</td>
+      <td>9509.0</td>
+      <td>9789.0</td>
+      <td>9800.0</td>
+      <td>9984.0</td>
+      <td>10437.0</td>
+      <td>10523.0</td>
       <td>10532.0</td>
       <td>10929.0</td>
       <td>11644.0</td>
@@ -4550,7 +5316,26 @@ Required-by:
       <td>2556.0</td>
       <td>3278.0</td>
       <td>4114.0</td>
-      <td>...</td>
+      <td>4489.0</td>
+      <td>4942.0</td>
+      <td>5453.0</td>
+      <td>6346.0</td>
+      <td>7395.0</td>
+      <td>7584.0</td>
+      <td>8185.0</td>
+      <td>8461.0</td>
+      <td>8647.0</td>
+      <td>10312.0</td>
+      <td>10539.0</td>
+      <td>10544.0</td>
+      <td>11024.0</td>
+      <td>11805.0</td>
+      <td>12693.0</td>
+      <td>12774.0</td>
+      <td>13191.0</td>
+      <td>13239.0</td>
+      <td>13505.0</td>
+      <td>13505.0</td>
       <td>13526.0</td>
       <td>13526.0</td>
       <td>13526.0</td>
@@ -4574,7 +5359,26 @@ Required-by:
       <td>1354.0</td>
       <td>1529.0</td>
       <td>2500.0</td>
-      <td>...</td>
+      <td>2595.0</td>
+      <td>3045.0</td>
+      <td>4530.0</td>
+      <td>5027.0</td>
+      <td>5848.0</td>
+      <td>6313.0</td>
+      <td>6433.0</td>
+      <td>7674.0</td>
+      <td>8298.0</td>
+      <td>8433.0</td>
+      <td>8504.0</td>
+      <td>8525.0</td>
+      <td>8941.0</td>
+      <td>9345.0</td>
+      <td>9840.0</td>
+      <td>9852.0</td>
+      <td>9901.0</td>
+      <td>9901.0</td>
+      <td>9901.0</td>
+      <td>10370.0</td>
       <td>10370.0</td>
       <td>10985.0</td>
       <td>11183.0</td>
@@ -4598,7 +5402,26 @@ Required-by:
       <td>1893.0</td>
       <td>2643.0</td>
       <td>2904.0</td>
-      <td>...</td>
+      <td>5246.0</td>
+      <td>5791.0</td>
+      <td>6055.0</td>
+      <td>6424.0</td>
+      <td>6750.0</td>
+      <td>7129.0</td>
+      <td>7435.0</td>
+      <td>7819.0</td>
+      <td>8532.0</td>
+      <td>9068.0</td>
+      <td>9562.0</td>
+      <td>10706.0</td>
+      <td>10807.0</td>
+      <td>11375.0</td>
+      <td>11412.0</td>
+      <td>11440.0</td>
+      <td>11440.0</td>
+      <td>11712.0</td>
+      <td>11712.0</td>
+      <td>11822.0</td>
       <td>12410.0</td>
       <td>12432.0</td>
       <td>12519.0</td>
@@ -4622,7 +5445,26 @@ Required-by:
       <td>4038.0</td>
       <td>4892.0</td>
       <td>5097.0</td>
-      <td>...</td>
+      <td>5262.0</td>
+      <td>5681.0</td>
+      <td>6627.0</td>
+      <td>7112.0</td>
+      <td>7480.0</td>
+      <td>7969.0</td>
+      <td>8490.0</td>
+      <td>9119.0</td>
+      <td>9223.0</td>
+      <td>9750.0</td>
+      <td>9862.0</td>
+      <td>9951.0</td>
+      <td>10073.0</td>
+      <td>10077.0</td>
+      <td>10277.0</td>
+      <td>10298.0</td>
+      <td>10352.0</td>
+      <td>10727.0</td>
+      <td>10727.0</td>
+      <td>10795.0</td>
       <td>10795.0</td>
       <td>12696.0</td>
       <td>12696.0</td>
@@ -4646,7 +5488,26 @@ Required-by:
       <td>2548.0</td>
       <td>3280.0</td>
       <td>3909.0</td>
-      <td>...</td>
+      <td>4255.0</td>
+      <td>5469.0</td>
+      <td>5847.0</td>
+      <td>6446.0</td>
+      <td>6599.0</td>
+      <td>7312.0</td>
+      <td>8114.0</td>
+      <td>8301.0</td>
+      <td>8867.0</td>
+      <td>9161.0</td>
+      <td>10179.0</td>
+      <td>10363.0</td>
+      <td>10527.0</td>
+      <td>12782.0</td>
+      <td>12922.0</td>
+      <td>13594.0</td>
+      <td>13897.0</td>
+      <td>13955.0</td>
+      <td>13975.0</td>
+      <td>13986.0</td>
       <td>14027.0</td>
       <td>14500.0</td>
       <td>14500.0</td>
@@ -4670,7 +5531,26 @@ Required-by:
       <td>3261.0</td>
       <td>4429.0</td>
       <td>4839.0</td>
-      <td>...</td>
+      <td>5060.0</td>
+      <td>5830.0</td>
+      <td>5956.0</td>
+      <td>6128.0</td>
+      <td>6926.0</td>
+      <td>7158.0</td>
+      <td>7474.0</td>
+      <td>8486.0</td>
+      <td>8750.0</td>
+      <td>8994.0</td>
+      <td>9313.0</td>
+      <td>9368.0</td>
+      <td>9951.0</td>
+      <td>10002.0</td>
+      <td>10190.0</td>
+      <td>10846.0</td>
+      <td>11112.0</td>
+      <td>11127.0</td>
+      <td>11150.0</td>
+      <td>11150.0</td>
       <td>11644.0</td>
       <td>11956.0</td>
       <td>12015.0</td>
@@ -4694,7 +5574,26 @@ Required-by:
       <td>4741.0</td>
       <td>5295.0</td>
       <td>5795.0</td>
-      <td>...</td>
+      <td>6357.0</td>
+      <td>9091.0</td>
+      <td>9303.0</td>
+      <td>9524.0</td>
+      <td>10177.0</td>
+      <td>10969.0</td>
+      <td>11617.0</td>
+      <td>11769.0</td>
+      <td>12434.0</td>
+      <td>12843.0</td>
+      <td>13234.0</td>
+      <td>13543.0</td>
+      <td>13620.0</td>
+      <td>13722.0</td>
+      <td>14403.0</td>
+      <td>14665.0</td>
+      <td>14792.0</td>
+      <td>14953.0</td>
+      <td>14967.0</td>
+      <td>14980.0</td>
       <td>15097.0</td>
       <td>15415.0</td>
       <td>0.0</td>
@@ -4718,7 +5617,26 @@ Required-by:
       <td>5633.0</td>
       <td>6121.0</td>
       <td>6410.0</td>
-      <td>...</td>
+      <td>7471.0</td>
+      <td>8232.0</td>
+      <td>9125.0</td>
+      <td>9402.0</td>
+      <td>9649.0</td>
+      <td>10036.0</td>
+      <td>10288.0</td>
+      <td>10606.0</td>
+      <td>10692.0</td>
+      <td>10773.0</td>
+      <td>11107.0</td>
+      <td>11502.0</td>
+      <td>12665.0</td>
+      <td>13327.0</td>
+      <td>13918.0</td>
+      <td>14057.0</td>
+      <td>14427.0</td>
+      <td>14441.0</td>
+      <td>14556.0</td>
+      <td>14556.0</td>
       <td>14556.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4742,7 +5660,26 @@ Required-by:
       <td>4406.0</td>
       <td>4946.0</td>
       <td>5357.0</td>
-      <td>...</td>
+      <td>5825.0</td>
+      <td>6296.0</td>
+      <td>6671.0</td>
+      <td>7567.0</td>
+      <td>8109.0</td>
+      <td>9089.0</td>
+      <td>9449.0</td>
+      <td>9645.0</td>
+      <td>9816.0</td>
+      <td>10193.0</td>
+      <td>10511.0</td>
+      <td>10533.0</td>
+      <td>11141.0</td>
+      <td>11220.0</td>
+      <td>11228.0</td>
+      <td>11296.0</td>
+      <td>11477.0</td>
+      <td>12838.0</td>
+      <td>13687.0</td>
+      <td>13794.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4766,7 +5703,26 @@ Required-by:
       <td>3028.0</td>
       <td>3305.0</td>
       <td>3576.0</td>
-      <td>...</td>
+      <td>4700.0</td>
+      <td>5204.0</td>
+      <td>6328.0</td>
+      <td>6642.0</td>
+      <td>7046.0</td>
+      <td>7467.0</td>
+      <td>7656.0</td>
+      <td>7716.0</td>
+      <td>8008.0</td>
+      <td>8248.0</td>
+      <td>8516.0</td>
+      <td>8653.0</td>
+      <td>8683.0</td>
+      <td>9149.0</td>
+      <td>9196.0</td>
+      <td>9207.0</td>
+      <td>10094.0</td>
+      <td>10186.0</td>
+      <td>10278.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4790,7 +5746,26 @@ Required-by:
       <td>4694.0</td>
       <td>5019.0</td>
       <td>5256.0</td>
-      <td>...</td>
+      <td>5361.0</td>
+      <td>6215.0</td>
+      <td>6327.0</td>
+      <td>6855.0</td>
+      <td>7189.0</td>
+      <td>7780.0</td>
+      <td>8183.0</td>
+      <td>8255.0</td>
+      <td>8425.0</td>
+      <td>8455.0</td>
+      <td>8517.0</td>
+      <td>8613.0</td>
+      <td>8750.0</td>
+      <td>8810.0</td>
+      <td>8838.0</td>
+      <td>8845.0</td>
+      <td>10852.0</td>
+      <td>10869.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4814,7 +5789,26 @@ Required-by:
       <td>2646.0</td>
       <td>3248.0</td>
       <td>4035.0</td>
-      <td>...</td>
+      <td>5510.0</td>
+      <td>6270.0</td>
+      <td>7222.0</td>
+      <td>7618.0</td>
+      <td>7929.0</td>
+      <td>8424.0</td>
+      <td>8535.0</td>
+      <td>9656.0</td>
+      <td>9804.0</td>
+      <td>10104.0</td>
+      <td>10214.0</td>
+      <td>10231.0</td>
+      <td>11440.0</td>
+      <td>11546.0</td>
+      <td>11559.0</td>
+      <td>11559.0</td>
+      <td>11950.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4838,7 +5832,26 @@ Required-by:
       <td>2360.0</td>
       <td>3793.0</td>
       <td>4224.0</td>
-      <td>...</td>
+      <td>5363.0</td>
+      <td>5631.0</td>
+      <td>5866.0</td>
+      <td>7500.0</td>
+      <td>7935.0</td>
+      <td>8432.0</td>
+      <td>8876.0</td>
+      <td>9410.0</td>
+      <td>9902.0</td>
+      <td>10008.0</td>
+      <td>10280.0</td>
+      <td>12234.0</td>
+      <td>12383.0</td>
+      <td>12475.0</td>
+      <td>12505.0</td>
+      <td>12505.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4862,7 +5875,26 @@ Required-by:
       <td>3377.0</td>
       <td>4833.0</td>
       <td>5740.0</td>
-      <td>...</td>
+      <td>6286.0</td>
+      <td>7045.0</td>
+      <td>8313.0</td>
+      <td>8548.0</td>
+      <td>9286.0</td>
+      <td>9738.0</td>
+      <td>9793.0</td>
+      <td>9850.0</td>
+      <td>10534.0</td>
+      <td>11440.0</td>
+      <td>14453.0</td>
+      <td>15057.0</td>
+      <td>15086.0</td>
+      <td>15093.0</td>
+      <td>15112.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4886,7 +5918,26 @@ Required-by:
       <td>4459.0</td>
       <td>5525.0</td>
       <td>5886.0</td>
-      <td>...</td>
+      <td>6304.0</td>
+      <td>6815.0</td>
+      <td>7437.0</td>
+      <td>8538.0</td>
+      <td>8954.0</td>
+      <td>10040.0</td>
+      <td>10470.0</td>
+      <td>11418.0</td>
+      <td>11862.0</td>
+      <td>12955.0</td>
+      <td>14357.0</td>
+      <td>14847.0</td>
+      <td>14863.0</td>
+      <td>15208.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4910,7 +5961,26 @@ Required-by:
       <td>2335.0</td>
       <td>2922.0</td>
       <td>4013.0</td>
-      <td>...</td>
+      <td>4852.0</td>
+      <td>5183.0</td>
+      <td>5790.0</td>
+      <td>6744.0</td>
+      <td>7683.0</td>
+      <td>7796.0</td>
+      <td>7918.0</td>
+      <td>8170.0</td>
+      <td>8652.0</td>
+      <td>8699.0</td>
+      <td>9406.0</td>
+      <td>9590.0</td>
+      <td>9738.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4934,7 +6004,26 @@ Required-by:
       <td>5574.0</td>
       <td>6925.0</td>
       <td>7938.0</td>
-      <td>...</td>
+      <td>9539.0</td>
+      <td>10685.0</td>
+      <td>11163.0</td>
+      <td>11861.0</td>
+      <td>12571.0</td>
+      <td>12899.0</td>
+      <td>13534.0</td>
+      <td>13790.0</td>
+      <td>13940.0</td>
+      <td>14312.0</td>
+      <td>14493.0</td>
+      <td>14525.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4958,7 +6047,26 @@ Required-by:
       <td>3905.0</td>
       <td>4423.0</td>
       <td>4718.0</td>
-      <td>...</td>
+      <td>5204.0</td>
+      <td>6757.0</td>
+      <td>7100.0</td>
+      <td>8247.0</td>
+      <td>8418.0</td>
+      <td>9080.0</td>
+      <td>9255.0</td>
+      <td>9523.0</td>
+      <td>10225.0</td>
+      <td>10584.0</td>
+      <td>11807.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4982,7 +6090,26 @@ Required-by:
       <td>5978.0</td>
       <td>8033.0</td>
       <td>8481.0</td>
-      <td>...</td>
+      <td>8768.0</td>
+      <td>8922.0</td>
+      <td>9301.0</td>
+      <td>11224.0</td>
+      <td>11595.0</td>
+      <td>12560.0</td>
+      <td>13275.0</td>
+      <td>13541.0</td>
+      <td>14580.0</td>
+      <td>14660.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5006,7 +6133,26 @@ Required-by:
       <td>3597.0</td>
       <td>5828.0</td>
       <td>5979.0</td>
-      <td>...</td>
+      <td>6621.0</td>
+      <td>6893.0</td>
+      <td>7624.0</td>
+      <td>7844.0</td>
+      <td>8257.0</td>
+      <td>8712.0</td>
+      <td>8980.0</td>
+      <td>10412.0</td>
+      <td>11502.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5030,7 +6176,26 @@ Required-by:
       <td>3359.0</td>
       <td>3711.0</td>
       <td>4037.0</td>
-      <td>...</td>
+      <td>5257.0</td>
+      <td>5477.0</td>
+      <td>5867.0</td>
+      <td>6024.0</td>
+      <td>6393.0</td>
+      <td>6502.0</td>
+      <td>6930.0</td>
+      <td>7328.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5054,7 +6219,26 @@ Required-by:
       <td>3830.0</td>
       <td>4528.0</td>
       <td>4922.0</td>
-      <td>...</td>
+      <td>6122.0</td>
+      <td>6692.0</td>
+      <td>7158.0</td>
+      <td>7387.0</td>
+      <td>10066.0</td>
+      <td>10365.0</td>
+      <td>10864.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5078,7 +6262,26 @@ Required-by:
       <td>4501.0</td>
       <td>5272.0</td>
       <td>5867.0</td>
-      <td>...</td>
+      <td>6102.0</td>
+      <td>6407.0</td>
+      <td>7996.0</td>
+      <td>8950.0</td>
+      <td>11206.0</td>
+      <td>11646.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5102,7 +6305,26 @@ Required-by:
       <td>4643.0</td>
       <td>6277.0</td>
       <td>6739.0</td>
-      <td>...</td>
+      <td>7109.0</td>
+      <td>7472.0</td>
+      <td>7866.0</td>
+      <td>8078.0</td>
+      <td>8774.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5126,7 +6348,26 @@ Required-by:
       <td>2358.0</td>
       <td>2963.0</td>
       <td>3593.0</td>
-      <td>...</td>
+      <td>3943.0</td>
+      <td>4129.0</td>
+      <td>4609.0</td>
+      <td>5724.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5150,7 +6391,26 @@ Required-by:
       <td>2837.0</td>
       <td>3959.0</td>
       <td>4300.0</td>
-      <td>...</td>
+      <td>5187.0</td>
+      <td>5818.0</td>
+      <td>6526.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5174,7 +6434,26 @@ Required-by:
       <td>3529.0</td>
       <td>4482.0</td>
       <td>5287.0</td>
-      <td>...</td>
+      <td>5980.0</td>
+      <td>6138.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5198,7 +6477,26 @@ Required-by:
       <td>3655.0</td>
       <td>3854.0</td>
       <td>4064.0</td>
-      <td>...</td>
+      <td>5956.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5222,7 +6520,26 @@ Required-by:
       <td>1841.0</td>
       <td>2561.0</td>
       <td>2977.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5246,7 +6563,26 @@ Required-by:
       <td>4537.0</td>
       <td>5106.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5270,7 +6606,26 @@ Required-by:
       <td>3601.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5294,7 +6649,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5318,7 +6692,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5342,7 +6735,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5366,7 +6778,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5390,7 +6821,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5414,7 +6864,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5438,7 +6907,26 @@ Required-by:
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -5452,8 +6940,83 @@ Required-by:
     </tr>
   </tbody>
 </table>
-<p>40 rows × 40 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-13ea0c77-d4b6-476f-8048-466fa49124e5')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-13ea0c77-d4b6-476f-8048-466fa49124e5 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-13ea0c77-d4b6-476f-8048-466fa49124e5');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 </section>
