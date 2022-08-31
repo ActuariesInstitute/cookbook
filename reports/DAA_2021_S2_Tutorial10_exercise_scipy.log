@@ -76,17 +76,17 @@ File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-package
 [0;32m--> 947[0m         bounds [38;5;241m=[39m [43mnew_bounds_to_old[49m[43m([49m[43mbounds[49m[38;5;241;43m.[39;49m[43mlb[49m[43m,[49m[43m [49m[43mbounds[49m[38;5;241;43m.[39;49m[43mub[49m[43m,[49m[43m [49m[43mx0[49m[38;5;241;43m.[39;49m[43mshape[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[43m)[49m
 [1;32m    948[0m [38;5;28;01mreturn[39;00m bounds
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_constraints.py:390[0m, in [0;36mnew_bounds_to_old[0;34m(lb, ub, n)[0m
-[1;32m    381[0m [38;5;28;01mdef[39;00m [38;5;21mnew_bounds_to_old[39m(lb, ub, n):
-[1;32m    382[0m     [38;5;124;03m"""Convert the new bounds representation to the old one.[39;00m
-[1;32m    383[0m 
-[1;32m    384[0m [38;5;124;03m    The new representation is a tuple (lb, ub) and the old one is a list[39;00m
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_constraints.py:397[0m, in [0;36mnew_bounds_to_old[0;34m(lb, ub, n)[0m
+[1;32m    388[0m [38;5;28;01mdef[39;00m [38;5;21mnew_bounds_to_old[39m(lb, ub, n):
+[1;32m    389[0m     [38;5;124;03m"""Convert the new bounds representation to the old one.[39;00m
+[1;32m    390[0m 
+[1;32m    391[0m [38;5;124;03m    The new representation is a tuple (lb, ub) and the old one is a list[39;00m
 [0;32m   (...)[0m
-[1;32m    388[0m [38;5;124;03m    None.[39;00m
-[1;32m    389[0m [38;5;124;03m    """[39;00m
-[0;32m--> 390[0m     lb [38;5;241m=[39m [43mnp[49m[38;5;241;43m.[39;49m[43mbroadcast_to[49m[43m([49m[43mlb[49m[43m,[49m[43m [49m[43mn[49m[43m)[49m
-[1;32m    391[0m     ub [38;5;241m=[39m np[38;5;241m.[39mbroadcast_to(ub, n)
-[1;32m    393[0m     lb [38;5;241m=[39m [[38;5;28mfloat[39m(x) [38;5;28;01mif[39;00m x [38;5;241m>[39m [38;5;241m-[39mnp[38;5;241m.[39minf [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m lb]
+[1;32m    395[0m [38;5;124;03m    None.[39;00m
+[1;32m    396[0m [38;5;124;03m    """[39;00m
+[0;32m--> 397[0m     lb [38;5;241m=[39m [43mnp[49m[38;5;241;43m.[39;49m[43mbroadcast_to[49m[43m([49m[43mlb[49m[43m,[49m[43m [49m[43mn[49m[43m)[49m
+[1;32m    398[0m     ub [38;5;241m=[39m np[38;5;241m.[39mbroadcast_to(ub, n)
+[1;32m    400[0m     lb [38;5;241m=[39m [[38;5;28mfloat[39m(x) [38;5;28;01mif[39;00m x [38;5;241m>[39m [38;5;241m-[39mnp[38;5;241m.[39minf [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m lb]
 
 File [0;32m<__array_function__ internals>:180[0m, in [0;36mbroadcast_to[0;34m(*args, **kwargs)[0m
 
