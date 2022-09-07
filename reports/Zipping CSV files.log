@@ -44,7 +44,7 @@ for csv_filename in csv_files(source_dir):
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Input [0;32mIn [1][0m, in [0;36m<cell line: 15>[0;34m()[0m
+Cell [0;32mIn [1], line 15[0m
 [1;32m     12[0m source_dir [38;5;241m=[39m [38;5;124m'[39m[38;5;124m~/Downloads/drive-download-20211120T082520Z-001[39m[38;5;124m'[39m 
 [1;32m     13[0m dest_dir [38;5;241m=[39m [38;5;124m'[39m[38;5;124m~/Downloads/drive-download-20211120T082520Z-001[39m[38;5;124m'[39m
 [0;32m---> 15[0m [43mos[49m[38;5;241;43m.[39;49m[43mchdir[49m[43m([49m[43mdest_dir[49m[43m)[49m  [38;5;66;03m# To work around zipfile limitations[39;00m

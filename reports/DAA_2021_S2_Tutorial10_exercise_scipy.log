@@ -47,7 +47,7 @@ solution = minimize(objective,initial_quantities,
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-Input [0;32mIn [13][0m, in [0;36m<cell line: 23>[0;34m()[0m
+Cell [0;32mIn [13], line 23[0m
 [1;32m      6[0m methods [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mNelder-Mead[39m[38;5;124m'[39m,     [38;5;66;03m# also known as Downhill Simplex, Amoeba or Polytope[39;00m
 [1;32m      7[0m            [38;5;124m'[39m[38;5;124mPowell[39m[38;5;124m'[39m,
 [1;32m      8[0m            [38;5;124m'[39m[38;5;124mCG[39m[38;5;124m'[39m,              [38;5;66;03m# Conjugate Gradient[39;00m
