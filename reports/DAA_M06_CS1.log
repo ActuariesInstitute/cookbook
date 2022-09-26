@@ -60,9 +60,9 @@ During handling of the above exception, another exception occurred:
 Cell [0;32mIn [4], line 14[0m
 [1;32m     12[0m [38;5;66;03m# Read in the data from your folder.[39;00m
 [1;32m     13[0m data1 [38;5;241m=[39m pd[38;5;241m.[39mread_csv(infolder[38;5;241m+[39mfile1)
-[0;32m---> 14[0m data2 [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_excel[49m[43m([49m[43minfolder[49m[38;5;241;43m+[39;49m[43mfile2[49m[43m,[49m[43m [49m[43msheet_name[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mTable 1[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mheader[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;241;43m5[39;49m[43m,[49m
-[1;32m     15[0m [43m                      [49m[43musecols[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mA:C[39;49m[38;5;124;43m'[39;49m[43m,[49m
-[1;32m     16[0m [43m                      [49m[43mnames[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mSA1_7DIGITCODE_2016[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mSA1_11DIGITCODE_2016[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mIRSD_ABS[39;49m[38;5;124;43m'[39;49m[43m][49m[43m)[49m
+[0;32m---> 14[0m data2 [38;5;241m=[39m pd[38;5;241m.[39mread_excel(infolder[38;5;241m+[39mfile2, sheet_name[38;5;241m=[39m[38;5;124m'[39m[38;5;124mTable 1[39m[38;5;124m'[39m, header [38;5;241m=[39m [38;5;241m5[39m,
+[1;32m     15[0m                       usecols[38;5;241m=[39m[38;5;124m'[39m[38;5;124mA:C[39m[38;5;124m'[39m,
+[1;32m     16[0m                       names [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mSA1_7DIGITCODE_2016[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mSA1_11DIGITCODE_2016[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mIRSD_ABS[39m[38;5;124m'[39m])
 
 File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/util/_decorators.py:211[0m, in [0;36mdeprecate_kwarg.<locals>._deprecate_kwarg.<locals>.wrapper[0;34m(*args, **kwargs)[0m
 [1;32m    209[0m     [38;5;28;01melse[39;00m:

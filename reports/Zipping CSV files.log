@@ -47,7 +47,7 @@ for csv_filename in csv_files(source_dir):
 Cell [0;32mIn [1], line 15[0m
 [1;32m     12[0m source_dir [38;5;241m=[39m [38;5;124m'[39m[38;5;124m~/Downloads/drive-download-20211120T082520Z-001[39m[38;5;124m'[39m 
 [1;32m     13[0m dest_dir [38;5;241m=[39m [38;5;124m'[39m[38;5;124m~/Downloads/drive-download-20211120T082520Z-001[39m[38;5;124m'[39m
-[0;32m---> 15[0m [43mos[49m[38;5;241;43m.[39;49m[43mchdir[49m[43m([49m[43mdest_dir[49m[43m)[49m  [38;5;66;03m# To work around zipfile limitations[39;00m
+[0;32m---> 15[0m os[38;5;241m.[39mchdir(dest_dir)  [38;5;66;03m# To work around zipfile limitations[39;00m
 [1;32m     17[0m [38;5;28;01mfor[39;00m csv_filename [38;5;129;01min[39;00m csv_files(source_dir):
 [1;32m     18[0m     file_root [38;5;241m=[39m os[38;5;241m.[39mpath[38;5;241m.[39msplitext(csv_filename)[[38;5;241m0[39m]
 
