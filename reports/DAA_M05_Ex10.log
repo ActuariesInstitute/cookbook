@@ -34,13 +34,13 @@ from IPython.display import Image
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn [1], line 5[0m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      4[0m [38;5;66;03m# Used to build the decision tree and evaluate it[39;00m
-[0;32m----> 5[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m [38;5;28;01mimport[39;00m tree
-[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m [38;5;28;01mimport[39;00m train_test_split
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mimport[39;00m classification_report, confusion_matrix, accuracy_score
+Cell [0;32mIn [1], line 11[0m
+[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mas[39;00m [38;5;21;01mmetrics[39;00m
+[1;32m     10[0m [38;5;66;03m# Used to graph the decision tree[39;00m
+[0;32m---> 11[0m [38;5;28;01mimport[39;00m [38;5;21;01mgraphviz[39;00m
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtree[39;00m [38;5;28;01mimport[39;00m export_graphviz
+[1;32m     13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m Image
 
-[0;31mModuleNotFoundError[0m: No module named 'sklearn'
-ModuleNotFoundError: No module named 'sklearn'
+[0;31mModuleNotFoundError[0m: No module named 'graphviz'
+ModuleNotFoundError: No module named 'graphviz'
 
