@@ -17,30 +17,28 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Packages for data management and mathematical operations.
-import pandas as pd
-import numpy as np
+import pandas as pd # Used for data management.
 
-# Package for plotting.
 import matplotlib.pyplot as plt
+%matplotlib inline 
 
-# Scikit-learn libraries to perform clustering and evaluation.
-from sklearn.cluster import KMeans
+# The following scikit-learn libraries will be used
+# to standardise the features and run K-means clustering.
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import confusion_matrix, f1_score
+from sklearn.cluster import KMeans
 
-# Package used in the confusion matrix function.
-import itertools
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn [1], line 9[0m
-[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
-[1;32m      8[0m [38;5;66;03m# Scikit-learn libraries to perform clustering and evaluation.[39;00m
-[0;32m----> 9[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcluster[39;00m [38;5;28;01mimport[39;00m KMeans
-[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m StandardScaler
-[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmetrics[39;00m [38;5;28;01mimport[39;00m confusion_matrix, f1_score
+Cell [0;32mIn [1], line 8[0m
+[1;32m      4[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124mmatplotlib[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124minline[39m[38;5;124m'[39m)
+[1;32m      6[0m [38;5;66;03m# The following scikit-learn libraries will be used[39;00m
+[1;32m      7[0m [38;5;66;03m# to standardise the features and run K-means clustering.[39;00m
+[0;32m----> 8[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpipeline[39;00m [38;5;28;01mimport[39;00m make_pipeline
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m [38;5;28;01mimport[39;00m StandardScaler
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcluster[39;00m [38;5;28;01mimport[39;00m KMeans
 
 [0;31mModuleNotFoundError[0m: No module named 'sklearn'
 ModuleNotFoundError: No module named 'sklearn'

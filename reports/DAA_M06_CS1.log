@@ -37,10 +37,10 @@ data2 = pd.read_excel(infolder+file2, sheet_name='Table 1', header = 5,
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py:142[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
-[1;32m    141[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 142[0m     module [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[43mname[49m[43m)[49m
-[1;32m    143[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py:141[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    140[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 141[0m     module [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[43mname[49m[43m)[49m
+[1;32m    142[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
 
 File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/importlib/__init__.py:127[0m, in [0;36mimport_module[0;34m(name, package)[0m
 [1;32m    126[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
@@ -69,29 +69,29 @@ File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-package
 [1;32m    210[0m         kwargs[new_arg_name] [38;5;241m=[39m new_arg_value
 [0;32m--> 211[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/util/_decorators.py:317[0m, in [0;36mdeprecate_nonkeyword_arguments.<locals>.decorate.<locals>.wrapper[0;34m(*args, **kwargs)[0m
-[1;32m    311[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(args) [38;5;241m>[39m num_allow_args:
-[1;32m    312[0m     warnings[38;5;241m.[39mwarn(
-[1;32m    313[0m         msg[38;5;241m.[39mformat(arguments[38;5;241m=[39marguments),
-[1;32m    314[0m         [38;5;167;01mFutureWarning[39;00m,
-[1;32m    315[0m         stacklevel[38;5;241m=[39mfind_stack_level(inspect[38;5;241m.[39mcurrentframe()),
-[1;32m    316[0m     )
-[0;32m--> 317[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/util/_decorators.py:331[0m, in [0;36mdeprecate_nonkeyword_arguments.<locals>.decorate.<locals>.wrapper[0;34m(*args, **kwargs)[0m
+[1;32m    325[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(args) [38;5;241m>[39m num_allow_args:
+[1;32m    326[0m     warnings[38;5;241m.[39mwarn(
+[1;32m    327[0m         msg[38;5;241m.[39mformat(arguments[38;5;241m=[39m_format_argument_list(allow_args)),
+[1;32m    328[0m         [38;5;167;01mFutureWarning[39;00m,
+[1;32m    329[0m         stacklevel[38;5;241m=[39mfind_stack_level(),
+[1;32m    330[0m     )
+[0;32m--> 331[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py:483[0m, in [0;36mread_excel[0;34m(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, decimal, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)[0m
-[1;32m    481[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(io, ExcelFile):
-[1;32m    482[0m     should_close [38;5;241m=[39m [38;5;28;01mTrue[39;00m
-[0;32m--> 483[0m     io [38;5;241m=[39m [43mExcelFile[49m[43m([49m[43mio[49m[43m,[49m[43m [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m[43m [49m[43mengine[49m[38;5;241;43m=[39;49m[43mengine[49m[43m)[49m
-[1;32m    484[0m [38;5;28;01melif[39;00m engine [38;5;129;01mand[39;00m engine [38;5;241m!=[39m io[38;5;241m.[39mengine:
-[1;32m    485[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[1;32m    486[0m         [38;5;124m"[39m[38;5;124mEngine should not be specified when passing [39m[38;5;124m"[39m
-[1;32m    487[0m         [38;5;124m"[39m[38;5;124man ExcelFile - ExcelFile already has the engine set[39m[38;5;124m"[39m
-[1;32m    488[0m     )
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py:482[0m, in [0;36mread_excel[0;34m(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, decimal, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)[0m
+[1;32m    480[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(io, ExcelFile):
+[1;32m    481[0m     should_close [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m--> 482[0m     io [38;5;241m=[39m [43mExcelFile[49m[43m([49m[43mio[49m[43m,[49m[43m [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m,[49m[43m [49m[43mengine[49m[38;5;241;43m=[39;49m[43mengine[49m[43m)[49m
+[1;32m    483[0m [38;5;28;01melif[39;00m engine [38;5;129;01mand[39;00m engine [38;5;241m!=[39m io[38;5;241m.[39mengine:
+[1;32m    484[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m    485[0m         [38;5;124m"[39m[38;5;124mEngine should not be specified when passing [39m[38;5;124m"[39m
+[1;32m    486[0m         [38;5;124m"[39m[38;5;124man ExcelFile - ExcelFile already has the engine set[39m[38;5;124m"[39m
+[1;32m    487[0m     )
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py:1672[0m, in [0;36mExcelFile.__init__[0;34m(self, path_or_buffer, engine, storage_options)[0m
-[1;32m   1669[0m [38;5;28mself[39m[38;5;241m.[39mengine [38;5;241m=[39m engine
-[1;32m   1670[0m [38;5;28mself[39m[38;5;241m.[39mstorage_options [38;5;241m=[39m storage_options
-[0;32m-> 1672[0m [38;5;28mself[39m[38;5;241m.[39m_reader [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_engines[49m[43m[[49m[43mengine[49m[43m][49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_io[49m[43m,[49m[43m [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m)[49m
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_base.py:1695[0m, in [0;36mExcelFile.__init__[0;34m(self, path_or_buffer, engine, storage_options)[0m
+[1;32m   1692[0m [38;5;28mself[39m[38;5;241m.[39mengine [38;5;241m=[39m engine
+[1;32m   1693[0m [38;5;28mself[39m[38;5;241m.[39mstorage_options [38;5;241m=[39m storage_options
+[0;32m-> 1695[0m [38;5;28mself[39m[38;5;241m.[39m_reader [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_engines[49m[43m[[49m[43mengine[49m[43m][49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_io[49m[43m,[49m[43m [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[43mstorage_options[49m[43m)[49m
 
 File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/io/excel/_xlrd.py:34[0m, in [0;36mXlrdReader.__init__[0;34m(self, filepath_or_buffer, storage_options)[0m
 [1;32m     24[0m [38;5;124;03m"""[39;00m
@@ -104,12 +104,12 @@ File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-package
 [0;32m---> 34[0m [43mimport_optional_dependency[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mxlrd[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mextra[49m[38;5;241;43m=[39;49m[43merr_msg[49m[43m)[49m
 [1;32m     35[0m [38;5;28msuper[39m()[38;5;241m.[39m[38;5;21m__init__[39m(filepath_or_buffer, storage_options[38;5;241m=[39mstorage_options)
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py:145[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
-[1;32m    143[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
-[1;32m    144[0m     [38;5;28;01mif[39;00m errors [38;5;241m==[39m [38;5;124m"[39m[38;5;124mraise[39m[38;5;124m"[39m:
-[0;32m--> 145[0m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(msg)
-[1;32m    146[0m     [38;5;28;01melse[39;00m:
-[1;32m    147[0m         [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/pandas/compat/_optional.py:144[0m, in [0;36mimport_optional_dependency[0;34m(name, extra, errors, min_version)[0m
+[1;32m    142[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m:
+[1;32m    143[0m     [38;5;28;01mif[39;00m errors [38;5;241m==[39m [38;5;124m"[39m[38;5;124mraise[39m[38;5;124m"[39m:
+[0;32m--> 144[0m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(msg)
+[1;32m    145[0m     [38;5;28;01melse[39;00m:
+[1;32m    146[0m         [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
 
 [0;31mImportError[0m: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
 ImportError: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
