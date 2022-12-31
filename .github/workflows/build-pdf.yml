@@ -35,7 +35,6 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
           miniconda-version: 'latest'
-          python-version: 3.9
           environment-file: environment.yml
           activate-environment: main-conda-env
       - name: Build Cookbook
