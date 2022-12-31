@@ -806,16 +806,16 @@ title="Print to PDF"
 <p>This section imports the packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
-<span class="c1"># Used to build the neural network and evaluate it.</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+# Used to build the neural network and evaluate it.
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
 </pre></div>
 </div>
 </div>
@@ -832,72 +832,72 @@ title="Print to PDF"
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a list of headings for the data.</span>
-<span class="n">namearray</span> <span class="o">=</span> <span class="p">[</span>
-<span class="s1">&#39;word_freq_make&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_address&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_all&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_3d&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_our&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_over&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_remove&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_internet&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_order&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_mail&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_receive&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_will&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_people&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_report&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_addresses&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_free&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_business&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_email&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_you&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_credit&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_your&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_font&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_000&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_money&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_hp&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_hpl&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_george&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_650&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_lab&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_labs&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_telnet&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_857&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_data&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_415&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_85&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_technology&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_1999&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_parts&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_pm&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_direct&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_cs&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_meeting&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_original&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_project&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_re&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_edu&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_table&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_conference&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_;&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_(&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_[&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_!&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_$&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_#&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_average&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_longest&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_total&#39;</span><span class="p">,</span>
-<span class="s1">&#39;Spam_fl&#39;</span> <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a list of headings for the data.
+namearray = [
+&#39;word_freq_make&#39;,
+&#39;word_freq_address&#39;,
+&#39;word_freq_all&#39;,
+&#39;word_freq_3d&#39;,
+&#39;word_freq_our&#39;,
+&#39;word_freq_over&#39;,
+&#39;word_freq_remove&#39;,
+&#39;word_freq_internet&#39;,
+&#39;word_freq_order&#39;,
+&#39;word_freq_mail&#39;,
+&#39;word_freq_receive&#39;,
+&#39;word_freq_will&#39;,
+&#39;word_freq_people&#39;,
+&#39;word_freq_report&#39;,
+&#39;word_freq_addresses&#39;,
+&#39;word_freq_free&#39;,
+&#39;word_freq_business&#39;,
+&#39;word_freq_email&#39;,
+&#39;word_freq_you&#39;,
+&#39;word_freq_credit&#39;,
+&#39;word_freq_your&#39;,
+&#39;word_freq_font&#39;,
+&#39;word_freq_000&#39;,
+&#39;word_freq_money&#39;,
+&#39;word_freq_hp&#39;,
+&#39;word_freq_hpl&#39;,
+&#39;word_freq_george&#39;,
+&#39;word_freq_650&#39;,
+&#39;word_freq_lab&#39;,
+&#39;word_freq_labs&#39;,
+&#39;word_freq_telnet&#39;,
+&#39;word_freq_857&#39;,
+&#39;word_freq_data&#39;,
+&#39;word_freq_415&#39;,
+&#39;word_freq_85&#39;,
+&#39;word_freq_technology&#39;,
+&#39;word_freq_1999&#39;,
+&#39;word_freq_parts&#39;,
+&#39;word_freq_pm&#39;,
+&#39;word_freq_direct&#39;,
+&#39;word_freq_cs&#39;,
+&#39;word_freq_meeting&#39;,
+&#39;word_freq_original&#39;,
+&#39;word_freq_project&#39;,
+&#39;word_freq_re&#39;,
+&#39;word_freq_edu&#39;,
+&#39;word_freq_table&#39;,
+&#39;word_freq_conference&#39;,
+&#39;char_freq_;&#39;,
+&#39;char_freq_(&#39;,
+&#39;char_freq_[&#39;,
+&#39;char_freq_!&#39;,
+&#39;char_freq_$&#39;,
+&#39;char_freq_#&#39;,
+&#39;capital_run_length_average&#39;,
+&#39;capital_run_length_longest&#39;,
+&#39;capital_run_length_total&#39;,
+&#39;Spam_fl&#39; ]
 
-<span class="c1"># Read in the data from the Stanford website.</span>
-<span class="n">spam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.web.stanford.edu/~hastie/ElemStatLearn/datasets/spam.data&quot;</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-                   <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">names</span><span class="o">=</span><span class="n">namearray</span>
-                 <span class="p">)</span>
+# Read in the data from the Stanford website.
+spam = pd.read_csv(&quot;http://www.web.stanford.edu/~hastie/ElemStatLearn/datasets/spam.data&quot;, delim_whitespace=True, 
+                   header=None,
+                   names=namearray
+                 )
 </pre></div>
 </div>
 </div>
@@ -907,11 +907,11 @@ title="Print to PDF"
 <h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the dimensions of the data.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spam</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the dimensions of the data.
+print(spam.info())
 
-<span class="c1"># Print the first 10 observations from the data.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spam</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Print the first 10 observations from the data.
+print(spam.head(10))
 </pre></div>
 </div>
 </div>
@@ -1072,42 +1072,42 @@ None
 <h3>Fit model<a class="headerlink" href="#fit-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build a neural network to classify an email as spam or non-spam.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Build a neural network to classify an email as spam or non-spam.
 
-<span class="c1"># Change the pandas dataframe to numpy arrays containing the features (X) and response(Y).</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">spam</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Drops the last column of the dataframe that contains the spam indicator (response).</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">spam</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">57</span><span class="p">:</span><span class="mi">58</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+# Change the pandas dataframe to numpy arrays containing the features (X) and response(Y).
+X = spam.iloc[:,:-1].values # Drops the last column of the dataframe that contains the spam indicator (response).
+Y = spam.iloc[:,57:58].values
 
-<span class="c1"># Standardise the data so that each feature has mean 0 and standard deviation 1.</span>
-<span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+# Standardise the data so that each feature has mean 0 and standard deviation 1.
+sc = StandardScaler()
+X = sc.fit_transform(X)
 
-<span class="c1"># Encode the response variable (&#39;not spam&#39; or &#39;spam&#39;) as 2 outcomes.</span>
-<span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">()</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">ohe</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+# Encode the response variable (&#39;not spam&#39; or &#39;spam&#39;) as 2 outcomes.
+ohe = OneHotEncoder()
+Y = ohe.fit_transform(Y).toarray()
 
-<span class="c1"># Split the data into train and test sets </span>
-<span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">Y_train</span><span class="p">,</span><span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-                                <span class="c1"># This separates the data into training (75%) and test (25%) datasets.</span>
+# Split the data into train and test sets 
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size = 0.25, random_state=42)
+                                # This separates the data into training (75%) and test (25%) datasets.
 
-<span class="c1"># Build a neural network with two hidden layers, containing 28 hidden neurons</span>
-<span class="c1"># (16 neurons in the first hidden layer and 12 neurons in the second hidden layer).</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="c1"># Create a hidden layer with 16 neurons, an input dimension of 57,</span>
-<span class="c1"># representing the features of the dataset and a ReLU activation function.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">57</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">))</span>
-<span class="c1"># Create a second hidden layer with 12 neurons and a ReLU activation function.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">))</span>
-<span class="c1"># Create the output layer with 2 neurons representing &#39;spam&#39; and &#39;not spam&#39;.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="p">))</span>
+# Build a neural network with two hidden layers, containing 28 hidden neurons
+# (16 neurons in the first hidden layer and 12 neurons in the second hidden layer).
+model = Sequential()
+# Create a hidden layer with 16 neurons, an input dimension of 57,
+# representing the features of the dataset and a ReLU activation function.
+model.add(Dense(16, input_dim=57, activation=&quot;relu&quot;))
+# Create a second hidden layer with 12 neurons and a ReLU activation function.
+model.add(Dense(12, activation=&quot;relu&quot;))
+# Create the output layer with 2 neurons representing &#39;spam&#39; and &#39;not spam&#39;.
+model.add(Dense(2, activation=&quot;softmax&quot;))
 
-<span class="c1"># Compile the model using the binary cross entropy loss function (logistic loss),</span>
-<span class="c1"># the Adam optimiser (adaptive momentum estimation) which is an enhanced version</span>
-<span class="c1"># of stochastic gradient descent (SGD), and capture the accuracy of model predictions.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>                                         
+# Compile the model using the binary cross entropy loss function (logistic loss),
+# the Adam optimiser (adaptive momentum estimation) which is an enhanced version
+# of stochastic gradient descent (SGD), and capture the accuracy of model predictions.
+model.compile(loss=&#39;binary_crossentropy&#39;, optimizer=&#39;adam&#39;, metrics=[&#39;accuracy&#39;])                                         
 
-<span class="c1"># Fit the model.</span>
-<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span><span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">Y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+# Fit the model.
+history = model.fit(X_train, Y_train,validation_data = (X_test,Y_test), epochs=100, batch_size=64)
 </pre></div>
 </div>
 </div>
@@ -1323,14 +1323,14 @@ Epoch 100/100
 <h3>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the accuracy of the fitted model on the training and test data.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Model accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the accuracy of the fitted model on the training and test data.
+plt.plot(history.history[&#39;accuracy&#39;], color=&#39;dodgerblue&#39;)
+plt.plot(history.history[&#39;val_accuracy&#39;],color=&#39;orange&#39;)
+plt.title(&#39;Model accuracy&#39;)
+plt.ylabel(&#39;Accuracy&#39;)
+plt.xlabel(&#39;Epoch&#39;)
+plt.legend([&#39;Train&#39;, &#39;Test&#39;], loc=&#39;upper left&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>

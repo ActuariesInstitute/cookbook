@@ -678,28 +678,28 @@ title="Print to PDF"
 <p>It is currently not used as an example piece of code within the cookbook, but used for reducing dataset sizes for inclusion in the static folder of the site.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+import sys
+import zipfile
 
 
-<span class="k">def</span> <span class="nf">csv_files</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">filename</span>
+def csv_files(source_dir):
+    for filename in os.listdir(source_dir):
+        if filename.endswith(&#39;.csv&#39;):
+            yield filename
 
 
-<span class="n">source_dir</span> <span class="o">=</span> <span class="s1">&#39;~/Downloads/drive-download-20211120T082520Z-001&#39;</span> 
-<span class="n">dest_dir</span> <span class="o">=</span> <span class="s1">&#39;~/Downloads/drive-download-20211120T082520Z-001&#39;</span>
+source_dir = &#39;~/Downloads/drive-download-20211120T082520Z-001&#39; 
+dest_dir = &#39;~/Downloads/drive-download-20211120T082520Z-001&#39;
 
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">dest_dir</span><span class="p">)</span>  <span class="c1"># To work around zipfile limitations</span>
+os.chdir(dest_dir)  # To work around zipfile limitations
 
-<span class="k">for</span> <span class="n">csv_filename</span> <span class="ow">in</span> <span class="n">csv_files</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
-    <span class="n">file_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">zip_file_name</span> <span class="o">=</span> <span class="n">file_root</span> <span class="o">+</span> <span class="s1">&#39;.zip&#39;</span>
-    <span class="n">zip_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dest_dir</span><span class="p">,</span> <span class="n">zip_file_name</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZIP_DEFLATED</span><span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
-        <span class="n">zf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">)</span>
+for csv_filename in csv_files(source_dir):
+    file_root = os.path.splitext(csv_filename)[0]
+    zip_file_name = file_root + &#39;.zip&#39;
+    zip_file_path = os.path.join(dest_dir, zip_file_name)
+    with zipfile.ZipFile(zip_file_path, &#39;w&#39;, zipfile.ZIP_DEFLATED) as zf:
+        zf.write(csv_filename)
 </pre></div>
 </div>
 </div>

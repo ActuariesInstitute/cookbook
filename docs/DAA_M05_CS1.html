@@ -1040,36 +1040,36 @@ This case study investigates the use of neural networks and gradient boosting ma
 <p>This section imports the packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># Pandas is used for data management.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Numpy is used for mathematical operations.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd # Pandas is used for data management.
+import numpy as np # Numpy is used for mathematical operations.
 
-<span class="c1"># Matplotlib and Seaborn are used for plotting.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
+# Matplotlib and Seaborn are used for plotting.
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import seaborn as sns
+%matplotlib inline
 
-<span class="kn">import</span> <span class="nn">os</span>
+import os
 
-<span class="kn">import</span> <span class="nn">itertools</span> <span class="c1"># Used in the confusion matrix function</span>
+import itertools # Used in the confusion matrix function
 
-<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="c1"># Keras, from the Tensorflow package is used for</span>
-                             <span class="c1"># building the neural networks.</span>
+from tensorflow import keras # Keras, from the Tensorflow package is used for
+                             # building the neural networks.
 
-<span class="c1"># The various functions below from the Scikit-learn package help with</span>
-<span class="c1"># modelling and diagnostics.</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span> <span class="c1"># For building the GBM</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">auc</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">f1_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">plot_partial_dependence</span>
+# The various functions below from the Scikit-learn package help with
+# modelling and diagnostics.
+from sklearn.preprocessing import LabelEncoder, MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import log_loss
+from sklearn.ensemble import GradientBoostingClassifier # For building the GBM
+from sklearn.metrics import auc, roc_auc_score, confusion_matrix, f1_score
+from sklearn.inspection import plot_partial_dependence
 
-<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.wrappers.scikit_learn</span> <span class="kn">import</span> <span class="n">KerasRegressor</span>
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, BatchNormalization
+from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
 
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+import tensorflow as tf
 </pre></div>
 </div>
 </div>
@@ -1081,82 +1081,82 @@ This case study investigates the use of neural networks and gradient boosting ma
 Other functions that are specific to each type of model are defined in the section for that model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to split the data into train, validation and test sets.</span>
-<span class="c1"># This uses the `train_test_split` function from the sklearn package to do the </span>
-<span class="c1"># actual data splitting.</span>
-<span class="k">def</span> <span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Splits the data into train, validation and test sets (64%, 16%, 20%)</span>
-<span class="sd">    All columns on `dataset` other than the `id_col` and `response_col` will be</span>
-<span class="sd">    used as features.</span>
-<span class="sd">    Params:</span>
-<span class="sd">    dataset: input dataset as a pandas data frame</span>
-<span class="sd">    id_col: (str) the name of the column containing the unique row identifier</span>
-<span class="sd">    response_col: (str) the name of the response column</span>
-<span class="sd">    Returns:</span>
-<span class="sd">    train_x: the training data (feature) matrix</span>
-<span class="sd">    train_y: the training data response vector</span>
-<span class="sd">    validation_x: the validation data (feature) matrix</span>
-<span class="sd">    validation_y: the validation data response vector</span>
-<span class="sd">    test_x: the test data (feature) matrix</span>
-<span class="sd">    test_y: the test data response vector</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1"># Split data into train/test (80%, 20%).</span>
-    <span class="n">train_full</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to split the data into train, validation and test sets.
+# This uses the `train_test_split` function from the sklearn package to do the 
+# actual data splitting.
+def create_data_splits(dataset, id_col, response_col):
+    &#39;&#39;&#39;
+    Splits the data into train, validation and test sets (64%, 16%, 20%)
+    All columns on `dataset` other than the `id_col` and `response_col` will be
+    used as features.
+    Params:
+    dataset: input dataset as a pandas data frame
+    id_col: (str) the name of the column containing the unique row identifier
+    response_col: (str) the name of the response column
+    Returns:
+    train_x: the training data (feature) matrix
+    train_y: the training data response vector
+    validation_x: the validation data (feature) matrix
+    validation_y: the validation data response vector
+    test_x: the test data (feature) matrix
+    test_y: the test data response vector
+    &#39;&#39;&#39;
+    # Split data into train/test (80%, 20%).
+    train_full, test = train_test_split(dataset, test_size = 0.2, random_state = 123)
 
-    <span class="c1"># Create a validation set from the training data (20%).</span>
-    <span class="n">train</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train_full</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">234</span><span class="p">)</span>
+    # Create a validation set from the training data (20%).
+    train, validation = train_test_split(train_full, test_size = 0.2, random_state = 234)
 
-    <span class="c1"># Create train and validation data feature matrices and response vectors</span>
-    <span class="c1"># For the response vectors, convert Churn Yes/No to 1/0</span>
+    # Create train and validation data feature matrices and response vectors
+    # For the response vectors, convert Churn Yes/No to 1/0
 
-    <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">id_col</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">]</span>
+    feature_cols = [i for i in dataset.columns if i not in id_col + response_col]
 
-    <span class="n">train_x</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">train_y</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    train_x = train[feature_cols]
+    train_y = train[response_col].eq(&#39;Yes&#39;).mul(1)
 
-    <span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">validation_y</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    validation_x = validation[feature_cols]
+    validation_y = validation[response_col].eq(&#39;Yes&#39;).mul(1)
 
-    <span class="n">test_x</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">test_y</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    test_x = test[feature_cols]
+    test_y = test[response_col].eq(&#39;Yes&#39;).mul(1)
 
-    <span class="k">return</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span>
+    return train_x, train_y, validation_x, validation_y, test_x, test_y
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print and plot a confusion matrix.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
-                          <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
-                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    This function prints and plots a confusion matrix.</span>
-<span class="sd">    Normalisation of the matrix can be applied by setting `normalise=True`.</span>
-<span class="sd">    Normalsiation ensures that the sum of each row in the confusion matrix is 1.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to print and plot a confusion matrix.
+def plot_confusion_matrix(cm, classes,
+                          normalise=False,
+                          title=&#39;Confusion matrix&#39;,
+                          cmap=plt.cm.Blues):
+    &#39;&#39;&#39;
+    This function prints and plots a confusion matrix.
+    Normalisation of the matrix can be applied by setting `normalise=True`.
+    Normalsiation ensures that the sum of each row in the confusion matrix is 1.
+    &#39;&#39;&#39;
+    plt.imshow(cm, interpolation=&#39;nearest&#39;, cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
 
-    <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
-        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    if normalise:
+        cm = cm.astype(&#39;float&#39;) / cm.sum(axis=1)[:, np.newaxis]
 
-    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment=&#39;center&#39;,
+                 color=&#39;white&#39; if cm[i, j] &gt; thresh else &#39;black&#39;)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    plt.tight_layout()
+    plt.ylabel(&#39;True response&#39;)
+    plt.xlabel(&#39;Predicted response&#39;)
 </pre></div>
 </div>
 </div>
@@ -1176,9 +1176,9 @@ Other functions that are specific to each type of model are defined in the secti
 <p>We read directly from a URL, but pandas can also read from a file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M05_CS1_data.csv&#39;</span><span class="p">,</span> 
-    <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dataset = pd.read_csv(
+    &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M05_CS1_data.csv&#39;, 
+    header = 0)
 </pre></div>
 </div>
 </div>
@@ -1197,8 +1197,8 @@ Other functions that are specific to each type of model are defined in the secti
 <p>The code below looks at some of these components of the Telco dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the available features, their data types and their missingness.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the available features, their data types and their missingness.
+print(dataset.info())
 </pre></div>
 </div>
 </div>
@@ -1238,8 +1238,8 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the number of unique values for each feature.</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the number of unique values for each feature.
+dataset.nunique()
 </pre></div>
 </div>
 </div>
@@ -1272,8 +1272,8 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the first 5 observations in the data.</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print out the first 5 observations in the data.
+dataset.head()
 </pre></div>
 </div>
 </div>
@@ -1463,30 +1463,30 @@ dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the ID and response columns</span>
-<span class="n">id_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;customerID&#39;</span><span class="p">]</span>
-<span class="n">response_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the ID and response columns
+id_col = [&#39;customerID&#39;]
+response_col = [&#39;Churn&#39;]
 
-<span class="c1"># Get the list of features by type.</span>
-<span class="c1"># Categorical features can be identified as those columns with only a few levels.</span>
-<span class="c1"># This code selects the list of features with &lt; 6 levels and puts the names </span>
-<span class="c1"># into a list, excluding the id_col and response_col.</span>
-<span class="n">cat_cols</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">nunique</span><span class="p">()[</span><span class="n">dataset</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cat_cols</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">id_col</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">]</span>
+# Get the list of features by type.
+# Categorical features can be identified as those columns with only a few levels.
+# This code selects the list of features with &lt; 6 levels and puts the names 
+# into a list, excluding the id_col and response_col.
+cat_cols = dataset.nunique()[dataset.nunique() &lt; 6].keys().tolist()
+cat_cols = [x for x in cat_cols if x not in id_col + response_col]
 
-<span class="c1"># Numerical features are left after the categorical features have been removed.</span>
-<span class="c1"># List comprehension is used below to select the set of feature names not</span>
-<span class="c1"># contained in the cat_cols, id_col, or response_col lists.</span>
-<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cat_cols</span> <span class="o">+</span> <span class="n">id_col</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">]</span>
+# Numerical features are left after the categorical features have been removed.
+# List comprehension is used below to select the set of feature names not
+# contained in the cat_cols, id_col, or response_col lists.
+num_cols = [x for x in dataset.columns if x not in cat_cols + id_col + response_col]
 
-<span class="c1"># Convert TotalCharges to numeric and set equal to 0 where blank.</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">])</span>
+# Convert TotalCharges to numeric and set equal to 0 where blank.
+dataset.loc[dataset[&#39;TotalCharges&#39;] == &#39; &#39;,&#39;TotalCharges&#39;] = 0
+dataset[&#39;TotalCharges&#39;] = pd.to_numeric(dataset[&#39;TotalCharges&#39;])
 
-<span class="c1"># Check the number of levels for each categorical feature and the</span>
-<span class="c1"># response variable.</span>
-<span class="k">for</span> <span class="n">cat_col</span> <span class="ow">in</span> <span class="n">cat_cols</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cat_col</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="n">cat_col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+# Check the number of levels for each categorical feature and the
+# response variable.
+for cat_col in cat_cols + response_col:
+    print(cat_col, dataset[cat_col].unique())
 </pre></div>
 </div>
 </div>
@@ -1515,8 +1515,8 @@ Churn [&#39;No&#39; &#39;Yes&#39;]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the updated feature types</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the updated feature types
+dataset.dtypes
 </pre></div>
 </div>
 </div>
@@ -1550,68 +1550,68 @@ dtype: object
 <p>Now that the data has been cleaned up, the marginal relationship between the features and the response can be analysed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the mean churn rate by each of the candidate features.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the mean churn rate by each of the candidate features.
 
-<span class="c1"># Loop over each feature.</span>
-<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="s1">&#39;gender&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;SeniorCitizen&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Partner&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Dependents&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tenure&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PhoneService&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;MultipleLines&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;InternetService&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OnlineSecurity&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OnlineBackup&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;DeviceProtection&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;TechSupport&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;StreamingTV&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;StreamingMovies&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Contract&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PaperlessBilling&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PaymentMethod&#39;</span><span class="p">,</span>
-<span class="p">]:</span>
-    <span class="p">(</span>
-        <span class="c1"># create a binary 1/0 response column, where 1 indicates Churn = &#39;Yes&#39;;</span>
-        <span class="c1"># group by the values of the current feature;</span>
-        <span class="c1"># calculate the mean of the response; and</span>
-        <span class="c1"># plot.</span>
-        <span class="n">dataset</span><span class="p">[[</span><span class="n">feature</span><span class="p">]]</span>
-        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
-    <span class="p">)</span>
-
-
-<span class="p">(</span>
-    <span class="c1"># The same is done for MonthlyCharges except that the value is rounded</span>
-    <span class="c1"># to the nearest $10 using np.round(, -1).</span>
-    <span class="n">dataset</span><span class="p">[[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]]</span>
-    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
-        <span class="n">Feature_MonthlyCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
-        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">])</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Feature_MonthlyCharges&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
-<span class="p">)</span>
+# Loop over each feature.
+for feature in [
+    &#39;gender&#39;,
+    &#39;SeniorCitizen&#39;,
+    &#39;Partner&#39;,
+    &#39;Dependents&#39;,
+    &#39;tenure&#39;,
+    &#39;PhoneService&#39;,
+    &#39;MultipleLines&#39;,
+    &#39;InternetService&#39;,
+    &#39;OnlineSecurity&#39;,
+    &#39;OnlineBackup&#39;,
+    &#39;DeviceProtection&#39;,
+    &#39;TechSupport&#39;,
+    &#39;StreamingTV&#39;,
+    &#39;StreamingMovies&#39;,
+    &#39;Contract&#39;,
+    &#39;PaperlessBilling&#39;,
+    &#39;PaymentMethod&#39;,
+]:
+    (
+        # create a binary 1/0 response column, where 1 indicates Churn = &#39;Yes&#39;;
+        # group by the values of the current feature;
+        # calculate the mean of the response; and
+        # plot.
+        dataset[[feature]]
+        .assign(Response=np.where(dataset.Churn == &#39;Yes&#39;, 1, 0))
+        .groupby(feature)
+        .agg(&#39;mean&#39;)
+        .plot.bar(color=&#39;Dodgerblue&#39;)
+    )
 
 
-<span class="p">(</span>
-    <span class="c1"># TotalCharges is rounded to the nearest $1,000 using np.round(, -3).</span>
-    <span class="n">dataset</span><span class="p">[[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]]</span>
-    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
-        <span class="n">Feature_TotalCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
-        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">])</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Feature_TotalCharges&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
-<span class="p">)</span>
+(
+    # The same is done for MonthlyCharges except that the value is rounded
+    # to the nearest $10 using np.round(, -1).
+    dataset[[&#39;MonthlyCharges&#39;]]
+    .assign(
+        Feature_MonthlyCharges=np.round(dataset[&#39;MonthlyCharges&#39;], -1),
+        Response=np.where(dataset.Churn == &#39;Yes&#39;, 1, 0),
+    )
+    .drop(columns=[&#39;MonthlyCharges&#39;])
+    .groupby(&#39;Feature_MonthlyCharges&#39;)
+    .agg(&#39;mean&#39;)
+    .plot.bar(color=&#39;Dodgerblue&#39;)
+)
+
+
+(
+    # TotalCharges is rounded to the nearest $1,000 using np.round(, -3).
+    dataset[[&#39;TotalCharges&#39;]]
+    .assign(
+        Feature_TotalCharges=np.round(dataset[&#39;TotalCharges&#39;], -3),
+        Response=np.where(dataset.Churn == &#39;Yes&#39;, 1, 0),
+    )
+    .drop(columns=[&#39;TotalCharges&#39;])
+    .groupby(&#39;Feature_TotalCharges&#39;)
+    .agg(&#39;mean&#39;)
+    .plot.bar(color=&#39;Dodgerblue&#39;)
+)
 </pre></div>
 </div>
 </div>
@@ -1664,14 +1664,14 @@ GBM applies boosting (see Section 5.3.3 of Module 5) in the context of decision 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-hot encode categorical features including an indicator for NAs.</span>
-<span class="n">dataset_gbm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cat_cols</span><span class="p">,</span> <span class="n">dummy_na</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># One-hot encode categorical features including an indicator for NAs.
+dataset_gbm = pd.get_dummies(dataset, columns=cat_cols, dummy_na=True)
 
-<span class="c1"># Split the data into train, valiation, and test sets.</span>
-<span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">train_gbm_y</span><span class="p">,</span> \
-<span class="n">validation_gbm_x</span><span class="p">,</span> <span class="n">validation_gbm_y</span><span class="p">,</span> \
-<span class="n">test_gbm_x</span><span class="p">,</span> <span class="n">test_gbm_y</span> \
-<span class="o">=</span> <span class="n">create_data_splits</span><span class="p">(</span><span class="n">dataset_gbm</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">)</span>
+# Split the data into train, valiation, and test sets.
+train_gbm_x, train_gbm_y, \
+validation_gbm_x, validation_gbm_y, \
+test_gbm_x, test_gbm_y \
+= create_data_splits(dataset_gbm, id_col, response_col)
 </pre></div>
 </div>
 </div>
@@ -1690,17 +1690,17 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the GBM model.</span>
-<span class="n">gbm_model</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
-                                       <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-                                       <span class="n">validation_fraction</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-                                       <span class="n">n_iter_no_change</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
-                                       <span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                                       <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">)</span>
-<span class="c1"># Train the model.</span>
-<span class="c1"># &#39;train_gbm_y.values.ravel()&#39; converts the series of response values into</span>
-<span class="c1"># a 1D array which is the format expected by the .fit() method</span>
-<span class="n">gbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the GBM model.
+gbm_model = GradientBoostingClassifier(n_estimators = 1000,
+                                       learning_rate = 0.1,
+                                       validation_fraction = 0.2,
+                                       n_iter_no_change = 50,
+                                       verbose = 1,
+                                       random_state = 1234)
+# Train the model.
+# &#39;train_gbm_y.values.ravel()&#39; converts the series of response values into
+# a 1D array which is the format expected by the .fit() method
+gbm_model.fit(train_gbm_x, train_gbm_y.values.ravel())
 </pre></div>
 </div>
 </div>
@@ -1738,27 +1738,27 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <p>The code below looks at some basic goodness of fit measures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Score the validation dataset.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Score the validation dataset.
 
-<span class="c1"># Obtain the predicted churn probabilities (Y_hat).</span>
-<span class="c1"># The code below returns these in an array of form ([Prob(0), Prob(1)]).</span>
-<span class="c1"># Keep the Prob(1) values only, i.e. the predicted churn probability (Y_hat).</span>
-<span class="n">train_y_preds</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> 
-<span class="n">validation_y_preds</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> 
+# Obtain the predicted churn probabilities (Y_hat).
+# The code below returns these in an array of form ([Prob(0), Prob(1)]).
+# Keep the Prob(1) values only, i.e. the predicted churn probability (Y_hat).
+train_y_preds = gbm_model.predict_proba(train_gbm_x)[:, 1] 
+validation_y_preds = gbm_model.predict_proba(validation_gbm_x)[:, 1] 
 
-<span class="c1"># Obtain the predicted churn outcomes, G(X).</span>
-<span class="c1"># Returns the predicted class as 0 for &#39;no churn&#39; or 1 for &#39;churn&#39;.</span>
-<span class="n">train_y_class</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">)</span>
-<span class="n">validation_y_class</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)</span>
+# Obtain the predicted churn outcomes, G(X).
+# Returns the predicted class as 0 for &#39;no churn&#39; or 1 for &#39;churn&#39;.
+train_y_class = gbm_model.predict(train_gbm_x)
+validation_y_class = gbm_model.predict(validation_gbm_x)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on train and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">train_y_preds</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the AUC on train and validation data.
+{&#39;train&#39;: roc_auc_score(train_gbm_y.values.ravel(), train_y_preds),
+ &#39;validation&#39;: roc_auc_score(validation_gbm_y.values.ravel(), validation_y_preds)}
 </pre></div>
 </div>
 </div>
@@ -1770,9 +1770,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the confusion matrix at a 50% threshold using the training data.</span>
-<span class="n">conf_mat_gbm1_train</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="p">,</span> <span class="n">train_y_class</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_gbm1_train</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the confusion matrix at a 50% threshold using the training data.
+conf_mat_gbm1_train = confusion_matrix(train_gbm_y, train_y_class)
+plot_confusion_matrix(conf_mat_gbm1_train, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -1782,9 +1782,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the confusion matrix at a 50% threshold using the validation data.</span>
-<span class="n">conf_mat_gbm1_validation</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_gbm1_validation</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the confusion matrix at a 50% threshold using the validation data.
+conf_mat_gbm1_validation = confusion_matrix(validation_gbm_y, validation_y_class)
+plot_confusion_matrix(conf_mat_gbm1_validation, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -1794,9 +1794,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the F1 score.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="p">,</span> <span class="n">train_y_class</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the F1 score.
+{&#39;train&#39;: f1_score(train_gbm_y, train_y_class),
+ &#39;validation&#39;: f1_score(validation_gbm_y, validation_y_class)}
 </pre></div>
 </div>
 </div>
@@ -1813,23 +1813,23 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <p>The code below plot the importance of each feature in the GBM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dictionary with name-importance pairs.</span>
-<span class="n">gbm_feat_imps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">importance</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">):</span>
-    <span class="n">gbm_feat_imps</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">importance</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a dictionary with name-importance pairs.
+gbm_feat_imps = dict()
+for feature, importance in zip(train_gbm_x.columns, gbm_model.feature_importances_):
+    gbm_feat_imps[feature] = importance
 
-<span class="c1"># Convert to a dataframe and order by importance.</span>
-<span class="c1"># Note: the feature names become the index for the dataframe, and the importance </span>
-<span class="c1"># is the first column (index 0).</span>
-<span class="n">gbm_fi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">gbm_feat_imps</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Importance&#39;</span><span class="p">})</span>
-<span class="n">gbm_fi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+# Convert to a dataframe and order by importance.
+# Note: the feature names become the index for the dataframe, and the importance 
+# is the first column (index 0).
+gbm_fi = pd.DataFrame.from_dict(gbm_feat_imps, orient = &#39;index&#39;).rename(columns = {0: &#39;Importance&#39;})
+gbm_fi.sort_values(by = &#39;Importance&#39;, inplace = True)
 
-<span class="c1"># Plot the feature importances.</span>
-<span class="n">gbm_fi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;barh&#39;</span><span class="p">,</span> \
-            <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span> \
-            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Feature importance&#39;</span><span class="p">,</span> \
-            <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Dodgerblue&#39;</span>
-<span class="p">)</span>
+# Plot the feature importances.
+gbm_fi.plot(kind = &#39;barh&#39;, \
+            figsize = (12,16), \
+            title = &#39;Feature importance&#39;, \
+            color = &#39;Dodgerblue&#39;
+)
 </pre></div>
 </div>
 </div>
@@ -1854,11 +1854,11 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <p>You are not required to know how to calculate a PDP for this subject. For this case study, you can use the PDPs below to visualise the effect shapes for the model’s four most important features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the column indices for the four most important features</span>
-<span class="c1"># on the training data.</span>
-<span class="n">gbm_pdp_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span> <span class="k">if</span> \
-               <span class="n">train_gbm_x</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">gbm_fi</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
-<span class="n">gbm_pdp_idx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Extract the column indices for the four most important features
+# on the training data.
+gbm_pdp_idx = [i for i in range(len(train_gbm_x.columns)) if \
+               train_gbm_x.columns[i] in gbm_fi.tail(4).index.tolist()]
+gbm_pdp_idx
 </pre></div>
 </div>
 </div>
@@ -1870,8 +1870,8 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check that the right columns have been identified.</span>
-<span class="n">train_gbm_x</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">gbm_pdp_idx</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check that the right columns have been identified.
+train_gbm_x.columns[gbm_pdp_idx]
 </pre></div>
 </div>
 </div>
@@ -1883,12 +1883,12 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Produce partial dependence plots.</span>
-<span class="c1"># Loop over each feature rather than provide a list as this makes it</span>
-<span class="c1"># easier to plot the data. </span>
-<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">gbm_pdp_idx</span><span class="p">:</span>
-    <span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">gbm_model</span><span class="p">,</span> <span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="p">],</span>
-                          <span class="n">line_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;Dodgerblue&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Produce partial dependence plots.
+# Loop over each feature rather than provide a list as this makes it
+# easier to plot the data. 
+for idx in gbm_pdp_idx:
+    plot_partial_dependence(gbm_model, train_gbm_x, features = [idx],
+                          line_kw={&#39;color&#39;: &#39;Dodgerblue&#39;})
 </pre></div>
 </div>
 </div>
@@ -1915,18 +1915,18 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <p>The code below shows some experimentation with hyperparameter values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add additional regularisation by capping the depth of trees at 2 and</span>
-<span class="c1"># decreasing the learning rate for the model.</span>
-<span class="c1"># Increase the number of trees (n_estimators) to counter some of the effect</span>
-<span class="c1"># of the lower learning rate.</span>
-<span class="n">gbm_model_v2</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span>
-                                          <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
-                                          <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-                                          <span class="n">validation_fraction</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-                                          <span class="n">n_iter_no_change</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
-                                          <span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                                          <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">)</span>
-<span class="n">gbm_model_v2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Add additional regularisation by capping the depth of trees at 2 and
+# decreasing the learning rate for the model.
+# Increase the number of trees (n_estimators) to counter some of the effect
+# of the lower learning rate.
+gbm_model_v2 = GradientBoostingClassifier(n_estimators = 2000,
+                                          learning_rate = 0.01,
+                                          max_depth = 2,
+                                          validation_fraction = 0.2,
+                                          n_iter_no_change = 50,
+                                          verbose = 1,
+                                          random_state = 1234)
+gbm_model_v2.fit(train_gbm_x, train_gbm_y.values.ravel())
 </pre></div>
 </div>
 </div>
@@ -1972,22 +1972,22 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <h4>Evaluate GBM 2<a class="headerlink" href="#evaluate-gbm-2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Score the validation dataset.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Score the validation dataset.
 
-<span class="c1"># Obtain the predicted churn probabilities, Y_hat.</span>
-<span class="n">validation_y_preds_v2</span> <span class="o">=</span> <span class="n">gbm_model_v2</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> 
+# Obtain the predicted churn probabilities, Y_hat.
+validation_y_preds_v2 = gbm_model_v2.predict_proba(validation_gbm_x)[:, 1] 
 
-<span class="c1"># Obtain the predicted churn outcomes, G(X).</span>
-<span class="n">validation_y_class_v2</span> <span class="o">=</span> <span class="n">gbm_model_v2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)</span>
+# Obtain the predicted churn outcomes, G(X).
+validation_y_class_v2 = gbm_model_v2.predict(validation_gbm_x)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the AUC on validation data under model 1 (&#39;old&#39;) and model 2 (&#39;new&#39;).</span>
-<span class="p">{</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds_v2</span><span class="p">),</span>
- <span class="s1">&#39;old&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare the AUC on validation data under model 1 (&#39;old&#39;) and model 2 (&#39;new&#39;).
+{&#39;new&#39;:roc_auc_score(validation_gbm_y.values.ravel(), validation_y_preds_v2),
+ &#39;old&#39;:roc_auc_score(validation_gbm_y.values.ravel(), validation_y_preds)}
 </pre></div>
 </div>
 </div>
@@ -1999,9 +1999,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the confusion matrix at 50% threshold for model 2 - validation data</span>
-<span class="n">conf_mat_gbm2_validation</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class_v2</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_gbm2_validation</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the confusion matrix at 50% threshold for model 2 - validation data
+conf_mat_gbm2_validation = confusion_matrix(validation_gbm_y, validation_y_class_v2)
+plot_confusion_matrix(conf_mat_gbm2_validation, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -2011,8 +2011,8 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the confusion matrix at 50% threshold for model 1 - validation data</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_gbm1_validation</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the confusion matrix at 50% threshold for model 1 - validation data
+plot_confusion_matrix(conf_mat_gbm1_validation, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -2022,9 +2022,9 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the F1 score for the two models.</span>
-<span class="p">{</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class_v2</span><span class="p">),</span>
- <span class="s1">&#39;old&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare the F1 score for the two models.
+{&#39;new&#39;:f1_score(validation_gbm_y, validation_y_class_v2),
+ &#39;old&#39;:f1_score(validation_gbm_y, validation_y_class)}
 </pre></div>
 </div>
 </div>
@@ -2040,19 +2040,19 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <h4>Select final model (GBM final)<a class="headerlink" href="#select-final-model-gbm-final" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the final model and call it `gbm_model_final`.</span>
-<span class="n">gbm_model_final</span> <span class="o">=</span> <span class="n">gbm_model_v2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Select the final model and call it `gbm_model_final`.
+gbm_model_final = gbm_model_v2
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the predicted churn probabilities, Y_hat, for the validation data.</span>
-<span class="n">validation_gbm_preds_final</span> <span class="o">=</span> <span class="n">gbm_model_final</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Obtain the predicted churn probabilities, Y_hat, for the validation data.
+validation_gbm_preds_final = gbm_model_final.predict_proba(validation_gbm_x)[:, 1] 
 
-<span class="c1"># Obtain the predicted churn outcomes, G(X) for the validation data.</span>
-<span class="n">validation_gbm_class_final</span> <span class="o">=</span> <span class="n">gbm_model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)</span>
+# Obtain the predicted churn outcomes, G(X) for the validation data.
+validation_gbm_class_final = gbm_model_final.predict(validation_gbm_x)
 </pre></div>
 </div>
 </div>
@@ -2081,21 +2081,21 @@ While you will not generally need to build a network from first principles, by r
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the get_dummies() function from the pandas package to produce the encoding.</span>
-<span class="c1"># The drop_first = True argument tells pandas to drop the binary indicator for </span>
-<span class="c1"># the first level, so the function returns k-1 rather than k features.</span>
-<span class="n">dataset_nn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cat_cols</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use the get_dummies() function from the pandas package to produce the encoding.
+# The drop_first = True argument tells pandas to drop the binary indicator for 
+# the first level, so the function returns k-1 rather than k features.
+dataset_nn = pd.get_dummies(dataset, columns=cat_cols, drop_first=True)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into train, validation, and test datasets.</span>
-<span class="n">train_nn_x</span><span class="p">,</span> <span class="n">train_nn_y</span><span class="p">,</span> \
-<span class="n">validation_nn_x</span><span class="p">,</span> <span class="n">validation_nn_y</span><span class="p">,</span> \
-<span class="n">test_nn_x</span><span class="p">,</span> <span class="n">test_nn_y</span> \
-<span class="o">=</span> <span class="n">create_data_splits</span><span class="p">(</span><span class="n">dataset_nn</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Split the data into train, validation, and test datasets.
+train_nn_x, train_nn_y, \
+validation_nn_x, validation_nn_y, \
+test_nn_x, test_nn_y \
+= create_data_splits(dataset_nn, id_col, response_col)
 </pre></div>
 </div>
 </div>
@@ -2104,19 +2104,19 @@ While you will not generally need to build a network from first principles, by r
 <p>The response vector also needs to be converted to a numpy array for training the neural network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scale features to lie in [0, 1].</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_nn_x</span><span class="p">)</span>
-<span class="nb">input</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_nn_x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Scale features to lie in [0, 1].
+scaler = MinMaxScaler()
+scaler.fit(train_nn_x)
+input = scaler.transform(train_nn_x)
 
-<span class="c1"># Convert the response vector to a Numpy array.</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">train_nn_y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+# Convert the response vector to a Numpy array.
+response = train_nn_y.to_numpy()
 
-<span class="c1"># Prepare the validation and test datasets also.</span>
-<span class="n">response_validation</span> <span class="o">=</span> <span class="n">validation_nn_y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="n">input_validation</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">validation_nn_x</span><span class="p">)</span>
-<span class="n">response_test</span> <span class="o">=</span> <span class="n">test_nn_y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="n">input_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_nn_x</span><span class="p">)</span>
+# Prepare the validation and test datasets also.
+response_validation = validation_nn_y.to_numpy()
+input_validation = scaler.transform(validation_nn_x)
+response_test = test_nn_y.to_numpy()
+input_test = scaler.transform(test_nn_x)
 </pre></div>
 </div>
 </div>
@@ -2155,16 +2155,16 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the sigmoid function (to be used as the activation function).</span>
-<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-  <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">  Sigmoid activation function</span>
-<span class="sd">  Params:</span>
-<span class="sd">    x: a float or integer value</span>
-<span class="sd">  Return:</span>
-<span class="sd">    The value of the sigmoid function evaluated at x (float)</span>
-<span class="sd">  &#39;&#39;&#39;</span>
-  <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the sigmoid function (to be used as the activation function).
+def sigmoid(x):
+  &#39;&#39;&#39;
+  Sigmoid activation function
+  Params:
+    x: a float or integer value
+  Return:
+    The value of the sigmoid function evaluated at x (float)
+  &#39;&#39;&#39;
+  return 1.0/(1.0+np.exp(-x))
 </pre></div>
 </div>
 </div>
@@ -2177,106 +2177,106 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <p>The cells below define some functions that will be used to train the model and make predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the first derivative of the sigmoid function.</span>
-<span class="k">def</span> <span class="nf">dsigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Derivative of the sigmoid function evaluated at x</span>
-<span class="sd">    Params:</span>
-<span class="sd">    x: value the function will be evaluated at</span>
-<span class="sd">    Return:</span>
-<span class="sd">    The value of the function evaluated at x (float)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the first derivative of the sigmoid function.
+def dsigmoid(x):
+    &#39;&#39;&#39;
+    Derivative of the sigmoid function evaluated at x
+    Params:
+    x: value the function will be evaluated at
+    Return:
+    The value of the function evaluated at x (float)
+    &#39;&#39;&#39;
 
-    <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    return sigmoid(x)*(1.0 - sigmoid(x))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the mean-squared error loss function.</span>
-<span class="k">def</span> <span class="nf">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; </span>
-<span class="sd">    Mean-squared error loss function</span>
-<span class="sd">    Params:</span>
-<span class="sd">    response: the vector of responses, Y</span>
-<span class="sd">    pred: the vector of predicted values, Y_hat</span>
-<span class="sd">    Return:</span>
-<span class="sd">    The MSE value (float)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the mean-squared error loss function.
+def mse_loss(response, pred):
+    &#39;&#39;&#39; 
+    Mean-squared error loss function
+    Params:
+    response: the vector of responses, Y
+    pred: the vector of predicted values, Y_hat
+    Return:
+    The MSE value (float)
+    &#39;&#39;&#39;
 
-    <span class="k">return</span> <span class="p">((</span><span class="n">response</span> <span class="o">-</span> <span class="n">pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">response</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    return ((response - pred)**2).sum()/response.shape[0]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to provide random starting values for the weights and bias term.</span>
-<span class="k">def</span> <span class="nf">init_params</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Randomly initializes weights and initialises biases to 0</span>
-<span class="sd">    Params:</span>
-<span class="sd">    n_p: number of features (size of input array)</span>
-<span class="sd">    n_h: number of neurons in layer, defaults to 1</span>
-<span class="sd">    range: range of random initalisation, defaults to 0.1</span>
-<span class="sd">    start: lowest value of random initialisation, defaults to -0.05</span>
-<span class="sd">    Returns:</span>
-<span class="sd">    a0: bias vector</span>
-<span class="sd">    aT: random weights vector</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_h</span><span class="p">))</span>
-    <span class="n">aT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span><span class="p">)</span> <span class="o">*</span> <span class="nb">range</span> <span class="o">+</span> <span class="n">start</span>
-    <span class="k">return</span> <span class="n">a0</span><span class="p">,</span> <span class="n">aT</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to provide random starting values for the weights and bias term.
+def init_params(n_p, n_h = 1, range = 0.1, start = -0.05):
+    &#39;&#39;&#39;
+    Randomly initializes weights and initialises biases to 0
+    Params:
+    n_p: number of features (size of input array)
+    n_h: number of neurons in layer, defaults to 1
+    range: range of random initalisation, defaults to 0.1
+    start: lowest value of random initialisation, defaults to -0.05
+    Returns:
+    a0: bias vector
+    aT: random weights vector
+    &#39;&#39;&#39;
+    a0 = np.zeros((1, n_h))
+    aT = np.random.rand(n_p, n_h) * range + start
+    return a0, aT
 
 
-<span class="c1"># Set the random seed for reproducibility.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1235</span><span class="p">)</span>
+# Set the random seed for reproducibility.
+np.random.seed(1235)
 
-<span class="c1"># Initialise the network weights.</span>
-<span class="c1"># Note that the bias is initialised to zero and weights to a random value</span>
-<span class="c1"># uniformly in the range [-0.05, 0.05].</span>
-<span class="c1"># This range is set to match the default for keras (which will be tested later).</span>
-<span class="n">bias</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">init_params</span><span class="p">(</span><span class="n">n_p</span> <span class="o">=</span> <span class="n">train_nn_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                            <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                            <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-                            <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)</span>
+# Initialise the network weights.
+# Note that the bias is initialised to zero and weights to a random value
+# uniformly in the range [-0.05, 0.05].
+# This range is set to match the default for keras (which will be tested later).
+bias, weights = init_params(n_p = train_nn_x.shape[1],
+                            n_h = 1,
+                            range = 0.1,
+                            start = -0.05)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to perform the forward pass over the data. This will be used</span>
-<span class="c1"># for training the model. Once the weights have been selected, it will also</span>
-<span class="c1"># serve as the prediction function.</span>
-<span class="c1"># The function is fairly simple. The input is a vector with dimension equal to</span>
-<span class="c1"># the number of features in the dataset (20). There is a single output neuron</span>
-<span class="c1"># and no hidden layers.</span>
-<span class="k">def</span> <span class="nf">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Performs the forward pass calculations for a single neuron network</span>
-<span class="sd">    Params:</span>
-<span class="sd">    input: input data frame</span>
-<span class="sd">    bias: bias parameter</span>
-<span class="sd">    weights: weights vector</span>
-<span class="sd">    keep_intermediate: (logical) keep the intermediate results?</span>
-<span class="sd">                       If True, returns the linear score in addition to the </span>
-<span class="sd">                       output value y_hat after the activation function has</span>
-<span class="sd">                       been applied.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to perform the forward pass over the data. This will be used
+# for training the model. Once the weights have been selected, it will also
+# serve as the prediction function.
+# The function is fairly simple. The input is a vector with dimension equal to
+# the number of features in the dataset (20). There is a single output neuron
+# and no hidden layers.
+def fwd_pass1(input, bias, weights, keep_intermediate = False):
+    &#39;&#39;&#39;
+    Performs the forward pass calculations for a single neuron network
+    Params:
+    input: input data frame
+    bias: bias parameter
+    weights: weights vector
+    keep_intermediate: (logical) keep the intermediate results?
+                       If True, returns the linear score in addition to the 
+                       output value y_hat after the activation function has
+                       been applied.
+    &#39;&#39;&#39;
 
-    <span class="c1"># Calculate the value for the neuron on the linear scale,</span>
-    <span class="c1"># using the sum-product of the inputs and weights, plus the bias term</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span>
+    # Calculate the value for the neuron on the linear scale,
+    # using the sum-product of the inputs and weights, plus the bias term
+    f = np.dot(input, weights) + bias
 
-    <span class="c1"># Apply the activation function</span>
-    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>    <span class="c1"># final output</span>
+    # Apply the activation function
+    y_hat = sigmoid(f)    # final output
 
-    <span class="k">if</span> <span class="n">keep_intermediate</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">y_hat</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">y_hat</span>
+    if keep_intermediate:
+        return f, y_hat
+    else:
+        return y_hat
 </pre></div>
 </div>
 </div>
@@ -2284,13 +2284,13 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <p>The learning rate and number of training iterations are then defined below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialise the hyperparameters.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initialise the hyperparameters.
 
-<span class="c1"># Set the learning rate - must be in (0, 1].</span>
-<span class="n">learn_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
+# Set the learning rate - must be in (0, 1].
+learn_rate = 0.2
 
-<span class="c1"># Set the number of training iterations.</span>
-<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">500</span>
+# Set the number of training iterations.
+n_rounds = 500
 </pre></div>
 </div>
 </div>
@@ -2298,50 +2298,50 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <p>The model can now be trained using the functions and hyperparameters specified above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the model by implementing the gradient descent algorithm over n_rounds</span>
-<span class="c1"># of iterations.</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rounds</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Train the model by implementing the gradient descent algorithm over n_rounds
+# of iterations.
+for _ in range(n_rounds):
 
-    <span class="c1"># Perform a forward propagation.</span>
-    <span class="n">f</span><span class="p">,</span> <span class="n">y_hat</span> <span class="o">=</span> <span class="n">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    # Perform a forward propagation.
+    f, y_hat = fwd_pass1(input, bias, weights, True)
 
 
-    <span class="c1"># Perform the back-propagation step.</span>
-    <span class="c1"># This involves calculating the partial derivative of the loss function</span>
-    <span class="c1"># with respect to the weights.</span>
+    # Perform the back-propagation step.
+    # This involves calculating the partial derivative of the loss function
+    # with respect to the weights.
 
-    <span class="c1"># Calculate the partial derivative of the loss function (J)</span>
-    <span class="c1"># with respect to the output (y_hat_i)</span>
-    <span class="c1"># J = (y_i - y_hat_i)^2 -&gt; dJ/dy_hat_i = -2(y_i - y_hat_i) = 2(y_hat_i-y_i)</span>
-    <span class="c1"># In the calculation below, the factor of 2 is dropped as this does not</span>
-    <span class="c1"># impact the minimum value of the loss function.</span>
-    <span class="n">dJ_dyhat</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_hat</span><span class="o">-</span><span class="n">response</span><span class="p">)</span>
+    # Calculate the partial derivative of the loss function (J)
+    # with respect to the output (y_hat_i)
+    # J = (y_i - y_hat_i)^2 -&gt; dJ/dy_hat_i = -2(y_i - y_hat_i) = 2(y_hat_i-y_i)
+    # In the calculation below, the factor of 2 is dropped as this does not
+    # impact the minimum value of the loss function.
+    dJ_dyhat = (y_hat-response)
 
-    <span class="c1"># Calculate the partial derivate of the output (y_hat_i)</span>
-    <span class="c1"># with respect to the linear values of the neuron (f(X_i)).</span>
-    <span class="c1"># The output is simply the activation function applied to the linear values</span>
-    <span class="c1"># so the derivative is just the derivative of the activation function.</span>
-    <span class="n">dyhat_df</span> <span class="o">=</span> <span class="n">dsigmoid</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    # Calculate the partial derivate of the output (y_hat_i)
+    # with respect to the linear values of the neuron (f(X_i)).
+    # The output is simply the activation function applied to the linear values
+    # so the derivative is just the derivative of the activation function.
+    dyhat_df = dsigmoid(f)
 
-    <span class="c1"># The partial derivative of the linear values of the neuron (f(X_i))</span>
-    <span class="c1"># with respect to the weights is just the inputs (X_i)</span>
-    <span class="c1"># because linear values (f(X_i))= a1*x1 + a2*x2 + ... </span>
+    # The partial derivative of the linear values of the neuron (f(X_i))
+    # with respect to the weights is just the inputs (X_i)
+    # because linear values (f(X_i))= a1*x1 + a2*x2 + ... 
 
-    <span class="c1"># Calculate the gradient of the loss function, excluding the input values</span>
-    <span class="c1"># because these are constants.</span>
-    <span class="c1"># This is a useful intermediate calculation step to capture.</span>
-    <span class="n">delta</span> <span class="o">=</span> <span class="n">dJ_dyhat</span><span class="o">*</span><span class="n">dyhat_df</span>
+    # Calculate the gradient of the loss function, excluding the input values
+    # because these are constants.
+    # This is a useful intermediate calculation step to capture.
+    delta = dJ_dyhat*dyhat_df
 
-    <span class="c1"># Update the weights.</span>
-    <span class="n">weights_old</span> <span class="o">=</span> <span class="n">weights</span>
-    <span class="n">weights</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    # Update the weights.
+    weights_old = weights
+    weights -= learn_rate * np.dot(input.T, delta) / input.shape[0]
 
-    <span class="c1"># Update the bias.</span>
-    <span class="n">bias</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    # Update the bias.
+    bias -= learn_rate * np.sum(delta, axis = 0) / input.shape[0]
 
-    <span class="c1"># Print the loss calculated after every 25th iteration.</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;iter </span><span class="si">{</span><span class="n">_</span><span class="si">}</span><span class="s1"> MSE: </span><span class="si">{</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    # Print the loss calculated after every 25th iteration.
+    if np.mod(_, 25) == 0:
+        print(f&#39;iter {_} MSE: {mse_loss(response, y_hat)}&#39;)
 </pre></div>
 </div>
 </div>
@@ -2377,19 +2377,19 @@ iter 475 MSE: 0.14313449424136288
 They also compare the single layer neural network to the final GBM model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now create predictions with the weights from the training step above,</span>
-<span class="c1"># using the fwd_pass1 function. </span>
-<span class="n">pred_nn1_train</span> <span class="o">=</span> <span class="n">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">pred_nn1_validation</span> <span class="o">=</span> <span class="n">fwd_pass1</span><span class="p">(</span><span class="n">input_validation</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Now create predictions with the weights from the training step above,
+# using the fwd_pass1 function. 
+pred_nn1_train = fwd_pass1(input, bias, weights, False)
+pred_nn1_validation = fwd_pass1(input_validation, bias, weights, False)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the training and validation AUC.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn1_train</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the training and validation AUC.
+{&#39;train&#39;:roc_auc_score(response, pred_nn1_train),
+ &#39;validation&#39;:roc_auc_score(response_validation, pred_nn1_validation)}
 </pre></div>
 </div>
 </div>
@@ -2401,13 +2401,13 @@ They also compare the single layer neural network to the final GBM model.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the confusion matrix, with predictions converted to </span>
-<span class="c1"># binary classes using a 50% threshold.</span>
-<span class="n">pred_nn1_validation_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pred_nn1_validation</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the confusion matrix, with predictions converted to 
+# binary classes using a 50% threshold.
+pred_nn1_validation_class = np.where(pred_nn1_validation &gt; 0.5, 1, 0)
 
-<span class="n">conf_mat_nn1_validation</span> <span class="o">=</span> <span class="n">confusion_matrix_new</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span>
-    <span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation_class</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_nn1_validation</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+conf_mat_nn1_validation = confusion_matrix_new = confusion_matrix(
+    response_validation, pred_nn1_validation_class)
+plot_confusion_matrix(conf_mat_nn1_validation, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -2418,8 +2418,8 @@ They also compare the single layer neural network to the final GBM model.</p>
 <p>The output from the single layer neural network can now be compared to the output from the final GBM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;GBM final&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">),</span>
- <span class="s1">&#39;NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>{&#39;GBM final&#39;:roc_auc_score(response_validation, validation_gbm_preds_final),
+ &#39;NN 1&#39;: roc_auc_score(response_validation, pred_nn1_validation)}
 </pre></div>
 </div>
 </div>
@@ -2431,8 +2431,8 @@ They also compare the single layer neural network to the final GBM model.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conf_mat_gbm_validation</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_gbm_class_final</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">conf_mat_gbm_validation</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>conf_mat_gbm_validation = confusion_matrix(validation_gbm_y, validation_gbm_class_final)
+plot_confusion_matrix(conf_mat_gbm_validation, [0, 1])
 </pre></div>
 </div>
 </div>
@@ -2459,32 +2459,32 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <p>The following function defines how the forward propagation step should proceed for NN2 that has one hidden layer with four neurons.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Performs the forward propagation calculations for a network with a single hidden layer.</span>
-<span class="sd">    Params:</span>
-<span class="sd">    input: input data</span>
-<span class="sd">    l1_bias: bias for layer 1 (the hidden layer)</span>
-<span class="sd">    l1_weights: weights for layer 1</span>
-<span class="sd">    l2_bias: bias for layer 2 (the output layer)</span>
-<span class="sd">    l2_weights: weights for layer 2</span>
-<span class="sd">    keep_intermediate: (logical) keep the intermediate results? </span>
-<span class="sd">                       If True, returns the linear scores and activations for</span>
-<span class="sd">                       the hidden and output layers.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fwd_pass2(input, l1_bias, l1_weights, l2_bias, l2_weights, keep_intermediate = False):
+    &#39;&#39;&#39;
+    Performs the forward propagation calculations for a network with a single hidden layer.
+    Params:
+    input: input data
+    l1_bias: bias for layer 1 (the hidden layer)
+    l1_weights: weights for layer 1
+    l2_bias: bias for layer 2 (the output layer)
+    l2_weights: weights for layer 2
+    keep_intermediate: (logical) keep the intermediate results? 
+                       If True, returns the linear scores and activations for
+                       the hidden and output layers.
+    &#39;&#39;&#39;
 
-    <span class="c1"># Calculate the neurons in layer 1 (the hidden layer).</span>
-    <span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">l1_bias</span> <span class="c1"># linear score</span>
-    <span class="n">z1</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>                            <span class="c1"># activation</span>
+    # Calculate the neurons in layer 1 (the hidden layer).
+    f1 = np.matmul(input, l1_weights) + l1_bias # linear score
+    z1 = sigmoid(f1)                            # activation
 
-    <span class="c1"># Output layer</span>
-    <span class="n">f2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">l2_bias</span>       <span class="c1"># linear score </span>
-    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>                         <span class="c1"># activation: final output</span>
+    # Output layer
+    f2 = np.dot(z1, l2_weights) + l2_bias       # linear score 
+    y_hat = sigmoid(f2)                         # activation: final output
 
-    <span class="k">if</span> <span class="n">keep_intermediate</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">f1</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">y_hat</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">y_hat</span>
+    if keep_intermediate:
+        return f1, z1, f2, y_hat
+    else:
+        return y_hat
 </pre></div>
 </div>
 </div>
@@ -2492,23 +2492,23 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <p>The learning rate and number of training iterations are then defined below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the learning rate - must be in (0, 1].</span>
-<span class="n">learn_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set the learning rate - must be in (0, 1].
+learn_rate = 0.2
 
-<span class="c1"># Set the number of training iterations.</span>
-<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">500</span>
+# Set the number of training iterations.
+n_rounds = 500
 
-<span class="c1"># Specify the desired number of neurons in the hidden layer.</span>
-<span class="n">hidden_neurons</span> <span class="o">=</span> <span class="mi">4</span>
+# Specify the desired number of neurons in the hidden layer.
+hidden_neurons = 4
 
-<span class="c1"># Set the random seed for reproducibility.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1235</span><span class="p">)</span>
+# Set the random seed for reproducibility.
+np.random.seed(1235)
 
-<span class="c1"># Initialise the weights for the hidden layer.</span>
-<span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span> <span class="o">=</span> <span class="n">init_params</span><span class="p">(</span><span class="n">n_p</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_h</span> <span class="o">=</span> <span class="n">hidden_neurons</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)</span>
+# Initialise the weights for the hidden layer.
+l1_bias, l1_weights = init_params(n_p = input.shape[1], n_h = hidden_neurons, range = 0.1, start = -0.05)
 
-<span class="c1"># Initialise the weights for the output layer.</span>
-<span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span> <span class="o">=</span> <span class="n">init_params</span><span class="p">(</span><span class="n">n_p</span> <span class="o">=</span> <span class="n">l1_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">)</span>
+# Initialise the weights for the output layer.
+l2_bias, l2_weights = init_params(n_p = l1_weights.shape[1], n_h = 1, range = 0.1, start = -0.05)
 </pre></div>
 </div>
 </div>
@@ -2516,46 +2516,46 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <p>The model can now be trained using the functions and hyperparameters specified above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rounds</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for _ in range(n_rounds):
 
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    The model is trained by first performing a forward pass to get the predictions,</span>
-<span class="sd">    followed by a backward pass to &#39;propagate&#39; the loss back through each of the</span>
-<span class="sd">    neurons.</span>
-<span class="sd">    This is repeated each iteration until the network has converged or </span>
-<span class="sd">    the maximum number of rounds has been reached.</span>
+    &#39;&#39;&#39;
+    The model is trained by first performing a forward pass to get the predictions,
+    followed by a backward pass to &#39;propagate&#39; the loss back through each of the
+    neurons.
+    This is repeated each iteration until the network has converged or 
+    the maximum number of rounds has been reached.
 
-<span class="sd">    The following notation is used in this function: </span>
-<span class="sd">    ln_weights: the weights matrix (one column per neuron) for layer n</span>
-<span class="sd">    ln_bias: vector of bias values (one per neuron) for layer n</span>
-<span class="sd">    fn: vector of linear scores (one per neuron) for layer n</span>
-<span class="sd">    zn: vector of activations (one per neuron) for layer n</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+    The following notation is used in this function: 
+    ln_weights: the weights matrix (one column per neuron) for layer n
+    ln_bias: vector of bias values (one per neuron) for layer n
+    fn: vector of linear scores (one per neuron) for layer n
+    zn: vector of activations (one per neuron) for layer n
+    &#39;&#39;&#39;
 
-    <span class="c1"># Perform the forward pass.</span>
-    <span class="n">f1</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">y_hat</span> <span class="o">=</span> <span class="n">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    # Perform the forward pass.
+    f1, z1, f2, y_hat = fwd_pass2(input, l1_bias, l1_weights, l2_bias, l2_weights, True)
 
-    <span class="c1"># Perform the backpropagation step.</span>
-    <span class="c1"># Perform the intermediate calculations for the loss function gradients.</span>
-    <span class="n">delta2</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">response</span><span class="p">)</span> <span class="o">*</span> <span class="n">dsigmoid</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>        
-    <span class="n">delta1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">delta2</span><span class="p">,</span> <span class="n">l2_weights</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">dsigmoid</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
+    # Perform the backpropagation step.
+    # Perform the intermediate calculations for the loss function gradients.
+    delta2 = (y_hat - response) * dsigmoid(f2)        
+    delta1 = np.dot(delta2, l2_weights.T) * dsigmoid(f1)
 
-    <span class="n">dloss_dweight2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">z1</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">delta2</span><span class="p">)</span><span class="o">/</span><span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c1"># Gradient with respect to the layer 2 weights.</span>
-    <span class="n">dloss_dweight1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">delta1</span><span class="p">)</span><span class="o">/</span><span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c1"># Gradient with respect to the layer 1 weights.</span>
+    dloss_dweight2 = np.dot(z1.T, delta2)/input.shape[0]
+    # Gradient with respect to the layer 2 weights.
+    dloss_dweight1 = np.matmul(input.T, delta1)/input.shape[0]
+    # Gradient with respect to the layer 1 weights.
 
-    <span class="c1"># Update the weights.</span>
-    <span class="n">l2_weights</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">dloss_dweight2</span>
-    <span class="n">l1_weights</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">dloss_dweight1</span>
+    # Update the weights.
+    l2_weights -= learn_rate * dloss_dweight2
+    l1_weights -= learn_rate * dloss_dweight1
 
-    <span class="c1"># Update the bias terms.</span>
-    <span class="n">l2_bias</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">delta2</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">l1_bias</span> <span class="o">-=</span> <span class="n">learn_rate</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">delta1</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    # Update the bias terms.
+    l2_bias -= learn_rate * np.sum(delta2, axis = 0) / input.shape[0]
+    l1_bias -= learn_rate * np.sum(delta1, axis = 0) / input.shape[0]
 
-    <span class="c1"># Print the loss after every 25th iteration.</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iter&#39;</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">))</span>
+    # Print the loss after every 25th iteration.
+    if np.mod(_, 25) == 0:
+        print(&#39;iter&#39;, _, &#39;:&#39;, mse_loss(response, y_hat))
 </pre></div>
 </div>
 </div>
@@ -2589,16 +2589,16 @@ iter 475 : 0.18941896598690924
 <h4>Evaluate NN 2<a class="headerlink" href="#evaluate-nn-2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_nn2_train</span> <span class="o">=</span> <span class="n">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">pred_nn2_validation</span> <span class="o">=</span> <span class="n">fwd_pass2</span><span class="p">(</span><span class="n">input_validation</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pred_nn2_train = fwd_pass2(input, l1_bias, l1_weights, l2_bias, l2_weights, False)
+pred_nn2_validation = fwd_pass2(input_validation, l1_bias, l1_weights, l2_bias, l2_weights, False)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn2_train</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;:roc_auc_score(response, pred_nn2_train),
+ &#39;validation&#39;:roc_auc_score(response_validation, pred_nn2_validation)}
 </pre></div>
 </div>
 </div>
@@ -2610,10 +2610,10 @@ iter 475 : 0.18941896598690924
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare NN 2 to GBM final and NN 1</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 2&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 1&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;3. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare NN 2 to GBM final and NN 1
+{&#39;1. NN 2&#39;:roc_auc_score(response_validation, pred_nn2_validation),
+ &#39;2. NN 1&#39;:roc_auc_score(response_validation, pred_nn1_validation),
+ &#39;3. GBM final&#39;: roc_auc_score(response_validation, validation_gbm_preds_final)}
 </pre></div>
 </div>
 </div>
@@ -2645,32 +2645,32 @@ iter 475 : 0.18941896598690924
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the seed for the random number generator, for reproducibility of the results.</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1235</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set the seed for the random number generator, for reproducibility of the results.
+np.random.seed(1235)
 
-<span class="c1"># Build a model with 1 (dense) hidden layer, 4 neurons and</span>
-<span class="c1"># a sigmoid activation function.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_dim</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">&#39;random_uniform&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">&#39;random_uniform&#39;</span><span class="p">))</span>
+# Build a model with 1 (dense) hidden layer, 4 neurons and
+# a sigmoid activation function.
+model = Sequential()
+model.add(Dense(4, input_dim = input.shape[1], activation = &#39;sigmoid&#39;, kernel_initializer = &#39;random_uniform&#39;))
+model.add(Dense(1, activation = &#39;sigmoid&#39;, kernel_initializer = &#39;random_uniform&#39;))
 
-<span class="c1"># Specify the optimiser to use.</span>
-<span class="n">opt</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+# Specify the optimiser to use.
+opt = keras.optimizers.SGD(learning_rate=0.2, momentum=0.0)
 
-<span class="c1"># Compile the model using the mean-squared error loss function.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;mse&#39;</span><span class="p">,</span>
-    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">opt</span>    
-<span class="p">)</span>
+# Compile the model using the mean-squared error loss function.
+model.compile(
+    loss = &#39;mse&#39;,
+    metrics = [&#39;mse&#39;],
+    optimizer = opt    
+)
 
-<span class="c1"># Train the model.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> 
-          <span class="n">response</span><span class="p">,</span> 
-          <span class="n">epochs</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> 
-          <span class="n">batch_size</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-          <span class="n">steps_per_epoch</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
-          <span class="n">verbose</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+# Train the model.
+model.fit(input, 
+          response, 
+          epochs = 500, 
+          batch_size = input.shape[0],
+          steps_per_epoch = 1, 
+          verbose = 2)
 </pre></div>
 </div>
 </div>
@@ -3690,9 +3690,9 @@ Epoch 500/500
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the predictions on the training and validation data.</span>
-<span class="n">keras_train_preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="n">keras_validation_preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_validation</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Obtain the predictions on the training and validation data.
+keras_train_preds = model.predict(input)
+keras_validation_preds = model.predict(input_validation)
 </pre></div>
 </div>
 </div>
@@ -3702,8 +3702,8 @@ Epoch 500/500
 <h4>Evaluate NN 3<a class="headerlink" href="#evaluate-nn-3" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras_train_preds</span><span class="p">),</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the AUC on the training and validation data.
+{&#39;train&#39;:roc_auc_score(response, keras_train_preds), &#39;validation&#39;:roc_auc_score(response_validation, keras_validation_preds)}
 </pre></div>
 </div>
 </div>
@@ -3715,11 +3715,11 @@ Epoch 500/500
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the AUCs under all models built to date.</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 3&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 2&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;3. NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;4. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare the AUCs under all models built to date.
+{&#39;1. NN 3&#39;: roc_auc_score(response_validation, keras_validation_preds),
+ &#39;2. NN 2&#39;: roc_auc_score(response_validation, pred_nn2_validation),
+ &#39;3. NN 1&#39;: roc_auc_score(response_validation, pred_nn1_validation),
+ &#39;4. GBM final&#39;: roc_auc_score(response_validation, validation_gbm_preds_final)}
 </pre></div>
 </div>
 </div>
@@ -3749,21 +3749,21 @@ Epoch 500/500
 <p>Details of these options and more can be found on the keras webpage: <a class="reference external" href="https://keras.io/">https://keras.io/</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1235</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.random.seed(1235)
 
-<span class="c1"># Construct the adjusted neural network model.</span>
-<span class="n">model2</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
-<span class="c1"># Compile the model using the Adam optimiser and the logistic loss function</span>
-<span class="c1"># for a binary classifier (binary_cross_entropy).</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span>
-    <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span>
-    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+# Construct the adjusted neural network model.
+model2 = Sequential()
+model2.add(Dense(8, input_dim= input.shape[1], activation=&#39;relu&#39;, kernel_regularizer=&#39;l2&#39;))
+model2.add(Dense(8, activation=&#39;relu&#39;, kernel_regularizer=&#39;l2&#39;))
+model2.add(Dense(1, activation=&#39;sigmoid&#39;))
+# Compile the model using the Adam optimiser and the logistic loss function
+# for a binary classifier (binary_cross_entropy).
+model2.compile(
+    loss=&#39;binary_crossentropy&#39;,
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    metrics=[&#39;binary_crossentropy&#39;],
+)
+model2.fit(input, response, epochs=100, batch_size=1000)
 </pre></div>
 </div>
 </div>
@@ -3977,9 +3977,9 @@ Epoch 100/100
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain the predictions on the training and validation data.</span>
-<span class="n">keras2_train_preds</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="n">keras2_validation_preds</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_validation</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Obtain the predictions on the training and validation data.
+keras2_train_preds = model2.predict(input)
+keras2_validation_preds = model2.predict(input_validation)
 </pre></div>
 </div>
 </div>
@@ -3989,8 +3989,8 @@ Epoch 100/100
 <h4>Evaluate NN 4<a class="headerlink" href="#evaluate-nn-4" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras2_train_preds</span><span class="p">),</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the AUC on the training and validation data.
+{&#39;train&#39;:roc_auc_score(response, keras2_train_preds), &#39;validation&#39;:roc_auc_score(response_validation, keras2_validation_preds)}
 </pre></div>
 </div>
 </div>
@@ -4002,9 +4002,9 @@ Epoch 100/100
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the relative improvement in AUC between NN 4 and NN 3</span>
-<span class="c1"># using the validation data.</span>
-<span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">)</span> <span class="o">/</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the relative improvement in AUC between NN 4 and NN 3
+# using the validation data.
+roc_auc_score(response_validation, keras2_validation_preds) / roc_auc_score(response_validation, keras_validation_preds)
 </pre></div>
 </div>
 </div>
@@ -4017,12 +4017,12 @@ Epoch 100/100
 <p>The modifications made to the first Keras model (NN 3) to produce NN 4 have resulted in a slight improvement in the AUC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the results of all five models built in this notebook.</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 4 (Keras2)&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 3 (Keras1)&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;3. NN 2&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;4. NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;5. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare the results of all five models built in this notebook.
+{&#39;1. NN 4 (Keras2)&#39;: roc_auc_score(response_validation, keras2_validation_preds),
+ &#39;2. NN 3 (Keras1)&#39;: roc_auc_score(response_validation, keras_validation_preds),
+ &#39;3. NN 2&#39;: roc_auc_score(response_validation, pred_nn2_validation),
+ &#39;4. NN 1&#39;: roc_auc_score(response_validation, pred_nn1_validation),
+ &#39;5. GBM final&#39;: roc_auc_score(response_validation, validation_gbm_preds_final)}
 </pre></div>
 </div>
 </div>

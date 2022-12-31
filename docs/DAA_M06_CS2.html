@@ -911,20 +911,20 @@ title="Print to PDF"
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Packages for data management and mathematical operations.</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Packages for data management and mathematical operations.
+import pandas as pd
+import numpy as np
 
-<span class="c1"># Package for plotting.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+# Package for plotting.
+import matplotlib.pyplot as plt
 
-<span class="c1"># Scikit-learn libraries to perform clustering and evaluation.</span>
-<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">f1_score</span>
+# Scikit-learn libraries to perform clustering and evaluation.
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, f1_score
 
-<span class="c1"># Package used in the confusion matrix function.</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+# Package used in the confusion matrix function.
+import itertools
 </pre></div>
 </div>
 </div>
@@ -935,46 +935,46 @@ title="Print to PDF"
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function that helps to format headings in the cell outputs.</span>
-<span class="k">def</span> <span class="nf">heading</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function that helps to format headings in the cell outputs.
+def heading(string):
 
-  <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">  This function is used to print a bold heading followed by a new line.</span>
-<span class="sd">  &#39;&#39;&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span><span class="o">+</span><span class="n">string</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-  <span class="c1"># The &#39;\033[1m&#39; at the start of the string makes the font bold</span>
-  <span class="c1"># and the &#39;\033[0m&#39; at the end of the string makes the font go back to normal.</span>
-  <span class="c1"># The &#39;\n&#39; at the very end of the string prints a new line to give some space</span>
-  <span class="c1"># before the next item is printed to the output box.</span>
+  &#39;&#39;&#39;
+  This function is used to print a bold heading followed by a new line.
+  &#39;&#39;&#39;
+  print(&#39;\033[1m&#39;+string+&#39;\033[0m\n&#39;)
+  # The &#39;\033[1m&#39; at the start of the string makes the font bold
+  # and the &#39;\033[0m&#39; at the end of the string makes the font go back to normal.
+  # The &#39;\n&#39; at the very end of the string prints a new line to give some space
+  # before the next item is printed to the output box.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to plot confusion matrices in an easy to visualise format.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
-                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    This function prints and plots a nicely formatted confusion matrix.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to plot confusion matrices in an easy to visualise format.
+def plot_confusion_matrix(cm, classes,
+                          title=&#39;Confusion matrix&#39;,
+                          cmap=plt.cm.Blues):
+    &#39;&#39;&#39;
+    This function prints and plots a nicely formatted confusion matrix.
+    &#39;&#39;&#39;
+    plt.imshow(cm, interpolation=&#39;nearest&#39;, cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
 
-    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment=&#39;center&#39;,
+                 color=&#39;white&#39; if cm[i, j] &gt; thresh else &#39;black&#39;)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    plt.tight_layout()
+    plt.ylabel(&#39;True response&#39;)
+    plt.xlabel(&#39;Predicted response&#39;)
 </pre></div>
 </div>
 </div>
@@ -998,34 +998,34 @@ title="Print to PDF"
 <p>Note that the transaction dataset is very large (667MB) hence the file is zipped - but pandas is able to read zipped csv files directly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder that your datasets are saved in.</span>
-<span class="c1"># or here, read it from the URL </span>
-<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the folder that your datasets are saved in.
+# or here, read it from the URL 
+infolder = &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the transaction data.</span>
-<span class="c1"># Specify the filename.</span>
-<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS2_data1_transaction.csv.zip&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Import the transaction data.
+# Specify the filename.
+file1 = &#39;DAA_M06_CS2_data1_transaction.csv.zip&#39;
 
-<span class="c1"># Read in the data.</span>
-<span class="n">transaction</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file1</span><span class="p">)</span>
+# Read in the data.
+transaction = pd.read_csv (infolder+file1)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the identity data.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Import the identity data.
 
-<span class="c1"># Specify the filename.</span>
-<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS2_data2_identity.csv.zip&#39;</span>
+# Specify the filename.
+file2 = &#39;DAA_M06_CS2_data2_identity.csv.zip&#39;
 
-<span class="c1"># Read in the data.</span>
-<span class="n">identity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file2</span><span class="p">)</span>
+# Read in the data.
+identity = pd.read_csv (infolder+file2)
 </pre></div>
 </div>
 </div>
@@ -1035,16 +1035,16 @@ title="Print to PDF"
 <h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force all columns in the datasets to be shown.</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">999</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Force all columns in the datasets to be shown.
+pd.options.display.max_columns = 999
 
-<span class="c1"># Print the first 5 rows of each dataset.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+# Print the first 5 rows of each dataset.
+heading(&#39;Transaction dataset&#39;)
+print(transaction.head())
+print(&#39;\n&#39;)
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+heading(&#39;Identity dataset&#39;)
+print(identity.head())
 </pre></div>
 </div>
 </div>
@@ -1333,13 +1333,13 @@ title="Print to PDF"
 <p>The outputs above show that there are many features in these two datasets that have missing values (NaN).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the number of observations and features of the data sets.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the number of observations and features of the data sets.
+heading(&#39;Transaction dataset&#39;)
+print(transaction.info())
+print(&#39;\n&#39;)
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+heading(&#39;Identity dataset&#39;)
+print(identity.info())
 </pre></div>
 </div>
 </div>
@@ -1411,13 +1411,13 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Summarise key information about numeric features in each of the datasets.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Summarise key information about numeric features in each of the datasets.
+heading(&#39;Transaction dataset&#39;)
+print(transaction.describe())
+print(&#39;\n&#39;)
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+heading(&#39;Identity dataset&#39;)
+print(identity.describe())
 </pre></div>
 </div>
 </div>
@@ -2413,9 +2413,9 @@ max      44.000000    26.000000   548.000000   216.000000     32.000000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the columns in each dataset.</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># List the columns in each dataset.
+print(list(transaction.columns))
+print(list(identity.columns))
 </pre></div>
 </div>
 </div>
@@ -2428,18 +2428,18 @@ max      44.000000    26.000000   548.000000   216.000000     32.000000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the proportion of fraud to non-fraud observations in the</span>
-<span class="c1"># transaction dataset.</span>
-<span class="c1"># Fraudulent transactions are represented by &#39;isFraud&#39; = 1</span>
-<span class="c1"># and non-fraudulent transactions are represented by &#39;isFraud&#39; = 0.</span>
-<span class="n">fraud</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">])</span>
-<span class="n">not_fraud</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">-</span><span class="n">fraud</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the proportion of fraud to non-fraud observations in the
+# transaction dataset.
+# Fraudulent transactions are represented by &#39;isFraud&#39; = 1
+# and non-fraudulent transactions are represented by &#39;isFraud&#39; = 0.
+fraud = sum(transaction[&#39;isFraud&#39;])
+not_fraud = len(transaction.index)-fraud
 
-<span class="n">percent_fraud</span> <span class="o">=</span> <span class="n">fraud</span><span class="o">/</span><span class="p">(</span><span class="n">fraud</span><span class="o">+</span><span class="n">not_fraud</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are &#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; fraudulent transactions out of &#39;</span><span class="o">+</span>
-      <span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="o">+</span><span class="n">not_fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; total transactions in the dataset.&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;These fraudulent transactions represent approximately &#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="si">{:,.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">percent_fraud</span><span class="p">)</span><span class="o">+</span>
-      <span class="s1">&#39; of all transactions.&#39;</span><span class="p">)</span>
+percent_fraud = fraud/(fraud+not_fraud)
+print(&#39;There are &#39;+&#39;{:,.0f}&#39;.format(fraud)+&#39; fraudulent transactions out of &#39;+
+      &#39;{:,.0f}&#39;.format(fraud+not_fraud)+&#39; total transactions in the dataset.&#39;)
+print(&#39;These fraudulent transactions represent approximately &#39;+&#39;{:,.2%}&#39;.format(percent_fraud)+
+      &#39; of all transactions.&#39;)
 </pre></div>
 </div>
 </div>
@@ -2460,18 +2460,18 @@ These fraudulent transactions represent approximately 3.50% of all transactions.
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examine how fraud transactions compare to non fraud transactions</span>
-<span class="c1"># across some of the features.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Examine how fraud transactions compare to non fraud transactions
+# across some of the features.
 
-<span class="c1"># Calculate the average transaction amounts for fraud and non fraud transactions.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Average transaction amounts for fraud and non fraud&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;isFraud&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;TransactionAmt&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+# Calculate the average transaction amounts for fraud and non fraud transactions.
+heading(&#39;Average transaction amounts for fraud and non fraud&#39;)
+print(transaction.groupby(&#39;isFraud&#39;).mean()[&#39;TransactionAmt&#39;])
+print(&#39;\n&#39;)
 
-<span class="c1"># Calculate percentage fraud for each Product Code.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Percentage fraud and total transactions for each Product Code&#39;</span><span class="p">)</span>
-<span class="n">product_groups</span> <span class="o">=</span> <span class="n">transaction</span><span class="p">[[</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">,</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">product_groups</span><span class="p">)</span>
+# Calculate percentage fraud for each Product Code.
+heading(&#39;Percentage fraud and total transactions for each Product Code&#39;)
+product_groups = transaction[[&#39;ProductCD&#39;,&#39;isFraud&#39;]].groupby(&#39;ProductCD&#39;).agg([&#39;mean&#39;,&#39;count&#39;])
+print(product_groups)
 </pre></div>
 </div>
 </div>
@@ -2507,14 +2507,14 @@ W          0.020399  439670
 <h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Join the transaction and identity datasets using a left join so that all</span>
-<span class="c1"># observations in the transaction dataset are retained</span>
-<span class="c1"># (the transaction dataset contains the response &#39;isFraud&#39;), and any matching</span>
-<span class="c1"># observations in the identity dataset are joined into the merge.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Join the transaction and identity datasets using a left join so that all
+# observations in the transaction dataset are retained
+# (the transaction dataset contains the response &#39;isFraud&#39;), and any matching
+# observations in the identity dataset are joined into the merge.
 
-<span class="n">product</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span>
-<span class="n">fraud_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;C&#39;</span><span class="p">],</span><span class="n">identity</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+product = &#39;C&#39;
+fraud_data = pd.merge(transaction[transaction[&#39;ProductCD&#39;]==&#39;C&#39;],identity,on=&#39;TransactionID&#39;,how=&#39;left&#39;)
+print(fraud_data.info())
 </pre></div>
 </div>
 </div>
@@ -2534,43 +2534,43 @@ None
 <p>The features used in the clustering algorithm should be numeric and not contain missing values, so that Euclidean distances between the observations can be calculated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore the feature types and missingness of the fraud data.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Explore the feature types and missingness of the fraud data.
 
-<span class="c1"># Explore the first 14 features.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[[</span><span class="s1">&#39;TransactionDT&#39;</span><span class="p">,</span><span class="s1">&#39;TransactionAmt&#39;</span><span class="p">,</span><span class="s1">&#39;card1&#39;</span><span class="p">,</span><span class="s1">&#39;card2&#39;</span><span class="p">,</span><span class="s1">&#39;card3&#39;</span><span class="p">,</span><span class="s1">&#39;card4&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;card5&#39;</span><span class="p">,</span><span class="s1">&#39;card6&#39;</span><span class="p">,</span><span class="s1">&#39;addr1&#39;</span><span class="p">,</span><span class="s1">&#39;addr2&#39;</span><span class="p">,</span><span class="s1">&#39;dist1&#39;</span><span class="p">,</span><span class="s1">&#39;dist2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the first 14 features.
+print(fraud_data[[&#39;TransactionDT&#39;,&#39;TransactionAmt&#39;,&#39;card1&#39;,&#39;card2&#39;,&#39;card3&#39;,&#39;card4&#39;,
+                  &#39;card5&#39;,&#39;card6&#39;,&#39;addr1&#39;,&#39;addr2&#39;,&#39;dist1&#39;,&#39;dist2&#39;]].info())
 
-<span class="c1"># Explore the &#39;C#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the &#39;C#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;C&#39;)]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the &#39;D#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the &#39;D#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;D&#39;)]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the &#39;M#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the &#39;M#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;M&#39;)]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the first 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the first 100 &#39;V#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;V&#39;)][0:100]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the next 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the next 100 &#39;V#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;V&#39;)][100:200]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the next 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the next 100 &#39;V#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;V&#39;)][200:300]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the final 39 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">300</span><span class="p">:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the final 39 &#39;V#&#39; features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;V&#39;)][300:]
+print(fraud_data[filter_col].info())
 
-<span class="c1"># Explore the id_## features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+# Explore the id_## features.
+filter_col = [col for col in fraud_data if col.startswith(&#39;id&#39;)]
+print(fraud_data[filter_col].info())
 </pre></div>
 </div>
 </div>
@@ -3084,23 +3084,23 @@ None
 60,000 observations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the features that are numeric and have at least 60,000 observations.</span>
-<span class="n">fraud_numeric</span> <span class="o">=</span> <span class="n">fraud_data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;number&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Select the features that are numeric and have at least 60,000 observations.
+fraud_numeric = fraud_data.select_dtypes([&#39;number&#39;]).drop(columns=&#39;TransactionID&#39;)
 
-<span class="c1"># Select only the features that have at least 60,000 non-missing values.</span>
-<span class="n">fraud_numeric2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">columnName</span><span class="p">,</span> <span class="n">columnData</span><span class="p">)</span> <span class="ow">in</span> <span class="n">fraud_numeric</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-  <span class="n">enough_data</span> <span class="o">=</span> <span class="n">columnData</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">60000</span>
-  <span class="k">if</span> <span class="n">enough_data</span><span class="p">:</span>
-      <span class="n">fraud_numeric2</span><span class="p">[</span><span class="n">columnName</span><span class="p">]</span> <span class="o">=</span> <span class="n">columnData</span>
+# Select only the features that have at least 60,000 non-missing values.
+fraud_numeric2 = pd.DataFrame()
+for (columnName, columnData) in fraud_numeric.iteritems():
+  enough_data = columnData.notna().sum() &gt; 60000
+  if enough_data:
+      fraud_numeric2[columnName] = columnData
 
-<span class="c1"># Then select only the rows that do not have any missing values.</span>
-<span class="n">fraud_numeric3</span> <span class="o">=</span> <span class="n">fraud_numeric2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+# Then select only the rows that do not have any missing values.
+fraud_numeric3 = fraud_numeric2.dropna(axis=&#39;rows&#39;)
+print(fraud_numeric3.info())
+print(list(fraud_numeric3.columns))
 
-<span class="c1"># Check that there are no missing values in this new fraud data</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">+</span><span class="s1">&#39; missing values&#39;</span><span class="p">)</span>
+# Check that there are no missing values in this new fraud data
+print(&#39;There are &#39;+str(fraud_numeric3.isna().sum().sum())+&#39; missing values&#39;)
 </pre></div>
 </div>
 </div>
@@ -3119,10 +3119,10 @@ There are 0 missing values
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate response (&#39;isFraud&#39;) from features in the fraud data.</span>
-<span class="n">fraud_response</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span>
-<span class="n">fraud_features</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_features</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Separate response (&#39;isFraud&#39;) from features in the fraud data.
+fraud_response = fraud_numeric3[&#39;isFraud&#39;]
+fraud_features = fraud_numeric3.drop(columns=[&#39;isFraud&#39;])
+print(fraud_features.info())
 </pre></div>
 </div>
 </div>
@@ -3163,14 +3163,14 @@ None
 <p>You will use this reduced feature list to perform your initial modelling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduce the feature list to those suggested above.</span>
-<span class="n">fraud_features_selected</span> <span class="o">=</span> <span class="n">fraud_features</span><span class="p">[[</span><span class="s1">&#39;id_02&#39;</span><span class="p">,</span> <span class="s1">&#39;id_19&#39;</span><span class="p">,</span> <span class="s1">&#39;id_20&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;V44&#39;</span><span class="p">,</span><span class="s1">&#39;V45&#39;</span><span class="p">,</span> <span class="s1">&#39;V86&#39;</span><span class="p">,</span> <span class="s1">&#39;V87&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;C1&#39;</span><span class="p">,</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C8&#39;</span><span class="p">,</span> <span class="s1">&#39;C11&#39;</span><span class="p">,</span> <span class="s1">&#39;C12&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;C13&#39;</span><span class="p">,</span> <span class="s1">&#39;C14&#39;</span><span class="p">,</span> <span class="s1">&#39;card1&#39;</span><span class="p">,</span> <span class="s1">&#39;card2&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;TransactionAmt&#39;</span><span class="p">,</span> <span class="s1">&#39;TransactionDT&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Reduce the feature list to those suggested above.
+fraud_features_selected = fraud_features[[&#39;id_02&#39;, &#39;id_19&#39;, &#39;id_20&#39;,
+                                           &#39;V44&#39;,&#39;V45&#39;, &#39;V86&#39;, &#39;V87&#39;,
+                                           &#39;C1&#39;,&#39;C2&#39;, &#39;C8&#39;, &#39;C11&#39;, &#39;C12&#39;,
+                                           &#39;C13&#39;, &#39;C14&#39;, &#39;card1&#39;, &#39;card2&#39;,
+                                           &#39;TransactionAmt&#39;, &#39;TransactionDT&#39;]]
 
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_features_selected</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+print(fraud_features_selected.head())
 </pre></div>
 </div>
 </div>
@@ -3194,10 +3194,10 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scaler so that the features in the dataset can be</span>
-<span class="c1"># scaled to have a mean of 0 and a standard deviation of 1. </span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">fraud_features_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fraud_features_selected</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a scaler so that the features in the dataset can be
+# scaled to have a mean of 0 and a standard deviation of 1. 
+scaler = StandardScaler()
+fraud_features_scaled = scaler.fit_transform(fraud_features_selected)
 </pre></div>
 </div>
 </div>
@@ -3217,40 +3217,40 @@ None
 <h3>Fit model<a class="headerlink" href="#fit-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform K-means clustering on the fraud dataset.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Perform K-means clustering on the fraud dataset.
 
-<span class="c1"># Create KMeans models with values of k in the range 1 to 9.</span>
-<span class="n">clusters</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">seed</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="p">[</span><span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">]</span>
-  <span class="c1"># Setting random_state to a fixed value makes sure that the same results are</span>
-  <span class="c1"># achieved each time the model is run for each value of K.</span>
+# Create KMeans models with values of k in the range 1 to 9.
+clusters = range(1, 10)
+seed = 50
+kmeans = [KMeans(n_clusters=k,random_state=seed) for k in clusters]
+  # Setting random_state to a fixed value makes sure that the same results are
+  # achieved each time the model is run for each value of K.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the models and create an elbow curve to help select a value of</span>
-<span class="c1"># K that provides a good clustering outcome, wihtout overfitting the data.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Fit the models and create an elbow curve to help select a value of
+# K that provides a good clustering outcome, wihtout overfitting the data.
 
-<span class="c1"># The cluster score for each value of k is calculated to determine</span>
-<span class="c1"># the one that gives the best clustering outcome.</span>
-<span class="c1"># The cluster score (WCSS) measures the (negative) sum of squared</span>
-<span class="c1"># distances of observations to their closest cluster centroid,</span>
-<span class="c1"># so a smaller score indicates a better clustering of the data.</span>
+# The cluster score for each value of k is calculated to determine
+# the one that gives the best clustering outcome.
+# The cluster score (WCSS) measures the (negative) sum of squared
+# distances of observations to their closest cluster centroid,
+# so a smaller score indicates a better clustering of the data.
 
-<span class="c1"># Note that this step may take a while to run as the kmeans model needs to be</span>
-<span class="c1"># fitted 10 times.</span>
-<span class="n">score</span> <span class="o">=</span> <span class="p">[</span><span class="n">kmeans</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">)</span> <span class="k">for</span>
-         <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kmeans</span><span class="p">))]</span>
+# Note that this step may take a while to run as the kmeans model needs to be
+# fitted 10 times.
+score = [kmeans[k].fit(fraud_features_scaled).score(fraud_features_scaled) for
+         k in range(len(kmeans))]
 
-<span class="c1"># Plot the elbow curve.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span><span class="n">score</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters (K)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cluster score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow curve&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Plot the elbow curve.
+plt.plot(clusters,score)
+plt.xlabel(&#39;Number of clusters (K)&#39;)
+plt.ylabel(&#39;Cluster score&#39;)
+plt.title(&#39;Elbow curve&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3262,43 +3262,43 @@ None
 <p>The model below will use a value of K = 3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find outliers in the clusters to identify potential cases of fraud.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Find outliers in the clusters to identify potential cases of fraud.
 
-<span class="c1"># The steps below will flag cases as fraud if they are far from their</span>
-<span class="c1"># cluster centroid. In other words, they will be flagged as fraud if they</span>
-<span class="c1"># look unusual compared to other observations in their cluster.</span>
+# The steps below will flag cases as fraud if they are far from their
+# cluster centroid. In other words, they will be flagged as fraud if they
+# look unusual compared to other observations in their cluster.
 
-<span class="c1"># Extract the selected kmeans model with K = 3 from the list of all</span>
-<span class="c1"># kmeans models fitted.</span>
-<span class="c1"># Note: because indexing starts at 0, the model with K = 3 has the list index 2.</span>
-<span class="n">kmeans_selected</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+# Extract the selected kmeans model with K = 3 from the list of all
+# kmeans models fitted.
+# Note: because indexing starts at 0, the model with K = 3 has the list index 2.
+kmeans_selected = kmeans[2]
 
-<span class="c1"># Get the cluster number for each observation in the fraud dataset.</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans_selected</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">)</span>
+# Get the cluster number for each observation in the fraud dataset.
+labels = kmeans_selected.predict(fraud_features_scaled)
 
-<span class="c1"># Get the cluster centroids so that the distance from each observation to the</span>
-<span class="c1"># centroid can be calculated to select cases to be flagged as fraud.</span>
-<span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans_selected</span><span class="o">.</span><span class="n">cluster_centers_</span>
+# Get the cluster centroids so that the distance from each observation to the
+# centroid can be calculated to select cases to be flagged as fraud.
+centroids = kmeans_selected.cluster_centers_
 
-<span class="c1"># Calculate the distance between each observation and its cluster centroid.</span>
-<span class="n">distance</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span><span class="p">,</span><span class="n">Z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">,</span><span class="n">centroids</span><span class="p">[</span><span class="n">labels</span><span class="p">])]</span>
-  <span class="c1"># np.linalg.norm is the &#39;norm&#39; function from Numpy&#39;s linear algebra package</span>
-  <span class="c1"># and is used to calculate the Euclidean distance between two points,</span>
-  <span class="c1"># in this case between each observation (X) and its cluster centroid (Z).</span>
+# Calculate the distance between each observation and its cluster centroid.
+distance = [np.linalg.norm(X-Z) for X,Z in zip(fraud_features_scaled,centroids[labels])]
+  # np.linalg.norm is the &#39;norm&#39; function from Numpy&#39;s linear algebra package
+  # and is used to calculate the Euclidean distance between two points,
+  # in this case between each observation (X) and its cluster centroid (Z).
 
-<span class="c1"># From the exploration of data above, it was seen that approximately 12% of</span>
-<span class="c1"># Product Code C transactions were fraudulent. The code below will therefore</span>
-<span class="c1"># classify an observation as fraudulent if its distance from its</span>
-<span class="c1"># cluster centroid is above the 88th percentile of all distances in the cluster.</span>
+# From the exploration of data above, it was seen that approximately 12% of
+# Product Code C transactions were fraudulent. The code below will therefore
+# classify an observation as fraudulent if its distance from its
+# cluster centroid is above the 88th percentile of all distances in the cluster.
 
-<span class="n">fraud_boundary</span> <span class="o">=</span> <span class="mi">88</span>
-<span class="n">fraud_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
-<span class="n">fraud_prediction</span><span class="p">[</span><span class="n">distance</span><span class="o">&gt;=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">fraud_boundary</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
-  <span class="c1"># Assign an observation as being fraudulent (1) if it is outside the</span>
-  <span class="c1"># 88th percentile of observations in its cluster.</span>
-<span class="n">fraud_prediction</span><span class="p">[</span><span class="n">distance</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">fraud_boundary</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="c1"># Otherwise assigne the observation as being non fraudulent (0).</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_prediction</span><span class="p">)</span>
+fraud_boundary = 88
+fraud_prediction = np.array(distance)
+fraud_prediction[distance&gt;=np.percentile(distance, fraud_boundary)] = 1
+  # Assign an observation as being fraudulent (1) if it is outside the
+  # 88th percentile of observations in its cluster.
+fraud_prediction[distance&lt;np.percentile(distance, fraud_boundary)] = 0
+  # Otherwise assigne the observation as being non fraudulent (0).
+print(fraud_prediction)
 </pre></div>
 </div>
 </div>
@@ -3319,17 +3319,18 @@ be evaluated using internal or manual evaluation techniques as described in Sect
 <p>In this case study, response variables are available in the dataset, so these can be used to conduct <strong>external evaluation</strong> by comparing known cases of fraud to predicted cases of fraud. This external evaluation is performed below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate and plot a confusion matrix to show True Positives, False Positives,</span>
-<span class="c1"># True Negatives and False Negatives.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate and plot a confusion matrix to show True Positives, False Positives,
+# True Negatives and False Negatives.
 
-<span class="c1"># Compute the confusion matrix.</span>
-<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">)</span> 
-<span class="c1"># Plot the confusion matrix.</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Not fraud&#39;</span><span class="p">,</span><span class="s1">&#39;Fraud&#39;</span><span class="p">])</span>
+# Compute the confusion matrix.
+cm = confusion_matrix(fraud_response, fraud_prediction) 
+# Plot the confusion matrix.
+plot_confusion_matrix(cm, classes = [&#39;Not fraud&#39;,&#39;Fraud&#39;])
 
-<span class="c1"># Calculate the F1 score for these predictions.</span>
-<span class="c1"># F1 = 2 x (precision * recall) / (precision + recall).</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The F1 score is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">)))</span>
+# Calculate the F1 score for these predictions.
+# F1 = 2 x (precision * recall) / (precision + recall).
+print(&#39;The F1 score is &#39;+str(f1_score(fraud_response, fraud_prediction)))
+
 </pre></div>
 </div>
 </div>
@@ -3350,42 +3351,42 @@ be evaluated using internal or manual evaluation techniques as described in Sect
 You should also experiment to see if you can obtain better fraud predictions from the model, either by trying other values for fraud_coundary or K, or by trying different features to use in the clustering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try different values for K.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Try different values for K.
 
-<span class="c1"># Extract the selected kmeans model with K = 4 from the list of all kmeans</span>
-<span class="c1"># models fitted.</span>
-<span class="c1"># Note: because indexing starts at 0, the model with K = 4 has the list index 3.</span>
-<span class="n">kmeans2</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+# Extract the selected kmeans model with K = 4 from the list of all kmeans
+# models fitted.
+# Note: because indexing starts at 0, the model with K = 4 has the list index 3.
+kmeans2 = kmeans[3]
 
-<span class="c1"># Get the cluster number for each observation in the fraud dataset.</span>
-<span class="n">labels2</span> <span class="o">=</span> <span class="n">kmeans2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">)</span>
+# Get the cluster number for each observation in the fraud dataset.
+labels2 = kmeans2.predict(fraud_features_scaled)
 
-<span class="c1"># Get the cluster centroids so that the distance from each observation to the</span>
-<span class="c1"># centroid can be calculated to select cases to be flagged as fraud.</span>
-<span class="n">centroids2</span> <span class="o">=</span> <span class="n">kmeans2</span><span class="o">.</span><span class="n">cluster_centers_</span>
+# Get the cluster centroids so that the distance from each observation to the
+# centroid can be calculated to select cases to be flagged as fraud.
+centroids2 = kmeans2.cluster_centers_
 
-<span class="c1"># Calculate the distance between each observation and the cluster centroid.</span>
-<span class="n">distance2</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span><span class="p">,</span><span class="n">Z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">,</span>
-                                                <span class="n">centroids2</span><span class="p">[</span><span class="n">labels2</span><span class="p">])]</span>
+# Calculate the distance between each observation and the cluster centroid.
+distance2 = [np.linalg.norm(X-Z) for X,Z in zip(fraud_features_scaled,
+                                                centroids2[labels2])]
 
-<span class="c1"># This time the fraud_boundary will be set to 80 so that more transactions will be</span>
-<span class="c1"># identified as fraud.</span>
-<span class="n">fraud_boundary2</span> <span class="o">=</span> <span class="mi">80</span>
-<span class="n">fraud_prediction2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">distance2</span><span class="p">)</span>
-<span class="n">fraud_prediction2</span><span class="p">[</span><span class="n">distance2</span><span class="o">&gt;=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distance2</span><span class="p">,</span> <span class="n">fraud_boundary</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">fraud_prediction2</span><span class="p">[</span><span class="n">distance2</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">distance2</span><span class="p">,</span> <span class="n">fraud_boundary</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_prediction2</span><span class="p">)</span>
+# This time the fraud_boundary will be set to 80 so that more transactions will be
+# identified as fraud.
+fraud_boundary2 = 80
+fraud_prediction2 = np.array(distance2)
+fraud_prediction2[distance2&gt;=np.percentile(distance2, fraud_boundary)] = 1
+fraud_prediction2[distance2&lt;np.percentile(distance2, fraud_boundary)] = 0
+print(fraud_prediction2)
 
-<span class="c1"># Calculate and plot a confusion matrix to show True Positives, False Positives,</span>
-<span class="c1"># True Negatives and False Negatives.</span>
+# Calculate and plot a confusion matrix to show True Positives, False Positives,
+# True Negatives and False Negatives.
 
-<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction2</span><span class="p">)</span> 
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Not fraud&#39;</span><span class="p">,</span><span class="s1">&#39;Fraud&#39;</span><span class="p">])</span>
+cm = confusion_matrix(fraud_response, fraud_prediction2) 
+plot_confusion_matrix(cm, classes = [&#39;Not fraud&#39;,&#39;Fraud&#39;])
 
-<span class="c1"># Compare the predictions from Kmeans1 and Kmeans2</span>
-<span class="p">{</span><span class="s1">&#39;KMeans1 F1&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">),</span>
- <span class="s1">&#39;KMeans2 F1&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction2</span><span class="p">),</span>
- <span class="p">}</span>
+# Compare the predictions from Kmeans1 and Kmeans2
+{&#39;KMeans1 F1&#39;:f1_score(fraud_response, fraud_prediction),
+ &#39;KMeans2 F1&#39;:f1_score(fraud_response, fraud_prediction2),
+ }
 </pre></div>
 </div>
 </div>

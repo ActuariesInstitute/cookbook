@@ -805,9 +805,9 @@ title="Print to PDF"
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># For data management.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># For plotting.</span>
-<span class="kn">from</span> <span class="nn">scipy.cluster</span> <span class="kn">import</span> <span class="n">hierarchy</span> <span class="c1"># For performing hierarchical clustering.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd # For data management.
+import matplotlib.pyplot as plt # For plotting.
+from scipy.cluster import hierarchy # For performing hierarchical clustering.
 </pre></div>
 </div>
 </div>
@@ -824,15 +824,15 @@ title="Print to PDF"
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M06_COVID_data.csv.zip&#39;</span><span class="p">,</span> 
-    <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>covid = pd.read_csv(
+    &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M06_COVID_data.csv.zip&#39;, 
+    header = 0)
 
-<span class="c1"># Note that the following code could be used to read the most</span>
-<span class="c1"># recent data in directly from the Our World in Data website:</span>
+# Note that the following code could be used to read the most
+# recent data in directly from the Our World in Data website:
 
-<span class="c1"># covid = pd.read_csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span>
-<span class="c1"># However, we will use a snapshot so that the notebook keeps working even if the dataset format changes.</span>
+# covid = pd.read_csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)
+# However, we will use a snapshot so that the notebook keeps working even if the dataset format changes.
 </pre></div>
 </div>
 </div>
@@ -842,23 +842,23 @@ title="Print to PDF"
 <h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restrict the data to only look at one point in time (31-Dec-2020).</span>
-<span class="n">covid2</span> <span class="o">=</span> <span class="n">covid</span><span class="p">[</span><span class="n">covid</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2020-12-31&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Restrict the data to only look at one point in time (31-Dec-2020).
+covid2 = covid[covid[&#39;date&#39;]==&#39;2020-12-31&#39;]
 
-<span class="c1"># This analysis will use nine features in the clustering.</span>
-<span class="c1"># The column &#39;location&#39; is also retained to give us the country names.</span>
-<span class="c1"># Countries that have missing values at the extract date are dropped from</span>
-<span class="c1"># the data table using the .dropna() method.</span>
-<span class="n">covid3</span> <span class="o">=</span> <span class="n">covid2</span><span class="p">[[</span><span class="s1">&#39;location&#39;</span><span class="p">,</span><span class="s1">&#39;total_cases_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;new_cases_per_million&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;new_deaths_per_million&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;reproduction_rate&#39;</span><span class="p">,</span><span class="s1">&#39;positive_rate&#39;</span><span class="p">,</span><span class="s1">&#39;total_tests_per_thousand&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;icu_patients_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;hosp_patients_per_million&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+# This analysis will use nine features in the clustering.
+# The column &#39;location&#39; is also retained to give us the country names.
+# Countries that have missing values at the extract date are dropped from
+# the data table using the .dropna() method.
+covid3 = covid2[[&#39;location&#39;,&#39;total_cases_per_million&#39;,&#39;new_cases_per_million&#39;,
+                   &#39;total_deaths_per_million&#39;,&#39;new_deaths_per_million&#39;,
+                   &#39;reproduction_rate&#39;,&#39;positive_rate&#39;,&#39;total_tests_per_thousand&#39;,
+                 &#39;icu_patients_per_million&#39;,&#39;hosp_patients_per_million&#39;]].dropna()
 
-<span class="n">covid_data</span> <span class="o">=</span> <span class="n">covid3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;location&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">covid_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+covid_data = covid3.drop(columns=&#39;location&#39;)
+print(covid_data.info())
 
-<span class="n">countries</span> <span class="o">=</span> <span class="n">covid3</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+countries = covid3[&#39;location&#39;].tolist()
+print(countries)
 </pre></div>
 </div>
 </div>
@@ -894,30 +894,30 @@ None
 <h3>Create a dendrogram<a class="headerlink" href="#create-a-dendrogram" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform agglomeratorive hierarchical clustering on the COVID data.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Perform agglomeratorive hierarchical clustering on the COVID data.
 
-<span class="c1"># The SciPy linkage() function performs hierarchical clustering</span>
-<span class="c1"># and the dendrogram() function can be used to visualize the</span>
-<span class="c1"># results of the clustering.</span>
+# The SciPy linkage() function performs hierarchical clustering
+# and the dendrogram() function can be used to visualize the
+# results of the clustering.
 
-<span class="c1"># Perform the hierarchical clustering using &#39;euclidean&#39; distance measure and</span>
-<span class="c1"># &#39;complete&#39; linkage (i.e. max distance between points in each cluster).</span>
-<span class="n">clusters</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">covid_data</span><span class="p">,</span><span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
-  <span class="c1"># Instead of using &#39;euclidean&#39; as the distance between observations, try using</span>
-  <span class="c1"># other metrics such as &#39;correlation&#39;.</span>
-  <span class="c1"># Instead of using &#39;complete&#39; as the linkage between clusters, try using</span>
-  <span class="c1"># other methods such as &#39;single&#39;, &#39;average&#39; or &#39;centroid&#39;.</span>
+# Perform the hierarchical clustering using &#39;euclidean&#39; distance measure and
+# &#39;complete&#39; linkage (i.e. max distance between points in each cluster).
+clusters = hierarchy.linkage(covid_data,metric=&#39;euclidean&#39;,method=&#39;complete&#39;)
+  # Instead of using &#39;euclidean&#39; as the distance between observations, try using
+  # other metrics such as &#39;correlation&#39;.
+  # Instead of using &#39;complete&#39; as the linkage between clusters, try using
+  # other methods such as &#39;single&#39;, &#39;average&#39; or &#39;centroid&#39;.
 
-<span class="c1"># Plot the dendrogram, using countries as labels.</span>
-<span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span>
-           <span class="n">labels</span><span class="o">=</span><span class="n">countries</span><span class="p">,</span>
-           <span class="n">leaf_rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-           <span class="n">leaf_font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-           <span class="n">color_threshold</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-           <span class="n">above_threshold_color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="c1">#plt.savefig(&#39;M06 Fig7.jpg&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Plot the dendrogram, using countries as labels.
+hierarchy.dendrogram(clusters,
+           labels=countries,
+           leaf_rotation=90,
+           leaf_font_size=12,
+           color_threshold = 0,
+           above_threshold_color=&#39;grey&#39;)
+plt.tight_layout()
+#plt.savefig(&#39;M06 Fig7.jpg&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -930,27 +930,27 @@ None
 <h3>Cut the dendrogram to create clusters<a class="headerlink" href="#cut-the-dendrogram-to-create-clusters" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a horizontal line on the dendrogram to &#39;cut&#39; it into different clusters.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot a horizontal line on the dendrogram to &#39;cut&#39; it into different clusters.
 
-<span class="c1"># Specify the height at which the dengrogram will be &#39;cut&#39; to create clusters.</span>
-<span class="n">cut_height</span> <span class="o">=</span> <span class="mi">15000</span>
+# Specify the height at which the dengrogram will be &#39;cut&#39; to create clusters.
+cut_height = 15000
 
-<span class="c1"># Set the colour palette to be used in the dendrogram.</span>
-<span class="n">colour1</span> <span class="o">=</span> <span class="s1">&#39;dodgerblue&#39;</span>
-<span class="n">colour2</span> <span class="o">=</span> <span class="s1">&#39;orange&#39;</span>
-<span class="n">colour3</span> <span class="o">=</span> <span class="s1">&#39;limegreen&#39;</span>
-<span class="n">hierarchy</span><span class="o">.</span><span class="n">set_link_color_palette</span><span class="p">([</span><span class="n">colour1</span><span class="p">,</span> <span class="n">colour2</span><span class="p">,</span> <span class="n">colour3</span><span class="p">])</span>
+# Set the colour palette to be used in the dendrogram.
+colour1 = &#39;dodgerblue&#39;
+colour2 = &#39;orange&#39;
+colour3 = &#39;limegreen&#39;
+hierarchy.set_link_color_palette([colour1, colour2, colour3])
 
-<span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span>
-                    <span class="n">labels</span><span class="o">=</span><span class="n">countries</span><span class="p">,</span>
-                    <span class="n">leaf_rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-                    <span class="n">leaf_font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-                    <span class="n">color_threshold</span><span class="o">=</span><span class="n">cut_height</span><span class="p">,</span>
-                    <span class="n">above_threshold_color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">),(</span><span class="n">cut_height</span><span class="p">,</span><span class="n">cut_height</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="c1"># plt.savefig(&#39;M06 Fig10.jpg&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+hierarchy.dendrogram(clusters,
+                    labels=countries,
+                    leaf_rotation=90,
+                    leaf_font_size=12,
+                    color_threshold=cut_height,
+                    above_threshold_color=&#39;grey&#39;)
+plt.tight_layout()
+plt.plot((0,200),(cut_height,cut_height),color=&#39;black&#39;,linestyle=&#39;:&#39;)
+# plt.savefig(&#39;M06 Fig10.jpg&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>

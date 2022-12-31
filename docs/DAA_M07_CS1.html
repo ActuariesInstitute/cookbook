@@ -874,34 +874,34 @@ title="Print to PDF"
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span> <span class="c1"># Json is used to load json files.</span>
-<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># os is used to join paths for windows and unix use.</span>
-<span class="kn">import</span> <span class="nn">random</span> <span class="c1"># For random number generation.</span>
-<span class="kn">import</span> <span class="nn">time</span> <span class="c1"># Useful for timing processes.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import json # Json is used to load json files.
+import os # os is used to join paths for windows and unix use.
+import random # For random number generation.
+import time # Useful for timing processes.
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span> <span class="c1"># Counter provides a quick way to add items in a list.</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># Enhanced mapping dictionary that can take a default value.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># For plotting.</span>
+from collections import Counter # Counter provides a quick way to add items in a list.
+from collections import defaultdict # Enhanced mapping dictionary that can take a default value.
+import numpy as np # For mathematical operations.
+import matplotlib.pyplot as plt # For plotting.
 
-<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
-  <span class="c1"># &#39;word_tokenize&#39; is a tokeniser for natural language.</span>
-  <span class="c1"># There are many such options available.</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+from nltk.tokenize import word_tokenize
+  # &#39;word_tokenize&#39; is a tokeniser for natural language.
+  # There are many such options available.
+import nltk
+nltk.download(&#39;punkt&#39;)
 
-<span class="c1"># Sklearn has many useful machine learning packages.</span>
-<span class="c1"># The following are used in the notebook.</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+# Sklearn has many useful machine learning packages.
+# The following are used in the notebook.
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn import metrics
 
-<span class="c1"># Used to read files from a web URL</span>
-<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
+# Used to read files from a web URL
+from urllib.request import urlretrieve
 
-<span class="c1"># Package used in the confusion matrix function.</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+# Package used in the confusion matrix function.
+import itertools
 </pre></div>
 </div>
 </div>
@@ -918,197 +918,197 @@ title="Print to PDF"
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to load a json data file.</span>
-<span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">data_set_name</span><span class="p">,</span> <span class="nb">dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    This is a function to load the yelp dataset which is stored in json format.</span>
-<span class="sd">    Use the optional dir argument if the file is not in the same directory</span>
-<span class="sd">    as the notebook.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">,</span> <span class="n">data_set_name</span><span class="p">,</span> <span class="s1">&#39;data &#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="c1"># If the user has set Verbose = True (or omitted this argument),</span>
-        <span class="c1"># these lines of code provide a message to the person running the code</span>
-        <span class="c1"># that the dataset is being loaded.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to load a json data file.
+def load_json(data_set_name, dir = &#39;&#39;, verbose=True):
+    &#39;&#39;&#39;
+    This is a function to load the yelp dataset which is stored in json format.
+    Use the optional dir argument if the file is not in the same directory
+    as the notebook.
+    &#39;&#39;&#39;
+    if verbose:
+        print(&#39;loading&#39;, data_set_name, &#39;data &#39;, end = &#39;&#39;)
+        # If the user has set Verbose = True (or omitted this argument),
+        # these lines of code provide a message to the person running the code
+        # that the dataset is being loaded.
     
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">data_set_name</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+    filename = os.path.join(dir, data_set_name)
+    f = open(filename, encoding=&#39;utf8&#39;)
 
-    <span class="n">data_set</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-        <span class="n">data_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+    data_set = list()
+    for counter, line in enumerate(f):
+        data_set.append(json.loads(line))
         
-        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="p">((</span><span class="n">counter</span> <span class="o">%</span> <span class="mi">100000</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="c1"># If the dataset is very big, these lines of code print &#39;.&#39;s to</span>
-            <span class="c1"># show that the import step is progressing.</span>
+        if verbose and ((counter % 100000) == 0):
+            print(&#39;.&#39;, end=&#39;&#39;)
+            # If the dataset is very big, these lines of code print &#39;.&#39;s to
+            # show that the import step is progressing.
 
-    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    f.close()
     
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> 
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">{:,}</span><span class="s1"> observations have been imported.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_set</span><span class="p">)))</span>
-        <span class="c1"># This statement summarises the number of observations that have been</span>
-        <span class="c1"># imported from the dataset.</span>
+    if verbose: 
+        print(&#39; {:,} observations have been imported.&#39;.format(len(data_set)))
+        # This statement summarises the number of observations that have been
+        # imported from the dataset.
     
-    <span class="k">return</span> <span class="n">data_set</span>
+    return data_set
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print the Yelp reviews neatly.</span>
-<span class="k">def</span> <span class="nf">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;business_id&#39;</span><span class="p">,</span> <span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="s1">&#39;funny&#39;</span><span class="p">,</span> <span class="s1">&#39;review_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;useful&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;cool&#39;</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&lt;12s}</span><span class="s1">: </span><span class="si">{:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">review</span><span class="p">[</span><span class="n">item</span><span class="p">]))</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;text: &quot;&#39;</span><span class="p">,</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="c1"># The default for print() is to put a space between each argument. </span>
-    <span class="c1"># Here sep=&#39;&#39; is used to overrule this.</span>
-    <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to print the Yelp reviews neatly.
+def print_review(review):
+    for item in [&#39;business_id&#39;, &#39;stars&#39;, &#39;funny&#39;, &#39;review_id&#39;, &#39;date&#39;, &#39;useful&#39;,
+                 &#39;user_id&#39;, &#39;cool&#39;]:
+        print(&#39;{:&lt;12s}: {:}&#39;.format(item, review[item]))
+    print (&#39;text: &quot;&#39;, review[&#39;text&#39;], &#39;&quot;&#39;, sep = &#39;&#39;)
+    # The default for print() is to put a space between each argument. 
+    # Here sep=&#39;&#39; is used to overrule this.
+    print()
     
-    <span class="k">return</span>
+    return
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to select reviews with a certain rating (number of stars).</span>
-<span class="k">def</span> <span class="nf">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">):</span>
-    <span class="n">select_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_row</span> <span class="k">for</span> <span class="n">data_row</span> <span class="ow">in</span> <span class="n">review_data</span> \
-                   <span class="k">if</span> <span class="n">data_row</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rating</span><span class="p">]</span>
-    <span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">select_data</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">review_sample</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to select reviews with a certain rating (number of stars).
+def sample_with_rating(review_data, rating, sample_size):
+    select_data = [data_row for data_row in review_data \
+                   if data_row[&#39;stars&#39;] == rating]
+    review_sample = random.sample(select_data, sample_size)
+    return review_sample
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to format the summary of review ratings.</span>
-<span class="k">def</span> <span class="nf">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">):</span>
-    <span class="n">head_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7s}</span><span class="s1">  </span><span class="si">{:&gt;10s}</span><span class="s1"> </span><span class="si">{:&gt;10s}</span><span class="s1">&#39;</span>
-    <span class="n">row_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7}</span><span class="s1">  </span><span class="si">{:&gt;10,}</span><span class="s1"> </span><span class="si">{:&gt;10.1%}</span><span class="s1">&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to format the summary of review ratings.
+def print_review_count(review_count):
+    head_format = &#39;{:&lt;7s}  {:&gt;10s} {:&gt;10s}&#39;
+    row_format = &#39;{:&lt;7}  {:&gt;10,} {:&gt;10.1%}&#39;
     
-    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Stars&#39;</span><span class="p">,</span> <span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;Percent&#39;</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-----&#39;</span><span class="p">,</span> <span class="s1">&#39;-----&#39;</span><span class="p">,</span> <span class="s1">&#39;-------&#39;</span><span class="p">))</span>
+    print(head_format.format(&#39;Stars&#39;, &#39;Total&#39;, &#39;Percent&#39;))
+    print(head_format.format(&#39;-----&#39;, &#39;-----&#39;, &#39;-------&#39;))
         
-    <span class="n">total_reviews</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">count</span> <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">review_count</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+    total_reviews = sum([count for count in review_count.values()])
 
-    <span class="c1"># Add the percent to a dictionary indexed in the same way.</span>
-    <span class="n">review_perc</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">rating</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">review_perc</span><span class="p">[</span><span class="n">rating</span><span class="p">]</span> <span class="o">=</span> <span class="n">review</span><span class="o">/</span><span class="n">total_reviews</span>
+    # Add the percent to a dictionary indexed in the same way.
+    review_perc = dict()
+    for rating, review in review_count.items():
+        review_perc[rating] = review/total_reviews
     
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">row_format</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="s1">&#39;*&#39;</span><span class="o">*</span><span class="n">k</span><span class="p">),</span> <span class="n">review_count</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">review_perc</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+    for k in range(5, 0, -1):
+        print(row_format.format((&#39;*&#39;*k), review_count[k], review_perc[k]))
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">head_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;-------&#39;</span><span class="p">,</span><span class="s1">&#39;-------&#39;</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">row_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="n">total_reviews</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    print(head_format.format(&#39;&#39;,&#39;-------&#39;,&#39;-------&#39;))
+    print(row_format.format(&#39;Total&#39;, total_reviews, 1))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print some example reviews based on a user input</span>
-<span class="c1"># of &#39;min&#39;, &#39;max&#39;, &#39;average&#39; etc summary function.</span>
-<span class="k">def</span> <span class="nf">print_certain_reviews</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">summ_func</span><span class="p">,</span> <span class="n">descr</span><span class="p">):</span>
-    <span class="c1"># The &#39;summ_func&#39; will be &#39;min&#39;, &#39;max&#39;, &#39;average&#39;, &#39;median&#39; etc.</span>
-    <span class="n">certain_review</span> <span class="o">=</span> <span class="n">summ_func</span><span class="p">([</span><span class="n">length</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
-    <span class="n">reviews</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="n">certain_review</span><span class="p">]</span>
-    <span class="n">review_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reviews</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">review_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Below is the 1 </span><span class="si">{:s}</span><span class="s2"> review of </span><span class="si">{:,}</span><span class="s2"> words:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">descr</span><span class="p">,</span> <span class="n">certain_review</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Below are the </span><span class="si">{:,}</span><span class="s2"> </span><span class="si">{:s}</span><span class="s2"> reviews of </span><span class="si">{:,}</span><span class="s2"> words:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">review_count</span><span class="p">,</span> <span class="n">descr</span><span class="p">,</span> <span class="n">certain_review</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to print some example reviews based on a user input
+# of &#39;min&#39;, &#39;max&#39;, &#39;average&#39; etc summary function.
+def print_certain_reviews(data, summ_func, descr):
+    # The &#39;summ_func&#39; will be &#39;min&#39;, &#39;max&#39;, &#39;average&#39;, &#39;median&#39; etc.
+    certain_review = summ_func([length for (review, length) in data])
+    reviews = [review for (review, length) in data if length == certain_review]
+    review_count = len(reviews)
+    if review_count == 1:
+        print(&quot;Below is the 1 {:s} review of {:,} words:&quot;.format(descr, certain_review))
+    else:
+        print(&quot;Below are the {:,} {:s} reviews of {:,} words:&quot;.format(review_count, descr, certain_review))
       
-    <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="n">review</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">()</span>
+    for review in reviews:
+        print(&#39;&quot;&#39;,review,&#39;&quot;&#39;)
+    print()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to perform the Bag of Words vectorisation.</span>
-<span class="k">def</span> <span class="nf">vectorise_data</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
-    <span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_set</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="c1"># Prints &#39;.&#39; every 1,000 reviews so that you</span>
-            <span class="c1"># know the code is still running.</span>
-        <span class="n">token_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">])</span>
-            <span class="c1"># Create a count of all the unique tokens in the review.</span>
-        <span class="n">matrix</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">token_count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">vocab</span><span class="p">])</span>
-            <span class="c1"># The token counts for the review are added to &#39;matrix&#39;. </span>
-            <span class="c1"># The &#39;get&#39; function of Counter is used to return a 0</span>
-            <span class="c1"># for any tokens in the vocabulary that are not in a review.</span>
-    <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to perform the Bag of Words vectorisation.
+def vectorise_data(data_set, vocab):
+    matrix = []
+    for k, review in enumerate(data_set):
+        if k % 1000 == 0:
+            print(&#39;.&#39;, end=&#39;&#39;)
+            # Prints &#39;.&#39; every 1,000 reviews so that you
+            # know the code is still running.
+        token_count = Counter(review[&#39;tokens&#39;])
+            # Create a count of all the unique tokens in the review.
+        matrix.append([token_count.get(token, 0) for token in vocab])
+            # The token counts for the review are added to &#39;matrix&#39;. 
+            # The &#39;get&#39; function of Counter is used to return a 0
+            # for any tokens in the vocabulary that are not in a review.
+    print()
     
-    <span class="k">return</span> <span class="n">matrix</span>
+    return matrix
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to calculate a range of success metrics for a fitted model.</span>
-<span class="k">def</span> <span class="nf">return_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="n">scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;F1-score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Precision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Recall&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   
-    <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to calculate a range of success metrics for a fitted model.
+def return_metrics(y, y_pred):
+    scores = dict()
+    scores[&#39;Accuracy&#39;] = metrics.accuracy_score(y, y_pred)
+    scores[&#39;F1-score&#39;] = metrics.f1_score(y, y_pred, average=&#39;binary&#39;, pos_label=True)
+    scores[&#39;Precision&#39;] = metrics.precision_score(y, y_pred, pos_label=True)
+    scores[&#39;Recall&#39;] = metrics.recall_score(y, y_pred, pos_label=True)   
+    scores[&#39;Confusion Matrix&#39;] = metrics.confusion_matrix(y, y_pred)
 
-    <span class="k">return</span> <span class="n">scores</span>
+    return scores
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to plot confusion matrices in an easy to visualise format.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
-                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    This function prints and plots a nicely formatted confusion matrix.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to plot confusion matrices in an easy to visualise format.
+def plot_confusion_matrix(cm, classes,
+                          title=&#39;Confusion matrix&#39;,
+                          cmap=plt.cm.Blues):
+    &#39;&#39;&#39;
+    This function prints and plots a nicely formatted confusion matrix.
+    &#39;&#39;&#39;
+    plt.imshow(cm, interpolation=&#39;nearest&#39;, cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
 
-    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment=&#39;center&#39;,
+                 color=&#39;white&#39; if cm[i, j] &gt; thresh else &#39;black&#39;)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    plt.tight_layout()
+    plt.ylabel(&#39;True response&#39;)
+    plt.xlabel(&#39;Predicted response&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print out the success metrics of a model.</span>
-<span class="k">def</span> <span class="nf">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9.1%}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to print out the success metrics of a model.
+def print_scores(scores, confused = False):
+    print((&#39;{:^9} &#39;*4).format(*scores.keys()))
+    print((&#39;{:^9.1%} &#39;*4).format(*scores.values()))
 
-    <span class="k">if</span> <span class="n">confused</span><span class="p">:</span>
-            <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">],</span>
-                                   <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Non-complaint&#39;</span><span class="p">,</span> <span class="s1">&#39;Complaint&#39;</span><span class="p">])</span>
+    if confused:
+            plot_confusion_matrix(scores[&#39;Confusion Matrix&#39;],
+                                   classes = [&#39;Non-complaint&#39;, &#39;Complaint&#39;])
 </pre></div>
 </div>
 </div>
@@ -1126,10 +1126,10 @@ title="Print to PDF"
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the URL of the dataset to be imported.</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS1_data.json&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the URL of the dataset to be imported.
+url = &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS1_data.json&#39;
 
-<span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;DAA_M07_CS1_data.json&quot;</span><span class="p">)</span>
+urlretrieve(url, &quot;DAA_M07_CS1_data.json&quot;)
 </pre></div>
 </div>
 </div>
@@ -1141,17 +1141,17 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the required YELP file.</span>
-<span class="n">review_data</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;DAA_M07_CS1_data.json&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Read the required YELP file.
+review_data = load_json(&quot;DAA_M07_CS1_data.json&quot;)
 
-<span class="c1"># Alternatively, use the code below with Google Colab to upload the file</span>
-<span class="c1"># from your computer.</span>
+# Alternatively, use the code below with Google Colab to upload the file
+# from your computer.
 
-<span class="c1"># from google.colab import files</span>
-<span class="c1"># files.upload()</span>
-  <span class="c1"># When prompted, select the DAA_M07_CS1_data.json dataset to upload.</span>
-  <span class="c1"># Note that this may take some time to upload as the file is large.</span>
-<span class="c1"># review_data = load_json(&#39;DAA_M07_CS1_data.json&#39;)</span>
+# from google.colab import files
+# files.upload()
+  # When prompted, select the DAA_M07_CS1_data.json dataset to upload.
+  # Note that this may take some time to upload as the file is large.
+# review_data = load_json(&#39;DAA_M07_CS1_data.json&#39;)
 </pre></div>
 </div>
 </div>
@@ -1173,18 +1173,18 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the feature names from the data.</span>
-<span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
-  <span class="c1"># The &#39;{}&#39; brackets are used to define a set that contains unique entries.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Extract the feature names from the data.
+features = {key for review in review_data for key in review.keys()}
+  # The &#39;{}&#39; brackets are used to define a set that contains unique entries.
+print(features)
 
-<span class="c1"># The feature names could also be obtained used a for loop per the code below.</span>
-<span class="c1"># This is a less efficient way of extracting the information.</span>
-<span class="n">features2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># This creates an empty set.</span>
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">review</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="n">features2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">features2</span><span class="p">)</span>
+# The feature names could also be obtained used a for loop per the code below.
+# This is a less efficient way of extracting the information.
+features2 = set() # This creates an empty set.
+for review in review_data:
+    for key in review.keys():
+        features2.add(key)
+print(features2)
 </pre></div>
 </div>
 </div>
@@ -1197,13 +1197,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a sample of 5 random reviews from the full dataset.</span>
-<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-  <span class="c1"># The &#39;sample&#39; method in the &#39;random&#39; package selects, without replacement,</span>
-  <span class="c1"># the number of items you want from a list.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print a sample of 5 random reviews from the full dataset.
+review_sample = random.sample(review_data, 5)
+  # The &#39;sample&#39; method in the &#39;random&#39; package selects, without replacement,
+  # the number of items you want from a list.
 
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
-    <span class="n">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+for review in review_sample:
+    print_review(review)
 </pre></div>
 </div>
 </div>
@@ -1269,11 +1269,11 @@ Thanks Matt!!&quot;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print 5 random reviews with 1 star ratings using the</span>
-<span class="c1"># &#39;sample_with_rating&#39; function defined at the top of the notebook.</span>
-<span class="n">review_sample</span> <span class="o">=</span> <span class="n">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
-    <span class="n">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print 5 random reviews with 1 star ratings using the
+# &#39;sample_with_rating&#39; function defined at the top of the notebook.
+review_sample = sample_with_rating(review_data, rating=1, sample_size=5)
+for review in review_sample:
+    print_review(review)
 </pre></div>
 </div>
 </div>
@@ -1341,15 +1341,15 @@ Has anyone else had a bad experience with them because I would like to know seei
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count the number of reviews in each rating category.</span>
-<span class="c1"># This is done using a counter as an efficient method to iterate through items.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Count the number of reviews in each rating category.
+# This is done using a counter as an efficient method to iterate through items.
 
-<span class="n">review_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">])</span>
-  <span class="c1"># A list constructor is used to produce a list of all the star ratings</span>
-  <span class="c1"># and the Counter function is then used to count how many reviews there are</span>
-  <span class="c1"># in each star rating group.</span>
+review_count = Counter([review[&#39;stars&#39;] for review in review_data])
+  # A list constructor is used to produce a list of all the star ratings
+  # and the Counter function is then used to count how many reviews there are
+  # in each star rating group.
 
-<span class="n">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">)</span>
+print_review_count(review_count)
 </pre></div>
 </div>
 </div>
@@ -1369,28 +1369,28 @@ Total        50,000     100.0%
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the length of different reviews.</span>
-<span class="c1"># A list constructor is used to produce a list of how long each review is</span>
-<span class="c1"># in characters. </span>
-<span class="n">review_length_characters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the length of different reviews.
+# A list constructor is used to produce a list of how long each review is
+# in characters. 
+review_length_characters = [len(review[&#39;text&#39;]) for review in review_data]
 
-<span class="c1"># Print summary statistics for the number of characters in each review.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The longest character length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shortest character length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average character length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The median character length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">review_length_characters</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">()</span>
+# Print summary statistics for the number of characters in each review.
+print(&#39;The longest character length in a review is {:,}.&#39;.format(max(review_length_characters)))
+print(&#39;The shortest character length in a review is {:,}.&#39;.format(min(review_length_characters)))
+print(&#39;The average character length of reviews is {:.0f}.&#39;.format(np.mean(review_length_characters)))
+print(&#39;The median character length of reviews is {:.0f}.&#39;.format(np.median(review_length_characters)))
+print()
 
-<span class="c1"># A list constructor is used to produce a list of how long each review is</span>
-<span class="c1"># in words.</span>
-<span class="n">review_length_words</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
-  <span class="c1"># The str.split() function breaks a string by approximate word breaks. </span>
+# A list constructor is used to produce a list of how long each review is
+# in words.
+review_length_words = [len(review[&#39;text&#39;].split()) for review in review_data]
+  # The str.split() function breaks a string by approximate word breaks. 
 
-<span class="c1">## Print summary statistics for the number of words in each review.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The longest word length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The shortest word length in a review is </span><span class="si">{:,}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average word length of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The median word lenth of reviews is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">review_length_words</span><span class="p">)))</span>
+## Print summary statistics for the number of words in each review.
+print(&#39;The longest word length in a review is {:,}.&#39;.format(max(review_length_words)))
+print(&#39;The shortest word length in a review is {:,}.&#39;.format(min(review_length_words)))
+print(&#39;The average word length of reviews is {:.0f}.&#39;.format(np.mean(review_length_words)))
+print(&#39;The median word lenth of reviews is {:.0f}.&#39;.format(np.median(review_length_words)))
 </pre></div>
 </div>
 </div>
@@ -1410,11 +1410,11 @@ The median word lenth of reviews is 82.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print some examples of the shortest and longest reviews.</span>
-<span class="n">review_and_length</span> <span class="o">=</span> <span class="p">[(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print some examples of the shortest and longest reviews.
+review_and_length = [(review[&#39;text&#39;],len(review[&#39;text&#39;].split())) for review in review_data]
 
-<span class="n">print_certain_reviews</span><span class="p">(</span><span class="n">review_and_length</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="s1">&#39;shortest&#39;</span><span class="p">)</span>
-<span class="n">print_certain_reviews</span><span class="p">(</span><span class="n">review_and_length</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="s1">&#39;longest&#39;</span><span class="p">)</span>
+print_certain_reviews(review_and_length, min, &#39;shortest&#39;)
+print_certain_reviews(review_and_length, max, &#39;longest&#39;)
 </pre></div>
 </div>
 </div>
@@ -1434,13 +1434,13 @@ I&#39;m getting really impatient by now &amp; it&#39;s taking longer than it sho
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the 20 most common words across the whole corpus of complaints.</span>
-<span class="n">word_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Word&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">,</span> <span class="s2">&quot;----------&quot;</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">word_count</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="c1"># &#39;most_common&#39; is a helpful method that can be applied to Counter.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&lt;6}</span><span class="s2"> </span><span class="si">{:&gt;12,}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the 20 most common words across the whole corpus of complaints.
+word_count = Counter([word for review in review_data for word in review[&#39;text&#39;].split()])
+print(&quot;{:&lt;6} {:&gt;12}&quot;.format(&quot;Word&quot;, &quot;Count&quot;))
+print(&quot;{:&lt;6} {:&gt;12}&quot;.format(&quot;----&quot;, &quot;----------&quot;))
+for word, count in word_count.most_common(20):
+    # &#39;most_common&#39; is a helpful method that can be applied to Counter.
+    print(&quot;{:&lt;6} {:&gt;12,}&quot;.format(word, count))
 </pre></div>
 </div>
 </div>
@@ -1489,30 +1489,30 @@ you          34,432
 <p>The ‘word_tokenize’ tokeniser from the nltk package can provide a better tokenisation outcome than the ‘split’ function because it identifies items such as end of sentence markers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-  <span class="c1"># This sets the starting time so the time taken</span>
-  <span class="c1"># to tokenise can be measured.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>t0 = time.time()
+  # This sets the starting time so the time taken
+  # to tokenise can be measured.
 
-<span class="c1"># Tokenise the reviews using &#39;word_tokeniser&#39;.</span>
-<span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">review_data</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">counter</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="c1"># This prints a &#39;.&#39; every 1,000 reviews to reassure</span>
-        <span class="c1"># you that the code is still running.</span>
-    <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
-        <span class="c1"># word_tokenize is an nltk tokeniser.</span>
-        <span class="c1"># The set of tokens from each review is added to the review</span>
-        <span class="c1"># dictionary under a new dictionary index &#39;tokens&#39;.</span>
-<span class="nb">print</span><span class="p">()</span>
+# Tokenise the reviews using &#39;word_tokeniser&#39;.
+for counter, review in enumerate(review_data):
+    if counter % 1000 == 1:
+        print (&#39;.&#39;, end=&#39;&#39;)
+        # This prints a &#39;.&#39; every 1,000 reviews to reassure
+        # you that the code is still running.
+    review[&#39;tokens&#39;] = word_tokenize(review[&#39;text&#39;])
+        # word_tokenize is an nltk tokeniser.
+        # The set of tokens from each review is added to the review
+        # dictionary under a new dictionary index &#39;tokens&#39;.
+print()
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tokenising took </span><span class="si">{:.0f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
+print(&quot;Tokenising took {:.0f} seconds&quot;.format(time.time()-t0))
+print()
 
-<span class="c1"># Look at five sample sets of tokens across the whole data set.</span>
-<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+# Look at five sample sets of tokens across the whole data set.
+review_sample = random.sample(review_data, 5)
+for review in review_sample:
+    print(review[&#39;text&#39;])
+    print(review[&#39;tokens&#39;], &#39;\n&#39;)
 </pre></div>
 </div>
 </div>
@@ -1549,15 +1549,15 @@ Been going there for years, repairs always done fairly, until this week.  AC fan
 This is done in the code below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the tokens for each review to lower case.</span>
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_data</span><span class="p">:</span>
-    <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Convert the tokens for each review to lower case.
+for review in review_data:
+    review[&#39;tokens&#39;] = [token.lower() for token in review[&#39;tokens&#39;]]
 
-<span class="c1"># Look at another five sample sets of lower case tokens across the whole data set.</span>
-<span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">review_sample</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+# Look at another five sample sets of lower case tokens across the whole data set.
+review_sample = random.sample(review_data, 5)
+for review in review_sample:
+    print(review[&#39;text&#39;])
+    print(review[&#39;tokens&#39;], &#39;\n&#39;)
 </pre></div>
 </div>
 </div>
@@ -1600,10 +1600,10 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 <p>This further splitting of the training data into a training and validation data set has been omitted from this case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
-  <span class="c1"># The Sklearn package &#39;train_test_split&#39; is used to automate this step. </span>
-<span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:&gt;10s}</span><span class="s1">&#39;</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;training&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;total&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:10,}</span><span class="s1">&#39;</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">review_data</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train, test = train_test_split(review_data, test_size = 0.5)
+  # The Sklearn package &#39;train_test_split&#39; is used to automate this step. 
+print((&#39;{:&gt;10s}&#39;*3).format(&#39;training&#39;, &#39;test&#39;, &#39;total&#39;))
+print((&#39;{:10,}&#39;*3).format(len(train), len(test), len(review_data)))
 </pre></div>
 </div>
 </div>
@@ -1619,15 +1619,15 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 <h4>Define response<a class="headerlink" href="#define-response" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the response variable as 1 (a complaint) if the number of stars given</span>
-<span class="c1"># is 1 or 2. Otherwise define the response as 0 (non complaint).</span>
-<span class="n">train_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span><span class="p">]</span>
-<span class="n">test_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">3</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">test</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the response variable as 1 (a complaint) if the number of stars given
+# is 1 or 2. Otherwise define the response as 0 (non complaint).
+train_y = [review[&#39;stars&#39;]&lt;3 for review in train]
+test_y = [review[&#39;stars&#39;]&lt;3 for review in test]
 
-<span class="c1"># Check the total number of complaints is still the same</span>
-<span class="c1"># across the training and test sets.</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">train_y</span><span class="o">+</span><span class="n">test_y</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">review_count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">review_count</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+# Check the total number of complaints is still the same
+# across the training and test sets.
+print(sum(train_y+test_y))
+print(review_count[1]+review_count[2])
 </pre></div>
 </div>
 </div>
@@ -1645,13 +1645,13 @@ Great staff! Friendly, professional,helpful. Great environment. Everyone was kno
 Note that the test data is not used to create the vocabulary as this is ‘held out’ until the end of the modelling process to test how well the model performs on unseen data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the vocabulary </span>
-<span class="n">vocab_count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">token</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">train</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">review</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The vocabulary has </span><span class="si">{:,}</span><span class="s1"> tokens&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab_count</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Some examples are: &#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:6s}</span><span class="s1"> </span><span class="si">{:s}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="s1">&#39;Token&#39;</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">vocab_count</span><span class="p">),</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{1:6,}</span><span class="s1"> </span><span class="si">{0:s}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">vocab_count</span><span class="p">[</span><span class="n">token</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create the vocabulary 
+vocab_count = Counter([token for review in train for token in review[&#39;tokens&#39;]])
+print(&#39;The vocabulary has {:,} tokens&#39;.format(len(vocab_count)))
+print(&#39;Some examples are: &#39;)
+print(&#39;{:6s} {:s} &#39;.format(&#39;Count&#39;, &#39;Token&#39;))
+for token in random.sample(list(vocab_count), 50):
+    print(&#39;{1:6,} {0:s} &#39;.format(token, vocab_count[token]))
 </pre></div>
 </div>
 </div>
@@ -1717,16 +1717,16 @@ Count  Token
 <p>The minimum count for a token to be retained in the vocabulary is a model parameter that can be varied later when tuning the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the minimum count for a token to be retained.</span>
-<span class="n">min_count</span> <span class="o">=</span> <span class="mi">15</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the minimum count for a token to be retained.
+min_count = 15
 
-<span class="c1"># Reduce the size of the vocabulary.</span>
-<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">vocab_count</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">min_count</span><span class="p">}</span>
+# Reduce the size of the vocabulary.
+vocab = {token for token, count in vocab_count.items() if count &gt;= min_count}
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are </span><span class="si">{:,}</span><span class="s1"> tokens used </span><span class="si">{:n}</span><span class="s1"> or more times. Some examples are:&#39;</span><span class="o">.</span>
-      <span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="n">min_count</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">20</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+print(&#39;There are {:,} tokens used {:n} or more times. Some examples are:&#39;.
+      format(len(vocab), min_count))
+for token in random.sample(tuple(vocab), 20):
+    print(token)
 </pre></div>
 </div>
 </div>
@@ -1758,9 +1758,9 @@ promise
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the reduced vocab into a dictionary to make it easier to check each column</span>
-<span class="c1"># of the matrix later.</span>
-<span class="n">vocab</span> <span class="o">=</span> <span class="p">{</span><span class="n">token</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Convert the reduced vocab into a dictionary to make it easier to check each column
+# of the matrix later.
+vocab = {token: k for k, token in enumerate(vocab)}
 </pre></div>
 </div>
 </div>
@@ -1773,9 +1773,9 @@ promise
 {a:1, b:2, c:1, d:1, e:0}.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vectorise the training and test data.</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">vectorise_data</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
-<span class="n">test_X</span> <span class="o">=</span> <span class="n">vectorise_data</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">vocab</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Vectorise the training and test data.
+train_X = vectorise_data(train, vocab)
+test_X = vectorise_data(test,vocab)
 </pre></div>
 </div>
 </div>
@@ -1788,14 +1788,14 @@ promise
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scaler so that the features in the dataset (the vectorised tokens)</span>
-<span class="c1"># can be scaled to have a mean of 0 and a standard deviation of 1.</span>
-<span class="c1"># Even though the features in this dataset are all on the same scale already,</span>
-<span class="c1"># this step can sometimes help a model converge on an optimal solution</span>
-<span class="c1"># faster during the fitting process.</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">train_X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
-<span class="n">test_X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a scaler so that the features in the dataset (the vectorised tokens)
+# can be scaled to have a mean of 0 and a standard deviation of 1.
+# Even though the features in this dataset are all on the same scale already,
+# this step can sometimes help a model converge on an optimal solution
+# faster during the fitting process.
+scaler = StandardScaler()
+train_X_scaled = scaler.fit_transform(train_X)
+test_X_scaled = scaler.fit_transform(test_X)
 </pre></div>
 </div>
 </div>
@@ -1808,21 +1808,21 @@ promise
 <p>A logistic regression model is now trained. The aim of this model is to predict whether a review is a complaint (i.e. has less than 3 stars) based on the vectorised features for each review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the model.</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;sag&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-  <span class="c1"># This line of code creates a logistic regression model.</span>
-  <span class="c1"># &#39;C&#39; is the inverse of regularisation strength and must be a positive float;</span>
-  <span class="c1"># smaller values of C specify stronger regularisation.</span>
-  <span class="c1"># solver = &#39;sag&#39; specifies that the stochastic average gradient descent solver</span>
-  <span class="c1"># should be used to optimise the parameters of the model.  </span>
-  <span class="c1"># The model can be tuned by selecting different values for C and</span>
-  <span class="c1"># also by specifying other parameters for the LogisticRegression module.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the model.
+model = LogisticRegression(C = 5, solver = &#39;sag&#39;, verbose=1, max_iter=1000)
+  # This line of code creates a logistic regression model.
+  # &#39;C&#39; is the inverse of regularisation strength and must be a positive float;
+  # smaller values of C specify stronger regularisation.
+  # solver = &#39;sag&#39; specifies that the stochastic average gradient descent solver
+  # should be used to optimise the parameters of the model.  
+  # The model can be tuned by selecting different values for C and
+  # also by specifying other parameters for the LogisticRegression module.
 
-<span class="c1"># Fit the model.</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
-  <span class="c1"># The training data can be supplied in several formats including</span>
-  <span class="c1"># a list of lists (a matrix) for the X data and a list for the y data or</span>
-  <span class="c1"># numpy arrays.</span>
+# Fit the model.
+model.fit(train_X, train_y)
+  # The training data can be supplied in several formats including
+  # a list of lists (a matrix) for the X data and a list for the y data or
+  # numpy arrays.
 </pre></div>
 </div>
 </div>
@@ -1847,8 +1847,8 @@ promise
 Either way, the evaluation section below suggests that the solution found, while not necessarily optimal, is still reasonably good.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions using the reviews in the test dataset.</span>
-<span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make predictions using the reviews in the test dataset.
+pred_y = model.predict(test_X)
 </pre></div>
 </div>
 </div>
@@ -1859,11 +1859,11 @@ Either way, the evaluation section below suggests that the solution found, while
 <p>The next section prints key metrics for the predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the return_metrics and print_scores functions defined at the top</span>
-<span class="c1"># of the notebook to review how well this logistic regression model</span>
-<span class="c1"># has predicted complaints and non-complaints.</span>
-<span class="n">scores</span> <span class="o">=</span>  <span class="n">return_metrics</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">)</span>
-<span class="n">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use the return_metrics and print_scores functions defined at the top
+# of the notebook to review how well this logistic regression model
+# has predicted complaints and non-complaints.
+scores =  return_metrics(test_y, pred_y)
+print_scores(scores, confused = True)
 </pre></div>
 </div>
 </div>
@@ -1879,22 +1879,22 @@ Either way, the evaluation section below suggests that the solution found, while
 <p>This suggests that the model has identified a high proportion of both true complaints and true non-complaints and a low proportion of false complaints and false non-complaints.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a ROC curve and calculate the AUC for the model.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The AUC for the model is: &#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print a ROC curve and calculate the AUC for the model.
+print(&#39;The AUC for the model is: &#39;, metrics.roc_auc_score(test_y, pred_y))
 
-<span class="c1"># Retrieve the sensitivity (true positive rate) and false positive rate for</span>
-<span class="c1"># each threshold value (where the threshold value decides how high the</span>
-<span class="c1"># predicted probability of being a complaint has to be before an observation</span>
-<span class="c1"># is classified as a complaint.)</span>
+# Retrieve the sensitivity (true positive rate) and false positive rate for
+# each threshold value (where the threshold value decides how high the
+# predicted probability of being a complaint has to be before an observation
+# is classified as a complaint.)
 
-<span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">true_positive_rate</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">pred_y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Receiver Operating Characteristic - review classifier&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">false_positive_rate</span><span class="p">,</span> <span class="n">true_positive_rate</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sensitivity (True Positive Rate)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+false_positive_rate, true_positive_rate, threshold = metrics.roc_curve(test_y, pred_y)
+plt.subplots(1, figsize=(5,5))
+plt.title(&#39;Receiver Operating Characteristic - review classifier&#39;)
+plt.plot(false_positive_rate, true_positive_rate,color=&#39;dodgerblue&#39;)
+plt.plot([0, 1], ls=&quot;--&quot;,color=&#39;black&#39;)
+plt.ylabel(&#39;Sensitivity (True Positive Rate)&#39;)
+plt.xlabel(&#39;False Positive Rate&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1908,37 +1908,37 @@ Either way, the evaluation section below suggests that the solution found, while
 <p>It is instructive to see which tokens have the greatest and smallest weights in the fitted model. The greatest weights imply that these words predict complaints while the smallest weights show that these words predict non-complaints.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the weights from the model for each token in the vocabulary.</span>
-<span class="k">def</span> <span class="nf">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">mod_coefs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Retrieve the weights from the model for each token in the vocabulary.
+def print_by_weight(model, vocab, k = 5, verbose = True):
+    mod_coefs = model.coef_
     
-    <span class="c1"># Create a list of vocab words and their weights.</span>
-    <span class="n">token_weight</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">vocab</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">token_weight</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">token</span><span class="p">,</span> <span class="n">mod_coefs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">]))</span>
+    # Create a list of vocab words and their weights.
+    token_weight = list()
+    for token, count in vocab.items():
+        token_weight.append((token, mod_coefs[0, count]))
    
-    <span class="c1"># Sort and print the top k items.</span>
-    <span class="k">def</span> <span class="nf">print_list</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Word&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;----&#39;</span><span class="p">,</span> <span class="s1">&#39;------&#39;</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:7.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">token</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">()</span>
-        <span class="k">return</span>
+    # Sort and print the top k items.
+    def print_list(tokens):
+        print(&#39;{:20s}  {:&gt;7s}&#39;.format(&#39;Word&#39;, &#39;Weight&#39;))
+        print(&#39;{:20s}  {:&gt;7s}&#39;.format(&#39;----&#39;, &#39;------&#39;))
+        for token in tokens:
+            print (&#39;{:20s}  {:7.1f}&#39;.format(*token))
+        print()
+        return
 
-    <span class="n">token_weight</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">complaint_keywords</span> <span class="o">=</span> <span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Words driving complaints:&#39;</span><span class="p">)</span>
-    <span class="n">print_list</span><span class="p">(</span><span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+    token_weight.sort(key = lambda x : x[1], reverse = True)
+    complaint_keywords = token_weight[:k]
+    print(&#39;Words driving complaints:&#39;)
+    print_list(token_weight[:k])
     
-    <span class="n">token_weight</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">non_complaint_keywords</span> <span class="o">=</span> <span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Words driving non-complaints:&#39;</span><span class="p">)</span>
-    <span class="n">print_list</span><span class="p">(</span><span class="n">token_weight</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+    token_weight.sort(key = lambda x : x[1])
+    non_complaint_keywords = token_weight[:k]
+    print(&#39;Words driving non-complaints:&#39;)
+    print_list(token_weight[:k])
 
-    <span class="k">return</span> <span class="n">complaint_keywords</span><span class="p">,</span> <span class="n">non_complaint_keywords</span>
+    return complaint_keywords, non_complaint_keywords
 
-<span class="n">complaint_keywords</span><span class="p">,</span> <span class="n">non_complaint_keywords</span> <span class="o">=</span> <span class="n">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+complaint_keywords, non_complaint_keywords = print_by_weight(model, vocab, 10)
 </pre></div>
 </div>
 </div>

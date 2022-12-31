@@ -740,8 +740,8 @@ title="Print to PDF"
 <p>There is also a dual purpose for this article to serve as an introduction to <code class="docutils literal notranslate"><span class="pre">duckdb</span></code>, a handy package that for running analytical SQL queries locally without having to use a data warehouse server.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install duckdb
-<span class="o">!</span>pip show duckdb
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip install duckdb
+!pip show duckdb
 </pre></div>
 </div>
 </div>
@@ -749,34 +749,31 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting duckdb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading duckdb-0.6.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (14.4 MB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading duckdb-0.6.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (14.4 MB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/14.4 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/14.4 MB</span> <span class=" -Color -Color-Red">37.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">4.6/14.4 MB</span> <span class=" -Color -Color-Red">133.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/14.4 MB</span> <span class=" -Color -Color-Red">43.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━ <span class=" -Color -Color-Green">10.9/14.4 MB</span> <span class=" -Color -Color-Red">178.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">8.5/14.4 MB</span> <span class=" -Color -Color-Red">81.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">183.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">183.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">93.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">174.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">174.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">14.4/14.4 MB</span> <span class=" -Color -Color-Red">87.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.14 in /usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages (from duckdb) (1.23.4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.14 in /usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages (from duckdb) (1.23.5)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: duckdb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed duckdb-0.6.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed duckdb-0.6.1
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name: duckdb
-Version: 0.6.0
+Version: 0.6.1
 Summary: DuckDB embedded database
 Home-page: https://www.duckdb.org
 Author: 
@@ -792,20 +789,20 @@ Required-by:
 <p>Import the libraries:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import numpy as np
 
-<span class="kn">import</span> <span class="nn">duckdb</span>
+import duckdb
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+from matplotlib import pyplot as plt
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># start an in-memory database</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># start an in-memory database
+con = duckdb.connect(database=&#39;:memory:&#39;)
 </pre></div>
 </div>
 </div>
@@ -817,10 +814,10 @@ Required-by:
 <p>DuckDB can <a class="reference external" href="https://duckdb.org/docs/data/csv">read and query CSVs directly from local files</a> - but with CSV files from the internet it is easier to read it with Python in pandas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s2">&quot;https://raw.githubusercontent.com/JackyP/SyntheticExports/main/synthetic_test_transaction_dataset.csv&quot;</span>
-<span class="p">)</span>
-<span class="n">transactions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>transactions = pd.read_csv(
+    &quot;https://raw.githubusercontent.com/JackyP/SyntheticExports/main/synthetic_test_transaction_dataset.csv&quot;
+)
+transactions
 </pre></div>
 </div>
 </div>
@@ -1031,31 +1028,31 @@ Required-by:
 <p>This is a transactional dataset with payments. The dataset has times are represented as arbitrary time period units rather than dates, and some additional calculated fields are already available. However, for this exercise, we want to demonstrate how to create these columns in real world situations where the raw datasets are unlikely to include them. So the time periods will be converted to date formats with months from a start date of 2000-01-01 and some columns hidden to create a dataset that resembles real datasets in practice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Feel free to skim through this part.</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Feel free to skim through this part.
+import datetime
+from dateutil.relativedelta import relativedelta
 
-<span class="n">dummy_start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+dummy_start_date = datetime.date(2000, 1, 1)
 
-<span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;occurrence_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">dummy_start_date</span> <span class="o">+</span> 
-               <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;occurrence_time&#39;</span><span class="p">]))</span> <span class="o">+</span> 
-               <span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;occurrence_time&#39;</span><span class="p">]</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">28</span><span class="p">))</span>
-              <span class="p">),</span> 
-    <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="p">)</span>
+transactions[&#39;occurrence_date&#39;] = transactions.apply(
+    lambda x: (dummy_start_date + 
+               relativedelta(months = int(x[&#39;occurrence_time&#39;])) + 
+               relativedelta(days = int(x[&#39;occurrence_time&#39;] % 1 * 28))
+              ), 
+    axis = 1
+)
 
-<span class="n">transactions</span><span class="p">[</span><span class="s1">&#39;payment_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">dummy_start_date</span> <span class="o">+</span> 
-               <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;payment_time&#39;</span><span class="p">]))</span> <span class="o">+</span> 
-               <span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;payment_time&#39;</span><span class="p">]</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">28</span><span class="p">))</span>
-              <span class="p">),</span> 
-    <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="p">)</span>
-<span class="n">transactions2</span> <span class="o">=</span> <span class="n">transactions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-    <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">payment_time</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">,</span> 
-    <span class="p">[</span><span class="s2">&quot;claim_no&quot;</span><span class="p">,</span> <span class="s2">&quot;pmt_no&quot;</span><span class="p">,</span> <span class="s2">&quot;occurrence_date&quot;</span><span class="p">,</span> <span class="s2">&quot;payment_date&quot;</span><span class="p">,</span> <span class="s2">&quot;payment_size&quot;</span><span class="p">]</span>
-<span class="p">]</span>
+transactions[&#39;payment_date&#39;] = transactions.apply(
+    lambda x: (dummy_start_date + 
+               relativedelta(months = int(x[&#39;payment_time&#39;])) + 
+               relativedelta(days = int(x[&#39;payment_time&#39;] % 1 * 28))
+              ), 
+    axis = 1
+)
+transactions2 = transactions.loc[
+    lambda df: df.payment_time &lt;= 40, 
+    [&quot;claim_no&quot;, &quot;pmt_no&quot;, &quot;occurrence_date&quot;, &quot;payment_date&quot;, &quot;payment_size&quot;]
+]
 </pre></div>
 </div>
 </div>
@@ -1063,10 +1060,10 @@ Required-by:
 <p>So we will register this pandas table in SQL and pretend we had a dataset in our data warehouse that looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># register the table in sql</span>
-<span class="n">con</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;transactions_view&#39;</span><span class="p">,</span> <span class="n">transactions2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># register the table in sql
+con.register(&#39;transactions_view&#39;, transactions2)
 
-<span class="n">transactions2</span>
+transactions2
 </pre></div>
 </div>
 </div>
@@ -1195,39 +1192,39 @@ Required-by:
 <p>Here is the SQL query. It creates accident, development and payment/calendar periods from the dataset, and sums up at that triangle level. Uncomment <code class="docutils literal notranslate"><span class="pre">claim_no</span></code> and <code class="docutils literal notranslate"><span class="pre">pmt_no</span></code> to get a more detailed view - or for testing that the logic works.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    CREATE OR REPLACE VIEW triangle AS </span>
-<span class="s2">    SELECT </span>
-<span class="s2">        --claim_no,</span>
-<span class="s2">        --pmt_no,</span>
-<span class="s2">        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(occurrence_date, &#39;%Y-%m-</span><span class="si">%d</span><span class="s2">&#39;)) + 1 as occurrence_period,</span>
-<span class="s2">        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(payment_date, &#39;%Y-%m-</span><span class="si">%d</span><span class="s2">&#39;)) + 1 as payment_period,</span>
-<span class="s2">        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(payment_date, &#39;%Y-%m-</span><span class="si">%d</span><span class="s2">&#39;)) - </span>
-<span class="s2">          DATE_DIFF(&#39;month&#39;,  DATE &#39;2000-01-01&#39;, STRPTIME(occurrence_date, &#39;%Y-%m-</span><span class="si">%d</span><span class="s2">&#39;)) + 1 as development_period,        </span>
-<span class="s2">        SUM(payment_size) as payments</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>con.execute(&quot;&quot;&quot;
+    CREATE OR REPLACE VIEW triangle AS 
+    SELECT 
+        --claim_no,
+        --pmt_no,
+        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(occurrence_date, &#39;%Y-%m-%d&#39;)) + 1 as occurrence_period,
+        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(payment_date, &#39;%Y-%m-%d&#39;)) + 1 as payment_period,
+        DATE_DIFF(&#39;month&#39;, DATE &#39;2000-01-01&#39;, STRPTIME(payment_date, &#39;%Y-%m-%d&#39;)) - 
+          DATE_DIFF(&#39;month&#39;,  DATE &#39;2000-01-01&#39;, STRPTIME(occurrence_date, &#39;%Y-%m-%d&#39;)) + 1 as development_period,        
+        SUM(payment_size) as payments
 
-<span class="s2">    FROM </span>
-<span class="s2">        transactions_view</span>
-<span class="s2">    GROUP BY </span>
-<span class="s2">        --claim_no,</span>
-<span class="s2">        --pmt_no,        </span>
-<span class="s2">        occurrence_period,</span>
-<span class="s2">        development_period,</span>
-<span class="s2">        payment_period</span>
-<span class="s2">        </span>
-<span class="s2">    ORDER BY</span>
-<span class="s2">        --claim_no,</span>
-<span class="s2">        --pmt_no,        </span>
-<span class="s2">        occurrence_period,</span>
-<span class="s2">        development_period,</span>
-<span class="s2">        payment_period</span>
-<span class="s2">;</span>
-<span class="s2">        </span>
-<span class="s2">    SELECT * FROM triangle;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="p">)</span>
-<span class="n">triangle</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
-<span class="n">triangle</span>
+    FROM 
+        transactions_view
+    GROUP BY 
+        --claim_no,
+        --pmt_no,        
+        occurrence_period,
+        development_period,
+        payment_period
+        
+    ORDER BY
+        --claim_no,
+        --pmt_no,        
+        occurrence_period,
+        development_period,
+        payment_period
+;
+        
+    SELECT * FROM triangle;
+&quot;&quot;&quot;
+)
+triangle = con.fetchdf()
+triangle
 </pre></div>
 </div>
 </div>
@@ -1342,7 +1339,7 @@ Required-by:
 <p>Whilst the above is perfect for further calculations or export, triangles are often displayed in the “wide” format as follows. Pivotting is easier in pandas in Python (or R with <code class="docutils literal notranslate"><span class="pre">dplyr::pivot_wider</span></code>), than in SQL.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;development_period&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;payments&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>triangle.pivot(index=&quot;occurrence_period&quot;, columns=&quot;development_period&quot;, values=&quot;payments&quot;)
 </pre></div>
 </div>
 </div>
@@ -2381,16 +2378,16 @@ Required-by:
 <p>This can also be plotted easily with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">triangle</span>
-    <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;development_period&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;payments&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(triangle
+    .pivot(index=&quot;development_period&quot;, columns=&quot;occurrence_period&quot;, values=&quot;payments&quot;)
+    .plot(logy=True)
+)
+plt.legend(loc=&quot;lower center&quot;, bbox_to_anchor=(0.5, -0.8), ncol=5)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9271f31460&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f57d6ff2fa0&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_19_1.png" src="../_images/SQL Query for Triangles_19_1.png" />
@@ -2404,11 +2401,11 @@ Required-by:
 <p>The original dataset will be joined to a dummy dataset with the full range of accident/occurence and development periods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dummy table of periods</span>
-<span class="n">range_occurrence</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;occurrence_period&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">40</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)})</span>
-<span class="n">range_development</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;development_period&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">40</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Dummy table of periods
+range_occurrence = pd.DataFrame.from_dict({&quot;occurrence_period&quot;: range(1, 40 + 1)})
+range_development = pd.DataFrame.from_dict({&quot;development_period&quot;: range(1, 40 + 1)})
 
-<span class="n">range_occurrence</span>
+range_occurrence
 </pre></div>
 </div>
 </div>
@@ -2601,13 +2598,13 @@ Required-by:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;range_occurrence_view&#39;</span><span class="p">,</span> <span class="n">range_occurrence</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;range_development_view&#39;</span><span class="p">,</span> <span class="n">range_development</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>con.register(&#39;range_occurrence_view&#39;, range_occurrence)
+con.register(&#39;range_development_view&#39;, range_development)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;duckdb.DuckDBPyConnection at 0x7f92731bf5f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;duckdb.DuckDBPyConnection at 0x7f57d85b7370&gt;
 </pre></div>
 </div>
 </div>
@@ -2615,42 +2612,42 @@ Required-by:
 <p>The join logic can be constructed as follows. First <code class="docutils literal notranslate"><span class="pre">full_tri</span></code> is defined which has every combination of occurence and development period, then the original dataset is left joined onto it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    CREATE OR REPLACE VIEW triangle_fill AS </span>
-<span class="s2">    </span>
-<span class="s2">    WITH full_tri as (</span>
-<span class="s2">    SELECT </span>
-<span class="s2">        o.occurrence_period,</span>
-<span class="s2">        d.development_period,</span>
-<span class="s2">        d.development_period + o.occurrence_period - 1 as payment_period</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>con.execute(&quot;&quot;&quot;
+    CREATE OR REPLACE VIEW triangle_fill AS 
+    
+    WITH full_tri as (
+    SELECT 
+        o.occurrence_period,
+        d.development_period,
+        d.development_period + o.occurrence_period - 1 as payment_period
 
-<span class="s2">    FROM </span>
-<span class="s2">        range_occurrence_view as o,</span>
-<span class="s2">        range_development_view as d</span>
-<span class="s2">    )</span>
-<span class="s2">    SELECT </span>
-<span class="s2">        full_tri.*, </span>
-<span class="s2">        COALESCE(triangle.payments, 0) as payments</span>
-<span class="s2">    FROM </span>
-<span class="s2">        full_tri</span>
+    FROM 
+        range_occurrence_view as o,
+        range_development_view as d
+    )
+    SELECT 
+        full_tri.*, 
+        COALESCE(triangle.payments, 0) as payments
+    FROM 
+        full_tri
 
-<span class="s2">    LEFT JOIN</span>
-<span class="s2">        triangle</span>
-<span class="s2">    ON</span>
-<span class="s2">        full_tri.occurrence_period  = triangle.occurrence_period</span>
-<span class="s2">    AND full_tri.development_period = triangle.development_period</span>
-<span class="s2">    AND full_tri.payment_period     = triangle.payment_period</span>
-<span class="s2">    </span>
-<span class="s2">    WHERE</span>
-<span class="s2">        full_tri.payment_period &lt;= 40 </span>
-<span class="s2">        -- if triangle is cut off at particular calendar period    </span>
-<span class="s2">;</span>
-<span class="s2">        </span>
-<span class="s2">    SELECT * FROM triangle_fill;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="p">)</span>
-<span class="n">triangle_fill</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
-<span class="n">triangle_fill</span>
+    LEFT JOIN
+        triangle
+    ON
+        full_tri.occurrence_period  = triangle.occurrence_period
+    AND full_tri.development_period = triangle.development_period
+    AND full_tri.payment_period     = triangle.payment_period
+    
+    WHERE
+        full_tri.payment_period &lt;= 40 
+        -- if triangle is cut off at particular calendar period    
+;
+        
+    SELECT * FROM triangle_fill;
+&quot;&quot;&quot;
+)
+triangle_fill = con.fetchdf()
+triangle_fill
 </pre></div>
 </div>
 </div>
@@ -2690,30 +2687,30 @@ Required-by:
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>3</td>
-      <td>3</td>
-      <td>392545.850638</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
       <td>4</td>
       <td>4</td>
       <td>185946.113394</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>5</td>
-      <td>5</td>
-      <td>700630.302735</td>
-    </tr>
-    <tr>
-      <th>4</th>
+      <th>2</th>
       <td>1</td>
       <td>6</td>
       <td>6</td>
       <td>261024.509136</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>7</td>
+      <td>7</td>
+      <td>332968.751568</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>8</td>
+      <td>8</td>
+      <td>264641.275106</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2765,7 +2762,7 @@ Required-by:
 <p>Again, here is the triangle. You can see the accident/development cells with no payments are now zero instead of null.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triangle_fill</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;development_period&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;payments&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>triangle_fill.pivot(index=&quot;occurrence_period&quot;, columns=&quot;development_period&quot;, values=&quot;payments&quot;)
 </pre></div>
 </div>
 </div>
@@ -3809,59 +3806,59 @@ Required-by:
 <p>Triangle methods can also be applied directly within Python without exporting to Excel or another tool. Consider for example, <a class="reference external" href="https://chainladder-python.readthedocs.io/en/latest/intro.html">chainladder</a>, a project led out of casact which provides a number of claims development models. Or, alternatively we can do further calculations using <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a dataframe from the generated triangle</span>
-<span class="n">df_triangle_sort</span> <span class="o">=</span> <span class="n">triangle_fill</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;occurrence_period&#39;</span><span class="p">,</span> <span class="s1">&#39;development_period&#39;</span><span class="p">,</span> <span class="s1">&#39;payment_period&#39;</span><span class="p">],</span> 
-                        <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a dataframe from the generated triangle
+df_triangle_sort = triangle_fill.sort_values([&#39;occurrence_period&#39;, &#39;development_period&#39;, &#39;payment_period&#39;], 
+                        ascending=[True, True, True]).reset_index(drop=True)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a column for cumulative payment</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Add a column for cumulative payment
 
-<span class="n">df_triangle_sort</span><span class="p">[</span><span class="s2">&quot;payments_cumulative&quot;</span><span class="p">]</span> <span class="o">=</span> \
-           <span class="n">df_triangle_sort</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;occurrence_period&#39;</span><span class="p">])[</span><span class="s1">&#39;payments&#39;</span><span class="p">]</span> \
-           <span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+df_triangle_sort[&quot;payments_cumulative&quot;] = \
+           df_triangle_sort.groupby([&#39;occurrence_period&#39;])[&#39;payments&#39;] \
+           .cumsum(axis = 0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df_triangle_sort.head()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#df_triangle_sort.head()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Probably don&#39;t need this step but prints the triangle with cumulative payments</span>
-<span class="c1"># Useful for at least some life companies who manually do this in Excel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Probably don&#39;t need this step but prints the triangle with cumulative payments
+# Useful for at least some life companies who manually do this in Excel
 
-<span class="n">IBNR_triangle_cumulative</span> <span class="o">=</span> \
-  <span class="n">df_triangle_sort</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;development_period&quot;</span><span class="p">,</span> 
-                         <span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;payments_cumulative&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+IBNR_triangle_cumulative = \
+  df_triangle_sort.pivot(index = &quot;occurrence_period&quot;, columns = &quot;development_period&quot;, 
+                         values = &quot;payments_cumulative&quot;).fillna(0)
 
-<span class="c1">#IBNR_triangle_cumulative</span>
+#IBNR_triangle_cumulative
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect claims development by occurrence period</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Inspect claims development by occurrence period
 
-<span class="p">(</span><span class="n">df_triangle_sort</span>
-    <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;development_period&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;payments_cumulative&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+(df_triangle_sort
+    .pivot(index = &quot;development_period&quot;, columns = &quot;occurrence_period&quot;, values = &quot;payments_cumulative&quot;)
+    .plot(logy=True)
+)
+plt.legend(loc=&quot;lower center&quot;, bbox_to_anchor=(0.5, -0.8), ncol=5)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f92712a6fa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f57d62710a0&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_33_1.png" src="../_images/SQL Query for Triangles_33_1.png" />
@@ -3869,16 +3866,16 @@ Required-by:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df_triangle_sort</span>
-    <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;development_period&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;occurrence_period&quot;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;payments_cumulative&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(df_triangle_sort
+    .pivot(index = &quot;development_period&quot;, columns = &quot;occurrence_period&quot;, values = &quot;payments_cumulative&quot;)
+    .plot(logy=True)
+)
+plt.legend(loc=&quot;lower center&quot;, bbox_to_anchor=(0.5, -0.8), ncol=5)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9261e420d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f57cee99fd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/SQL Query for Triangles_34_1.png" src="../_images/SQL Query for Triangles_34_1.png" />
@@ -3886,64 +3883,64 @@ Required-by:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### 40 is the (hard-coded) cut-off as set out previously</span>
-<span class="c1">### Get the diagonals in the cumulative IBNR triangle, which represents cumulative payments for a particular</span>
-<span class="c1">### occurrence period</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>### 40 is the (hard-coded) cut-off as set out previously
+### Get the diagonals in the cumulative IBNR triangle, which represents cumulative payments for a particular
+### occurrence period
 
-<span class="n">triangle_diagonal_interim</span> <span class="o">=</span> <span class="n">df_triangle_sort</span><span class="p">[</span><span class="s1">&#39;payments_cumulative&#39;</span><span class="p">][</span><span class="n">df_triangle_sort</span><span class="p">[</span><span class="s1">&#39;payment_period&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">40</span><span class="p">]</span> \
-                                                         <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+triangle_diagonal_interim = df_triangle_sort[&#39;payments_cumulative&#39;][df_triangle_sort[&#39;payment_period&#39;] == 40] \
+                                                         .reset_index(drop = True)
 
-<span class="n">triangle_diagonal_interim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">triangle_diagonal_interim</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;payments_cumulative&#39;</span><span class="p">:</span> <span class="s1">&#39;diagonal&#39;</span><span class="p">})</span>
+triangle_diagonal_interim = pd.DataFrame(triangle_diagonal_interim).rename(columns = {&#39;payments_cumulative&#39;: &#39;diagonal&#39;})
 
-<span class="n">triangle_diagonal</span> <span class="o">=</span> <span class="n">triangle_diagonal_interim</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+triangle_diagonal = triangle_diagonal_interim.iloc[::-1].reset_index(drop = True)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Sum cumulative payments by development period - to be used to calculate CDFs later</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>### Sum cumulative payments by development period - to be used to calculate CDFs later
 
-<span class="n">development_period_sum_interim</span> <span class="o">=</span> <span class="n">df_triangle_sort</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;development_period&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">development_period_sum</span> <span class="o">=</span> <span class="n">development_period_sum_interim</span><span class="p">[</span><span class="s1">&#39;payments_cumulative&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+development_period_sum_interim = df_triangle_sort.groupby(by = &#39;development_period&#39;).sum()
+development_period_sum = development_period_sum_interim[&#39;payments_cumulative&#39;].reset_index(drop = True)
 
-<span class="n">development_period_sum</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">development_period_sum</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;payments_cumulative&#39;</span><span class="p">:</span> <span class="s1">&#39;dev_period_sum&#39;</span><span class="p">})</span>
+development_period_sum = pd.DataFrame(development_period_sum).rename(columns = {&#39;payments_cumulative&#39;: &#39;dev_period_sum&#39;})
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge two dataframes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Merge two dataframes
 
-<span class="n">df_cdf_interim</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">triangle_diagonal</span><span class="p">,</span> <span class="n">development_period_sum</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+df_cdf_interim = pd.concat([triangle_diagonal, development_period_sum], axis = 1)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df_cdf_interim.head()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#df_cdf_interim.head()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## dev_period_sum_alt column is to ensure the claims for two consecutive periods have the same number</span>
-<span class="c1">## of levels/elements (and division of these two claims columns give the CDF)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## dev_period_sum_alt column is to ensure the claims for two consecutive periods have the same number
+## of levels/elements (and division of these two claims columns give the CDF)
 
-<span class="n">df_cdf_interim</span><span class="p">[</span><span class="s1">&#39;dev_period_sum_alt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cdf_interim</span><span class="p">[</span><span class="s1">&#39;dev_period_sum&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_cdf_interim</span><span class="p">[</span><span class="s1">&#39;diagonal&#39;</span><span class="p">]</span>
+df_cdf_interim[&#39;dev_period_sum_alt&#39;] = df_cdf_interim[&#39;dev_period_sum&#39;] - df_cdf_interim[&#39;diagonal&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Show numbers in ,000 so they fit in the print</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>### Show numbers in ,000 so they fit in the print
 
-<span class="n">df_cdf</span> <span class="o">=</span> <span class="n">df_cdf_interim</span> <span class="o">/</span> <span class="mi">1000</span>
-<span class="n">df_cdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+df_cdf = df_cdf_interim / 1000
+df_cdf.head()
 </pre></div>
 </div>
 </div>
@@ -4008,18 +4005,18 @@ Required-by:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Calculate CDFs and IBNR</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>### Calculate CDFs and IBNR
 
-<span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;dev_period_sum_shift&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;dev_period_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;CDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;dev_period_sum_shift&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;dev_period_sum_alt&#39;</span><span class="p">]</span>
-<span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;IBNR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;diagonal&#39;</span><span class="p">]</span> <span class="o">*</span>  <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;CDF&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_cdf</span><span class="p">[</span><span class="s1">&#39;diagonal&#39;</span><span class="p">]</span>
+df_cdf[&#39;dev_period_sum_shift&#39;] = df_cdf[&#39;dev_period_sum&#39;].shift(-1)
+df_cdf[&#39;CDF&#39;] = df_cdf[&#39;dev_period_sum_shift&#39;] / df_cdf[&#39;dev_period_sum_alt&#39;]
+df_cdf[&#39;IBNR&#39;] = df_cdf[&#39;diagonal&#39;] *  df_cdf[&#39;CDF&#39;] - df_cdf[&#39;diagonal&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cdf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_cdf
 </pre></div>
 </div>
 </div>
@@ -4417,7 +4414,7 @@ Required-by:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">IBNR_triangle_cumulative</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.DataFrame(IBNR_triangle_cumulative/1000).round(0)
 </pre></div>
 </div>
 </div>

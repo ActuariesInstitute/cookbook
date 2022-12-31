@@ -806,19 +806,19 @@ title="Print to PDF"
 <p>This section imports the packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+import matplotlib.pyplot as plt
 
-<span class="c1"># Used to build the decision tree and evaluate it</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
-<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+# Used to build the decision tree and evaluate it
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import sklearn.metrics as metrics
 
-<span class="c1"># Used to graph the decision tree</span>
-<span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">export_graphviz</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+# Used to graph the decision tree
+import graphviz
+from sklearn.tree import export_graphviz
+from IPython.display import Image
 </pre></div>
 </div>
 </div>
@@ -835,72 +835,73 @@ title="Print to PDF"
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a list of headings for the data.</span>
-<span class="n">namearray</span> <span class="o">=</span> <span class="p">[</span>
-<span class="s1">&#39;word_freq_make&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_address&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_all&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_3d&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_our&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_over&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_remove&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_internet&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_order&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_mail&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_receive&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_will&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_people&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_report&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_addresses&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_free&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_business&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_email&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_you&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_credit&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_your&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_font&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_000&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_money&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_hp&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_hpl&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_george&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_650&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_lab&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_labs&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_telnet&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_857&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_data&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_415&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_85&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_technology&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_1999&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_parts&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_pm&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_direct&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_cs&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_meeting&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_original&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_project&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_re&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_edu&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_table&#39;</span><span class="p">,</span>
-<span class="s1">&#39;word_freq_conference&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_;&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_(&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_[&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_!&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_$&#39;</span><span class="p">,</span>
-<span class="s1">&#39;char_freq_#&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_average&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_longest&#39;</span><span class="p">,</span>
-<span class="s1">&#39;capital_run_length_total&#39;</span><span class="p">,</span>
-<span class="s1">&#39;Spam_fl&#39;</span> <span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a list of headings for the data.
+namearray = [
+&#39;word_freq_make&#39;,
+&#39;word_freq_address&#39;,
+&#39;word_freq_all&#39;,
+&#39;word_freq_3d&#39;,
+&#39;word_freq_our&#39;,
+&#39;word_freq_over&#39;,
+&#39;word_freq_remove&#39;,
+&#39;word_freq_internet&#39;,
+&#39;word_freq_order&#39;,
+&#39;word_freq_mail&#39;,
+&#39;word_freq_receive&#39;,
+&#39;word_freq_will&#39;,
+&#39;word_freq_people&#39;,
+&#39;word_freq_report&#39;,
+&#39;word_freq_addresses&#39;,
+&#39;word_freq_free&#39;,
+&#39;word_freq_business&#39;,
+&#39;word_freq_email&#39;,
+&#39;word_freq_you&#39;,
+&#39;word_freq_credit&#39;,
+&#39;word_freq_your&#39;,
+&#39;word_freq_font&#39;,
+&#39;word_freq_000&#39;,
+&#39;word_freq_money&#39;,
+&#39;word_freq_hp&#39;,
+&#39;word_freq_hpl&#39;,
+&#39;word_freq_george&#39;,
+&#39;word_freq_650&#39;,
+&#39;word_freq_lab&#39;,
+&#39;word_freq_labs&#39;,
+&#39;word_freq_telnet&#39;,
+&#39;word_freq_857&#39;,
+&#39;word_freq_data&#39;,
+&#39;word_freq_415&#39;,
+&#39;word_freq_85&#39;,
+&#39;word_freq_technology&#39;,
+&#39;word_freq_1999&#39;,
+&#39;word_freq_parts&#39;,
+&#39;word_freq_pm&#39;,
+&#39;word_freq_direct&#39;,
+&#39;word_freq_cs&#39;,
+&#39;word_freq_meeting&#39;,
+&#39;word_freq_original&#39;,
+&#39;word_freq_project&#39;,
+&#39;word_freq_re&#39;,
+&#39;word_freq_edu&#39;,
+&#39;word_freq_table&#39;,
+&#39;word_freq_conference&#39;,
+&#39;char_freq_;&#39;,
+&#39;char_freq_(&#39;,
+&#39;char_freq_[&#39;,
+&#39;char_freq_!&#39;,
+&#39;char_freq_$&#39;,
+&#39;char_freq_#&#39;,
+&#39;capital_run_length_average&#39;,
+&#39;capital_run_length_longest&#39;,
+&#39;capital_run_length_total&#39;,
+&#39;Spam_fl&#39; ]
 
-<span class="c1"># Read in the data from the Stanford website.</span>
-<span class="n">spam</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.web.stanford.edu/~hastie/ElemStatLearn/datasets/spam.data&quot;</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-                   <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">names</span><span class="o">=</span><span class="n">namearray</span>
-                 <span class="p">)</span>
+# Read in the data from the Stanford website.
+spam = pd.read_csv(&quot;http://www.web.stanford.edu/~hastie/ElemStatLearn/datasets/spam.data&quot;, delim_whitespace=True, 
+                   header=None,
+                   names=namearray
+                 )
+
 </pre></div>
 </div>
 </div>
@@ -910,11 +911,11 @@ title="Print to PDF"
 <h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the dimensions of the data.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spam</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the dimensions of the data.
+print(spam.info())
 
-<span class="c1"># Print the first 10 observations from the data.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spam</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Print the first 10 observations from the data.
+print(spam.head(10))
 </pre></div>
 </div>
 </div>
@@ -1075,24 +1076,24 @@ None
 <h3>Fit model<a class="headerlink" href="#fit-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build a decision tree to classify an email as spam or non-spam.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Build a decision tree to classify an email as spam or non-spam.
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">spam</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Drops the last column of the dataframe that contains the spam indicator (response).</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">spam</span><span class="p">[</span><span class="s1">&#39;Spam_fl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">Y_train</span><span class="p">,</span><span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-        <span class="c1"># This separates the data into training (75%) and test (25%) datasets.</span>
+X = spam.iloc[:,:-1] # Drops the last column of the dataframe that contains the spam indicator (response).
+Y = spam[&#39;Spam_fl&#39;].values
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size = 0.25, random_state=42)
+        # This separates the data into training (75%) and test (25%) datasets.
 
-<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Experiment with changing this value of alpha.</span>
-              <span class="c1"># What happens to the size of the decision tree and its accuracy?</span>
+alpha = 0.001 # Experiment with changing this value of alpha.
+              # What happens to the size of the decision tree and its accuracy?
 
-<span class="n">criteria</span> <span class="o">=</span> <span class="s1">&#39;gini&#39;</span> <span class="c1"># Experiment with changing this to an &#39;entropy&#39; criterion</span>
-                  <span class="c1"># What happens to the size of the decision tree and its accuracy?        </span>
+criteria = &#39;gini&#39; # Experiment with changing this to an &#39;entropy&#39; criterion
+                  # What happens to the size of the decision tree and its accuracy?        
 
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
-<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">classifier</span><span class="p">)</span> 
+classifier = tree.DecisionTreeClassifier(random_state=0, ccp_alpha=alpha, min_samples_split=20, criterion=criteria, min_samples_leaf=5)
+classifier.fit(X_train, Y_train)
+tree.plot_tree(classifier) 
 
-<span class="n">Y_predict</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+Y_predict = classifier.predict(X_test)
 </pre></div>
 </div>
 </div>
@@ -1105,20 +1106,20 @@ None
 <h3>Evaluate model<a class="headerlink" href="#evaluate-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the confusion matrix and test accuracy.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test confusion matrix:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_predict</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test accuracy is </span><span class="si">{:.4f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_predict</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the confusion matrix and test accuracy.
+print(&#39;Test confusion matrix:&#39;)
+print(confusion_matrix(Y_test, Y_predict))
+print(&#39;Test accuracy is {:.4f}.&#39;.format(accuracy_score(Y_test, Y_predict)))
 
-<span class="c1"># Calculate the AUC and ROC.</span>
-<span class="n">Y_prob</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_prob</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">roc_auc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC is </span><span class="si">{:.4f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">roc_auc</span><span class="p">))</span>
+# Calculate the AUC and ROC.
+Y_prob = classifier.predict_proba(X_test)
+fpr, tpr, threshold = metrics.roc_curve(Y_test, Y_prob[:,1:2])
+roc_auc = metrics.auc(fpr, tpr)
+print(&#39;AUC is {:.4f}.&#39;.format(roc_auc))
 
-<span class="c1"># Calculate the number of terminal nodes in the tree.</span>
-<span class="n">num_nodes</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">classifier</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">node_count</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The number of terminal nodes is </span><span class="si">{:.0f}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
+# Calculate the number of terminal nodes in the tree.
+num_nodes = (1+classifier.tree_.node_count)/2
+print(&#39;The number of terminal nodes is {:.0f}.&#39;.format(num_nodes))
 </pre></div>
 </div>
 </div>
@@ -1135,14 +1136,14 @@ The number of terminal nodes is 37.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the tree in a format that is easier to visualise.</span>
-<span class="n">clf2</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ccp_alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">clf2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the tree in a format that is easier to visualise.
+clf2 = tree.DecisionTreeClassifier(random_state=0, ccp_alpha=0.01, min_samples_split=20, criterion=&quot;gini&quot;,min_samples_leaf=5)
+clf2.fit(X_train, Y_train)
 
-<span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf2</span><span class="p">,</span> <span class="s1">&#39;DAA_M05_Fig11.dot&#39;</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Not Spam&#39;</span><span class="p">,</span> <span class="s1">&#39;Spam&#39;</span><span class="p">],</span><span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="o">!</span> dot -Tpng DAA_M05_Fig11.dot -o DAA_M05_Fig11.png
+export_graphviz(clf2, &#39;DAA_M05_Fig11.dot&#39;, feature_names = X_train.columns,class_names=[&#39;Not Spam&#39;, &#39;Spam&#39;],filled=True, rounded=True,special_characters=True)
+! dot -Tpng DAA_M05_Fig11.dot -o DAA_M05_Fig11.png
 
-<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;DAA_M05_Fig11.png&#39;</span><span class="p">)</span> 
+Image(filename=&#39;DAA_M05_Fig11.png&#39;) 
 </pre></div>
 </div>
 </div>

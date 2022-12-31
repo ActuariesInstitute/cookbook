@@ -914,30 +914,30 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># For data management.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd # For data management.
+import numpy as np # For mathematical operations.
 
-<span class="c1"># Matplotlib and Seaborn are used for plotting.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
+# Matplotlib and Seaborn are used for plotting.
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import seaborn as sns
+%matplotlib inline
 
-<span class="c1"># Various scikit-learn functions to help with modelling and diagnostics.</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+# Various scikit-learn functions to help with modelling and diagnostics.
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+import itertools
 
-<span class="c1"># Keras, from the Tensorflow package, is used for fitting the neural networks.</span>
-<span class="kn">from</span> <span class="nn">keras.utils.np_utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPool2D</span>
-<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span><span class="p">,</span> <span class="n">SGD</span>
-<span class="kn">from</span> <span class="nn">keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span>
-<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">ReduceLROnPlateau</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">plot_model</span>
+# Keras, from the Tensorflow package, is used for fitting the neural networks.
+from keras.utils.np_utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D
+from keras.optimizers import RMSprop, SGD
+from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import ReduceLROnPlateau
+from tensorflow.keras.utils import plot_model
 
-<span class="kn">import</span> <span class="nn">os</span>
+import os
 </pre></div>
 </div>
 </div>
@@ -948,68 +948,68 @@ title="Print to PDF"
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to split the data into train, validation, and test sets.</span>
-<span class="c1"># This function uses the train_test_split function from the sklearn package</span>
-<span class="c1"># to do the actual data splitting.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to split the data into train, validation, and test sets.
+# This function uses the train_test_split function from the sklearn package
+# to do the actual data splitting.
 
-<span class="k">def</span> <span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
-    <span class="c1"># Split data into train/test (80%, 20%).</span>
-    <span class="n">train_full</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">)</span>
+def create_data_splits(dataset, response_col):
+    # Split data into train/test (80%, 20%).
+    train_full, test = train_test_split(dataset, test_size = 0.2, random_state = 123)
 
-    <span class="c1"># Create a validation set from the training data (20%).</span>
-    <span class="n">train</span><span class="p">,</span> <span class="n">validation</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train_full</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">234</span><span class="p">)</span>
+    # Create a validation set from the training data (20%).
+    train, validation = train_test_split(train_full, test_size = 0.2, random_state = 234)
 
-    <span class="c1"># Create train and validation model matrices and response vectors.</span>
-    <span class="c1"># For the response vector, convert Churn Yes/No to 1/0</span>
+    # Create train and validation model matrices and response vectors.
+    # For the response vector, convert Churn Yes/No to 1/0
 
-    <span class="n">train_x</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">train_y</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
-    <span class="n">train_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
+    train_x = train.drop(labels=response_col, axis=1)
+    train_y = train[response_col]
+    train_y.index = range(len(train_y))
 
-    <span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">validation_y</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
-    <span class="n">validation_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">validation_y</span><span class="p">))</span>
+    validation_x = validation.drop(labels=response_col, axis=1)
+    validation_y = validation[response_col]
+    validation_y.index = range(len(validation_y))
 
-    <span class="n">test_x</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">response_col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">test_y</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span>
-    <span class="n">test_y</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_y</span><span class="p">))</span>
+    test_x = test.drop(labels=response_col, axis=1)
+    test_y = test[response_col]
+    test_y.index = range(len(test_y))
 
-    <span class="k">return</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span>
+    return train_x, train_y, validation_x, validation_y, test_x, test_y
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to generate a confusion matrix to observe a model&#39;s results.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
-                          <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
-                          <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    This function prints and plots a confusion matrix.</span>
-<span class="sd">    Normalisation of the matrix can be applied by setting `normalise=True`.</span>
-<span class="sd">    Normalisation ensures that the sum of each row in the confusion matrix is 1.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-    <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to generate a confusion matrix to observe a model&#39;s results.
+def plot_confusion_matrix(cm, classes,
+                          normalise=False,
+                          title=&#39;Confusion matrix&#39;,
+                          cmap=plt.cm.Blues):
+    &#39;&#39;&#39;
+    This function prints and plots a confusion matrix.
+    Normalisation of the matrix can be applied by setting `normalise=True`.
+    Normalisation ensures that the sum of each row in the confusion matrix is 1.
+    &#39;&#39;&#39;
+    plt.imshow(cm, interpolation=&#39;nearest&#39;, cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
 
-    <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
-        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    if normalise:
+        cm = cm.astype(&#39;float&#39;) / cm.sum(axis=1)[:, np.newaxis]
 
-    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment=&#39;center&#39;,
+                 color=&#39;white&#39; if cm[i, j] &gt; thresh else &#39;black&#39;)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    plt.tight_layout()
+    plt.ylabel(&#39;True response&#39;)
+    plt.xlabel(&#39;Predicted response&#39;)
 </pre></div>
 </div>
 </div>
@@ -1029,19 +1029,19 @@ title="Print to PDF"
 <p>Note that the MNIST dataset is large (75MB) hence it has been zipped, but pandas reads it natively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder or URL datasets are saved in.</span>
-<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the folder or URL datasets are saved in.
+infolder = &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the filename.</span>
-<span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;DAA_M05_CS2_data.csv.zip&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the filename.
+file = &#39;DAA_M05_CS2_data.csv.zip&#39;
 
-<span class="c1"># Read in the data from your Google Drive folder.</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file</span><span class="p">)</span>
+# Read in the data from your Google Drive folder.
+dataset = pd.read_csv (infolder+file)
 </pre></div>
 </div>
 </div>
@@ -1057,8 +1057,8 @@ title="Print to PDF"
 <p>Graphical observations of the images will be made later in the notebook once the data has been pre-processed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the types of each feature and the response variable (&#39;label&#39;).</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the types of each feature and the response variable (&#39;label&#39;).
+dataset.dtypes
 </pre></div>
 </div>
 </div>
@@ -1081,10 +1081,10 @@ Length: 785, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the counts for each response class (digit) and build a barplot of these</span>
-<span class="c1"># counts for each of interpretation.</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Extract the counts for each response class (digit) and build a barplot of these
+# counts for each of interpretation.
+sns.countplot(x=&#39;label&#39;,data=dataset)
+print(dataset[&#39;label&#39;].value_counts())
 </pre></div>
 </div>
 </div>
@@ -1111,31 +1111,31 @@ Name: label, dtype: int64
 <p>The dataset will be pre-processed so that neural networks can be built with the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Split the dataset into a train, validation, and test set. </span>
-<span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span> \
-<span class="o">=</span> <span class="n">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>## Split the dataset into a train, validation, and test set. 
+train_x, train_y, validation_x, validation_y, test_x, test_y \
+= create_data_splits(dataset, &#39;label&#39;)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rescale the features from being in the range [0,255] to [0:1].</span>
-<span class="n">train_x</span> <span class="o">=</span> <span class="n">train_x</span><span class="o">/</span><span class="mf">255.0</span>
-<span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation_x</span><span class="o">/</span><span class="mf">255.0</span>
-<span class="n">test_x</span> <span class="o">=</span> <span class="n">test_x</span><span class="o">/</span><span class="mf">255.0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Rescale the features from being in the range [0,255] to [0:1].
+train_x = train_x/255.0
+validation_x = validation_x/255.0
+test_x = test_x/255.0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reshape the features for each observation from being a vector of size 784</span>
-<span class="c1"># to being a matrix of size 28x28.</span>
-<span class="c1"># This is required for building the convolutional neural network (CNN) below.</span>
-<span class="n">train_cnn_x</span> <span class="o">=</span> <span class="n">train_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">validation_cnn_x</span> <span class="o">=</span> <span class="n">validation_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">test_cnn_x</span> <span class="o">=</span> <span class="n">test_x</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Reshape the features for each observation from being a vector of size 784
+# to being a matrix of size 28x28.
+# This is required for building the convolutional neural network (CNN) below.
+train_cnn_x = train_x.values.reshape(-1, 28, 28, 1)
+validation_cnn_x = validation_x.values.reshape(-1, 28, 28, 1)
+test_cnn_x = test_x.values.reshape(-1, 28, 28, 1)
 </pre></div>
 </div>
 </div>
@@ -1146,15 +1146,15 @@ Name: label, dtype: int64
 <p>The code below visualises an observation (hand-written digit) from each of the response classes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise an example from each of the response classes</span>
-<span class="c1"># (the digits from 0 to 9).</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">train_cnn_x</span><span class="p">[</span><span class="n">train_y</span><span class="p">[</span><span class="n">train_y</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]][:,:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Visualise an example from each of the response classes
+# (the digits from 0 to 9).
+fig = plt.figure(figsize=(10,5))
+rows = 2
+columns = 5
+for i in range(0, 10):
+    fig.add_subplot(rows, columns, i+1)
+    plt.imshow(train_cnn_x[train_y[train_y == i].index[0]][:,:,0])
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1164,10 +1164,10 @@ Name: label, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encode the response from a continuous (integer) to a categorical variable.</span>
-<span class="n">train_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">train_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">validation_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">validation_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">test_y</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Encode the response from a continuous (integer) to a categorical variable.
+train_y = to_categorical(train_y, num_classes=10)
+validation_y = to_categorical(validation_y, num_classes=10)
+test_y = to_categorical(test_y, num_classes=10)
 </pre></div>
 </div>
 </div>
@@ -1192,30 +1192,30 @@ Name: label, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the model&#39;s architecture.</span>
-<span class="n">nn_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span> <span class="mi">784</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
-<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
-<span class="n">nn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the model&#39;s architecture.
+nn_model = Sequential()
+nn_model.add(Dense(16, input_dim= 784, kernel_initializer=&#39;normal&#39;, activation=&#39;relu&#39;))
+nn_model.add(Dense(16, activation=&#39;relu&#39;, kernel_regularizer=&#39;l2&#39;))
+nn_model.add(Dense(10, activation=&#39;softmax&#39;))
 
-<span class="c1"># Compile the model.</span>
-<span class="n">opt</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-  <span class="c1"># This specifies that regular stochastic gradient descent (SGD) should be</span>
-  <span class="c1"># used with a learning rate of 0.2.</span>
-  <span class="c1"># Momentum = 0 specifies that the regular SGD algorithm should be used</span>
-  <span class="c1"># &#39;without momentum&#39;.</span>
-  <span class="c1"># SGD with momentum is a variant on regular SGD that uses an</span>
-  <span class="c1"># exponential moving average of current and past gradients rather than just</span>
-  <span class="c1"># the gradient for the current iteration.</span>
-<span class="n">nn_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> 
-      <span class="c1"># The &#39;categorical_crossentropy&#39; loss function is useful</span>
-      <span class="c1"># for an integer response variable.</span>
-    <span class="n">optimizer</span> <span class="o">=</span>  <span class="n">opt</span><span class="p">,</span>
+# Compile the model.
+opt = SGD(learning_rate=0.2, momentum=0.0)
+  # This specifies that regular stochastic gradient descent (SGD) should be
+  # used with a learning rate of 0.2.
+  # Momentum = 0 specifies that the regular SGD algorithm should be used
+  # &#39;without momentum&#39;.
+  # SGD with momentum is a variant on regular SGD that uses an
+  # exponential moving average of current and past gradients rather than just
+  # the gradient for the current iteration.
+nn_model.compile(
+    loss=&#39;categorical_crossentropy&#39;, 
+      # The &#39;categorical_crossentropy&#39; loss function is useful
+      # for an integer response variable.
+    optimizer =  opt,
 
-    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">nn_hist</span> <span class="o">=</span> <span class="n">nn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_y</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">))</span>
+    metrics=[&#39;accuracy&#39;],
+)
+nn_hist = nn_model.fit(np.array(train_x), np.array(train_y), epochs=100,batch_size=1000, validation_data = (validation_x, validation_y))
 </pre></div>
 </div>
 </div>
@@ -1431,14 +1431,14 @@ Epoch 100/100
 <h3>Evaluate NN 1<a class="headerlink" href="#evaluate-nn-1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the accuracy of the fitted model after each epoch.</span>
-<span class="c1"># An epoch is a full cycle through the training data.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NN1 model accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the accuracy of the fitted model after each epoch.
+# An epoch is a full cycle through the training data.
+plt.plot(nn_hist.history[&#39;accuracy&#39;], color=&#39;dodgerblue&#39;)
+plt.plot(nn_hist.history[&#39;val_accuracy&#39;],color=&#39;orange&#39;)
+plt.title(&#39;NN1 model accuracy&#39;)
+plt.ylabel(&#39;accuracy&#39;)
+plt.xlabel(&#39;epoch&#39;)
+plt.legend([&#39;train&#39;,&#39;validation&#39;], loc=&#39;lower right&#39;)
 </pre></div>
 </div>
 </div>
@@ -1457,42 +1457,42 @@ Epoch 100/100
 <p>The CNN below will use two convolutional layers with a 5x5 filter/kernel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cnn_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cnn_model = Sequential()
 
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
-                 <span class="n">activation</span> <span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
-  <span class="c1"># Notice from the input_shape = (28,28,1) term above</span>
-  <span class="c1"># that the CNN takes as input the 28x28 matrix of pixel features</span>
-  <span class="c1"># rather than the flattened vector of all 784 pixel features. </span>
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
-                 <span class="n">activation</span> <span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+cnn_model.add(Conv2D(filters = 16, kernel_size = (5,5), 
+                 activation =&#39;relu&#39;, input_shape = (28,28,1)))
+  # Notice from the input_shape = (28,28,1) term above
+  # that the CNN takes as input the 28x28 matrix of pixel features
+  # rather than the flattened vector of all 784 pixel features. 
+cnn_model.add(Conv2D(filters = 16, kernel_size = (5,5), 
+                 activation =&#39;relu&#39;))
+cnn_model.add(MaxPool2D(pool_size=(2,2)))
 
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
-  <span class="c1"># Flatten() converts the matrix outputs from the convolutional layers</span>
-  <span class="c1"># back into vectors for feeding into the output layer. </span>
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+cnn_model.add(Flatten())
+  # Flatten() converts the matrix outputs from the convolutional layers
+  # back into vectors for feeding into the output layer. 
+cnn_model.add(Dense(10, activation = &#39;softmax&#39;))
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the regular stochastic gradient descent (SGD) optimiser (without</span>
-<span class="c1"># momentum, a learning rate of 0.2 and the crossentropy loss function.</span>
-<span class="c1"># to be used in the fitting of the model.</span>
-<span class="n">opt</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="n">cnn_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">opt</span> <span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
-                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define the regular stochastic gradient descent (SGD) optimiser (without
+# momentum, a learning rate of 0.2 and the crossentropy loss function.
+# to be used in the fitting of the model.
+opt = SGD(learning_rate=0.2, momentum=0.0)
+cnn_model.compile(optimizer = opt , loss = &#39;categorical_crossentropy&#39;,
+                  metrics=[&#39;accuracy&#39;])
 
-<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+epochs = 10
+batch_size = 10
 
-<span class="c1"># Fit the CNN and capture the error and accuracy rates from the fitted model</span>
-<span class="c1"># after each epoch.</span>
-<span class="n">cnn_hist</span> <span class="o">=</span> <span class="n">cnn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_cnn_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span><span class="p">,</span>
-                         <span class="n">epochs</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">,</span>
-                         <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">validation_cnn_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">))</span>
+# Fit the CNN and capture the error and accuracy rates from the fitted model
+# after each epoch.
+cnn_hist = cnn_model.fit(train_cnn_x, train_y, batch_size = batch_size,
+                         epochs = epochs,
+                         validation_data = (validation_cnn_x, validation_y))
 </pre></div>
 </div>
 </div>
@@ -1527,15 +1527,15 @@ Epoch 10/10
 <h3>Evaluate CNN<a class="headerlink" href="#evaluate-cnn" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the accuracy of the CNN against each epoch</span>
-<span class="c1"># to ensure that the model has converged on an</span>
-<span class="c1"># optimal solution.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;CNN model accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;validation&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot the accuracy of the CNN against each epoch
+# to ensure that the model has converged on an
+# optimal solution.
+plt.plot(cnn_hist.history[&#39;accuracy&#39;],color=&#39;dodgerblue&#39;)
+plt.plot(cnn_hist.history[&#39;val_accuracy&#39;],color=&#39;orange&#39;)
+plt.title(&#39;CNN model accuracy&#39;)
+plt.ylabel(&#39;accuracy&#39;)
+plt.xlabel(&#39;epoch&#39;)
+plt.legend([&#39;train&#39;, &#39;validation&#39;], loc=&#39;lower right&#39;)
 </pre></div>
 </div>
 </div>
@@ -1549,10 +1549,10 @@ Epoch 10/10
 <p>The graph of the accuracy suggests that the model may not have converged yet,since the validation accuracy is still volatile after 10 epochs. You can try to obtain a higher accuracy on the validation data by increasing the number of epochs used to train the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the accuracy obtained under the vanilla neural network (NN 1)</span>
-<span class="c1"># to that obtained under the CNN.</span>
-<span class="p">{</span><span class="s1">&#39;CNN&#39;</span><span class="p">:</span><span class="n">cnn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
- <span class="s1">&#39;NN 1&#39;</span><span class="p">:</span> <span class="n">nn_hist</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Compare the accuracy obtained under the vanilla neural network (NN 1)
+# to that obtained under the CNN.
+{&#39;CNN&#39;:cnn_hist.history[&#39;val_accuracy&#39;][-1],
+ &#39;NN 1&#39;: nn_hist.history[&#39;val_accuracy&#39;][-1]}
 </pre></div>
 </div>
 </div>
@@ -1568,12 +1568,12 @@ Epoch 10/10
 <h3>Select the final model<a class="headerlink" href="#select-the-final-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the final model and call it `nn_model_final`.</span>
-<span class="c1"># In this case, it is assumed that model accuracy is</span>
-<span class="c1"># more important than model training speed, hence the</span>
-<span class="c1"># CNN is chosen.</span>
-<span class="n">nn_model_final</span> <span class="o">=</span> <span class="n">cnn_model</span>
-<span class="n">test_x_final</span> <span class="o">=</span> <span class="n">test_cnn_x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Select the final model and call it `nn_model_final`.
+# In this case, it is assumed that model accuracy is
+# more important than model training speed, hence the
+# CNN is chosen.
+nn_model_final = cnn_model
+test_x_final = test_cnn_x
 </pre></div>
 </div>
 </div>
@@ -1587,13 +1587,13 @@ Epoch 10/10
 <p>Now that a final fitted model has been selected, it can be used to make predictions on the test set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the test set.</span>
-<span class="n">test_preds</span> <span class="o">=</span> <span class="n">nn_model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_x_final</span><span class="p">)</span>
-<span class="c1"># Convert the predictions (y_hat_gk) to class predictions (G(Xi.)).</span>
-<span class="n">test_preds_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_preds</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c1"># Convert the encoded responses (i.e. 0s and 1s to a single vector Numpy array</span>
-<span class="c1"># contained classes 0, 1, 2, ..., 9.</span>
-<span class="n">test_y_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Make predictions on the test set.
+test_preds = nn_model_final.predict(test_x_final)
+# Convert the predictions (y_hat_gk) to class predictions (G(Xi.)).
+test_preds_classes = np.argmax(test_preds,axis = 1)
+# Convert the encoded responses (i.e. 0s and 1s to a single vector Numpy array
+# contained classes 0, 1, 2, ..., 9.
+test_y_classes = np.argmax(test_y,axis = 1)
 </pre></div>
 </div>
 </div>
@@ -1601,14 +1601,14 @@ Epoch 10/10
 <p>Note that even though the CNN took a long time to train, it is very quick to score (i.e. make predictions based on a set of unseen observations).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the confusion matrix function defined at the top of the notebook</span>
-<span class="c1"># to observe the number of observations that have been</span>
-<span class="c1"># misclassified by the final model.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use the confusion matrix function defined at the top of the notebook
+# to observe the number of observations that have been
+# misclassified by the final model.
 
-<span class="c1"># Compute the confusion matrix.</span>
-<span class="n">confusion_mtx</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">test_y_classes</span><span class="p">,</span> <span class="n">test_preds_classes</span><span class="p">)</span> 
-<span class="c1"># Plot the confusion matrix.</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">confusion_mtx</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+# Compute the confusion matrix.
+confusion_mtx = confusion_matrix(test_y_classes, test_preds_classes) 
+# Plot the confusion matrix.
+plot_confusion_matrix(confusion_mtx, classes = range(10))
 </pre></div>
 </div>
 </div>
@@ -1623,20 +1623,20 @@ Epoch 10/10
 <p>The code below allows you to observe some of the images that were misclassified by the final model. This information might be useful in working out particular types of images that the model found hard to classify correctly, which might inform how to further improve the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a vector that allows errors to be identified.</span>
-<span class="n">errors</span> <span class="o">=</span> <span class="n">test_y_classes</span> <span class="o">-</span> <span class="n">test_preds_classes</span>
-<span class="n">error_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">errors</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a vector that allows errors to be identified.
+errors = test_y_classes - test_preds_classes
+error_indexes = np.where(errors != 0)
 
-<span class="c1"># Plot the first 10 errors.</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;. Actual digit: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_y_classes</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]])</span> <span class="o">+</span>
-          <span class="s1">&#39; Predicted digit: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_preds_classes</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]]))</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_x_final</span><span class="p">[</span><span class="n">error_indexes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]][:,:,</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# Plot the first 10 errors.
+fig = plt.figure(figsize=(10,5))
+rows = 2
+columns = 5
+for i in range(0, 10):
+    print(str(i+1)+&#39;. Actual digit: &#39; + str(test_y_classes[error_indexes[0][i]]) +
+          &#39; Predicted digit: &#39; + str(test_preds_classes[error_indexes[0][i]]))
+    fig.add_subplot(rows, columns, i+1)
+    plt.imshow(test_x_final[error_indexes[0][i]][:,:,0]);
+plt.show()
 </pre></div>
 </div>
 </div>
