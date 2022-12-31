@@ -1,10 +1,13 @@
 name: main-conda-env
 channels:
-  - conda-forge  
+  - default 
 dependencies:
+  - python=3.8
   - sphinx
   - pandas
   - matplotlib
-  - quantecon 
-  - jupyter-book
   - black
+  - pip
+  - pip:
+    - quantecon
+    - jupyter-book
