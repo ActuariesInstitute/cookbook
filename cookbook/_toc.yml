@@ -23,6 +23,7 @@ parts:
 - caption: Workflow Management
   chapters:
   - file:  docs/version_control
+  - file:  docs/predict_API_gradio.ipynb
 - caption: Regression, Classification and Technical Price
   chapters:
   - file:  docs/DAA_M05_CS1.ipynb
