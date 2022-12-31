@@ -13,7 +13,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v2.20
         with:
           auto-update-conda: true
           auto-activate-base: false
