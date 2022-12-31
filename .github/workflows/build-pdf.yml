@@ -30,7 +30,7 @@ jobs:
             latexmk                   \
             xindy
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2.20
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           auto-update-conda: true
           auto-activate-base: false
