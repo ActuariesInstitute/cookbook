@@ -876,17 +876,17 @@ SA1 is the most granular level, with each SA1 having an average population of ap
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Import pandas and numpy for data management.
-import numpy as np
-import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import pandas and numpy for data management.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-# Import library functions that will be required for the PCA modelling.
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+<span class="c1"># Import library functions that will be required for the PCA modelling.</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-# For calculating correlation between the ABS index and the recreated index.
-from scipy.stats import pearsonr
+<span class="c1"># For calculating correlation between the ABS index and the recreated index.</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
 </pre></div>
 </div>
 </div>
@@ -897,25 +897,25 @@ from scipy.stats import pearsonr
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to obtain the explained variances from the PCA features.
-def plot_explained_variances(pca):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to obtain the explained variances from the PCA features.</span>
+<span class="k">def</span> <span class="nf">plot_explained_variances</span><span class="p">(</span><span class="n">pca</span><span class="p">):</span>
 
-    exp_var_pca = pca.explained_variance_ratio_
+    <span class="n">exp_var_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
 
-    # Calculate the cumulative sum of variances explained.
-    # This will be used to create a scree plot for visualising the variance
-    # explained by each principal component.
+    <span class="c1"># Calculate the cumulative sum of variances explained.</span>
+    <span class="c1"># This will be used to create a scree plot for visualising the variance</span>
+    <span class="c1"># explained by each principal component.</span>
 
-    cum_sum_var = np.cumsum(exp_var_pca)
+    <span class="n">cum_sum_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span>
     
-    # Create the plot
-    plt.bar(range(1,len(exp_var_pca)+1), exp_var_pca, alpha=0.5, align=&#39;center&#39;,
-            label=&#39;Individual explained variance&#39;,color=&#39;dodgerblue&#39;)
-    plt.ylabel(&#39;Explained variance ratio&#39;)
-    plt.xlabel(&#39;Principal component&#39;)
-    plt.legend(loc=&#39;best&#39;)
-    plt.tight_layout()
-    plt.show()
+    <span class="c1"># Create the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">exp_var_pca</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Individual explained variance&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Explained variance ratio&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal component&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -933,31 +933,31 @@ def plot_explained_variances(pca):
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Specify the folder that your datasets are saved in.
-# or here, read it from the URL 
-infolder = &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder that your datasets are saved in.</span>
+<span class="c1"># or here, read it from the URL </span>
+<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Import the data files for the case study.
-# The first data set (&#39;file1&#39; below) contains the features to be used in the 
-# modelling for each SA1.
-# The second data set (&#39;file2&#39; below) contains the ABS&#39;s reported
-# IRSD index value for each SA1 which will be used later for comparison to
-# the index derived in this notebook.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the data files for the case study.</span>
+<span class="c1"># The first data set (&#39;file1&#39; below) contains the features to be used in the </span>
+<span class="c1"># modelling for each SA1.</span>
+<span class="c1"># The second data set (&#39;file2&#39; below) contains the ABS&#39;s reported</span>
+<span class="c1"># IRSD index value for each SA1 which will be used later for comparison to</span>
+<span class="c1"># the index derived in this notebook.</span>
 
-# Specify the filenames.
-file1 = &#39;DAA_M06_CS1_data1.csv&#39;
-file2 = &#39;DAA_M06_CS1_data2.xls&#39;
+<span class="c1"># Specify the filenames.</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS1_data1.csv&#39;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS1_data2.xls&#39;</span>
 
-# Read in the data from your folder.
-data1 = pd.read_csv(infolder+file1)
-data2 = pd.read_excel(infolder+file2, sheet_name=&#39;Table 1&#39;, header = 5,
-                      usecols=&#39;A:C&#39;,
-                      names = [&#39;SA1_7DIGITCODE_2016&#39;, &#39;SA1_11DIGITCODE_2016&#39;, &#39;IRSD_ABS&#39;])
+<span class="c1"># Read in the data from your folder.</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file1</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file2</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Table 1&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                      <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;A:C&#39;</span><span class="p">,</span>
+                      <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">,</span> <span class="s1">&#39;SA1_11DIGITCODE_2016&#39;</span><span class="p">,</span> <span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -967,7 +967,7 @@ data2 = pd.read_excel(infolder+file2, sheet_name=&#39;Table 1&#39;, header = 5,
 <h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data1.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1110,7 @@ data2 = pd.read_excel(infolder+file2, sheet_name=&#39;Table 1&#39;, header = 5,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data2.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1180,16 +1180,16 @@ data2 = pd.read_excel(infolder+file2, sheet_name=&#39;Table 1&#39;, header = 5,
 <h4>Dataset 1<a class="headerlink" href="#dataset-1" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Drop the first column of dataset 1 for the purposes of the PCA analysis.
-pca_data = data1.iloc[:,1:]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop the first column of dataset 1 for the purposes of the PCA analysis.</span>
+<span class="n">pca_data</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
 
-# Scale the features in dataset 1.
-sc = StandardScaler()
-sc.fit(pca_data)
-pca_data = sc.transform(pca_data)
+<span class="c1"># Scale the features in dataset 1.</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_data</span><span class="p">)</span>
+<span class="n">pca_data</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pca_data</span><span class="p">)</span>
 
-print(data1[0:5])
-print(pca_data[0:5])
+<span class="nb">print</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pca_data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1245,24 +1245,24 @@ print(pca_data[0:5])
 <h4>Dataset 2<a class="headerlink" href="#dataset-2" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Remove the second column (&#39;SA1_11DIGITCODE_2016&#39;) of dataset 2
-# as this is not needed in the analysis.
-# Also, the last row in the dataset is a blank row, so this will also be
-# removed.
-ABS_IRSD_S1 = data2.iloc[:-2,[0,2]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the second column (&#39;SA1_11DIGITCODE_2016&#39;) of dataset 2</span>
+<span class="c1"># as this is not needed in the analysis.</span>
+<span class="c1"># Also, the last row in the dataset is a blank row, so this will also be</span>
+<span class="c1"># removed.</span>
+<span class="n">ABS_IRSD_S1</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
 
-# Convert the ABS_IRSD features to be numeric.
-ABS_IRSD_S1[&#39;IRSD_ABS&#39;] = pd.to_numeric(ABS_IRSD_S1[&#39;IRSD_ABS&#39;],
-                                        errors=&#39;coerce&#39;)
-ABS_IRSD_S1[&#39;SA1_7DIGITCODE_2016&#39;] = pd.to_numeric(ABS_IRSD_S1[&#39;SA1_7DIGITCODE_2016&#39;],
-                                        errors=&#39;coerce&#39;, downcast=&#39;integer&#39;)
+<span class="c1"># Convert the ABS_IRSD features to be numeric.</span>
+<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">)</span>
 
 
-# Drop any SA1s with missing values in the dataset.
-ABS_IRSD_S1 = ABS_IRSD_S1.dropna()
+<span class="c1"># Drop any SA1s with missing values in the dataset.</span>
+<span class="n">ABS_IRSD_S1</span> <span class="o">=</span> <span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 
-print(ABS_IRSD_S1.info())
-print(ABS_IRSD_S1.head())
+<span class="nb">print</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1297,15 +1297,15 @@ None
 <h3>Fit the model<a class="headerlink" href="#fit-the-model" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initiate the PCA.
-pca = PCA()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate the PCA.</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
 
-# Fit the PCA model to determine the transformed features.
-pca.fit_transform(pca_data)
+<span class="c1"># Fit the PCA model to determine the transformed features.</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pca_data</span><span class="p">)</span>
 
-# Use the &#39;plot_explained_variances&#39; function defined at the top of the
-# notebook to plot the variance explained by each principal component.
-plot_explained_variances(pca)
+<span class="c1"># Use the &#39;plot_explained_variances&#39; function defined at the top of the</span>
+<span class="c1"># notebook to plot the variance explained by each principal component.</span>
+<span class="n">plot_explained_variances</span><span class="p">(</span><span class="n">pca</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1316,8 +1316,8 @@ plot_explained_variances(pca)
 <p>Principal component 1 (PC1) explains over 30% of the variance in the data. PC1 is used as the basis of calculating the IRSD.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print out the weights from the first principal component.
-print(pca.components_[0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out the weights from the first principal component.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1331,16 +1331,16 @@ print(pca.components_[0])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Apply the PCA dimensionality reduction on the original dataset.
-# Note that in the step below, all the calculated principal components
-# are multipled by -1, to align with the approach used by the ABS
-# where disadvantage indicators, such as the features used in this
-# case study, are given negative rather than positive weights.
-# This is described further on page 18 of the SEIFA technical paper. 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply the PCA dimensionality reduction on the original dataset.</span>
+<span class="c1"># Note that in the step below, all the calculated principal components</span>
+<span class="c1"># are multipled by -1, to align with the approach used by the ABS</span>
+<span class="c1"># where disadvantage indicators, such as the features used in this</span>
+<span class="c1"># case study, are given negative rather than positive weights.</span>
+<span class="c1"># This is described further on page 18 of the SEIFA technical paper. </span>
 
-pca_data_transformed = -1.0*pca.fit_transform(pca_data)
+<span class="n">pca_data_transformed</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="o">*</span><span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pca_data</span><span class="p">)</span>
     
-print(pca_data_transformed[:,0])
+<span class="nb">print</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1353,16 +1353,16 @@ print(pca_data_transformed[:,0])
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Merge principal component 1 (PC1) with the original dataset so that
-# each SA1 is matched with its calculated raw IRSD index value.
-pca1 = pd.DataFrame(pca_data_transformed[:,0], columns = [&#39;IRSD_raw&#39;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge principal component 1 (PC1) with the original dataset so that</span>
+<span class="c1"># each SA1 is matched with its calculated raw IRSD index value.</span>
+<span class="n">pca1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">])</span>
 
-IRSD_S1 = pd.concat([data1[&#39;SA1_7DIGITCODE_2016&#39;].reset_index(drop=True), pca1]
-                    , axis=1)
+<span class="n">IRSD_S1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">pca1</span><span class="p">]</span>
+                    <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-# Print the first 5 observations in the new dataset which shows the
-# raw IRSD index value for each SA1.
-print(IRSD_S1.head())
+<span class="c1"># Print the first 5 observations in the new dataset which shows the</span>
+<span class="c1"># raw IRSD index value for each SA1.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">IRSD_S1</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1379,12 +1379,12 @@ print(IRSD_S1.head())
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Rescale the raw IRSD index values to have a mean of 1,000 and a
-# standard deviation of 100.
-IRSD_S1[&#39;IRSD_recreated&#39;] = (IRSD_S1[&#39;IRSD_raw&#39;]/IRSD_S1[&#39;IRSD_raw&#39;].std())*100+1000
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rescale the raw IRSD index values to have a mean of 1,000 and a</span>
+<span class="c1"># standard deviation of 100.</span>
+<span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1000</span>
 
-# Print the first 5 observations to see their scaled IRSD index values.
-print(IRSD_S1.head())
+<span class="c1"># Print the first 5 observations to see their scaled IRSD index values.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">IRSD_S1</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1401,15 +1401,15 @@ print(IRSD_S1.head())
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot a histogram to show the distribution of IRSD_scaled index values
-# across all the SA1s.
-IRSD_S1.hist(column=&#39;IRSD_recreated&#39;, bins=100, color=&#39;dodgerblue&#39;)
-plt.title(&#39;Distribution of recreated IRSD scores&#39;)
-plt.xlabel(&#39;IRSD score&#39;)
-plt.ylabel(&#39;Frequency&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram to show the distribution of IRSD_scaled index values</span>
+<span class="c1"># across all the SA1s.</span>
+<span class="n">IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of recreated IRSD scores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IRSD score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 
-plt.show()
-#plt.savefig(&#39;DAA_M06_Fig11.jpg&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#plt.savefig(&#39;DAA_M06_Fig11.jpg&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -1423,14 +1423,14 @@ plt.show()
 <p>This section compares the created IRSD indexes to those published by the ABS to see how well this notebook has replicated the ABS index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Plot a histogram to show the distribution of the ABS IRSD index values
-# across all the SA1s.
-ABS_IRSD_S1.hist(column=&#39;IRSD_ABS&#39;, bins=100, color=&#39;dodgerblue&#39;)
-plt.title(&#39;Distribution of ABS IRSD scores&#39;)
-plt.xlabel(&#39;IRSD score&#39;)
-plt.ylabel(&#39;Frequency&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram to show the distribution of the ABS IRSD index values</span>
+<span class="c1"># across all the SA1s.</span>
+<span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of ABS IRSD scores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IRSD score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1441,12 +1441,12 @@ plt.show()
 <p>The two histograms look very similar. This is promising!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Join the two datasets together to compare the IRSD calculated to the ABS
-# published IRSD.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Join the two datasets together to compare the IRSD calculated to the ABS</span>
+<span class="c1"># published IRSD.</span>
 
-IRSD_join = pd.merge(ABS_IRSD_S1, IRSD_S1, how = &#39;inner&#39;, on = &#39;SA1_7DIGITCODE_2016&#39;)
+<span class="n">IRSD_join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">,</span> <span class="n">IRSD_S1</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">)</span>
 
-print(IRSD_join.head())
+<span class="nb">print</span><span class="p">(</span><span class="n">IRSD_join</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1464,16 +1464,16 @@ print(IRSD_join.head())
 <p>A quick look at the first 5 SA1s in the dataset shows that the ABS’s IRSD index values and the values calculated in this notebook are very close for some of the SA1 (in the example above SA1 1100701, 1100703, 1100704 and 1100705), but different for others (e.g. SA1 2200702 which has a much higher ABS index).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a scatter plot to see how well the recreated index aligns with the ABS
-# index, even if the individual index values aren&#39;t the same for all SA1s.
-plt.scatter(&#39;IRSD_recreated&#39;, &#39;IRSD_ABS&#39;, data=IRSD_join, color=&#39;dodgerblue&#39;)
-plt.title(&#39;Comparison of recreated and ABS IRSD scores&#39;)
-plt.xlabel(&#39;Recreated IRSD score&#39;)
-plt.ylabel(&#39;ABS IRSD score&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scatter plot to see how well the recreated index aligns with the ABS</span>
+<span class="c1"># index, even if the individual index values aren&#39;t the same for all SA1s.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">,</span> <span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">IRSD_join</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of recreated and ABS IRSD scores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recreated IRSD score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ABS IRSD score&#39;</span><span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-#plt.savefig(&#39;DAA_M06_Fig12.jpg&#39;)
+<span class="c1">#plt.savefig(&#39;DAA_M06_Fig12.jpg&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -1484,10 +1484,10 @@ plt.show()
 <p>The above scatter plot shows that the two sets of indexes are broadly aligned.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the correlation between the ABS index and the index calculated
-# in this notebook.
-correlation, _ = pearsonr(IRSD_join[&#39;IRSD_recreated&#39;], IRSD_join[&#39;IRSD_ABS&#39;])
-print(&#39;The correlation between the ABS and recreated index is: &#39;+str(correlation))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation between the ABS index and the index calculated</span>
+<span class="c1"># in this notebook.</span>
+<span class="n">correlation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">IRSD_join</span><span class="p">[</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">],</span> <span class="n">IRSD_join</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The correlation between the ABS and recreated index is: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">correlation</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

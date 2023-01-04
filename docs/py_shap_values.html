@@ -884,24 +884,24 @@ title="Print to PDF"
 <p>Note that the sklearn pipeline is the main backbone of the process here out of convenience but any other workflow/ pre-processing framework would work just as well.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import shap
-import warnings
-from IPython.display import Image
-from IPython.core.display import HTML 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shap</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span> 
 
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import mean_squared_error
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
-from sklearn.ensemble import GradientBoostingRegressor
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
 
-warnings.filterwarnings(&#39;ignore&#39;)
-plt.ioff()
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -937,19 +937,19 @@ plt.ioff()
 <h3>Importing<a class="headerlink" href="#importing" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Import data from GitHub repository
-df = pd.read_csv(&quot;https://raw.githubusercontent.com/sharmaroshan/Insurance-Claim-Prediction/master/insurance.csv&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data from GitHub repository</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/sharmaroshan/Insurance-Claim-Prediction/master/insurance.csv&quot;</span><span class="p">)</span>
 
-# Get column names for independent and response variables
-rating_factors_col = list(df.columns[:-1])
-claims_col = df.columns[-1]
+<span class="c1"># Get column names for independent and response variables</span>
+<span class="n">rating_factors_col</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">claims_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.head(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1018,11 +1018,11 @@ claims_col = df.columns[-1]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Splitting up the categorical columns and numerical columns
-# This is to differentiate the pre-processing functions applied later in the pipeline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Splitting up the categorical columns and numerical columns</span>
+<span class="c1"># This is to differentiate the pre-processing functions applied later in the pipeline</span>
 
-num_features = list(df[rating_factors_col].select_dtypes(include=[&quot;int64&quot;, &quot;float64&quot;]).columns)
-cat_features = [col for col in rating_factors_col if col not in num_features]
+<span class="n">num_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">rating_factors_col</span><span class="p">]</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span> <span class="s2">&quot;float64&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">rating_factors_col</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">num_features</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1032,59 +1032,59 @@ cat_features = [col for col in rating_factors_col if col not in num_features]
 <h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Split our dataset into training and testing sets
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split our dataset into training and testing sets</span>
 
-X_train, X_test, y_train, y_test = train_test_split(
-            df[rating_factors_col],
-            df[claims_col],
-            test_size=0.2,
-            random_state=123
-        )
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">rating_factors_col</span><span class="p">],</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">claims_col</span><span class="p">],</span>
+            <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a preprocessor step
-# This ignores numerical columns but applies OHE to categorical features
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a preprocessor step</span>
+<span class="c1"># This ignores numerical columns but applies OHE to categorical features</span>
 
-preprocessor = ColumnTransformer(
-    transformers = [
-        (&quot;numerical&quot;, &quot;passthrough&quot;, num_features),
-        (&quot;categorical&quot;, OneHotEncoder(sparse=False, handle_unknown=&quot;ignore&quot;), cat_features)
-    ]
-)
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;numerical&quot;</span><span class="p">,</span> <span class="s2">&quot;passthrough&quot;</span><span class="p">,</span> <span class="n">num_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Some wrangling done to get OHE feature names
-# Note that preprocess.get_feature_names() can be used as well but by default produces x prefix which I did not want
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Some wrangling done to get OHE feature names</span>
+<span class="c1"># Note that preprocess.get_feature_names() can be used as well but by default produces x prefix which I did not want</span>
 
-ohe_categories = preprocessor.fit(X_train).named_transformers_[&quot;categorical&quot;].categories_
-ohe_categories_concat = [f&quot;{col}__{val}&quot; for col, vals in zip(cat_features, ohe_categories) for val in vals]
-rating_factors_encoded = num_features + ohe_categories_concat
+<span class="n">ohe_categories</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;categorical&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">categories_</span>
+<span class="n">ohe_categories_concat</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">__</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cat_features</span><span class="p">,</span> <span class="n">ohe_categories</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">]</span>
+<span class="n">rating_factors_encoded</span> <span class="o">=</span> <span class="n">num_features</span> <span class="o">+</span> <span class="n">ohe_categories_concat</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a dictionary of hyperparameters to be optimised
-# Create a sklearn Pipeline object which takes in the preprocessor step as well as a GBM object
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dictionary of hyperparameters to be optimised</span>
+<span class="c1"># Create a sklearn Pipeline object which takes in the preprocessor step as well as a GBM object</span>
 
-param_grid = {
-    &quot;model__learning_rate&quot;: [0.01, 0.1],
-    &quot;model__max_depth&quot;: [2, 3, 4],
-    &quot;model__min_samples_leaf&quot;: [1, 3, 5],
-    &quot;model__min_samples_split&quot;: [2, 4],
-    &quot;model__n_estimators&quot;: [100, 200]
-}
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;model__learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="s2">&quot;model__max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;model__min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s2">&quot;model__min_samples_split&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;model__n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="p">}</span>
 
-gbm_model = Pipeline([(&quot;preprocessor&quot;, preprocessor), (&quot;model&quot;, GradientBoostingRegressor())])
+<span class="n">gbm_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">&quot;preprocessor&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">GradientBoostingRegressor</span><span class="p">())])</span>
 </pre></div>
 </div>
 </div>
@@ -1094,32 +1094,32 @@ gbm_model = Pipeline([(&quot;preprocessor&quot;, preprocessor), (&quot;model&quo
 <h3>Modelling: Gradient Boosted Machine<a class="headerlink" href="#modelling-gradient-boosted-machine" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Instantiate a gridsearch-cross validation object
-# This takes in our previously created gbm pipeline and grid of hyperparameters to be tested
-# Using a standard 5-part CV split with MSE as a score as we are doing a regression exercise
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Instantiate a gridsearch-cross validation object</span>
+<span class="c1"># This takes in our previously created gbm pipeline and grid of hyperparameters to be tested</span>
+<span class="c1"># Using a standard 5-part CV split with MSE as a score as we are doing a regression exercise</span>
 
-gs = GridSearchCV(
-    gbm_model, 
-    param_grid=param_grid, 
-    n_jobs=-1, 
-    cv=5, 
-    scoring=&quot;neg_mean_squared_error&quot;,
-    verbose=0
-)
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">gbm_model</span><span class="p">,</span> 
+    <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> 
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> 
+    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run the gridsearch, set the hyperparameters to the set which gave us the lowest MSE
-# Fit the optimised model on our training data set and get test set predictions
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the gridsearch, set the hyperparameters to the set which gave us the lowest MSE</span>
+<span class="c1"># Fit the optimised model on our training data set and get test set predictions</span>
 
-_gs = gs.fit(X_train, y_train)
+<span class="n">_gs</span> <span class="o">=</span> <span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-gbm_model.set_params(**gs.best_params_)
-gbm_model.fit(X_train, y_train)
-gbm_pred = gbm_model.predict(X_test)
+<span class="n">gbm_model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">gs</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="n">gbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">gbm_pred</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1129,38 +1129,38 @@ gbm_pred = gbm_model.predict(X_test)
 <h3>Reasonableness checks<a class="headerlink" href="#reasonableness-checks" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Function created to create a multiple bar chart comparing actual vs predicted claims by deciles
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function created to create a multiple bar chart comparing actual vs predicted claims by deciles</span>
 
-def plot_avepp(df, expected, actual):
-    avepp = df.assign(
-        model_bands=pd.qcut(df[expected], 10, labels=np.arange(10) + 1),
-    ).groupby(&quot;model_bands&quot;)[[expected, actual]].agg(&quot;sum&quot;).reset_index()
-    n = avepp[&quot;model_bands&quot;].max()
-    width = 0.35
-    ax = plt.subplot(111)
-    pred_fig = ax.bar(np.arange(n) + width, avepp[expected], width)
-    actual_fig = ax.bar(np.arange(n), avepp[actual], width)
-    ax.set_title(&quot;AvE Decile Plot&quot;)
-    ax.set_xticks(np.arange(n) + width / 2)
-    ax.set_xticklabels(np.arange(n) + 1)
-    ax.legend((pred_fig[0], actual_fig[0]), (&quot;Pred&quot;, &quot;Actual&quot;))
-    plt.show()
+<span class="k">def</span> <span class="nf">plot_avepp</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">):</span>
+    <span class="n">avepp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">model_bands</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">expected</span><span class="p">],</span> <span class="mi">10</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model_bands&quot;</span><span class="p">)[[</span><span class="n">expected</span><span class="p">,</span> <span class="n">actual</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">avepp</span><span class="p">[</span><span class="s2">&quot;model_bands&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">pred_fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">avepp</span><span class="p">[</span><span class="n">expected</span><span class="p">],</span> <span class="n">width</span><span class="p">)</span>
+    <span class="n">actual_fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">avepp</span><span class="p">[</span><span class="n">actual</span><span class="p">],</span> <span class="n">width</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;AvE Decile Plot&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">pred_fig</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">actual_fig</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="s2">&quot;Pred&quot;</span><span class="p">,</span> <span class="s2">&quot;Actual&quot;</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>test_results = pd.concat(
-    [
-        X_test.reset_index(),
-        pd.DataFrame(gbm_pred, columns=[&quot;predicted&quot;]),
-        pd.DataFrame(y_test).reset_index(),
-    ], 
-    axis=1
-).drop(&quot;index&quot;, axis=1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">X_test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gbm_pred</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;predicted&quot;</span><span class="p">]),</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+    <span class="p">],</span> 
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-plot_avepp(test_results, &quot;predicted&quot;, &quot;charges&quot;)
+<span class="n">plot_avepp</span><span class="p">(</span><span class="n">test_results</span><span class="p">,</span> <span class="s2">&quot;predicted&quot;</span><span class="p">,</span> <span class="s2">&quot;charges&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1170,12 +1170,12 @@ plot_avepp(test_results, &quot;predicted&quot;, &quot;charges&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Checking RMSE for training and testing sets
-# An indication of overfitting would be a very low training RMSE with a high testing RMSE
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking RMSE for training and testing sets</span>
+<span class="c1"># An indication of overfitting would be a very low training RMSE with a high testing RMSE</span>
 
-print(&quot;Overfitting Check&quot;)
-print(&quot;Testing RMSE: {}&quot;.format(mean_squared_error(y_test, gbm_pred, squared=False)))
-print(&quot;Training RMSE: {}&quot;.format(mean_squared_error(y_train, gbm_model.predict(X_train), squared=False)))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overfitting Check&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing RMSE: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">gbm_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training RMSE: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1214,10 +1214,10 @@ Training RMSE: 4309.477401843349
 <p>We will also look at the results in the context of a particular observation with index=30.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>idx = 30
-feature = &quot;bmi&quot;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="s2">&quot;bmi&quot;</span>
 
-shap_df = pd.DataFrame(gbm_model.named_steps[&quot;preprocessor&quot;].transform(X_train), columns=rating_factors_encoded)
+<span class="n">shap_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gbm_model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;preprocessor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">rating_factors_encoded</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1231,12 +1231,12 @@ shap_df = pd.DataFrame(gbm_model.named_steps[&quot;preprocessor&quot;].transform
 <p>The first 2 are model specific algorithms, which makes use of the model architecture for optimizations to compute exact SHAP values as mentioned above. The KernelExplainer on the other hand, is a model agnostic algorithm uses sampling to approximate SHAP values. Since a GBM regressor is the model of choice, the TreeExplainer object is used for explanations in the following sections.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gbm_explainer = shap.TreeExplainer(gbm_model.named_steps[&quot;model&quot;])
-gbm_shap_values = gbm_explainer(shap_df)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gbm_explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">gbm_model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">])</span>
+<span class="n">gbm_shap_values</span> <span class="o">=</span> <span class="n">gbm_explainer</span><span class="p">(</span><span class="n">shap_df</span><span class="p">)</span>
 
-# This line below is a quick workaround to get pass an assert condition in the SHAP 
-# plots.waterfall source code. Can be ignored
-gbm_shap_values.base_values = gbm_shap_values.base_values[:, 0]
+<span class="c1"># This line below is a quick workaround to get pass an assert condition in the SHAP </span>
+<span class="c1"># plots.waterfall source code. Can be ignored</span>
+<span class="n">gbm_shap_values</span><span class="o">.</span><span class="n">base_values</span> <span class="o">=</span> <span class="n">gbm_shap_values</span><span class="o">.</span><span class="n">base_values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1255,8 +1255,8 @@ gbm_shap_values.base_values = gbm_shap_values.base_values[:, 0]
 <p>The 2 main drivers mostly offset each other as well, but the fact that she is aged outweighed the effect of being a non-smoker by ~$1.4k, which makes up the bulk of the net increase from the average.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shap.plots.waterfall(gbm_shap_values[idx], max_display=14, show=False)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">waterfall</span><span class="p">(</span><span class="n">gbm_shap_values</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">max_display</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1272,8 +1272,8 @@ plt.show()
 <p>At a high level the diagram shows that the model has put a lot of emphasis on the state of smoking and age, which is in line with high BMIs have an interaction effect with smoking, accounting for many of the higher claim predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shap.initjs()
-shap.force_plot(gbm_explainer.expected_value[0], gbm_shap_values.values, shap_df)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">initjs</span><span class="p">()</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">gbm_explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gbm_shap_values</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">shap_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1331,7 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
 <p>The pink data points (non-smokers) show a more gradual slope for BMI contributions in contrast to the blue points (smokers), where the SHAP contributions jump significantly at the BMI=~30 point, which is in line with what we could guess from the previous force plot output above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>shap.dependence_plot(feature, gbm_shap_values.values, shap_df)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">dependence_plot</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">gbm_shap_values</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">shap_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

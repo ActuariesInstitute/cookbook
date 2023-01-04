@@ -60,33 +60,33 @@ Cell [0;32mIn[13], line 23[0m
 [1;32m     25[0m [43m                    [49m[43mbounds[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43mbounds[49m[43m,[49m
 [1;32m     26[0m [43m                    [49m[43mconstraints[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[43mconstraints[49m[43m)[49m
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_minimize.py:684[0m, in [0;36mminimize[0;34m(fun, x0, args, method, jac, hess, hessp, bounds, constraints, tol, callback, options)[0m
-[1;32m    680[0m                 [38;5;28;01mif[39;00m callable(con[38;5;241m.[39mget([38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m, [38;5;28;01mNone[39;00m)):
-[1;32m    681[0m                     con[[38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m] [38;5;241m=[39m _remove_from_func(con[[38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m], i_fixed,
-[1;32m    682[0m                                                    x_fixed, min_dim[38;5;241m=[39m[38;5;241m2[39m,
-[1;32m    683[0m                                                    remove[38;5;241m=[39m[38;5;241m1[39m)
-[0;32m--> 684[0m     bounds [38;5;241m=[39m [43mstandardize_bounds[49m[43m([49m[43mbounds[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43mmeth[49m[43m)[49m
-[1;32m    686[0m [38;5;28;01mif[39;00m meth [38;5;241m==[39m [38;5;124m'[39m[38;5;124mnelder-mead[39m[38;5;124m'[39m:
-[1;32m    687[0m     res [38;5;241m=[39m _minimize_neldermead(fun, x0, args, callback, bounds[38;5;241m=[39mbounds,
-[1;32m    688[0m                                [38;5;241m*[39m[38;5;241m*[39moptions)
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_minimize.py:681[0m, in [0;36mminimize[0;34m(fun, x0, args, method, jac, hess, hessp, bounds, constraints, tol, callback, options)[0m
+[1;32m    677[0m                 [38;5;28;01mif[39;00m callable(con[38;5;241m.[39mget([38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m, [38;5;28;01mNone[39;00m)):
+[1;32m    678[0m                     con[[38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m] [38;5;241m=[39m _remove_from_func(con[[38;5;124m'[39m[38;5;124mjac[39m[38;5;124m'[39m], i_fixed,
+[1;32m    679[0m                                                    x_fixed, min_dim[38;5;241m=[39m[38;5;241m2[39m,
+[1;32m    680[0m                                                    remove[38;5;241m=[39m[38;5;241m1[39m)
+[0;32m--> 681[0m     bounds [38;5;241m=[39m [43mstandardize_bounds[49m[43m([49m[43mbounds[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43mmeth[49m[43m)[49m
+[1;32m    683[0m [38;5;28;01mif[39;00m meth [38;5;241m==[39m [38;5;124m'[39m[38;5;124mnelder-mead[39m[38;5;124m'[39m:
+[1;32m    684[0m     res [38;5;241m=[39m _minimize_neldermead(fun, x0, args, callback, bounds[38;5;241m=[39mbounds,
+[1;32m    685[0m                                [38;5;241m*[39m[38;5;241m*[39moptions)
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_minimize.py:947[0m, in [0;36mstandardize_bounds[0;34m(bounds, x0, meth)[0m
-[1;32m    945[0m [38;5;28;01melif[39;00m meth [38;5;129;01min[39;00m ([38;5;124m'[39m[38;5;124ml-bfgs-b[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtnc[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mslsqp[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mold[39m[38;5;124m'[39m):
-[1;32m    946[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(bounds, Bounds):
-[0;32m--> 947[0m         bounds [38;5;241m=[39m [43mnew_bounds_to_old[49m[43m([49m[43mbounds[49m[38;5;241;43m.[39;49m[43mlb[49m[43m,[49m[43m [49m[43mbounds[49m[38;5;241;43m.[39;49m[43mub[49m[43m,[49m[43m [49m[43mx0[49m[38;5;241;43m.[39;49m[43mshape[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[43m)[49m
-[1;32m    948[0m [38;5;28;01mreturn[39;00m bounds
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_minimize.py:969[0m, in [0;36mstandardize_bounds[0;34m(bounds, x0, meth)[0m
+[1;32m    967[0m [38;5;28;01melif[39;00m meth [38;5;129;01min[39;00m ([38;5;124m'[39m[38;5;124ml-bfgs-b[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mtnc[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mslsqp[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mold[39m[38;5;124m'[39m):
+[1;32m    968[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(bounds, Bounds):
+[0;32m--> 969[0m         bounds [38;5;241m=[39m [43mnew_bounds_to_old[49m[43m([49m[43mbounds[49m[38;5;241;43m.[39;49m[43mlb[49m[43m,[49m[43m [49m[43mbounds[49m[38;5;241;43m.[39;49m[43mub[49m[43m,[49m[43m [49m[43mx0[49m[38;5;241;43m.[39;49m[43mshape[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[43m)[49m
+[1;32m    970[0m [38;5;28;01mreturn[39;00m bounds
 
-File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_constraints.py:397[0m, in [0;36mnew_bounds_to_old[0;34m(lb, ub, n)[0m
-[1;32m    388[0m [38;5;28;01mdef[39;00m [38;5;21mnew_bounds_to_old[39m(lb, ub, n):
-[1;32m    389[0m     [38;5;124;03m"""Convert the new bounds representation to the old one.[39;00m
-[1;32m    390[0m 
-[1;32m    391[0m [38;5;124;03m    The new representation is a tuple (lb, ub) and the old one is a list[39;00m
+File [0;32m/usr/share/miniconda3/envs/main-conda-env/lib/python3.8/site-packages/scipy/optimize/_constraints.py:398[0m, in [0;36mnew_bounds_to_old[0;34m(lb, ub, n)[0m
+[1;32m    389[0m [38;5;28;01mdef[39;00m [38;5;21mnew_bounds_to_old[39m(lb, ub, n):
+[1;32m    390[0m     [38;5;124;03m"""Convert the new bounds representation to the old one.[39;00m
+[1;32m    391[0m 
+[1;32m    392[0m [38;5;124;03m    The new representation is a tuple (lb, ub) and the old one is a list[39;00m
 [0;32m   (...)[0m
-[1;32m    395[0m [38;5;124;03m    None.[39;00m
-[1;32m    396[0m [38;5;124;03m    """[39;00m
-[0;32m--> 397[0m     lb [38;5;241m=[39m [43mnp[49m[38;5;241;43m.[39;49m[43mbroadcast_to[49m[43m([49m[43mlb[49m[43m,[49m[43m [49m[43mn[49m[43m)[49m
-[1;32m    398[0m     ub [38;5;241m=[39m np[38;5;241m.[39mbroadcast_to(ub, n)
-[1;32m    400[0m     lb [38;5;241m=[39m [[38;5;28mfloat[39m(x) [38;5;28;01mif[39;00m x [38;5;241m>[39m [38;5;241m-[39mnp[38;5;241m.[39minf [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m lb]
+[1;32m    396[0m [38;5;124;03m    None.[39;00m
+[1;32m    397[0m [38;5;124;03m    """[39;00m
+[0;32m--> 398[0m     lb [38;5;241m=[39m [43mnp[49m[38;5;241;43m.[39;49m[43mbroadcast_to[49m[43m([49m[43mlb[49m[43m,[49m[43m [49m[43mn[49m[43m)[49m
+[1;32m    399[0m     ub [38;5;241m=[39m np[38;5;241m.[39mbroadcast_to(ub, n)
+[1;32m    401[0m     lb [38;5;241m=[39m [[38;5;28mfloat[39m(x) [38;5;28;01mif[39;00m x [38;5;241m>[39m [38;5;241m-[39mnp[38;5;241m.[39minf [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m lb]
 
 File [0;32m<__array_function__ internals>:180[0m, in [0;36mbroadcast_to[0;34m(*args, **kwargs)[0m
 

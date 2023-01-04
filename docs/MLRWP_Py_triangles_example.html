@@ -1362,7 +1362,7 @@ We’ll be discussing this point a bit further at the end of the article.</p>
 <p>So let us get started with the example with some setup code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip install -U scikit-learn
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -U scikit-learn
 </pre></div>
 </div>
 </div>
@@ -1379,7 +1379,7 @@ Requirement already satisfied: numpy&gt;=1.13.3 in /Users/Jacky/opt/miniconda3/l
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!pip show pandas numpy scikit-learn seaborn matplotlib
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip show pandas numpy scikit-learn seaborn matplotlib
 </pre></div>
 </div>
 </div>
@@ -1444,57 +1444,57 @@ Required-by: seaborn
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-from sklearn.linear_model import PoissonRegressor
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">PoissonRegressor</span>
 
-from sklearn.experimental import enable_hist_gradient_boosting
-from sklearn.tree import DecisionTreeRegressor, plot_tree
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.ensemble import HistGradientBoostingRegressor
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_hist_gradient_boosting</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">HistGradientBoostingRegressor</span>
 
-from sklearn.neural_network import MLPRegressor
-from sklearn.compose import TransformedTargetRegressor
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">TransformedTargetRegressor</span>
 
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler
-from sklearn.pipeline import Pipeline
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn.metrics import mean_squared_error
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
-from sklearn.utils import all_estimators
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">all_estimators</span>
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-from matplotlib.colors import LogNorm
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">LogNorm</span>
 
-import time
+<span class="kn">import</span> <span class="nn">time</span>
 
-import itertools
+<span class="kn">import</span> <span class="nn">itertools</span>
 
-# Set the seed for the random number generation so
-# results are reproducible.
-import random
-random.seed(0)
-np.random.seed(0)
+<span class="c1"># Set the seed for the random number generation so</span>
+<span class="c1"># results are reproducible.</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-# colours for plots - not all are used
-# We will also use viridis for some plots
-plot_colors = {
-  &quot;dblue&quot;  : &quot;#113458&quot;,
-  &quot;mblue&quot;  : &quot;#4096b8&quot;,
-  &quot;gold&quot;   : &quot;#d9ab16&quot;,
-  &quot;lgrey&quot;  : &quot;#dcddd9&quot;,
-  &quot;dgrey&quot;  : &quot;#3f4548&quot;,
-  &quot;black&quot;  : &quot;#3F4548&quot;,
-  &quot;red&quot;    : &quot;#d01e45&quot;,
-  &quot;purple&quot; : &quot;#8f4693&quot;,
-  &quot;orange&quot; : &quot;#ee741d&quot;,
-  &quot;fuscia&quot; : &quot;#e9458c&quot;,
-  &quot;violet&quot; : &quot;#8076cf&quot;
-}
+<span class="c1"># colours for plots - not all are used</span>
+<span class="c1"># We will also use viridis for some plots</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;dblue&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#113458&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mblue&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#4096b8&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;gold&quot;</span>   <span class="p">:</span> <span class="s2">&quot;#d9ab16&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lgrey&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#dcddd9&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;dgrey&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#3f4548&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;black&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#3F4548&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;red&quot;</span>    <span class="p">:</span> <span class="s2">&quot;#d01e45&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;purple&quot;</span> <span class="p">:</span> <span class="s2">&quot;#8f4693&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;orange&quot;</span> <span class="p">:</span> <span class="s2">&quot;#ee741d&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fuscia&quot;</span> <span class="p">:</span> <span class="s2">&quot;#e9458c&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;violet&quot;</span> <span class="p">:</span> <span class="s2">&quot;#8076cf&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1523,24 +1523,24 @@ It is available in CSV form <a class="reference external" href="https://institut
 <p>First, load in the data and have a look at it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 1-4 will bring up different datasets. Covered in &quot;next steps&quot; note at the end of the article
-dataset_number = 3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1-4 will bring up different datasets. Covered in &quot;next steps&quot; note at the end of the article</span>
+<span class="n">dataset_number</span> <span class="o">=</span> <span class="mi">3</span>
 
-dat = pd.read_csv(
-    f&quot;https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata{dataset_number}.csv&quot;,
-    dtype={
-        &quot;pmts&quot;: np.float32,
-        &quot;acc&quot;: np.float32,
-        &quot;dev&quot;: np.float32,
-        &quot;cal&quot;: np.float32,
-        &quot;mu&quot;: np.float32,
-        &quot;train_ind&quot;: bool
-    })
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata</span><span class="si">{</span><span class="n">dataset_number</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;pmts&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;acc&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;dev&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;cal&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">&quot;train_ind&quot;</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="p">})</span>
 
-dat.head()
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-# create the num_periods variable - number of acc/dev periods
-num_periods = int(dat[&quot;acc&quot;].max())
+<span class="c1"># create the num_periods variable - number of acc/dev periods</span>
+<span class="n">num_periods</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1557,69 +1557,69 @@ num_periods = int(dat[&quot;acc&quot;].max())
 The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this graphic. What is also apparent is this this increase only affects a small part of the past triangle (10 cells out of 820 to be exact), but impacts much of the future lower triangle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def plot_triangle(
-    data, 
-    mask_bottom=True, 
-    title=&quot;Claims Development&quot;, 
-    cmap=sns.color_palette(&quot;viridis_r&quot;, as_cmap=True), # Use Viridis colour palette just like the R code
-    center=None,
-    fig=None,
-    ax=None):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_triangle</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span> 
+    <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Claims Development&quot;</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;viridis_r&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="c1"># Use Viridis colour palette just like the R code</span>
+    <span class="n">center</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-    &quot;&quot;&quot; Plots a claims triangle heatmap
-    data:
-        Pandas DataFrame, indexed by date
-    mask_bottom:
-        Hide bottom half of triangle. Assumes origin and development periods
-        are the same. e.g. both months
-    cmap:
-        Seaborn colour palette
-    center:
-        Centre for heatmap
-    fig, ax: optional fig and ax
-    &quot;&quot;&quot;
-    sns.set(style=&quot;white&quot;)
+    <span class="sd">&quot;&quot;&quot; Plots a claims triangle heatmap</span>
+<span class="sd">    data:</span>
+<span class="sd">        Pandas DataFrame, indexed by date</span>
+<span class="sd">    mask_bottom:</span>
+<span class="sd">        Hide bottom half of triangle. Assumes origin and development periods</span>
+<span class="sd">        are the same. e.g. both months</span>
+<span class="sd">    cmap:</span>
+<span class="sd">        Seaborn colour palette</span>
+<span class="sd">    center:</span>
+<span class="sd">        Centre for heatmap</span>
+<span class="sd">    fig, ax: optional fig and ax</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 
-    # Generate a mask for the triangle
-    if mask_bottom:
-        mask = np.ones_like(data, dtype=bool)
+    <span class="c1"># Generate a mask for the triangle</span>
+    <span class="k">if</span> <span class="n">mask_bottom</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
-        mask[np.tril_indices_from(mask)] = False
+        <span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">tril_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
 
-        mask = np.flipud(mask)
-    else:
-        mask = None
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
 
-    # Set up the matplotlib figure
-    if fig is None or ax is None:
-        fig, ax = plt.subplots(figsize=(6, 5))
+    <span class="c1"># Set up the matplotlib figure</span>
+    <span class="k">if</span> <span class="n">fig</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-    # Draw the heatmap with the mask and correct aspect ratio vmax=.3,
-    sns.heatmap(
-        data,
-        mask=mask,
-        cmap=cmap,
-        square=True,
-        linewidths=0.5,
-        fmt=&quot;.0f&quot;,
-        cbar_kws={&quot;shrink&quot;: 0.5},
-        norm=LogNorm()  # Log scale
-    ).set_title(title)
+    <span class="c1"># Draw the heatmap with the mask and correct aspect ratio vmax=.3,</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+        <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span>
+        <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+        <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">()</span>  <span class="c1"># Log scale</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
-    return fig, ax
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Partial triangle - the model only sees this for training
-plot_triangle(
-    dat.pivot(index=&quot;acc&quot;, columns=&quot;dev&quot;, values=&quot;pmts&quot;),
-    mask_bottom=True
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Partial triangle - the model only sees this for training</span>
+<span class="n">plot_triangle</span><span class="p">(</span>
+    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+    <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1629,13 +1629,13 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Whole triangle - with test dataset
-plot_triangle(
-    dat.pivot(index=&quot;acc&quot;, columns=&quot;dev&quot;, values=&quot;pmts&quot;),
-    mask_bottom=False
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Whole triangle - with test dataset</span>
+<span class="n">plot_triangle</span><span class="p">(</span>
+    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+    <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1650,9 +1650,9 @@ It’s likely, therefore, that the main differentiator between the performance o
 <p>We need to modify this data a little before proceeding further and add factor versions (essentially a categorical version) of acc and dev - these are needed later for fitting the Chainladder.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Factors with zero index
-dat[&quot;accf&quot;] = (dat.acc - 1).astype(int)
-dat[&quot;devf&quot;] = (dat.dev - 1).astype(int)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Factors with zero index</span>
+<span class="n">dat</span><span class="p">[</span><span class="s2">&quot;accf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">acc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">dat</span><span class="p">[</span><span class="s2">&quot;devf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">dev</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1662,14 +1662,14 @@ dat[&quot;devf&quot;] = (dat.dev - 1).astype(int)
 <h2>Train and Test<a class="headerlink" href="#train-and-test" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X_train = (dat.loc[dat.train_ind, [&quot;acc&quot;, &quot;dev&quot;, &quot;cal&quot;, &quot;accf&quot;, &quot;devf&quot;]])
-y_train = (dat.loc[dat.train_ind, &quot;pmts&quot;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
 
-X_test = (dat.loc[dat.train_ind == False, [&quot;acc&quot;, &quot;dev&quot;, &quot;cal&quot;, &quot;accf&quot;, &quot;devf&quot;]])
-y_test = (dat.loc[dat.train_ind == False, &quot;pmts&quot;])
+<span class="n">X_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
 
-X = (dat.loc[:, [&quot;acc&quot;, &quot;dev&quot;, &quot;cal&quot;, &quot;accf&quot;, &quot;devf&quot;]])
-y = (dat.loc[:, &quot;pmts&quot;])
+<span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1749,12 +1749,12 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 <p>First let’s fit a simple decision tree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dtree = DecisionTreeRegressor(max_depth=3)
-dtree.fit(X_train, y_train)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtree</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dtree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-plot_tree(dtree)
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">dtree</span><span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1766,7 +1766,7 @@ plt.show()
 <p>Here’s a list of the parameters - <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html">the documentation</a> will have more information.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dtree.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtree</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1807,11 +1807,11 @@ plt.show()
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_tree = {
-    &quot;criterion&quot;: [&quot;mse&quot;, &quot;poisson&quot;],
-    &quot;max_depth&quot;: [2, 3, 5, 7, None], # None is unlimited depth.
-    &quot;ccp_alpha&quot;: [0.0, 0.2, 0.4, 0.6, 0.8]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_tree</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;criterion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="s2">&quot;poisson&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
+    <span class="s2">&quot;ccp_alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1822,8 +1822,8 @@ Another possible choice is Bayesian optimisation search.</p>
 <p>So now we have everything we need to tune our hyper-parameters so we can set this up with <strong>GridSearchCV</strong> now.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>grid_tree = GridSearchCV(DecisionTreeRegressor(), parameters_tree)
-grid_tree.fit(X_train, y_train)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_tree</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">DecisionTreeRegressor</span><span class="p">(),</span> <span class="n">parameters_tree</span><span class="p">)</span>
+<span class="n">grid_tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1839,7 +1839,7 @@ grid_tree.fit(X_train, y_train)
 <p>The parameters in the best fit may be accessed here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>grid_tree.best_estimator_.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1863,10 +1863,10 @@ grid_tree.fit(X_train, y_train)
 <p>These also fit a final model to the data using these optimised parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># plot the model
-plot_tree(grid_tree.best_estimator_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the model</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1883,10 +1883,10 @@ plt.show()
 <p>Let’s have a look at the hyper-parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rforest = RandomForestRegressor()
-rforest.fit(X_train, y_train)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rforest</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">rforest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-rforest.get_params()
+<span class="n">rforest</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1917,19 +1917,19 @@ rforest.get_params()
 <p>We’ll follow the same steps as for decision trees - set up a parameter space for searching, combine this with RMSE and cross-validation, tune using grid search, and get the best fit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_forest = {
-    &quot;max_depth&quot;: [2, 3, 5, 7, None], # None is unlimited depth.
-    &quot;ccp_alpha&quot;: [0.0, 0.2, 0.4, 0.6, 0.8],
-    &quot;random_state&quot;: [0]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_forest</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
+    <span class="s2">&quot;ccp_alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+    <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
 
-grid_forest = GridSearchCV(
-    RandomForestRegressor(), 
-    parameters_forest,  
-    n_jobs=-1)
+<span class="n">grid_forest</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">RandomForestRegressor</span><span class="p">(),</span> 
+    <span class="n">parameters_forest</span><span class="p">,</span>  
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-grid_forest.fit(X_train, y_train)
-grid_forest.best_estimator_.get_params()
+<span class="n">grid_forest</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1964,10 +1964,10 @@ grid_forest.best_estimator_.get_params()
 <p>Here are the GBM parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gbm = GradientBoostingRegressor()
-gbm.fit(X_train, y_train)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gbm</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span>
+<span class="n">gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-gbm.get_params()
+<span class="n">gbm</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2004,32 +2004,32 @@ gbm.get_params()
 <p>Depending on your computer, this step takes a while to run since we are running the slower GradientBoostingRegressor - even though we have a low <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> - so it might be a good point to grab a cup of coffee or tea!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_gbm = {
-    &quot;n_estimators&quot;: [100, 200, 300, 400, 500],
-    &quot;max_depth&quot;: [1, 2, 3, 5, 6],
-    &quot;learning_rate&quot;: [0.01, 0.02, 0.05, 0.1, 0.3],
-    &quot;subsample&quot;: [0.5, 0.7, 1.0]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_gbm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+    <span class="s2">&quot;subsample&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tic = time.perf_counter()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 
-grid_gbm = RandomizedSearchCV(
-    GradientBoostingRegressor(), 
-    parameters_gbm, 
-    n_iter=25, 
-    n_jobs=-1, # Run in parallel
-    random_state=0
-)
+<span class="n">grid_gbm</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
+    <span class="n">GradientBoostingRegressor</span><span class="p">(),</span> 
+    <span class="n">parameters_gbm</span><span class="p">,</span> 
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> 
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Run in parallel</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 
-grid_gbm.fit(X_train, y_train)
+<span class="n">grid_gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-toc = time.perf_counter()
-print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2041,8 +2041,8 @@ print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get the best fit:
-grid_gbm.best_estimator_.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the best fit:</span>
+<span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2077,33 +2077,33 @@ grid_gbm.best_estimator_.get_params()
 <p>Next, the HistGradientBooster which is most similar to LightGBM, which was in turn based on XGBoost. It’s quite possible to install those packages too to include more full featured models but to make this tutorial code easy to install and use, we won’t introduce the extra dependencies and just use the scikit-learn implementation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_hgbm = {
-    &quot;loss&quot;: [&quot;least_squares&quot;, &quot;poisson&quot;],
-    &quot;max_iter&quot;: [100, 200, 300, 400, 500],
-    &quot;max_depth&quot;: [1, 2, 3, 5, 6],
-    &quot;learning_rate&quot;: [0.01, 0.02, 0.05, 0.1, 0.3]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_hgbm</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;least_squares&quot;</span><span class="p">,</span> <span class="s2">&quot;poisson&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tic = time.perf_counter()
-# This regressor is generally quite fast so we can run a few more.
-grid_hgbm = RandomizedSearchCV(
-    HistGradientBoostingRegressor(), 
-    parameters_hgbm, 
-    n_iter=100, 
-    n_jobs=-1, # Run in parallel
-    random_state=0
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="c1"># This regressor is generally quite fast so we can run a few more.</span>
+<span class="n">grid_hgbm</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
+    <span class="n">HistGradientBoostingRegressor</span><span class="p">(),</span> 
+    <span class="n">parameters_hgbm</span><span class="p">,</span> 
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Run in parallel</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 
-grid_hgbm.fit(X_train, y_train)
+<span class="n">grid_hgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-toc = time.perf_counter()
-print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
-# It was not faster in this case with this dataset.
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="c1"># It was not faster in this case with this dataset.</span>
 </pre></div>
 </div>
 </div>
@@ -2115,8 +2115,8 @@ print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get the best fit:
-grid_hgbm.best_estimator_.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the best fit:</span>
+<span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2146,14 +2146,14 @@ grid_hgbm.best_estimator_.get_params()
 <p>In the R code, we mentioned a previously tuned XGBoost model with hyperparameters tuned over a larger search. Can we replicate the model in Python here?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gbm_prev = HistGradientBoostingRegressor(
-    loss=&#39;poisson&#39;,  # Poisson is close to Tweedie with variance power 1.01
-    max_iter=233,
-    learning_rate=0.3,
-    max_depth=3
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gbm_prev</span> <span class="o">=</span> <span class="n">HistGradientBoostingRegressor</span><span class="p">(</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span>  <span class="c1"># Poisson is close to Tweedie with variance power 1.01</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
 
-gbm_prev.fit(X_train, y_train)
+<span class="n">gbm_prev</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2176,59 +2176,59 @@ gbm_prev.fit(X_train, y_train)
 <p>With the features, we will transform accident, development and calendar periods with one-hot encoding to treat them as continuous variables, and let the model figure the rest out. With the target, given the average value is approx $300m, we’ll scale it so the model can hopefully find convergence faster - and we will try a few different learning rates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_nn = {
-    &quot;hidden_layer_sizes&quot;: [ 
-        # Keep these to 50 neurons to keep things small
-        # (We do only have 3 factors)
-        (50,),           # single hidden layer
-        (25, 25),         # two layers
-        (16, 16, 16),     # three layers
-        (12, 12, 12, 12), # four layers
-        (30, 15, 5),     # bottleneck model - reduce data to 10 final effects
-    ],
-    &quot;alpha&quot;: [0.00001, 0.0001, 0.001, 0.01, 0.1],
-    # Activation: Relu is standard but logistic / sigmoid has been used by some
-    # researchers in reserving applications
-    &quot;activation&quot;: [&quot;logistic&quot;, &quot;relu&quot;], 
-    &quot;random_state&quot;: [0],
-    &quot;max_iter&quot;: [200000]  # More iterations worked well for lasso model in R
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_nn</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hidden_layer_sizes&quot;</span><span class="p">:</span> <span class="p">[</span> 
+        <span class="c1"># Keep these to 50 neurons to keep things small</span>
+        <span class="c1"># (We do only have 3 factors)</span>
+        <span class="p">(</span><span class="mi">50</span><span class="p">,),</span>           <span class="c1"># single hidden layer</span>
+        <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>         <span class="c1"># two layers</span>
+        <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>     <span class="c1"># three layers</span>
+        <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="c1"># four layers</span>
+        <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>     <span class="c1"># bottleneck model - reduce data to 10 final effects</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="c1"># Activation: Relu is standard but logistic / sigmoid has been used by some</span>
+    <span class="c1"># researchers in reserving applications</span>
+    <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="s2">&quot;relu&quot;</span><span class="p">],</span> 
+    <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span><span class="p">]</span>  <span class="c1"># More iterations worked well for lasso model in R</span>
+<span class="p">}</span>
 
-col_transformer_nn = ColumnTransformer(
-    [
-        (&#39;zero_to_one&#39;, MinMaxScaler(), [&quot;acc&quot;, &quot;dev&quot;, &quot;cal&quot;])
-    ],
-    remainder=&#39;drop&#39;
-)
+<span class="n">col_transformer_nn</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;zero_to_one&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tic = time.perf_counter()
-neural_network = Pipeline(
-    steps=[
-        (&#39;transform&#39;, col_transformer_nn), 
-        (&#39;nn&#39;, TransformedTargetRegressor(
-                regressor=RandomizedSearchCV(
-                  MLPRegressor(),
-                  parameters_nn, 
-                  n_jobs=-1, # Run in parallel
-                  n_iter=25, # Models train slowly, so try only a few models
-                  random_state=0),
-                # An output activation function of exp would have been nice
-                # But not available in scikit, so we will fit on log-transformed 
-                # values and exponentiate.
-                func=lambda x: np.log(x / y_train.mean()), 
-                inverse_func=lambda x: np.exp(x) * y_train.mean(),
-                check_inverse=False))
-    ]
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">neural_network</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">col_transformer_nn</span><span class="p">),</span> 
+        <span class="p">(</span><span class="s1">&#39;nn&#39;</span><span class="p">,</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
+                <span class="n">regressor</span><span class="o">=</span><span class="n">RandomizedSearchCV</span><span class="p">(</span>
+                  <span class="n">MLPRegressor</span><span class="p">(),</span>
+                  <span class="n">parameters_nn</span><span class="p">,</span> 
+                  <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Run in parallel</span>
+                  <span class="n">n_iter</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="c1"># Models train slowly, so try only a few models</span>
+                  <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                <span class="c1"># An output activation function of exp would have been nice</span>
+                <span class="c1"># But not available in scikit, so we will fit on log-transformed </span>
+                <span class="c1"># values and exponentiate.</span>
+                <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> 
+                <span class="n">inverse_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">y_train</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+                <span class="n">check_inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-neural_network.fit(X_train, y_train)
-toc = time.perf_counter()
-print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
+<span class="n">neural_network</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2240,7 +2240,7 @@ print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>neural_network[&quot;nn&quot;].regressor_.best_estimator_.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_network</span><span class="p">[</span><span class="s2">&quot;nn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">regressor_</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2296,20 +2296,20 @@ print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
 <p>Here’s the code using <code class="docutils literal notranslate"><span class="pre">PoissonRegressor</span></code> and the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method to add predicted values into <code class="docutils literal notranslate"><span class="pre">model_forecasts</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>col_transformer = ColumnTransformer(
-    [(&#39;encoder&#39;, OneHotEncoder(), [&quot;accf&quot;, &quot;devf&quot;])], 
-    remainder=&#39;drop&#39;
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_transformer</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s1">&#39;encoder&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">])],</span> 
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>
+<span class="p">)</span>
 
-# PoissonRegressor gives a log-link GLM. But need to set alpha=0 so it is not a LASSO.
-chain_ladder = Pipeline(
-    steps=[
-        (&#39;transform&#39;, col_transformer), 
-        (&#39;glm&#39;, PoissonRegressor(alpha=0, max_iter=5000))
-    ]
-)
+<span class="c1"># PoissonRegressor gives a log-link GLM. But need to set alpha=0 so it is not a LASSO.</span>
+<span class="n">chain_ladder</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">col_transformer</span><span class="p">),</span> 
+        <span class="p">(</span><span class="s1">&#39;glm&#39;</span><span class="p">,</span> <span class="n">PoissonRegressor</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-chain_ladder.fit(X_train, y_train)
+<span class="n">chain_ladder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2339,64 +2339,64 @@ chain_ladder.fit(X_train, y_train)
 <p>The first step is to create all the basis functions that we need. The functions below create the ramp and step functions needed (over 4000 of these!). The end result is a data.table of the original payments and all the basis functions. As noted above, all the details are in the blog post and paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def LinearSpline(var, start, stop):
-    &quot;&quot;&quot;
-    Linear spline function - used in data generation and in spline generation below
-    &quot;&quot;&quot;
-    return np.minimum(stop - start, np.maximum(0, var - start))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LinearSpline</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Linear spline function - used in data generation and in spline generation below</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
 
 
-def GetScaling(vec):
-    &quot;&quot;&quot;
-    Function to calculate scaling factors for the basis functions
-    scaling is discussed in the paper
-    &quot;&quot;&quot;
-    fn = len(vec)
-    fm = np.mean(vec)
-    fc = vec - fm  
+<span class="k">def</span> <span class="nf">GetScaling</span><span class="p">(</span><span class="n">vec</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to calculate scaling factors for the basis functions</span>
+<span class="sd">    scaling is discussed in the paper</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+    <span class="n">fm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="n">vec</span> <span class="o">-</span> <span class="n">fm</span>  
 
-    return  ((np.sum(fc**2))/fn)**0.5
-
-
-def GetRamps(vec, vecname, nperiods, scaling):
-    &quot;&quot;&quot;
-    Function to create the ramps for a particular primary vector
-    vec = fundamental regressor
-    vecname = name of regressor
-    np = number of periods
-    scaling = scaling factor to use
-    &quot;&quot;&quot;
-    df = pd.DataFrame.from_dict(
-        {
-            f&quot;L_{i}_999_{vecname}&quot;: LinearSpline(vec, i, 999) / scaling
-            for i in range(1, nperiods)
-        }
-    )
-    return df
+    <span class="k">return</span>  <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fc</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">fn</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
 
 
-def GetInts(vec1, vec2, vecname1, vecname2, nperiods, scaling1, scaling2, train_ind):
-    &quot;&quot;&quot;
-    Create the step (heaviside) function interactions.
-    f&quot;I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}&quot; formats the name of the column
-    LinearSpline(vec1, 1, i+1) / scaling1 * LinearSpline(vec2, j, j + 1) / scaling2
-    is the interaction term
-    and we loop over all combinations of 1:nperiods and 2:nperiods
-    &quot;&quot;&quot;
+<span class="k">def</span> <span class="nf">GetRamps</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">vecname</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to create the ramps for a particular primary vector</span>
+<span class="sd">    vec = fundamental regressor</span>
+<span class="sd">    vecname = name of regressor</span>
+<span class="sd">    np = number of periods</span>
+<span class="sd">    scaling = scaling factor to use</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="sa">f</span><span class="s2">&quot;L_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_999_</span><span class="si">{</span><span class="n">vecname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">LinearSpline</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">,</span> <span class="n">vecname1</span><span class="p">,</span> <span class="n">vecname2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling1</span><span class="p">,</span> <span class="n">scaling2</span><span class="p">,</span> <span class="n">train_ind</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create the step (heaviside) function interactions.</span>
+<span class="sd">    f&quot;I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}&quot; formats the name of the column</span>
+<span class="sd">    LinearSpline(vec1, 1, i+1) / scaling1 * LinearSpline(vec2, j, j + 1) / scaling2</span>
+<span class="sd">    is the interaction term</span>
+<span class="sd">    and we loop over all combinations of 1:nperiods and 2:nperiods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     
-    vecs = {}
-    for i, j in itertools.product(*[range(2, nperiods), range(2, nperiods)]):
-        interaction = (
-            LinearSpline(vec1, i - 1, i) / scaling1 * 
-            LinearSpline(vec2, j - 1, j) / scaling2
-        )
+    <span class="n">vecs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">)]):</span>
+        <span class="n">interaction</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">LinearSpline</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling1</span> <span class="o">*</span> 
+            <span class="n">LinearSpline</span><span class="p">(</span><span class="n">vec2</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling2</span>
+        <span class="p">)</span>
 
-        # Only include if non-constant over training data
-        if not np.all(interaction[train_ind] == interaction[0]):
-            vecs[f&quot;I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}&quot;] = interaction
+        <span class="c1"># Only include if non-constant over training data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">interaction</span><span class="p">[</span><span class="n">train_ind</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">vecs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;I_</span><span class="si">{</span><span class="n">vecname1</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">xI_</span><span class="si">{</span><span class="n">vecname2</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interaction</span>
 
-    df = pd.DataFrame.from_dict(vecs)
-    return df
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vecs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -2405,13 +2405,13 @@ def GetInts(vec1, vec2, vecname1, vecname2, nperiods, scaling1, scaling2, train_
 The <code class="docutils literal notranslate"><span class="pre">dat_plus</span></code> table will hold them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># get the scaling values
-rho_factor_list = {
-    v: GetScaling(dat.loc[dat.train_ind, v].values) 
-    for v in [&quot;acc&quot;, &quot;dev&quot;, &quot;cal&quot;]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the scaling values</span>
+<span class="n">rho_factor_list</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">v</span><span class="p">:</span> <span class="n">GetScaling</span><span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">]</span>
+<span class="p">}</span>
 
-rho_factor_list
+<span class="n">rho_factor_list</span>
 </pre></div>
 </div>
 </div>
@@ -2423,12 +2423,12 @@ rho_factor_list
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># main effects - matrix of values
-main_effects_acc = GetRamps(vec = dat[&quot;acc&quot;], vecname = &quot;acc&quot;, nperiods = num_periods, scaling = rho_factor_list[&quot;acc&quot;])
-main_effects_dev = GetRamps(vec = dat[&quot;dev&quot;], vecname = &quot;dev&quot;, nperiods = num_periods, scaling = rho_factor_list[&quot;dev&quot;])
-main_effects_cal = GetRamps(vec = dat[&quot;cal&quot;], vecname = &quot;cal&quot;, nperiods = num_periods, scaling = rho_factor_list[&quot;cal&quot;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># main effects - matrix of values</span>
+<span class="n">main_effects_acc</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">])</span>
+<span class="n">main_effects_dev</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">])</span>
+<span class="n">main_effects_cal</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">])</span>
 
-main_effects = pd.concat([main_effects_acc, main_effects_dev, main_effects_cal], axis=&quot;columns&quot;)
+<span class="n">main_effects</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects_acc</span><span class="p">,</span> <span class="n">main_effects_dev</span><span class="p">,</span> <span class="n">main_effects_cal</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2436,7 +2436,7 @@ main_effects = pd.concat([main_effects_acc, main_effects_dev, main_effects_cal],
 <p><code class="docutils literal notranslate"><span class="pre">main_effects</span></code> looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>main_effects
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_effects</span>
 </pre></div>
 </div>
 </div>
@@ -2754,29 +2754,29 @@ main_effects = pd.concat([main_effects_acc, main_effects_dev, main_effects_cal],
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Export to file for debugging
-# main_effects.to_csv(&quot;main_effects_py.csv&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export to file for debugging</span>
+<span class="c1"># main_effects.to_csv(&quot;main_effects_py.csv&quot;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># interaction effects
-int_effects = pd.concat([
-    GetInts(vec1=dat[&quot;acc&quot;], vecname1=&quot;acc&quot;, scaling1=rho_factor_list[&quot;acc&quot;],  
-            vec2=dat[&quot;dev&quot;], vecname2=&quot;dev&quot;, scaling2=rho_factor_list[&quot;dev&quot;], 
-            nperiods=num_periods, train_ind=dat[&quot;train_ind&quot;]),
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interaction effects</span>
+<span class="n">int_effects</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">]),</span>
 
-    GetInts(vec1=dat[&quot;dev&quot;], vecname1=&quot;dev&quot;, scaling1=rho_factor_list[&quot;dev&quot;],  
-            vec2=dat[&quot;cal&quot;], vecname2=&quot;cal&quot;, scaling2=rho_factor_list[&quot;cal&quot;], 
-            nperiods=num_periods, train_ind=dat[&quot;train_ind&quot;]),
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">]),</span>
     
-    GetInts(vec1=dat[&quot;acc&quot;], vecname1=&quot;acc&quot;, scaling1=rho_factor_list[&quot;acc&quot;],  
-            vec2=dat[&quot;cal&quot;], vecname2=&quot;cal&quot;, scaling2=rho_factor_list[&quot;cal&quot;], 
-            nperiods=num_periods, train_ind=dat[&quot;train_ind&quot;])
-    ], 
-    axis=&quot;columns&quot;)
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">])</span>
+    <span class="p">],</span> 
+    <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2784,7 +2784,7 @@ int_effects = pd.concat([
 <p>The table looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_effects
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_effects</span>
 </pre></div>
 </div>
 </div>
@@ -3102,32 +3102,32 @@ int_effects = pd.concat([
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Export to file for debugging
-# int_effects.to_csv(&quot;int_effects_py.csv&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export to file for debugging</span>
+<span class="c1"># int_effects.to_csv(&quot;int_effects_py.csv&quot;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>varset = pd.concat([main_effects, int_effects], axis=&quot;columns&quot;)
-varset_train = varset.loc[dat.train_ind]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">varset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects</span><span class="p">,</span> <span class="n">int_effects</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<span class="n">varset_train</span> <span class="o">=</span> <span class="n">varset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">]</span>
 
-# drop any constant columns over the training data set
-# do this by identifying the constant columns and dropping them
-keep_cols = (varset != varset.iloc[0]).any()
+<span class="c1"># drop any constant columns over the training data set</span>
+<span class="c1"># do this by identifying the constant columns and dropping them</span>
+<span class="n">keep_cols</span> <span class="o">=</span> <span class="p">(</span><span class="n">varset</span> <span class="o">!=</span> <span class="n">varset</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
 
-varset = varset.loc[:, keep_cols] 
-varset_train = varset_train.loc[:, keep_cols]
+<span class="n">varset</span> <span class="o">=</span> <span class="n">varset</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">keep_cols</span><span class="p">]</span> 
+<span class="n">varset_train</span> <span class="o">=</span> <span class="n">varset_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">keep_cols</span><span class="p">]</span>
 
-# now add these variables into an extended data object
-# remove anything not used in modelling
-dat_plus =  pd.concat(
-    [
-        dat[[&quot;pmts&quot;, &quot;train_ind&quot;]], 
-        varset
-    ], 
-    axis=&quot;columns&quot;)
+<span class="c1"># now add these variables into an extended data object</span>
+<span class="c1"># remove anything not used in modelling</span>
+<span class="n">dat_plus</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dat</span><span class="p">[[</span><span class="s2">&quot;pmts&quot;</span><span class="p">,</span> <span class="s2">&quot;train_ind&quot;</span><span class="p">]],</span> 
+        <span class="n">varset</span>
+    <span class="p">],</span> 
+    <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3138,9 +3138,9 @@ dat_plus =  pd.concat(
 <p>First we need to set up the data for the model. This differs from the tree-based models task as follows in that the input variables are all the basis functions we created and not the raw accident / development / calendar quarter terms - the <code class="docutils literal notranslate"><span class="pre">dat_plus</span></code> data.table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X_train_plus = varset[dat.train_ind]
-X_test_plus = varset.loc[dat.train_ind == False]
-X_plus = varset
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_plus</span> <span class="o">=</span> <span class="n">varset</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">]</span>
+<span class="n">X_test_plus</span> <span class="o">=</span> <span class="n">varset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
+<span class="n">X_plus</span> <span class="o">=</span> <span class="n">varset</span>
 </pre></div>
 </div>
 </div>
@@ -3163,15 +3163,15 @@ X_plus = varset
 <p>Firstly we will just import pytorch. If you are running this on your pc and have a GPU you would like to utilise, make sure you <a class="reference external" href="https://pytorch.org/get-started/locally/">install the right version for best performance</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import torch
-import torch.nn as nn
-from torch.distributions import Normal, OneHotCategorical
-import torch.nn.functional as F
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">Normal</span><span class="p">,</span> <span class="n">OneHotCategorical</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 
-torch.manual_seed(0)
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-from sklearn.base import BaseEstimator, RegressorMixin
-from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_X_y</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_is_fitted</span>
 </pre></div>
 </div>
 </div>
@@ -3179,23 +3179,23 @@ from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 <p>First we will create a <strong>Pytorch Module</strong> for the GLM. This is pretty straightforward - a neural network with no hidden layers is a LM, and by applying an exponential to the output, we have a log-link GLM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class LogLinkGLM(nn.Module):
-    # Define the parameters in __init__
-    def __init__(
-        self, 
-        n_input=3): # number of inputs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LogLinkGLM</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="c1"># Define the parameters in __init__</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">n_input</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span> <span class="c1"># number of inputs</span>
 
         
-        super(LogLinkGLM, self).__init__()
+        <span class="nb">super</span><span class="p">(</span><span class="n">LogLinkGLM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         
         
-        self.linear = torch.nn.Linear(n_input, 1)  # These will be the coefficients
-        nn.init.zeros_(self.linear.weight)         # Initialise these to zero
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_input</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># These will be the coefficients</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>         <span class="c1"># Initialise these to zero</span>
 
 
-    # forward defines how you get y from X.
-    def forward(self, x):
-        return torch.exp(self.linear(x))  # log(Y) = XB -&gt; Y = exp(XB)
+    <span class="c1"># forward defines how you get y from X.</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># log(Y) = XB -&gt; Y = exp(XB)</span>
 </pre></div>
 </div>
 </div>
@@ -3210,153 +3210,153 @@ from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 <p>There is also some added boilerplate about getting data into the right format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>class LogLinkGLMNetRegressor(BaseEstimator, RegressorMixin):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LogLinkGLMNetRegressor</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">):</span>
 
-    def __init__(
-        self, 
-        l1_penalty=0.0,          # lambda is a reserved word
-        weight_decay=0.0,
-        max_iter=200000,
-        lr=0.01,
-        min_improvement=0.01,
-        check_improvement_every_iter=5000,
-        patience=3,
-        init_weight=None,
-        init_bias=None,
-        verbose=1,
-        target_device=torch.device(&quot;cuda&quot;) if torch.cuda.is_available() else torch.device(&quot;cpu&quot;)):
-        &quot;&quot;&quot; Log Link GLM LASSO Regressor
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">l1_penalty</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>          <span class="c1"># lambda is a reserved word</span>
+        <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">max_iter</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span>
+        <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">min_improvement</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+        <span class="n">check_improvement_every_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+        <span class="n">patience</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">init_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">init_bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">target_device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot; Log Link GLM LASSO Regressor</span>
 
-        This trains a GLM with Poisson loss, Log Link and l1 LASSO penalties
-        using Pytorch. It has early stopping 
+<span class="sd">        This trains a GLM with Poisson loss, Log Link and l1 LASSO penalties</span>
+<span class="sd">        using Pytorch. It has early stopping </span>
 
-        Note:
-            Do not include the `self` parameter in the ``Args`` section.
+<span class="sd">        Note:</span>
+<span class="sd">            Do not include the `self` parameter in the ``Args`` section.</span>
 
-        Args:
-            l1_penalty (float): l1 penalty factor (we use l1_penalty because lambda is
-                a reserved word in Python for anonymous functions)
+<span class="sd">        Args:</span>
+<span class="sd">            l1_penalty (float): l1 penalty factor (we use l1_penalty because lambda is</span>
+<span class="sd">                a reserved word in Python for anonymous functions)</span>
 
-            weight_decay (float): weight decay - analogous to l2 penalty factor
-            
-            max_iter (int): Maximum number of epochs before training stops
+<span class="sd">            weight_decay (float): weight decay - analogous to l2 penalty factor</span>
+<span class="sd">            </span>
+<span class="sd">            max_iter (int): Maximum number of epochs before training stops</span>
 
-            lr (float): Learning rate
+<span class="sd">            lr (float): Learning rate</span>
 
-            min_improvement (float), patience (int), check_improvement_every_iter (int): 
-                RMSE must improve by this percent otherwise patience will decrement. 
-                Once patience reaches zero, training stops.
+<span class="sd">            min_improvement (float), patience (int), check_improvement_every_iter (int): </span>
+<span class="sd">                RMSE must improve by this percent otherwise patience will decrement. </span>
+<span class="sd">                Once patience reaches zero, training stops.</span>
 
-            verbose (int): 0 means don&#39;t print. 1 means do print.
+<span class="sd">            verbose (int): 0 means don&#39;t print. 1 means do print.</span>
 
-            init_weight, init_bias (torch tensor): initial weight (coefficient) 
-                and bias (intercept) for a warm start. 
-        &quot;&quot;&quot;
-        self.l1_penalty = l1_penalty
-        self.weight_decay = weight_decay
-        self.max_iter = max_iter
-        self.target_device = target_device
-        self.min_improvement = min_improvement
-        self.lr = lr
-        self.patience = patience
-        self.init_weight = init_weight
-        self.init_bias = init_bias
-        self.check_improvement_every_iter = check_improvement_every_iter
-        self.verbose = verbose
+<span class="sd">            init_weight, init_bias (torch tensor): initial weight (coefficient) </span>
+<span class="sd">                and bias (intercept) for a warm start. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">l1_penalty</span> <span class="o">=</span> <span class="n">l1_penalty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight_decay</span> <span class="o">=</span> <span class="n">weight_decay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_device</span> <span class="o">=</span> <span class="n">target_device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_improvement</span> <span class="o">=</span> <span class="n">min_improvement</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patience</span> <span class="o">=</span> <span class="n">patience</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_weight</span> <span class="o">=</span> <span class="n">init_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_bias</span> <span class="o">=</span> <span class="n">init_bias</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_improvement_every_iter</span> <span class="o">=</span> <span class="n">check_improvement_every_iter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
 
-    def fit(self, X, y):
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 
-        # Check that X and y have correct shape
-        X, y = check_X_y(X, y)
+        <span class="c1"># Check that X and y have correct shape</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-        # Skorch is picky about format
-        if isinstance(X, pd.DataFrame) or isinstance(X, pd.Series):
-            X = X.values
-        if isinstance(y, pd.DataFrame) or isinstance(y, pd.Series):
-            y = y.values
+        <span class="c1"># Skorch is picky about format</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span>
 
-        # Convert to Pytorch Tensor
-        X_tensor = torch.from_numpy(X.astype(np.float32)).to(self.target_device)
-        y_tensor = torch.from_numpy(y.astype(np.float32)).reshape(-1, 1).to(self.target_device)
+        <span class="c1"># Convert to Pytorch Tensor</span>
+        <span class="n">X_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_device</span><span class="p">)</span>
+        <span class="n">y_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_device</span><span class="p">)</span>
 
-        n_input = X.shape[-1]
-        self.module_ = LogLinkGLM(n_input=n_input).to(self.target_device)
+        <span class="n">n_input</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module_</span> <span class="o">=</span> <span class="n">LogLinkGLM</span><span class="p">(</span><span class="n">n_input</span><span class="o">=</span><span class="n">n_input</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_device</span><span class="p">)</span>
 
-        # Set initial weight
-        if self.init_weight is not None:
-            self.module_.linear.weight.data = self.init_weight
+        <span class="c1"># Set initial weight</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_weight</span>
 
-        # Set initial intercept 
-        if self.init_bias is not None:
-            self.module_.linear.bias.data = self.init_bias
-        else:
-            # To something close so gradients do not explode
-            avg_log_y = np.log(np.mean(y))
-            self.module_.linear.bias.data = torch.tensor([avg_log_y])
+        <span class="c1"># Set initial intercept </span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_bias</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># To something close so gradients do not explode</span>
+            <span class="n">avg_log_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">avg_log_y</span><span class="p">])</span>
 
-        optimizer = torch.optim.AdamW(
-            params=self.module_.parameters(),
-            lr=self.lr,
-            weight_decay=self.weight_decay
-        )
-        loss_fn = nn.PoissonNLLLoss(log_input=False).to(self.target_device)
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
+            <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span>
+            <span class="n">weight_decay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_decay</span>
+        <span class="p">)</span>
+        <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">PoissonNLLLoss</span><span class="p">(</span><span class="n">log_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_device</span><span class="p">)</span>
 
-        last_rmse = -1
-        patience = self.patience
+        <span class="n">last_rmse</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">patience</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patience</span>
 
-        # Training loop
-        for epoch in range(self.max_iter):        # Repeat max_iter times
-            y_pred = self.module_(X_tensor)  # Apply current model
-            loss = loss_fn(y_pred, y_tensor) # What is the loss on it?
-            loss += self.l1_penalty * self.module_.linear.weight.abs().sum()  # lasso        
-            optimizer.zero_grad()            # Reset optimizer
-            loss.backward()                  # Apply back propagation
-            optimizer.step()                 # Update model parameters
+        <span class="c1"># Training loop</span>
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">):</span>        <span class="c1"># Repeat max_iter times</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="p">(</span><span class="n">X_tensor</span><span class="p">)</span>  <span class="c1"># Apply current model</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_tensor</span><span class="p">)</span> <span class="c1"># What is the loss on it?</span>
+            <span class="n">loss</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l1_penalty</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># lasso        </span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>            <span class="c1"># Reset optimizer</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                  <span class="c1"># Apply back propagation</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>                 <span class="c1"># Update model parameters</span>
 
-            # Every 5,000 steps (or setting) get RMSE 
-            if epoch % self.check_improvement_every_iter == 0:   
-                rmse = torch.sqrt(torch.mean(torch.square(y_pred - y_tensor)))
+            <span class="c1"># Every 5,000 steps (or setting) get RMSE </span>
+            <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_improvement_every_iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>   
+                <span class="n">rmse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_tensor</span><span class="p">)))</span>
 
-                if self.verbose &gt; 0:
-                    print(&quot;Train RMSE: &quot;, rmse.data.tolist())    # Print loss
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train RMSE: &quot;</span><span class="p">,</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>    <span class="c1"># Print loss</span>
 
-                # Stop if not 
-                if rmse.data.tolist() &gt; last_rmse * (1 - self.min_improvement):
-                    patience += -1
+                <span class="c1"># Stop if not </span>
+                <span class="k">if</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">last_rmse</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_improvement</span><span class="p">):</span>
+                    <span class="n">patience</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">1</span>
                 
-                if patience == 0:
-                    if self.verbose &gt; 0:
-                        print(&quot;Insufficient improvement found, stopping training&quot;)
-                    break
+                <span class="k">if</span> <span class="n">patience</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient improvement found, stopping training&quot;</span><span class="p">)</span>
+                    <span class="k">break</span>
 
-                last_rmse = rmse.data.tolist()
+                <span class="n">last_rmse</span> <span class="o">=</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
-        # Return the regressor
-        return self
+        <span class="c1"># Return the regressor</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
-    def predict(self, X):
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 
-        # Check is fit had been called
-        check_is_fitted(self)
+        <span class="c1"># Check is fit had been called</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-        # Input validation
-        X = check_array(X)
+        <span class="c1"># Input validation</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-        # Skorch is picky about format
-        if isinstance(X, pd.DataFrame) or isinstance(X, pd.Series):
-            X = X.values     
+        <span class="c1"># Skorch is picky about format</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>     
 
-        # Convert to Pytorch Tensor
-        X_tensor = torch.from_numpy(X.astype(np.float32)).to(self.target_device)
+        <span class="c1"># Convert to Pytorch Tensor</span>
+        <span class="n">X_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_device</span><span class="p">)</span>
 
-        # Apply current model and return
-        return self.module_(X_tensor).cpu().detach().numpy().ravel()
+        <span class="c1"># Apply current model and return</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_</span><span class="p">(</span><span class="n">X_tensor</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
 
-    def score(self, X, y):
-        # Negative RMSE score (higher needs to be better)
-        y_pred = self.predict(X)
-        return -np.sqrt(np.mean((y_pred - y)**2))
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="c1"># Negative RMSE score (higher needs to be better)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -3367,13 +3367,13 @@ from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 <p>So, can we replicate the previously tuned model from R in Python?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tic = time.perf_counter()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 
-lasso_prev = LogLinkGLMNetRegressor(l1_penalty=7674)
-lasso_prev.fit(X_train_plus, y_train)
+<span class="n">lasso_prev</span> <span class="o">=</span> <span class="n">LogLinkGLMNetRegressor</span><span class="p">(</span><span class="n">l1_penalty</span><span class="o">=</span><span class="mi">7674</span><span class="p">)</span>
+<span class="n">lasso_prev</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-toc = time.perf_counter()
-print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3403,8 +3403,8 @@ Ran in 64.2999 seconds
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lambdas = [np.exp(0.1 * x) for x in range(86, 96)]
-lambdas
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambdas</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">86</span><span class="p">,</span> <span class="mi">96</span><span class="p">)]</span>
+<span class="n">lambdas</span>
 </pre></div>
 </div>
 </div>
@@ -3425,31 +3425,31 @@ lambdas
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>parameters_lasso = {
-    &quot;l1_penalty&quot;: lambdas, 
-    &quot;init_weight&quot;: [lasso_prev.module_.linear.weight.data],
-    &quot;init_bias&quot;: [lasso_prev.module_.linear.bias.data],
-    &quot;lr&quot;: [0.001], # Fine tuning?
-    &quot;check_improvement_every_iter&quot;: [100], 
-    &quot;verbose&quot;: [0]
-}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_lasso</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;l1_penalty&quot;</span><span class="p">:</span> <span class="n">lambdas</span><span class="p">,</span> 
+    <span class="s2">&quot;init_weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
+    <span class="s2">&quot;init_bias&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">],</span> <span class="c1"># Fine tuning?</span>
+    <span class="s2">&quot;check_improvement_every_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span> 
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tic = time.perf_counter()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 
-# N.b. this will not run in parallel.
-lasso = GridSearchCV(
-    LogLinkGLMNetRegressor(), 
-    parameters_lasso, 
-    verbose=1)
+<span class="c1"># N.b. this will not run in parallel.</span>
+<span class="n">lasso</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">LogLinkGLMNetRegressor</span><span class="p">(),</span> 
+    <span class="n">parameters_lasso</span><span class="p">,</span> 
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-lasso.fit(X_train_plus, y_train)
-toc = time.perf_counter()
-print(f&quot;Ran in {toc - tic:0.4f} seconds&quot;)
+<span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3463,11 +3463,11 @@ Ran in 34.7665 seconds
 <p>Let’s plot the test error vs different regularisation parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the path includes a minimum value of error
-pd.DataFrame({
-  &quot;log(lambda)&quot;: [np.log(p[&quot;l1_penalty&quot;]) for p in lasso.cv_results_[&quot;params&quot;]],
-  &quot;mean_test_score&quot;: lasso.cv_results_[&quot;mean_test_score&quot;]
-}).plot(x=&quot;log(lambda)&quot;, y=&quot;mean_test_score&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the path includes a minimum value of error</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+  <span class="s2">&quot;log(lambda)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;l1_penalty&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]],</span>
+  <span class="s2">&quot;mean_test_score&quot;</span><span class="p">:</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span>
+<span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;log(lambda)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3480,8 +3480,8 @@ pd.DataFrame({
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Best regularisation parameter [log(lambda)] was:&quot;) 
-print(np.log(lasso.best_estimator_.get_params()[&quot;l1_penalty&quot;]))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best regularisation parameter [log(lambda)] was:&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()[</span><span class="s2">&quot;l1_penalty&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -3494,8 +3494,8 @@ print(np.log(lasso.best_estimator_.get_params()[&quot;l1_penalty&quot;]))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get the best fit:
-lasso.best_estimator_.get_params()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the best fit:</span>
+<span class="n">lasso</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3534,17 +3534,17 @@ lasso.best_estimator_.get_params()
 <p>First, we’ll set up a data frame to hold the model projections for each model and populate these projections for each model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Dataset of all forecasts
-model_forecasts = dat.copy()
-model_forecasts[&quot;Decision Tree&quot;] = grid_tree.best_estimator_.predict(X)
-model_forecasts[&quot;Random Forest&quot;] = grid_forest.best_estimator_.predict(X)
-model_forecasts[&quot;Classic GBM&quot;] = grid_gbm.best_estimator_.predict(X)
-model_forecasts[&quot;Histogram GBM&quot;] = grid_hgbm.best_estimator_.predict(X)
-model_forecasts[&quot;Hist GBM (prev)&quot;] = gbm_prev.predict(X)
-model_forecasts[&quot;Neural Network&quot;] = neural_network.predict(X)
-model_forecasts[&quot;Chain Ladder&quot;] = chain_ladder.predict(X)
-model_forecasts[&quot;LASSO&quot;] = lasso.predict(X_plus)
-model_forecasts[&quot;LASSO (prev)&quot;] = lasso_prev.predict(X_plus)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset of all forecasts</span>
+<span class="n">model_forecasts</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Decision Tree&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Random Forest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Classic GBM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Histogram GBM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gbm_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Neural Network&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neural_network</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Chain Ladder&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chain_ladder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3552,7 +3552,7 @@ model_forecasts[&quot;LASSO (prev)&quot;] = lasso_prev.predict(X_plus)
 <p>Here’s how our collated forecast DataFrame looks so far:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model_forecasts
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_forecasts</span>
 </pre></div>
 </div>
 </div>
@@ -3826,58 +3826,58 @@ model_forecasts[&quot;LASSO (prev)&quot;] = lasso_prev.predict(X_plus)
 <p>We are going to do these calculations by using the <strong>scikit-learn</strong> benchmark tools. Since the LASSO model is the only one using the <strong>plus</strong> datasets, we will use that as the starting example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Empty list to store results.
-scikit_results = []
-y_predicted_full_results = {}
-y_predicted_test_results = {&quot;Actuals&quot;: y_test}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empty list to store results.</span>
+<span class="n">scikit_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_predicted_full_results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">y_predicted_test_results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Actuals&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># LASSO uses the &quot;plus&quot; datasets
-# Train:
-y_predicted_train = lasso.predict(X_train_plus)
-train_rmse = mean_squared_error(y_train, y_predicted_train, squared=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO uses the &quot;plus&quot; datasets</span>
+<span class="c1"># Train:</span>
+<span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">)</span>
+<span class="n">train_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_predicted_train</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-# Test:
-y_predicted_test = lasso.predict(X_test_plus)
-test_rmse = mean_squared_error(y_test, y_predicted_test, squared=False)
+<span class="c1"># Test:</span>
+<span class="n">y_predicted_test</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_plus</span><span class="p">)</span>
+<span class="n">test_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted_test</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-# Append to the list of results.
-y_predicted_full_results[&quot;LASSO&quot;] = lasso.predict(X_plus)
-y_predicted_test_results[&quot;LASSO&quot;] = y_predicted_test
+<span class="c1"># Append to the list of results.</span>
+<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
-scikit_results += [{
-    &quot;Name&quot;: &quot;LASSO&quot;, 
-    &quot;Train RMSE&quot;: train_rmse,
-    &quot;Test RMSE&quot;: test_rmse
-}]
+<span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
+    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;LASSO&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+<span class="p">}]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># LASSO (prev) also uses the &quot;plus&quot; datasets
-# Train:
-y_predicted_train = lasso_prev.predict(X_train_plus)
-train_rmse = mean_squared_error(y_train, y_predicted_train, squared=False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO (prev) also uses the &quot;plus&quot; datasets</span>
+<span class="c1"># Train:</span>
+<span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">)</span>
+<span class="n">train_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_predicted_train</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-# Test:
-y_predicted_test = lasso_prev.predict(X_test_plus)
-test_rmse = mean_squared_error(y_test, y_predicted_test, squared=False)
+<span class="c1"># Test:</span>
+<span class="n">y_predicted_test</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_plus</span><span class="p">)</span>
+<span class="n">test_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted_test</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-# Append to the list of results.
-y_predicted_full_results[&quot;LASSO (prev)&quot;] = lasso_prev.predict(X_plus)
-y_predicted_test_results[&quot;LASSO (prev)&quot;] = y_predicted_test
+<span class="c1"># Append to the list of results.</span>
+<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
-scikit_results += [{
-    &quot;Name&quot;: &quot;LASSO (prev)&quot;, 
-    &quot;Train RMSE&quot;: train_rmse,
-    &quot;Test RMSE&quot;: test_rmse
-}]
+<span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
+    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+<span class="p">}]</span>
 </pre></div>
 </div>
 </div>
@@ -3885,28 +3885,28 @@ scikit_results += [{
 <p>and then for the rest we put it in a loop running on the <strong>“non-plussed”</strong> datasets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Using zip in a for loop means pipe and name will run through 
-# the tuples of the two lists in that order.
-for pipe, name in zip(
-        [grid_tree.best_estimator_, grid_forest.best_estimator_, grid_gbm.best_estimator_, 
-         grid_hgbm.best_estimator_, gbm_prev, neural_network, chain_ladder],
-        [&quot;Decision Tree&quot;, &quot;Random Forest&quot;, &quot;Classic GBM&quot;, &quot;Histogram GBM&quot;, &quot;Hist GBM (prev)&quot;, &quot;Neural Network&quot;, &quot;Chain Ladder&quot;]
-    ):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using zip in a for loop means pipe and name will run through </span>
+<span class="c1"># the tuples of the two lists in that order.</span>
+<span class="k">for</span> <span class="n">pipe</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> 
+         <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">gbm_prev</span><span class="p">,</span> <span class="n">neural_network</span><span class="p">,</span> <span class="n">chain_ladder</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;Decision Tree&quot;</span><span class="p">,</span> <span class="s2">&quot;Random Forest&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic GBM&quot;</span><span class="p">,</span> <span class="s2">&quot;Histogram GBM&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Neural Network&quot;</span><span class="p">,</span> <span class="s2">&quot;Chain Ladder&quot;</span><span class="p">]</span>
+    <span class="p">):</span>
 
-    y_predicted_train = pipe.predict(X_train)
-    train_rmse = mean_squared_error(y_train, y_predicted_train, squared=False)
+    <span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">train_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_predicted_train</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    y_predicted_test = pipe.predict(X_test)
-    test_rmse = mean_squared_error(y_test, y_predicted_test, squared=False)
+    <span class="n">y_predicted_test</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">test_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted_test</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    y_predicted_full_results[name] = pipe.predict(X)
-    y_predicted_test_results[name] = y_predicted_test
+    <span class="n">y_predicted_full_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y_predicted_test_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
-    scikit_results += [{
-    &quot;Name&quot;: name, 
-    &quot;Train RMSE&quot;: train_rmse,
-    &quot;Test RMSE&quot;: test_rmse
-    }]
+    <span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
+    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> 
+    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+    <span class="p">}]</span>
 </pre></div>
 </div>
 </div>
@@ -3914,15 +3914,15 @@ for pipe, name in zip(
 <p>Let’s have a look at these results for past and future data sets with results ranked by test RMSE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_results = pd.DataFrame(scikit_results).sort_values(&quot;Test RMSE&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scikit_results</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Test RMSE&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.set_option(&#39;display.float_format&#39;, &#39;{0:,.0f}&#39;.format)
-display(df_results)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{0:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_results</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4025,20 +4025,20 @@ In particular, because these are models for a reserving data set, we can take ad
 The graphs below show the log(fitted values), or log(payments) in the case of the actual values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for name, y_pred in y_predicted_test_results.items():
-    # Skip prev models - these are similar enough to last version
-    if name not in [&quot;LASSO (prev)&quot;, &quot;Hist GBM (prev)&quot;]:  
-        # Plot
-        dat_ = dat.copy() 
-        dat_.loc[dat_.train_ind == False, &quot;pmts&quot;] = y_pred
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_test_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># Skip prev models - these are similar enough to last version</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]:</span>  
+        <span class="c1"># Plot</span>
+        <span class="n">dat_</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+        <span class="n">dat_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat_</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
         
-        plot_triangle(
-            dat_.pivot(index=&quot;acc&quot;, columns=&quot;dev&quot;, values=&quot;pmts&quot;),
-            mask_bottom=False,
-            title=name
-        )
+        <span class="n">plot_triangle</span><span class="p">(</span>
+            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+            <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">name</span>
+        <span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -4070,24 +4070,24 @@ plt.show()
 <p>First, here’s a function to draw the heatmaps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for name, y_pred in y_predicted_full_results.items():
-    # Skip prev models - these are similar enough to last version
-    if name not in [&quot;LASSO (prev)&quot;, &quot;Hist GBM (prev)&quot;]: 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_full_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># Skip prev models - these are similar enough to last version</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]:</span> 
 
-        # Plot
-        dat_ = dat.copy() 
-        dat_[&quot;pmts_ratio&quot;] = dat_.pmts / y_pred
+        <span class="c1"># Plot</span>
+        <span class="n">dat_</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+        <span class="n">dat_</span><span class="p">[</span><span class="s2">&quot;pmts_ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dat_</span><span class="o">.</span><span class="n">pmts</span> <span class="o">/</span> <span class="n">y_pred</span>
         
-        cmap = sns.diverging_palette(255,0,sep=16, as_cmap=True)  # to be similar to R colouring
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># to be similar to R colouring</span>
         
-        plot_triangle(
-            dat_.pivot(index=&quot;acc&quot;, columns=&quot;dev&quot;, values=&quot;pmts_ratio&quot;),
-            mask_bottom=False,
-            title=name,
-            cmap=cmap  # vlag also not a bad palette for this
-        )
+        <span class="n">plot_triangle</span><span class="p">(</span>
+            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts_ratio&quot;</span><span class="p">),</span>
+            <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span>  <span class="c1"># vlag also not a bad palette for this</span>
+        <span class="p">)</span>
 
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -4119,69 +4119,69 @@ The second function (<code class="docutils literal notranslate"><span class="pre
 We’ll wrap this in another function since we want to call this for a few different combinations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model_names = [x[&quot;Name&quot;] for x in scikit_results if name not in [&quot;LASSO (prev)&quot;, &quot;Hist GBM (prev)&quot;]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">scikit_results</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def QTrack(model_forecasts, model_names, period_to_filter, period, total_num_periods, plot_mu=True):
-    &quot;&quot;&quot;
-    Plots model vs payments and mu
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="p">,</span> <span class="n">plot_mu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots model vs payments and mu</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">    model_forecasts: Pandas DataFrame. Should have dev, acc, mu, pmts </span>
+<span class="sd">    model_names: List of model names to plot Should be columns in model_forecasts</span>
+<span class="sd">    period_to_filter: &quot;dev&quot; or &quot;acc&quot;. The period to filter by</span>
+<span class="sd">    period: integer. filter value for period_to_filter. I.e. period_to_filter=&quot;acc&quot;, period=5 filters for acc=5.</span>
+<span class="sd">    total_num_periods: total number of periods. First total_num_periods - period periods are greyed out.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_names</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_names</span><span class="p">)))</span>
     
-    Args:
-    model_forecasts: Pandas DataFrame. Should have dev, acc, mu, pmts 
-    model_names: List of model names to plot Should be columns in model_forecasts
-    period_to_filter: &quot;dev&quot; or &quot;acc&quot;. The period to filter by
-    period: integer. filter value for period_to_filter. I.e. period_to_filter=&quot;acc&quot;, period=5 filters for acc=5.
-    total_num_periods: total number of periods. First total_num_periods - period periods are greyed out.
-    &quot;&quot;&quot;
-    fig, axs = plt.subplots(len(model_names), 1, sharex=True, figsize=(4, 1.8 * len(model_names)))
+    <span class="n">other_period</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;acc&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">period_to_filter</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     
-    other_period = [x for x in [&quot;dev&quot;, &quot;acc&quot;] if x != period_to_filter][0]
-    
-    for model_name, ax in zip(model_names, axs):
-        # Shade historical quarters
-        ax.axvspan(0, total_num_periods - period, facecolor=plot_colors[&quot;lgrey&quot;])
+    <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">model_names</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
+        <span class="c1"># Shade historical quarters</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_num_periods</span> <span class="o">-</span> <span class="n">period</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;lgrey&quot;</span><span class="p">])</span>
         
-        # Plot mu
-        if plot_mu:
-            ax.plot(
-            model_forecasts.loc[model_forecasts[period_to_filter] == period, other_period].values,
-            np.log(model_forecasts.loc[model_forecasts[period_to_filter] == period, &quot;mu&quot;].values),
-            color=plot_colors[&quot;dgrey&quot;],
-            linestyle=&#39;:&#39;)
+        <span class="c1"># Plot mu</span>
+        <span class="k">if</span> <span class="n">plot_mu</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;dgrey&quot;</span><span class="p">],</span>
+            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
         
-        # Plot Payments
-        ax.plot(
-        model_forecasts.loc[model_forecasts[period_to_filter] == period, other_period].values, 
-        np.log(model_forecasts.loc[model_forecasts[period_to_filter] == period, &quot;pmts&quot;].values), 
-        color=plot_colors[&quot;dblue&quot;])
+        <span class="c1"># Plot Payments</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> 
+        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;dblue&quot;</span><span class="p">])</span>
         
-        # Plot model
-        ax.plot(
-        model_forecasts.loc[model_forecasts[period_to_filter] == period, other_period].values, 
-        np.log(model_forecasts.loc[model_forecasts[period_to_filter] == period, model_name].values), 
-        color=plot_colors[&quot;red&quot;],
-        linewidth=6)
+        <span class="c1"># Plot model</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> 
+        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">],</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
             
-        ax.set_ylabel(&#39;Log(Payments)&#39;)
-        ax.set_title(f&#39;Modelled Values for {model_name}&#39;)
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log(Payments)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Modelled Values for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     
-    if period_to_filter == &quot;acc&quot;:
-        ax.set_xlabel(&#39;Development Quarter&#39;)
-    else:
-        ax.set_xlabel(&#39;Accident Quarter&#39;)  
+    <span class="k">if</span> <span class="n">period_to_filter</span> <span class="o">==</span> <span class="s2">&quot;acc&quot;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Development Quarter&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Accident Quarter&#39;</span><span class="p">)</span>  
     
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>QTrack(model_forecasts, model_names, period_to_filter=&quot;dev&quot;, period=5, total_num_periods=num_periods)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4196,7 +4196,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for accident quarter when development quarter = 24</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>QTrack(model_forecasts, model_names, period_to_filter=&quot;dev&quot;, period=24, total_num_periods=num_periods)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4209,7 +4209,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for accident quarter when development quarter = 35</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>QTrack(model_forecasts, model_names, period_to_filter=&quot;dev&quot;, period=35, total_num_periods=num_periods)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4222,7 +4222,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for development quarter when accident quarter = 5</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>QTrack(model_forecasts, model_names, period_to_filter=&quot;acc&quot;, period=5, total_num_periods=num_periods)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4234,7 +4234,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for development quarter when accident quarter = 20</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>QTrack(model_forecasts, model_names, period_to_filter=&quot;acc&quot;, period=20, total_num_periods=num_periods)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4251,15 +4251,15 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p>Finally, we’ll look at the reserve estimates from the different models:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_reserve_estimates = (
-    model_forecasts
-    .loc[model_forecasts.train_ind==False]
-    .groupby(&quot;acc&quot;)
-    .agg(&quot;sum&quot;)
-    .drop(columns=[&quot;pmts&quot;, &quot;accf&quot;, &quot;devf&quot;, &quot;dev&quot;, &quot;cal&quot;, &quot;train_ind&quot;])
-)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reserve_estimates</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">model_forecasts</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">train_ind</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;acc&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pmts&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;train_ind&quot;</span><span class="p">])</span>
+<span class="p">)</span>
 
-df_reserve_estimates.plot(ylim=(0, 1.0e11))
+<span class="n">df_reserve_estimates</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0e11</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -4273,19 +4273,19 @@ df_reserve_estimates.plot(ylim=(0, 1.0e11))
 <p>Finally, here are the overall reserves, summed over all accident quarters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df_reserve_summary= pd.DataFrame.from_dict({
-    name: y_pred.sum() / 10**9
-    for name, y_pred in y_predicted_test_results.items()},
-    orient=&quot;index&quot;,
-    columns=[&quot;Reserves ($B)&quot;]
-    )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reserve_summary</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_test_results</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+    <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Reserves ($B)&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
 
-df_reserve_summary[&quot;Ratio to actual(%)&quot;] = (
-    df_reserve_summary[&quot;Reserves ($B)&quot;] / 
-    y_predicted_test_results[&quot;Actuals&quot;].sum() * 10**11
-)
+<span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">&quot;Ratio to actual(%)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">&quot;Reserves ($B)&quot;</span><span class="p">]</span> <span class="o">/</span> 
+    <span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;Actuals&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">11</span>
+<span class="p">)</span>
 
-df_reserve_summary
+<span class="n">df_reserve_summary</span>
 </pre></div>
 </div>
 </div>

@@ -797,20 +797,20 @@ In this article, we are going to be looking at one of the topics within Natural 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
-import warnings
-import pyarrow.parquet as pq
-from collections import defaultdict
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
-import matplotlib.pyplot as plt
-import seaborn as sns
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn import metrics
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
 </pre></div>
 </div>
 </div>
@@ -835,15 +835,15 @@ Since we are trying to predict the category of products based on the complaints 
 <p>We will also get rid of null entries as they will not be of any use to us.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>url = &#39;https://www.dropbox.com/s/9whncsovtccbgx8/Consumer_complaints.parquet?dl=1&#39;
-df = pd.read_parquet(url)
-df = df.loc[(df[&#39;Consumer complaint narrative&#39;].notnull()), [&#39;Consumer complaint narrative&#39;, &#39;Product&#39;]] \
-       .reset_index() \
-       .drop(&#39;index&#39;, axis = 1)
-df = df[(np.logical_not(df.Product.str.contains(&#39;,&#39;))) &amp; (df.Product != &#39;Credit card or prepaid card&#39;)]
-df.columns = [&#39;description&#39;, &#39;target&#39;]
-pd.set_option(&#39;display.max_colwidth&#39;, 250)
-df.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.dropbox.com/s/9whncsovtccbgx8/Consumer_complaints.parquet?dl=1&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Consumer complaint narrative&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()),</span> <span class="p">[</span><span class="s1">&#39;Consumer complaint narrative&#39;</span><span class="p">,</span> <span class="s1">&#39;Product&#39;</span><span class="p">]]</span> \
+       <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+       <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span> <span class="o">!=</span> <span class="s1">&#39;Credit card or prepaid card&#39;</span><span class="p">)]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -903,12 +903,12 @@ df.head()
 <p>Next, we will assign each target variable an integer value instead of using the string representation (Credit reporting for example). This allows our models to be able to recognize the responses. We can do this using a variety of methods, but here we will be using sklearn’s LabelEncoder function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>encoder = LabelEncoder()
-encoder.fit(df.target)
-df = df.assign(encoded_response = lambda x: encoder.transform(x.target))
-df[[&#39;target&#39;, &#39;encoded_response&#39;]].drop_duplicates() \
-                                  .set_index(&#39;target&#39;) \
-                                  .sort_values(&#39;encoded_response&#39;, ascending = True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">encoded_response</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;encoded_response&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
+                                  <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span> \
+                                  <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;encoded_response&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1003,11 +1003,11 @@ df[[&#39;target&#39;, &#39;encoded_response&#39;]].drop_duplicates() \
 After encoding our target variable, we can then move on to splitting our dataset for training and validation purposes. Train test splits are a crucial part of any modelling process and prevents <a class="reference external" href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a>. Here, we are using an 80/20 split and setting a random seed for reproducibility.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_train, x_test, y_train, y_test, indices_train, indices_test = train_test_split(df.description, 
-                                                                                 df.encoded_response,
-                                                                                 df.index,
-                                                                                 test_size = 0.2, 
-                                                                                 random_state = 1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">indices_train</span><span class="p">,</span> <span class="n">indices_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> 
+                                                                                 <span class="n">df</span><span class="o">.</span><span class="n">encoded_response</span><span class="p">,</span>
+                                                                                 <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                                                                                 <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> 
+                                                                                 <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1028,8 +1028,8 @@ Notice that the document shown above is clearly about a cat and a dog. However, 
 How does this link back to the goal of having numerical features as our inputs? Imagine having a thousand text documents and extracting all (a subset) of the unique tokens that we think best represents them. Now, we can assign each unique token to a column in a dataframe and populate the rows with each document’s count of the respective words. Following the example above, our single document would produce a dataframe that looks like: <br><br></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.DataFrame({&quot;This&quot;: 1, &quot;is&quot;: 2, &quot;a&quot;: 2, &quot;cat&quot; : 1,
-              &quot;That&quot; : 1, &quot;dog&quot; : 1}, index = range(1))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;This&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s2">&quot;That&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1092,12 +1092,12 @@ In this article however, we will be using a more robust model compared to count 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tfidf_vectorizer = TfidfVectorizer(sublinear_tf = True, 
-                                   stop_words = &#39;english&#39;,
-                                   min_df = 5,
-                                   max_df = 0.7,
-                                   norm = &#39;l2&#39;,
-                                   token_pattern = r&#39;\b[^_\d\W]+\b&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">sublinear_tf</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">stop_words</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span><span class="p">,</span>
+                                   <span class="n">min_df</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                                   <span class="n">max_df</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+                                   <span class="n">norm</span> <span class="o">=</span> <span class="s1">&#39;l2&#39;</span><span class="p">,</span>
+                                   <span class="n">token_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b[^_\d\W]+\b&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1105,15 +1105,15 @@ In this article however, we will be using a more robust model compared to count 
 <p>We then use the model to fit our original description data, and convert all that sweet text information into something numerical!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tfidf_train = tfidf_vectorizer.fit_transform(x_train.values)
-tfidf_test = tfidf_vectorizer.transform(x_test.values)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_train</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">tfidf_test</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(len(tfidf_vectorizer.get_feature_names()))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -1126,17 +1126,17 @@ tfidf_test = tfidf_vectorizer.transform(x_test.values)
 <p>We can see that our resulting dictionary consists of 19,285 different unique words!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tfidf_df = pd.SparseDataFrame(tfidf_train, 
-                              columns = tfidf_vectorizer.get_feature_names(),
-                              copy = False)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">SparseDataFrame</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">,</span> 
+                              <span class="n">columns</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
+                              <span class="n">copy</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.options.display.max_columns = 10
-tfidf_df.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">tfidf_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1258,8 +1258,8 @@ Now that we have extracted some numerical features from our dataset, it is time 
 Firstly, we instantiate a logistic regression classifier from the sklearn package and proceed to fit our TF-IDF vectorized matrix and our encoded training labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>lr_classifier = LogisticRegression()
-lr_classifier.fit(tfidf_train, y_train)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_classifier</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">lr_classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tfidf_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1275,9 +1275,9 @@ lr_classifier.fit(tfidf_train, y_train)
 <p>We can observe that amongst the model parameters, sklearn has automatically set ‘penalty’ to L2. This is a form of regularization, which weighs the benefits of a better fit against using more features by adding an extra term to the objective function. Coursera does quite a good job in explaining what L2 regularization in logisitic regression means <a class="reference external" href="https://www.coursera.org/lecture/ml-classification/l2-regularized-logistic-regression-DBTNt">here</a>. Recall that when using the BOW model, we ended up creating thousands of features. Adding regularization to our model would then help to prevent creating too many of them!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>coefficients = pd.DataFrame(dict(zip(tfidf_df.columns,lr_classifier.coef_[0])),index = [0]).T.reset_index()
-coefficients.columns = [&#39;features&#39;, &#39;coefficients&#39;]
-coefficients.head(10)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">lr_classifier</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">coefficients</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span> <span class="s1">&#39;coefficients&#39;</span><span class="p">]</span>
+<span class="n">coefficients</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1362,9 +1362,9 @@ coefficients.head(10)
 <p>Since we have converted all our “text” data into numerical features, we can view the weights and features just as we would be able to for any other logisitic regression model on numerical data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pred = lr_classifier.predict(tfidf_test)
-score = metrics.accuracy_score(y_test, pred)
-print(score)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">lr_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tfidf_test</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1377,8 +1377,8 @@ print(score)
 <p>After running the model on the validation set, we can see that we attained some pretty decent results with an overall accuracy of 85.2% with just a simple logistic regression classifier. We can drill down into this result by evaluating the <a class="reference external" href="https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology">confusion matrix</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cm = metrics.confusion_matrix(y_test, pred)
-cm = cm.astype(&#39;float&#39;) / cm.sum(axis = 1)[:, np.newaxis]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1386,19 +1386,19 @@ cm = cm.astype(&#39;float&#39;) / cm.sum(axis = 1)[:, np.newaxis]
 <p>Due to the huge imbalance of data points between the different categories, the resulting figures in the confusion matrix are normalized to produce clearer distinctions between “good” and “poor” performance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize = (15,15))
-sns.heatmap(cm, 
-            annot = True, 
-            fmt = &quot;.3f&quot;, 
-            linewidths = 0.5, 
-            square = True, 
-            cmap = &#39;Reds&#39;, 
-            xticklabels = encoder.classes_,
-            yticklabels = encoder.classes_)
-plt.ylabel(&#39;Actual&#39;)
-plt.xlabel(&#39;Predicted&#39;)
-all_sample_title = &#39;Accuracy Score: {}&#39;.format(score)
-plt.title(all_sample_title, size = 15)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> 
+            <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;.3f&quot;</span><span class="p">,</span> 
+            <span class="n">linewidths</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> 
+            <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+            <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span> 
+            <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+            <span class="n">yticklabels</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">all_sample_title</span> <span class="o">=</span> <span class="s1">&#39;Accuracy Score: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">all_sample_title</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1412,30 +1412,30 @@ plt.title(all_sample_title, size = 15)
 <p>One of the more obvious results we can observe just from diagonals of the matrix is that “Other financial service”, “Vehicle loan or lease” and “Virtual currency” categories had no correct predictions. We must note however, that the number of data points we had for each of these categories were insignificant compared to the others and the model probably treated those instances as errors instead of a distinct category. This bias however, can be corrected by techniques such as <a class="reference external" href="https://en.wikipedia.org/wiki/Oversampling_and_undersampling_in_data_analysis">over and undersampling</a>. Let’s investigate further to see if the model does indeed treat the documents within these categories as errors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def report2dict(cr):
-    &#39;&#39;&#39;Function solely for formatting purposes, can be ignored&#39;&#39;&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">report2dict</span><span class="p">(</span><span class="n">cr</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Function solely for formatting purposes, can be ignored&#39;&#39;&#39;</span>
     
-    tmp = list()
-    for row in cr.split(&quot;\n&quot;):
-        parsed_row = [x for x in row.split(&quot;  &quot;) if len(x) &gt; 0]
-        if len(parsed_row) &gt; 0:
-            tmp.append(parsed_row)
-    measures = tmp[0]
-    D_class_data = defaultdict(dict)
-    for row in tmp[1:]:
-        class_label = row[0]
-        for j, m in enumerate(measures):
-            D_class_data[class_label][m.strip()] = float(row[j + 1].strip())
-    return D_class_data
+    <span class="n">tmp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">parsed_row</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_row</span><span class="p">)</span>
+    <span class="n">measures</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">D_class_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">class_label</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">measures</span><span class="p">):</span>
+            <span class="n">D_class_data</span><span class="p">[</span><span class="n">class_label</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">D_class_data</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>results = metrics.classification_report(y_test, pred,
-                                     target_names = encoder.classes_)
-pd.DataFrame(report2dict(results)).transpose()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span>
+                                     <span class="n">target_names</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">report2dict</span><span class="p">(</span><span class="n">results</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1584,21 +1584,21 @@ Shown below are some examples where ‘Checking and savings account’ narrative
 <p>Categories with more data points generally had a better score, and the reasons for misclassifications in these categories seem to follow the trend of overlapping categories. (For example, 320 descriptions that were supposed to be “Checking and savings account” related were wrongly classified as “Bank account and service”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def observe_errors(actual_response, wrongly_predicted_response):
-    warnings.filterwarnings(action = &#39;ignore&#39;, category = DeprecationWarning)
-    compare = pd.DataFrame(list(zip(x_test, y_test, pred)), columns = [&#39;description&#39;, &#39;actual&#39;, &#39;predicted&#39;])
-    compare = compare.assign(actual_product = encoder.inverse_transform(compare.actual),
-                             predicted_product = encoder.inverse_transform(compare.predicted)) \
-                     .loc[(compare.actual == actual_response) &amp; (compare.predicted == wrongly_predicted_response),
-                         [&#39;description&#39;, &#39;actual_product&#39;, &#39;predicted_product&#39;]]
-    return compare
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">observe_errors</span><span class="p">(</span><span class="n">actual_response</span><span class="p">,</span> <span class="n">wrongly_predicted_response</span><span class="p">):</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+    <span class="n">compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;actual&#39;</span><span class="p">,</span> <span class="s1">&#39;predicted&#39;</span><span class="p">])</span>
+    <span class="n">compare</span> <span class="o">=</span> <span class="n">compare</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">actual_product</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">actual</span><span class="p">),</span>
+                             <span class="n">predicted_product</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">predicted</span><span class="p">))</span> \
+                     <span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">compare</span><span class="o">.</span><span class="n">actual</span> <span class="o">==</span> <span class="n">actual_response</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">wrongly_predicted_response</span><span class="p">),</span>
+                         <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_product&#39;</span><span class="p">,</span> <span class="s1">&#39;predicted_product&#39;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">compare</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>observe_errors(actual_response = 1, wrongly_predicted_response = 0).tail(5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observe_errors</span><span class="p">(</span><span class="n">actual_response</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">wrongly_predicted_response</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

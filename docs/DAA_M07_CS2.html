@@ -926,39 +926,39 @@ title="Print to PDF"
 n.b. for installing <code class="docutils literal notranslate"><span class="pre">wordcloud</span></code>, if <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">wordcloud</span></code> gives an error, try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">wordcloud</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Packages for data management.
-import pandas as pd
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Packages for data management.</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-# Packages to be used in pre-processing the text.
-import re
-import nltk
-nltk.download(&#39;stopwords&#39;) # For a standard list of stopwords.
-nltk.download(&#39;wordnet&#39;) # For lemmatisation.
-import pkg_resources
-!pip install symspellpy
-from symspellpy import SymSpell, Verbosity
+<span class="c1"># Packages to be used in pre-processing the text.</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span> <span class="c1"># For a standard list of stopwords.</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span> <span class="c1"># For lemmatisation.</span>
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="o">!</span>pip install symspellpy
+<span class="kn">from</span> <span class="nn">symspellpy</span> <span class="kn">import</span> <span class="n">SymSpell</span><span class="p">,</span> <span class="n">Verbosity</span>
 
-# Packages for visualisation.
-# from pprint import pprint
-# import seaborn as sns
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
-from collections import Counter
+<span class="c1"># Packages for visualisation.</span>
+<span class="c1"># from pprint import pprint</span>
+<span class="c1"># import seaborn as sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 
-# For vectorisation using TF-IDF and t-SNE.
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.manifold import TSNE
+<span class="c1"># For vectorisation using TF-IDF and t-SNE.</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
 
-# For clustering sentences using K-Means clustering.
-from sklearn.cluster import KMeans
+<span class="c1"># For clustering sentences using K-Means clustering.</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
-# For vectorisation using BERT.
-!pip install sentence_transformers
-from sentence_transformers import SentenceTransformer
+<span class="c1"># For vectorisation using BERT.</span>
+<span class="o">!</span>pip install sentence_transformers
+<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
 
-# For evaluating the clustering model.
-from sklearn.metrics import silhouette_score
+<span class="c1"># For evaluating the clustering model.</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
 </pre></div>
 </div>
 </div>
@@ -1033,81 +1033,81 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to clean text.
-# Note that not all of these cleaning steps may be needed for different models.
-def clean_text(text, full_clean=1):
-    &#39;&#39;&#39; Basic cleaning does the following:
-        - converts all words to lowercase;
-        - removes punctuation and special characters;
-        - uses &#39;split&#39; to create tokens; and
-        - fixes spelling mistakes.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to clean text.</span>
+<span class="c1"># Note that not all of these cleaning steps may be needed for different models.</span>
+<span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Basic cleaning does the following:</span>
+<span class="sd">        - converts all words to lowercase;</span>
+<span class="sd">        - removes punctuation and special characters;</span>
+<span class="sd">        - uses &#39;split&#39; to create tokens; and</span>
+<span class="sd">        - fixes spelling mistakes.</span>
 
-        Full cleaning also does the following:
-        - removes stop words;
-        - performs stemming; and
-        - performs lemmatisation.
-    &#39;&#39;&#39;
+<span class="sd">        Full cleaning also does the following:</span>
+<span class="sd">        - removes stop words;</span>
+<span class="sd">        - performs stemming; and</span>
+<span class="sd">        - performs lemmatisation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
-    # Convert all text to lower case.
-    text = text.lower()
+    <span class="c1"># Convert all text to lower case.</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
-    # Remove all non-digits/non-alphabetical characters (&#39;\w&#39;)
-    # or  white spaces (&#39;\s&#39;).
-    text = re.sub(r&#39;[^\w\s]&#39;, &#39;&#39;, str(text).strip())
+    <span class="c1"># Remove all non-digits/non-alphabetical characters (&#39;\w&#39;)</span>
+    <span class="c1"># or  white spaces (&#39;\s&#39;).</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
-    # Create tokens from the text.
-    text_list = text.split()
+    <span class="c1"># Create tokens from the text.</span>
+    <span class="n">text_list</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-    # Fix spelling mistakes.
-    # The sym_spell.lookup function highlights words that are not in the
-    # symspell dictionary and offers suggested alternatives for these words.
-    text_list_spell = []
-    for word in text_list:
-        suggestions = sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=3)
-        if suggestions:
-            text_list_spell.append(suggestions[0].term)
-        else:
-            pass
-    text_list = text_list_spell[:]
+    <span class="c1"># Fix spelling mistakes.</span>
+    <span class="c1"># The sym_spell.lookup function highlights words that are not in the</span>
+    <span class="c1"># symspell dictionary and offers suggested alternatives for these words.</span>
+    <span class="n">text_list_spell</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">:</span>
+        <span class="n">suggestions</span> <span class="o">=</span> <span class="n">sym_spell</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">Verbosity</span><span class="o">.</span><span class="n">CLOSEST</span><span class="p">,</span> <span class="n">max_edit_distance</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">suggestions</span><span class="p">:</span>
+            <span class="n">text_list_spell</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">suggestions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="n">text_list</span> <span class="o">=</span> <span class="n">text_list_spell</span><span class="p">[:]</span>
 
-    if full_clean==1:
-        # Remove stopwords.
-        text_list = [word for word in text_list if word not in stopwords]
+    <span class="k">if</span> <span class="n">full_clean</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Remove stopwords.</span>
+        <span class="n">text_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_list</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
 
-        # Perform stemming.
-        ps = nltk.stem.porter.PorterStemmer()
-        text_list = [ps.stem(word) for word in text_list]
+        <span class="c1"># Perform stemming.</span>
+        <span class="n">ps</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">porter</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span>
+        <span class="n">text_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">]</span>
 
-        # Perform lemmatisation.
-        wnl = nltk.stem.wordnet.WordNetLemmatizer()
-        text_list = [wnl.lemmatize(word) for word in text_list]
+        <span class="c1"># Perform lemmatisation.</span>
+        <span class="n">wnl</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">wordnet</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span>
+        <span class="n">text_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">wnl</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">]</span>
 
-    result = &#39; &#39;.join(text_list)
-    return result
+    <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Define a function to create a word cloud from the words in the dataset.
-def get_wordcloud(topic,model,blacklist=[]):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to create a word cloud from the words in the dataset.</span>
+<span class="k">def</span> <span class="nf">get_wordcloud</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
 
-    print(&#39;Getting wordcloud for topic {} ...&#39;.format(topic+1))
-    body_list = list(dataset[&#39;body&#39;][dataset[model] == topic])
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting wordcloud for topic </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">topic</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">body_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">==</span> <span class="n">topic</span><span class="p">])</span>
 
-    for each in blacklist:
-        body_list = [w.replace(each, &#39;&#39;) for w in body_list]
-    tokens = &#39; &#39;.join(body_list)
-    wordcloud = WordCloud(width=800, height=560,
-                          background_color=&#39;white&#39;, collocations=False,
-                          min_font_size=10).generate(tokens)
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">blacklist</span><span class="p">:</span>
+        <span class="n">body_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">each</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">body_list</span><span class="p">]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">body_list</span><span class="p">)</span>
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">560</span><span class="p">,</span>
+                          <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
 
-    # plot the WordCloud image
-    plt.figure(figsize=(8, 5.6), facecolor=None)
-    plt.imshow(wordcloud)
-    plt.axis(&#39;off&#39;)
-    plt.tight_layout(pad=5)
+    <span class="c1"># plot the WordCloud image</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1125,11 +1125,11 @@ def get_wordcloud(topic,model,blacklist=[]):
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create dataset from the csv import.
-dataset = pd.read_csv(
-    &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip&#39;,
-    encoding=&#39;cp1252&#39;)
-print(dataset.shape)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create dataset from the csv import.</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip&#39;</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp1252&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1141,15 +1141,15 @@ print(dataset.shape)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get spelling datasets.
-sym_spell = SymSpell(max_dictionary_edit_distance=3, prefix_length=7)
-dictionary_path = pkg_resources.resource_filename(&#39;symspellpy&#39;, &#39;frequency_dictionary_en_82_765.txt&#39;)
-sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get spelling datasets.</span>
+<span class="n">sym_spell</span> <span class="o">=</span> <span class="n">SymSpell</span><span class="p">(</span><span class="n">max_dictionary_edit_distance</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">prefix_length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">dictionary_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;symspellpy&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency_dictionary_en_82_765.txt&#39;</span><span class="p">)</span>
+<span class="n">sym_spell</span><span class="o">.</span><span class="n">load_dictionary</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="n">term_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">count_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-# Add some common words to the dictionary that are likely to be found in the
-# case study corpus, to avoid them being incorrectly &#39;fixed&#39; by the spell checker.
-sym_spell.create_dictionary_entry(&#39;covid&#39;, 5)
-sym_spell.create_dictionary_entry(&#39;coronavirus&#39;, 5)
+<span class="c1"># Add some common words to the dictionary that are likely to be found in the</span>
+<span class="c1"># case study corpus, to avoid them being incorrectly &#39;fixed&#39; by the spell checker.</span>
+<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">&#39;covid&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">&#39;coronavirus&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1164,8 +1164,8 @@ sym_spell.create_dictionary_entry(&#39;coronavirus&#39;, 5)
 <h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># View the features of the dataset.
-print(dataset.columns)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the features of the dataset.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1177,8 +1177,8 @@ print(dataset.columns)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check the size of the dataset.
-print(dataset.shape)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the size of the dataset.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1190,8 +1190,8 @@ print(dataset.shape)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print the text of the first review.
-dataset[&#39;body&#39;][0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the text of the first review.</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1218,25 +1218,25 @@ dataset[&#39;body&#39;][0]
 <h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get stopwords.
-stopwords = nltk.corpus.stopwords.words(&#39;english&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get stopwords.</span>
+<span class="n">stopwords</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Check that the cleaning function defined at the top of the notebook
-# is working as expected.
-review_number = 11
-print(&#39;--Original&#39;)
-print(dataset[&#39;body&#39;][review_number-1])
-print(&#39;\n&#39;)
-print(&#39;--Basic clean&#39;)
-print(clean_text(dataset[&#39;body&#39;][review_number-1], full_clean=0))
-print(&#39;\n&#39;)
-print(&#39;--Full clean&#39;)
-print(clean_text(dataset[&#39;body&#39;][review_number-1], full_clean=1))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check that the cleaning function defined at the top of the notebook</span>
+<span class="c1"># is working as expected.</span>
+<span class="n">review_number</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Original&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Basic clean&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Full clean&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1268,14 +1268,14 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 <p>You should look at the cleaning output for a few different reviews to find other examples of changes that have been made by the cleaning function. Are you happy with all of these changes?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Run the cleaning function on the full dataset. This step can take a while to run.
-dataset[&#39;body_clean_full&#39;] = dataset[&#39;body&#39;].apply(lambda x: clean_text(x, full_clean=1))
-    # The lambda function is used above to apply the clean_text function to all the
-    # reviews in the corpus.
-dataset[&#39;body_clean_bert&#39;] = dataset[&#39;body&#39;].apply(lambda x: clean_text(x, full_clean=0))
-    # The &#39;body_clean_bert&#39; uses a basic clean to prepare the data for use with the
-    # Bert model.
-dataset.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the cleaning function on the full dataset. This step can take a while to run.</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_full&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># The lambda function is used above to apply the clean_text function to all the</span>
+    <span class="c1"># reviews in the corpus.</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_bert&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># The &#39;body_clean_bert&#39; uses a basic clean to prepare the data for use with the</span>
+    <span class="c1"># Bert model.</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1374,29 +1374,29 @@ dataset.head()
 <p>This section allows you to subset the data to be used in the analysis. For example, you might choose a subset of the entire date range, or you might choose to review only observations with a certain rating.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Set date range of reviews to be analysed.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set date range of reviews to be analysed.</span>
 
-Months = [&#39;2019-01&#39;,&#39;2019-02&#39;,&#39;2019-03&#39;,&#39;2019-04&#39;,&#39;2019-05&#39;,&#39;2019-06&#39;,
-          &#39;2019-07&#39;,&#39;2019-08&#39;,&#39;2019-09&#39;,&#39;2019-10&#39;,&#39;2019-11&#39;,&#39;2019-12&#39;,
-          &#39;2020-01&#39;,&#39;2020-02&#39;,&#39;2020-03&#39;,&#39;2020-04&#39;,&#39;2020-05&#39;,&#39;2020-06&#39;]
-          # Because &#39;pubMonth&#39; is recorded as a string, a list of
-          # string values is created, representing the months of
-          # interest for this analysis.
-          # An alternative approach would be to convert the &#39;pubDate&#39; into
-          # a date and search within a specified date range.
+<span class="n">Months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2019-01&#39;</span><span class="p">,</span><span class="s1">&#39;2019-02&#39;</span><span class="p">,</span><span class="s1">&#39;2019-03&#39;</span><span class="p">,</span><span class="s1">&#39;2019-04&#39;</span><span class="p">,</span><span class="s1">&#39;2019-05&#39;</span><span class="p">,</span><span class="s1">&#39;2019-06&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;2019-07&#39;</span><span class="p">,</span><span class="s1">&#39;2019-08&#39;</span><span class="p">,</span><span class="s1">&#39;2019-09&#39;</span><span class="p">,</span><span class="s1">&#39;2019-10&#39;</span><span class="p">,</span><span class="s1">&#39;2019-11&#39;</span><span class="p">,</span><span class="s1">&#39;2019-12&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;2020-01&#39;</span><span class="p">,</span><span class="s1">&#39;2020-02&#39;</span><span class="p">,</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span><span class="s1">&#39;2020-04&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-06&#39;</span><span class="p">]</span>
+          <span class="c1"># Because &#39;pubMonth&#39; is recorded as a string, a list of</span>
+          <span class="c1"># string values is created, representing the months of</span>
+          <span class="c1"># interest for this analysis.</span>
+          <span class="c1"># An alternative approach would be to convert the &#39;pubDate&#39; into</span>
+          <span class="c1"># a date and search within a specified date range.</span>
 
-# Choose which reviews, based on rating, will be included in the analysis.
-# In this case, the focus will be on reviews with a low rating of 1 or 2,
-# to try to understand what makes customers complain about travel insurance.
+<span class="c1"># Choose which reviews, based on rating, will be included in the analysis.</span>
+<span class="c1"># In this case, the focus will be on reviews with a low rating of 1 or 2,</span>
+<span class="c1"># to try to understand what makes customers complain about travel insurance.</span>
 
-ratings = [1,2]
+<span class="n">ratings</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 
-# If you want to apply the subsetting specified above, then remove the &#39;#&#39;
-# at the start of each line below:
+<span class="c1"># If you want to apply the subsetting specified above, then remove the &#39;#&#39;</span>
+<span class="c1"># at the start of each line below:</span>
 
-# dataset = dataset[dataset[&#39;pubMonth&#39;].isin(Months)]
-# dataset = dataset[dataset[&#39;rating&#39;].isin(ratings)]
-# print(dataset.shape)
+<span class="c1"># dataset = dataset[dataset[&#39;pubMonth&#39;].isin(Months)]</span>
+<span class="c1"># dataset = dataset[dataset[&#39;rating&#39;].isin(ratings)]</span>
+<span class="c1"># print(dataset.shape)</span>
 </pre></div>
 </div>
 </div>
@@ -1414,15 +1414,15 @@ ratings = [1,2]
 <p>In this approach, TF-IDF is used to get the statistical weights of the tokens in each review. These weights are then reduced to two dimensions using t-SNE (t-SNE is an alternative dimension reduction technique to PCA). This makes it easier to visualise the different clusters that are found using K-Means clustering (see the Modelling section of the notebook).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Generate TF-IDF weights
-clean_input = dataset[&#39;body_clean_full&#39;].tolist()
-tfidf = TfidfVectorizer()
-embedding_tfidf = tfidf.fit_transform(clean_input)
-print(&#39;Shape of list containing reviews and their tf-idf weights:&#39;, embedding_tfidf.shape)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate TF-IDF weights</span>
+<span class="n">clean_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_full&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">embedding_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">clean_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their tf-idf weights:&#39;</span><span class="p">,</span> <span class="n">embedding_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-tsne1 = TSNE(n_components=2)
-embedding_tfidf_tsne = tsne1.fit_transform(embedding_tfidf)
-print(&#39;Shape of list containing reviews and their t-SNE components:&#39;, embedding_tfidf_tsne.shape)
+<span class="n">tsne1</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">embedding_tfidf_tsne</span> <span class="o">=</span> <span class="n">tsne1</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">embedding_tfidf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their t-SNE components:&#39;</span><span class="p">,</span> <span class="n">embedding_tfidf_tsne</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1440,8 +1440,8 @@ Shape of list containing reviews and their t-SNE components: (19395, 2)
 <p>Import the BERT data set (the text that has only had basic cleaning).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bert_input = dataset[&#39;body_clean_bert&#39;].tolist()
-print(&#39;Getting vector embeddings for BERT ...&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bert_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_bert&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting vector embeddings for BERT ...&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1454,7 +1454,7 @@ print(&#39;Getting vector embeddings for BERT ...&#39;)
 <p>Create a model to perform embeddings using BERT.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model = SentenceTransformer(&#39;distilbert-base-nli-mean-tokens&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;distilbert-base-nli-mean-tokens&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1464,12 +1464,12 @@ Note that the first time this is run, the BERT model will download.
 This can take some time as the model is approximately 265Mb.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>embeddings = model.encode(bert_input, show_progress_bar=False)
-embedding_BERT = np.array(embeddings)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">embedding_BERT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
 
-print(&#39;Getting vector embeddings for BERT. Done!&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting vector embeddings for BERT. Done!&#39;</span><span class="p">)</span>
 
-print(&#39;Shape of list containing reviews and their BERT weights:&#39;, embeddings.shape)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their BERT weights:&#39;</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1483,10 +1483,10 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 <p>Again, t-SNE is applied to reduce the dimension of the BERT embeddings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tsne2 = TSNE(n_components=2)
-embedding_BERT_tsne = tsne2.fit_transform(embedding_BERT)
-print(&#39;Shape of list containing reviews and their t-SNE components:&#39;,
-      embedding_BERT_tsne.shape)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tsne2</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">embedding_BERT_tsne</span> <span class="o">=</span> <span class="n">tsne2</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">embedding_BERT</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their t-SNE components:&#39;</span><span class="p">,</span>
+      <span class="n">embedding_BERT_tsne</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1498,10 +1498,10 @@ print(&#39;Shape of list containing reviews and their t-SNE components:&#39;,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Print an example of a BERT embedding.
-print(&#39;Bert embedding sample&#39;, embeddings[0][0:50])
-  # This prints the first 50 vectors created by the BERT
-  # embedding for the first review in the dataset.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print an example of a BERT embedding.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bert embedding sample&#39;</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+  <span class="c1"># This prints the first 50 vectors created by the BERT</span>
+  <span class="c1"># embedding for the first review in the dataset.</span>
 </pre></div>
 </div>
 </div>
@@ -1530,17 +1530,17 @@ print(&#39;Bert embedding sample&#39;, embeddings[0][0:50])
 <h3>Using TF-IDF vectorisation<a class="headerlink" href="#using-tf-idf-vectorisation" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Use the TF-IDF approach to cluster the reviews into K topics.
-K = 6
-kmeans_model1 = KMeans(K)
-score_tfidf_tsne = kmeans_model1.fit(embedding_tfidf_tsne).score(embedding_tfidf_tsne)
-    # This step fits the kmeans model and calculates a cluster score (WCSS)
-    # for the model. WCSS measures the (negative) sum of squared distances
-    # of observations to their closest cluster centroid, so a smaller score
-    # indicates a better clustering of the data.
-labels_tfidf_kmeans = kmeans_model1.predict(embedding_tfidf_tsne)
-dataset[&#39;label_TFIDF_KMeans&#39;] = list(labels_tfidf_kmeans)
-print(score_tfidf_tsne)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the TF-IDF approach to cluster the reviews into K topics.</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">kmeans_model1</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="n">score_tfidf_tsne</span> <span class="o">=</span> <span class="n">kmeans_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span><span class="p">)</span>
+    <span class="c1"># This step fits the kmeans model and calculates a cluster score (WCSS)</span>
+    <span class="c1"># for the model. WCSS measures the (negative) sum of squared distances</span>
+    <span class="c1"># of observations to their closest cluster centroid, so a smaller score</span>
+    <span class="c1"># indicates a better clustering of the data.</span>
+<span class="n">labels_tfidf_kmeans</span> <span class="o">=</span> <span class="n">kmeans_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span><span class="p">)</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label_TFIDF_KMeans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score_tfidf_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1552,32 +1552,32 @@ print(score_tfidf_tsne)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a set of distinct labels from the clustering.
-labels1 = np.array(labels_tfidf_kmeans)
-distinct_labels1 =  set(labels_tfidf_kmeans)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a set of distinct labels from the clustering.</span>
+<span class="n">labels1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
+<span class="n">distinct_labels1</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
 
-# Create a plot of the reviews clustered by &#39;topic&#39;.
-# Note that at this point the &#39;topic&#39; of each cluster has not yet
-# been analysed or defined.
-n = len(labels_tfidf_kmeans)
-counter = Counter(labels1)
-for i in range(len(distinct_labels1)):
-    ratio = (counter[i] / n )* 100
-    cluster_label = f&#39;cluster {i+1}: { round(ratio,2)}&#39;
-    x = embedding_tfidf_tsne[:, 0][labels1 == i]
-    y = embedding_tfidf_tsne[:, 1][labels1 == i]
-    plt.plot(x, y, &#39;.&#39;, alpha=0.4, label= cluster_label)
-plt.legend(title=&#39;Topic&#39;,loc = &#39;upper left&#39;, bbox_to_anchor=(1.01,1))
-plt.title(&#39;{} topics identified with tf-idf, t-SNE and KMeans&#39;.format(K))
+<span class="c1"># Create a plot of the reviews clustered by &#39;topic&#39;.</span>
+<span class="c1"># Note that at this point the &#39;topic&#39; of each cluster has not yet</span>
+<span class="c1"># been analysed or defined.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels1</span><span class="p">)):</span>
+    <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span> <span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Topic&#39;</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> topics identified with tf-idf, t-SNE and KMeans&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
 
-# Create a list of context specific common words that will
-# be hidden in the word clouds produced.
-hidden_words = [&#39;insurance&#39;,&#39;travel&#39;,&#39;policy&#39;,&#39;claim&#39;]
+<span class="c1"># Create a list of context specific common words that will</span>
+<span class="c1"># be hidden in the word clouds produced.</span>
+<span class="n">hidden_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;insurance&#39;</span><span class="p">,</span><span class="s1">&#39;travel&#39;</span><span class="p">,</span><span class="s1">&#39;policy&#39;</span><span class="p">,</span><span class="s1">&#39;claim&#39;</span><span class="p">]</span>
 
-# Create a word cloud to help identify the meaning of
-# each &#39;topic&#39; identified in the KMeans clustering.
-for each in range(0,K):
-    get_wordcloud(each,&#39;label_TFIDF_KMeans&#39;,hidden_words)
+<span class="c1"># Create a word cloud to help identify the meaning of</span>
+<span class="c1"># each &#39;topic&#39; identified in the KMeans clustering.</span>
+<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">K</span><span class="p">):</span>
+    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">&#39;label_TFIDF_KMeans&#39;</span><span class="p">,</span><span class="n">hidden_words</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1604,13 +1604,13 @@ Getting wordcloud for topic 6 ...
 <h3>Using BERT vectorisation<a class="headerlink" href="#using-bert-vectorisation" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Apply K-Means clustering to the BERT vectors.
-K2 = 6
-kmeans_model2 = KMeans(K2)
-score_BERT_tsne = kmeans_model2.fit(embedding_BERT_tsne).score(embedding_BERT_tsne)
-labels_BERT_kmeans = kmeans_model2.predict(embedding_BERT_tsne)
-dataset[&#39;label_BERT_KMeans&#39;] = list(labels_BERT_kmeans)
-print(score_BERT_tsne)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply K-Means clustering to the BERT vectors.</span>
+<span class="n">K2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">kmeans_model2</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">K2</span><span class="p">)</span>
+<span class="n">score_BERT_tsne</span> <span class="o">=</span> <span class="n">kmeans_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
+<span class="n">labels_BERT_kmeans</span> <span class="o">=</span> <span class="n">kmeans_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label_BERT_KMeans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">score_BERT_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1622,32 +1622,32 @@ print(score_BERT_tsne)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Create a set of distinct labels from the clustering.
-labels2 = np.array(labels_BERT_kmeans)
-distinct_labels2 =  set(labels_BERT_kmeans)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a set of distinct labels from the clustering.</span>
+<span class="n">labels2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
+<span class="n">distinct_labels2</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
 
-# Create a plot of the reviews clustered by &#39;topic&#39;
-# where the &#39;topic&#39; of each cluster has not yet
-# been analysed.
-n = len(embedding_BERT_tsne)
-counter = Counter(labels2)
-for i in range(len(distinct_labels2)):
-    ratio = (counter[i] / n )* 100
-    cluster_label = f&#39;cluster {i+1}: { round(ratio,2)}&#39;
-    x = embedding_BERT_tsne[:, 0][labels2 == i]
-    y = embedding_BERT_tsne[:, 1][labels2 == i]
-    plt.plot(x, y, &#39;.&#39;, alpha=0.4, label= cluster_label)
-plt.legend(title=&#39;Topic&#39;,loc = &#39;upper left&#39;, bbox_to_anchor=(1.01,1))
-plt.title(&#39;{} topics identified with BERT, tf-idf and t-SNE&#39;.format(K2))
+<span class="c1"># Create a plot of the reviews clustered by &#39;topic&#39;</span>
+<span class="c1"># where the &#39;topic&#39; of each cluster has not yet</span>
+<span class="c1"># been analysed.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels2</span><span class="p">)):</span>
+    <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span> <span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Topic&#39;</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> topics identified with BERT, tf-idf and t-SNE&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K2</span><span class="p">))</span>
 
-# Create a list of context specific common words that will
-# be hidden in the word clouds producted.
-hidden_words2 = [&#39;insurance&#39;,&#39;travel&#39;,&#39;policy&#39;,&#39;claim&#39;]
+<span class="c1"># Create a list of context specific common words that will</span>
+<span class="c1"># be hidden in the word clouds producted.</span>
+<span class="n">hidden_words2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;insurance&#39;</span><span class="p">,</span><span class="s1">&#39;travel&#39;</span><span class="p">,</span><span class="s1">&#39;policy&#39;</span><span class="p">,</span><span class="s1">&#39;claim&#39;</span><span class="p">]</span>
 
-# Create a word cloud to help identify the meaning of
-# each &#39;topic&#39; identified in the KMeans clustering.
-for each in range(0,K2):
-    get_wordcloud(each,&#39;label_BERT_KMeans&#39;,hidden_words2)
+<span class="c1"># Create a word cloud to help identify the meaning of</span>
+<span class="c1"># each &#39;topic&#39; identified in the KMeans clustering.</span>
+<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">K2</span><span class="p">):</span>
+    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">&#39;label_BERT_KMeans&#39;</span><span class="p">,</span><span class="n">hidden_words2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1678,23 +1678,23 @@ Getting wordcloud for topic 6 ...
 <p>The best silhouette value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that an observation has been assigned to the wrong cluster, as a different cluster is more similar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the silhouette value for the TF-IDF based clustering after t-SNE
-# has been applied to reduce the dimension of the embeddings.
-print(&#39;Silhouette Score (TF-IDF and t-SNE):&#39;,
-      silhouette_score(embedding_tfidf_tsne , labels_tfidf_kmeans))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the silhouette value for the TF-IDF based clustering after t-SNE</span>
+<span class="c1"># has been applied to reduce the dimension of the embeddings.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Silhouette Score (TF-IDF and t-SNE):&#39;</span><span class="p">,</span>
+      <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span> <span class="p">,</span> <span class="n">labels_tfidf_kmeans</span><span class="p">))</span>
 
-# Calculate silhouette values for the BERT based clustering.
-#print(&#39;Silhouette Score (BERT):&#39;,
-#      silhouette_score(embedding_BERT , labels_BERT_kmeans))
+<span class="c1"># Calculate silhouette values for the BERT based clustering.</span>
+<span class="c1">#print(&#39;Silhouette Score (BERT):&#39;,</span>
+<span class="c1">#      silhouette_score(embedding_BERT , labels_BERT_kmeans))</span>
 
-# Calculate the silhouette value for the BERT based clustering after t-SNE
-# has been applied to reduce the dimension of the embeddings.
-print(&#39;Silhouette Score (BERT and t-SNE):&#39;,
-      silhouette_score(embedding_BERT_tsne , labels_BERT_kmeans))
+<span class="c1"># Calculate the silhouette value for the BERT based clustering after t-SNE</span>
+<span class="c1"># has been applied to reduce the dimension of the embeddings.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Silhouette Score (BERT and t-SNE):&#39;</span><span class="p">,</span>
+      <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span> <span class="p">,</span> <span class="n">labels_BERT_kmeans</span><span class="p">))</span>
 
-# The WCSS scores for the TF-IDF and BERT models are also shown:
-print(&#39;WCSS Score (TF-IDF and t-SNE):&#39;, score_tfidf_tsne)
-print(&#39;WCSS Score (BERT):&#39;, score_BERT_tsne)
+<span class="c1"># The WCSS scores for the TF-IDF and BERT models are also shown:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WCSS Score (TF-IDF and t-SNE):&#39;</span><span class="p">,</span> <span class="n">score_tfidf_tsne</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WCSS Score (BERT):&#39;</span><span class="p">,</span> <span class="n">score_BERT_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

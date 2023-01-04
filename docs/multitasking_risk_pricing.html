@@ -1236,18 +1236,18 @@ title="Print to PDF"
 <h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-from keras.layers import Input, Embedding, LSTM, Dense, Reshape, concatenate
-from keras.models import Model
-from keras.utils.vis_utils import model_to_dot
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Reshape</span><span class="p">,</span> <span class="n">concatenate</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">keras.utils.vis_utils</span> <span class="kn">import</span> <span class="n">model_to_dot</span>
 
-from sklearn.model_selection import train_test_split
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-from IPython.display import SVG
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
 
-%matplotlib inline
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
@@ -1277,17 +1277,17 @@ Using TensorFlow backend.
 <h3>Python (Optional)<a class="headerlink" href="#python-optional" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import tensorflow as tf
-import random as rn
-import os
-os.environ[&#39;PYTHONHASHSEED&#39;] = &#39;0&#39;
-np.random.seed(42)
-rn.seed(12345)
-session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
-from keras import backend as K
-tf.set_random_seed(1234)
-sess = tf.Session(graph=tf.get_default_graph(), config=session_conf)
-K.set_session(sess)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rn</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYTHONHASHSEED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rn</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">session_conf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConfigProto</span><span class="p">(</span><span class="n">intra_op_parallelism_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inter_op_parallelism_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">set_random_seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">(),</span> <span class="n">config</span><span class="o">=</span><span class="n">session_conf</span><span class="p">)</span>
+<span class="n">K</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1302,19 +1302,19 @@ K.set_session(sess)
 <h3>Python<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df = pd.read_csv(&quot;http://www.statsci.org/data/general/motorins.txt&quot;, sep=&#39;\t&#39;) \
-    .assign(
-        frequency = lambda x: x.Claims / x.Insured,
-        severity =  lambda x: np.where(x.Claims == 0, 0, x.Payment / x.Claims),
-        risk_premium = lambda x: x.Payment / x.Insured
-    )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;http://www.statsci.org/data/general/motorins.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+        <span class="n">frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+        <span class="n">severity</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span><span class="p">),</span>
+        <span class="n">risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1438,7 +1438,7 @@ K.set_session(sess)
 <h3>Python<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train, test = train_test_split(df, test_size=0.2, random_state=12345)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1458,18 +1458,18 @@ K.set_session(sess)
 <h3>Python<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>totals = train.loc[:, [&quot;Insured&quot;, &quot;Claims&quot;, &quot;Payment&quot;]].agg(&#39;sum&#39;) 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">totals</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">,</span> <span class="s2">&quot;Claims&quot;</span><span class="p">,</span> <span class="s2">&quot;Payment&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train_average_frequency = totals[&quot;Claims&quot;] / totals[&quot;Insured&quot;]
-train_average_severity = totals[&quot;Payment&quot;] / totals[&quot;Claims&quot;]
-train_average_risk_premium = totals[&quot;Payment&quot;] / totals[&quot;Insured&quot;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_average_frequency</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Claims&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">]</span>
+<span class="n">train_average_severity</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Payment&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Claims&quot;</span><span class="p">]</span>
+<span class="n">train_average_risk_premium</span> <span class="o">=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Payment&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">totals</span><span class="p">[</span><span class="s2">&quot;Insured&quot;</span><span class="p">]</span>
 
-print(train_average_frequency, train_average_severity, train_average_risk_premium)
+<span class="nb">print</span><span class="p">(</span><span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_severity</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1503,8 +1503,8 @@ print(train_average_frequency, train_average_severity, train_average_risk_premiu
 <h4>Python<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zone_input = Input(shape=(1,), name=&#39;zone_input&#39;)
-make_input = Input(shape=(1,), name=&#39;make_input&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zone_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;zone_input&#39;</span><span class="p">)</span>
+<span class="n">make_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;make_input&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1522,11 +1522,11 @@ make_input = Input(shape=(1,), name=&#39;make_input&#39;)
 <h4>Python<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>zone_embedding = Embedding(output_dim=2, input_dim=7)(zone_input)
-zone_embedding = Reshape(target_shape=(2,))(zone_embedding)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zone_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">7</span><span class="p">)(</span><span class="n">zone_input</span><span class="p">)</span>
+<span class="n">zone_embedding</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))(</span><span class="n">zone_embedding</span><span class="p">)</span>
                          
-make_embedding = Embedding(output_dim=2, input_dim=9)(make_input)
-make_embedding = Reshape(target_shape=(2,))(make_embedding)
+<span class="n">make_embedding</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="n">output_dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">9</span><span class="p">)(</span><span class="n">make_input</span><span class="p">)</span>
+<span class="n">make_embedding</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">(</span><span class="n">target_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))(</span><span class="n">make_embedding</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1550,8 +1550,8 @@ make_embedding = Reshape(target_shape=(2,))(make_embedding)
 <h4>Python<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>kilometres_input = Input(shape=(1,), name=&#39;kilometres_input&#39;)
-bonus_input = Input(shape=(1,), name=&#39;bonus_input&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kilometres_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kilometres_input&#39;</span><span class="p">)</span>
+<span class="n">bonus_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;bonus_input&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1569,7 +1569,7 @@ bonus_input = Input(shape=(1,), name=&#39;bonus_input&#39;)
 <h4>Python<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = concatenate([zone_embedding, make_embedding, kilometres_input, bonus_input])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">([</span><span class="n">zone_embedding</span><span class="p">,</span> <span class="n">make_embedding</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1589,9 +1589,9 @@ bonus_input = Input(shape=(1,), name=&#39;bonus_input&#39;)
 <h4>Python<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = Dense(64, activation=&#39;relu&#39;)(x)
-x = Dense(64, activation=&#39;relu&#39;)(x)
-x = Dense(64, activation=&#39;relu&#39;)(x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1618,9 +1618,9 @@ x = Dense(64, activation=&#39;relu&#39;)(x)
 <h4>Python<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>frequency_output = Dense(1, activation=&#39;relu&#39;, name=&#39;frequency&#39;)(x)
-severity_output = Dense(1, activation=&#39;relu&#39;, name=&#39;severity&#39;)(x)
-risk_premium_output = Dense(1, activation=&#39;relu&#39;, name=&#39;risk_premium&#39;)(x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequency_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">severity_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;severity&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">risk_premium_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1643,8 +1643,8 @@ risk_premium_output = Dense(1, activation=&#39;relu&#39;, name=&#39;risk_premium
 <h4>Python<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model = Model(inputs=[zone_input, make_input, kilometres_input, bonus_input], 
-              outputs=[frequency_output, severity_output, risk_premium_output])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">zone_input</span><span class="p">,</span> <span class="n">make_input</span><span class="p">,</span> <span class="n">kilometres_input</span><span class="p">,</span> <span class="n">bonus_input</span><span class="p">],</span> 
+              <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">frequency_output</span><span class="p">,</span> <span class="n">severity_output</span><span class="p">,</span> <span class="n">risk_premium_output</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1665,9 +1665,9 @@ A simple mean squared error will be used for risk premium.</p>
 <h4>Python<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model.compile(optimizer=&#39;adam&#39;,
-              loss={&#39;risk_premium&#39;: &#39;mean_squared_error&#39;, &#39;frequency&#39;: &#39;poisson&#39;, &#39;severity&#39;: &#39;mean_squared_logarithmic_error&#39;}, 
-              loss_weights={&#39;risk_premium&#39;: 1.0, &#39;frequency&#39;: 1.0, &#39;severity&#39;: 1.0})
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="s1">&#39;mean_squared_error&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="s1">&#39;mean_squared_logarithmic_error&#39;</span><span class="p">},</span> 
+              <span class="n">loss_weights</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1688,7 +1688,7 @@ A simple mean squared error will be used for risk premium.</p>
 <h4>Python<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>SVG(model_to_dot(model).create(prog=&#39;dot&#39;, format=&#39;svg&#39;))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SVG</span><span class="p">(</span><span class="n">model_to_dot</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s1">&#39;dot&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1726,29 +1726,29 @@ A simple mean squared error will be used for risk premium.</p>
 <h4>Python<a class="headerlink" href="#id24" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def InputDataTransformer(x):
-    return {
-    &#39;kilometres_input&#39;: (x.Kilometres.values - 1) / 5,
-    &#39;zone_input&#39;: x.Zone.values - 1,
-    &#39;bonus_input&#39;: (x.Bonus.values - 1) / 7,
-    &#39;make_input&#39;: x.Make.values - 1}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">InputDataTransformer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;kilometres_input&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Kilometres</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;zone_input&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Zone</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;bonus_input&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Bonus</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s1">&#39;make_input&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Make</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model.fit(
-    InputDataTransformer(train),
-    {&#39;frequency&#39;: train.frequency.values / train_average_frequency,
-     &#39;severity&#39;: train.severity.values / train_average_severity,
-     &#39;risk_premium&#39;: train.risk_premium.values / train_average_risk_premium}, 
-    sample_weight={
-        &#39;frequency&#39;: train.Insured.values,
-        &#39;severity&#39;: train.Claims.values,
-        &#39;risk_premium&#39;: train.Insured.values
-    },
-    epochs=40, batch_size=32)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">InputDataTransformer</span><span class="p">(</span><span class="n">train</span><span class="p">),</span>
+    <span class="p">{</span><span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_frequency</span><span class="p">,</span>
+     <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">severity</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_severity</span><span class="p">,</span>
+     <span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">risk_premium</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="n">train_average_risk_premium</span><span class="p">},</span> 
+    <span class="n">sample_weight</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Insured</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Claims</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="s1">&#39;risk_premium&#39;</span><span class="p">:</span> <span class="n">train</span><span class="o">.</span><span class="n">Insured</span><span class="o">.</span><span class="n">values</span>
+    <span class="p">},</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1876,46 +1876,46 @@ Epoch 40/40
 <h3>Python<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def predict_and_plot(df, train_average_frequency, train_average_risk_premium):
-    model_frequency, model_severity, model_risk_premium = model.predict(InputDataTransformer(df))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_and_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">):</span>
+    <span class="n">model_frequency</span><span class="p">,</span> <span class="n">model_severity</span><span class="p">,</span> <span class="n">model_risk_premium</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">InputDataTransformer</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 
-    # Reverse the normalisation
-    # Score, sort by lowest to higher
-    df_new = df.assign(model_frequency = model_frequency * train_average_frequency, 
-                       model_risk_premium = model_risk_premium * train_average_risk_premium) \
-        .assign(model_payment = lambda x: x.model_risk_premium * x.Insured,
-                model_claim_count = lambda x: x.model_frequency * x.Insured) \
-        .sort_values(by=[&#39;model_frequency&#39;]) \
-        .assign(model_claim_count_band = lambda x: np.floor(x.model_claim_count.cumsum() / x.model_claim_count.agg(&#39;sum&#39;) * 10) / 10) \
-        .sort_values(by=[&#39;model_risk_premium&#39;]) \
-        .assign(model_payment_band = lambda x: np.floor(x.model_payment.cumsum() / x.model_payment.agg(&#39;sum&#39;) * 10) / 10)
+    <span class="c1"># Reverse the normalisation</span>
+    <span class="c1"># Score, sort by lowest to higher</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="n">model_frequency</span> <span class="o">*</span> <span class="n">train_average_frequency</span><span class="p">,</span> 
+                       <span class="n">model_risk_premium</span> <span class="o">=</span> <span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">train_average_risk_premium</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_payment</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_risk_premium</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+                <span class="n">model_claim_count</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_frequency</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model_frequency&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_claim_count_band</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;model_risk_premium&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_payment_band</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">model_payment</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">model_payment</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
         
-    # Summarise and plot frequency by weighted decile rank
-    df_new.loc[:,[&#39;model_claim_count_band&#39;, &#39;Insured&#39;, &#39;Claims&#39;, &#39;model_claim_count&#39;]] \
-        .groupby(&#39;model_claim_count_band&#39;) \
-        .agg(&#39;sum&#39;) \
-        .assign(model_frequency = lambda x: x.model_claim_count / x.Insured,
-               actual_frequency = lambda x: x.Claims / x.Insured) \
-        .loc[:,[&#39;model_frequency&#39;, &#39;actual_frequency&#39;]] \
-        .plot.bar()
+    <span class="c1"># Summarise and plot frequency by weighted decile rank</span>
+    <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_claim_count_band&#39;</span><span class="p">,</span> <span class="s1">&#39;Insured&#39;</span><span class="p">,</span> <span class="s1">&#39;Claims&#39;</span><span class="p">,</span> <span class="s1">&#39;model_claim_count&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model_claim_count_band&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_claim_count</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+               <span class="n">actual_frequency</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Claims</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_frequency&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_frequency&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
                 
-    # Summarise and plot risk premium by weighted decile rank
-    df_new.loc[:,[&#39;model_payment_band&#39;, &#39;Insured&#39;, &#39;Payment&#39;, &#39;model_payment&#39;]] \
-        .groupby(&#39;model_payment_band&#39;) \
-        .agg(&#39;sum&#39;) \
-        .assign(model_risk_premium = lambda x: x.model_payment / x.Insured,
-               actual_risk_premium = lambda x: x.Payment / x.Insured) \
-        .loc[:,[&#39;model_risk_premium&#39;, &#39;actual_risk_premium&#39;]] \
-        .plot.bar()
+    <span class="c1"># Summarise and plot risk premium by weighted decile rank</span>
+    <span class="n">df_new</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_payment_band&#39;</span><span class="p">,</span> <span class="s1">&#39;Insured&#39;</span><span class="p">,</span> <span class="s1">&#39;Payment&#39;</span><span class="p">,</span> <span class="s1">&#39;model_payment&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;model_payment_band&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">model_payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">,</span>
+               <span class="n">actual_risk_premium</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Payment</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">Insured</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;model_risk_premium&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_risk_premium&#39;</span><span class="p">]]</span> \
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
     
-    return df_new
+    <span class="k">return</span> <span class="n">df_new</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>train = predict_and_plot(train, train_average_frequency, train_average_risk_premium)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">predict_and_plot</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1926,7 +1926,7 @@ Epoch 40/40
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>test = predict_and_plot(test, train_average_frequency, train_average_risk_premium)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">predict_and_plot</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">train_average_frequency</span><span class="p">,</span> <span class="n">train_average_risk_premium</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
