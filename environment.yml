@@ -3,11 +3,11 @@ channels:
   - default 
 dependencies:
   - python=3.8
-  - sphinx
+  - sphinx=4.5.0
   - pandas
   - matplotlib
   - black
-  - pip
+  - pip=22.3.1
   - pip:
     - quantecon
-    - jupyter-book
+    - jupyter-book=0.13.1
