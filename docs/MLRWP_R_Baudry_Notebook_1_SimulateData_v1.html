@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -981,13 +986,13 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># polices sold between start 2016 to end 2017</span>
-<span class="n">dt_policydates</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">date_UW</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2017/12/31&quot;</span><span class="p">),</span> <span class="s">&quot;day&quot;</span><span class="p">))</span>
+<span class="n">dt_policydates</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.table</span><span class="p">(</span><span class="n">date_UW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2017/12/31&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;day&quot;</span><span class="p">))</span>
 
 <span class="c1"># number of policies per day follows Poisson process with mean 700 (approx 255,500 pols per annum)</span>
-<span class="n">dt_policydates</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">policycount</span> <span class="o">=</span> <span class="nf">rpois</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span><span class="m">700</span><span class="p">),</span>
-                      <span class="n">date_lapse</span> <span class="o">=</span> <span class="n">date_UW</span> <span class="o">%m+%</span> <span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">),</span>
-                      <span class="n">expodays</span> <span class="o">=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">date_UW</span> <span class="o">%m+%</span> <span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">date_UW</span><span class="p">),</span>
-                      <span class="n">pol_prefix</span> <span class="o">=</span> <span class="nf">year</span><span class="p">(</span><span class="n">date_UW</span><span class="p">)</span><span class="o">*</span><span class="m">10000</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_UW</span><span class="p">)</span><span class="o">*</span><span class="m">100</span> <span class="o">+</span> <span class="nf">mday</span><span class="p">(</span><span class="n">date_UW</span><span class="p">))]</span>
+<span class="n">dt_policydates</span><span class="p">[,</span><span class="w"> </span><span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">policycount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rpois</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span><span class="m">700</span><span class="p">),</span>
+<span class="w">                      </span><span class="n">date_lapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date_UW</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">),</span>
+<span class="w">                      </span><span class="n">expodays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">date_UW</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date_UW</span><span class="p">),</span>
+<span class="w">                      </span><span class="n">pol_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">year</span><span class="p">(</span><span class="n">date_UW</span><span class="p">)</span><span class="o">*</span><span class="m">10000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_UW</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">mday</span><span class="p">(</span><span class="n">date_UW</span><span class="p">))]</span>
 </pre></div>
 </div>
 </div>
@@ -999,20 +1004,20 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add columns defining Policy Covers   </span>
-<span class="n">dt_policydates</span><span class="p">[,</span> <span class="n">Cover_B</span> <span class="o">:=</span> <span class="nf">round</span><span class="p">(</span><span class="n">policycount</span> <span class="o">*</span> <span class="m">0.25</span><span class="p">)]</span>
-<span class="n">dt_policydates</span><span class="p">[,</span> <span class="n">Cover_BO</span> <span class="o">:=</span> <span class="nf">round</span><span class="p">(</span><span class="n">policycount</span> <span class="o">*</span> <span class="m">0.45</span><span class="p">)]</span>
-<span class="n">dt_policydates</span><span class="p">[,</span> <span class="n">Cover_BOT</span> <span class="o">:=</span> <span class="n">policycount</span> <span class="o">-</span> <span class="n">Cover_B</span> <span class="o">-</span> <span class="n">Cover_BO</span><span class="p">]</span>
+<span class="n">dt_policydates</span><span class="p">[,</span><span class="w"> </span><span class="n">Cover_B</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">policycount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.25</span><span class="p">)]</span>
+<span class="n">dt_policydates</span><span class="p">[,</span><span class="w"> </span><span class="n">Cover_BO</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">policycount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.45</span><span class="p">)]</span>
+<span class="n">dt_policydates</span><span class="p">[,</span><span class="w"> </span><span class="n">Cover_BOT</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">policycount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Cover_B</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Cover_BO</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policydates</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policydates</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1104,16 +1109,16 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># repeat rows for each policy by UW-Date</span>
-<span class="n">dt_policy</span> <span class="o">&lt;-</span> <span class="n">dt_policydates</span><span class="p">[</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">.N</span><span class="p">,</span> <span class="n">policycount</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;date_UW&quot;</span><span class="p">,</span> <span class="s">&quot;pol_prefix&quot;</span><span class="p">),</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">][,</span><span class="n">pol_seq</span><span class="o">:=</span><span class="m">1</span><span class="o">:</span><span class="n">.N</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="n">pol_prefix</span><span class="p">]</span>
+<span class="n">dt_policy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_policydates</span><span class="p">[</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span><span class="n">policycount</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;date_UW&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pol_prefix&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">][,</span><span class="n">pol_seq</span><span class="o">:=</span><span class="m">1</span><span class="o">:</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="n">pol_prefix</span><span class="p">]</span>
 
 <span class="c1"># Create a unique policy number </span>
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">pol_number</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">pol_prefix</span> <span class="o">*</span> <span class="m">10000</span> <span class="o">+</span> <span class="n">pol_seq</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">pol_number</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">pol_prefix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pol_seq</span><span class="p">)]</span>
 
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1175,35 +1180,35 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set join keys</span>
 <span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span><span class="s">&#39;date_UW&#39;</span><span class="p">)</span>
-<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policydates</span><span class="p">,</span><span class="s">&#39;date_UW&#39;</span><span class="p">)</span>  
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policydates</span><span class="p">,</span><span class="s">&#39;date_UW&#39;</span><span class="p">)</span><span class="w">  </span>
 
 <span class="c1"># remove pol_prefix before join</span>
-<span class="n">dt_policydates</span><span class="p">[,</span> <span class="n">pol_prefix</span> <span class="o">:=</span> <span class="kc">NULL</span><span class="p">]</span>  
+<span class="n">dt_policydates</span><span class="p">[,</span><span class="w"> </span><span class="n">pol_prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">]</span><span class="w">  </span>
 
 <span class="c1"># join cover from summary file (dt_policydates)</span>
-<span class="n">dt_policy</span> <span class="o">&lt;-</span> <span class="n">dt_policy</span><span class="p">[</span><span class="n">dt_policydates</span><span class="p">]</span>  
+<span class="n">dt_policy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">dt_policydates</span><span class="p">]</span><span class="w">  </span>
 
 <span class="c1"># now create Cover field for each policy row</span>
-<span class="n">dt_policy</span><span class="p">[,</span><span class="n">Cover</span> <span class="o">:=</span> <span class="s">&#39;BO&#39;</span><span class="p">]</span>
-<span class="n">dt_policy</span><span class="p">[</span><span class="n">pol_seq</span> <span class="o">&lt;=</span> <span class="n">policycount</span><span class="o">-</span> <span class="n">Cover_BO</span><span class="p">,</span><span class="n">Cover</span> <span class="o">:=</span> <span class="s">&#39;BOT&#39;</span><span class="p">]</span>
-<span class="n">dt_policy</span><span class="p">[</span><span class="n">pol_seq</span> <span class="o">&lt;=</span> <span class="n">Cover_B</span><span class="p">,</span><span class="n">Cover</span> <span class="o">:=</span> <span class="s">&#39;B&#39;</span><span class="p">]</span>  
+<span class="n">dt_policy</span><span class="p">[,</span><span class="n">Cover</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;BO&#39;</span><span class="p">]</span>
+<span class="n">dt_policy</span><span class="p">[</span><span class="n">pol_seq</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">policycount</span><span class="o">-</span><span class="w"> </span><span class="n">Cover_BO</span><span class="p">,</span><span class="n">Cover</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;BOT&#39;</span><span class="p">]</span>
+<span class="n">dt_policy</span><span class="p">[</span><span class="n">pol_seq</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">Cover_B</span><span class="p">,</span><span class="n">Cover</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&#39;B&#39;</span><span class="p">]</span><span class="w">  </span>
 
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">Cover_B</span> <span class="o">:=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">)]</span>  
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">Cover_B</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">)]</span><span class="w">  </span>
 
 <span class="c1"># remove interim calculation fields</span>
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">pol_prefix</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
-                 <span class="n">policycount</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
-                 <span class="n">pol_seq</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
-                 <span class="n">Cover_B</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
-                 <span class="n">Cover_BOT</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
-                 <span class="n">Cover_BO</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">pol_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">policycount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">pol_seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">Cover_B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">Cover_BOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">Cover_BO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)]</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1271,23 +1276,23 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add remaining policy details</span>
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">Brand</span> <span class="o">:=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)),</span> <span class="n">length.out</span> <span class="o">=</span> <span class="n">.N</span><span class="p">)]</span>
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">Base_Price</span> <span class="o">:=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">600</span><span class="p">,</span><span class="m">550</span><span class="p">,</span><span class="m">300</span><span class="p">,</span><span class="m">150</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)),</span> <span class="n">length.out</span> <span class="o">=</span> <span class="n">.N</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">Brand</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)),</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.N</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">Base_Price</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">600</span><span class="p">,</span><span class="m">550</span><span class="p">,</span><span class="m">300</span><span class="p">,</span><span class="m">150</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)),</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.N</span><span class="p">)]</span>
 
 <span class="c1"># models types and model cost multipliers</span>
-<span class="nf">for </span><span class="p">(</span><span class="n">eachBrand</span> <span class="n">in</span> <span class="nf">unique</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Brand</span><span class="p">))</span> <span class="p">{</span>
-  <span class="n">dt_policy</span><span class="p">[</span><span class="n">Brand</span> <span class="o">==</span> <span class="n">eachBrand</span><span class="p">,</span> <span class="n">Model</span> <span class="o">:=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">)),</span> <span class="n">length.out</span> <span class="o">=</span> <span class="n">.N</span><span class="p">)]</span>
-  <span class="n">dt_policy</span><span class="p">[</span><span class="n">Brand</span> <span class="o">==</span> <span class="n">eachBrand</span><span class="p">,</span> <span class="n">Model_mult</span> <span class="o">:=</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1.15</span><span class="o">^</span><span class="m">3</span><span class="p">,</span> <span class="m">1.15</span><span class="o">^</span><span class="m">2</span><span class="p">,</span> <span class="m">1.15</span><span class="o">^</span><span class="m">1</span><span class="p">,</span> <span class="m">1.15</span><span class="o">^</span><span class="m">0</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">)),</span> <span class="n">length.out</span> <span class="o">=</span> <span class="n">.N</span><span class="p">)]</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">eachBrand</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Brand</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">Brand</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">eachBrand</span><span class="p">,</span><span class="w"> </span><span class="n">Model</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)),</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.N</span><span class="p">)]</span>
+<span class="w">  </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">Brand</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">eachBrand</span><span class="p">,</span><span class="w"> </span><span class="n">Model_mult</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1.15</span><span class="o">^</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1.15</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1.15</span><span class="o">^</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1.15</span><span class="o">^</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)),</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.N</span><span class="p">)]</span>
 <span class="p">}</span>
 
-<span class="n">dt_policy</span><span class="p">[,</span> <span class="n">Price</span> <span class="o">:=</span> <span class="nf">ceiling </span><span class="p">(</span><span class="n">Base_Price</span> <span class="o">*</span> <span class="n">Model_mult</span><span class="p">)]</span>
+<span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">Price</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">ceiling </span><span class="p">(</span><span class="n">Base_Price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Model_mult</span><span class="p">)]</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1390,24 +1395,24 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># colums to keep</span>
-<span class="n">cols_policy</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                 <span class="s">&quot;Price&quot;</span><span class="p">)</span>
+<span class="n">cols_policy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;Price&quot;</span><span class="p">)</span>
 
-<span class="n">dt_policy</span> <span class="o">&lt;-</span> <span class="n">dt_policy</span><span class="p">[,</span> <span class="n">cols_policy</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">]</span>
+<span class="n">dt_policy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_policy</span><span class="p">[,</span><span class="w"> </span><span class="n">cols_policy</span><span class="p">,</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 
-<span class="nf">save</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;./dt_policy.rda&quot;</span><span class="p">)</span>
+<span class="nf">save</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./dt_policy.rda&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1497,20 +1502,20 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># All policies have breakage cover</span>
 <span class="c1"># claims uniformly sampled from policies</span>
-<span class="n">claim</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">)</span> <span class="o">*</span> <span class="m">0.15</span><span class="p">))</span>
+<span class="n">claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.15</span><span class="p">))</span>
 
 <span class="c1"># Claim severity multiplier sampled from beta distribution</span>
-<span class="n">dt_claim</span> <span class="o">&lt;-</span> <span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span> <span class="o">=</span> <span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">],</span>
-                       <span class="n">claim_type</span> <span class="o">=</span> <span class="s">&#39;B&#39;</span><span class="p">,</span>
-                       <span class="n">claim_count</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
-                       <span class="n">claim_sev</span> <span class="o">=</span> <span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+<span class="n">dt_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span><span class="w"> </span><span class="n">pol_number</span><span class="p">],</span>
+<span class="w">                       </span><span class="n">claim_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;B&#39;</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">claim_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">claim_sev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1571,24 +1576,24 @@ The following object is masked from ‘package:lubridate’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># identify all policies with Oxidation cover</span>
-<span class="n">cov</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Cover</span> <span class="o">!=</span> <span class="s">&#39;B&#39;</span><span class="p">)</span>
+<span class="n">cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Cover</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&#39;B&#39;</span><span class="p">)</span>
 
 <span class="c1"># sample claims from policies with cover</span>
-<span class="n">claim</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span> <span class="o">*</span> <span class="m">0.05</span><span class="p">))</span>
+<span class="n">claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.05</span><span class="p">))</span>
 
 <span class="c1"># add claims to table </span>
-<span class="n">dt_claim</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span>
-                  <span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span> <span class="o">=</span> <span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">],</span>
-                             <span class="n">claim_type</span> <span class="o">=</span> <span class="s">&#39;O&#39;</span><span class="p">,</span>
-                             <span class="n">claim_count</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
-                             <span class="n">claim_sev</span> <span class="o">=</span> <span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span> <span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
+<span class="n">dt_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span>
+<span class="w">                  </span><span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span><span class="w"> </span><span class="n">pol_number</span><span class="p">],</span>
+<span class="w">                             </span><span class="n">claim_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;O&#39;</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">claim_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">claim_sev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1652,30 +1657,30 @@ The following object is masked from ‘package:lubridate’:
 <span class="c1"># for Theft claim frequency varies by Brand</span>
 <span class="c1"># So need to consider each in turn...</span>
 
-<span class="nf">for</span><span class="p">(</span><span class="n">myModel</span> <span class="n">in</span> <span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">myModel</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-    <span class="n">cov</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Cover</span> <span class="o">==</span> <span class="s">&#39;BOT&#39;</span> <span class="o">&amp;</span> <span class="n">dt_policy</span><span class="o">$</span><span class="n">Model</span> <span class="o">==</span> <span class="n">myModel</span><span class="p">)</span>
-    <span class="n">claim</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">floor</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span> <span class="o">*</span> <span class="m">0.05</span><span class="o">*</span><span class="p">(</span><span class="m">1</span> <span class="o">+</span> <span class="n">myModel</span><span class="p">)))</span>
-  
-    <span class="n">dt_claim</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span>
-                      <span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span> <span class="o">=</span> <span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">],</span>
-                                 <span class="n">claim_type</span> <span class="o">=</span> <span class="s">&#39;T&#39;</span><span class="p">,</span>
-                                 <span class="n">claim_count</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
-                                 <span class="n">claim_sev</span> <span class="o">=</span> <span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span> <span class="m">5</span><span class="p">,</span><span class="n">.</span><span class="m">5</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Cover</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;BOT&#39;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt_policy</span><span class="o">$</span><span class="n">Model</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">myModel</span><span class="p">)</span>
+<span class="w">    </span><span class="n">claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.05</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">myModel</span><span class="p">)))</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="n">dt_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span>
+<span class="w">                      </span><span class="nf">data.table</span><span class="p">(</span><span class="n">pol_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_policy</span><span class="p">[</span><span class="n">claim</span><span class="p">,</span><span class="w"> </span><span class="n">pol_number</span><span class="p">],</span>
+<span class="w">                                 </span><span class="n">claim_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;T&#39;</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">claim_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">claim_sev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbeta</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">claim</span><span class="p">),</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="n">.</span><span class="m">5</span><span class="p">)))</span>
 <span class="p">}</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 
-<span class="nf">kable</span><span class="p">(</span><span class="nf">tail</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">tail</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1787,22 +1792,22 @@ These details come from the policy table.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set join keys</span>
-<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">)</span>
-<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span> <span class="n">pol_number</span><span class="p">)</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_policy</span><span class="p">,</span><span class="w"> </span><span class="n">pol_number</span><span class="p">)</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span><span class="w"> </span><span class="n">pol_number</span><span class="p">)</span>
 
 <span class="c1">#join Brand and Price from policy to claim</span>
 <span class="n">dt_claim</span><span class="p">[</span><span class="n">dt_policy</span><span class="p">,</span>
-         <span class="n">on</span> <span class="o">=</span> <span class="s">&#39;pol_number&#39;</span><span class="p">,</span>
-         <span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_UW</span> <span class="o">=</span> <span class="n">i.date_UW</span><span class="p">,</span>
-              <span class="n">Price</span> <span class="o">=</span> <span class="n">i.Price</span><span class="p">,</span>
-              <span class="n">Brand</span> <span class="o">=</span> <span class="n">i.Brand</span><span class="p">)]</span>
+<span class="w">         </span><span class="n">on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;pol_number&#39;</span><span class="p">,</span>
+<span class="w">         </span><span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="n">date_UW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i.date_UW</span><span class="p">,</span>
+<span class="w">              </span><span class="n">Price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i.Price</span><span class="p">,</span>
+<span class="w">              </span><span class="n">Brand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i.Brand</span><span class="p">)]</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1885,18 +1890,18 @@ Reporting and payment delays are assumed to follow Beta distributions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># use lubridate %m+% date addition operator </span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_lapse</span> <span class="o">:=</span> <span class="n">date_UW</span> <span class="o">%m+%</span> <span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">)]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">expodays</span> <span class="o">:=</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">date_lapse</span> <span class="o">-</span> <span class="n">date_UW</span><span class="p">)]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">occ_delay_days</span> <span class="o">:=</span> <span class="nf">floor</span><span class="p">(</span><span class="n">expodays</span> <span class="o">*</span> <span class="nf">runif</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">date_lapse</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">date_UW</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">years</span><span class="p">(</span><span class="m">1</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">expodays</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">date_lapse</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date_UW</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">occ_delay_days</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="n">expodays</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))]</span>
 
-<span class="n">dt_claim</span><span class="p">[</span> <span class="p">,</span><span class="n">delay_report</span> <span class="o">:=</span> <span class="nf">floor</span><span class="p">(</span><span class="m">365</span> <span class="o">*</span> <span class="nf">rbeta</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span> <span class="n">.</span><span class="m">4</span><span class="p">,</span> <span class="m">10</span><span class="p">))]</span>  
-<span class="n">dt_claim</span><span class="p">[</span> <span class="p">,</span><span class="n">delay_pay</span> <span class="o">:=</span> <span class="nf">floor</span><span class="p">(</span><span class="m">10</span> <span class="o">+</span> <span class="m">40</span><span class="o">*</span> <span class="nf">rbeta</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span><span class="m">7</span><span class="p">))]</span>  
+<span class="n">dt_claim</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="n">delay_report</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="m">365</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">rbeta</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))]</span><span class="w">  </span>
+<span class="n">dt_claim</span><span class="p">[</span><span class="w"> </span><span class="p">,</span><span class="n">delay_pay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">floor</span><span class="p">(</span><span class="m">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">40</span><span class="o">*</span><span class="w"> </span><span class="nf">rbeta</span><span class="p">(</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="m">7</span><span class="p">))]</span><span class="w">  </span>
 
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_occur</span> <span class="o">:=</span> <span class="n">date_UW</span> <span class="o">%m+%</span> <span class="nf">days</span><span class="p">(</span><span class="n">occ_delay_days</span><span class="p">)]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_report</span> <span class="o">:=</span> <span class="n">date_occur</span> <span class="o">%m+%</span> <span class="nf">days</span><span class="p">(</span><span class="n">delay_report</span><span class="p">)]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">date_pay</span> <span class="o">:=</span> <span class="n">date_report</span> <span class="o">%m+%</span> <span class="nf">days</span><span class="p">(</span><span class="n">delay_pay</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">date_occur</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">date_UW</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">days</span><span class="p">(</span><span class="n">occ_delay_days</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">date_report</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">date_occur</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">days</span><span class="p">(</span><span class="n">delay_report</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">date_pay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">date_report</span><span class="w"> </span><span class="o">%m+%</span><span class="w"> </span><span class="nf">days</span><span class="p">(</span><span class="n">delay_pay</span><span class="p">)]</span>
 
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">claim_cost</span> <span class="o">:=</span> <span class="nf">round</span><span class="p">(</span><span class="n">Price</span> <span class="o">*</span> <span class="n">claim_sev</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">claim_cost</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">Price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">claim_sev</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1935,37 +1940,37 @@ Reporting and payment delays are assumed to follow Beta distributions.</p>
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a unique claimkey based upon occurence date</span>
 
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">clm_prefix</span> <span class="o">:=</span> <span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">*</span><span class="m">10000</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">*</span><span class="m">100</span> <span class="o">+</span> <span class="nf">mday</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">clm_seq</span> <span class="o">:=</span> <span class="nf">seq_len</span><span class="p">(</span><span class="n">.N</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="n">clm_prefix</span><span class="p">]</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">clm_number</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">clm_prefix</span> <span class="o">*</span> <span class="m">10000</span> <span class="o">+</span> <span class="n">clm_seq</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">clm_prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">*</span><span class="m">10000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">mday</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">clm_seq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">seq_len</span><span class="p">(</span><span class="n">.N</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clm_prefix</span><span class="p">]</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">clm_number</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">clm_prefix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">clm_seq</span><span class="p">)]</span>
 
 
 <span class="c1"># keep only first claim against policy (competing hazards)</span>
-<span class="nf">setkeyv</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span> <span class="s">&quot;clm_prefix&quot;</span><span class="p">))</span>
-<span class="n">dt_claim</span><span class="p">[,</span> <span class="n">polclm_seq</span> <span class="o">:=</span> <span class="nf">seq_len</span><span class="p">(</span><span class="n">.N</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="nf">.</span><span class="p">(</span><span class="n">pol_number</span><span class="p">)]</span>
-<span class="n">dt_claim</span> <span class="o">&lt;-</span> <span class="n">dt_claim</span><span class="p">[</span><span class="n">polclm_seq</span> <span class="o">==</span> <span class="m">1</span><span class="p">,]</span>
+<span class="nf">setkeyv</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;clm_prefix&quot;</span><span class="p">))</span>
+<span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">polclm_seq</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">seq_len</span><span class="p">(</span><span class="n">.N</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">.</span><span class="p">(</span><span class="n">pol_number</span><span class="p">)]</span>
+<span class="n">dt_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_claim</span><span class="p">[</span><span class="n">polclm_seq</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,]</span>
 
 <span class="c1"># colums to keep</span>
-<span class="n">cols_claim</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
-                <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-                <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
-                <span class="s">&quot;claim_count&quot;</span><span class="p">,</span>
-                <span class="s">&quot;claim_sev&quot;</span><span class="p">,</span>
-                <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
-                <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
-                <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
-                <span class="s">&quot;claim_cost&quot;</span><span class="p">)</span>
+<span class="n">cols_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;claim_count&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;claim_sev&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;claim_cost&quot;</span><span class="p">)</span>
 
-<span class="n">dt_claim</span> <span class="o">&lt;-</span> <span class="n">dt_claim</span><span class="p">[,</span> <span class="n">cols_claim</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">]</span>
+<span class="n">dt_claim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">cols_claim</span><span class="p">,</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span>
 
 <span class="c1"># check output</span>
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 
-<span class="nf">save</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;./dt_claim.rda&quot;</span><span class="p">)</span>
+<span class="nf">save</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;./dt_claim.rda&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2068,10 +2073,10 @@ Reporting and payment delays are assumed to follow Beta distributions.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_claim</span><span class="p">[,</span> <span class="n">Days_reportdelay</span> <span class="o">:=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">difftime</span><span class="p">(</span><span class="n">date_report</span><span class="p">,</span> <span class="n">date_occur</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;days&quot;</span><span class="p">))]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">Days_reportdelay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">difftime</span><span class="p">(</span><span class="n">date_report</span><span class="p">,</span><span class="w"> </span><span class="n">date_occur</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s">&quot;days&quot;</span><span class="p">))]</span>
 
 
-<span class="nf">hist</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">[,</span> <span class="n">Days_reportdelay</span><span class="p">],</span><span class="n">breaks</span> <span class="o">=</span> <span class="m">50</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">Days_reportdelay</span><span class="p">],</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2081,8 +2086,8 @@ Reporting and payment delays are assumed to follow Beta distributions.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_claim</span><span class="p">[,</span> <span class="n">Days_paymentdelay</span> <span class="o">:=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">difftime</span><span class="p">(</span><span class="n">date_pay</span><span class="p">,</span> <span class="n">date_report</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;days&quot;</span><span class="p">))]</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">[,</span> <span class="n">Days_paymentdelay</span><span class="p">],</span><span class="n">breaks</span> <span class="o">=</span> <span class="m">60</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">Days_paymentdelay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">difftime</span><span class="p">(</span><span class="n">date_pay</span><span class="p">,</span><span class="w"> </span><span class="n">date_report</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="o">=</span><span class="s">&quot;days&quot;</span><span class="p">))]</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_claim</span><span class="p">[,</span><span class="w"> </span><span class="n">Days_paymentdelay</span><span class="p">],</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2105,13 +2110,13 @@ Reporting and payment delays are assumed to follow Beta distributions.</p>
 <p>By calling the function with a seed you can simulate policy and claim datasets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">&lt;-</span> <span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
 
-<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">tmp</span><span class="o">$</span><span class="n">dt_claim</span><span class="p">),</span> <span class="s">&quot;html&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="s">&quot;100%&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">as.character</span><span class="p">()</span> <span class="o">%&gt;%</span>
-  <span class="nf">display_html</span><span class="p">()</span>
+<span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">tmp</span><span class="o">$</span><span class="n">dt_claim</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">kable_styling</span><span class="p">(</span><span class="s">&quot;striped&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">scroll_box</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;100%&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">as.character</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">display_html</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

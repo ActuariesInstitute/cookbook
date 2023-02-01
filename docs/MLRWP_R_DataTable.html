@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -877,14 +882,14 @@ It’s fast to read and fast to type. However, the functions in <code class="doc
 <span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
 
 <span class="nf">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
-<span class="nf">setDT</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>    <span class="c1"># make iris a data.table</span>
+<span class="nf">setDT</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">    </span><span class="c1"># make iris a data.table</span>
 
 <span class="c1"># now do the data manipulation operations</span>
-<span class="n">iris</span><span class="p">[</span><span class="n">Sepal.Length</span> <span class="o">&lt;</span> <span class="m">6.0</span><span class="p">,</span> 
-     <span class="nf">.</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="n">.N</span><span class="p">,</span> 
-       <span class="n">mean_sepal_width</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">Sepal.Width</span><span class="p">),</span> 
-       <span class="n">mean_petal_length</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">Petal.Length</span><span class="p">)),</span> 
-     <span class="n">keyby</span><span class="o">=</span><span class="nf">.</span><span class="p">(</span><span class="n">Species</span><span class="p">)]</span>
+<span class="n">iris</span><span class="p">[</span><span class="n">Sepal.Length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">6.0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">     </span><span class="nf">.</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="n">.N</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mean_sepal_width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Sepal.Width</span><span class="p">),</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mean_petal_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Petal.Length</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">     </span><span class="n">keyby</span><span class="o">=</span><span class="nf">.</span><span class="p">(</span><span class="n">Species</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>

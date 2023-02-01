@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1028,7 +1033,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <span class="nf">library</span><span class="p">(</span><span class="n">repr</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">formattable</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">IRdisplay</span><span class="p">)</span> <span class="c1"># displays tables when in ipynb format</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRdisplay</span><span class="p">)</span><span class="w"> </span><span class="c1"># displays tables when in ipynb format</span>
 
 <span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
@@ -1048,7 +1053,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>We start with a simulated phone insurance policy and claim dataset. I am calling the function from Notebook 1 of this series to create the dataset. Using a fixed seed will ensure you get a reproducible simulated dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_PhoneData</span> <span class="o">&lt;-</span> <span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_PhoneData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulate_central_scenario</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1060,10 +1065,10 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>Note that if you are working with your own company data you would likely need to amend this function to work with the specifics of your data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_polclaim</span> <span class="o">&lt;-</span> <span class="nf">join_policy_claim</span><span class="p">(</span><span class="n">dt_PhoneData</span><span class="p">,</span>
-                                 <span class="n">date_pol_start</span> <span class="o">=</span> <span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
-                                 <span class="n">date_pol_end</span> <span class="o">=</span> <span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
-                                 <span class="n">date_occur</span> <span class="o">=</span> <span class="s">&quot;date_occur&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_polclaim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_policy_claim</span><span class="p">(</span><span class="n">dt_PhoneData</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">date_pol_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">date_pol_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">date_occur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_occur&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1075,8 +1080,8 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>Again, note that this function would need to be re-written to work with your own company data and more importantly it currently would not work correctly with partial payment claims.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span> <span class="o">&lt;-</span> <span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span> <span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019/06/30&quot;</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">30</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span> <span class="s">&quot;second&quot;</span><span class="p">)</span> 
-<span class="n">dt_polclaim</span> <span class="o">&lt;-</span> <span class="nf">time_slice_polclaim</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019/06/30&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;second&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="n">dt_polclaim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">time_slice_polclaim</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">lst_Date_slice</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1087,9 +1092,9 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>Before we create the RBNS and IBNER datasets we must pick a valuation point from the available timeslices. I’m selecting the 10th point for illustration, which is the 10th 30 day period from 01/01/2016, ie a valuation date of 27/09/2016.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">&lt;-</span> <span class="n">valuation</span> <span class="o">&lt;-</span> <span class="m">10</span>
-<span class="n">t_i</span> <span class="o">&lt;-</span> <span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
-<span class="n">delta</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">valuation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span>
+<span class="n">t_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lst_Date_slice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span>
+<span class="n">delta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lst_Date_slice</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1104,28 +1109,28 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define modelVars</span>
-<span class="n">RBNS_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;target&quot;</span>
-    <span class="p">)</span>
+<span class="n">RBNS_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;target&quot;</span>
+<span class="w">    </span><span class="p">)</span>
 
 
 <span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
-<span class="n">dt_RBNS_train</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+<span class="n">dt_RBNS_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RBNS_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">t_i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">lst_Date_slice</span><span class="p">,</span><span class="w"> </span><span class="n">RBNS_model_vars</span><span class="p">)</span>
 
 <span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
-<span class="n">dt_RBNS_test</span> <span class="o">&lt;-</span> <span class="nf">RBNS_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">RBNS_model_vars</span><span class="p">)</span>
+<span class="n">dt_RBNS_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RBNS_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">t_i</span><span class="p">,</span><span class="w"> </span><span class="n">delta</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">lst_Date_slice</span><span class="p">,</span><span class="w"> </span><span class="n">RBNS_model_vars</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1134,11 +1139,11 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a flag to determine which rows are from the trainset and which from the test set</span>
-<span class="n">dt_RBNS_train</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
-<span class="n">dt_RBNS_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+<span class="n">dt_RBNS_train</span><span class="p">[,</span><span class="w"> </span><span class="n">flgTrain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
+<span class="n">dt_RBNS_test</span><span class="p">[,</span><span class="w"> </span><span class="n">flgTrain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="m">0</span><span class="p">]</span>
 
 <span class="c1"># combine into a single RBNS dataset   </span>
-<span class="n">dt_All_RBNS</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">dt_RBNS_train</span><span class="p">,</span> <span class="n">dt_RBNS_test</span><span class="p">)</span>
+<span class="n">dt_All_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">dt_RBNS_train</span><span class="p">,</span><span class="w"> </span><span class="n">dt_RBNS_test</span><span class="p">)</span>
 <span class="c1">#write.csv(dt_All_RBNS,&quot;dt_All_RBNS.csv&quot;, row.names = F)</span>
 </pre></div>
 </div>
@@ -1148,28 +1153,28 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
-<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    
-<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">,</span><span class="w"> </span><span class="n">clm_number</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="n">Count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">.N</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
 
 <span class="c1">#create delay measures and convert time measures from intervals of seconds to intervals of days</span>
-<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="s">&#39;:=&#39;</span><span class="p">(</span>
-  <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
-                        <span class="m">-1</span><span class="p">,</span>
-                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
-                        <span class="p">),</span>
-  <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
-                         <span class="m">-1</span><span class="p">,</span>
-                         <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">))</span>
-                         <span class="p">),</span>
-  <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
-  <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span> <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
-  
-  <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="m">24</span> <span class="o">*</span>  <span class="m">60</span> <span class="o">*</span> <span class="m">60</span><span class="p">)),</span>
-  <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">),</span>
-  <span class="n">claim_type</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">claim_type</span><span class="p">)</span>
-  <span class="p">)]</span>
-  
+<span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="s">&#39;:=&#39;</span><span class="p">(</span>
+<span class="w">  </span><span class="n">delay_uw_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="w">                        </span><span class="m">-1</span><span class="p">,</span>
+<span class="w">                        </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
+<span class="w">                        </span><span class="p">),</span>
+<span class="w">  </span><span class="n">delay_occ_rep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="w">                         </span><span class="m">-1</span><span class="p">,</span>
+<span class="w">                         </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
+<span class="w">                         </span><span class="p">),</span>
+<span class="w">  </span><span class="n">delay_uw_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">delay_rep_pay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">)),</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">date_uw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w">  </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Cover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">),</span>
+<span class="w">  </span><span class="n">claim_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">claim_type</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)]</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -1181,26 +1186,26 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define IBNR modelVars</span>
-<span class="n">IBNR_model_vars</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;j&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;exposure&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_report&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;target&quot;</span><span class="p">)</span>
-    
+<span class="n">IBNR_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;exposure&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_report&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;target&quot;</span><span class="p">)</span>
+<span class="w">    </span>
 <span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
-<span class="n">lst_IBNR_train</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+<span class="n">lst_IBNR_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">IBNR_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">t_i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span><span class="w"> </span><span class="n">IBNR_model_vars</span><span class="p">)</span>
 
 <span class="c1"># Create a combined TEST dataset for k = 1 and all valid j delay values</span>
-<span class="n">dt_IBNR_test</span> <span class="o">&lt;-</span> <span class="nf">IBNR_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span> <span class="n">t_i</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span> <span class="n">IBNR_model_vars</span><span class="p">)</span>
+<span class="n">dt_IBNR_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">IBNR_Test</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">t_i</span><span class="p">,</span><span class="w"> </span><span class="n">delta</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span><span class="w"> </span><span class="n">IBNR_model_vars</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1208,13 +1213,13 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>The train and test datasets are then joined into a single dataset and a small amount of tidying is done to make them ready for use.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">1</span><span class="p">]</span>
-<span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">2</span><span class="p">]</span>
-<span class="n">dt_IBNR_test</span><span class="p">[,</span> <span class="n">flgTrain</span> <span class="o">:=</span> <span class="m">0</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">[,</span><span class="w"> </span><span class="n">flgTrain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
+<span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">[,</span><span class="w"> </span><span class="n">flgTrain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+<span class="n">dt_IBNR_test</span><span class="p">[,</span><span class="w"> </span><span class="n">flgTrain</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="m">0</span><span class="p">]</span>
 
-<span class="n">dt_All_IBNR</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">,</span>
-                     <span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">,</span>
-                     <span class="n">dt_IBNR_test</span><span class="p">)</span>
+<span class="n">dt_All_IBNR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">dt_IBNR_test</span><span class="p">)</span>
 <span class="c1">#write.csv(dt_All_IBNR,&quot;dt_All_IBNR.csv&quot;, row.names = F)</span>
 </pre></div>
 </div>
@@ -1246,27 +1251,27 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># order and create some delay fields</span>
-<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_IBNR</span><span class="p">,</span> <span class="n">clm_number</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    
-<span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="n">Count</span> <span class="o">:=</span> <span class="n">.N</span> <span class="p">,</span> <span class="n">by</span> <span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
-<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">&#39;:=&#39;</span><span class="p">(</span> <span class="n">delay_uw_occ</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
-                                        <span class="m">-1</span><span class="p">,</span>
-                                        <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span>
-                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
-                                          <span class="p">),</span>
-                   <span class="n">delay_occ_rep</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
-                                          <span class="m">-1</span><span class="p">,</span>
-                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span>
-                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
-                                          <span class="p">),</span>
-                   <span class="n">delay_rep_pay</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">==</span> <span class="m">2199</span><span class="p">,</span>
-                                          <span class="m">-1</span><span class="p">,</span>
-                                          <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span>
-                                                  <span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
-                                          <span class="p">),</span>
-                   <span class="n">delay_uw_val</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span> <span class="o">-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
-                   <span class="n">date_uw</span> <span class="o">=</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
-                   <span class="n">Cover</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">))]</span>
+<span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_IBNR</span><span class="p">,</span><span class="w"> </span><span class="n">clm_number</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="n">Count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">.N</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
+<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="w"> </span><span class="n">delay_uw_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="w">                                        </span><span class="m">-1</span><span class="p">,</span>
+<span class="w">                                        </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span>
+<span class="w">                                                  </span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+<span class="w">                                          </span><span class="p">),</span>
+<span class="w">                   </span><span class="n">delay_occ_rep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="w">                                          </span><span class="m">-1</span><span class="p">,</span>
+<span class="w">                                          </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">))</span>
+<span class="w">                                                  </span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+<span class="w">                                          </span><span class="p">),</span>
+<span class="w">                   </span><span class="n">delay_rep_pay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="w">                                          </span><span class="m">-1</span><span class="p">,</span>
+<span class="w">                                          </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pay</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_report</span><span class="p">))</span>
+<span class="w">                                                  </span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
+<span class="w">                                          </span><span class="p">),</span>
+<span class="w">                   </span><span class="n">delay_uw_val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">t_i</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+<span class="w">                   </span><span class="n">date_uw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">)),</span>
+<span class="w">                   </span><span class="n">Cover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">Cover</span><span class="p">))]</span>
 </pre></div>
 </div>
 </div>
@@ -1289,40 +1294,40 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>For this example I’ve chosen to use the <code class="docutils literal notranslate"><span class="pre">parsnip</span></code> package and create a recipe that converts nominal predictor values into a <strong>one-hot-encoded</strong> form.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
-                     <span class="c1">#&quot;date_uw&quot;,</span>
-                     <span class="c1">#&quot;delay_uw_occ&quot;,</span>
-                     <span class="s">&quot;delay_occ_rep&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="c1">#&quot;date_uw&quot;,</span>
+<span class="w">                     </span><span class="c1">#&quot;delay_uw_occ&quot;,</span>
+<span class="w">                     </span><span class="s">&quot;delay_occ_rep&quot;</span><span class="p">)</span>
 
-<span class="n">rowList_RBNS</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
-                <span class="n">test</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
-                <span class="n">all</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">))</span>
-
-
-<span class="n">RBNS_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">RBNS_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
-  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">prep</span><span class="p">()</span>
+<span class="n">rowList_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
+<span class="w">                </span><span class="n">test</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+<span class="w">                </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">))</span>
 
 
-<span class="n">df.RBNS_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.RBNS_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.RBNS_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span> <span class="p">)</span>
+<span class="n">RBNS_rec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">recipe</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="n">RBNS_predictors</span><span class="p">,</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">])</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span><span class="w"> </span><span class="n">one_hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">prep</span><span class="p">()</span>
 
 
-<span class="n">xgb.RBNS_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">),</span>
-                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+<span class="n">df.RBNS_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.RBNS_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.RBNS_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">RBNS_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="w"> </span><span class="p">)</span>
 
-<span class="n">xgb.RBNS_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_test</span><span class="p">),</span>
-                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
 
-<span class="n">xgb.RBNS_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_all</span><span class="p">),</span>
-                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">target</span><span class="p">])</span>
+<span class="n">xgb.RBNS_DMat.train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">),</span>
+<span class="w">                              </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">])</span>
+
+<span class="n">xgb.RBNS_DMat.test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_test</span><span class="p">),</span>
+<span class="w">                              </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">])</span>
+
+<span class="n">xgb.RBNS_DMat.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_all</span><span class="p">),</span>
+<span class="w">                             </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="n">target</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1334,8 +1339,8 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>I have used the <strong>reg:tweedie</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">])</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1350,27 +1355,27 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>In a real world example a process of hyper-parameter tuning would be undertaken in order to select more optimal xgboost hyper-parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
-  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;reg:tweedie&quot;</span><span class="p">,</span>
-  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>            <span class="c1"># tree-depth</span>
-  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.75</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
-  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>    <span class="c1"># randomly sample columns before fitting each tree</span>
-  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>     <span class="c1"># minimum weight per leaf</span>
-  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>                  <span class="c1"># Learning rate</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reg:tweedie&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">            </span><span class="c1"># tree-depth</span>
+<span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
+<span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">    </span><span class="c1"># randomly sample columns before fitting each tree</span>
+<span class="w">  </span><span class="n">min.child.weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w">     </span><span class="c1"># minimum weight per leaf</span>
+<span class="w">  </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="w">                  </span><span class="c1"># Learning rate</span>
 <span class="p">)</span>
 
 
 <span class="c1"># Train model with cross validation</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w"> </span><span class="c1"># for repeatability</span>
 
-<span class="n">xgb_RBNS_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
-  <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
-  <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
-  <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">500</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
-  <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
-  <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">10L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in </span>
-  <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">10L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
-  <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
+<span class="n">xgb_RBNS_CV</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.cv</span><span class="p">(</span>
+<span class="w">  </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
+<span class="w">  </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w">        </span><span class="c1"># Maximum number of trees to build</span>
+<span class="w">  </span><span class="n">nfold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="w">  </span><span class="n">early_stopping_rounds</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w">        </span><span class="c1"># Stops algorithm early if performance has not improved in </span>
+<span class="w">  </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">10L</span><span class="p">,</span><span class="w">        </span><span class="c1"># How often to print to console</span>
+<span class="w">  </span><span class="n">prediction</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="w">        </span><span class="c1"># Keeps the predictions</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1401,7 +1406,7 @@ Stopping. Best iteration:
 <p>Having fit the model we store the out-of-fold predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof</span> <span class="o">:=</span> <span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">preds_oof</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1413,16 +1418,16 @@ Stopping. Best iteration:
 <p>We can then use this to train a final model on all the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_RBNS_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
-  <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
-  <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
-  <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_RBNS_Fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.train</span><span class="p">(</span>
+<span class="w">  </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span>
+<span class="w">  </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_RBNS_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
 <span class="c1"># base_score             = 1,</span>
-  <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.test</span><span class="p">)</span> <span class="p">,</span>
-  <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">10</span>
+<span class="w">  </span><span class="n">watchlist</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="o">=</span><span class="n">xgb.RBNS_DMat.test</span><span class="p">)</span><span class="w"> </span><span class="p">,</span>
+<span class="w">  </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
 <span class="p">)</span>
 
-<span class="n">dt_All_RBNS</span><span class="p">[,</span> <span class="n">preds_full</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="n">xgb.RBNS_DMat.all</span><span class="p">)]</span>
+<span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="n">preds_full</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="n">xgb.RBNS_DMat.all</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1451,8 +1456,8 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
-<span class="n">featImp_RBNS</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_RBNS</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - RBNS&quot;</span><span class="p">)</span>
+<span class="n">featImp_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_RBNS</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - RBNS&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1464,13 +1469,13 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
-<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_RBNS_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
+<span class="n">shap_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
 
 <span class="c1"># Prepare the long-format data:</span>
-<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
+<span class="n">shap_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">))</span>
 
 <span class="c1"># **SHAP summary plot**</span>
-<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span><span class="w"> </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">df.RBNS_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1482,12 +1487,12 @@ Stopping. Best iteration:
 <p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
-                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
-                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
-                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">shap.plot.dependence</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">data_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_long</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span><span class="w"> </span><span class="m">10000</span><span class="p">)</span>
 
-<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fig_list</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1532,15 +1537,15 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
-<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
-                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
-                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
-                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
-  
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">data_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
+<span class="w">                                  </span><span class="n">top_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">n_groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="w">  </span>
 <span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
 <span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
-<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
-  
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_in_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">y_parent_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -1560,9 +1565,9 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the RBNS predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span> <span class="p">[,</span> <span class="n">date_occur_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_RBNS</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">date_occur_YYYYMM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="o">/</span><span class="m">100</span><span class="w"> </span><span class="p">)]</span>
 
-<span class="n">dt_RBNS_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_occur_YYYYMM</span><span class="p">]</span>
+<span class="n">dt_RBNS_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_RBNS</span><span class="p">[</span><span class="n">rowList_RBNS</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">preds_full</span><span class="p">),</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span><span class="w"> </span><span class="n">keyby</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date_occur_YYYYMM</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1644,50 +1649,50 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <p>The other point to note is the values of <strong>flgTrain</strong> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training rows have a value of 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
 
 <span class="c1"># aggregate the data ... does this lead to loss of variance and accuracy?</span>
-<span class="n">dt_All_IBNR</span> <span class="p">[,</span> <span class="n">date_pol_start_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+<span class="n">dt_All_IBNR</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span><span class="w"> </span><span class="p">)]</span>
 
-<span class="n">dt_All_IBNR_F</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">),</span>
-                                   <span class="n">target_cost</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
-                                   <span class="n">target_count</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)),</span>
-                               <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span> <span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span> <span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+<span class="n">dt_All_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">),</span>
+<span class="w">                                   </span><span class="n">target_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
+<span class="w">                                   </span><span class="n">target_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)),</span>
+<span class="w">                               </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
 
-<span class="n">dt_All_IBNR_F</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
+<span class="n">dt_All_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
 
 
 <span class="c1"># setup train and test rows</span>
-<span class="n">rowList_IBNR_F</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
-                     <span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
-                     <span class="n">all</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">2</span><span class="p">)])</span>
+<span class="n">rowList_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
+<span class="w">                     </span><span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+<span class="w">                     </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">2</span><span class="p">)])</span>
 
 <span class="c1"># setup data for xgboost</span>
-<span class="n">IBNR_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[,</span> <span class="n">IBNR_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
-  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">prep</span><span class="p">()</span>
+<span class="n">IBNR_rec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">recipe</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[,</span><span class="w"> </span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">])</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span><span class="w"> </span><span class="n">one_hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">prep</span><span class="p">()</span>
 
-<span class="n">df.IBNR_F_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.IBNR_F_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.IBNR_F_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_F_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.IBNR_F_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.IBNR_F_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
 
-<span class="n">xgb.IBNR_F_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">),</span>
-                              <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+<span class="n">xgb.IBNR_F_DMat.train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">),</span>
+<span class="w">                              </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                              </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target_count</span><span class="p">])</span>
 
-<span class="n">xgb.IBNR_F_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_test</span><span class="p">),</span>
-                             <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+<span class="n">xgb.IBNR_F_DMat.test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_test</span><span class="p">),</span>
+<span class="w">                             </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                             </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">target_count</span><span class="p">])</span>
 
-<span class="n">xgb.IBNR_F_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_all</span><span class="p">),</span>
-                            <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                            <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+<span class="n">xgb.IBNR_F_DMat.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_all</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">target_count</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1699,7 +1704,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <p>I have used the <strong>count:poisson</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_count</span><span class="p">])</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target_count</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1709,30 +1714,30 @@ Data has N = 833 | zoom in length is 83 at location 500.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
-  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;count:poisson&quot;</span><span class="p">,</span>
-  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>           <span class="c1"># tree-depth</span>
-  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
-  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>   <span class="c1"># randomly sample columns before fitting each tree</span>
-  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>    <span class="c1"># minimum weight per leaf</span>
-  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>               <span class="c1"># Learning rate</span>
-  <span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;count:poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">           </span><span class="c1"># tree-depth</span>
+<span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
+<span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">   </span><span class="c1"># randomly sample columns before fitting each tree</span>
+<span class="w">  </span><span class="n">min.child.weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w">    </span><span class="c1"># minimum weight per leaf</span>
+<span class="w">  </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="w">               </span><span class="c1"># Learning rate</span>
+<span class="w">  </span><span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
 <span class="p">)</span>
 
 
 <span class="c1"># Train model with cross validation</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w"> </span><span class="c1"># for repeatability</span>
 
-<span class="n">xgb_IBNR_F_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
- <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
- <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
- <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
- <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+<span class="n">xgb_IBNR_F_CV</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.cv</span><span class="p">(</span>
+<span class="w"> </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w"> </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
+<span class="w"> </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w">        </span><span class="c1"># Maximum number of trees to build</span>
+<span class="w"> </span><span class="n">nfold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
 
- <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
- <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
- <span class="c1">#base_score             = 0.001,       # Model starting point</span>
-   <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
+<span class="w"> </span><span class="n">early_stopping_rounds</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">50L</span><span class="p">,</span><span class="w">        </span><span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
+<span class="w"> </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">50L</span><span class="p">,</span><span class="w">        </span><span class="c1"># How often to print to console</span>
+<span class="w"> </span><span class="c1">#base_score             = 0.001,       # Model starting point</span>
+<span class="w">   </span><span class="n">prediction</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="w">        </span><span class="c1"># Keeps the predictions</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1757,8 +1762,8 @@ Stopping. Best iteration:
 <p>Having fit the model we store the out-of-fold predictions for both the claim frequency and the claim counts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_F</span> <span class="o">:=</span> <span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
- <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_Nos</span> <span class="o">:=</span> <span class="n">exposure</span> <span class="o">*</span> <span class="n">preds_oof_IBNR_F</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">preds_oof_IBNR_F</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+<span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">preds_oof_IBNR_Nos</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">exposure</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">preds_oof_IBNR_F</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1770,16 +1775,16 @@ Stopping. Best iteration:
 <p>We can then use this to train a final model on all the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_F_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
-   <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
-   <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
-   <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_F_Fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.train</span><span class="p">(</span>
+<span class="w">   </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w">   </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span>
+<span class="w">   </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_IBNR_F_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
 <span class="c1"># base_score             = 1,</span>
-   <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span> <span class="p">,</span>
-   <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50</span>
- <span class="p">)</span>
- 
- <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">preds_full_IBNR_Nos</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_F_DMat.all</span><span class="p">)]</span>
+<span class="w">   </span><span class="n">watchlist</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span><span class="w"> </span><span class="p">,</span>
+<span class="w">   </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
+<span class="w"> </span><span class="p">)</span>
+<span class="w"> </span>
+<span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">preds_full_IBNR_Nos</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_F_DMat.all</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1802,8 +1807,8 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
-<span class="n">featImp_IBNR_F</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_F</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Frequency&quot;</span><span class="p">)</span>
+<span class="n">featImp_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_F</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Frequency&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1815,16 +1820,16 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
-<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
+<span class="n">shap_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
 
 <span class="c1"># Prepare the long-format data:</span>
-<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
+<span class="n">shap_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">))</span>
 
 <span class="c1"># **SHAP summary plot**</span>
-<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span><span class="w"> </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_F_train</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
 
 
-  
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -1836,12 +1841,12 @@ Stopping. Best iteration:
 <p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
-                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
-                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
-                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">shap.plot.dependence</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">data_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_long</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span><span class="w"> </span><span class="m">10000</span><span class="p">)</span>
 
-<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fig_list</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1886,15 +1891,15 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
-<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
-                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
-                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
-                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
-  
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">data_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="o">/</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span>
+<span class="w">                                  </span><span class="n">top_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">n_groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="w">  </span>
 <span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
 <span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
-<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
-  
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_in_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">y_parent_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -1914,7 +1919,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim count predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_F_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Nos</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target_count</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_F_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">rowList_IBNR_F</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Nos</span><span class="p">),</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target_count</span><span class="p">)),</span><span class="w"> </span><span class="n">keyby</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2017,50 +2022,50 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <p>The other point to note is the values of <em>flgTrain</em> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training roes have a value of 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;k&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Model&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;Price&quot;</span><span class="p">,</span>
-                     <span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
 
-<span class="n">dt_All_IBNR</span> <span class="p">[,</span> <span class="n">date_pol_start_YYYYMM</span> <span class="o">:=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span> <span class="o">+</span> <span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span> <span class="p">)]</span>
+<span class="n">dt_All_IBNR</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span><span class="w"> </span><span class="p">)]</span>
 
-<span class="n">dt_All_IBNR_S</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR</span><span class="p">[,</span> <span class="nf">.</span><span class="p">(</span><span class="n">exposure</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span>
-                                 <span class="n">target_cost</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span>
-                            <span class="n">by</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span> <span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span> <span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+<span class="n">dt_All_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span>
+<span class="w">                                 </span><span class="n">target_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span>
+<span class="w">                            </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
 
-<span class="n">dt_All_IBNR_S</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
+<span class="n">dt_All_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
 
 <span class="c1"># setup train and test rows</span>
-<span class="n">rowList_IBNR_S</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">2</span><span class="p">)],</span>
-                     <span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
-                     <span class="n">all</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">1</span><span class="p">)])</span>
+<span class="n">rowList_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">2</span><span class="p">)],</span>
+<span class="w">                     </span><span class="n">test</span><span class="o">=</span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
+<span class="w">                     </span><span class="n">all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">!=</span><span class="m">1</span><span class="p">)])</span>
 
 <span class="c1"># setup data for xgboost</span>
 
-<span class="n">IBNR_rec</span> <span class="o">&lt;-</span> <span class="nf">recipe</span><span class="p">(</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[,</span> <span class="n">IBNR_predictors</span><span class="p">,</span> <span class="n">with</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">])</span> <span class="o">%&gt;%</span>
-  <span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span> <span class="n">one_hot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">prep</span><span class="p">()</span>
+<span class="n">IBNR_rec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">recipe</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[,</span><span class="w"> </span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">])</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">step_dummy</span><span class="p">(</span><span class="nf">all_nominal</span><span class="p">(),</span><span class="w"> </span><span class="n">one_hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">prep</span><span class="p">()</span>
 
-<span class="n">df.IBNR_S_train</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.IBNR_S_test</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span> <span class="p">)</span>
-<span class="n">df.IBNR_S_all</span> <span class="o">&lt;-</span> <span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span> <span class="p">)</span>
+<span class="n">df.IBNR_S_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.IBNR_S_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">df.IBNR_S_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bake</span><span class="p">(</span><span class="n">IBNR_rec</span><span class="p">,</span><span class="w"> </span><span class="n">new_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,]</span><span class="w"> </span><span class="p">)</span>
 
 
 
-<span class="n">xgb.IBNR_S_DMat.train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span>
-                              <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                              <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+<span class="n">xgb.IBNR_S_DMat.train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span>
+<span class="w">                              </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                              </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target_cost</span><span class="p">])</span>
 
-<span class="n">xgb.IBNR_S_DMat.test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_test</span><span class="p">),</span>
-                             <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                             <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+<span class="n">xgb.IBNR_S_DMat.test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_test</span><span class="p">),</span>
+<span class="w">                             </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                             </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">target_cost</span><span class="p">])</span>
 
-<span class="n">xgb.IBNR_S_DMat.all</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_all</span><span class="p">),</span>
-                            <span class="n">weight</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">exposure</span><span class="p">],</span>
-                            <span class="n">label</span> <span class="o">=</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+<span class="n">xgb.IBNR_S_DMat.all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_all</span><span class="p">),</span>
+<span class="w">                            </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">],</span>
+<span class="w">                            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">target_cost</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2072,8 +2077,8 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <p>I have used the <strong>reg:gamma</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">target_cost</span><span class="p">])</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target_cost</span><span class="p">])</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">target_cost</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2087,30 +2092,30 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
-  <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;reg:gamma&quot;</span><span class="p">,</span>
-  <span class="n">max_depth</span> <span class="o">=</span> <span class="m">2L</span><span class="p">,</span>           <span class="c1"># tree-depth</span>
-  <span class="n">subsample</span> <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>          <span class="c1"># randomly sample rows before fitting each tree</span>
-  <span class="n">colsample_bytree</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>   <span class="c1"># randomly sample columns before fitting each tree</span>
-  <span class="n">min.child.weight</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>    <span class="c1"># minimum weight per leaf</span>
-  <span class="n">eta</span> <span class="o">=</span> <span class="m">0.1</span>               <span class="c1"># Learning rate</span>
-  <span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reg:gamma&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">           </span><span class="c1"># tree-depth</span>
+<span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
+<span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">   </span><span class="c1"># randomly sample columns before fitting each tree</span>
+<span class="w">  </span><span class="n">min.child.weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w">    </span><span class="c1"># minimum weight per leaf</span>
+<span class="w">  </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="w">               </span><span class="c1"># Learning rate</span>
+<span class="w">  </span><span class="c1">#monotone_constraints = monotone_Vec # Monotonicity constraints</span>
 <span class="p">)</span>
 
 <span class="c1"># Train model with cross validation</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span> <span class="c1"># for repeatability</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w"> </span><span class="c1"># for repeatability</span>
 
-<span class="n">xgb_IBNR_S_CV</span> <span class="o">&lt;-</span> <span class="nf">xgb.cv</span><span class="p">(</span>
- <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
- <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
- <span class="n">nrounds</span>                <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>        <span class="c1"># Maximum number of trees to build</span>
- <span class="n">nfold</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+<span class="n">xgb_IBNR_S_CV</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.cv</span><span class="p">(</span>
+<span class="w"> </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w"> </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
+<span class="w"> </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w">        </span><span class="c1"># Maximum number of trees to build</span>
+<span class="w"> </span><span class="n">nfold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
 
- <span class="n">early_stopping_rounds</span>  <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
- <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50L</span><span class="p">,</span>        <span class="c1"># How often to print to console</span>
- <span class="c1">#base_score             = 0.001,       # Model starting point</span>
-   <span class="n">prediction</span>             <span class="o">=</span> <span class="kc">TRUE</span>        <span class="c1"># Keeps the predictions</span>
-<span class="p">)</span> 
+<span class="w"> </span><span class="n">early_stopping_rounds</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">50L</span><span class="p">,</span><span class="w">        </span><span class="c1"># Stops algorithm early if performance has not improved in n rounds</span>
+<span class="w"> </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">50L</span><span class="p">,</span><span class="w">        </span><span class="c1"># How often to print to console</span>
+<span class="w"> </span><span class="c1">#base_score             = 0.001,       # Model starting point</span>
+<span class="w">   </span><span class="n">prediction</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="w">        </span><span class="c1"># Keeps the predictions</span>
+<span class="p">)</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -2131,8 +2136,8 @@ Stopping. Best iteration:
 <p>Having fitted an initial model the out-of-fold predictions are stored.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_S</span> <span class="o">:=</span> <span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
-<span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span> <span class="n">preds_oof_IBNR_Cost</span> <span class="o">:=</span> <span class="n">exposure</span> <span class="o">*</span> <span class="n">preds_oof_IBNR_S</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">preds_oof_IBNR_S</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">pred</span><span class="p">]</span>
+<span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">preds_oof_IBNR_Cost</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">exposure</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">preds_oof_IBNR_S</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2144,14 +2149,14 @@ Stopping. Best iteration:
 <p>We can then us this to train a final model on all the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_S_Fit</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span>
-   <span class="n">params</span>                 <span class="o">=</span> <span class="n">param</span><span class="p">,</span>
-   <span class="n">data</span>                   <span class="o">=</span> <span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
-   <span class="n">nrounds</span>                <span class="o">=</span> <span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_IBNR_S_Fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.train</span><span class="p">(</span>
+<span class="w">   </span><span class="n">params</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span>
+<span class="w">   </span><span class="n">data</span><span class="w">                   </span><span class="o">=</span><span class="w"> </span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">,</span>
+<span class="w">   </span><span class="n">nrounds</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_IBNR_S_CV</span><span class="o">$</span><span class="n">best_iteration</span><span class="p">,</span>
 <span class="c1"># base_score             = 1,</span>
-   <span class="n">watchlist</span>              <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span> <span class="p">,</span>
-   <span class="n">print_every_n</span>          <span class="o">=</span> <span class="m">50</span>
- <span class="p">)</span>
+<span class="w">   </span><span class="n">watchlist</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="o">=</span><span class="n">xgb.IBNR_F_DMat.test</span><span class="p">)</span><span class="w"> </span><span class="p">,</span>
+<span class="w">   </span><span class="n">print_every_n</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
+<span class="w"> </span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2167,7 +2172,7 @@ Stopping. Best iteration:
 <p>Having trained the model the predictions are stored.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span> <span class="n">preds_full_IBNR_Cost</span> <span class="o">:=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_S_DMat.all</span><span class="p">)]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">all</span><span class="p">,</span><span class="w"> </span><span class="n">preds_full_IBNR_Cost</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="n">xgb.IBNR_S_DMat.all</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -2179,8 +2184,8 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
-<span class="n">featImp_IBNR_S</span> <span class="o">&lt;-</span> <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_S</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Severity&quot;</span><span class="p">)</span>
+<span class="n">featImp_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">))</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_S</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Severity&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2192,13 +2197,13 @@ Stopping. Best iteration:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the SHAP values and ranked features by mean|SHAP|</span>
-<span class="n">shap_values</span> <span class="o">&lt;-</span> <span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
+<span class="n">shap_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.values</span><span class="p">(</span><span class="n">xgb_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
 
 <span class="c1"># Prepare the long-format data:</span>
-<span class="n">shap_long</span> <span class="o">&lt;-</span> <span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span> <span class="n">X_train</span> <span class="o">=</span>  <span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
+<span class="n">shap_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span><span class="w"> </span><span class="n">X_train</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">))</span>
 
 <span class="c1"># **SHAP summary plot**</span>
-<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span> <span class="n">dilute</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span><span class="m">10000</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
+<span class="nf">shap.plot.summary</span><span class="p">(</span><span class="n">shap_long</span><span class="p">,</span><span class="w"> </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df.IBNR_S_train</span><span class="p">),</span><span class="m">10000</span><span class="p">)</span><span class="o">/</span><span class="m">10000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2210,12 +2215,12 @@ Stopping. Best iteration:
 <p>Here we show the partial dependence plots for the top 4 SHAP features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> 
-                   <span class="n">shap.plot.dependence</span><span class="p">,</span>
-                   <span class="n">data_long</span> <span class="o">=</span> <span class="n">shap_long</span><span class="p">,</span>
-                   <span class="n">dilute</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span> <span class="m">10000</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fig_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">shap_values</span><span class="o">$</span><span class="n">mean_shap_score</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span><span class="w"> </span>
+<span class="w">                   </span><span class="n">shap.plot.dependence</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">data_long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_long</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">dilute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">)</span><span class="o">/</span><span class="w"> </span><span class="m">10000</span><span class="p">)</span>
 
-<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span> <span class="o">=</span> <span class="n">fig_list</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">gridExtra</span><span class="o">::</span><span class="nf">grid.arrange</span><span class="p">(</span><span class="n">grobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fig_list</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2278,15 +2283,15 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># choose to show top 4 features by setting `top_n = 4`, set 6 clustering groups.  </span>
-<span class="n">plot_data</span> <span class="o">&lt;-</span> <span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span> <span class="o">=</span> <span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
-                                  <span class="n">data_percent</span> <span class="o">=</span> <span class="m">10000</span><span class="o">/</span><span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span><span class="m">10000</span><span class="p">),</span>
-                                  <span class="n">top_n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
-                                  <span class="n">n_groups</span> <span class="o">=</span> <span class="m">6</span><span class="p">)</span>
-  
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">shap.prep.stack.data</span><span class="p">(</span><span class="n">shap_contrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shap_values</span><span class="o">$</span><span class="n">shap_score</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">data_percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10000</span><span class="o">/</span><span class="nf">max</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">shap_long</span><span class="p">),</span><span class="m">10000</span><span class="p">),</span>
+<span class="w">                                  </span><span class="n">top_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">                                  </span><span class="n">n_groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="w">  </span>
 <span class="c1"># choose to zoom in at location 500, set y-axis limit using `y_parent_limit`  </span>
 <span class="c1"># it is also possible to set y-axis limit for zoom-in part alone using `y_zoomin_limit`  </span>
-<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">zoom_in_location</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">y_parent_limit</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
-  
+<span class="nf">shap.plot.force_plot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_in_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">,</span><span class="w"> </span><span class="n">y_parent_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -2306,7 +2311,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim cost predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S_summary</span> <span class="o">&lt;-</span> <span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Cost</span><span class="p">),</span> <span class="n">target</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">target_cost</span><span class="p">)),</span> <span class="n">keyby</span> <span class="o">=</span> <span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_All_IBNR_S_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">rowList_IBNR_S</span><span class="o">$</span><span class="n">test</span><span class="p">,</span><span class="nf">.</span><span class="p">(</span><span class="n">preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">preds_full_IBNR_Cost</span><span class="p">),</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target_cost</span><span class="p">)),</span><span class="w"> </span><span class="n">keyby</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

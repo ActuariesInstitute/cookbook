@@ -138,6 +138,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -997,20 +1002,20 @@ title="Print to PDF"
 <p>A list of packages used in the recipes below.</p>
 <div class="cell tag_remove_output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">rmdformats</span><span class="p">)</span>     <span class="c1"># theme for the HTML doc</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">bookdown</span><span class="p">)</span>       <span class="c1"># bibliography formatting</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>         <span class="c1"># data formatting  </span>
-<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>          <span class="c1"># tidyverse: data manipulation</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>          <span class="c1"># tidyverse: tidy messy data</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>           <span class="c1"># statistics</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>        <span class="c1"># tidyverse: graphs</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span>       <span class="c1"># tidyverse: additional themes for ggplot, optional</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span>           <span class="c1"># visualising ROC curves</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>          <span class="c1"># for Classification And REgression Training</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span>          <span class="c1"># Decision tree algorithm</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span>     <span class="c1"># Plot for decision tree</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">randomForest</span><span class="p">)</span>   <span class="c1"># random forest algorithm</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>        <span class="c1"># XGBoost algorithm</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">rmdformats</span><span class="p">)</span><span class="w">     </span><span class="c1"># theme for the HTML doc</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bookdown</span><span class="p">)</span><span class="w">       </span><span class="c1"># bibliography formatting</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span><span class="w">         </span><span class="c1"># data formatting  </span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">          </span><span class="c1"># tidyverse: data manipulation</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">          </span><span class="c1"># tidyverse: tidy messy data</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w">           </span><span class="c1"># statistics</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">        </span><span class="c1"># tidyverse: graphs</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span><span class="w">       </span><span class="c1"># tidyverse: additional themes for ggplot, optional</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pROC</span><span class="p">)</span><span class="w">           </span><span class="c1"># visualising ROC curves</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">          </span><span class="c1"># for Classification And REgression Training</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span><span class="w">          </span><span class="c1"># Decision tree algorithm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span><span class="w">     </span><span class="c1"># Plot for decision tree</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">randomForest</span><span class="p">)</span><span class="w">   </span><span class="c1"># random forest algorithm</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span><span class="w">        </span><span class="c1"># XGBoost algorithm</span>
 </pre></div>
 </div>
 </div>
@@ -1022,8 +1027,8 @@ title="Print to PDF"
 <p>Let’s use the same dataset as in the “Regression” article. That data looked at disability income insurance experience.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span> <span class="o">=</span> <span class="nf">ls</span><span class="p">())</span>
-<span class="nf">load</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s">&quot;../_static/trees/data.RData&quot;</span><span class="p">,)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ls</span><span class="p">())</span>
+<span class="nf">load</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../_static/trees/data.RData&quot;</span><span class="p">,)</span>
 </pre></div>
 </div>
 </div>
@@ -1034,21 +1039,21 @@ title="Print to PDF"
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Determine the number of rows for training</span>
 <span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="c1"># Create a random sample of row IDs</span>
-<span class="n">sample_rows</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="m">0.75</span><span class="o">*</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="n">sample_rows</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="m">0.75</span><span class="o">*</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 <span class="c1"># Create the training dataset</span>
-<span class="n">df_train</span> <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="n">sample_rows</span><span class="p">,]</span>
+<span class="n">df_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="n">sample_rows</span><span class="p">,]</span>
 <span class="c1"># Create the test dataset</span>
-<span class="n">df_test</span> <span class="o">&lt;-</span> <span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="n">sample_rows</span><span class="p">,]</span>
+<span class="n">df_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="n">sample_rows</span><span class="p">,]</span>
 
 
-<span class="n">samp_cv</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_test</span><span class="p">),</span><span class="m">100000</span><span class="p">)</span>
-<span class="n">df_cv</span> <span class="o">&lt;-</span> <span class="n">df_test</span><span class="p">[</span><span class="n">samp_cv</span><span class="p">,]</span>
-<span class="n">df_test2</span> <span class="o">&lt;-</span> <span class="n">df_test</span><span class="p">[</span><span class="o">-</span><span class="n">samp_cv</span><span class="p">,]</span>
+<span class="n">samp_cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_test</span><span class="p">),</span><span class="m">100000</span><span class="p">)</span>
+<span class="n">df_cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_test</span><span class="p">[</span><span class="n">samp_cv</span><span class="p">,]</span>
+<span class="n">df_test2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_test</span><span class="p">[</span><span class="o">-</span><span class="n">samp_cv</span><span class="p">,]</span>
 
 <span class="c1"># One hot encoding</span>
-<span class="n">train_label</span> <span class="o">&lt;-</span> <span class="n">df_train</span><span class="o">$</span><span class="n">inc_count_tot</span>
-<span class="n">cv_label</span> <span class="o">&lt;-</span> <span class="n">df_cv</span><span class="o">$</span><span class="n">inc_count_tot</span>
-<span class="n">test_label</span> <span class="o">&lt;-</span> <span class="n">df_test2</span><span class="o">$</span><span class="n">inc_count_tot</span>
+<span class="n">train_label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_train</span><span class="o">$</span><span class="n">inc_count_tot</span>
+<span class="n">cv_label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_cv</span><span class="o">$</span><span class="n">inc_count_tot</span>
+<span class="n">test_label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_test2</span><span class="o">$</span><span class="n">inc_count_tot</span>
 </pre></div>
 </div>
 </div>
@@ -1115,11 +1120,11 @@ where <span class="math notranslate nohighlight">\(IV(feature)\)</span> can be f
 <p>Let’s model whether a policy has any claim incident, by looking at indicator of sickness <code class="docutils literal notranslate"><span class="pre">inc_count_sick</span></code> and accident <code class="docutils literal notranslate"><span class="pre">inc_count_acc</span></code>. Apparently the dependent variable <code class="docutils literal notranslate"><span class="pre">inc_count_tot</span></code> is fully determined by the two indicators. “Class” method is used here to train the classification tree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">classi_tree</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">inc_count_tot</span> <span class="o">~</span> <span class="n">inc_count_acc</span> <span class="o">+</span> <span class="n">inc_count_sick</span><span class="p">,</span>
-                        <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">,</span>
-                        <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;class&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">classi_tree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rpart</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">inc_count_acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">inc_count_sick</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_train</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;class&quot;</span><span class="p">)</span>
 
-<span class="nf">plotcp</span><span class="p">(</span><span class="n">classi_tree</span><span class="p">,</span> <span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plotcp</span><span class="p">(</span><span class="n">classi_tree</span><span class="p">,</span><span class="w"> </span><span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="nf">rpart.plot</span><span class="p">(</span><span class="n">classi_tree</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1151,19 +1156,19 @@ where <span class="math notranslate nohighlight">\(y_i\)</span> is the actual va
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select all claims</span>
-<span class="n">df_term</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span> <span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> 
+<span class="n">df_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_train</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="w"> </span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span><span class="w"> </span>
 
 <span class="c1"># add dummy claim duration data. Duration (i.e. in days) is usually considered following </span>
 <span class="c1"># an exponential distribution but in our recent study it follows a gamma distribution better. </span>
 <span class="c1"># To simplify, here we use exponential distribution CDF to back solve the x. </span>
 <span class="c1"># Assume lambda is 1/180 so that the average claim duration is 180 days.</span>
-<span class="n">df_term</span> <span class="o">&lt;-</span> <span class="n">df_term</span> <span class="o">%&gt;%</span> 
-  <span class="nf">mutate</span><span class="p">(</span><span class="n">term_day</span> <span class="o">=</span> <span class="nf">case_when</span><span class="p">(</span><span class="n">age</span> <span class="o">&lt;=</span> <span class="m">45</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">90</span><span class="p">)),</span>
-                              <span class="n">age</span> <span class="o">&lt;=</span> <span class="m">50</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">180</span><span class="p">)),</span>
-                                   <span class="kc">TRUE</span> <span class="o">~</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">360</span><span class="p">))</span>
-                              <span class="p">))</span>
+<span class="n">df_term</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_term</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">term_day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">case_when</span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">90</span><span class="p">)),</span>
+<span class="w">                              </span><span class="n">age</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">180</span><span class="p">)),</span>
+<span class="w">                                   </span><span class="kc">TRUE</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_term</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="m">-1</span><span class="o">/</span><span class="m">360</span><span class="p">))</span>
+<span class="w">                              </span><span class="p">))</span>
 
-<span class="nf">plot</span><span class="p">(</span><span class="n">df_term</span><span class="o">$</span><span class="n">age</span><span class="p">,</span> <span class="n">df_term</span><span class="o">$</span><span class="n">term_day</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&quot;AGE&quot;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&quot;Time to Recover (Days)&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">df_term</span><span class="o">$</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">df_term</span><span class="o">$</span><span class="n">term_day</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;AGE&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Time to Recover (Days)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1176,17 +1181,17 @@ where <span class="math notranslate nohighlight">\(y_i\)</span> is the actual va
 <h3>Fit regression tree<a class="headerlink" href="#fit-regression-tree" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ageGroup_split</span> <span class="o">&lt;-</span> <span class="nf">rpart</span><span class="p">(</span><span class="n">term_day</span> <span class="o">~</span> <span class="n">age</span><span class="p">,</span>
-                        <span class="n">data</span> <span class="o">=</span> <span class="n">df_term</span><span class="p">,</span>
-                        <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;anova&quot;</span><span class="p">,</span>
-                        <span class="n">control</span> <span class="o">=</span> <span class="nf">rpart.control</span><span class="p">(</span><span class="n">xval</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">minbucket</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="m">0.0005</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ageGroup_split</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rpart</span><span class="p">(</span><span class="n">term_day</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_term</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;anova&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rpart.control</span><span class="p">(</span><span class="n">xval</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">minbucket</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">cp</span><span class="o">=</span><span class="m">0.0005</span><span class="p">))</span>
 
-<span class="nf">plotcp</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span> <span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plotcp</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span><span class="w"> </span><span class="n">minline</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="nf">rpart.plot</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">)</span>
 <span class="nf">printcp</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">)</span>
 
 <span class="c1"># increase cp the learning rate to prune the trees</span>
-<span class="n">ageGroup_pruned</span> <span class="o">&lt;-</span> <span class="nf">prune</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span> <span class="n">cp</span><span class="o">=</span><span class="m">0.005</span><span class="p">)</span>
+<span class="n">ageGroup_pruned</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">prune</span><span class="p">(</span><span class="n">ageGroup_split</span><span class="p">,</span><span class="w"> </span><span class="n">cp</span><span class="o">=</span><span class="m">0.005</span><span class="p">)</span>
 <span class="nf">rpart.plot</span><span class="p">(</span><span class="n">ageGroup_pruned</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1239,50 +1244,50 @@ where <span class="math notranslate nohighlight">\(n\)</span> denotes the number
 <h2>Train random forest model<a class="headerlink" href="#train-random-forest-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
-                      <span class="o">+</span> <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">inc_count_tot</span><span class="w">  </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_train</span><span class="p">)</span>
 
-<span class="n">new_cv2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
-                      <span class="o">+</span> <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_cv</span><span class="p">)</span>
+<span class="n">new_cv2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">inc_count_tot</span><span class="w">  </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_cv</span><span class="p">)</span>
 
-<span class="n">new_test2</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span> <span class="n">inc_count_tot</span>  
-                      <span class="o">+</span> <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_test2</span><span class="p">)</span>
+<span class="n">new_test2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">inc_count_tot</span><span class="w">  </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_test2</span><span class="p">)</span>
 
-<span class="n">new_train2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_train2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
-<span class="n">new_cv2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_cv2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
-<span class="n">new_test2</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_test2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">Default</span> <span class="o">=</span> <span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+<span class="n">new_train2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_train2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">Default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+<span class="n">new_cv2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_cv2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">Default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
+<span class="n">new_test2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">new_test2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">rename</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">Default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;(Intercept)&quot;</span><span class="p">)</span>
 
-<span class="n">rf.fit</span> <span class="o">=</span> <span class="nf">randomForest</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="p">)</span> <span class="o">~</span><span class="n">.</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_train2</span><span class="p">,</span> 
-                      <span class="n">ntree</span><span class="o">=</span><span class="m">100</span><span class="p">,</span> 
-                      <span class="n">sampsize</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">500</span><span class="p">,</span><span class="m">500</span><span class="p">),</span>
-                      <span class="n">importance</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">rf.fit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">randomForest</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">new_train2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                      </span><span class="n">ntree</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                      </span><span class="n">sampsize</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">500</span><span class="p">,</span><span class="m">500</span><span class="p">),</span>
+<span class="w">                      </span><span class="n">importance</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">)</span>
 </pre></div>
@@ -1318,11 +1323,11 @@ Confusion matrix:
 <p>Confusion matrix and ROC:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rf.predict</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span> <span class="n">new_test2</span><span class="p">)</span>
-<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">rf.predict</span><span class="p">),</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rf.predict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span><span class="w"> </span><span class="n">new_test2</span><span class="p">)</span>
+<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">rf.predict</span><span class="p">),</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span><span class="p">))</span>
 
-<span class="n">rf.predict2</span> <span class="o">=</span> <span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span> <span class="n">new_test2</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;prob&quot;</span><span class="p">)</span>
-<span class="nf">roc</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span> <span class="o">~</span> <span class="n">rf.predict2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> <span class="n">plot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">print.auc</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">rf.predict2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">rf.fit</span><span class="p">,</span><span class="w"> </span><span class="n">new_test2</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;prob&quot;</span><span class="p">)</span>
+<span class="nf">roc</span><span class="p">(</span><span class="n">new_test2</span><span class="o">$</span><span class="n">inc_count_tot</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">rf.predict2</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">print.auc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1442,76 +1447,76 @@ which is exactly the variance between the actual and predicted value.</p>
 <h2>Train XGBoost model<a class="headerlink" href="#train-xgboost-model" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
-                        <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">new_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="w">  </span><span class="o">~</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_train</span><span class="p">)</span>
 
-<span class="n">new_cv</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
-                        <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_cv</span><span class="p">)</span>
+<span class="n">new_cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="w">  </span><span class="o">~</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_cv</span><span class="p">)</span>
 
-<span class="n">new_test</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span>  <span class="o">~</span> 
-                        <span class="n">cal_year</span>
-                      <span class="o">+</span> <span class="n">policy_year</span>
-                      <span class="o">+</span> <span class="n">sex</span>                           
-                      <span class="o">+</span> <span class="n">smoker</span>
-                      <span class="o">+</span> <span class="n">benefit_period</span>
-                      <span class="o">+</span> <span class="n">waiting_period</span>
-                      <span class="o">+</span> <span class="n">occupation</span>
-                      <span class="o">+</span> <span class="n">age</span>          
-                      <span class="o">+</span> <span class="n">sum_assured</span>             
-                       <span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df_test2</span><span class="p">)</span>
+<span class="n">new_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="w">  </span><span class="o">~</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">cal_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">policy_year</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sex</span><span class="w">                           </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">smoker</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">benefit_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">waiting_period</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w">          </span>
+<span class="w">                      </span><span class="o">+</span><span class="w"> </span><span class="n">sum_assured</span><span class="w">             </span>
+<span class="w">                       </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_test2</span><span class="p">)</span>
 
 
 <span class="c1"># prepare xgb matrix </span>
-<span class="n">DM_train</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_train</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">train_label</span><span class="p">)</span> 
-<span class="n">DM_cv</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_cv</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">cv_label</span><span class="p">)</span>
-<span class="n">DM_test</span> <span class="o">&lt;-</span> <span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_test</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">test_label</span><span class="p">)</span>
+<span class="n">DM_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_train</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_label</span><span class="p">)</span><span class="w"> </span>
+<span class="n">DM_cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_cv</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv_label</span><span class="p">)</span>
+<span class="n">DM_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_test</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_label</span><span class="p">)</span>
 
 <span class="c1"># Given the dataset is highly imbalanced, we use &#39;scale_pos_weight&#39; </span>
 <span class="c1"># to re-balance it which is the number of negative observations (i.e. &quot;0&quot;) </span>
 <span class="c1"># over the number of positive observations (i.e. &quot;1&quot;).</span>
-<span class="n">n_pos</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
-<span class="n">n_neg</span> <span class="o">&lt;-</span> <span class="n">df_train</span> <span class="o">%&gt;%</span> <span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">0</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
+<span class="n">n_pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_train</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
+<span class="n">n_neg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_train</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">inc_count_tot</span><span class="o">==</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">.</span><span class="p">)</span>
 
-<span class="n">params</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">booster</span> <span class="o">=</span> <span class="s">&quot;gbtree&quot;</span>
-               <span class="p">,</span> <span class="n">objective</span> <span class="o">=</span> <span class="s">&quot;binary:logistic&quot;</span>
-               <span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="m">0.1</span>
-               <span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="m">0</span>
-               <span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="m">6</span>
-               <span class="p">,</span> <span class="n">min_child_weight</span><span class="o">=</span><span class="m">1</span>
-               <span class="p">,</span> <span class="n">subsample</span><span class="o">=</span><span class="m">1</span>
-               <span class="p">,</span> <span class="n">colsample_bytree</span><span class="o">=</span><span class="m">1</span>
-               <span class="p">,</span> <span class="n">scale_pos_weight</span><span class="o">=</span><span class="n">n_neg</span><span class="o">/</span><span class="n">n_pos</span><span class="p">)</span>
+<span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">booster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gbtree&quot;</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;binary:logistic&quot;</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">eta</span><span class="o">=</span><span class="m">0.1</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">gamma</span><span class="o">=</span><span class="m">0</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">max_depth</span><span class="o">=</span><span class="m">6</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">min_child_weight</span><span class="o">=</span><span class="m">1</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">subsample</span><span class="o">=</span><span class="m">1</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">colsample_bytree</span><span class="o">=</span><span class="m">1</span>
+<span class="w">               </span><span class="p">,</span><span class="w"> </span><span class="n">scale_pos_weight</span><span class="o">=</span><span class="n">n_neg</span><span class="o">/</span><span class="n">n_pos</span><span class="p">)</span>
 
 <span class="c1"># xgb training with watchlist to show cross-validation</span>
-<span class="n">xgb1</span> <span class="o">&lt;-</span> <span class="nf">xgb.train</span><span class="p">(</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">DM_train</span><span class="p">,</span> <span class="n">nrounds</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span> <span class="n">watchlist</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">DM_train</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">DM_cv</span><span class="p">)</span>
-                   <span class="p">,</span><span class="n">print_every_n</span> <span class="o">=</span> <span class="m">10</span>
-                   <span class="p">,</span><span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="m">50</span>
-                   <span class="p">,</span><span class="n">maximize</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">eval_metric</span> <span class="o">=</span> <span class="s">&quot;logloss&quot;</span><span class="p">)</span>
+<span class="n">xgb1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.train</span><span class="p">(</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DM_train</span><span class="p">,</span><span class="w"> </span><span class="n">nrounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">watchlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">DM_train</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="o">=</span><span class="n">DM_cv</span><span class="p">)</span>
+<span class="w">                   </span><span class="p">,</span><span class="n">print_every_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">                   </span><span class="p">,</span><span class="n">early_stopping_rounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
+<span class="w">                   </span><span class="p">,</span><span class="n">maximize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">,</span><span class="w"> </span><span class="n">eval_metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logloss&quot;</span><span class="p">)</span>
 
 <span class="nf">summary</span><span class="p">(</span><span class="n">xgb1</span><span class="p">)</span>
-<span class="n">xgb_pred1</span> <span class="o">&lt;-</span> <span class="nf">predict </span><span class="p">(</span><span class="n">xgb1</span><span class="p">,</span> <span class="n">DM_test</span><span class="p">)</span>
+<span class="n">xgb_pred1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict </span><span class="p">(</span><span class="n">xgb1</span><span class="p">,</span><span class="w"> </span><span class="n">DM_test</span><span class="p">)</span>
 
-<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">xgb_pred1</span> <span class="o">&gt;</span><span class="m">0.5</span><span class="p">)),</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">test_label</span><span class="p">))</span>
+<span class="nf">confusionMatrix</span><span class="p">(</span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">xgb_pred1</span><span class="w"> </span><span class="o">&gt;</span><span class="m">0.5</span><span class="p">)),</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">test_label</span><span class="p">))</span>
 
-<span class="nf">roc</span><span class="p">(</span><span class="n">test_label</span> <span class="o">~</span> <span class="n">xgb_pred1</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">print.auc</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">roc</span><span class="p">(</span><span class="n">test_label</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">xgb_pred1</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">print.auc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

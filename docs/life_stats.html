@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -755,17 +760,17 @@ title="Print to PDF"
 <p>As with most data sources, an alternative visualisation tool is R. The below extracts the individual disability income profits and revenue and calculates the margin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
 <span class="c1"># this script reads in the APRA data and produces a few graphs for presentation</span>
 
-<span class="n">packages</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span> <span class="s">&quot;ggplot2&quot;</span><span class="p">,</span> <span class="s">&quot;readxl&quot;</span><span class="p">,</span> <span class="s">&quot;lubridate&quot;</span><span class="p">,</span> <span class="s">&quot;scales&quot;</span><span class="p">,</span> <span class="s">&quot;xtable&quot;</span><span class="p">)</span>
-<span class="nf">install.packages</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="nf">rownames</span><span class="p">(</span><span class="nf">installed.packages</span><span class="p">())))</span>  
-<span class="nf">for </span><span class="p">(</span><span class="n">package</span> <span class="n">in</span> <span class="n">packages</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">library</span><span class="p">(</span><span class="n">package</span><span class="p">,</span> <span class="n">character.only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;readxl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lubridate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xtable&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="nf">installed.packages</span><span class="p">())))</span><span class="w">  </span>
+<span class="nf">for </span><span class="p">(</span><span class="n">package</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">packages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="n">package</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">percent0</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nf">return</span><span class="p">(</span><span class="nf">percent</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">))</span>
+<span class="n">percent0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="nf">percent</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># update names</span>
@@ -774,65 +779,65 @@ title="Print to PDF"
 <span class="c1"># [7] &quot;Class of business&quot;   &quot;Product Group&quot;       &quot;Calculation basis&quot;</span>
 <span class="c1"># [10] &quot;Value&quot;               &quot;Notes&quot;</span>
 
-<span class="n">qrt_col_name</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
-  <span class="s">&quot;rep_date&quot;</span><span class="p">,</span> <span class="s">&quot;sector&quot;</span><span class="p">,</span> <span class="s">&quot;subject&quot;</span><span class="p">,</span> <span class="s">&quot;category&quot;</span><span class="p">,</span> <span class="s">&quot;data_item&quot;</span><span class="p">,</span>
-  <span class="s">&quot;rep_struc&quot;</span><span class="p">,</span> <span class="s">&quot;class&quot;</span><span class="p">,</span> <span class="s">&quot;product&quot;</span><span class="p">,</span> <span class="s">&quot;calc_basis&quot;</span><span class="p">,</span> <span class="s">&quot;value&quot;</span><span class="p">,</span>
-  <span class="s">&quot;notes&quot;</span>
+<span class="n">qrt_col_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;rep_date&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sector&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;category&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data_item&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;rep_struc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;product&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;calc_basis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;notes&quot;</span>
 <span class="p">)</span>
-<span class="n">qrt_col_type</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span> <span class="s">&quot;numeric&quot;</span><span class="p">,</span> <span class="s">&quot;text&quot;</span><span class="p">)</span>
+<span class="n">qrt_col_type</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;numeric&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">)</span>
 
 <span class="c1">#---------- read in quarterly data</span>
-<span class="n">qrt_data</span> <span class="o">&lt;-</span> <span class="nf">read_xlsx</span><span class="p">(</span>
+<span class="n">qrt_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_xlsx</span><span class="p">(</span>
 <span class="c1"># update to relevant path</span>
-  <span class="n">path</span> <span class="o">=</span> <span class="s">&quot;Quarterly life insurance performance statistics database - June 2008 to June 2021.xlsx&quot;</span><span class="p">,</span>
-  <span class="n">sheet</span> <span class="o">=</span> <span class="s">&quot;Data&quot;</span><span class="p">,</span> 
-  <span class="n">col_names</span> <span class="o">=</span> <span class="n">qrt_col_name</span><span class="p">,</span> 
-  <span class="n">skip</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> 
-  <span class="n">col_types</span> <span class="o">=</span> <span class="n">qrt_col_type</span><span class="p">,</span>
-  <span class="n">trim_ws</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">na</span> <span class="o">=</span> <span class="s">&quot;N/A&quot;</span>
+<span class="w">  </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Quarterly life insurance performance statistics database - June 2008 to June 2021.xlsx&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Data&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">col_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qrt_col_name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">col_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qrt_col_type</span><span class="p">,</span>
+<span class="w">  </span><span class="n">trim_ws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;N/A&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># add fiscal years</span>
-<span class="n">qrt_data</span><span class="o">$</span><span class="n">fin_year</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;FY&quot;</span><span class="p">,</span> <span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span> <span class="o">+</span>
-  <span class="nf">as.integer</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">6</span><span class="p">)))</span>
+<span class="n">qrt_data</span><span class="o">$</span><span class="n">fin_year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;FY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">month</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">6</span><span class="p">)))</span>
 <span class="c1"># also add calendar year as an alternative aggregation</span>
-<span class="n">qrt_data</span><span class="o">$</span><span class="n">cal_year</span> <span class="o">&lt;-</span> <span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">))</span>
+<span class="n">qrt_data</span><span class="o">$</span><span class="n">cal_year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">qrt_data</span><span class="o">$</span><span class="n">rep_date</span><span class="p">))</span>
 
 
 
 <span class="c1"># DI Profit by Year -----------------------------------------------------</span>
 
-<span class="n">DI_risk_type</span> <span class="o">&lt;-</span> <span class="s">&quot;Individual Disability Income Insurance&quot;</span>
+<span class="n">DI_risk_type</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;Individual Disability Income Insurance&quot;</span>
 
-<span class="n">data_items</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
-    <span class="s">&quot;Profit / loss before tax ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Profit / loss before tax&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Premiums after reinsurance ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Net policy revenue&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Premiums before reinsurance ($m)&quot;</span> <span class="o">=</span> <span class="s">&quot;Gross policy revenue&quot;</span>
+<span class="n">data_items</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Profit / loss before tax ($m)&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Profit / loss before tax&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Premiums after reinsurance ($m)&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Net policy revenue&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Premiums before reinsurance ($m)&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Gross policy revenue&quot;</span>
 <span class="p">)</span>
 
-<span class="n">DI_profit</span> <span class="o">&lt;-</span> <span class="n">qrt_data</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="n">data_item</span> <span class="o">%in%</span> <span class="n">data_items</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">class</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">filter</span><span class="p">(</span><span class="n">product</span> <span class="o">==</span> <span class="n">DI_risk_type</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">group_by</span><span class="p">(</span><span class="n">`Fin year`</span> <span class="o">=</span> <span class="n">fin_year</span><span class="p">,</span> <span class="n">data_item</span><span class="p">)</span> <span class="o">%&gt;%</span>
-  <span class="nf">summarise</span><span class="p">(</span><span class="n">risk_value</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">spread</span><span class="p">(</span><span class="n">data_item</span><span class="p">,</span> <span class="n">risk_value</span><span class="p">)</span> <span class="o">%&gt;%</span> 
-  <span class="nf">mutate</span><span class="p">(</span><span class="n">`Margin (%)`</span> <span class="o">=</span> <span class="nf">percent0</span><span class="p">(</span><span class="n">`Profit / loss before tax`</span> <span class="o">/</span>
-  <span class="n">`Net policy revenue`</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  <span class="nf">rename</span><span class="p">(</span><span class="n">data_items</span><span class="p">)</span>
+<span class="n">DI_profit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">qrt_data</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">data_item</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">data_items</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">class</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">product</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DI_risk_type</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">`Fin year`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fin_year</span><span class="p">,</span><span class="w"> </span><span class="n">data_item</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">risk_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">spread</span><span class="p">(</span><span class="n">data_item</span><span class="p">,</span><span class="w"> </span><span class="n">risk_value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">`Margin (%)`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">percent0</span><span class="p">(</span><span class="n">`Profit / loss before tax`</span><span class="w"> </span><span class="o">/</span>
+<span class="w">  </span><span class="n">`Net policy revenue`</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">rename</span><span class="p">(</span><span class="n">data_items</span><span class="p">)</span>
 
-<span class="n">DI_profit_print</span> <span class="o">&lt;-</span> <span class="nf">xtable</span><span class="p">(</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">DI_profit</span><span class="p">,</span>
-    <span class="n">caption</span> <span class="o">=</span> <span class="s">&quot;Individual Disability Income Industry Profit&quot;</span><span class="p">,</span>
-    <span class="n">align</span> <span class="o">=</span> <span class="s">&quot;llrrrr&quot;</span><span class="p">,</span>
-    <span class="n">digits</span> <span class="o">=</span> <span class="m">0</span>
+<span class="n">DI_profit_print</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xtable</span><span class="p">(</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DI_profit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Individual Disability Income Industry Profit&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;llrrrr&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="n">DI_profit_print</span><span class="p">,</span> 
-      <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;html&quot;</span><span class="p">,</span>
-      <span class="n">file</span> <span class="o">=</span> <span class="s">&quot;DI_profit&quot;</span><span class="p">,</span>
-      <span class="n">include.rownames</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
-      <span class="p">)</span> 
+<span class="nf">print</span><span class="p">(</span><span class="n">DI_profit_print</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;html&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;DI_profit&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">include.rownames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span>
 <span class="p">}</span>
 </pre></div>
 </div>

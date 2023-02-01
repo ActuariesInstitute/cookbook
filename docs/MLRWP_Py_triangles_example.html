@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1362,7 +1367,7 @@ We’ll be discussing this point a bit further at the end of the article.</p>
 <p>So let us get started with the example with some setup code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -U scikit-learn
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>scikit-learn
 </pre></div>
 </div>
 </div>
@@ -1379,7 +1384,7 @@ Requirement already satisfied: numpy&gt;=1.13.3 in /Users/Jacky/opt/miniconda3/l
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip show pandas numpy scikit-learn seaborn matplotlib
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>show<span class="w"> </span>pandas<span class="w"> </span>numpy<span class="w"> </span>scikit-learn<span class="w"> </span>seaborn<span class="w"> </span>matplotlib
 </pre></div>
 </div>
 </div>
@@ -1566,7 +1571,7 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
     <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot; Plots a claims triangle heatmap</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Plots a claims triangle heatmap</span>
 <span class="sd">    data:</span>
 <span class="sd">        Pandas DataFrame, indexed by date</span>
 <span class="sd">    mask_bottom:</span>
@@ -2029,7 +2034,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <span class="n">grid_gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2102,7 +2107,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 <span class="c1"># It was not faster in this case with this dataset.</span>
 </pre></div>
 </div>
@@ -2228,7 +2233,7 @@ Another possible choice is Bayesian optimisation search.</p>
 
 <span class="n">neural_network</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2340,14 +2345,14 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LinearSpline</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Linear spline function - used in data generation and in spline generation below</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">GetScaling</span><span class="p">(</span><span class="n">vec</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to calculate scaling factors for the basis functions</span>
 <span class="sd">    scaling is discussed in the paper</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2359,7 +2364,7 @@ Another possible choice is Bayesian optimisation search.</p>
 
 
 <span class="k">def</span> <span class="nf">GetRamps</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">vecname</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to create the ramps for a particular primary vector</span>
 <span class="sd">    vec = fundamental regressor</span>
 <span class="sd">    vecname = name of regressor</span>
@@ -2376,7 +2381,7 @@ Another possible choice is Bayesian optimisation search.</p>
 
 
 <span class="k">def</span> <span class="nf">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">,</span> <span class="n">vecname1</span><span class="p">,</span> <span class="n">vecname2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling1</span><span class="p">,</span> <span class="n">scaling2</span><span class="p">,</span> <span class="n">train_ind</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create the step (heaviside) function interactions.</span>
 <span class="sd">    f&quot;I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}&quot; formats the name of the column</span>
 <span class="sd">    LinearSpline(vec1, 1, i+1) / scaling1 * LinearSpline(vec2, j, j + 1) / scaling2</span>
@@ -3225,7 +3230,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
         <span class="n">init_bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">target_device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)):</span>
-        <span class="sd">&quot;&quot;&quot; Log Link GLM LASSO Regressor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Log Link GLM LASSO Regressor</span>
 
 <span class="sd">        This trains a GLM with Poisson loss, Log Link and l1 LASSO penalties</span>
 <span class="sd">        using Pytorch. It has early stopping </span>
@@ -3373,7 +3378,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <span class="n">lasso_prev</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3449,7 +3454,7 @@ Ran in 64.2999 seconds
 
 <span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span> <span class="o">-</span> <span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4127,7 +4132,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="p">,</span> <span class="n">plot_mu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots model vs payments and mu</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>

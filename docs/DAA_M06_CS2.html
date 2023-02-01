@@ -138,6 +138,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -943,7 +948,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function that helps to format headings in the cell outputs.</span>
 <span class="k">def</span> <span class="nf">heading</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
 
-  <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">  This function is used to print a bold heading followed by a new line.</span>
 <span class="sd">  &#39;&#39;&#39;</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span><span class="o">+</span><span class="n">string</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -961,7 +966,7 @@ title="Print to PDF"
 <span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
                           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This function prints and plots a nicely formatted confusion matrix.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>

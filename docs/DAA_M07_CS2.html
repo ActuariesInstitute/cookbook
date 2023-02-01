@@ -136,6 +136,11 @@ const thebe_selector_output = ".output, .cell_output"
    Useful Python packages for Data Science
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Performance_gottagofaster.html">
+   Py: Python for Performance
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -936,7 +941,7 @@ n.b. for installing <code class="docutils literal notranslate"><span class="pre"
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span> <span class="c1"># For a standard list of stopwords.</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span> <span class="c1"># For lemmatisation.</span>
 <span class="kn">import</span> <span class="nn">pkg_resources</span>
-<span class="o">!</span>pip install symspellpy
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>symspellpy
 <span class="kn">from</span> <span class="nn">symspellpy</span> <span class="kn">import</span> <span class="n">SymSpell</span><span class="p">,</span> <span class="n">Verbosity</span>
 
 <span class="c1"># Packages for visualisation.</span>
@@ -954,7 +959,7 @@ n.b. for installing <code class="docutils literal notranslate"><span class="pre"
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
 <span class="c1"># For vectorisation using BERT.</span>
-<span class="o">!</span>pip install sentence_transformers
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>sentence_transformers
 <span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
 
 <span class="c1"># For evaluating the clustering model.</span>
@@ -1036,7 +1041,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to clean text.</span>
 <span class="c1"># Note that not all of these cleaning steps may be needed for different models.</span>
 <span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Basic cleaning does the following:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Basic cleaning does the following:</span>
 <span class="sd">        - converts all words to lowercase;</span>
 <span class="sd">        - removes punctuation and special characters;</span>
 <span class="sd">        - uses &#39;split&#39; to create tokens; and</span>
@@ -1563,7 +1568,7 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels1</span><span class="p">)):</span>
     <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
-    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span> <span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
@@ -1633,7 +1638,7 @@ Getting wordcloud for topic 6 ...
 <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels2</span><span class="p">)):</span>
     <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
-    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span> <span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
