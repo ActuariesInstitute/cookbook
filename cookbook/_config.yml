@@ -7,7 +7,7 @@ description: >-
   A cookbook for actuaries for data and analytics.
 
 execute:
-  execute_notebooks           : cache
+  execute_notebooks           : off
 
 # HTML-specific settings
 html:
