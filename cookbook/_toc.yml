@@ -30,6 +30,7 @@ parts:
   - file:  docs/DAA_M05_CS1.ipynb
   - file:  docs/multitasking_risk_pricing.ipynb
   - file:  docs/py_shap_values.ipynb
+  - file:  docs/NN_bias_w_ChatGPT.ipynb
 - caption: Life Insurance
   chapters:
   - file:  docs/LifeRecipeBook.ipynb
