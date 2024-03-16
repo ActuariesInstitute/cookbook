@@ -49,6 +49,7 @@ parts:
   - file: docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb
 - caption: Unsupervised Learning
   chapters:
+  - file:  SEIFA_IER_index_2021_replicate.ipynb
   - file:  docs/DAA_M06_CS1.ipynb
   - file:  docs/DAA_M06_CS2.ipynb
   - file:  docs/DAA_M06_Ex4.ipynb
