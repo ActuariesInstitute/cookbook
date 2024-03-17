@@ -49,6 +49,7 @@ parts:
   - file: docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb
 - caption: Unsupervised Learning
   chapters:
+  - file:  SEIFA_IER_index_2021_replicate.ipynb
   - file:  docs/DAA_M06_CS1.ipynb
   - file:  docs/DAA_M06_CS2.ipynb
   - file:  docs/DAA_M06_Ex4.ipynb
@@ -64,10 +65,10 @@ parts:
 - caption: Business Optimization
   chapters:
   - file: docs/DAA_2021_S2_Tutorial10_exercise_scipy.ipynb
-- caption: Image Recognition
+- caption: Image Recognition 
   chapters:
   - file:  docs/DAA_M05_CS2.ipynb
-- caption: Data Ethics
+- caption: Data Ethics 
   chapters:
   - file:  docs/automated_decision
 - caption: Reference
