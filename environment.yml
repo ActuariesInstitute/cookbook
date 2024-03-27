@@ -2,12 +2,12 @@ name: main-conda-env
 channels:
   - default 
 dependencies:
-  - python=3.8
+  - python=3.11.8
   - pandas
   - matplotlib
   - black
-  - pip=22.3.1
+  - pip
   - pip:
-    - sphinx==4.5.0
+    - sphinx
     - quantecon
-    - jupyter-book==0.13.1
+    - jupyter-book==0.15.1
