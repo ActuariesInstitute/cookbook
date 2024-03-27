@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Version control &#8212; Actuaries&#39; Analytical Cookbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script data-website-id="f2934c40-e673-4ab5-9658-4b594221551e" defer="defer" src="https://analytics.umami.is/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,853 +63,563 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/version_control';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Py: Productionising predictive models as API" href="predict_API_gradio.html" />
     <link rel="prev" title="R: data.table for actuaries" href="MLRWP_R_DataTable.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Python
- </span>
-</p>
+    
+    
+    <img src="../_static/actuaries-logo.svg" class="logo__image only-light" alt="Actuaries' Analytical Cookbook - Home"/>
+    <script>document.write(`<img src="../_static/actuaries-logo.svg" class="logo__image only-dark" alt="Actuaries' Analytical Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_py.html">
-   About Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started.html">
-   Setting up Your Python Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_by_example.html">
-   An Introductory Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="learn_more.html">
-   Learn More
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Useful_Python_packages.html">
-   Useful Python packages for Data Science
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Performance_gottagofaster.html">
-   Py: Python for Performance
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_py.html">About Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Useful_Python_packages.html">Useful Python packages for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_gottagofaster.html">Py: Python for Performance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to R
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_R.html">
-   About R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_R.html">
-   Setting Up R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="introductory_R.html">
-   Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intermediate_R.html">
-   Next Steps With R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="top_ten_r_packages.html">
-   Useful Packages
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_DataTable.html">
-   R: data.table for actuaries
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_R.html">About R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_R.html">Setting Up R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_R.html">Next Steps With R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="top_ten_r_packages.html">Useful Packages</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_DataTable.html">R: data.table for actuaries</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workflow Management
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflow Management</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Version control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="predict_API_gradio.html">
-   Py: Productionising predictive models as API
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predict_API_gradio.html">Py: Productionising predictive models as API</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Regression, Classification and Technical Price
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression, Classification and Technical Price</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS1.html">
-   Py: Customer Churn Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multitasking_risk_pricing.html">
-   Py/R: Multitasking Risk Pricing Using Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="py_shap_values.html">
-   Py: Explainable Models with SHAP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_bias_w_ChatGPT.html">
-   Py: Investigating Neural Network Biases with ChatGPT
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS1.html">Py: Customer Churn Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitasking_risk_pricing.html">Py/R: Multitasking Risk Pricing Using Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_shap_values.html">Py: Explainable Models with SHAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_bias_w_ChatGPT.html">Py: Investigating Neural Network Biases with ChatGPT</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Life Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Life Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LifeRecipeBook.html">
-   R: Life Modelling Recipes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="life_stats.html">
-   R: Life Industry Stats in Tableau and R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian-applications.html">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trees.html">
-   R: Decision Tree Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="LifeRecipeBook.html">R: Life Modelling Recipes</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="life_stats.html">R: Life Industry Stats in Tableau and R</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="bayesian-applications.html">R: Bayesian Applications</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="trees.html">R: Decision Tree Applications</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="SQL%20Query%20for%20Triangles.html">
-   SQL: Queries to Create Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_GLMs.html">
-   R: Reserving with GLMs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Lasso.html">
-   R: Reserving with LASSO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_mlr3.html">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
-   Py: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">
-   R: Baudry ML Reserving Pt 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">
-   R: Baudry ML Reserving Pt 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%20Query%20for%20Triangles.html">SQL: Queries to Create Triangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_GLMs.html">R: Reserving with GLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Lasso.html">R: Reserving with LASSO</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_mlr3.html">R: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_Py_triangles_example.html">Py: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">R: Baudry ML Reserving Pt 1</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">R: Baudry ML Reserving Pt 2</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">R: Baudry ML Reserving Pt 3</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Unsupervised Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS1.html">
-   Py: Socio-Economic Index Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS2.html">
-   Py: Clustering Credit Card Fraud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex4.html">
-   Py: K-means clustering of COVID dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex5.html">
-   Py: Hierarchical clustering on COVID dataset
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SEIFA_IER_index_2021_replicate.html">Py: Socio-Economic Index Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_CS2.html">Py: Clustering Credit Card Fraud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex4.html">Py: K-means clustering of COVID dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex5.html">Py: Hierarchical clustering on COVID dataset</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Natural Language Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="R_case_study_word_cloud.html">
-   R: Word Cloud Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="textClassificationEntry.html">
-   Py: Text Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex10.html">
-   Py: Decision Tree Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex18.html">
-   Py: Neural Net Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS1.html">
-   Py: Classifying review sentiment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS2.html">
-   Py: Customer Sentiment Analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="R_case_study_word_cloud.html">R: Word Cloud Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textClassificationEntry.html">Py: Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex10.html">Py: Decision Tree Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex18.html">Py: Neural Net Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS1.html">Py: Classifying review sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS2.html">Py: Customer Sentiment Analysis</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Business Optimization
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Business Optimization</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
-   Py: Linear Programming
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">Py: Linear Programming</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Image Recognition
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Recognition</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS2.html">
-   Py: Image Recognition
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS2.html">Py: Image Recognition</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Ethics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Ethics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="automated_decision.html">
-   Automated Decision-Making Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="automated_decision.html">Automated Decision-Making Systems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contributing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="contributing.html">
-   Contributing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/version_control.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/version_control.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/version_control.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/version_control.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/version_control.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/docs/version_control.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/version_control.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/version_control.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/docs/version_control.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">
-   What is version control and why should I bother?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-foo-insurance-ltd">
-   Example: FOO Insurance Ltd
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#administrative-and-security-issues">
-     Administrative and Security Issues
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#registering-and-installing">
-     Registering and Installing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#repository">
-     Repository
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-clone">
-     Git Clone
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-add">
-     Git Add
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-commit-and-push">
-     Git Commit and Push
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#branching">
-     Branching
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pull-requests-and-merging">
-     Pull Requests and Merging
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Version Control
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#limitations-of-github">
-   Limitations of GitHub
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-tools-available">
-   Other tools available
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scripting">
-     Scripting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#excel-spreadsheets">
-     Excel Spreadsheets
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#datasets">
-     Datasets
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Version control</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">
-   What is version control and why should I bother?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-foo-insurance-ltd">
-   Example: FOO Insurance Ltd
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#administrative-and-security-issues">
-     Administrative and Security Issues
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#registering-and-installing">
-     Registering and Installing
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#repository">
-     Repository
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-clone">
-     Git Clone
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-add">
-     Git Add
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#git-commit-and-push">
-     Git Commit and Push
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#branching">
-     Branching
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pull-requests-and-merging">
-     Pull Requests and Merging
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Version Control
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#limitations-of-github">
-   Limitations of GitHub
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-tools-available">
-   Other tools available
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scripting">
-     Scripting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#excel-spreadsheets">
-     Excel Spreadsheets
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#datasets">
-     Datasets
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Version control</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">What is version control and why should I bother?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-foo-insurance-ltd">Example: FOO Insurance Ltd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#administrative-and-security-issues">Administrative and Security Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-and-installing">Registering and Installing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repository">Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-clone">Git Clone</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-add">Git Add</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-commit-and-push">Git Commit and Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branching">Branching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests-and-merging">Pull Requests and Merging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Version Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-github">Limitations of GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools-available">Other tools available</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-spreadsheets">Excel Spreadsheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="version-control">
-<h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">#</a></h1>
+<h1>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h1>
 <p>By Jonathan Tan. Originally published in Actuaries Digital as <a class="reference external" href="https://www.actuaries.digital/2019/04/17/analytics-snippet-version-control-because-the-recycle-bin-doesnt-count/">Analytics Snippet: Version control, because the Recycle Bin doesn’t count</a>.</p>
 <section id="what-is-version-control-and-why-should-i-bother">
-<h2>What is version control and why should I bother?<a class="headerlink" href="#what-is-version-control-and-why-should-i-bother" title="Permalink to this headline">#</a></h2>
+<h2>What is version control and why should I bother?<a class="headerlink" href="#what-is-version-control-and-why-should-i-bother" title="Permalink to this heading">#</a></h2>
 <p>Version control, also known as revision control or source control, is the management of changes to programs, files, documents and other collections of information.</p>
 <p>As actuaries, our models and analysis come in many forms and vary in size depending on the task at hand. For example, a simple exercise of analysing loss ratios for a given period and product could consist only of a small R script or SQL query. On the other hand, something like a functional reserving model could easily be a one gigabyte-sized set of Excel workbooks.</p>
 <p>The rest of the article will go through a simple example concerning a small team of 3 actuaries and how the Git system (implemented using GitHub) is to version control scripts in their day to day tasks.</p>
 </section>
 <section id="example-foo-insurance-ltd">
-<h2>Example: FOO Insurance Ltd<a class="headerlink" href="#example-foo-insurance-ltd" title="Permalink to this headline">#</a></h2>
+<h2>Example: FOO Insurance Ltd<a class="headerlink" href="#example-foo-insurance-ltd" title="Permalink to this heading">#</a></h2>
 <p>It is the beginning of a new financial year for FOO insurance Ltd, and its products are due for a pricing review, which is handled by the actuarial team consisting of:</p>
 <ul class="simple">
 <li><p>Esther, Actuarial Manager</p></li>
@@ -913,19 +635,19 @@ title="Print to PDF"
 <p>Would you believe that the folder in the second screenshot contains the same amount of historical information as the first and more? This is however, limited to scripts and small files. For bigger files like excel workbooks, the article will recommend some alternative tools for the reader but will not go into detail its implementations and mechanics.</p>
 <p>The tool we will be using for version control is Git, via the Git hosting service <a class="reference external" href="https://github.com/">Github</a>.</p>
 <section id="administrative-and-security-issues">
-<h3>Administrative and Security Issues<a class="headerlink" href="#administrative-and-security-issues" title="Permalink to this headline">#</a></h3>
+<h3>Administrative and Security Issues<a class="headerlink" href="#administrative-and-security-issues" title="Permalink to this heading">#</a></h3>
 <p>Let’s rewind to a week ago before the actuarial team breaks away to work on the model. The first step towards a more sustainable file structure would be for the team (or Esther) to consult the company’s IT/Tech department. This is because there is a good chance that they are already utilizing the Git system and one of the many platforms for their day-to-day version control needs and would be able to provide the actuarial team with some guidance.</p>
 <p>If this is not the case, the team must consult the appropriate authorities within the company to make sure that Git (and the GitHub platform in the context of this article) is a white listed service program or provider and ensure data security risks are appropriately managed. It may assist the discussion with upper management to note, as of October 2018, GitHub is officially owned by Microsoft and have a enterprise service offering.</p>
 <p>If cloud services are ruled out, another alternative that could be hosted on local servers is <a class="reference external" href="https://www.gitlab.com">Gitlab Community Edition</a>.</p>
 </section>
 <section id="registering-and-installing">
-<h3>Registering and Installing<a class="headerlink" href="#registering-and-installing" title="Permalink to this headline">#</a></h3>
+<h3>Registering and Installing<a class="headerlink" href="#registering-and-installing" title="Permalink to this heading">#</a></h3>
 <p>After settling all the aforementioned administrative issues, the actuarial team can now proceed to download and register for GitHub. To start off, they would want to go into the <a class="reference external" href="https://github.com/">GitHub website</a> and create an account, or sign in if an account was already created.</p>
 <p><img alt="github_homepage" src="../_images/github_homepage.png" /></p>
 <p>Assuming FOO Insurance Ltd does not have an existing corporate account with GitHub Enterprise, signing up for personal accounts in GitHub is totally free with a paid option as at time of writing (March 2019). All GitHub accounts also have the ability to create private repositories, which would be absolutely necessary for the team. (They might as well e-mail their pricing models to their competitors otherwise.)</p>
 </section>
 <section id="repository">
-<h3>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">#</a></h3>
+<h3>Repository<a class="headerlink" href="#repository" title="Permalink to this heading">#</a></h3>
 <p>Great! Now that all 3 of them have GitHub accounts, the next step would be to create a “location” to store all the relevant project files. In the world of Git, this is called a Repository or “Repo” for short, and repositories can be generally grouped into 2 main categories</p>
 <ul class="simple">
 <li><p>Local</p></li>
@@ -957,7 +679,7 @@ title="Print to PDF"
 <p>Nothing fancy, all the script does is to read the dataset in, instantiate a simple linear regression model and print the calculated coefficients.</p>
 </section>
 <section id="git-clone">
-<h3>Git Clone<a class="headerlink" href="#git-clone" title="Permalink to this headline">#</a></h3>
+<h3>Git Clone<a class="headerlink" href="#git-clone" title="Permalink to this heading">#</a></h3>
 <p>Esther now wants both Jimmy and Michelle to work on improving it and can do that by uploading the current script into the remote repository created so all 3 of them have access to it. Remember, she created a remote repository before on the GitHub website, but will need a file in her local machine which she can use to sync the documents (The local repository). Think of it as dropping some files into a local DropBox or GoogleDrive folder to sync them into your online storage. Esther can do this by simply clicking on the “Clone a Repository from the Internet” button, which would bring up the screen below.</p>
 <p><img alt="clone repo" src="../_images/clone_repo_gui.png" /></p>
 <p>Here, she should be able to see the newly created remote repository. Now she has to decide on a local path to store this “syncing” folder and hit clone.</p>
@@ -967,12 +689,12 @@ title="Print to PDF"
 <p>Also, the GitHub application now has an interface in which Esther can make and track changes. Let’s see what happens when Esther drops her model.r file into the local foo_actuarial_model folder:</p>
 </section>
 <section id="git-add">
-<h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this headline">#</a></h3>
+<h3>Git Add<a class="headerlink" href="#git-add" title="Permalink to this heading">#</a></h3>
 <p><img alt="git add" src="../_images/git_add_gui.png" /></p>
 <p>We can see that the GitHub application automatically tracked all the difference within the local repository, and there is now an option to “commit” those changes. A commit is just a set of changes to a file or files within a repository. Think of it as a local “Save As” function, but way cooler sounding and every time you save, it allows you to keep records of what changes were made when and by whom. After checking through to make sure that those are indeed the files that she wants to sync, she can simply type a summary and description of the update on the bottom left of the window, and hit the “commit to master” button. (There are a set of industry best practices with regards to the format of commit messages and descriptions, but we will not go into that in this article) <br></p>
 </section>
 <section id="git-commit-and-push">
-<h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this headline">#</a></h3>
+<h3>Git Commit and Push<a class="headerlink" href="#git-commit-and-push" title="Permalink to this heading">#</a></h3>
 <p><img alt="git commit" src="../_images/git_commit_gui.png" /></p>
 <p>After committing the changes/ additions, she just needs to hit the “push to origin” button and the files will be synced to the online repository.</p>
 <p>Let’s go back to the GitHub website to make sure that the files were indeed synced up.</p>
@@ -983,7 +705,7 @@ title="Print to PDF"
 <p>Now, Esther can open that bottle of wine, relax and check back in a week while Jimmy and Michelle begin to work on the model… just kidding - being an actuarial manager, there’s another fire for her to put out elsewhere!</p>
 </section>
 <section id="branching">
-<h3>Branching<a class="headerlink" href="#branching" title="Permalink to this headline">#</a></h3>
+<h3>Branching<a class="headerlink" href="#branching" title="Permalink to this heading">#</a></h3>
 <p>Jimmy and Michelle, both having GitHub accounts and the desktop application, can now clone the repository (as shown before) with Esther’s model into their respective local drives to start working on it. Each of them would then proceed to create a new “branch” of the project from their respective GitHub applications.</p>
 <p><img alt="branch GUI" src="../_images/branch_gui.png" /></p>
 <p>So, what is a branch? A Git branch can be somewhat seen as parallel universes for documents. When creating a new repository, a default “Master” branch is always created. Let’s say that:</p>
@@ -998,7 +720,7 @@ title="Print to PDF"
 <p>So how does GitHub know which branch to make the official one on the website?</p>
 </section>
 <section id="pull-requests-and-merging">
-<h3>Pull Requests and Merging<a class="headerlink" href="#pull-requests-and-merging" title="Permalink to this headline">#</a></h3>
+<h3>Pull Requests and Merging<a class="headerlink" href="#pull-requests-and-merging" title="Permalink to this heading">#</a></h3>
 <p>The short answer is, it does not. Let’s initially follow Jimmy’s workflow for now. Assuming he has successfully created a new branch and made his changes to the script, he can proceed to commit and push his changes to the “Jimmy branch” normally as shown before with Esther (except that Esther was pushing to Master branch).</p>
 <p><img alt="jimmy branch" src="../_images/jimmy_branch_add.png" /></p>
 <p>Now, Jimmy’s GitHub repository page will look like this.</p>
@@ -1015,7 +737,7 @@ title="Print to PDF"
 <p>Michelle, having gone through the same process as Jimmy, would also have a pull request for Esther to review. If Esther, thinks that Michelle’s model is reasonable and no further adjustments are required, she would then merge Michelle’s branch into master.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
 <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/michelle_merge.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/_static/version_control_img/repo_final.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="o">&gt;</span>
 </pre></div>
@@ -1024,7 +746,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id1">
-<h3>Version Control<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Version Control<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Now, the master branch will consist of <a class="reference external" href="http://model.py">model.py</a> which is a GLM model. So, you might be asking, where does the version control aspect of this tool come in? If you take a closer look at the screenshot above, you would notice “4 commits” label on the top left. If we were to click on that, it would bring us to the screen below, where we can see all previous commits made to the repository. This can also be accessed from the GitHub application under the “History” tab.</p>
 <p><img alt="commit history" src="../_images/commit_history.png" />
 <img alt="git commits" src="../_images/gitgui_commit_history.png" /></p>
@@ -1038,18 +760,18 @@ title="Print to PDF"
 </section>
 </section>
 <section id="limitations-of-github">
-<h2>Limitations of GitHub<a class="headerlink" href="#limitations-of-github" title="Permalink to this headline">#</a></h2>
+<h2>Limitations of GitHub<a class="headerlink" href="#limitations-of-github" title="Permalink to this heading">#</a></h2>
 <p>All of the examples shown so far have used scripts of code, which usually are not file size intensive and, being plain text, is recognizable by GitHub. Actuaries however, deal with large spreadsheets often. Git is unable to track differences within Excel - treating them as binary files - and and has an upload size limit of 100MB. This potentially limiting its ability to version control these workbooks.</p>
 </section>
 <section id="other-tools-available">
-<h2>Other tools available<a class="headerlink" href="#other-tools-available" title="Permalink to this headline">#</a></h2>
+<h2>Other tools available<a class="headerlink" href="#other-tools-available" title="Permalink to this heading">#</a></h2>
 <section id="scripting">
-<h3>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">#</a></h3>
+<h3>Scripting<a class="headerlink" href="#scripting" title="Permalink to this heading">#</a></h3>
 <p>As mentioned above, Git is the underlying version control system behind Github Destop, but there are many platforms which implement this, each with their own advantages and disadvantages. The article is only using GitHub as a specific example. The list of available GUI clients can be found <a class="reference external" href="https://git-scm.com/downloads/guis">here</a>.</p>
 <p>As an alternative to the GitHub GUI application, the Git command line interface is another popular interface. Also, many text editors like Atom (By GitHub) and VSCode will have downloadable plugins or have Git functionalities built into them, which makes the whole process more seamless when integrating into a workflow. If you are using SAS, then Git may already be built in.</p>
 </section>
 <section id="excel-spreadsheets">
-<h3>Excel Spreadsheets<a class="headerlink" href="#excel-spreadsheets" title="Permalink to this headline">#</a></h3>
+<h3>Excel Spreadsheets<a class="headerlink" href="#excel-spreadsheets" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Creating a “Changelog” sheet to record details of the user and the changes made if past versions are not required</p></li>
 <li><p>Using regular backups to keep older versions of the spreadsheet when changes are made</p></li>
@@ -1058,7 +780,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="datasets">
-<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">#</a></h3>
+<h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Save a copy of tables to back up older versions</p></li>
 <li><p>OrpheusDB</p></li>
@@ -1066,7 +788,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>It is my personal belief that, beneath all the data hype, actuaries are to some extent the data scientists for the insurance industry - as we draw out insights with financial value based on models and data - and the data science and analytics pipeline is more than just fancy machine learning algorithms.</p>
 <p>Documentation is an extremely important part of the actuarial process and as our models become more complex and too complex for excel to handle efficiently, our “housekeeping” and documentation processes must evolve alongside them.</p>
 <p>The Git system is widely used in data science to maintain robust version controls for programs and scripts and could be an invaluable tool for any actuary who works with programs and code too.</p>
@@ -1085,7 +807,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./docs"
         },
         predefinedOutput: true
@@ -1093,52 +815,119 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="MLRWP_R_DataTable.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">R: data.table for actuaries</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MLRWP_R_DataTable.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">R: data.table for actuaries</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="predict_API_gradio.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="predict_API_gradio.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Py: Productionising predictive models as API</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-version-control-and-why-should-i-bother">What is version control and why should I bother?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-foo-insurance-ltd">Example: FOO Insurance Ltd</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#administrative-and-security-issues">Administrative and Security Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-and-installing">Registering and Installing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repository">Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-clone">Git Clone</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-add">Git Add</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-commit-and-push">Git Commit and Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branching">Branching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests-and-merging">Pull Requests and Merging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Version Control</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-github">Limitations of GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools-available">Other tools available</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scripting">Scripting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-spreadsheets">Excel Spreadsheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By YDAWG, DAPC, YAC and other contributors.<br/>
-  
-    <div class="extra_footer">
-       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By YDAWG, DAPC, YAC and other contributors.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+   The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

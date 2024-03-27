@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>R: Machine Learning Triangles &#8212; Actuaries&#39; Analytical Cookbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script data-website-id="f2934c40-e673-4ab5-9658-4b594221551e" defer="defer" src="https://analytics.umami.is/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,1133 +63,587 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/MLRWP_R_mlr3';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Py: Machine Learning Triangles" href="MLRWP_Py_triangles_example.html" />
     <link rel="prev" title="R: Reserving with LASSO" href="MLRWP_R_Lasso.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Python
- </span>
-</p>
+    
+    
+    <img src="../_static/actuaries-logo.svg" class="logo__image only-light" alt="Actuaries' Analytical Cookbook - Home"/>
+    <script>document.write(`<img src="../_static/actuaries-logo.svg" class="logo__image only-dark" alt="Actuaries' Analytical Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_py.html">
-   About Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started.html">
-   Setting up Your Python Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_by_example.html">
-   An Introductory Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="learn_more.html">
-   Learn More
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Useful_Python_packages.html">
-   Useful Python packages for Data Science
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Performance_gottagofaster.html">
-   Py: Python for Performance
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_py.html">About Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Useful_Python_packages.html">Useful Python packages for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_gottagofaster.html">Py: Python for Performance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to R
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_R.html">
-   About R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_R.html">
-   Setting Up R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="introductory_R.html">
-   Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intermediate_R.html">
-   Next Steps With R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="top_ten_r_packages.html">
-   Useful Packages
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_DataTable.html">
-   R: data.table for actuaries
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_R.html">About R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_R.html">Setting Up R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_R.html">Next Steps With R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="top_ten_r_packages.html">Useful Packages</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_DataTable.html">R: data.table for actuaries</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workflow Management
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflow Management</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="version_control.html">
-   Version control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="predict_API_gradio.html">
-   Py: Productionising predictive models as API
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predict_API_gradio.html">Py: Productionising predictive models as API</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Regression, Classification and Technical Price
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression, Classification and Technical Price</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS1.html">
-   Py: Customer Churn Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multitasking_risk_pricing.html">
-   Py/R: Multitasking Risk Pricing Using Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="py_shap_values.html">
-   Py: Explainable Models with SHAP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_bias_w_ChatGPT.html">
-   Py: Investigating Neural Network Biases with ChatGPT
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS1.html">Py: Customer Churn Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitasking_risk_pricing.html">Py/R: Multitasking Risk Pricing Using Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_shap_values.html">Py: Explainable Models with SHAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_bias_w_ChatGPT.html">Py: Investigating Neural Network Biases with ChatGPT</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Life Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Life Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LifeRecipeBook.html">
-   R: Life Modelling Recipes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="life_stats.html">
-   R: Life Industry Stats in Tableau and R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian-applications.html">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trees.html">
-   R: Decision Tree Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="LifeRecipeBook.html">R: Life Modelling Recipes</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="life_stats.html">R: Life Industry Stats in Tableau and R</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="bayesian-applications.html">R: Bayesian Applications</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="trees.html">R: Decision Tree Applications</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Insurance</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="SQL%20Query%20for%20Triangles.html">
-   SQL: Queries to Create Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_GLMs.html">
-   R: Reserving with GLMs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Lasso.html">
-   R: Reserving with LASSO
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
-   Py: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">
-   R: Baudry ML Reserving Pt 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">
-   R: Baudry ML Reserving Pt 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%20Query%20for%20Triangles.html">SQL: Queries to Create Triangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_GLMs.html">R: Reserving with GLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Lasso.html">R: Reserving with LASSO</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_Py_triangles_example.html">Py: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">R: Baudry ML Reserving Pt 1</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">R: Baudry ML Reserving Pt 2</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">R: Baudry ML Reserving Pt 3</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Unsupervised Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS1.html">
-   Py: Socio-Economic Index Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS2.html">
-   Py: Clustering Credit Card Fraud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex4.html">
-   Py: K-means clustering of COVID dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex5.html">
-   Py: Hierarchical clustering on COVID dataset
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SEIFA_IER_index_2021_replicate.html">Py: Socio-Economic Index Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_CS2.html">Py: Clustering Credit Card Fraud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex4.html">Py: K-means clustering of COVID dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex5.html">Py: Hierarchical clustering on COVID dataset</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Natural Language Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="R_case_study_word_cloud.html">
-   R: Word Cloud Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="textClassificationEntry.html">
-   Py: Text Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex10.html">
-   Py: Decision Tree Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex18.html">
-   Py: Neural Net Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS1.html">
-   Py: Classifying review sentiment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS2.html">
-   Py: Customer Sentiment Analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="R_case_study_word_cloud.html">R: Word Cloud Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textClassificationEntry.html">Py: Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex10.html">Py: Decision Tree Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex18.html">Py: Neural Net Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS1.html">Py: Classifying review sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS2.html">Py: Customer Sentiment Analysis</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Business Optimization
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Business Optimization</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
-   Py: Linear Programming
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">Py: Linear Programming</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Image Recognition
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Recognition</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS2.html">
-   Py: Image Recognition
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS2.html">Py: Image Recognition</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Ethics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Ethics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="automated_decision.html">
-   Automated Decision-Making Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="automated_decision.html">Automated Decision-Making Systems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contributing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="contributing.html">
-   Contributing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_mlr3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_mlr3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_mlr3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_mlr3.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/MLRWP_R_mlr3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_mlr3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/MLRWP_R_mlr3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#who-is-this-article-aimed-at">
-     Who is this article aimed at?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pre-requisites-to-this-article">
-     Pre-requisites to this article
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-data-set">
-     The data set
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#machine-learning-and-aggregate-triangles">
-     Machine learning and aggregate triangles
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#don-t-rank-the-ml-models-used-based-on-this-example">
-     Don’t rank the ML models used based on this example
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mlr3-package">
-     mlr3 package
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ml-methods-used">
-     ML methods used
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#outline-of-the-workflow">
-   Outline of the workflow
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-preparation">
-   Data preparation
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-table-package">
-     data.table package
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-the-data">
-     Load the data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-mlr3-task">
-     Create a mlr3 task
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tuning-process-for-hyper-parameters">
-   Tuning process for hyper-parameters
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cross-validation">
-     Cross-validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-cross-validation-in-mlr3">
-     Setting up cross-validation in mlr3
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance-measure">
-     Performance measure
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#searching-hyper-parameter-space">
-     Searching hyper-parameter space
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-some-ml-models">
-   Fitting some ML models
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decision-tree">
-     Decision tree
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fitting-a-single-model">
-       Fitting a single model
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tuning-the-decision-tree">
-       Tuning the decision tree
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#random-forest-fitting">
-     Random forest fitting
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#xgboost">
-     XGBoost
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#consolidate-results">
-     Consolidate results
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#chainladder-the-baseline-model">
-     Chainladder - the baseline model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#getting-the-chainladder-reserve-estimates">
-       Getting the Chainladder reserve estimates
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lasso-regularised-regression">
-     LASSO (regularised regression)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#basis-functions">
-       Basis functions
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mlr3-setup-for-lasso">
-       mlr3 setup for LASSO
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-fitting">
-       Model fitting
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-analysis">
-   Model analysis
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rmse">
-     RMSE
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualising-the-fit">
-     Visualising the fit
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fitted-values">
-       Fitted values
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#actual-vs-fitted-heat-maps">
-       Actual vs Fitted heat maps
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#quarterly-tracking">
-       Quarterly tracking
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reserves">
-   Reserves
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commentary">
-   Commentary
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-next">
-     What next?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#session-details">
-   Session details
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>R: Machine Learning Triangles</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#who-is-this-article-aimed-at">
-     Who is this article aimed at?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pre-requisites-to-this-article">
-     Pre-requisites to this article
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-data-set">
-     The data set
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#machine-learning-and-aggregate-triangles">
-     Machine learning and aggregate triangles
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#don-t-rank-the-ml-models-used-based-on-this-example">
-     Don’t rank the ML models used based on this example
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mlr3-package">
-     mlr3 package
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ml-methods-used">
-     ML methods used
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#outline-of-the-workflow">
-   Outline of the workflow
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-preparation">
-   Data preparation
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-table-package">
-     data.table package
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-the-data">
-     Load the data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-mlr3-task">
-     Create a mlr3 task
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tuning-process-for-hyper-parameters">
-   Tuning process for hyper-parameters
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cross-validation">
-     Cross-validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setting-up-cross-validation-in-mlr3">
-     Setting up cross-validation in mlr3
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance-measure">
-     Performance measure
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#searching-hyper-parameter-space">
-     Searching hyper-parameter space
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-some-ml-models">
-   Fitting some ML models
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decision-tree">
-     Decision tree
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fitting-a-single-model">
-       Fitting a single model
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tuning-the-decision-tree">
-       Tuning the decision tree
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#random-forest-fitting">
-     Random forest fitting
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#xgboost">
-     XGBoost
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#consolidate-results">
-     Consolidate results
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#chainladder-the-baseline-model">
-     Chainladder - the baseline model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#getting-the-chainladder-reserve-estimates">
-       Getting the Chainladder reserve estimates
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lasso-regularised-regression">
-     LASSO (regularised regression)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#basis-functions">
-       Basis functions
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mlr3-setup-for-lasso">
-       mlr3 setup for LASSO
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-fitting">
-       Model fitting
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-analysis">
-   Model analysis
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rmse">
-     RMSE
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualising-the-fit">
-     Visualising the fit
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fitted-values">
-       Fitted values
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#actual-vs-fitted-heat-maps">
-       Actual vs Fitted heat maps
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#quarterly-tracking">
-       Quarterly tracking
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reserves">
-   Reserves
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commentary">
-   Commentary
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusion">
-   Conclusion
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-next">
-     What next?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#session-details">
-   Session details
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>R: Machine Learning Triangles</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Machine Learning Triangles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-article-aimed-at">Who is this article aimed at?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites-to-this-article">Pre-requisites to this article</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-set">The data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-and-aggregate-triangles">Machine learning and aggregate triangles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#don-t-rank-the-ml-models-used-based-on-this-example">Don’t rank the ML models used based on this example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlr3-package">mlr3 package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-methods-used">ML methods used</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#outline-of-the-workflow">Outline of the workflow</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-table-package">data.table package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">Load the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mlr3-task">Create a mlr3 task</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-process-for-hyper-parameters">Tuning process for hyper-parameters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-cross-validation-in-mlr3">Setting up cross-validation in mlr3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-measure">Performance measure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-hyper-parameter-space">Searching hyper-parameter space</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-some-ml-models">Fitting some ML models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-single-model">Fitting a single model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-the-decision-tree">Tuning the decision tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-fitting">Random forest fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidate-results">Consolidate results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chainladder-the-baseline-model">Chainladder - the baseline model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-chainladder-reserve-estimates">Getting the Chainladder reserve estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularised-regression">LASSO (regularised regression)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions">Basis functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlr3-setup-for-lasso">mlr3 setup for LASSO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model fitting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-analysis">Model analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmse">RMSE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-the-fit">Visualising the fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitted-values">Fitted values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-vs-fitted-heat-maps">Actual vs Fitted heat maps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quarterly-tracking">Quarterly tracking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reserves">Reserves</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary">Commentary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#session-details">Session details</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="r-machine-learning-triangles">
-<h1>R: Machine Learning Triangles<a class="headerlink" href="#r-machine-learning-triangles" title="Permalink to this headline">#</a></h1>
+<h1>R: Machine Learning Triangles<a class="headerlink" href="#r-machine-learning-triangles" title="Permalink to this heading">#</a></h1>
 <p><em>This article was originally created by Grainne McGuire and Jacky Poon and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p>In this article we look at applying different machine learning (ML) models to a data set.
 Our goal is to illustrate a work flow for:</p>
 <ul class="simple">
@@ -1189,11 +655,11 @@ Our goal is to illustrate a work flow for:</p>
 <p>A secondary goal is to demonstrate the utility of a multi-model machine learning framework which enables the user to easily “plug and play” different machine learning models within the same framework. We use the <strong>mlr3</strong> set of packages in R here - this and other similar packages in R (e.g. <strong>caret</strong> and <strong>tidymodels</strong>) and tools in <strong>scikit-learn</strong> in python may be useful in creating a smoother work flow.</p>
 <p>A [notebook version of this article](/mlr-blog/f_notebooks/ML modelling on triangles - a worked example.html) is also available which may be helpful if you want to experiment with this code.</p>
 <section id="who-is-this-article-aimed-at">
-<h2>Who is this article aimed at?<a class="headerlink" href="#who-is-this-article-aimed-at" title="Permalink to this headline">#</a></h2>
+<h2>Who is this article aimed at?<a class="headerlink" href="#who-is-this-article-aimed-at" title="Permalink to this heading">#</a></h2>
 <p>This article is aimed at those who know a little about some of the standard machine learning models, but who may not have done much hands-on work with an analysis. It will also be useful for those who have done some experimentation, but maybe not on a reserving data set. Finally, it may also be of interest to R users who have never used a multi-model framework before and who would like to see how the <strong>mlr3</strong> ecosystem works.</p>
 </section>
 <section id="pre-requisites-to-this-article">
-<h2>Pre-requisites to this article<a class="headerlink" href="#pre-requisites-to-this-article" title="Permalink to this headline">#</a></h2>
+<h2>Pre-requisites to this article<a class="headerlink" href="#pre-requisites-to-this-article" title="Permalink to this heading">#</a></h2>
 <p>We’ve tried to make this article accessible to people new to ML, and to make this article stand-alone. Having some knowledge about basic machine learning techniques like decision trees, random forests and XGBoost (gradient boosting) will help. Furthermore, we also fit the Chainladder model as a GLM (sometimes referred to as a Stochastic Chainladder) and fit a particular type of LASSO model. We’ve included limited details on these models here - our previous blog posts have more details on these:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/foundations/r-glms/">Reserving with GLMs</a></p></li>
@@ -1201,7 +667,7 @@ Our goal is to illustrate a work flow for:</p>
 </ul>
 </section>
 <section id="the-data-set">
-<h2>The data set<a class="headerlink" href="#the-data-set" title="Permalink to this headline">#</a></h2>
+<h2>The data set<a class="headerlink" href="#the-data-set" title="Permalink to this heading">#</a></h2>
 <p>Our example deals with using ML to set reserves for a single aggregate 40x40 triangle. We’ve selected the data set because:</p>
 <ul class="simple">
 <li><p>It’s small, so the code will run relatively quickly on your machine - there’s nothing worse than running through a worked example and having to wait hours for results!</p></li>
@@ -1216,19 +682,19 @@ Our goal is to illustrate a work flow for:</p>
 <p>The data set used is simulated data set 3 from the paper <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">Self-assembling insurance claim models using regularized regression and machine learning</a>. This is a 40x40 triangle of incremental quarterly payments over 10 years. Variables on the data set are accident, development and calendar quarters only. A copy of the data set is available <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata3.csv">here</a>.</p>
 </section>
 <section id="machine-learning-and-aggregate-triangles">
-<h2>Machine learning and aggregate triangles<a class="headerlink" href="#machine-learning-and-aggregate-triangles" title="Permalink to this headline">#</a></h2>
+<h2>Machine learning and aggregate triangles<a class="headerlink" href="#machine-learning-and-aggregate-triangles" title="Permalink to this heading">#</a></h2>
 <p>Typically, ML and big data go hand-in-hand. By big data we mean lots of observations and lots of features (covariates / independent variables / regressors). Aggregate triangles are small in both senses - small numbers of observations and limited features (often just the 3 time features of accident/underwriting period, development period and calendar period).</p>
 <p>This is not to say that it is invalid to use machine learning for aggregate triangles - many people have demonstrated good results from machine learning for such data - there are many papers on this topic. But it’s also true that an experienced actuary using a Chainladder model (or other traditional) method, overlaid with judgement, will often get a similar answer to the best ML method, even for a complex triangle. However ML may be a more efficient way of getting to an answer. In the worked example below, we use a data set which deviates significantly from Chainladder assumptions. Therefore the unadjusted Chainladder projection is quite poor and would need a significant investment of time to yield a better model. In contrast, the better performing ML models we looked at have a better first estimate, so may not require as much intervention to produce a final estimate, thereby leading to a time-saving.</p>
 </section>
 <section id="don-t-rank-the-ml-models-used-based-on-this-example">
-<h2>Don’t rank the ML models used based on this example<a class="headerlink" href="#don-t-rank-the-ml-models-used-based-on-this-example" title="Permalink to this headline">#</a></h2>
+<h2>Don’t rank the ML models used based on this example<a class="headerlink" href="#don-t-rank-the-ml-models-used-based-on-this-example" title="Permalink to this heading">#</a></h2>
 <p>The purpose of this article is to demonstrate a workflow for fitting ML models in R. While we’ve done some work to improve model fitting, there are a lot more things we would consider if we were looking for the best models (e.g. feature engineering, train/test splits, performance measures). So, although we do look at the relative performance of the different models at the end, you should not make any conclusions about the relative performance of the different ML methods based on this work.</p>
 <p>You may find that by adjusting some hyper-parameters, or by revising the training/test data set split, you’re able to find better models.
 We’ll be discussing this point a bit further at the end of the article.</p>
 <p><em>A priori</em>, given the form of the data (simulated using a regression style structure) and that the LASSO model we used is based on previous work which did aim to establish a framework to fit good models to triangular data using the LASSO, we expected that the LASSO model would perform the best and (spoiler alert!) it did.</p>
 </section>
 <section id="mlr3-package">
-<h2>mlr3 package<a class="headerlink" href="#mlr3-package" title="Permalink to this headline">#</a></h2>
+<h2>mlr3 package<a class="headerlink" href="#mlr3-package" title="Permalink to this heading">#</a></h2>
 <p>One problem with applying many different types of ML models is that they all generally have different input specifications for the data, and different output types. This can make it a bit tedious to try several models.</p>
 <p>There are a number of ML aggregator or multi-model packages that do a lot of the data manipulation behind the scenes. These packages take in data in a specified form and allow users to call the different ML methods. They abstract away any data manipulation required to put the data into the form required by the method. The benefit of these is apparent - set up the data in the aggregator and then switch models in and out at will.</p>
 <p>One of our <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/topten-r-packages/">previous articles</a> covers multi-model packages.</p>
@@ -1259,7 +725,7 @@ E.g. <code class="docutils literal notranslate"><span class="pre">lrn(&quot;regr
 <p>In our worked example below, we aim to explain each step clearly, so if you prefer to use another package (or language) or work separately with the individual ML packages, you should be able to translate what we are doing into code that is more familiar to you.</p>
 </section>
 <section id="ml-methods-used">
-<h2>ML methods used<a class="headerlink" href="#ml-methods-used" title="Permalink to this headline">#</a></h2>
+<h2>ML methods used<a class="headerlink" href="#ml-methods-used" title="Permalink to this heading">#</a></h2>
 <p>We’ve looked at the following methods:</p>
 <ul class="simple">
 <li><p>Decision trees</p></li>
@@ -1277,7 +743,7 @@ E.g. <code class="docutils literal notranslate"><span class="pre">lrn(&quot;regr
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="outline-of-the-workflow">
-<h1>Outline of the workflow<a class="headerlink" href="#outline-of-the-workflow" title="Permalink to this headline">#</a></h1>
+<h1>Outline of the workflow<a class="headerlink" href="#outline-of-the-workflow" title="Permalink to this heading">#</a></h1>
 <p>The workflow we have set up consists of the following:</p>
 <ul class="simple">
 <li><p>Prepare the data for use in the models, including train and test partitions (past data) and hold-out or validation partitions (future data).</p></li>
@@ -1293,7 +759,7 @@ E.g. <code class="docutils literal notranslate"><span class="pre">lrn(&quot;regr
 <p>We’ll now work through each of the stages below.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h1>
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h1>
 <p>The first step is to load all the libraries required for this work (and install them first if needed).
 We’ve included details of our session which includes versions of the packages we used at the end of this article.
 If you are having problems running our code, check that your packages (the mlr3 ones in particular) are the same as ours.</p>
@@ -1424,11 +890,11 @@ Loading required package: rpart
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
-<h1>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h1>
+<h1>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">#</a></h1>
 <p>We’re using a simulated data triangle with all values (past and future).</p>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_20_0.png" src="../_images/MLRWP_R_mlr3_20_0.png" />
+<img alt="../_images/552874b132a0cec6854b315d1b9ff9c6617a5ba3689863fc72deb7bc6b437389.png" src="../_images/552874b132a0cec6854b315d1b9ff9c6617a5ba3689863fc72deb7bc6b437389.png" />
 </div>
 </div>
 <p>The data set we use is the simulated data set 3 from this <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">paper</a>.
@@ -1442,13 +908,13 @@ It is available in CSV form <a class="reference external" href="https://institut
 </ul>
 <p>The first two effects are captured by a Chainladder model but the last two effects depart from Chainladder assumptions.</p>
 <section id="data-table-package">
-<h2>data.table package<a class="headerlink" href="#data-table-package" title="Permalink to this headline">#</a></h2>
+<h2>data.table package<a class="headerlink" href="#data-table-package" title="Permalink to this heading">#</a></h2>
 <p>We’ll be using the <strong>data.table</strong> package for manipulating the data. There’s an introduction to <strong>data.table</strong> on our <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/datatable/">blog</a> if you are unfamiliar with it.
 If you see <code class="docutils literal notranslate"><span class="pre">:=</span></code> in the R code, then that’s <strong>data.table</strong> assignment.
 (Actually in the code chunks you may see an underscore under the <code class="docutils literal notranslate"><span class="pre">:=</span></code> - this is inserted by the formatting we are using to prepare the notebook for some reason, so please ignore the underscore).</p>
 </section>
 <section id="load-the-data">
-<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this heading">#</a></h2>
 <p>First, load in the data and have a look at it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1522,7 +988,7 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_27_0.png" src="../_images/MLRWP_R_mlr3_27_0.png" />
+<img alt="../_images/f38267f1ea78155ce288cd910f27d199bef331390ee52ceafd652192a6b67d66.png" src="../_images/f38267f1ea78155ce288cd910f27d199bef331390ee52ceafd652192a6b67d66.png" />
 </div>
 </div>
 <p>The step-up in payments can be modelled as an interaction between accident and development quarters.
@@ -1570,7 +1036,7 @@ It’s likely, therefore, that the main differentiator between the performance o
 </div>
 </section>
 <section id="create-a-mlr3-task">
-<h2>Create a mlr3 task<a class="headerlink" href="#create-a-mlr3-task" title="Permalink to this headline">#</a></h2>
+<h2>Create a mlr3 task<a class="headerlink" href="#create-a-mlr3-task" title="Permalink to this heading">#</a></h2>
 <p>Now create an <strong>mlr3</strong> <a class="reference external" href="https://mlr3book.mlr-org.com/tasks.html">task</a> - making an object to hold data and set roles for the data.
 These tasks abstract away (i.e. do it for you) all the hard work in getting the data into the right form for each model (learner in <strong>mlr3</strong> parlance) - just specify what the target is and what the features are, and <strong>mlr3</strong> will take care of the rest.</p>
 <p>We need to make a regression task since we will be estimating payments. So we make a new instance of the <code class="docutils literal notranslate"><span class="pre">TaskRegr</span></code> class via <code class="docutils literal notranslate"><span class="pre">TaskRegr$new</span></code>.
@@ -1720,7 +1186,7 @@ character(0)
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tuning-process-for-hyper-parameters">
-<h1>Tuning process for hyper-parameters<a class="headerlink" href="#tuning-process-for-hyper-parameters" title="Permalink to this headline">#</a></h1>
+<h1>Tuning process for hyper-parameters<a class="headerlink" href="#tuning-process-for-hyper-parameters" title="Permalink to this heading">#</a></h1>
 <p>Machine learning models have a number of hyper-parameters that control the model fit.
 Tweaking the hyper-parameters that control model fitting (e.g. for decision trees, the depth of the tree, or for random forests, the number of trees to average over) can have a significant impact on the quality of the fit.
 The standard way of doing this is to use a train and test data set where:</p>
@@ -1735,7 +1201,7 @@ Usually we would then select the hyper-parameters that lead to the best results 
 For this work we use cross-validation. We’ll give a brief overview of it below.
 Note that we will be discussing validation options in a separate article.</p>
 <section id="cross-validation">
-<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h2>
+<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h2>
 <p>The simplest implementation of a train and test partition is a random one where each point in the data set is allocated to train and test at random.
 Typically, the train part might be around 70-80% of the data and the test part the remainder.</p>
 <div class="cell tag_remove_input docutils container">
@@ -1743,7 +1209,7 @@ Typically, the train part might be around 70-80% of the data and the test part t
 <p><strong>Random test data set</strong></p>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_48_0.png" src="../_images/MLRWP_R_mlr3_48_0.png" />
+<img alt="../_images/e02cb6a1b953b2b9ed80220d220209dc7168b765b74c95cc3237f616b48c0b4c.png" src="../_images/e02cb6a1b953b2b9ed80220d220209dc7168b765b74c95cc3237f616b48c0b4c.png" />
 </div>
 </div>
 <p>Cross-validation repeats this type of split a number of times.</p>
@@ -1762,14 +1228,14 @@ Typically, the train part might be around 70-80% of the data and the test part t
 <p><strong>5-fold cross validation</strong></p>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_50_0.png" src="../_images/MLRWP_R_mlr3_50_0.png" />
+<img alt="../_images/ca7bb14ded593d0cfb73e5e6158af703cba3a34dd3709a64d37ca5074139ae48.png" src="../_images/ca7bb14ded593d0cfb73e5e6158af703cba3a34dd3709a64d37ca5074139ae48.png" />
 </div>
 </div>
 <p>Cross-validation provides an estimate of out-of-sample performance even though all the data is used for training and testing.
 It is often considered more robust due to its use of the full dataset for testing, but can be computationally expensive for larger datasets. Here we only have a small amount of data, so there is an advantage to using the full dataset, whilst the computational cost is manageable.</p>
 </section>
 <section id="setting-up-cross-validation-in-mlr3">
-<h2>Setting up cross-validation in mlr3<a class="headerlink" href="#setting-up-cross-validation-in-mlr3" title="Permalink to this headline">#</a></h2>
+<h2>Setting up cross-validation in mlr3<a class="headerlink" href="#setting-up-cross-validation-in-mlr3" title="Permalink to this heading">#</a></h2>
 <p>We can set up a cross-validation resampler in mlr3 that can then be applied to any model. As always, the <a class="reference external" href="https://mlr3book.mlr-org.com/resampling.html">book</a> is a useful starting reference point.</p>
 <p>Here we will use 6-fold cross validation.</p>
 <div class="cell docutils container">
@@ -1792,12 +1258,12 @@ It is often considered more robust due to its use of the full dataset for testin
 </div>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_56_0.png" src="../_images/MLRWP_R_mlr3_56_0.png" />
+<img alt="../_images/bdd5edd87eaaf2dbbb54952b170849d1e15687362422743b5a846dc742ea801f.png" src="../_images/bdd5edd87eaaf2dbbb54952b170849d1e15687362422743b5a846dc742ea801f.png" />
 </div>
 </div>
 </section>
 <section id="performance-measure">
-<h2>Performance measure<a class="headerlink" href="#performance-measure" title="Permalink to this headline">#</a></h2>
+<h2>Performance measure<a class="headerlink" href="#performance-measure" title="Permalink to this heading">#</a></h2>
 <p>As well as the cross-validation process, we want to set up a performance measure to use.
 Here we will use RMSE (root mean square error).</p>
 <div class="cell docutils container">
@@ -1815,7 +1281,7 @@ Here we will use RMSE (root mean square error).</p>
 </div>
 </section>
 <section id="searching-hyper-parameter-space">
-<h2>Searching hyper-parameter space<a class="headerlink" href="#searching-hyper-parameter-space" title="Permalink to this headline">#</a></h2>
+<h2>Searching hyper-parameter space<a class="headerlink" href="#searching-hyper-parameter-space" title="Permalink to this heading">#</a></h2>
 <p>Searching hyper-parameter space needs to be customised to each model, so we can’t set up a common framework here.
 However, to control computations, it is useful to set a limit on the number of searches that can be performed in a tuning exercise.
 <strong>mlr3</strong> offers a number of different options for terminating searches - here we are just going to use the simplest one - where only a limited number of evaluations are permitted.</p>
@@ -1835,7 +1301,7 @@ However, to control computations, it is useful to set a limit on the number of s
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="fitting-some-ml-models">
-<h1>Fitting some ML models<a class="headerlink" href="#fitting-some-ml-models" title="Permalink to this headline">#</a></h1>
+<h1>Fitting some ML models<a class="headerlink" href="#fitting-some-ml-models" title="Permalink to this heading">#</a></h1>
 <p>Now it’s time to fit and tune the following ML models using <strong>mlr3</strong>:</p>
 <ul class="simple">
 <li><p>Decision tree</p></li>
@@ -1843,13 +1309,13 @@ However, to control computations, it is useful to set a limit on the number of s
 <li><p>XGBoost</p></li>
 </ul>
 <section id="decision-tree">
-<h2>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">#</a></h2>
+<h2>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this heading">#</a></h2>
 <p>A decision tree is unlikely to be a very good model for this data, and tuning often doesn’t help much.
 Nonetheless, it’s a simple model, so it’s useful to fit it to see what happens.</p>
 <p>To illustrate the use of mlr3, we’ll first show how to fit a model using the default hyper-parameters.
 We’ll then move onto the code needed to run hyper-parameter tuning using cross-validation.</p>
 <section id="fitting-a-single-model">
-<h3>Fitting a single model<a class="headerlink" href="#fitting-a-single-model" title="Permalink to this headline">#</a></h3>
+<h3>Fitting a single model<a class="headerlink" href="#fitting-a-single-model" title="Permalink to this heading">#</a></h3>
 <p>First let’s fit a decision tree using default parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1865,7 +1331,7 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_66_0.png" src="../_images/MLRWP_R_mlr3_66_0.png" />
+<img alt="../_images/dbadc74958c0635fa285131a7f6fa7703230f9af93297d1a2a84a65761e9314a.png" src="../_images/dbadc74958c0635fa285131a7f6fa7703230f9af93297d1a2a84a65761e9314a.png" />
 </div>
 </div>
 <p>If you are unfamiliar with decision tree diagrams, the model specifies that, for example, for accident years greater than 17, with development periods less than 7.5 (ie 7 or under) and less than 4.5, the predicted claim cost is $43m.</p>
@@ -1897,7 +1363,7 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 <p>Let’s try tuning the <code class="docutils literal notranslate"><span class="pre">cp</span></code> and <code class="docutils literal notranslate"><span class="pre">minsplit</span></code> parameters.</p>
 </section>
 <section id="tuning-the-decision-tree">
-<h3>Tuning the decision tree<a class="headerlink" href="#tuning-the-decision-tree" title="Permalink to this headline">#</a></h3>
+<h3>Tuning the decision tree<a class="headerlink" href="#tuning-the-decision-tree" title="Permalink to this heading">#</a></h3>
 <p>To set up the tuning we need to specify:</p>
 <ul class="simple">
 <li><p>The ranges of values to search over</p></li>
@@ -2035,14 +1501,14 @@ $minsplit
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_84_0.png" src="../_images/MLRWP_R_mlr3_84_0.png" />
+<img alt="../_images/e720aa9627df8501e8a71d15dbd99a1a13a643a36558aa5b1f730d69746c9d31.png" src="../_images/e720aa9627df8501e8a71d15dbd99a1a13a643a36558aa5b1f730d69746c9d31.png" />
 </div>
 </div>
 <p>This model is much more complicated than the original and looks overfitted - we’ll see if this is the case when we evaluate the model performance later in the article.</p>
 </section>
 </section>
 <section id="random-forest-fitting">
-<h2>Random forest fitting<a class="headerlink" href="#random-forest-fitting" title="Permalink to this headline">#</a></h2>
+<h2>Random forest fitting<a class="headerlink" href="#random-forest-fitting" title="Permalink to this heading">#</a></h2>
 <p>The <strong>ranger</strong> random forest package is implemented in <strong>mlr3learners</strong> (the regression version is <code class="docutils literal notranslate"><span class="pre">regr.ranger</span></code>).</p>
 <p>Let’s have a look at the hyper-parameters.</p>
 <div class="cell docutils container">
@@ -2207,7 +1673,7 @@ R squared (OOB):                  0.9223578
 </div>
 </section>
 <section id="xgboost">
-<h2>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this headline">#</a></h2>
+<h2>XGBoost<a class="headerlink" href="#xgboost" title="Permalink to this heading">#</a></h2>
 <p>Here are the XGBoost parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2699,7 +2165,7 @@ $max_depth
 <p>We haven’t run this code so our <code class="docutils literal notranslate"><span class="pre">lrn_xgboost_tuned</span></code> uses the 500 evaluations results.</p>
 </section>
 <section id="consolidate-results">
-<h2>Consolidate results<a class="headerlink" href="#consolidate-results" title="Permalink to this headline">#</a></h2>
+<h2>Consolidate results<a class="headerlink" href="#consolidate-results" title="Permalink to this heading">#</a></h2>
 <p>Now we will consolidate results for these models. We will gather together:</p>
 <ul class="simple">
 <li><p>RMSE for past and future data</p></li>
@@ -2757,12 +2223,12 @@ $max_depth
 </ul>
 </section>
 <section id="chainladder-the-baseline-model">
-<h2>Chainladder - the baseline model<a class="headerlink" href="#chainladder-the-baseline-model" title="Permalink to this headline">#</a></h2>
+<h2>Chainladder - the baseline model<a class="headerlink" href="#chainladder-the-baseline-model" title="Permalink to this heading">#</a></h2>
 <p>Since this is a traditional triangle, it seems natural to compare any results to the Chainladder result. So here, we will get the predicted values and reserve estimate for the Chain ladder model.</p>
 <p>It’s important to note that we will just use a volume-all Chainladder (i.e. include all periods in the estimation of the development factors) and will not attempt to impose any judgement over the results. In practice, of course, models like the Chainladder are often subject to additional analysis, reasonableness tests and manual assumption selections, so it’s likely the actual result would be different, perhaps significantly, from that returned here.</p>
 <p>At the same time, no model, whether it be the Chainladder, or a more sophisticated ML model should be accepted without further testing, so on that basis, comparing Chainladder and ML results without modification is a reasonable thing to do. Better methods should require less human intervention to return a reasonable result.</p>
 <section id="getting-the-chainladder-reserve-estimates">
-<h3>Getting the Chainladder reserve estimates<a class="headerlink" href="#getting-the-chainladder-reserve-estimates" title="Permalink to this headline">#</a></h3>
+<h3>Getting the Chainladder reserve estimates<a class="headerlink" href="#getting-the-chainladder-reserve-estimates" title="Permalink to this heading">#</a></h3>
 <p>The Chainladder reserve can also be calculated using a GLM with:</p>
 <ul class="simple">
 <li><p>Accident and development factors</p></li>
@@ -2949,7 +2415,7 @@ Number of Fisher Scoring iterations: 5
 </section>
 </section>
 <section id="lasso-regularised-regression">
-<h2>LASSO (regularised regression)<a class="headerlink" href="#lasso-regularised-regression" title="Permalink to this headline">#</a></h2>
+<h2>LASSO (regularised regression)<a class="headerlink" href="#lasso-regularised-regression" title="Permalink to this heading">#</a></h2>
 <p>Finally, we will use the LASSO to fit a model. We are going to fit the same model as we did in our previous <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/post/f-lasso/">post</a>. We’ll include a bare-bones description of the model here. If you haven’t seen it before, then you may want to just take the model as given and skip ahead to the next section. Once you’ve read this entire article you may then wish to read the post on the LASSO model to understand the specifics of this model.</p>
 <p>The main things to note about this model are:</p>
 <ul class="simple">
@@ -2967,7 +2433,7 @@ Number of Fisher Scoring iterations: 5
 </ul>
 <p>Since the blog post shows how to do this using <strong>glmnet</strong> directly, here we use some <strong>mlr3</strong> code to fit the model to show how it would work in <strong>mlr3</strong>. As with the Chainladder/GLM example, it’s more efficient code-wise to do the fitting outside of <strong>mlr3</strong>.</p>
 <section id="basis-functions">
-<h3>Basis functions<a class="headerlink" href="#basis-functions" title="Permalink to this headline">#</a></h3>
+<h3>Basis functions<a class="headerlink" href="#basis-functions" title="Permalink to this heading">#</a></h3>
 <p>The first step is to create all the basis functions that we need. The functions below create the ramp and step functions needed (over 4000 of these!). The end result is a data.table of the original payments and all the basis functions. As noted above, all the details are in the blog post and paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3114,7 +2580,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </section>
 <section id="mlr3-setup-for-lasso">
-<h3>mlr3 setup for LASSO<a class="headerlink" href="#mlr3-setup-for-lasso" title="Permalink to this headline">#</a></h3>
+<h3>mlr3 setup for LASSO<a class="headerlink" href="#mlr3-setup-for-lasso" title="Permalink to this heading">#</a></h3>
 <p>First we need to set up a task. This differs from the tree-based models task as follows in that the input variables are all the basis functions we created and not the raw accident / development / calendar quarter terms - the <code class="docutils literal notranslate"><span class="pre">dat_plus</span></code> data.table.</p>
 <p>Also we don’t need to set up a cross-validation resampling for this task since the <strong>glmnet</strong> package has in-built cross-validation.</p>
 <div class="cell docutils container">
@@ -3135,7 +2601,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </section>
 <section id="model-fitting">
-<h3>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">#</a></h3>
+<h3>Model fitting<a class="headerlink" href="#model-fitting" title="Permalink to this heading">#</a></h3>
 <p>As noted above, the <strong>glmnet</strong> package has an inbuilt cross-validation function to fit LASSO models so we’ll use that rather than running cross validation via <strong>mlr3</strong>. We’ll use a Poisson distribution so the cross-validation will look to minimise the Poisson deviance.</p>
 <p>The results will not be identical to those in the paper - that used 8-fold cross-validation and, even if the number of folds were the same, the random number seeds will be different, so the composition of the folds would be different.</p>
 <div class="cell docutils container">
@@ -3175,7 +2641,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_132_0.png" src="../_images/MLRWP_R_mlr3_132_0.png" />
+<img alt="../_images/316431ac31eb858e6221f95fddb597f6b6cf956f1343f0e580ad555898b6761a.png" src="../_images/316431ac31eb858e6221f95fddb597f6b6cf956f1343f0e580ad555898b6761a.png" />
 </div>
 </div>
 <p>The two dotted lines in this plot represent two special penalty (or <code class="docutils literal notranslate"><span class="pre">lambda</span></code> values):</p>
@@ -3197,7 +2663,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="model-analysis">
-<h1>Model analysis<a class="headerlink" href="#model-analysis" title="Permalink to this headline">#</a></h1>
+<h1>Model analysis<a class="headerlink" href="#model-analysis" title="Permalink to this heading">#</a></h1>
 <p>This is the interesting bit - let’s look at all the models to see how they’ve performed (but remember not to draw too many conclusions about model performance from this example as discussed earlier!)</p>
 <p>Before we go any further though, we will make a long version of the data set (1 model result per row) as that will make a lot of calculations easier.
 data.table has a <code class="docutils literal notranslate"><span class="pre">melt</span></code> method for doing this. Tidyverse users may be more familiar with <code class="docutils literal notranslate"><span class="pre">pivot_longer()</span></code> which also does the same thing.</p>
@@ -3379,7 +2845,7 @@ data.table has a <code class="docutils literal notranslate"><span class="pre">me
 <li><p><code class="docutils literal notranslate"><span class="pre">regr.xgboost</span></code> and <code class="docutils literal notranslate"><span class="pre">regr.xgboost_prev</span></code> - the two XGBoost models.</p></li>
 </ul>
 <section id="rmse">
-<h2>RMSE<a class="headerlink" href="#rmse" title="Permalink to this headline">#</a></h2>
+<h2>RMSE<a class="headerlink" href="#rmse" title="Permalink to this heading">#</a></h2>
 <p>As discussed above, we are going to do these calculations manually rather than use the <strong>mlr3</strong> benchmark tools because we want to include the Chainladder and LASSO models as well (even though we’ve fitted them here using <strong>mlr3</strong>, we used separate tasks). In any case the calculations are easy to do in <strong>data.table</strong> (for those who know that package anyway!) and it can be helpful to see what’s going on..</p>
 <p>For those who are unfamiliar, we’ve used a feature of data.table called chaining (similar in many ways to using the <code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code> pipe, or the newly introduced base R pipe, <code class="docutils literal notranslate"><span class="pre">|&gt;</span></code>). The code does the following:</p>
 <ul class="simple">
@@ -3534,11 +3000,11 @@ Unsurprisingly, the Chainladder model (regr.glm) has high RMSE - we know that th
 <p>For the future data, we see a very different story. As expected, the tuned decision tree does appear to be over-fitted - it performs poorer than the default decision tree. The LASSO model is the best, followed by the previously tuned XGBoost model. Despite having similar hyper-parameters, the two XGBoost models perform differently.</p>
 </section>
 <section id="visualising-the-fit">
-<h2>Visualising the fit<a class="headerlink" href="#visualising-the-fit" title="Permalink to this headline">#</a></h2>
+<h2>Visualising the fit<a class="headerlink" href="#visualising-the-fit" title="Permalink to this heading">#</a></h2>
 <p>Although useful, the RMSE is just a single number so it’s helpful to visualise the fit.
 In particular, because these are models for a reserving data set, we can take advantage of that structure when analysing how well each model is performing.</p>
 <section id="fitted-values">
-<h3>Fitted values<a class="headerlink" href="#fitted-values" title="Permalink to this headline">#</a></h3>
+<h3>Fitted values<a class="headerlink" href="#fitted-values" title="Permalink to this heading">#</a></h3>
 <p>First, lets show visualise the fitted payments.
 The graphs below show the log(fitted values), or log(payments) in the case of the actual values.</p>
 <div class="cell docutils container">
@@ -3572,7 +3038,7 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_152_0.png" src="../_images/MLRWP_R_mlr3_152_0.png" />
+<img alt="../_images/ef57b98239b50dcda07cabd248006a2f36e5aa0dd99583d21796fbf538335d09.png" src="../_images/ef57b98239b50dcda07cabd248006a2f36e5aa0dd99583d21796fbf538335d09.png" />
 </div>
 </div>
 <p>Some things are apparent from this:</p>
@@ -3586,7 +3052,7 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 </ul>
 </section>
 <section id="actual-vs-fitted-heat-maps">
-<h3>Actual vs Fitted heat maps<a class="headerlink" href="#actual-vs-fitted-heat-maps" title="Permalink to this headline">#</a></h3>
+<h3>Actual vs Fitted heat maps<a class="headerlink" href="#actual-vs-fitted-heat-maps" title="Permalink to this heading">#</a></h3>
 <p>We can also look at the model fits via heat maps of the actual/fitted values.
 The function defined below calculates the actual/fitted values, capping and collaring them at 400% and 25%.
 The values are then shaded so that:</p>
@@ -3652,13 +3118,13 @@ The values are then shaded so that:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_158_0.png" src="../_images/MLRWP_R_mlr3_158_0.png" />
+<img alt="../_images/71ea0bf851d4e67bd812dafcdb911024f9ba0977096b8029e8e085d4fe1a0a6d.png" src="../_images/71ea0bf851d4e67bd812dafcdb911024f9ba0977096b8029e8e085d4fe1a0a6d.png" />
 </div>
 </div>
 <p>All models have shortcomings, but the LASSO and previously tuned XGBoost models outperform the others.</p>
 </section>
 <section id="quarterly-tracking">
-<h3>Quarterly tracking<a class="headerlink" href="#quarterly-tracking" title="Permalink to this headline">#</a></h3>
+<h3>Quarterly tracking<a class="headerlink" href="#quarterly-tracking" title="Permalink to this heading">#</a></h3>
 <p>Finally, we will look at the predictions for specific parts of the data set.
 Quarterly tracking graphs:</p>
 <ul class="simple">
@@ -3797,7 +3263,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_165_0.png" src="../_images/MLRWP_R_mlr3_165_0.png" />
+<img alt="../_images/1b3769cf9eb44be919419944938f5265f98c3bcaea3c49a6245d00d03f7fa9ec.png" src="../_images/1b3769cf9eb44be919419944938f5265f98c3bcaea3c49a6245d00d03f7fa9ec.png" />
 </div>
 </div>
 <p>Because this is mostly old data and because it is not affected by the interaction, the tracking should be generally good, even for the Chain ladder - which is the case (apart from the final quarter being a bit wild as can happen with a Chain ladder).
@@ -3816,7 +3282,7 @@ The decision tree model is poor, the random forest and XGBoost model show some e
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_167_0.png" src="../_images/MLRWP_R_mlr3_167_0.png" />
+<img alt="../_images/dc51b79d45ee8b832cb62500998f365bb735a775c18effe599dfbe826b9f8e88.png" src="../_images/dc51b79d45ee8b832cb62500998f365bb735a775c18effe599dfbe826b9f8e88.png" />
 </div>
 </div>
 <p>Development quarter 24 is impacted by the interactions for accident quarters&gt;17.
@@ -3834,7 +3300,7 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_170_0.png" src="../_images/MLRWP_R_mlr3_170_0.png" />
+<img alt="../_images/9af314ed11e37c5956d59a14fcdc38226d557663bd5d76ee8bb8ece3dc32f3de.png" src="../_images/9af314ed11e37c5956d59a14fcdc38226d557663bd5d76ee8bb8ece3dc32f3de.png" />
 </div>
 </div>
 <p>This is quite hard for the models since most of the values are in the future. XGBoost (previously tuned) and the LASSO are the best here.</p>
@@ -3852,7 +3318,7 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_175_0.png" src="../_images/MLRWP_R_mlr3_175_0.png" />
+<img alt="../_images/d8abce085a2ed082870a6795238231c52352b8e9bb09bdbc70253896d0cda3e3.png" src="../_images/d8abce085a2ed082870a6795238231c52352b8e9bb09bdbc70253896d0cda3e3.png" />
 </div>
 </div>
 <p><strong>Tracking for development quarter when accident quarter = 20</strong></p>
@@ -3868,14 +3334,14 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_178_0.png" src="../_images/MLRWP_R_mlr3_178_0.png" />
+<img alt="../_images/625cf9e791e6f45f9bffbc1f55b7090f858d9374880ecb72a5da9ec85ee2f362.png" src="../_images/625cf9e791e6f45f9bffbc1f55b7090f858d9374880ecb72a5da9ec85ee2f362.png" />
 </div>
 </div>
 </section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reserves">
-<h1>Reserves<a class="headerlink" href="#reserves" title="Permalink to this headline">#</a></h1>
+<h1>Reserves<a class="headerlink" href="#reserves" title="Permalink to this heading">#</a></h1>
 <p>Finally, we’ll look at the reserve estimates from the different models. For convenience, here’s the mapping of model name to model type again:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">regr.glm</span></code> - Chainladder</p></li>
@@ -3922,7 +3388,7 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_181_0.png" src="../_images/MLRWP_R_mlr3_181_0.png" />
+<img alt="../_images/0293ccd8e9ed4410ebc0315758125cf80ad3ccedbe6c87f6f086c674bbe29165.png" src="../_images/0293ccd8e9ed4410ebc0315758125cf80ad3ccedbe6c87f6f086c674bbe29165.png" />
 </div>
 </div>
 <p>Let’s look at a zoomed in version of this plot.</p>
@@ -3936,7 +3402,7 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_mlr3_184_1.png" src="../_images/MLRWP_R_mlr3_184_1.png" />
+<img alt="../_images/56c90fad57f70142166583fa220eda7b6e1ad44b6fd0850bf3dc2334b6e3a35c.png" src="../_images/56c90fad57f70142166583fa220eda7b6e1ad44b6fd0850bf3dc2334b6e3a35c.png" />
 </div>
 </div>
 <p>Finally, here are the overall reserves, summed over all accident quarters</p>
@@ -4011,10 +3477,10 @@ All models reflect this to different extents, with XGBoost and the LASSO doing t
 The overall reserve for the Chainladder model (regr.glm) hides the fact that this result is actually significant under-estimation in most accident quarters balanced by significant over-estimation in the last.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="commentary">
-<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">#</a></h1>
+<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this heading">#</a></h1>
 <p>What’s going on with the XGBoost results?</p>
 <p>As we noted when we fitted the XGBoost model, there are a few components of randomness from one run to another, with different seeds:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The cross validation folds will be different</p></li>
 <li><p>The random search parameters will be different.</p></li>
 </ol>
@@ -4028,7 +3494,7 @@ The grey rectangle marks the interaction.</p>
 </div>
 <div class="cell tag_remove_input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_mlr3_191_0.png" src="../_images/MLRWP_R_mlr3_191_0.png" />
+<img alt="../_images/e413cefb749d24826956e2cd273e62d419ce0ea855dd0fa7b364b9b95063cbdb.png" src="../_images/e413cefb749d24826956e2cd273e62d419ce0ea855dd0fa7b364b9b95063cbdb.png" />
 </div>
 </div>
 <p>The first thing that is apparent is that the interaction only applies to a very small number of points (10) in the past data.
@@ -4053,7 +3519,7 @@ This suggests that cross-validation is not an ideal method for tuning reserving 
 We’ll be discussing this in a future article.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
-<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
 <p>We set out to demonstrate how to fit a number of reserving models to a data set.
 Our results have been mixed - but we expected that in advance.
 This work lays a baseline for our upcoming articles where we will look at ways of improving the results through:</p>
@@ -4062,7 +3528,7 @@ This work lays a baseline for our upcoming articles where we will look at ways o
 <li><p>considering more appropriate validation techniques.</p></li>
 </ul>
 <section id="what-next">
-<h2>What next?<a class="headerlink" href="#what-next" title="Permalink to this headline">#</a></h2>
+<h2>What next?<a class="headerlink" href="#what-next" title="Permalink to this heading">#</a></h2>
 <p>You can try running this code and changing some things - e.g. the hyper-parameters tuned, search strategy, number of iterations etc.</p>
 <p>You can also try running the code for different data sets. It’s best to initially work with data sets that are familiar to you, so your own data sets or other simulated data sets may be useful here. In the code block below, we’ve shared the code used to generate the data set we used. You can generate other data sets as described in the <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3241906">LASSO paper</a> using the code block below. More details are in the paper, but in brief:</p>
 <ul class="simple">
@@ -4175,7 +3641,7 @@ This work lays a baseline for our upcoming articles where we will look at ways o
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="session-details">
-<h1>Session details<a class="headerlink" href="#session-details" title="Permalink to this headline">#</a></h1>
+<h1>Session details<a class="headerlink" href="#session-details" title="Permalink to this heading">#</a></h1>
 <p>The details of the R session used to generate the results are below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4250,7 +3716,7 @@ loaded via a namespace (and not attached):
             mode: "r"
         },
         kernelOptions: {
-            kernelName: "ir",
+            name: "ir",
             path: "./docs"
         },
         predefinedOutput: true
@@ -4258,52 +3724,163 @@ loaded via a namespace (and not attached):
     </script>
     <script>kernelName = 'ir'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="MLRWP_R_Lasso.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">R: Reserving with LASSO</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MLRWP_R_Lasso.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">R: Reserving with LASSO</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="MLRWP_Py_triangles_example.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="MLRWP_Py_triangles_example.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Py: Machine Learning Triangles</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Machine Learning Triangles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-article-aimed-at">Who is this article aimed at?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-requisites-to-this-article">Pre-requisites to this article</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-set">The data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-and-aggregate-triangles">Machine learning and aggregate triangles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#don-t-rank-the-ml-models-used-based-on-this-example">Don’t rank the ML models used based on this example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlr3-package">mlr3 package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-methods-used">ML methods used</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#outline-of-the-workflow">Outline of the workflow</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-table-package">data.table package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">Load the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-mlr3-task">Create a mlr3 task</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-process-for-hyper-parameters">Tuning process for hyper-parameters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-cross-validation-in-mlr3">Setting up cross-validation in mlr3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-measure">Performance measure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-hyper-parameter-space">Searching hyper-parameter space</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-some-ml-models">Fitting some ML models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-single-model">Fitting a single model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-the-decision-tree">Tuning the decision tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-fitting">Random forest fitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidate-results">Consolidate results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chainladder-the-baseline-model">Chainladder - the baseline model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-chainladder-reserve-estimates">Getting the Chainladder reserve estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regularised-regression">LASSO (regularised regression)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions">Basis functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlr3-setup-for-lasso">mlr3 setup for LASSO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model fitting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-analysis">Model analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rmse">RMSE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-the-fit">Visualising the fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitted-values">Fitted values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-vs-fitted-heat-maps">Actual vs Fitted heat maps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quarterly-tracking">Quarterly tracking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reserves">Reserves</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary">Commentary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#session-details">Session details</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By YDAWG, DAPC, YAC and other contributors.<br/>
-  
-    <div class="extra_footer">
-       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By YDAWG, DAPC, YAC and other contributors.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+   The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

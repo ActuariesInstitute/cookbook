@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Py: Customer Sentiment Analysis &#8212; Actuaries&#39; Analytical Cookbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script data-website-id="f2934c40-e673-4ab5-9658-4b594221551e" defer="defer" src="https://analytics.umami.is/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,888 +63,566 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/DAA_M07_CS2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Py: Linear Programming" href="DAA_2021_S2_Tutorial10_exercise_scipy.html" />
     <link rel="prev" title="Py: Classifying review sentiment" href="DAA_M07_CS1.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Python
- </span>
-</p>
+    
+    
+    <img src="../_static/actuaries-logo.svg" class="logo__image only-light" alt="Actuaries' Analytical Cookbook - Home"/>
+    <script>document.write(`<img src="../_static/actuaries-logo.svg" class="logo__image only-dark" alt="Actuaries' Analytical Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_py.html">
-   About Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started.html">
-   Setting up Your Python Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_by_example.html">
-   An Introductory Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="learn_more.html">
-   Learn More
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Useful_Python_packages.html">
-   Useful Python packages for Data Science
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Performance_gottagofaster.html">
-   Py: Python for Performance
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_py.html">About Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Useful_Python_packages.html">Useful Python packages for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_gottagofaster.html">Py: Python for Performance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to R
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_R.html">
-   About R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_R.html">
-   Setting Up R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="introductory_R.html">
-   Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intermediate_R.html">
-   Next Steps With R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="top_ten_r_packages.html">
-   Useful Packages
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_DataTable.html">
-   R: data.table for actuaries
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_R.html">About R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_R.html">Setting Up R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_R.html">Next Steps With R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="top_ten_r_packages.html">Useful Packages</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_DataTable.html">R: data.table for actuaries</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workflow Management
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflow Management</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="version_control.html">
-   Version control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="predict_API_gradio.html">
-   Py: Productionising predictive models as API
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predict_API_gradio.html">Py: Productionising predictive models as API</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Regression, Classification and Technical Price
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression, Classification and Technical Price</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS1.html">
-   Py: Customer Churn Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multitasking_risk_pricing.html">
-   Py/R: Multitasking Risk Pricing Using Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="py_shap_values.html">
-   Py: Explainable Models with SHAP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_bias_w_ChatGPT.html">
-   Py: Investigating Neural Network Biases with ChatGPT
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS1.html">Py: Customer Churn Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitasking_risk_pricing.html">Py/R: Multitasking Risk Pricing Using Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_shap_values.html">Py: Explainable Models with SHAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_bias_w_ChatGPT.html">Py: Investigating Neural Network Biases with ChatGPT</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Life Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Life Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LifeRecipeBook.html">
-   R: Life Modelling Recipes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="life_stats.html">
-   R: Life Industry Stats in Tableau and R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian-applications.html">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trees.html">
-   R: Decision Tree Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="LifeRecipeBook.html">R: Life Modelling Recipes</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="life_stats.html">R: Life Industry Stats in Tableau and R</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="bayesian-applications.html">R: Bayesian Applications</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="trees.html">R: Decision Tree Applications</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="SQL%20Query%20for%20Triangles.html">
-   SQL: Queries to Create Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_GLMs.html">
-   R: Reserving with GLMs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Lasso.html">
-   R: Reserving with LASSO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_mlr3.html">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
-   Py: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">
-   R: Baudry ML Reserving Pt 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">
-   R: Baudry ML Reserving Pt 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%20Query%20for%20Triangles.html">SQL: Queries to Create Triangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_GLMs.html">R: Reserving with GLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Lasso.html">R: Reserving with LASSO</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_mlr3.html">R: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_Py_triangles_example.html">Py: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">R: Baudry ML Reserving Pt 1</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">R: Baudry ML Reserving Pt 2</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">R: Baudry ML Reserving Pt 3</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Unsupervised Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS1.html">
-   Py: Socio-Economic Index Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS2.html">
-   Py: Clustering Credit Card Fraud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex4.html">
-   Py: K-means clustering of COVID dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex5.html">
-   Py: Hierarchical clustering on COVID dataset
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SEIFA_IER_index_2021_replicate.html">Py: Socio-Economic Index Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_CS2.html">Py: Clustering Credit Card Fraud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex4.html">Py: K-means clustering of COVID dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex5.html">Py: Hierarchical clustering on COVID dataset</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Natural Language Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="R_case_study_word_cloud.html">
-   R: Word Cloud Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="textClassificationEntry.html">
-   Py: Text Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex10.html">
-   Py: Decision Tree Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex18.html">
-   Py: Neural Net Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS1.html">
-   Py: Classifying review sentiment
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Py: Customer Sentiment Analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="R_case_study_word_cloud.html">R: Word Cloud Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textClassificationEntry.html">Py: Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex10.html">Py: Decision Tree Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex18.html">Py: Neural Net Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS1.html">Py: Classifying review sentiment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Py: Customer Sentiment Analysis</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Business Optimization
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Business Optimization</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
-   Py: Linear Programming
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">Py: Linear Programming</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Image Recognition
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Recognition</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS2.html">
-   Py: Image Recognition
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS2.html">Py: Image Recognition</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Ethics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Ethics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="automated_decision.html">
-   Automated Decision-Making Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="automated_decision.html">Automated Decision-Making Systems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contributing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="contributing.html">
-   Contributing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/DAA_M07_CS2.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M07_CS2.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/DAA_M07_CS2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M07_CS2.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/DAA_M07_CS2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/DAA_M07_CS2.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/DAA_M07_CS2.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Py: Customer Sentiment Analysis
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#identify-the-problem">
-     Identify the problem
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#purpose">
-     Purpose:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#references">
-     References:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#packages">
-     Packages
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions">
-     Functions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data">
-     Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#import-data">
-       Import data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#explore-data-eda">
-       Explore data (EDA)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#prepare-data">
-       Prepare data
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#clean-data">
-         Clean data
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#subset-data">
-         Subset data
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#vectorise">
-         Vectorise
-        </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#tf-idf">
-           TF-IDF
-          </a>
-         </li>
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#bert">
-           BERT
-          </a>
-         </li>
-        </ul>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modelling">
-     Modelling
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-tf-idf-vectorisation">
-       Using TF-IDF vectorisation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-bert-vectorisation">
-       Using BERT vectorisation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluate">
-     Evaluate
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commentary">
-   Commentary
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Py: Customer Sentiment Analysis</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Py: Customer Sentiment Analysis
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#identify-the-problem">
-     Identify the problem
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#purpose">
-     Purpose:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#references">
-     References:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#packages">
-     Packages
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#functions">
-     Functions
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data">
-     Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#import-data">
-       Import data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#explore-data-eda">
-       Explore data (EDA)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#prepare-data">
-       Prepare data
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#clean-data">
-         Clean data
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#subset-data">
-         Subset data
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#vectorise">
-         Vectorise
-        </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#tf-idf">
-           TF-IDF
-          </a>
-         </li>
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#bert">
-           BERT
-          </a>
-         </li>
-        </ul>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#modelling">
-     Modelling
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-tf-idf-vectorisation">
-       Using TF-IDF vectorisation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-bert-vectorisation">
-       Using BERT vectorisation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluate">
-     Evaluate
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commentary">
-   Commentary
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Py: Customer Sentiment Analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Py: Customer Sentiment Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-problem">Identify the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-data-eda">Explore data (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-data">Clean data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-data">Subset data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorise">Vectorise</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#bert">BERT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-tf-idf-vectorisation">Using TF-IDF vectorisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bert-vectorisation">Using BERT vectorisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate">Evaluate</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary">Commentary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="py-customer-sentiment-analysis">
-<h1>Py: Customer Sentiment Analysis<a class="headerlink" href="#py-customer-sentiment-analysis" title="Permalink to this headline">#</a></h1>
+<h1>Py: Customer Sentiment Analysis<a class="headerlink" href="#py-customer-sentiment-analysis" title="Permalink to this heading">#</a></h1>
 <p><strong>This notebook was originally created by Michael Storozhev for the Data Analytics Applications subject as <em>Case study 7.2 - Customer sentiment in travel insurance</em> in the <em>DAA M07 Natural language processing</em> module.</strong></p>
 <p><strong>Data Analytics Applications is a Fellowship Applications (Module 3) subject with the Actuaries Institute that aims to teach students how to apply a range of data analytics skills, such as neural networks, natural language processing, unsupervised learning and optimisation techniques, together with their professional judgement, to solve a variety of complex and challenging business problems. The business problems used as examples in this subject are drawn from a wide range of industries.</strong></p>
 <p><strong>Find out more about the course <a class="reference external" href="https://www.actuaries.asn.au/education-program/fellowship/subjects-and-syllabus/data-analytics-applications-subject">here</a>.</strong></p>
 <section id="identify-the-problem">
-<h2>Identify the problem<a class="headerlink" href="#identify-the-problem" title="Permalink to this headline">#</a></h2>
+<h2>Identify the problem<a class="headerlink" href="#identify-the-problem" title="Permalink to this heading">#</a></h2>
 <p>Businesses often collect feedback from their customers in the form of free-text reviews. This results in businesses receiving very rich but unstructured information about areas where they are meeting their customers’ needs and areas where customers are unsatisfied.</p>
 <p>It can be difficult to draw conclusions from this large volume of unstructured data without the help of NLP. The task in this case study is to analyse customer reviews in travel insurance to identify key areas of dissatisfaction. The aim for the business would then be to investigate these areas of discontent so they can improve their future customer service offering.</p>
 </section>
 <section id="purpose">
-<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">#</a></h2>
+<h2>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this heading">#</a></h2>
 <p>This notebook walks through the use of NLP to analyse customer sentiment to better understand travel insurance related complaints. The objective of the case study is to identify key areas of customer satisfaction (or dissatisfaction) with travel insurance products.</p>
 </section>
 <section id="references">
-<h2>References:<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References:<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>The dataset that is used in this case study was sourced from the Product Review website (<a class="reference external" href="https://www.productreview.com.au">https://www.productreview.com.au</a>). <a class="reference external" href="http://ProductReview.com.au">ProductReview.com.au</a> is a website devoted to providing consumer opinions on products, services and businesses in Australia.</p>
 <p>The dataset for this case study includes 19,395 product reviews in the period May 2017 to August 2020 that relate to travel insurance from 12 different providers.</p>
 </section>
 <section id="packages">
-<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h2>
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h2>
 <p>This section installs packages that will be required for this exercise/case study.
 n.b. for installing <code class="docutils literal notranslate"><span class="pre">wordcloud</span></code>, if <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">wordcloud</span></code> gives an error, try <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">wordcloud</span></code>.</p>
 <div class="cell docutils container">
@@ -1040,7 +730,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 </div>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
 <p>This section defines functions that will be used for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1125,7 +815,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 </div>
 </section>
 <section id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h2>
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <p>This section:</p>
 <ul class="simple">
 <li><p>imports the data that will be used in the modelling;</p></li>
@@ -1133,7 +823,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <li><p>prepares the data for modelling.</p></li>
 </ul>
 <section id="import-data">
-<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create dataset from the csv import.</span>
@@ -1172,7 +862,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 </div>
 </section>
 <section id="explore-data-eda">
-<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this headline">#</a></h3>
+<h3>Explore data (EDA)<a class="headerlink" href="#explore-data-eda" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># View the features of the dataset.</span>
@@ -1214,7 +904,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 </div>
 </section>
 <section id="prepare-data">
-<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h3>
+<h3>Prepare data<a class="headerlink" href="#prepare-data" title="Permalink to this heading">#</a></h3>
 <p>This section involves cleaning the data to prepare it for analysis. The following cleaning steps are taken:</p>
 <ul class="simple">
 <li><p>convert all words to lowercase;</p></li>
@@ -1226,7 +916,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <li><p>perform lemmatisation (when doing a full clean).</p></li>
 </ul>
 <section id="clean-data">
-<h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this headline">#</a></h4>
+<h4>Clean data<a class="headerlink" href="#clean-data" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get stopwords.</span>
@@ -1381,7 +1071,7 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 </div>
 </section>
 <section id="subset-data">
-<h4>Subset data<a class="headerlink" href="#subset-data" title="Permalink to this headline">#</a></h4>
+<h4>Subset data<a class="headerlink" href="#subset-data" title="Permalink to this heading">#</a></h4>
 <p>This section allows you to subset the data to be used in the analysis. For example, you might choose a subset of the entire date range, or you might choose to review only observations with a certain rating.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1414,14 +1104,14 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 </div>
 </section>
 <section id="vectorise">
-<h4>Vectorise<a class="headerlink" href="#vectorise" title="Permalink to this headline">#</a></h4>
+<h4>Vectorise<a class="headerlink" href="#vectorise" title="Permalink to this heading">#</a></h4>
 <p>Two vectorisation approaches are used below:</p>
 <ul class="simple">
 <li><p>approach 1 uses TF-IDF; and</p></li>
 <li><p>approach 2 uses BERT.</p></li>
 </ul>
 <section id="tf-idf">
-<h5>TF-IDF<a class="headerlink" href="#tf-idf" title="Permalink to this headline">#</a></h5>
+<h5>TF-IDF<a class="headerlink" href="#tf-idf" title="Permalink to this heading">#</a></h5>
 <p>In this approach, TF-IDF is used to get the statistical weights of the tokens in each review. These weights are then reduced to two dimensions using t-SNE (t-SNE is an alternative dimension reduction technique to PCA). This makes it easier to visualise the different clusters that are found using K-Means clustering (see the Modelling section of the notebook).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1446,7 +1136,7 @@ Shape of list containing reviews and their t-SNE components: (19395, 2)
 </div>
 </section>
 <section id="bert">
-<h5>BERT<a class="headerlink" href="#bert" title="Permalink to this headline">#</a></h5>
+<h5>BERT<a class="headerlink" href="#bert" title="Permalink to this heading">#</a></h5>
 <p>This approach uses BERT to get the encodings for each review. These weights are then again reduced to two dimensions using t-SNE to make it easier to visualise the different clusters that are found using K-Means clustering.</p>
 <p>Import the BERT data set (the text that has only had basic cleaning).</p>
 <div class="cell docutils container">
@@ -1535,10 +1225,10 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 </section>
 </section>
 <section id="modelling">
-<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h2>
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this heading">#</a></h2>
 <p>This section uses the vectorised reviews to perform topic modelling. This allows the reviews to be clustered into different topics, to identify the main themes that emerge from the reviews.</p>
 <section id="using-tf-idf-vectorisation">
-<h3>Using TF-IDF vectorisation<a class="headerlink" href="#using-tf-idf-vectorisation" title="Permalink to this headline">#</a></h3>
+<h3>Using TF-IDF vectorisation<a class="headerlink" href="#using-tf-idf-vectorisation" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the TF-IDF approach to cluster the reviews into K topics.</span>
@@ -1601,18 +1291,18 @@ Getting wordcloud for topic 5 ...
 Getting wordcloud for topic 6 ...
 </pre></div>
 </div>
-<img alt="../_images/DAA_M07_CS2_37_1.png" src="../_images/DAA_M07_CS2_37_1.png" />
-<img alt="../_images/DAA_M07_CS2_37_2.png" src="../_images/DAA_M07_CS2_37_2.png" />
-<img alt="../_images/DAA_M07_CS2_37_3.png" src="../_images/DAA_M07_CS2_37_3.png" />
-<img alt="../_images/DAA_M07_CS2_37_4.png" src="../_images/DAA_M07_CS2_37_4.png" />
-<img alt="../_images/DAA_M07_CS2_37_5.png" src="../_images/DAA_M07_CS2_37_5.png" />
-<img alt="../_images/DAA_M07_CS2_37_6.png" src="../_images/DAA_M07_CS2_37_6.png" />
-<img alt="../_images/DAA_M07_CS2_37_7.png" src="../_images/DAA_M07_CS2_37_7.png" />
+<img alt="../_images/0038669afe1ef5181d54a6c29806435c92405d3fd02373a3aee4cdcddc0e720e.png" src="../_images/0038669afe1ef5181d54a6c29806435c92405d3fd02373a3aee4cdcddc0e720e.png" />
+<img alt="../_images/9b870b94ee106f2b5c3b7de0d00da96a9e4f338a992793eaa6007a7005b03daf.png" src="../_images/9b870b94ee106f2b5c3b7de0d00da96a9e4f338a992793eaa6007a7005b03daf.png" />
+<img alt="../_images/dbd4fb399d2ff749748475722d60cc3209cd34954b9267a9afd95df43676892e.png" src="../_images/dbd4fb399d2ff749748475722d60cc3209cd34954b9267a9afd95df43676892e.png" />
+<img alt="../_images/a9a978c87b9e711bcfe25f1d24781eefee0ae082d48aed95c3992e5bfb41a3d1.png" src="../_images/a9a978c87b9e711bcfe25f1d24781eefee0ae082d48aed95c3992e5bfb41a3d1.png" />
+<img alt="../_images/f0d62d0cf909362116db85698530c1e2dd4f826d63c3b9f2c3968c882eebaac0.png" src="../_images/f0d62d0cf909362116db85698530c1e2dd4f826d63c3b9f2c3968c882eebaac0.png" />
+<img alt="../_images/8af2f8dbeef3b7f45970bbbe737f033c919bdd02a92f68082c9f6c0f3e8c2fe7.png" src="../_images/8af2f8dbeef3b7f45970bbbe737f033c919bdd02a92f68082c9f6c0f3e8c2fe7.png" />
+<img alt="../_images/38a2648ff7d6c47b339f27d20ec1ffdccc684aaf0cfa3dca28e46fc85ade34fd.png" src="../_images/38a2648ff7d6c47b339f27d20ec1ffdccc684aaf0cfa3dca28e46fc85ade34fd.png" />
 </div>
 </div>
 </section>
 <section id="using-bert-vectorisation">
-<h3>Using BERT vectorisation<a class="headerlink" href="#using-bert-vectorisation" title="Permalink to this headline">#</a></h3>
+<h3>Using BERT vectorisation<a class="headerlink" href="#using-bert-vectorisation" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply K-Means clustering to the BERT vectors.</span>
@@ -1671,19 +1361,19 @@ Getting wordcloud for topic 5 ...
 Getting wordcloud for topic 6 ...
 </pre></div>
 </div>
-<img alt="../_images/DAA_M07_CS2_40_1.png" src="../_images/DAA_M07_CS2_40_1.png" />
-<img alt="../_images/DAA_M07_CS2_40_2.png" src="../_images/DAA_M07_CS2_40_2.png" />
-<img alt="../_images/DAA_M07_CS2_40_3.png" src="../_images/DAA_M07_CS2_40_3.png" />
-<img alt="../_images/DAA_M07_CS2_40_4.png" src="../_images/DAA_M07_CS2_40_4.png" />
-<img alt="../_images/DAA_M07_CS2_40_5.png" src="../_images/DAA_M07_CS2_40_5.png" />
-<img alt="../_images/DAA_M07_CS2_40_6.png" src="../_images/DAA_M07_CS2_40_6.png" />
-<img alt="../_images/DAA_M07_CS2_40_7.png" src="../_images/DAA_M07_CS2_40_7.png" />
+<img alt="../_images/76e0eb0cc33b2d5a69174e0f5998c89acd32318d1051742db8fa544fc068660b.png" src="../_images/76e0eb0cc33b2d5a69174e0f5998c89acd32318d1051742db8fa544fc068660b.png" />
+<img alt="../_images/e255238ce783e1ada88169a357a9482bc85072e1b28698168cbd5829ee4014b6.png" src="../_images/e255238ce783e1ada88169a357a9482bc85072e1b28698168cbd5829ee4014b6.png" />
+<img alt="../_images/245050e4e7dc78dc639a7fc1b69bb6f0a30e9b86f6aa8718762ef0b832ce34a3.png" src="../_images/245050e4e7dc78dc639a7fc1b69bb6f0a30e9b86f6aa8718762ef0b832ce34a3.png" />
+<img alt="../_images/033f47b7927c6ff8a4add0b1f9882573692e7f091b0491c4a2e6dcaca2c6f0c7.png" src="../_images/033f47b7927c6ff8a4add0b1f9882573692e7f091b0491c4a2e6dcaca2c6f0c7.png" />
+<img alt="../_images/32efdd3f1ead20d557099305cbf3a6110d2028d4661a9ed9555497611b3ebffe.png" src="../_images/32efdd3f1ead20d557099305cbf3a6110d2028d4661a9ed9555497611b3ebffe.png" />
+<img alt="../_images/92b03e3a66eabd76fc8d1cbb25689e0a2efeace15a4618c1e15fc888ffbf124c.png" src="../_images/92b03e3a66eabd76fc8d1cbb25689e0a2efeace15a4618c1e15fc888ffbf124c.png" />
+<img alt="../_images/3647725b55b6edc7726b8ff294004f3c943a7c5d3e765e5302aa6dc1ee32695d.png" src="../_images/3647725b55b6edc7726b8ff294004f3c943a7c5d3e765e5302aa6dc1ee32695d.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="evaluate">
-<h2>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">#</a></h2>
+<h2>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this heading">#</a></h2>
 <p>This section performs some evaluation of the topic modelling using TF-IDF and BERT.</p>
 <p>The metric used below is the ‘silhouette value’ which is a measure of how similar observations are to their own cluster compared to other clusters. This is an alternative evaluation measure to those presented in Module 7.</p>
 <p>The best silhouette value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters. Negative values generally indicate that an observation has been assigned to the wrong cluster, as a different cluster is more similar.</p>
@@ -1722,7 +1412,7 @@ WCSS Score (BERT): -4795652.0
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="commentary">
-<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this headline">#</a></h1>
+<h1>Commentary<a class="headerlink" href="#commentary" title="Permalink to this heading">#</a></h1>
 <p>The ‘Monitor results’ section of Case Study 2 in Module 6 of the DAA course contained a discussion of how the analysis such as that conducted above can be used to interpret key areas or themes of feedback from travel insurance customers.</p>
 <p>The reader can play around with analysing different subsets of the reviews in this case study, to see what themes emerge for reviews with high and low ratings, and for reviews over different time periods.</p>
 </section>
@@ -1739,7 +1429,7 @@ WCSS Score (BERT): -4795652.0
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./docs"
         },
         predefinedOutput: true
@@ -1747,52 +1437,129 @@ WCSS Score (BERT): -4795652.0
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="DAA_M07_CS1.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Py: Classifying review sentiment</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DAA_M07_CS1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Py: Classifying review sentiment</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="DAA_2021_S2_Tutorial10_exercise_scipy.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="DAA_2021_S2_Tutorial10_exercise_scipy.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Py: Linear Programming</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Py: Customer Sentiment Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-problem">Identify the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data">Import data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-data-eda">Explore data (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-data">Prepare data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-data">Clean data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-data">Subset data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorise">Vectorise</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#bert">BERT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-tf-idf-vectorisation">Using TF-IDF vectorisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bert-vectorisation">Using BERT vectorisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate">Evaluate</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commentary">Commentary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By YDAWG, DAPC, YAC and other contributors.<br/>
-  
-    <div class="extra_footer">
-       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By YDAWG, DAPC, YAC and other contributors.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+   The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

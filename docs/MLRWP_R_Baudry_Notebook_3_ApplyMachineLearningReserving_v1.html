@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>R: Baudry ML Reserving Pt 3 &#8212; Actuaries&#39; Analytical Cookbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script data-website-id="f2934c40-e673-4ab5-9658-4b594221551e" defer="defer" src="https://analytics.umami.is/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,979 +63,569 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Py: Socio-Economic Index Construction" href="DAA_M06_CS1.html" />
+    <link rel="next" title="Py: Socio-Economic Index Construction" href="SEIFA_IER_index_2021_replicate.html" />
     <link rel="prev" title="R: Baudry ML Reserving Pt 2" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Python
- </span>
-</p>
+    
+    
+    <img src="../_static/actuaries-logo.svg" class="logo__image only-light" alt="Actuaries' Analytical Cookbook - Home"/>
+    <script>document.write(`<img src="../_static/actuaries-logo.svg" class="logo__image only-dark" alt="Actuaries' Analytical Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_py.html">
-   About Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started.html">
-   Setting up Your Python Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_by_example.html">
-   An Introductory Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="learn_more.html">
-   Learn More
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Useful_Python_packages.html">
-   Useful Python packages for Data Science
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Performance_gottagofaster.html">
-   Py: Python for Performance
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_py.html">About Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Useful_Python_packages.html">Useful Python packages for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_gottagofaster.html">Py: Python for Performance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to R
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_R.html">
-   About R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_R.html">
-   Setting Up R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="introductory_R.html">
-   Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intermediate_R.html">
-   Next Steps With R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="top_ten_r_packages.html">
-   Useful Packages
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_DataTable.html">
-   R: data.table for actuaries
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_R.html">About R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_R.html">Setting Up R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_R.html">Next Steps With R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="top_ten_r_packages.html">Useful Packages</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_DataTable.html">R: data.table for actuaries</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workflow Management
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflow Management</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="version_control.html">
-   Version control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="predict_API_gradio.html">
-   Py: Productionising predictive models as API
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predict_API_gradio.html">Py: Productionising predictive models as API</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Regression, Classification and Technical Price
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression, Classification and Technical Price</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS1.html">
-   Py: Customer Churn Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multitasking_risk_pricing.html">
-   Py/R: Multitasking Risk Pricing Using Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="py_shap_values.html">
-   Py: Explainable Models with SHAP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_bias_w_ChatGPT.html">
-   Py: Investigating Neural Network Biases with ChatGPT
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS1.html">Py: Customer Churn Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitasking_risk_pricing.html">Py/R: Multitasking Risk Pricing Using Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_shap_values.html">Py: Explainable Models with SHAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_bias_w_ChatGPT.html">Py: Investigating Neural Network Biases with ChatGPT</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Life Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Life Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LifeRecipeBook.html">
-   R: Life Modelling Recipes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="life_stats.html">
-   R: Life Industry Stats in Tableau and R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bayesian-applications.html">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trees.html">
-   R: Decision Tree Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="LifeRecipeBook.html">R: Life Modelling Recipes</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="life_stats.html">R: Life Industry Stats in Tableau and R</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="bayesian-applications.html">R: Bayesian Applications</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="trees.html">R: Decision Tree Applications</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Insurance</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="SQL%20Query%20for%20Triangles.html">
-   SQL: Queries to Create Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_GLMs.html">
-   R: Reserving with GLMs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Lasso.html">
-   R: Reserving with LASSO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_mlr3.html">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
-   Py: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">
-   R: Baudry ML Reserving Pt 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">
-   R: Baudry ML Reserving Pt 2
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%20Query%20for%20Triangles.html">SQL: Queries to Create Triangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_GLMs.html">R: Reserving with GLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Lasso.html">R: Reserving with LASSO</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_mlr3.html">R: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_Py_triangles_example.html">Py: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">R: Baudry ML Reserving Pt 1</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">R: Baudry ML Reserving Pt 2</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R: Baudry ML Reserving Pt 3</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Unsupervised Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS1.html">
-   Py: Socio-Economic Index Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS2.html">
-   Py: Clustering Credit Card Fraud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex4.html">
-   Py: K-means clustering of COVID dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex5.html">
-   Py: Hierarchical clustering on COVID dataset
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SEIFA_IER_index_2021_replicate.html">Py: Socio-Economic Index Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_CS2.html">Py: Clustering Credit Card Fraud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex4.html">Py: K-means clustering of COVID dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex5.html">Py: Hierarchical clustering on COVID dataset</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Natural Language Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="R_case_study_word_cloud.html">
-   R: Word Cloud Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="textClassificationEntry.html">
-   Py: Text Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex10.html">
-   Py: Decision Tree Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex18.html">
-   Py: Neural Net Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS1.html">
-   Py: Classifying review sentiment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS2.html">
-   Py: Customer Sentiment Analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="R_case_study_word_cloud.html">R: Word Cloud Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textClassificationEntry.html">Py: Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex10.html">Py: Decision Tree Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex18.html">Py: Neural Net Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS1.html">Py: Classifying review sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS2.html">Py: Customer Sentiment Analysis</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Business Optimization
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Business Optimization</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
-   Py: Linear Programming
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">Py: Linear Programming</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Image Recognition
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Recognition</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS2.html">
-   Py: Image Recognition
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS2.html">Py: Image Recognition</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Ethics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Ethics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="automated_decision.html">
-   Automated Decision-Making Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="automated_decision.html">Automated Decision-Making Systems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contributing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="contributing.html">
-   Contributing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preparations-before-modelling">
-   Preparations before modelling
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulate-data-and-prepare-database">
-   Simulate data and prepare database
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
-     Simulate policy and claim data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#join-policy-and-claim-data">
-     Join policy and claim data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#timeslice-policy-claim">
-     Timeslice policy claim
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#select-valuation-date">
-     Select valuation date
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-rbns-dataset">
-     Creating RBNS dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
-     Creating IBNR dataset
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-build">
-   Model build
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rbns-model">
-     RBNS model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#creating-xgboost-dataset">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#inspect-model-fit">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-rbns-reserves">
-       Summarising RBNS reserves
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ibnr-frequency-model">
-     IBNR Frequency model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">
-       Summarising IBNR claim counts
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ibnr-severity-model">
-     IBNR Severity model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">
-       Summarising IBNR claim costs
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>R: Baudry ML Reserving Pt 3</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preparations-before-modelling">
-   Preparations before modelling
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulate-data-and-prepare-database">
-   Simulate data and prepare database
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulate-policy-and-claim-data">
-     Simulate policy and claim data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#join-policy-and-claim-data">
-     Join policy and claim data
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#timeslice-policy-claim">
-     Timeslice policy claim
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#select-valuation-date">
-     Select valuation date
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-rbns-dataset">
-     Creating RBNS dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#creating-ibnr-dataset">
-     Creating IBNR dataset
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-build">
-   Model build
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rbns-model">
-     RBNS model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#creating-xgboost-dataset">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#inspect-model-fit">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-rbns-reserves">
-       Summarising RBNS reserves
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ibnr-frequency-model">
-     IBNR Frequency model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">
-       Summarising IBNR claim counts
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ibnr-severity-model">
-     IBNR Severity model
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       Creating xgboost dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       Fit initial model using cross validation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id7">
-       Fit final model on all training data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       Inspect model fit
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">
-       Summarising IBNR claim costs
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>R: Baudry ML Reserving Pt 3</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Baudry ML Reserving Pt 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparations-before-modelling">Preparations before modelling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-data-and-prepare-database">Simulate data and prepare database</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-policy-and-claim-data">Simulate policy and claim data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-policy-and-claim-data">Join policy and claim data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeslice-policy-claim">Timeslice policy claim</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-valuation-date">Select valuation date</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-rbns-dataset">Creating RBNS dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-ibnr-dataset">Creating IBNR dataset</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-build">Model build</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rbns-model">RBNS model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-xgboost-dataset">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-model-fit">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-rbns-reserves">Summarising RBNS reserves</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibnr-frequency-model">IBNR Frequency model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">Summarising IBNR claim counts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibnr-severity-model">IBNR Severity model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">Summarising IBNR claim costs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="r-baudry-ml-reserving-pt-3">
-<h1>R: Baudry ML Reserving Pt 3<a class="headerlink" href="#r-baudry-ml-reserving-pt-3" title="Permalink to this headline">#</a></h1>
+<h1>R: Baudry ML Reserving Pt 3<a class="headerlink" href="#r-baudry-ml-reserving-pt-3" title="Permalink to this heading">#</a></h1>
 <p><em>This article was originally created by Nigel Carpenter and published in the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">General Insurance Machine Learning for Reserving Working Party (“MLR-WP”) blog</a>. The MLR-WP is an international research group on machine learning techniques to reserving, with over 50 actuaries from around the globe. The goal of the group is to bring machine learning techniques into widespread adoption ‘on the ground’ by identifying what the barriers are, communicating any benefits, and helping develop the research techniques in pragmatic ways. Whilst some articles have been brought into this cookbook, consider exploring the <a class="reference external" href="https://institute-and-faculty-of-actuaries.github.io/mlr-blog/">blog</a> further for additional content including detailed walkthroughs of more advanced models.</em></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p>This is the third notebook of a series of three that outlines and elaborates upon code used to replicate the central scenario in the paper of Maximilien Baudry “NON-PARAMETRIC INDIVIDUAL
-CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&amp;fg=1">Presentation</a> <a class="reference external" href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/%24FILE/Reserving-article.pdf">Paper</a>)</p>
+CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www.institutdesactuaires.com/global/gene/link.php?doc_id=11747&amp;fg=1">Presentation</a> <a class="reference external" href="http://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/6b3d579479584e35c12581eb00468777/$FILE/Reserving-article.pdf">Paper</a>)</p>
 <p>In this notebook we step through the process to apply machine learning techniques in order to create reserve estimates following the techniques set out in sections 3 and 4 of Baudry’s paper.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="preparations-before-modelling">
-<h1>Preparations before modelling<a class="headerlink" href="#preparations-before-modelling" title="Permalink to this headline">#</a></h1>
+<h1>Preparations before modelling<a class="headerlink" href="#preparations-before-modelling" title="Permalink to this heading">#</a></h1>
 <p>The reserving data structures built in this notebook are from a simulated phone insurance dataset. The creation of that simulated data and machine learning data structures for reserving have been set out in the first and second notebooks of this series.</p>
 <p>Rather than repeat that code in this notebook the key routines and functions have been put into the r script <em>Baudry_functions_v2.R</em> enabling us to quickly load them for use in this notebook.</p>
 <div class="cell tag_remove_output docutils container">
@@ -1052,10 +654,10 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="simulate-data-and-prepare-database">
-<h1>Simulate data and prepare database<a class="headerlink" href="#simulate-data-and-prepare-database" title="Permalink to this headline">#</a></h1>
+<h1>Simulate data and prepare database<a class="headerlink" href="#simulate-data-and-prepare-database" title="Permalink to this heading">#</a></h1>
 <p>We can now quickly repeat the process from Notebooks 1 and 2 using the functions in the script.</p>
 <section id="simulate-policy-and-claim-data">
-<h2>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this headline">#</a></h2>
+<h2>Simulate policy and claim data<a class="headerlink" href="#simulate-policy-and-claim-data" title="Permalink to this heading">#</a></h2>
 <p>We start with a simulated phone insurance policy and claim dataset. I am calling the function from Notebook 1 of this series to create the dataset. Using a fixed seed will ensure you get a reproducible simulated dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1066,7 +668,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="join-policy-and-claim-data">
-<h2>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this headline">#</a></h2>
+<h2>Join policy and claim data<a class="headerlink" href="#join-policy-and-claim-data" title="Permalink to this heading">#</a></h2>
 <p>We then join the simulated phone insurance policy and claim dataset. I have taken the code from Notebook 2 and wrapped it in to a function to perform the join  and subsequent data tidying.</p>
 <p>Note that if you are working with your own company data you would likely need to amend this function to work with the specifics of your data.</p>
 <div class="cell docutils container">
@@ -1081,7 +683,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="timeslice-policy-claim">
-<h2>Timeslice policy claim<a class="headerlink" href="#timeslice-policy-claim" title="Permalink to this headline">#</a></h2>
+<h2>Timeslice policy claim<a class="headerlink" href="#timeslice-policy-claim" title="Permalink to this heading">#</a></h2>
 <p>We then time slice the joined policy and claim dataset. Again, I have taken the code from Notebook 2 and wrapped it into a function to perform the time slicing, given a set of dates that define the time slice periods.</p>
 <p>Again, note that this function would need to be re-written to work with your own company data and more importantly it currently would not work correctly with partial payment claims.</p>
 <div class="cell docutils container">
@@ -1094,7 +696,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="select-valuation-date">
-<h2>Select valuation date<a class="headerlink" href="#select-valuation-date" title="Permalink to this headline">#</a></h2>
+<h2>Select valuation date<a class="headerlink" href="#select-valuation-date" title="Permalink to this heading">#</a></h2>
 <p>Before we create the RBNS and IBNER datasets we must pick a valuation point from the available timeslices. I’m selecting the 10th point for illustration, which is the 10th 30 day period from 01/01/2016, ie a valuation date of 27/09/2016.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1107,7 +709,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="creating-rbns-dataset">
-<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Creating RBNS dataset<a class="headerlink" href="#creating-rbns-dataset" title="Permalink to this heading">#</a></h2>
 <p>We start with the RBNS dataset and by defining the list of features that will be used in the RBNS model dataset.</p>
 <p>As you follow this example you may observe that we are not using the historic claim payment information as an explanatory feature in the RBNS reserve prediction model. Baudry’s paper and approach does allow for the inclusion of such information so it may seem somewhat strange not to include it in this worked example.</p>
 <p>I believe the reason that it is not included is a result of the way data has been simulated, specifically that simulated claims are settled with a single payment. That assumption combined with the fact that this method is being applied to individual claim level data prevents the previous time period’s payment information being used by a machine learning model. That is because the previous period’s payment amount can only ever take the value zero for a claim requiring an RBNS reserve. (Claims where the previous paid is non-zero have been paid and settled ie no longer require an RBNS reserve). Consequently, in this central simulated example, prior payment amount is uninformative in the machine learning process and therefore cannot be included as a feature in the RBNS dataset.</p>
@@ -1187,7 +789,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="creating-ibnr-dataset">
-<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this headline">#</a></h2>
+<h2>Creating IBNR dataset<a class="headerlink" href="#creating-ibnr-dataset" title="Permalink to this heading">#</a></h2>
 <p>We can then create the IBNR dataset following a similar procedure starting by defining the list of features that will be used in the IBNR model. Then we call the functions that convert the timesliced policy and claim data into the IBNR train and test datasets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1286,16 +888,16 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="model-build">
-<h1>Model build<a class="headerlink" href="#model-build" title="Permalink to this headline">#</a></h1>
+<h1>Model build<a class="headerlink" href="#model-build" title="Permalink to this heading">#</a></h1>
 <p>I will use the xgboost R machine learning  package to build the models. In Baudry’s original paper he used the extraTrees package; a variant upon Random Forests.</p>
 <p>Xgboost has been selected as it is the most popular implementation of the gradient boosting machine (GBM) algorithm. GBMs have been known since around 2015 to be the most accurate algorithmic technique for regression and classification tasks.</p>
 <p>The code and modeling process for each reserve type is very similar so they are shown in the tabbed sections below rather that repeating in-line.</p>
 <section id="rbns-model">
-<h2>RBNS model<a class="headerlink" href="#rbns-model" title="Permalink to this headline">#</a></h2>
+<h2>RBNS model<a class="headerlink" href="#rbns-model" title="Permalink to this heading">#</a></h2>
 <p>Starting with the RBNS reserves we will first build a model upon the training data using a cross validated approach to enable selection of key xgboost hyperparameters.</p>
 <p>Then using optimal parameters we retrain on the complete training dataset. This trained model is then scored against the test data in order to create predictions from which the RBNS reserve can be calculated.</p>
 <section id="creating-xgboost-dataset">
-<h3>Creating xgboost dataset<a class="headerlink" href="#creating-xgboost-dataset" title="Permalink to this headline">#</a></h3>
+<h3>Creating xgboost dataset<a class="headerlink" href="#creating-xgboost-dataset" title="Permalink to this heading">#</a></h3>
 <p>Xgboost requires it’s data to be in a specific format; a special matrix form called a DMatrix, for which there is a function <code class="docutils literal notranslate"><span class="pre">xgb.DMatrix</span></code>. Not all variable types can be passed to <code class="docutils literal notranslate"><span class="pre">xgb.DMatrix</span></code> in particular categorical or nominal variables such as <strong>Brand</strong> have to be converted from text to numeric values.</p>
 <p>For this example I’ve chosen to use the <code class="docutils literal notranslate"><span class="pre">parsnip</span></code> package and create a recipe that converts nominal predictor values into a <strong>one-hot-encoded</strong> form.</p>
 <div class="cell docutils container">
@@ -1340,7 +942,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 </div>
 </section>
 <section id="fit-initial-model-using-cross-validation">
-<h3>Fit initial model using cross validation<a class="headerlink" href="#fit-initial-model-using-cross-validation" title="Permalink to this headline">#</a></h3>
+<h3>Fit initial model using cross validation<a class="headerlink" href="#fit-initial-model-using-cross-validation" title="Permalink to this heading">#</a></h3>
 <p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
 <p>I have used the <strong>reg:tweedie</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
@@ -1355,7 +957,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
    0.00    0.00    0.00   76.44    0.00  913.00 
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_30_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_30_1.png" />
+<img alt="../_images/e95dc9ed6aad307844a34d2e09a7adff2b4577afdbd70b415ae8f4ef9115f713.png" src="../_images/e95dc9ed6aad307844a34d2e09a7adff2b4577afdbd70b415ae8f4ef9115f713.png" />
 </div>
 </div>
 <p>In a real world example a process of hyper-parameter tuning would be undertaken in order to select more optimal xgboost hyper-parameters.</p>
@@ -1419,7 +1021,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="fit-final-model-on-all-training-data">
-<h3>Fit final model on all training data<a class="headerlink" href="#fit-final-model-on-all-training-data" title="Permalink to this headline">#</a></h3>
+<h3>Fit final model on all training data<a class="headerlink" href="#fit-final-model-on-all-training-data" title="Permalink to this heading">#</a></h3>
 <p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_RBNS_CV$best_iteration</span></code>.</p>
 <p>We can then use this to train a final model on all the data.</p>
 <div class="cell docutils container">
@@ -1457,7 +1059,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="inspect-model-fit">
-<h3>Inspect model fit<a class="headerlink" href="#inspect-model-fit" title="Permalink to this headline">#</a></h3>
+<h3>Inspect model fit<a class="headerlink" href="#inspect-model-fit" title="Permalink to this heading">#</a></h3>
 <p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1468,7 +1070,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_38_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_38_0.png" />
+<img alt="../_images/68cb5aca06fa1989ac6e6f6d7ebe81a13cad416164784946bd17bd9453fe1dac.png" src="../_images/68cb5aca06fa1989ac6e6f6d7ebe81a13cad416164784946bd17bd9453fe1dac.png" />
 </div>
 </div>
 <p>An increasingly popular and more robust approach is to use SHAP values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
@@ -1486,7 +1088,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_40_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_40_0.png" />
+<img alt="../_images/64912111d87ace6bba3773b253904eada4cad17475f89e03ca4819e5a8c06e96.png" src="../_images/64912111d87ace6bba3773b253904eada4cad17475f89e03ca4819e5a8c06e96.png" />
 </div>
 </div>
 <p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
@@ -1529,7 +1131,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “There are other near singularities as well. 4”
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_42_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_42_1.png" />
+<img alt="../_images/2e39e4c3f985d4bbaaad4ee81556a5c8257e4704409d2b6d8910f368c7010c30.png" src="../_images/2e39e4c3f985d4bbaaad4ee81556a5c8257e4704409d2b6d8910f368c7010c30.png" />
 </div>
 </div>
 <p>The feature importance and partial dependency plots provide quick insight into the model.</p>
@@ -1562,12 +1164,12 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 Data has N = 833 | zoom in length is 83 at location 500.
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_45_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_45_1.png" />
+<img alt="../_images/20f1b7c05520411ac480321bd305de8bec3d8d917aef4e1ad1d7568dc6f0e741.png" src="../_images/20f1b7c05520411ac480321bd305de8bec3d8d917aef4e1ad1d7568dc6f0e741.png" />
 </div>
 </div>
 </section>
 <section id="summarising-rbns-reserves">
-<h3>Summarising RBNS reserves<a class="headerlink" href="#summarising-rbns-reserves" title="Permalink to this headline">#</a></h3>
+<h3>Summarising RBNS reserves<a class="headerlink" href="#summarising-rbns-reserves" title="Permalink to this heading">#</a></h3>
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the RBNS predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1647,10 +1249,10 @@ Data has N = 833 | zoom in length is 83 at location 500.
 </section>
 </section>
 <section id="ibnr-frequency-model">
-<h2>IBNR Frequency model<a class="headerlink" href="#ibnr-frequency-model" title="Permalink to this headline">#</a></h2>
+<h2>IBNR Frequency model<a class="headerlink" href="#ibnr-frequency-model" title="Permalink to this heading">#</a></h2>
 <p>IBNR reserves are built by multiplying the outpts of a claim frequency and claim severity model. The general process of building the model follows that of the RBNS reserves.</p>
 <section id="id1">
-<h3>Creating xgboost dataset<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Creating xgboost dataset<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Again we convert the data into a specific matrix form called a DMatrix. However before doing so we aggregate the data for efficiency of model fit times. There could be a loss of accuracy in aggregating data, so in practice this is something you would want to experiment with.</p>
 <p>The other point to note is the values of <strong>flgTrain</strong> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training rows have a value of 2.</p>
 <div class="cell docutils container">
@@ -1705,7 +1307,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 </div>
 </section>
 <section id="id2">
-<h3>Fit initial model using cross validation<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Fit initial model using cross validation<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
 <p>I have used the <strong>count:poisson</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
@@ -1715,7 +1317,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_52_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_52_0.png" />
+<img alt="../_images/db061b2d416efdd76331e1e36e4fb6ed28d56f405d33cd833ec319d963566a27.png" src="../_images/db061b2d416efdd76331e1e36e4fb6ed28d56f405d33cd833ec319d963566a27.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1776,7 +1378,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="id3">
-<h3>Fit final model on all training data<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Fit final model on all training data<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_IBNR_F_CV$best_iteration</span></code>.</p>
 <p>We can then use this to train a final model on all the data.</p>
 <div class="cell docutils container">
@@ -1808,7 +1410,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="id4">
-<h3>Inspect model fit<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Inspect model fit<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1819,7 +1421,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_59_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_59_0.png" />
+<img alt="../_images/8d7fc6581e9500422bc9b9458211d1cbee52c3bd5f6395316a347ae85eecbdeb.png" src="../_images/8d7fc6581e9500422bc9b9458211d1cbee52c3bd5f6395316a347ae85eecbdeb.png" />
 </div>
 </div>
 <p>An increasingly popular and more robust approach is to use SHAP  values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
@@ -1840,7 +1442,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_61_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_61_0.png" />
+<img alt="../_images/425a775318a2ae73a3c00a5d5f8c144d52f793652fbe6a2301cfdaecc966a95e.png" src="../_images/425a775318a2ae73a3c00a5d5f8c144d52f793652fbe6a2301cfdaecc966a95e.png" />
 </div>
 </div>
 <p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
@@ -1883,7 +1485,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “There are other near singularities as well. 1.01”
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_63_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_63_1.png" />
+<img alt="../_images/c243f53a25f5e38f5b99f2e008d3a3ff269be1be8ccd3b7d859b6f0cd50923c1.png" src="../_images/c243f53a25f5e38f5b99f2e008d3a3ff269be1be8ccd3b7d859b6f0cd50923c1.png" />
 </div>
 </div>
 <p>The feature importance and partial dependency plots provide quick insight into the model.</p>
@@ -1916,12 +1518,12 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 Data has N = 1111 | zoom in length is 111 at location 500.
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_66_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_66_1.png" />
+<img alt="../_images/2bb952cd72ef5afe8f5a0ed56fd58e76c0bac5dcf85441c0a5fa755c0a248034.png" src="../_images/2bb952cd72ef5afe8f5a0ed56fd58e76c0bac5dcf85441c0a5fa755c0a248034.png" />
 </div>
 </div>
 </section>
 <section id="summarising-ibnr-claim-counts">
-<h3>Summarising IBNR claim counts<a class="headerlink" href="#summarising-ibnr-claim-counts" title="Permalink to this headline">#</a></h3>
+<h3>Summarising IBNR claim counts<a class="headerlink" href="#summarising-ibnr-claim-counts" title="Permalink to this heading">#</a></h3>
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim count predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2020,10 +1622,10 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 </section>
 </section>
 <section id="ibnr-severity-model">
-<h2>IBNR Severity model<a class="headerlink" href="#ibnr-severity-model" title="Permalink to this headline">#</a></h2>
+<h2>IBNR Severity model<a class="headerlink" href="#ibnr-severity-model" title="Permalink to this heading">#</a></h2>
 <p>IBNR reserves are built by multiplying the outputs of a claim frequency and claim severity model. The general process of building the model follows that of the RBNS reserves.</p>
 <section id="id5">
-<h3>Creating xgboost dataset<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>Creating xgboost dataset<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>Again we convert the data into a specific matrix form called a DMatrix.</p>
 <p>The other point to note is the values of <em>flgTrain</em> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training roes have a value of 2.</p>
 <div class="cell docutils container">
@@ -2078,7 +1680,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 </div>
 </section>
 <section id="id6">
-<h3>Fit initial model using cross validation<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Fit initial model using cross validation<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>Having prepared the data for xgboost I can now fit an initial model. I’ve used a simple set of hyper-parameters and used cross validation to select the optimal number of boosted trees (nrounds) for these hyper-parameter selections by calling the <a class="reference external" href="http://xgb.cv">xgb.cv</a> function with early stopping.</p>
 <p>I have used the <strong>reg:gamma</strong> objective function based upon inspection of the target variable.</p>
 <div class="cell docutils container">
@@ -2093,7 +1695,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
     3.0   125.5   255.0   353.9   486.5  2011.0 
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_74_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_74_1.png" />
+<img alt="../_images/a1e97cfbed344bbe63b4a003fbb23de629f8719ad9ba516b83074143dea7626f.png" src="../_images/a1e97cfbed344bbe63b4a003fbb23de629f8719ad9ba516b83074143dea7626f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2150,7 +1752,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="id7">
-<h3>Fit final model on all training data<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Fit final model on all training data<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>Having fit the model using 5 fold cross validation we observe the optimum number of fitting rounds to be <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">xgb_IBNR_S_CV$best_iteration</span></code>.</p>
 <p>We can then us this to train a final model on all the data.</p>
 <div class="cell docutils container">
@@ -2185,7 +1787,7 @@ Stopping. Best iteration:
 </div>
 </section>
 <section id="id8">
-<h3>Inspect model fit<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Inspect model fit<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p>Having fitted the full model we can then inspect the model fit. The traditional way of inspecting global model feature importance is to use the gains chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2196,7 +1798,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_83_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_83_0.png" />
+<img alt="../_images/0897709340e19514ced77cbf3de3d24995bf2383cbeb8730257be0c4fe2710e2.png" src="../_images/0897709340e19514ced77cbf3de3d24995bf2383cbeb8730257be0c4fe2710e2.png" />
 </div>
 </div>
 <p>An increasingly popular and more robust approach is to use SHAP values <a class="reference external" href="http://">https://github.com/slundberg/shap</a>.  The SHAP equivalent of the feature importance chart is shown below.</p>
@@ -2214,7 +1816,7 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_85_0.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_85_0.png" />
+<img alt="../_images/a82c4b00acb3dbd257446b6db23f66c00b6254fa835dc5e8960bf08dbb0bd590.png" src="../_images/a82c4b00acb3dbd257446b6db23f66c00b6254fa835dc5e8960bf08dbb0bd590.png" />
 </div>
 </div>
 <p>A second useful chart is the partial dependence plot. This shows how the values of a predictive (input) feature influence the predicted (output) value, while holding the values of all other predictive (input) features constant. It is also known as the marginal effect.</p>
@@ -2276,7 +1878,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “There are other near singularities as well. 4”
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_87_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_87_1.png" />
+<img alt="../_images/bbb83609d4b5bec5cfd53d462f248efd69419dbc868871bfd7f02d93dccdeabf.png" src="../_images/bbb83609d4b5bec5cfd53d462f248efd69419dbc868871bfd7f02d93dccdeabf.png" />
 </div>
 </div>
 <p>The feature importance and partial dependency plots provide quick insight into the model.</p>
@@ -2308,12 +1910,12 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 Data has N = 1111 | zoom in length is 111 at location 500.
 </pre></div>
 </div>
-<img alt="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_89_1.png" src="../_images/MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1_89_1.png" />
+<img alt="../_images/ac303e5545cb6eb2f6a6ea48b00c58e7a3b0955c736fd0c6537030c85f4a07eb.png" src="../_images/ac303e5545cb6eb2f6a6ea48b00c58e7a3b0955c736fd0c6537030c85f4a07eb.png" />
 </div>
 </div>
 </section>
 <section id="summarising-ibnr-claim-costs">
-<h3>Summarising IBNR claim costs<a class="headerlink" href="#summarising-ibnr-claim-costs" title="Permalink to this headline">#</a></h3>
+<h3>Summarising IBNR claim costs<a class="headerlink" href="#summarising-ibnr-claim-costs" title="Permalink to this heading">#</a></h3>
 <p>By comparing the model predictions to the simulated claims run-off we can get a feel for the accuracy of the machine learning approach. Below I aggregate the IBNR claim cost predictions by claim occurrence month and compare them to the known simulated claim run-off.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2412,7 +2014,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
 <p>In this third notebook we have stepped through the process to apply machine learning techniques in order to create reserve estimates following the techniques set out in sections 3 and 4 of Baudry’s paper.</p>
 <p>Specifically we have shown how to apply the xgboost machine learning algorithm and illustrated how it can, with little human input, create reasonable reserve estimates as shown below.</p>
 <div class="cell tag_remove_input docutils container">
@@ -2474,7 +2076,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
             mode: "r"
         },
         kernelOptions: {
-            kernelName: "ir",
+            name: "ir",
             path: "./docs"
         },
         predefinedOutput: true
@@ -2482,52 +2084,139 @@ Data has N = 1111 | zoom in length is 111 at location 500.
     </script>
     <script>kernelName = 'ir'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">R: Baudry ML Reserving Pt 2</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">R: Baudry ML Reserving Pt 2</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="DAA_M06_CS1.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="SEIFA_IER_index_2021_replicate.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Py: Socio-Economic Index Construction</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Baudry ML Reserving Pt 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preparations-before-modelling">Preparations before modelling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-data-and-prepare-database">Simulate data and prepare database</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-policy-and-claim-data">Simulate policy and claim data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-policy-and-claim-data">Join policy and claim data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeslice-policy-claim">Timeslice policy claim</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-valuation-date">Select valuation date</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-rbns-dataset">Creating RBNS dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-ibnr-dataset">Creating IBNR dataset</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-build">Model build</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rbns-model">RBNS model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-xgboost-dataset">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-initial-model-using-cross-validation">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-final-model-on-all-training-data">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-model-fit">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-rbns-reserves">Summarising RBNS reserves</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibnr-frequency-model">IBNR Frequency model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-ibnr-claim-counts">Summarising IBNR claim counts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibnr-severity-model">IBNR Severity model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Creating xgboost dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Fit initial model using cross validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Fit final model on all training data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Inspect model fit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarising-ibnr-claim-costs">Summarising IBNR claim costs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By YDAWG, DAPC, YAC and other contributors.<br/>
-  
-    <div class="extra_footer">
-       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By YDAWG, DAPC, YAC and other contributors.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+   The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

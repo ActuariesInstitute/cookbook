@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>R: Bayesian Applications &#8212; Actuaries&#39; Analytical Cookbook</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script data-website-id="f2934c40-e673-4ab5-9658-4b594221551e" defer="defer" src="https://analytics.umami.is/script.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,859 +65,548 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/bayesian-applications';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="R: Decision Tree Applications" href="trees.html" />
     <link rel="prev" title="R: Life Industry Stats in Tableau and R" href="life_stats.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/actuaries-logo.svg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Actuaries' Analytical Cookbook</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to Python
- </span>
-</p>
+    
+    
+    <img src="../_static/actuaries-logo.svg" class="logo__image only-light" alt="Actuaries' Analytical Cookbook - Home"/>
+    <script>document.write(`<img src="../_static/actuaries-logo.svg" class="logo__image only-dark" alt="Actuaries' Analytical Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_py.html">
-   About Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started.html">
-   Setting up Your Python Environment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="python_by_example.html">
-   An Introductory Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="learn_more.html">
-   Learn More
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Useful_Python_packages.html">
-   Useful Python packages for Data Science
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Performance_gottagofaster.html">
-   Py: Python for Performance
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_py.html">About Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Useful_Python_packages.html">Useful Python packages for Data Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance_gottagofaster.html">Py: Python for Performance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduction to R
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to R</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="about_R.html">
-   About R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting_started_R.html">
-   Setting Up R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="introductory_R.html">
-   Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="intermediate_R.html">
-   Next Steps With R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="top_ten_r_packages.html">
-   Useful Packages
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_DataTable.html">
-   R: data.table for actuaries
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="about_R.html">About R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_R.html">Setting Up R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_R.html">Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_R.html">Next Steps With R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="top_ten_r_packages.html">Useful Packages</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_DataTable.html">R: data.table for actuaries</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Workflow Management
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflow Management</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="version_control.html">
-   Version control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="predict_API_gradio.html">
-   Py: Productionising predictive models as API
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="predict_API_gradio.html">Py: Productionising predictive models as API</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Regression, Classification and Technical Price
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression, Classification and Technical Price</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS1.html">
-   Py: Customer Churn Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="multitasking_risk_pricing.html">
-   Py/R: Multitasking Risk Pricing Using Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="py_shap_values.html">
-   Py: Explainable Models with SHAP
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_bias_w_ChatGPT.html">
-   Py: Investigating Neural Network Biases with ChatGPT
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS1.html">Py: Customer Churn Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitasking_risk_pricing.html">Py/R: Multitasking Risk Pricing Using Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_shap_values.html">Py: Explainable Models with SHAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_bias_w_ChatGPT.html">Py: Investigating Neural Network Biases with ChatGPT</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Life Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Life Insurance</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="LifeRecipeBook.html">
-   R: Life Modelling Recipes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="life_stats.html">
-   R: Life Industry Stats in Tableau and R
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="trees.html">
-   R: Decision Tree Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="LifeRecipeBook.html">R: Life Modelling Recipes</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="life_stats.html">R: Life Industry Stats in Tableau and R</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R: Bayesian Applications</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="trees.html">R: Decision Tree Applications</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  General Insurance
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Insurance</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="SQL%20Query%20for%20Triangles.html">
-   SQL: Queries to Create Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_GLMs.html">
-   R: Reserving with GLMs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Lasso.html">
-   R: Reserving with LASSO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_mlr3.html">
-   R: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_Py_triangles_example.html">
-   Py: Machine Learning Triangles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">
-   R: Baudry ML Reserving Pt 1
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">
-   R: Baudry ML Reserving Pt 2
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">
-   R: Baudry ML Reserving Pt 3
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SQL%20Query%20for%20Triangles.html">SQL: Queries to Create Triangles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_GLMs.html">R: Reserving with GLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Lasso.html">R: Reserving with LASSO</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_mlr3.html">R: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_Py_triangles_example.html">Py: Machine Learning Triangles</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_1_SimulateData_v1.html">R: Baudry ML Reserving Pt 1</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_2_CreateReservingDatabase_v1.html">R: Baudry ML Reserving Pt 2</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="MLRWP_R_Baudry_Notebook_3_ApplyMachineLearningReserving_v1.html">R: Baudry ML Reserving Pt 3</a></li>
+
+
+
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Unsupervised Learning
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS1.html">
-   Py: Socio-Economic Index Construction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_CS2.html">
-   Py: Clustering Credit Card Fraud
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex4.html">
-   Py: K-means clustering of COVID dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M06_Ex5.html">
-   Py: Hierarchical clustering on COVID dataset
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="SEIFA_IER_index_2021_replicate.html">Py: Socio-Economic Index Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_CS2.html">Py: Clustering Credit Card Fraud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex4.html">Py: K-means clustering of COVID dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M06_Ex5.html">Py: Hierarchical clustering on COVID dataset</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Natural Language Processing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="R_case_study_word_cloud.html">
-   R: Word Cloud Case Study
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="textClassificationEntry.html">
-   Py: Text Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex10.html">
-   Py: Decision Tree Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_Ex18.html">
-   Py: Neural Net Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS1.html">
-   Py: Classifying review sentiment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M07_CS2.html">
-   Py: Customer Sentiment Analysis
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="R_case_study_word_cloud.html">R: Word Cloud Case Study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="textClassificationEntry.html">Py: Text Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex10.html">Py: Decision Tree Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_Ex18.html">Py: Neural Net Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS1.html">Py: Classifying review sentiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M07_CS2.html">Py: Customer Sentiment Analysis</a></li>
+
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Business Optimization
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Business Optimization</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">
-   Py: Linear Programming
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_2021_S2_Tutorial10_exercise_scipy.html">Py: Linear Programming</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Image Recognition
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Image Recognition</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="DAA_M05_CS2.html">
-   Py: Image Recognition
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="DAA_M05_CS2.html">Py: Image Recognition</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Data Ethics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Ethics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="automated_decision.html">
-   Automated Decision-Making Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="automated_decision.html">Automated Decision-Making Systems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="zbibliography.html">Bibliography</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contributing
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="contributing.html">
-   Contributing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/ActuariesInstitute/cookbook/main?urlpath=tree/cookbook/docs/bayesian-applications.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/bayesian-applications.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ActuariesInstitute/cookbook/blob/main/cookbook/docs/bayesian-applications.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/bayesian-applications.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/bayesian-applications.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/ActuariesInstitute/cookbook/edit/main/cookbook/docs/bayesian-applications.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/docs/bayesian-applications.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications">
-   Applications
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#libraries">
-     Libraries
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mental-health-example">
-     Mental health example
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#choosing-a-prior">
-       Choosing a prior
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#non-informative-prior-uniform">
-         Non-informative prior, uniform
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">
-         Weakly informative prior, bimodial
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#informative-prior-failure-more-likely">
-         Informative prior, “failure” more likely
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#deriving-posterior">
-       Deriving posterior
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression-logistic">
-     Regression - logistic
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Background
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#heart-disease-data">
-       Heart disease data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">
-       Adjusting scales and changing priors
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-fit">
-       Model fit
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression-linear">
-     Regression - linear
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">
-     Estimating COVID 19 infections in NSW, Australia
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">
-   Common issues in MCMC projections
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#further-reading">
-   Further reading
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>R: Bayesian Applications</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   R: Bayesian Applications
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications">
-   Applications
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#libraries">
-     Libraries
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mental-health-example">
-     Mental health example
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#choosing-a-prior">
-       Choosing a prior
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#non-informative-prior-uniform">
-         Non-informative prior, uniform
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">
-         Weakly informative prior, bimodial
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#informative-prior-failure-more-likely">
-         Informative prior, “failure” more likely
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#deriving-posterior">
-       Deriving posterior
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression-logistic">
-     Regression - logistic
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Background
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#heart-disease-data">
-       Heart disease data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">
-       Adjusting scales and changing priors
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#model-fit">
-       Model fit
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression-linear">
-     Regression - linear
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">
-     Estimating COVID 19 infections in NSW, Australia
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">
-   Common issues in MCMC projections
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#further-reading">
-   Further reading
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>R: Bayesian Applications</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Bayesian Applications</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libraries">Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mental-health-example">Mental health example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-prior">Choosing a prior</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-informative-prior-uniform">Non-informative prior, uniform</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">Weakly informative prior, bimodial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#informative-prior-failure-more-likely">Informative prior, “failure” more likely</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-posterior">Deriving posterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-logistic">Regression - logistic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-disease-data">Heart disease data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">Adjusting scales and changing priors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit">Model fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-linear">Regression - linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">Estimating COVID 19 infections in NSW, Australia</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">Common issues in MCMC projections</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="r-bayesian-applications">
-<h1>R: Bayesian Applications<a class="headerlink" href="#r-bayesian-applications" title="Permalink to this headline">#</a></h1>
+<h1>R: Bayesian Applications<a class="headerlink" href="#r-bayesian-applications" title="Permalink to this heading">#</a></h1>
 <p>By Pat Reen - originally published on his GitHub site <a class="reference external" href="https://pat-reen.github.io/More-Modelling-Recipes/">here</a>, which has the <a class="reference external" href="https://github.com/Pat-Reen/More-Modelling-Recipes">original code</a>.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="background">
-<h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h1>
+<h1>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h1>
 <p>Bayesian statistics reflects uncertainty about model parameters by assuming some prior probability distribution for those parameters. That prior uncertainty is adjusted for observed data to produce a posterior distribution.</p>
 <p>Under a frequentest approach, model parameters are fixed and the observations are assumed to be sampled from a probability distribution with those parameters.</p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes theorem refresher</a>:</p>
@@ -926,10 +627,10 @@ title="Print to PDF"
 <p>Here we’ll look at a few simple applications of Bayesian techniques.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="applications">
-<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h1>
+<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h1>
 <p>The sections below set out a simple example Bayesian refresher, regression models and other applications.</p>
 <section id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">#</a></h2>
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this heading">#</a></h2>
 <p>A list of packages used in the recipes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1044,7 +745,7 @@ Loaded modules: basemod,bugs
 </div>
 </section>
 <section id="mental-health-example">
-<h2>Mental health example<a class="headerlink" href="#mental-health-example" title="Permalink to this headline">#</a></h2>
+<h2>Mental health example<a class="headerlink" href="#mental-health-example" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://www.actuaries.asn.au/Library/Miscellaneous/2017/GPMENTALHEALTHWEBRCopy.pdf">2017 Actuaries Institute Green Paper on Mental Health and Insurance</a> talks about some of the challenges in obtaining reliable data and projections on mental health in insurance (p26):</p>
 <blockquote>
 <div><p>“There are sources of data and research about the prevalence and profile of people with different mental health conditions, such as the 2007 National Survey of Mental Health and Wellbeing and many other epidemiological and clinical studies… [T]o have a complete and informed view of all this information is a difficult task for a full-time academic, let alone for an insurer.</p>
@@ -1075,7 +776,7 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <section id="choosing-a-prior">
-<h3>Choosing a prior<a class="headerlink" href="#choosing-a-prior" title="Permalink to this headline">#</a></h3>
+<h3>Choosing a prior<a class="headerlink" href="#choosing-a-prior" title="Permalink to this heading">#</a></h3>
 <p>The posterior is proportional to the product of the prior and the likelihood. The beta distribution is a <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_prior">conjugate prior</a> for the binomial distribution (posterior is the same probability distribution family as prior). Assume <span class="math notranslate nohighlight">\(\theta \sim {\sf Beta}(\alpha, \beta)\)</span>, then:</p>
 <p><span class="math notranslate nohighlight">\(f(\theta;\alpha,\beta) = \theta^{\alpha-1}(1-\theta)^{\beta-1}\)</span></p>
 <p>It represents the probabilities assigned to values of <span class="math notranslate nohighlight">\(\theta\)</span> in the domain (0,1) given values for the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. The binomial posterior distribution represents the probability of values of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(\theta\)</span>. Varying the values of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> can represent a wide range of different prior beliefs about the distribution of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
@@ -1107,7 +808,7 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <section id="non-informative-prior-uniform">
-<h4>Non-informative prior, uniform<a class="headerlink" href="#non-informative-prior-uniform" title="Permalink to this headline">#</a></h4>
+<h4>Non-informative prior, uniform<a class="headerlink" href="#non-informative-prior-uniform" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_prior</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Uniform Prior, a= 1 and b = 1&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span>
@@ -1115,12 +816,12 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_11_0.png" src="../_images/bayesian-applications_11_0.png" />
+<img alt="../_images/8a928ca4e4525e8dfb56be01ef5b071f918ccdace7a175017f0cf78d76430059.png" src="../_images/8a928ca4e4525e8dfb56be01ef5b071f918ccdace7a175017f0cf78d76430059.png" />
 </div>
 </div>
 </section>
 <section id="weakly-informative-prior-bimodial">
-<h4>Weakly informative prior, bimodial<a class="headerlink" href="#weakly-informative-prior-bimodial" title="Permalink to this headline">#</a></h4>
+<h4>Weakly informative prior, bimodial<a class="headerlink" href="#weakly-informative-prior-bimodial" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot_prior</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Bimodial Prior, a= 0.5 and b = 0.5&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span>
@@ -1128,12 +829,12 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_13_0.png" src="../_images/bayesian-applications_13_0.png" />
+<img alt="../_images/db2da7b24ceba3de6b907afea5a4671d6ebb8b9053d78222c1500115819b0b26.png" src="../_images/db2da7b24ceba3de6b907afea5a4671d6ebb8b9053d78222c1500115819b0b26.png" />
 </div>
 </div>
 </section>
 <section id="informative-prior-failure-more-likely">
-<h4>Informative prior, “failure” more likely<a class="headerlink" href="#informative-prior-failure-more-likely" title="Permalink to this headline">#</a></h4>
+<h4>Informative prior, “failure” more likely<a class="headerlink" href="#informative-prior-failure-more-likely" title="Permalink to this heading">#</a></h4>
 <p>The higher the number of observations, the greater the influence on the posterior</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1143,14 +844,14 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_15_0.png" src="../_images/bayesian-applications_15_0.png" />
-<img alt="../_images/bayesian-applications_15_1.png" src="../_images/bayesian-applications_15_1.png" />
+<img alt="../_images/3c85384d36efbcad42681ccfcfccaa8db2a694f2595645d42c80e34b072b3889.png" src="../_images/3c85384d36efbcad42681ccfcfccaa8db2a694f2595645d42c80e34b072b3889.png" />
+<img alt="../_images/16f2d1770883952f8a272578fa329598fde7e10f1a28084e087438eb028db8c4.png" src="../_images/16f2d1770883952f8a272578fa329598fde7e10f1a28084e087438eb028db8c4.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="deriving-posterior">
-<h3>Deriving posterior<a class="headerlink" href="#deriving-posterior" title="Permalink to this headline">#</a></h3>
+<h3>Deriving posterior<a class="headerlink" href="#deriving-posterior" title="Permalink to this heading">#</a></h3>
 <p>Prior plot values. Re-express binomial as beta dist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1207,15 +908,15 @@ Loaded modules: basemod,bugs
 &quot;Ignoring unknown parameters: label&quot;
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_23_1.png" src="../_images/bayesian-applications_23_1.png" />
+<img alt="../_images/55bef8f5d3a61999a55286ef03b43fd6dbdb70e4f34802206c597bb5f9aec752.png" src="../_images/55bef8f5d3a61999a55286ef03b43fd6dbdb70e4f34802206c597bb5f9aec752.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="regression-logistic">
-<h2>Regression - logistic<a class="headerlink" href="#regression-logistic" title="Permalink to this headline">#</a></h2>
+<h2>Regression - logistic<a class="headerlink" href="#regression-logistic" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3>Background<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Background<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>RSTANARM is an interface in R for STAN where <a class="reference external" href="https://mc-stan.org/">Stan</a> is a platform for Bayesian inference - it is a probabilistic programming framework where the guts of the inference method happens in the background, while the user focuses on parameterising the model in R. RJAGS is an interface in R for JAGS (Just Another Gibbs Sample) where <a class="reference external" href="https://mcmc-jags.sourceforge.io/">JAGS</a> is similarly a platform for Bayesian modeling.</p>
 <p>Models in both STAN and JAGS can make use of Markov chains Monte Carlo (MCMC) methods. MCMC methods provide a way to take random samples approximately from a posterior distribution. Such samples can be used to summarize any aspect of the posterior distribution of a statistical model.</p>
 <p>RSTANARM and RJAGS have pre-written code for common models like regression.</p>
@@ -1229,7 +930,7 @@ Loaded modules: basemod,bugs
 </div></blockquote>
 </section>
 <section id="heart-disease-data">
-<h3>Heart disease data<a class="headerlink" href="#heart-disease-data" title="Permalink to this headline">#</a></h3>
+<h3>Heart disease data<a class="headerlink" href="#heart-disease-data" title="Permalink to this heading">#</a></h3>
 <p>The Framingham Heart Study is a longitudinal study of cardiovastular disease in a sample population within Framingham, Massachusetts. A subset of data for teaching is available at request from the <a class="reference external" href="https://biolincc.nhlbi.nih.gov/teaching/">U.S. National Heart, Lung and Blood Institute</a>. This dataset is not appropriate for publication and has been anonymised, but is nevertheless useful for illustrative purposes here. The dataset:</p>
 <blockquote>
 <div><p>“..is a subset of the data collected as part of the Framingham study and includes laboratory, clinic, questionnaire, and adjudicated event data on 4,434 participants. Participant clinic data was collected during three examination periods, approximately 6 years apart, from roughly 1956 to 1968. Each participant was followed for a total of 24 years for the outcome of the following events: Angina Pectoris, Myocardial Infarction, Atherothrombotic Infarction or Cerebral Hemorrhage (Stroke) or death.”</p>
@@ -1301,8 +1002,8 @@ Loaded modules: basemod,bugs
 	<tr><td>3930  </td><td>18    </td><td>0     </td><td>16    </td><td>2     </td><td>8720  </td><td>0     </td><td>70740 </td><td>334464</td></tr>
 </tbody>
 </table>
-</div><img alt="../_images/bayesian-applications_27_1.png" src="../_images/bayesian-applications_27_1.png" />
-<img alt="../_images/bayesian-applications_27_2.png" src="../_images/bayesian-applications_27_2.png" />
+</div><img alt="../_images/598aa951091bb36b627590cde02fc4acee6d41abb45a9170da8a7c9b5d4c6db4.png" src="../_images/598aa951091bb36b627590cde02fc4acee6d41abb45a9170da8a7c9b5d4c6db4.png" />
+<img alt="../_images/ffdb97b8cf3708be41f9f2cccc41481df0cdbef0d845ac95b4490f39c5180b13.png" src="../_images/ffdb97b8cf3708be41f9f2cccc41481df0cdbef0d845ac95b4490f39c5180b13.png" />
 </div>
 </div>
 <p>Given around 12% of glucose records are missing as well as all of HDL and LDL (only available for period 3), drop the columns. Also drop rows with other missing data as these are small in number.</p>
@@ -1324,7 +1025,7 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_31_0.png" src="../_images/bayesian-applications_31_0.png" />
+<img alt="../_images/8bd0fe9dbf2eef8f9c1a25a218d0c114db5431212b27e6d55d3b0521ec7357f6.png" src="../_images/8bd0fe9dbf2eef8f9c1a25a218d0c114db5431212b27e6d55d3b0521ec7357f6.png" />
 </div>
 </div>
 <p>Of the 3.6k remaining records, ~7% have a flag for heart disease:</p>
@@ -1354,9 +1055,9 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_35_0.png" src="../_images/bayesian-applications_35_0.png" />
-<img alt="../_images/bayesian-applications_35_1.png" src="../_images/bayesian-applications_35_1.png" />
-<img alt="../_images/bayesian-applications_35_2.png" src="../_images/bayesian-applications_35_2.png" />
+<img alt="../_images/5cae301a6f1d544f779b261ee6fb7c6cedf3a397a9d1d07ca78a929f5c9bf1df.png" src="../_images/5cae301a6f1d544f779b261ee6fb7c6cedf3a397a9d1d07ca78a929f5c9bf1df.png" />
+<img alt="../_images/72b2369df1bbd23a8533d9abb846f66522f3f11227657823a7da189e99700245.png" src="../_images/72b2369df1bbd23a8533d9abb846f66522f3f11227657823a7da189e99700245.png" />
+<img alt="../_images/75e25a3f27b24317deeb7e347e2a8fd7f85117a8ee40c8e28609e9803d09d07f.png" src="../_images/75e25a3f27b24317deeb7e347e2a8fd7f85117a8ee40c8e28609e9803d09d07f.png" />
 </div>
 </div>
 <p>Most significantly correlated with heart disease are AGE, SYSBP, DIABETES, BPMEDS and PREVHYP.</p>
@@ -1367,7 +1068,7 @@ Loaded modules: basemod,bugs
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_37_0.png" src="../_images/bayesian-applications_37_0.png" />
+<img alt="../_images/da5a904b980711a9e0454af561d34de873ff2996220df86e449e1bf7b5a7da1a.png" src="../_images/da5a904b980711a9e0454af561d34de873ff2996220df86e449e1bf7b5a7da1a.png" />
 </div>
 </div>
 <p>Split data into training and testing data sets.</p>
@@ -1575,7 +1276,7 @@ Number of Fisher Scoring iterations: 6
 </div>
 </section>
 <section id="adjusting-scales-and-changing-priors">
-<h3>Adjusting scales and changing priors<a class="headerlink" href="#adjusting-scales-and-changing-priors" title="Permalink to this headline">#</a></h3>
+<h3>Adjusting scales and changing priors<a class="headerlink" href="#adjusting-scales-and-changing-priors" title="Permalink to this heading">#</a></h3>
 <p>stan_glm allows a selection of prior distributions for the coefficients, intercept, and auxiliary parameters. The prior distributions can be altered by specifying different locations/scales/dfs, but all the prior take the form of a single chosen probability distribution.</p>
 <p>Some drivers for wanting to specify a prior:</p>
 <ul class="simple">
@@ -1599,7 +1300,7 @@ Number of Fisher Scoring iterations: 6
 </div>
 </section>
 <section id="model-fit">
-<h3>Model fit<a class="headerlink" href="#model-fit" title="Permalink to this headline">#</a></h3>
+<h3>Model fit<a class="headerlink" href="#model-fit" title="Permalink to this heading">#</a></h3>
 <p>We are able to extract predictions from each iteration of the posterior sampling. We can extract predictions for new data. Could be tested against the observations for goodness of fit. The follwing from the <a class="reference external" href="https://cran.r-project.org/web/packages/rstanarm/rstanarm.pdf">rstanarm manual, p43</a>:</p>
 <blockquote>
 <div><p>“The posterior predictive distribution (posterior_predict) is the distribution of the outcome implied by the model after using the observed data to update our beliefs about the unknown parameters in the model. Simulating data from the posterior predictive distribution using the observed predictors is useful for checking the fit of the model. Drawing from the posterior predictive distribution at interesting values of the predictors also lets us visualize how a manipulation of a predictor affects (a function of)the outcome(s). With new observations of predictor variables we can use the posterior predictive distribution to generate predicted outcomes.”</p>
@@ -1659,7 +1360,7 @@ Number of Fisher Scoring iterations: 6
 </section>
 </section>
 <section id="regression-linear">
-<h2>Regression - linear<a class="headerlink" href="#regression-linear" title="Permalink to this headline">#</a></h2>
+<h2>Regression - linear<a class="headerlink" href="#regression-linear" title="Permalink to this heading">#</a></h2>
 <p>The above example looked at a binary response. In this example we’ll look at predicting a continuous variable using data on my household electricity consumption over 2016-2021. The above example used stan_glm in RSTANARM. Here we will use a model defined in RJAGS with additional flexibility around the choice of priors, which is also possible in a paramaterised model for STAN. RJAGS combines the power of R with the “Just Another Gibbs Sampler” or “JAGS” engine. To get started, first download the “JAGS” program, then set up the packages as above.</p>
 <p>Both JAGS and STAN allow for the parameterisation of a range of different models. The example below was chosen for comparison with a conventional GLM approach.</p>
 <p>Data prep:</p>
@@ -1720,8 +1421,8 @@ Number of Fisher Scoring iterations: 6
 	<tr><td>732  </td><td>9    </td><td>2    </td><td>7    </td><td>0    </td><td>23   </td><td>709  </td><td>6588 </td><td>53464</td></tr>
 </tbody>
 </table>
-</div><img alt="../_images/bayesian-applications_69_1.png" src="../_images/bayesian-applications_69_1.png" />
-<img alt="../_images/bayesian-applications_69_2.png" src="../_images/bayesian-applications_69_2.png" />
+</div><img alt="../_images/bf17eba3afdbb7528823d6d39a616f77defb16fc30dde48ea8d7590b34b00f61.png" src="../_images/bf17eba3afdbb7528823d6d39a616f77defb16fc30dde48ea8d7590b34b00f61.png" />
+<img alt="../_images/4d9931fb22a2847f768cb9322d5af15107a7e340fb321117567930d9f52f879a.png" src="../_images/4d9931fb22a2847f768cb9322d5af15107a7e340fb321117567930d9f52f879a.png" />
 </div>
 </div>
 <p>Drop records with NAs as they are few, also only include non-zero usage, review explanatory variables; Gamma dist potentially a better fit than normal for Usage given the skewness in the tail; alternatively use normal with a log link.</p>
@@ -1749,9 +1450,9 @@ Number of Fisher Scoring iterations: 6
 Date: 707 categories
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_71_1.png" src="../_images/bayesian-applications_71_1.png" />
-<img alt="../_images/bayesian-applications_71_2.png" src="../_images/bayesian-applications_71_2.png" />
-<img alt="../_images/bayesian-applications_71_3.png" src="../_images/bayesian-applications_71_3.png" />
+<img alt="../_images/a5437a4575d32b56616049092f69025fba47efc5ae0a65adfc104aaf9e1d437a.png" src="../_images/a5437a4575d32b56616049092f69025fba47efc5ae0a65adfc104aaf9e1d437a.png" />
+<img alt="../_images/0f53ec8ccafffa1111766e69b83242f0b345812ac5c492e7777b20b87041984a.png" src="../_images/0f53ec8ccafffa1111766e69b83242f0b345812ac5c492e7777b20b87041984a.png" />
+<img alt="../_images/47bb003696a0dd0c657c3b16d4f56591139b3e8f7a8bf8ab8a8b869d42417b0d.png" src="../_images/47bb003696a0dd0c657c3b16d4f56591139b3e8f7a8bf8ab8a8b869d42417b0d.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting of the distribution &#39; gamma &#39; by matching moments 
 Parameters : 
        estimate
@@ -1760,8 +1461,8 @@ rate  0.1164095
 Loglikelihood:  -2813.89   AIC:  5631.78   BIC:  5640.902 
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_71_5.png" src="../_images/bayesian-applications_71_5.png" />
-<img alt="../_images/bayesian-applications_71_6.png" src="../_images/bayesian-applications_71_6.png" />
+<img alt="../_images/0c94e3527c088c7a112a8faf387db19764164b07dedd07b055883faf36f69ae2.png" src="../_images/0c94e3527c088c7a112a8faf387db19764164b07dedd07b055883faf36f69ae2.png" />
+<img alt="../_images/018c71bb1adc916476fcb499c6066e21085f04a213d5c4d22cd8d37a8f7abd2f.png" src="../_images/018c71bb1adc916476fcb499c6066e21085f04a213d5c4d22cd8d37a8f7abd2f.png" />
 </div>
 </div>
 <p>Usage correlated with season, max/min temp and covid wfh indicator. Max and Min Temps are not surprisingly highly correlated with one another, with the seasons and with solar exposure.</p>
@@ -1776,7 +1477,7 @@ Loglikelihood:  -2813.89   AIC:  5631.78   BIC:  5640.902
 Date: 707 categories
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_73_1.png" src="../_images/bayesian-applications_73_1.png" />
+<img alt="../_images/a77e7ac068953d7b2c8ff545d788d965486889333c3bac93db87d259f44dc6d1.png" src="../_images/a77e7ac068953d7b2c8ff545d788d965486889333c3bac93db87d259f44dc6d1.png" />
 </div>
 </div>
 <p>Split data into training and testing data sets:</p>
@@ -2045,8 +1746,8 @@ Number of Fisher Scoring iterations: 6
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_93_0.png" src="../_images/bayesian-applications_93_0.png" />
-<img alt="../_images/bayesian-applications_93_1.png" src="../_images/bayesian-applications_93_1.png" />
+<img alt="../_images/bdca62dfe9254a9c68ee0be21ffc5448cf05c33fc80c5832126d6682e1f9a3f9.png" src="../_images/bdca62dfe9254a9c68ee0be21ffc5448cf05c33fc80c5832126d6682e1f9a3f9.png" />
+<img alt="../_images/1d6fd372b0bfe2fe1fbe91e64fbc3b9c6b61fa1ab1778da031ef64a0a2146d24.png" src="../_images/1d6fd372b0bfe2fe1fbe91e64fbc3b9c6b61fa1ab1778da031ef64a0a2146d24.png" />
 </div>
 </div>
 <p>Plots show slightly higher residuals at higher predicted values for the step regression model and final selected. QQ plot suggests skewness in the data, which we could see earlier in the histogram of usage.</p>
@@ -2059,8 +1760,8 @@ Number of Fisher Scoring iterations: 6
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_95_0.png" src="../_images/bayesian-applications_95_0.png" />
-<img alt="../_images/bayesian-applications_95_1.png" src="../_images/bayesian-applications_95_1.png" />
+<img alt="../_images/92dd49c21f7444f49eb896faf2cb793f298ddc0d1b32f28876d6619861198797.png" src="../_images/92dd49c21f7444f49eb896faf2cb793f298ddc0d1b32f28876d6619861198797.png" />
+<img alt="../_images/addc2ad5b923817d3900aac02b6a33af863240693c44705322e998395def2ef0.png" src="../_images/addc2ad5b923817d3900aac02b6a33af863240693c44705322e998395def2ef0.png" />
 </div>
 </div>
 <p>Define a regression model in RJAGS. The structure here is more flexible than stan_glm which is predefined. This allows for a wider selection of prior distributions and a mixture of modeling choices. Also possible to specify model forms in this way for STAN.</p>
@@ -2163,8 +1864,8 @@ c -0.10548 -0.09641 -0.09151 -0.08617 -0.07628
 s  9.04907  9.39190  9.57360  9.74782  9.96562
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_101_1.png" src="../_images/bayesian-applications_101_1.png" />
-<img alt="../_images/bayesian-applications_101_2.png" src="../_images/bayesian-applications_101_2.png" />
+<img alt="../_images/2adccbea696103499bb73395a379c4b575e580346664e9c24c05761e9b515f0c.png" src="../_images/2adccbea696103499bb73395a379c4b575e580346664e9c24c05761e9b515f0c.png" />
+<img alt="../_images/6e9c4528901eef32c0fe3e47614690f372a3352783546a7125ef904c44cca253.png" src="../_images/6e9c4528901eef32c0fe3e47614690f372a3352783546a7125ef904c44cca253.png" />
 </div>
 </div>
 <p>We can plot the posterior distributions for the model parameters from the samples:</p>
@@ -2182,14 +1883,14 @@ s  9.04907  9.39190  9.57360  9.74782  9.96562
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_103_0.png" src="../_images/bayesian-applications_103_0.png" />
+<img alt="../_images/55f1fa2603081999b989995b49e008b6bb4340dcb93f5f102c0ca06d6a4e36aa.png" src="../_images/55f1fa2603081999b989995b49e008b6bb4340dcb93f5f102c0ca06d6a4e36aa.png" />
 </div>
 </div>
 <p>Similar to the earlier example, we could extract the <span class="math notranslate nohighlight">\(R^2\)</span> from the posterior distribution as well as run posterior predictive checks.</p>
 <p>Further considerations: extracting the mean of the parameter projections, we could produce predictions for the test data. We could also produce predictions for test data point based upon each of the samples from the posterior, so above we would produce 2400 predictions for each data point (3x10k, discarding the first 2k from each chain and only saving 1/10 of the samples).</p>
 </section>
 <section id="estimating-covid-19-infections-in-nsw-australia">
-<h2>Estimating COVID 19 infections in NSW, Australia<a class="headerlink" href="#estimating-covid-19-infections-in-nsw-australia" title="Permalink to this headline">#</a></h2>
+<h2>Estimating COVID 19 infections in NSW, Australia<a class="headerlink" href="#estimating-covid-19-infections-in-nsw-australia" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://actuaries.logicaldoc.cloud/download-ticket?ticketId=4fda7653-5e3d-4514-a79f-ed0070a0f9be">This paper</a> presented at the 2021 Actuaries (Institute) Summit discusses a method of forecasting COVID infections using the package <a class="reference external" href="https://epiforecasts.io/EpiNow2/index.html">“epinow2”</a>. The package makes use of STAN.</p>
 <blockquote>
 <div><p>“[Epinow2] estimates the time-varying reproduction number on cases by date of infection… Imputed infections are then mapped to observed data (for example cases by date of report) via a series of uncertain delay distributions…”</p>
@@ -2270,7 +1971,7 @@ s  9.04907  9.39190  9.57360  9.74782  9.96562
 &quot;Removed 1 rows containing missing values (geom_col).&quot;
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_107_1.png" src="../_images/bayesian-applications_107_1.png" />
+<img alt="../_images/3df7e75b40f1756493def4c99270bf945fdcc15282973e5001162648372d5204.png" src="../_images/3df7e75b40f1756493def4c99270bf945fdcc15282973e5001162648372d5204.png" />
 </div>
 </div>
 <p>Test data:</p>
@@ -2317,7 +2018,7 @@ s  9.04907  9.39190  9.57360  9.74782  9.96562
 &quot;Removed 1 rows containing missing values (geom_bar).&quot;
 </pre></div>
 </div>
-<img alt="../_images/bayesian-applications_111_1.png" src="../_images/bayesian-applications_111_1.png" />
+<img alt="../_images/aba9615b2f5df859f73ee82880658fc9084dff17214c1397c7a645cac38c4710.png" src="../_images/aba9615b2f5df859f73ee82880658fc9084dff17214c1397c7a645cac38c4710.png" />
 </div>
 </div>
 <p>Merged to get positive test rate:</p>
@@ -2351,7 +2052,7 @@ s  9.04907  9.39190  9.57360  9.74782  9.96562
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_115_0.png" src="../_images/bayesian-applications_115_0.png" />
+<img alt="../_images/1f957e42a0b567ae7b273882e1fea3adc2bb0970fbc71029d09c1efa7c47e0fe.png" src="../_images/1f957e42a0b567ae7b273882e1fea3adc2bb0970fbc71029d09c1efa7c47e0fe.png" />
 </div>
 </div>
 <p>There are some pragmatic methods for adjusting the case numbers for <a class="reference external" href="http://freerangestats.info/blog/2020/05/09/covid-population-incidence">increasing test positivity rates</a>. For our purposes we will focus the model on case data before 23 December 2021 in order to exclude the period where the test data became less reliable/ complete, noting that underlying data completeness issues are likely present.</p>
@@ -2418,20 +2119,20 @@ Merging forecast reported cases with the actual case data:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bayesian-applications_124_0.png" src="../_images/bayesian-applications_124_0.png" />
+<img alt="../_images/88f32e76ba99e1cebb01f4d0eff0d8cd5c1cff147c3f988450076e9bd03f0188.png" src="../_images/88f32e76ba99e1cebb01f4d0eff0d8cd5c1cff147c3f988450076e9bd03f0188.png" />
 </div>
 </div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="common-issues-in-mcmc-projections">
-<h1>Common issues in MCMC projections<a class="headerlink" href="#common-issues-in-mcmc-projections" title="Permalink to this headline">#</a></h1>
+<h1>Common issues in MCMC projections<a class="headerlink" href="#common-issues-in-mcmc-projections" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Divergent transitions: Common fix is changing the step size using the adapt_delta argument in STAN.</p></li>
 <li><p>Exceeding maximum tree depth: the is a point of efficiency. See notes <a class="reference external" href="https://mc-stan.org/misc/warnings.html">here</a> for assistance in STAN and other potential warnings.</p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="further-reading">
-<h1>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">#</a></h1>
+<h1>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h1>
 <p>A few books and articles of interest on STAN:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://mc-stan.org/users/documentation/">STAN documentation</a></p></li>
@@ -2454,7 +2155,7 @@ Merging forecast reported cases with the actual case data:</p>
             mode: "r"
         },
         kernelOptions: {
-            kernelName: "ir",
+            name: "ir",
             path: "./docs"
         },
         predefinedOutput: true
@@ -2462,52 +2163,126 @@ Merging forecast reported cases with the actual case data:</p>
     </script>
     <script>kernelName = 'ir'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="life_stats.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">R: Life Industry Stats in Tableau and R</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="life_stats.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">R: Life Industry Stats in Tableau and R</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="trees.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="trees.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">R: Decision Tree Applications</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R: Bayesian Applications</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#libraries">Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mental-health-example">Mental health example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-prior">Choosing a prior</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-informative-prior-uniform">Non-informative prior, uniform</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weakly-informative-prior-bimodial">Weakly informative prior, bimodial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#informative-prior-failure-more-likely">Informative prior, “failure” more likely</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deriving-posterior">Deriving posterior</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-logistic">Regression - logistic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Background</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heart-disease-data">Heart disease data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusting-scales-and-changing-priors">Adjusting scales and changing priors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit">Model fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-linear">Regression - linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-covid-19-infections-in-nsw-australia">Estimating COVID 19 infections in NSW, Australia</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-in-mcmc-projections">Common issues in MCMC projections</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By YDAWG, DAPC, YAC and other contributors.<br/>
-  
-    <div class="extra_footer">
-       The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
-    </div>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By YDAWG, DAPC, YAC and other contributors.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+   The Actuaries' Analytical Cookbook is a series of data and analytics recipes to help actuaries quickly get started with a new project.   This site is intended to be a resource to actuaries in both data science and traditional fields.  Opinions expressed in this publication are the opinions of contributors and do not necessarily represent those of either the Institute of Actuaries of Australia (the ‘Institute’), its members, directors, officers, employees, agents, or that of the employers of the contributors. <br>© Institute of Actuaries of Australia and Contributors 2021. All rights reserved.
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
