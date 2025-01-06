@@ -621,8 +621,8 @@ document.write(`
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="c1"># To make the output of numpy arrays in this notebook easier to read,</span>
 <span class="c1"># the line of code below specifies that integers and floats in numpy arrays</span>
@@ -684,7 +684,7 @@ document.write(`
 <span class="c1"># This is defined in the funtion &#39;objective&#39; where the total production quanities</span>
 <span class="c1"># are an input to the function, which will then use a cost matrix to calculate</span>
 <span class="c1"># the total cost for the given quantities.</span>
-<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">production_quantities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="n">warehouses_total</span><span class="p">,</span> <span class="n">retailers_total</span><span class="p">))</span>
         <span class="c1"># The scipy.optimize.minimize function needs an array of</span>
         <span class="c1"># initial &#39;guesses&#39; for production quantities, so this</span>
@@ -738,7 +738,7 @@ document.write(`
             <span class="mi">10000</span><span class="p">]</span>
 
 <span class="c1"># Create a function to define the warehouse capacity constraint.</span>
-<span class="k">def</span> <span class="nf">capacity_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">capacity_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">production_quantities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="n">warehouses_total</span><span class="p">,</span> <span class="n">retailers_total</span><span class="p">))</span>
         <span class="c1"># The scipy.optimize.minimize function needs an array of</span>
         <span class="c1"># initial &#39;guesses&#39; for production quantities, so this</span>
@@ -799,7 +799,7 @@ document.write(`
           <span class="mi">9500</span><span class="p">]</span>
 
 <span class="c1"># Create a function to define the retailer demand constraint.</span>
-<span class="k">def</span> <span class="nf">demand_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">demand_constraint</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">production_quantities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="n">warehouses_total</span><span class="p">,</span> <span class="n">retailers_total</span><span class="p">))</span>
         <span class="c1"># The scipy.optimize.minimize function needs an array of</span>
         <span class="c1"># initial &#39;guesses&#39; for production quantities, so this</span>

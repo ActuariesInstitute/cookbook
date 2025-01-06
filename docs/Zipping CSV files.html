@@ -579,12 +579,12 @@ document.write(`
 <p>It is currently not used as an example piece of code within the cookbook, but used for reducing dataset sizes for inclusion in the static folder of the site.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
 
-<span class="k">def</span> <span class="nf">csv_files</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">csv_files</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">source_dir</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">filename</span>

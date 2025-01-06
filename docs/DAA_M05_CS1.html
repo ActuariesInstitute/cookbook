@@ -649,36 +649,36 @@ This case study investigates the use of neural networks and gradient boosting ma
 <p>This section imports the packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># Pandas is used for data management.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Numpy is used for mathematical operations.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> <span class="c1"># Pandas is used for data management.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> <span class="c1"># Numpy is used for mathematical operations.</span>
 
 <span class="c1"># Matplotlib and Seaborn are used for plotting.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.image</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpimg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="kn">import</span> <span class="nn">itertools</span> <span class="c1"># Used in the confusion matrix function</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span> <span class="c1"># Used in the confusion matrix function</span>
 
-<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="c1"># Keras, from the Tensorflow package is used for</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras</span> <span class="c1"># Keras, from the Tensorflow package is used for</span>
                              <span class="c1"># building the neural networks.</span>
 
 <span class="c1"># The various functions below from the Scikit-learn package help with</span>
 <span class="c1"># modelling and diagnostics.</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span> <span class="c1"># For building the GBM</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">auc</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">f1_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">plot_partial_dependence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_loss</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">GradientBoostingClassifier</span> <span class="c1"># For building the GBM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">auc</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">f1_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.inspection</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_partial_dependence</span>
 
-<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras.wrappers.scikit_learn</span> <span class="kn">import</span> <span class="n">KerasRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">BatchNormalization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.wrappers.scikit_learn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KerasRegressor</span>
 
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
 </pre></div>
 </div>
 </div>
@@ -693,7 +693,7 @@ Other functions that are specific to each type of model are defined in the secti
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to split the data into train, validation and test sets.</span>
 <span class="c1"># This uses the `train_test_split` function from the sklearn package to do the </span>
 <span class="c1"># actual data splitting.</span>
-<span class="k">def</span> <span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Splits the data into train, validation and test sets (64%, 16%, 20%)</span>
 <span class="sd">    All columns on `dataset` other than the `id_col` and `response_col` will be</span>
@@ -738,7 +738,7 @@ Other functions that are specific to each type of model are defined in the secti
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print and plot a confusion matrix.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
                           <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
                           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
@@ -1765,7 +1765,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the sigmoid function (to be used as the activation function).</span>
-<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">  Sigmoid activation function</span>
 <span class="sd">  Params:</span>
@@ -1787,7 +1787,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the first derivative of the sigmoid function.</span>
-<span class="k">def</span> <span class="nf">dsigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dsigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Derivative of the sigmoid function evaluated at x</span>
 <span class="sd">    Params:</span>
@@ -1804,7 +1804,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the mean-squared error loss function.</span>
-<span class="k">def</span> <span class="nf">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
 <span class="sd">    Mean-squared error loss function</span>
 <span class="sd">    Params:</span>
@@ -1822,7 +1822,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to provide random starting values for the weights and bias term.</span>
-<span class="k">def</span> <span class="nf">init_params</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">init_params</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Randomly initializes weights and initialises biases to 0</span>
 <span class="sd">    Params:</span>
@@ -1862,7 +1862,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <span class="c1"># The function is fairly simple. The input is a vector with dimension equal to</span>
 <span class="c1"># the number of features in the dataset (20). There is a single output neuron</span>
 <span class="c1"># and no hidden layers.</span>
-<span class="k">def</span> <span class="nf">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Performs the forward pass calculations for a single neuron network</span>
 <span class="sd">    Params:</span>
@@ -2068,7 +2068,7 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <p>The following function defines how the forward propagation step should proceed for NN2 that has one hidden layer with four neurons.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Performs the forward propagation calculations for a network with a single hidden layer.</span>
 <span class="sd">    Params:</span>

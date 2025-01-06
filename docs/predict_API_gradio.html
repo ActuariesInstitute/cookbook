@@ -578,8 +578,8 @@ document.write(`
 <p>Thanks to a tip from a friend, we explore <a class="reference external" href="https://gradio.app"><strong>Gradio</strong></a>. Gradio is used by the likes of Google, Amazon and Facebook, and appears to meet both of those above use cases in a very easy to use Python package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
 </pre></div>
 </div>
 </div>
@@ -588,7 +588,7 @@ document.write(`
 <p>Since any python can be used, it is possible to reference any python packages or functions, score from a saved GBM, GLM or NN model and perform any calculations. Lightgbm, sci-kit learn all have means to save and load models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">price</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ski_cover</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">price</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ski_cover</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the price of travel insurance</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -664,7 +664,7 @@ To create a public link, set `share=True` in `launch()`.
 <p>This will provide something like the below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://127.0.0.1:7860/run/predict&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
   <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>

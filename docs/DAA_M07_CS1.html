@@ -615,34 +615,34 @@ document.write(`
 <p>This section installs packages that will be required for this exercise/case study.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span> <span class="c1"># Json is used to load json files.</span>
-<span class="kn">import</span> <span class="nn">os</span> <span class="c1"># os is used to join paths for windows and unix use.</span>
-<span class="kn">import</span> <span class="nn">random</span> <span class="c1"># For random number generation.</span>
-<span class="kn">import</span> <span class="nn">time</span> <span class="c1"># Useful for timing processes.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span> <span class="c1"># Json is used to load json files.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> <span class="c1"># os is used to join paths for windows and unix use.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span> <span class="c1"># For random number generation.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span> <span class="c1"># Useful for timing processes.</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span> <span class="c1"># Counter provides a quick way to add items in a list.</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># Enhanced mapping dictionary that can take a default value.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># For plotting.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span> <span class="c1"># Counter provides a quick way to add items in a list.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># Enhanced mapping dictionary that can take a default value.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> <span class="c1"># For mathematical operations.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1"># For plotting.</span>
 
-<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
   <span class="c1"># &#39;word_tokenize&#39; is a tokeniser for natural language.</span>
   <span class="c1"># There are many such options available.</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
 
 <span class="c1"># Sklearn has many useful machine learning packages.</span>
 <span class="c1"># The following are used in the notebook.</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">metrics</span>
 
 <span class="c1"># Used to read files from a web URL</span>
-<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlretrieve</span>
 
 <span class="c1"># Package used in the confusion matrix function.</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 </pre></div>
 </div>
 </div>
@@ -660,7 +660,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to load a json data file.</span>
-<span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="n">data_set_name</span><span class="p">,</span> <span class="nb">dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_json</span><span class="p">(</span><span class="n">data_set_name</span><span class="p">,</span> <span class="nb">dir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This is a function to load the yelp dataset which is stored in json format.</span>
 <span class="sd">    Use the optional dir argument if the file is not in the same directory</span>
@@ -699,7 +699,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print the Yelp reviews neatly.</span>
-<span class="k">def</span> <span class="nf">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_review</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;business_id&#39;</span><span class="p">,</span> <span class="s1">&#39;stars&#39;</span><span class="p">,</span> <span class="s1">&#39;funny&#39;</span><span class="p">,</span> <span class="s1">&#39;review_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;useful&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;cool&#39;</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&lt;12s}</span><span class="s1">: </span><span class="si">{:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">review</span><span class="p">[</span><span class="n">item</span><span class="p">]))</span>
@@ -716,7 +716,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to select reviews with a certain rating (number of stars).</span>
-<span class="k">def</span> <span class="nf">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_with_rating</span><span class="p">(</span><span class="n">review_data</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">):</span>
     <span class="n">select_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_row</span> <span class="k">for</span> <span class="n">data_row</span> <span class="ow">in</span> <span class="n">review_data</span> \
                    <span class="k">if</span> <span class="n">data_row</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">rating</span><span class="p">]</span>
     <span class="n">review_sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">select_data</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
@@ -728,7 +728,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to format the summary of review ratings.</span>
-<span class="k">def</span> <span class="nf">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_review_count</span><span class="p">(</span><span class="n">review_count</span><span class="p">):</span>
     <span class="n">head_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7s}</span><span class="s1">  </span><span class="si">{:&gt;10s}</span><span class="s1"> </span><span class="si">{:&gt;10s}</span><span class="s1">&#39;</span>
     <span class="n">row_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:&lt;7}</span><span class="s1">  </span><span class="si">{:&gt;10,}</span><span class="s1"> </span><span class="si">{:&gt;10.1%}</span><span class="s1">&#39;</span>
     
@@ -755,7 +755,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print some example reviews based on a user input</span>
 <span class="c1"># of &#39;min&#39;, &#39;max&#39;, &#39;average&#39; etc summary function.</span>
-<span class="k">def</span> <span class="nf">print_certain_reviews</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">summ_func</span><span class="p">,</span> <span class="n">descr</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_certain_reviews</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">summ_func</span><span class="p">,</span> <span class="n">descr</span><span class="p">):</span>
     <span class="c1"># The &#39;summ_func&#39; will be &#39;min&#39;, &#39;max&#39;, &#39;average&#39;, &#39;median&#39; etc.</span>
     <span class="n">certain_review</span> <span class="o">=</span> <span class="n">summ_func</span><span class="p">([</span><span class="n">length</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
     <span class="n">reviews</span> <span class="o">=</span> <span class="p">[</span><span class="n">review</span> <span class="k">for</span> <span class="p">(</span><span class="n">review</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="n">certain_review</span><span class="p">]</span>
@@ -775,7 +775,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to perform the Bag of Words vectorisation.</span>
-<span class="k">def</span> <span class="nf">vectorise_data</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">vectorise_data</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="n">vocab</span><span class="p">):</span>
     <span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">review</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_set</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -798,7 +798,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to calculate a range of success metrics for a fitted model.</span>
-<span class="k">def</span> <span class="nf">return_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">return_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
     <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;F1-score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -814,7 +814,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to plot confusion matrices in an easy to visualise format.</span>
-<span class="k">def</span> <span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
                           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
                           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -843,7 +843,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print out the success metrics of a model.</span>
-<span class="k">def</span> <span class="nf">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">confused</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="si">{:^9.1%}</span><span class="s1"> &#39;</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">scores</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 
@@ -1650,7 +1650,7 @@ Either way, the evaluation section below suggests that the solution found, while
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the weights from the model for each token in the vocabulary.</span>
-<span class="k">def</span> <span class="nf">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_by_weight</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="n">mod_coefs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
     
     <span class="c1"># Create a list of vocab words and their weights.</span>
@@ -1659,7 +1659,7 @@ Either way, the evaluation section below suggests that the solution found, while
         <span class="n">token_weight</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">token</span><span class="p">,</span> <span class="n">mod_coefs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">]))</span>
    
     <span class="c1"># Sort and print the top k items.</span>
-    <span class="k">def</span> <span class="nf">print_list</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_list</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Word&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:20s}</span><span class="s1">  </span><span class="si">{:&gt;7s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;----&#39;</span><span class="p">,</span> <span class="s1">&#39;------&#39;</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>

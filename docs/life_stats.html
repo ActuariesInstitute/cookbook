@@ -604,17 +604,17 @@ document.write(`
 <p>As with most data sources, an alternative visualisation tool is R. The below extracts the individual disability income profits and revenue and calculates the margin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">not_run_sample_only</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(){</span>
 <span class="c1"># this script reads in the APRA data and produces a few graphs for presentation</span>
 
 <span class="n">packages</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ggplot2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;readxl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lubridate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;scales&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;xtable&quot;</span><span class="p">)</span>
 <span class="nf">install.packages</span><span class="p">(</span><span class="nf">setdiff</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="nf">installed.packages</span><span class="p">())))</span><span class="w">  </span>
-<span class="nf">for </span><span class="p">(</span><span class="n">package</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">packages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">package</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="n">packages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="n">package</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">percent0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="nf">percent</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
+<span class="n">percent0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="nf">percent</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># update names</span>
