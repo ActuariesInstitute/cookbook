@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Install Fonts
@@ -41,17 +41,17 @@ jobs:
         shell: bash -l {0}
         run: |
           jb build cookbook/ --builder pdflatex
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: log
           path: cookbook/_build/latex/book.log
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()      
         with:
           name: pdf
           path: cookbook/_build/latex/book.pdf
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: tex
