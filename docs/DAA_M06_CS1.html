@@ -671,11 +671,11 @@ SA1 is the most granular level, with each SA1 having an average population of ap
     <span class="n">cum_sum_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span>
     
     <span class="c1"># Create the plot</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">exp_var_pca</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Individual explained variance&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Explained variance ratio&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal component&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">exp_var_pca</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">'Individual explained variance'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Explained variance ratio'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Principal component'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'best'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -697,7 +697,7 @@ SA1 is the most granular level, with each SA1 having an average population of ap
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder that your datasets are saved in.</span>
 <span class="c1"># or here, read it from the URL </span>
-<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+<span class="n">infolder</span> <span class="o">=</span> <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/'</span>
 </pre></div>
 </div>
 </div>
@@ -705,21 +705,21 @@ SA1 is the most granular level, with each SA1 having an average population of ap
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the data files for the case study.</span>
-<span class="c1"># The first data set (&#39;file1&#39; below) contains the features to be used in the </span>
+<span class="c1"># The first data set ('file1' below) contains the features to be used in the </span>
 <span class="c1"># modelling for each SA1.</span>
-<span class="c1"># The second data set (&#39;file2&#39; below) contains the ABS&#39;s reported</span>
+<span class="c1"># The second data set ('file2' below) contains the ABS's reported</span>
 <span class="c1"># IRSD index value for each SA1 which will be used later for comparison to</span>
 <span class="c1"># the index derived in this notebook.</span>
 
 <span class="c1"># Specify the filenames.</span>
-<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS1_data1.csv&#39;</span>
-<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS1_data2.xls&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">'DAA_M06_CS1_data1.csv'</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">'DAA_M06_CS1_data2.xls'</span>
 
 <span class="c1"># Read in the data from your folder.</span>
 <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file1</span><span class="p">)</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file2</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Table 1&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-                      <span class="n">usecols</span><span class="o">=</span><span class="s1">&#39;A:C&#39;</span><span class="p">,</span>
-                      <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">,</span> <span class="s1">&#39;SA1_11DIGITCODE_2016&#39;</span><span class="p">,</span> <span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">])</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file2</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">'Table 1'</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                      <span class="n">usecols</span><span class="o">=</span><span class="s1">'A:C'</span><span class="p">,</span>
+                      <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'SA1_7DIGITCODE_2016'</span><span class="p">,</span> <span class="s1">'SA1_11DIGITCODE_2016'</span><span class="p">,</span> <span class="s1">'IRSD_ABS'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1007,17 +1007,17 @@ SA1 is the most granular level, with each SA1 having an average population of ap
 <h4>Dataset 2<a class="headerlink" href="#dataset-2" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the second column (&#39;SA1_11DIGITCODE_2016&#39;) of dataset 2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the second column ('SA1_11DIGITCODE_2016') of dataset 2</span>
 <span class="c1"># as this is not needed in the analysis.</span>
 <span class="c1"># Also, the last row in the dataset is a blank row, so this will also be</span>
 <span class="c1"># removed.</span>
 <span class="n">ABS_IRSD_S1</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
 
 <span class="c1"># Convert the ABS_IRSD features to be numeric.</span>
-<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">],</span>
-                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
-<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">],</span>
-                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">)</span>
+<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">'IRSD_ABS'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">'IRSD_ABS'</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+<span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">'SA1_7DIGITCODE_2016'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">[</span><span class="s1">'SA1_7DIGITCODE_2016'</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s1">'integer'</span><span class="p">)</span>
 
 
 <span class="c1"># Drop any SA1s with missing values in the dataset.</span>
@@ -1029,7 +1029,7 @@ SA1 is the most granular level, with each SA1 having an average population of ap
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 55028 entries, 0 to 55139
 Data columns (total 2 columns):
  #   Column               Non-Null Count  Dtype  
@@ -1065,7 +1065,7 @@ None
 <span class="c1"># Fit the PCA model to determine the transformed features.</span>
 <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pca_data</span><span class="p">)</span>
 
-<span class="c1"># Use the &#39;plot_explained_variances&#39; function defined at the top of the</span>
+<span class="c1"># Use the 'plot_explained_variances' function defined at the top of the</span>
 <span class="c1"># notebook to plot the variance explained by each principal component.</span>
 <span class="n">plot_explained_variances</span><span class="p">(</span><span class="n">pca</span><span class="p">)</span>
 </pre></div>
@@ -1117,9 +1117,9 @@ None
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge principal component 1 (PC1) with the original dataset so that</span>
 <span class="c1"># each SA1 is matched with its calculated raw IRSD index value.</span>
-<span class="n">pca1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">])</span>
+<span class="n">pca1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'IRSD_raw'</span><span class="p">])</span>
 
-<span class="n">IRSD_S1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data1</span><span class="p">[</span><span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">pca1</span><span class="p">]</span>
+<span class="n">IRSD_S1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data1</span><span class="p">[</span><span class="s1">'SA1_7DIGITCODE_2016'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">pca1</span><span class="p">]</span>
                     <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Print the first 5 observations in the new dataset which shows the</span>
@@ -1143,7 +1143,7 @@ None
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rescale the raw IRSD index values to have a mean of 1,000 and a</span>
 <span class="c1"># standard deviation of 100.</span>
-<span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">&#39;IRSD_raw&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1000</span>
+<span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">'IRSD_recreated'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">'IRSD_raw'</span><span class="p">]</span><span class="o">/</span><span class="n">IRSD_S1</span><span class="p">[</span><span class="s1">'IRSD_raw'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1000</span>
 
 <span class="c1"># Print the first 5 observations to see their scaled IRSD index values.</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">IRSD_S1</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -1165,13 +1165,13 @@ None
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram to show the distribution of IRSD_scaled index values</span>
 <span class="c1"># across all the SA1s.</span>
-<span class="n">IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of recreated IRSD scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IRSD score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">'IRSD_recreated'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of recreated IRSD scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'IRSD score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Frequency'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1">#plt.savefig(&#39;DAA_M06_Fig11.jpg&#39;)</span>
+<span class="c1">#plt.savefig('DAA_M06_Fig11.jpg')</span>
 </pre></div>
 </div>
 </div>
@@ -1187,10 +1187,10 @@ None
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram to show the distribution of the ABS IRSD index values</span>
 <span class="c1"># across all the SA1s.</span>
-<span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of ABS IRSD scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IRSD score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">ABS_IRSD_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">'IRSD_ABS'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of ABS IRSD scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'IRSD score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Frequency'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1206,7 +1206,7 @@ None
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Join the two datasets together to compare the IRSD calculated to the ABS</span>
 <span class="c1"># published IRSD.</span>
 
-<span class="n">IRSD_join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">,</span> <span class="n">IRSD_S1</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;SA1_7DIGITCODE_2016&#39;</span><span class="p">)</span>
+<span class="n">IRSD_join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IRSD_S1</span><span class="p">,</span> <span class="n">IRSD_S1</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">'inner'</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">'SA1_7DIGITCODE_2016'</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">IRSD_join</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
@@ -1227,15 +1227,15 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scatter plot to see how well the recreated index aligns with the ABS</span>
-<span class="c1"># index, even if the individual index values aren&#39;t the same for all SA1s.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">,</span> <span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">IRSD_join</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of recreated and ABS IRSD scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recreated IRSD score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ABS IRSD score&#39;</span><span class="p">)</span>
+<span class="c1"># index, even if the individual index values aren't the same for all SA1s.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'IRSD_recreated'</span><span class="p">,</span> <span class="s1">'IRSD_ABS'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">IRSD_join</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Comparison of recreated and ABS IRSD scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Recreated IRSD score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'ABS IRSD score'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1">#plt.savefig(&#39;DAA_M06_Fig12.jpg&#39;)</span>
+<span class="c1">#plt.savefig('DAA_M06_Fig12.jpg')</span>
 </pre></div>
 </div>
 </div>
@@ -1248,8 +1248,8 @@ None
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the correlation between the ABS index and the index calculated</span>
 <span class="c1"># in this notebook.</span>
-<span class="n">correlation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">IRSD_join</span><span class="p">[</span><span class="s1">&#39;IRSD_recreated&#39;</span><span class="p">],</span> <span class="n">IRSD_join</span><span class="p">[</span><span class="s1">&#39;IRSD_ABS&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The correlation between the ABS and recreated index is: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">correlation</span><span class="p">))</span>
+<span class="n">correlation</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">IRSD_join</span><span class="p">[</span><span class="s1">'IRSD_recreated'</span><span class="p">],</span> <span class="n">IRSD_join</span><span class="p">[</span><span class="s1">'IRSD_ABS'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The correlation between the ABS and recreated index is: '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">correlation</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

@@ -650,7 +650,7 @@ Once you have read through the code, run it and inspected the output, you should
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the following code could be used to read the most</span>
 <span class="c1"># recent data in directly from the Our World in Data website:</span>
 
-<span class="c1"># covid = pd.read_csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span>
+<span class="c1"># covid = pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')</span>
 <span class="c1"># However, we will use a snapshot so that the notebook keeps working even if the dataset format changes.</span>
 </pre></div>
 </div>
@@ -658,8 +658,8 @@ Once you have read through the code, run it and inspected the output, you should
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dataset called &#39;covid&#39;.</span>
-<span class="n">covid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M06_COVID_data.csv.zip&#39;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dataset called 'covid'.</span>
+<span class="n">covid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M06_COVID_data.csv.zip'</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -670,27 +670,27 @@ Once you have read through the code, run it and inspected the output, you should
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restrict the data to only look at one point in time (31-Dec-2020)</span>
-<span class="n">covid2</span> <span class="o">=</span> <span class="n">covid</span><span class="p">[</span><span class="n">covid</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2020-12-31&#39;</span><span class="p">]</span>
+<span class="n">covid2</span> <span class="o">=</span> <span class="n">covid</span><span class="p">[</span><span class="n">covid</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span><span class="o">==</span><span class="s1">'2020-12-31'</span><span class="p">]</span>
 
 <span class="c1"># This analysis will use nine features in the clustering.</span>
-<span class="c1"># The column &#39;location&#39; is also retained to give us the country names.</span>
+<span class="c1"># The column 'location' is also retained to give us the country names.</span>
 <span class="c1"># Countries that have missing values at the extract date are dropped from</span>
 <span class="c1"># the data table using the .dropna() method.</span>
-<span class="n">covid3</span> <span class="o">=</span> <span class="n">covid2</span><span class="p">[[</span><span class="s1">&#39;location&#39;</span><span class="p">,</span><span class="s1">&#39;total_cases_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;new_cases_per_million&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;total_deaths_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;new_deaths_per_million&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;reproduction_rate&#39;</span><span class="p">,</span><span class="s1">&#39;positive_rate&#39;</span><span class="p">,</span><span class="s1">&#39;total_tests_per_thousand&#39;</span><span class="p">,</span>
-                 <span class="s1">&#39;icu_patients_per_million&#39;</span><span class="p">,</span><span class="s1">&#39;hosp_patients_per_million&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">covid3</span> <span class="o">=</span> <span class="n">covid2</span><span class="p">[[</span><span class="s1">'location'</span><span class="p">,</span><span class="s1">'total_cases_per_million'</span><span class="p">,</span><span class="s1">'new_cases_per_million'</span><span class="p">,</span>
+                   <span class="s1">'total_deaths_per_million'</span><span class="p">,</span><span class="s1">'new_deaths_per_million'</span><span class="p">,</span>
+                   <span class="s1">'reproduction_rate'</span><span class="p">,</span><span class="s1">'positive_rate'</span><span class="p">,</span><span class="s1">'total_tests_per_thousand'</span><span class="p">,</span>
+                 <span class="s1">'icu_patients_per_million'</span><span class="p">,</span><span class="s1">'hosp_patients_per_million'</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 
-<span class="n">covid_data</span> <span class="o">=</span> <span class="n">covid3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;location&#39;</span><span class="p">)</span>
+<span class="n">covid_data</span> <span class="o">=</span> <span class="n">covid3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'location'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">covid_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="n">countries</span> <span class="o">=</span> <span class="n">covid3</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">covid3</span><span class="p">[</span><span class="s1">'location'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 17 entries, 4823 to 74527
 Data columns (total 9 columns):
  #   Column                     Non-Null Count  Dtype  
@@ -707,7 +707,7 @@ Data columns (total 9 columns):
 dtypes: float64(9)
 memory usage: 1.3 KB
 None
-[&#39;Austria&#39;, &#39;Belgium&#39;, &#39;Bulgaria&#39;, &#39;Canada&#39;, &#39;Cyprus&#39;, &#39;Denmark&#39;, &#39;Estonia&#39;, &#39;Finland&#39;, &#39;Ireland&#39;, &#39;Israel&#39;, &#39;Italy&#39;, &#39;Luxembourg&#39;, &#39;Portugal&#39;, &#39;Slovenia&#39;, &#39;Spain&#39;, &#39;United Kingdom&#39;, &#39;United States&#39;]
+['Austria', 'Belgium', 'Bulgaria', 'Canada', 'Cyprus', 'Denmark', 'Estonia', 'Finland', 'Ireland', 'Israel', 'Italy', 'Luxembourg', 'Portugal', 'Slovenia', 'Spain', 'United Kingdom', 'United States']
 </pre></div>
 </div>
 </div>
@@ -742,10 +742,10 @@ None
 <span class="n">labels</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">covid_data</span><span class="p">)</span>
 
 <span class="c1"># Create a DataFrame, df, aligning labels and countries.</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span> <span class="s1">&#39;countries&#39;</span><span class="p">:</span> <span class="n">countries</span><span class="p">})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'labels'</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span> <span class="s1">'countries'</span><span class="p">:</span> <span class="n">countries</span><span class="p">})</span>
 
 <span class="c1"># Display df sorted by cluster label.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;labels&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'labels'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -789,12 +789,12 @@ None
     <span class="n">pipeline2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">covid_data</span><span class="p">)</span>
     <span class="n">WCSS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans2</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
 
-<span class="c1"># Plot the elbow curve. (&#39;bx-&#39;)</span>
+<span class="c1"># Plot the elbow curve. ('bx-')</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">WCSS</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;WCSS&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow curve for the COVID data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">WCSS</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'k'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'WCSS'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Elbow curve for the COVID data'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>

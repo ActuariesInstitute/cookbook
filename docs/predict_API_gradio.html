@@ -590,14 +590,14 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">price</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">ski_cover</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return the price of travel insurance</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">base_price_per_day</span> <span class="o">=</span> <span class="mi">7</span>
-    <span class="n">dest_factor</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="mf">2.0</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">&quot;USA&quot;</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># e.g. USA medical costs drive higher prices</span>
+    <span class="n">dest_factor</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="mf">2.0</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">"USA"</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># e.g. USA medical costs drive higher prices</span>
     <span class="n">age_factor</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="mf">2.5</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">70</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># e.g. older ages more vulnerable to health events</span>
     <span class="n">ski_factor</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="mf">1.7</span> <span class="k">if</span> <span class="n">s</span> <span class="k">else</span> <span class="mf">1.0</span>  <span class="c1"># e.g. skiing is a risky holiday activity</span>
-    <span class="n">trip_duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">trip_duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">))</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">assert</span> <span class="n">trip_duration</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
     <span class="n">price_before_tax</span> <span class="o">=</span> <span class="p">(</span>
@@ -628,20 +628,20 @@ document.write(`
     <span class="n">fn</span> <span class="o">=</span> <span class="n">price</span><span class="p">,</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
         <span class="c1"># Destination: category - dropdown input</span>
-        <span class="n">gr</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s2">&quot;USA&quot;</span><span class="p">,</span> <span class="s2">&quot;Rest of World&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">),</span>  
+        <span class="n">gr</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s2">"USA"</span><span class="p">,</span> <span class="s2">"Rest of World"</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">"USA"</span><span class="p">),</span>  
         <span class="c1"># Ages: number - slider input</span>
         <span class="n">gr</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span>
         <span class="n">gr</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">130</span><span class="p">),</span>
         <span class="c1"># Travel dates - Gradio does not have a native date object at time of writing</span>
         <span class="c1"># So string input is used</span>
-        <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="s2">&quot;2023-07-01&quot;</span><span class="p">),</span>
-        <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="s2">&quot;2023-12-01&quot;</span><span class="p">),</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="s2">"2023-07-01"</span><span class="p">),</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="s2">"2023-12-01"</span><span class="p">),</span>
         <span class="c1"># Ski cover: boolean true/false - use a checkbox</span>
         <span class="n">gr</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">()</span>
     <span class="p">],</span>
     <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Price&quot;</span><span class="p">),</span>
-        <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tax&quot;</span><span class="p">)</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"Price"</span><span class="p">),</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"Tax"</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">gradio_interface</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
@@ -667,17 +667,17 @@ To create a public link, set `share=True` in `launch()`.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://127.0.0.1:7860/run/predict&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-  <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;USA&quot;</span><span class="p">,</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"http://127.0.0.1:7860/run/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"USA"</span><span class="p">,</span>
     <span class="mi">30</span><span class="p">,</span>
     <span class="mi">19</span><span class="p">,</span>
-    <span class="s2">&quot;2023-07-01&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;2023-12-01&quot;</span><span class="p">,</span>
+    <span class="s2">"2023-07-01"</span><span class="p">,</span>
+    <span class="s2">"2023-12-01"</span><span class="p">,</span>
     <span class="kc">False</span><span class="p">,</span>
 <span class="p">]})</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-<span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+<span class="n">response</span><span class="p">[</span><span class="s2">"data"</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

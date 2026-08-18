@@ -651,7 +651,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">SHAPforxgboost</span><span class="p">)</span>
 
-<span class="nf">source</span><span class="p">(</span><span class="s">&quot;./Baudry_functions_v2.R&quot;</span><span class="p">)</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">"./Baudry_functions_v2.R"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -678,9 +678,9 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dt_polclaim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_policy_claim</span><span class="p">(</span><span class="n">dt_PhoneData</span><span class="p">,</span>
-<span class="w">                                 </span><span class="n">date_pol_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_UW&quot;</span><span class="p">,</span>
-<span class="w">                                 </span><span class="n">date_pol_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_lapse&quot;</span><span class="p">,</span>
-<span class="w">                                 </span><span class="n">date_occur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;date_occur&quot;</span><span class="p">)</span>
+<span class="w">                                 </span><span class="n">date_pol_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"date_UW"</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">date_pol_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"date_lapse"</span><span class="p">,</span>
+<span class="w">                                 </span><span class="n">date_occur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"date_occur"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -692,7 +692,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>Again, note that this function would need to be re-written to work with your own company data and more importantly it currently would not work correctly with partial payment claims.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2016/1/1&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">as.Date</span><span class="p">(</span><span class="s">&quot;2019/06/30&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;second&quot;</span><span class="p">)</span><span class="w"> </span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lst_Date_slice</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">floor_date</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="nf">as.Date</span><span class="p">(</span><span class="s">"2016/1/1"</span><span class="p">),</span><span class="w"> </span><span class="nf">as.Date</span><span class="p">(</span><span class="s">"2019/06/30"</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w"> </span><span class="n">unit</span><span class="o">=</span><span class="w"> </span><span class="s">"second"</span><span class="p">)</span><span class="w"> </span>
 <span class="n">dt_polclaim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">time_slice_polclaim</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">lst_Date_slice</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -721,20 +721,20 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define modelVars</span>
-<span class="n">RBNS_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_report&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;target&quot;</span>
+<span class="n">RBNS_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"clm_number"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"pol_number"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"j"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"k"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_pol_start"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_occur"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_report"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_pay"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Cover"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"claim_type"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Brand"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Model"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Price"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"target"</span>
 <span class="w">    </span><span class="p">)</span>
 
 
@@ -756,7 +756,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 
 <span class="c1"># combine into a single RBNS dataset   </span>
 <span class="n">dt_All_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">dt_RBNS_train</span><span class="p">,</span><span class="w"> </span><span class="n">dt_RBNS_test</span><span class="p">)</span>
-<span class="c1">#write.csv(dt_All_RBNS,&quot;dt_All_RBNS.csv&quot;, row.names = F)</span>
+<span class="c1">#write.csv(dt_All_RBNS,"dt_All_RBNS.csv", row.names = F)</span>
 </pre></div>
 </div>
 </div>
@@ -770,7 +770,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="n">Count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">.N</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
 
 <span class="c1">#create delay measures and convert time measures from intervals of seconds to intervals of days</span>
-<span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="s">&#39;:=&#39;</span><span class="p">(</span>
+<span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="s">':='</span><span class="p">(</span>
 <span class="w">  </span><span class="n">delay_uw_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
 <span class="w">                        </span><span class="m">-1</span><span class="p">,</span>
 <span class="w">                        </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
@@ -798,20 +798,20 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#define IBNR modelVars</span>
-<span class="n">IBNR_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;clm_number&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;pol_number&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;exposure&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_pol_start&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_occur&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_report&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_pay&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;target&quot;</span><span class="p">)</span>
+<span class="n">IBNR_model_vars</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"clm_number"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"pol_number"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"j"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"k"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"exposure"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_pol_start"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_occur"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_report"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_pay"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Cover"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Brand"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Model"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Price"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"target"</span><span class="p">)</span>
 <span class="w">    </span>
 <span class="c1"># Create a combined TRAIN dataset for k = 1 and all valid j delay values</span>
 <span class="n">lst_IBNR_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">IBNR_Train</span><span class="p">(</span><span class="n">dt_polclaim</span><span class="p">,</span><span class="w"> </span><span class="n">t_i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="n">lst_Date_slice</span><span class="p">,</span><span class="w"> </span><span class="n">IBNR_model_vars</span><span class="p">)</span>
@@ -832,7 +832,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <span class="n">dt_All_IBNR</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Freq</span><span class="p">,</span>
 <span class="w">                     </span><span class="n">lst_IBNR_train</span><span class="o">$</span><span class="n">Loss</span><span class="p">,</span>
 <span class="w">                     </span><span class="n">dt_IBNR_test</span><span class="p">)</span>
-<span class="c1">#write.csv(dt_All_IBNR,&quot;dt_All_IBNR.csv&quot;, row.names = F)</span>
+<span class="c1">#write.csv(dt_All_IBNR,"dt_All_IBNR.csv", row.names = F)</span>
 </pre></div>
 </div>
 </div>
@@ -866,7 +866,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <span class="nf">setkey</span><span class="p">(</span><span class="n">dt_All_IBNR</span><span class="p">,</span><span class="w"> </span><span class="n">clm_number</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
 <span class="w">    </span>
 <span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="n">Count</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">.N</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="n">clm_number</span><span class="p">]</span>
-<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">&#39;:=&#39;</span><span class="p">(</span><span class="w"> </span><span class="n">delay_uw_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
+<span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="s">':='</span><span class="p">(</span><span class="w"> </span><span class="n">delay_uw_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2199</span><span class="p">,</span>
 <span class="w">                                        </span><span class="m">-1</span><span class="p">,</span>
 <span class="w">                                        </span><span class="nf">ceiling</span><span class="p">((</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_occur</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">))</span>
 <span class="w">                                                  </span><span class="o">/</span><span class="p">(</span><span class="m">24</span><span class="o">*</span><span class="m">60</span><span class="o">*</span><span class="m">60</span><span class="p">))</span>
@@ -906,16 +906,16 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <p>For this example I’ve chosen to use the <code class="docutils literal notranslate"><span class="pre">parsnip</span></code> package and create a recipe that converts nominal predictor values into a <strong>one-hot-encoded</strong> form.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;claim_type&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="c1">#&quot;date_uw&quot;,</span>
-<span class="w">                     </span><span class="c1">#&quot;delay_uw_occ&quot;,</span>
-<span class="w">                     </span><span class="s">&quot;delay_occ_rep&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RBNS_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"j"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"k"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Cover"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"claim_type"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Brand"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Model"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Price"</span><span class="p">,</span>
+<span class="w">                     </span><span class="c1">#"date_uw",</span>
+<span class="w">                     </span><span class="c1">#"delay_uw_occ",</span>
+<span class="w">                     </span><span class="s">"delay_occ_rep"</span><span class="p">)</span>
 
 <span class="n">rowList_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">1</span><span class="p">)],</span>
 <span class="w">                </span><span class="n">test</span><span class="o">=</span><span class="n">dt_All_RBNS</span><span class="p">[,</span><span class="w"> </span><span class="nf">which</span><span class="p">(</span><span class="n">flgTrain</span><span class="o">==</span><span class="m">0</span><span class="p">)],</span>
@@ -968,7 +968,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
-<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reg:tweedie&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"reg:tweedie"</span><span class="p">,</span>
 <span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">            </span><span class="c1"># tree-depth</span>
 <span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
 <span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">    </span><span class="c1"># randomly sample columns before fitting each tree</span>
@@ -995,7 +995,7 @@ CLAIM RESERVING IN INSURANCE” (<a class="reference external" href="https://www
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-tweedie-nloglik@1.5:197.200147+1.066135	test-tweedie-nloglik@1.5:197.212884+4.843435 
 Multiple eval metrics are present. Will use test_tweedie_nloglik@1.5 for early stopping.
-Will train until test_tweedie_nloglik@1.5 hasn&#39;t improved in 10 rounds.
+Will train until test_tweedie_nloglik@1.5 hasn't improved in 10 rounds.
 
 [11]	train-tweedie-nloglik@1.5:76.197815+0.211998	test-tweedie-nloglik@1.5:76.203892+2.163219 
 [21]	train-tweedie-nloglik@1.5:34.536194+0.258204	test-tweedie-nloglik@1.5:34.527821+1.059959 
@@ -1069,7 +1069,7 @@ Stopping. Best iteration:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
 <span class="n">featImp_RBNS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_RBNS_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.RBNS_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_RBNS</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - RBNS&quot;</span><span class="p">)</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_RBNS</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">"Feature Importance - RBNS"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1109,9 +1109,9 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula 'y ~ x'
 
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at -0.005”
@@ -1121,9 +1121,9 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “reciprocal condition number  3.0861e-30”
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “There are other near singularities as well. 1.01”
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at 0.985”
@@ -1162,7 +1162,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 8 features were summed into variable &#39;rest_variables&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 8 features were summed into variable 'rest_variables'.
 
 
 Data has N = 833 | zoom in length is 83 at location 500.
@@ -1261,13 +1261,13 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <p>The other point to note is the values of <strong>flgTrain</strong> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training rows have a value of 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"j"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"k"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Cover"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Brand"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Model"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Price"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_uw"</span><span class="p">)</span>
 
 <span class="c1"># aggregate the data ... does this lead to loss of variance and accuracy?</span>
 <span class="n">dt_All_IBNR</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span><span class="w"> </span><span class="p">)]</span>
@@ -1275,7 +1275,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <span class="n">dt_All_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">exposure</span><span class="p">),</span>
 <span class="w">                                   </span><span class="n">target_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
 <span class="w">                                   </span><span class="n">target_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)),</span>
-<span class="w">                               </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+<span class="w">                               </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">"date_pol_start_YYYYMM"</span><span class="p">,</span><span class="w"> </span><span class="s">"flgTrain"</span><span class="p">)]</span>
 
 <span class="n">dt_All_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_F</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
 
@@ -1327,7 +1327,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
-<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;count:poisson&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"count:poisson"</span><span class="p">,</span>
 <span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">           </span><span class="c1"># tree-depth</span>
 <span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
 <span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">   </span><span class="c1"># randomly sample columns before fitting each tree</span>
@@ -1357,7 +1357,7 @@ Data has N = 833 | zoom in length is 83 at location 500.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-poisson-nloglik:0.509639+0.000413	test-poisson-nloglik:0.509646+0.001705 
 Multiple eval metrics are present. Will use test_poisson_nloglik for early stopping.
-Will train until test_poisson_nloglik hasn&#39;t improved in 50 rounds.
+Will train until test_poisson_nloglik hasn't improved in 50 rounds.
 
 [51]	train-poisson-nloglik:0.161843+0.002167	test-poisson-nloglik:0.162117+0.005715 
 [101]	train-poisson-nloglik:0.136649+0.002226	test-poisson-nloglik:0.137008+0.008028 
@@ -1420,7 +1420,7 @@ Stopping. Best iteration:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
 <span class="n">featImp_IBNR_F</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_F_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_F_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_F</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Frequency&quot;</span><span class="p">)</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_F</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">"Feature Importance - IBNR Frequency"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1463,11 +1463,11 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula 'y ~ x'
 
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at -0.015”
@@ -1477,7 +1477,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “reciprocal condition number  2.3627e-15”
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “There are other near singularities as well. 4.0602”
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at -0.005”
@@ -1516,7 +1516,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable &#39;rest_variables&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable 'rest_variables'.
 
 
 Data has N = 1111 | zoom in length is 111 at location 500.
@@ -1634,19 +1634,19 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <p>The other point to note is the values of <em>flgTrain</em> used to identify the training and test rows in our dataset. Recall from Notebook 2, in the IBNR dataset training rows for the frequency model have a flgtrain value of 1 whereas the Severity training roes have a value of 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;j&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;k&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Cover&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Brand&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Model&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;Price&quot;</span><span class="p">,</span>
-<span class="w">                     </span><span class="s">&quot;date_uw&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">IBNR_predictors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"j"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"k"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Cover"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Brand"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Model"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"Price"</span><span class="p">,</span>
+<span class="w">                     </span><span class="s">"date_uw"</span><span class="p">)</span>
 
 <span class="n">dt_All_IBNR</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">date_pol_start_YYYYMM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">year</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">date_pol_start</span><span class="p">)</span><span class="o">/</span><span class="m">100</span><span class="w"> </span><span class="p">)]</span>
 
 <span class="n">dt_All_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR</span><span class="p">[,</span><span class="w"> </span><span class="nf">.</span><span class="p">(</span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span>
 <span class="w">                                 </span><span class="n">target_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span>
-<span class="w">                            </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;date_pol_start_YYYYMM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;flgTrain&quot;</span><span class="p">)]</span>
+<span class="w">                            </span><span class="n">by</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">IBNR_predictors</span><span class="p">,</span><span class="w"> </span><span class="s">"date_pol_start_YYYYMM"</span><span class="p">,</span><span class="w"> </span><span class="s">"flgTrain"</span><span class="p">)]</span>
 
 <span class="n">dt_All_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dt_All_IBNR_S</span><span class="p">[</span><span class="n">exposure</span><span class="o">&gt;</span><span class="m">0</span><span class="p">]</span>
 
@@ -1705,7 +1705,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
-<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reg:gamma&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"reg:gamma"</span><span class="p">,</span>
 <span class="w">  </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2L</span><span class="p">,</span><span class="w">           </span><span class="c1"># tree-depth</span>
 <span class="w">  </span><span class="n">subsample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w">          </span><span class="c1"># randomly sample rows before fitting each tree</span>
 <span class="w">  </span><span class="n">colsample_bytree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">   </span><span class="c1"># randomly sample columns before fitting each tree</span>
@@ -1734,7 +1734,7 @@ Data has N = 1111 | zoom in length is 111 at location 500.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]	train-gamma-nloglik:727.366760+11.680331	test-gamma-nloglik:726.538232+48.084103 
 Multiple eval metrics are present. Will use test_gamma_nloglik for early stopping.
-Will train until test_gamma_nloglik hasn&#39;t improved in 50 rounds.
+Will train until test_gamma_nloglik hasn't improved in 50 rounds.
 
 [51]	train-gamma-nloglik:6.846936+0.079307	test-gamma-nloglik:6.850900+0.394632 
 [101]	train-gamma-nloglik:2.031303+0.001389	test-gamma-nloglik:2.039524+0.065692 
@@ -1797,7 +1797,7 @@ Stopping. Best iteration:
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#default feature importance by gain</span>
 <span class="n">featImp_IBNR_S</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgb.importance</span><span class="p">(</span><span class="n">xgb_IBNR_S_Fit</span><span class="p">,</span><span class="w"> </span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">xgb.IBNR_S_DMat.train</span><span class="p">))</span>
-<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_S</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Feature Importance - IBNR Severity&quot;</span><span class="p">)</span>
+<span class="nf">xgb.plot.importance</span><span class="p">(</span><span class="n">featImp_IBNR_S</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">"Feature Importance - IBNR Severity"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1837,9 +1837,9 @@ Stopping. Best iteration:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula &#39;y ~ x&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula 'y ~ x'
 
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at -0.005”
@@ -1849,7 +1849,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 “reciprocal condition number  0”
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “There are other near singularities as well. 1.01”
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “at  -0.005”
@@ -1870,7 +1870,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 Warning message:
 “Computation failed in `stat_smooth()`:
 NA/NaN/Inf in foreign function call (arg 5)”
-`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula 'y ~ x'
 
 Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, :
 “pseudoinverse used at 0.985”
@@ -1908,7 +1908,7 @@ Warning message in simpleLoess(y, x, w, span, degree = degree, parametric = para
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable &#39;rest_variables&#39;.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The SHAP values of the Rest 5 features were summed into variable 'rest_variables'.
 
 
 Data has N = 1111 | zoom in length is 111 at location 500.

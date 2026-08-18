@@ -644,11 +644,11 @@ document.write(`
 
     <span class="n">exp_var_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">exp_var_pca</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Individual explained variance&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Explained variance ratio&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal component&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">exp_var_pca</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">exp_var_pca</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s1">'center'</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">'Individual explained variance'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Explained variance ratio'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Principal component'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'best'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -665,10 +665,10 @@ document.write(`
 <span class="c1">## File 2: IER scores by Statistical Area 1 published by the ABS</span>
 
 
-<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+<span class="n">infolder</span> <span class="o">=</span> <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/'</span>
 
-<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;standardised_variables_seifa_2021_cut.csv&#39;</span>
-<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;IER_2021.csv&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">'standardised_variables_seifa_2021_cut.csv'</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">'IER_2021.csv'</span>
 
 <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">infolder</span> <span class="o">+</span> <span class="n">file1</span><span class="p">)</span>
 <span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">infolder</span> <span class="o">+</span> <span class="n">file2</span><span class="p">)</span>
@@ -976,21 +976,21 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select variables ABS uses to calibrate the IER (per their methodology)</span>
 
 <span class="n">variable_IER</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;SA1_2021&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;INC_LOW&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;LOWRENT&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;NOCAR&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;LONE&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ONEPARENT&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OVERCROWD&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;UNEMPLOYED_IER&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;GROUP&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OWNING&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;UNINCORP&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;INC_HIGH&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;HIGHMORTGAGE&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;MORTGAGE&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;HIGHBED&#39;</span>
+    <span class="s1">'SA1_2021'</span><span class="p">,</span>
+    <span class="s1">'INC_LOW'</span><span class="p">,</span>
+    <span class="s1">'LOWRENT'</span><span class="p">,</span>
+    <span class="s1">'NOCAR'</span><span class="p">,</span>
+    <span class="s1">'LONE'</span><span class="p">,</span>
+    <span class="s1">'ONEPARENT'</span><span class="p">,</span>
+    <span class="s1">'OVERCROWD'</span><span class="p">,</span>
+    <span class="s1">'UNEMPLOYED_IER'</span><span class="p">,</span>
+    <span class="s1">'GROUP'</span><span class="p">,</span>
+    <span class="s1">'OWNING'</span><span class="p">,</span>
+    <span class="s1">'UNINCORP'</span><span class="p">,</span>
+    <span class="s1">'INC_HIGH'</span><span class="p">,</span>
+    <span class="s1">'HIGHMORTGAGE'</span><span class="p">,</span>
+    <span class="s1">'MORTGAGE'</span><span class="p">,</span>
+    <span class="s1">'HIGHBED'</span>
 
 <span class="p">]</span>
 
@@ -1008,7 +1008,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 59430 entries, 0 to 59429
 Data columns (total 15 columns):
  #   Column          Non-Null Count  Dtype  
@@ -1179,10 +1179,10 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract first principal component in a dataframe</span>
-<span class="n">pca1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">])</span>
+<span class="n">pca1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_data_transformed</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'IER_2021'</span><span class="p">])</span>
 
 <span class="c1"># Attach SA1 ID to</span>
-<span class="n">IER_S1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data1_IER_dropna</span><span class="p">[</span><span class="s1">&#39;SA1_2021&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span> <span class="n">pca1</span><span class="p">]</span>
+<span class="n">IER_S1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data1_IER_dropna</span><span class="p">[</span><span class="s1">'SA1_2021'</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span> <span class="n">pca1</span><span class="p">]</span>
                     <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">IER_S1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
@@ -1203,19 +1203,19 @@ dtype: int64
 <span class="c1">## Reverse sign to make it more comprehensive</span>
 
 <span class="n">component_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Variable&#39;</span><span class="p">:</span> <span class="n">data1_IER</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-    <span class="s1">&#39;PC1 Loading&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="s1">&#39;First SA1&#39;</span><span class="p">:</span> <span class="n">pca_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="s1">'Variable'</span><span class="p">:</span> <span class="n">data1_IER</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+    <span class="s1">'PC1 Loading'</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'First SA1'</span><span class="p">:</span> <span class="n">pca_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="p">})</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">component_df</span><span class="p">)</span>
 
 
-<span class="n">raw_score_first_SA1</span> <span class="o">=</span> <span class="p">(</span><span class="n">component_df</span><span class="p">[</span><span class="s1">&#39;PC1 Loading&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">component_df</span><span class="p">[</span><span class="s1">&#39;First SA1&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">raw_score_first_SA1</span> <span class="o">=</span> <span class="p">(</span><span class="n">component_df</span><span class="p">[</span><span class="s1">'PC1 Loading'</span><span class="p">]</span> <span class="o">*</span> <span class="n">component_df</span><span class="p">[</span><span class="s1">'First SA1'</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_score_first_SA1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1285,7 +1285,7 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardise calibrated IER scores to mean of 1,000 and standard deviation of 100 (per ABS methodology)</span>
 
-<span class="n">IER_S1</span><span class="p">[</span><span class="s1">&#39;IER_recreated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">IER_S1</span><span class="p">[</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">IER_S1</span><span class="p">[</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1000</span>
+<span class="n">IER_S1</span><span class="p">[</span><span class="s1">'IER_recreated'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">IER_S1</span><span class="p">[</span><span class="s1">'IER_2021'</span><span class="p">]</span><span class="o">/</span><span class="n">IER_S1</span><span class="p">[</span><span class="s1">'IER_2021'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1000</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">IER_S1</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 </pre></div>
@@ -1312,22 +1312,22 @@ dtype: int64
 
 <span class="n">ABS_IER_S1</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 
-<span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">],</span>
-                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
-<span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">&#39;SA1_2021&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">&#39;SA1_2021&#39;</span><span class="p">],</span>
-                                        <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">,</span> <span class="n">downcast</span> <span class="o">=</span> <span class="s1">&#39;integer&#39;</span><span class="p">)</span>
+<span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">'IER_2021'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">'IER_2021'</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+<span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">'SA1_2021'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="p">[</span><span class="s1">'SA1_2021'</span><span class="p">],</span>
+                                        <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">,</span> <span class="n">downcast</span> <span class="o">=</span> <span class="s1">'integer'</span><span class="p">)</span>
 
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ABS_IER_S1</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 59421 entries, 0 to 59420
 Data columns (total 2 columns):
  #   Column    Non-Null Count  Dtype  
@@ -1380,7 +1380,7 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge the recreated with the published data for reconciliation 1 - histograms</span>
 
-<span class="n">join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IER_S1_dropna</span><span class="p">,</span> <span class="n">data1_IER_dropna</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;SA1_2021&#39;</span><span class="p">)</span>
+<span class="n">join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IER_S1_dropna</span><span class="p">,</span> <span class="n">data1_IER_dropna</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">'left'</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">'SA1_2021'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1389,10 +1389,10 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histogram of calibrated IER scores</span>
 
-<span class="n">IER_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IER_recreated&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of recreated IER scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IER score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">IER_S1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">'IER_recreated'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of recreated IER scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'IER score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Frequency'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1406,14 +1406,14 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot histogram of publisehd IER scores</span>
 
-<span class="n">ABS_IER_S1_dropna</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;IER_2021&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of ABS IER scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;IER score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">ABS_IER_S1_dropna</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">'IER_2021'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of ABS IER scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'IER score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Frequency'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">ABS_IER_S1_dropna</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;check_ABS_IER_S1_dropna.csv&#39;</span><span class="p">)</span>
+<span class="n">ABS_IER_S1_dropna</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'check_ABS_IER_S1_dropna.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1426,7 +1426,7 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract columns we need</span>
 
-<span class="n">IER_S1_reduce</span> <span class="o">=</span> <span class="n">IER_S1</span><span class="p">[[</span><span class="s1">&#39;SA1_2021&#39;</span><span class="p">,</span> <span class="s1">&#39;IER_recreated&#39;</span><span class="p">]]</span>
+<span class="n">IER_S1_reduce</span> <span class="o">=</span> <span class="n">IER_S1</span><span class="p">[[</span><span class="s1">'SA1_2021'</span><span class="p">,</span> <span class="s1">'IER_recreated'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1435,7 +1435,7 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Merge the recreated with the published data for reconciliation 2 - scatter plot</span>
 
-<span class="n">IER_join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IER_S1_dropna</span><span class="p">,</span> <span class="n">IER_S1_reduce</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;SA1_2021&#39;</span><span class="p">)</span>
+<span class="n">IER_join</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ABS_IER_S1_dropna</span><span class="p">,</span> <span class="n">IER_S1_reduce</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">'left'</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">'SA1_2021'</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">IER_join</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 </pre></div>
@@ -1456,10 +1456,10 @@ dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot calibrated score vs. published score</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;IER_recreated&#39;</span><span class="p">,</span> <span class="s1">&#39;IER_2021&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">IER_join</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of recreated and ABS IER scores&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recreated IER score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ABS IER score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">'IER_recreated'</span><span class="p">,</span> <span class="s1">'IER_2021'</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">IER_join</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'dodgerblue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Comparison of recreated and ABS IER scores'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Recreated IER score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'ABS IER score'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

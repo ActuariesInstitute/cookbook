@@ -695,7 +695,7 @@ Other functions that are specific to each type of model are defined in the secti
 <span class="c1"># This uses the `train_test_split` function from the sklearn package to do the </span>
 <span class="c1"># actual data splitting.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">create_data_splits</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">id_col</span><span class="p">,</span> <span class="n">response_col</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Splits the data into train, validation and test sets (64%, 16%, 20%)</span>
 <span class="sd">    All columns on `dataset` other than the `id_col` and `response_col` will be</span>
 <span class="sd">    used as features.</span>
@@ -710,7 +710,7 @@ Other functions that are specific to each type of model are defined in the secti
 <span class="sd">    validation_y: the validation data response vector</span>
 <span class="sd">    test_x: the test data (feature) matrix</span>
 <span class="sd">    test_y: the test data response vector</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="c1"># Split data into train/test (80%, 20%).</span>
     <span class="n">train_full</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">)</span>
 
@@ -723,13 +723,13 @@ Other functions that are specific to each type of model are defined in the secti
     <span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">id_col</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">]</span>
 
     <span class="n">train_x</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">train_y</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">train_y</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">validation_x</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">validation_y</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">validation_y</span> <span class="o">=</span> <span class="n">validation</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">test_x</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span>
-    <span class="n">test_y</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">test_y</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">response_col</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'Yes'</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span>
 </pre></div>
@@ -741,14 +741,14 @@ Other functions that are specific to each type of model are defined in the secti
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to print and plot a confusion matrix.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
                           <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">'Confusion matrix'</span><span class="p">,</span>
                           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    This function prints and plots a confusion matrix.</span>
 <span class="sd">    Normalisation of the matrix can be applied by setting `normalise=True`.</span>
 <span class="sd">    Normalsiation ensures that the sum of each row in the confusion matrix is 1.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+<span class="sd">    '''</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
     <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
@@ -756,17 +756,17 @@ Other functions that are specific to each type of model are defined in the secti
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
-        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float'</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
     <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">'white'</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">'black'</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'True response'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Predicted response'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -787,7 +787,7 @@ Other functions that are specific to each type of model are defined in the secti
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M05_CS1_data.csv&#39;</span><span class="p">,</span> 
+    <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M05_CS1_data.csv'</span><span class="p">,</span> 
     <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -813,7 +813,7 @@ Other functions that are specific to each type of model are defined in the secti
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 7043 entries, 0 to 7042
 Data columns (total 21 columns):
  #   Column            Non-Null Count  Dtype  
@@ -1074,8 +1074,8 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the ID and response columns</span>
-<span class="n">id_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;customerID&#39;</span><span class="p">]</span>
-<span class="n">response_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span>
+<span class="n">id_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'customerID'</span><span class="p">]</span>
+<span class="n">response_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Churn'</span><span class="p">]</span>
 
 <span class="c1"># Get the list of features by type.</span>
 <span class="c1"># Categorical features can be identified as those columns with only a few levels.</span>
@@ -1090,8 +1090,8 @@ dtype: int64
 <span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cat_cols</span> <span class="o">+</span> <span class="n">id_col</span> <span class="o">+</span> <span class="n">response_col</span><span class="p">]</span>
 
 <span class="c1"># Convert TotalCharges to numeric and set equal to 0 where blank.</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">])</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">,</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">])</span>
 
 <span class="c1"># Check the number of levels for each categorical feature and the</span>
 <span class="c1"># response variable.</span>
@@ -1101,24 +1101,24 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gender [&#39;Female&#39; &#39;Male&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gender ['Female' 'Male']
 SeniorCitizen [0 1]
-Partner [&#39;Yes&#39; &#39;No&#39;]
-Dependents [&#39;No&#39; &#39;Yes&#39;]
-PhoneService [&#39;No&#39; &#39;Yes&#39;]
-MultipleLines [&#39;No phone service&#39; &#39;No&#39; &#39;Yes&#39;]
-InternetService [&#39;DSL&#39; &#39;Fiber optic&#39; &#39;No&#39;]
-OnlineSecurity [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
-OnlineBackup [&#39;Yes&#39; &#39;No&#39; &#39;No internet service&#39;]
-DeviceProtection [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
-TechSupport [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
-StreamingTV [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
-StreamingMovies [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
-Contract [&#39;Month-to-month&#39; &#39;One year&#39; &#39;Two year&#39;]
-PaperlessBilling [&#39;Yes&#39; &#39;No&#39;]
-PaymentMethod [&#39;Electronic check&#39; &#39;Mailed check&#39; &#39;Bank transfer (automatic)&#39;
- &#39;Credit card (automatic)&#39;]
-Churn [&#39;No&#39; &#39;Yes&#39;]
+Partner ['Yes' 'No']
+Dependents ['No' 'Yes']
+PhoneService ['No' 'Yes']
+MultipleLines ['No phone service' 'No' 'Yes']
+InternetService ['DSL' 'Fiber optic' 'No']
+OnlineSecurity ['No' 'Yes' 'No internet service']
+OnlineBackup ['Yes' 'No' 'No internet service']
+DeviceProtection ['No' 'Yes' 'No internet service']
+TechSupport ['No' 'Yes' 'No internet service']
+StreamingTV ['No' 'Yes' 'No internet service']
+StreamingMovies ['No' 'Yes' 'No internet service']
+Contract ['Month-to-month' 'One year' 'Two year']
+PaperlessBilling ['Yes' 'No']
+PaymentMethod ['Electronic check' 'Mailed check' 'Bank transfer (automatic)'
+ 'Credit card (automatic)']
+Churn ['No' 'Yes']
 </pre></div>
 </div>
 </div>
@@ -1164,69 +1164,69 @@ dtype: object
 
 <span class="c1"># Loop over each feature.</span>
 <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="s1">&#39;gender&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;SeniorCitizen&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Partner&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Dependents&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;tenure&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PhoneService&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;MultipleLines&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;InternetService&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OnlineSecurity&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;OnlineBackup&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;DeviceProtection&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;TechSupport&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;StreamingTV&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;StreamingMovies&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Contract&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PaperlessBilling&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PaymentMethod&#39;</span><span class="p">,</span>
+    <span class="s1">'gender'</span><span class="p">,</span>
+    <span class="s1">'SeniorCitizen'</span><span class="p">,</span>
+    <span class="s1">'Partner'</span><span class="p">,</span>
+    <span class="s1">'Dependents'</span><span class="p">,</span>
+    <span class="s1">'tenure'</span><span class="p">,</span>
+    <span class="s1">'PhoneService'</span><span class="p">,</span>
+    <span class="s1">'MultipleLines'</span><span class="p">,</span>
+    <span class="s1">'InternetService'</span><span class="p">,</span>
+    <span class="s1">'OnlineSecurity'</span><span class="p">,</span>
+    <span class="s1">'OnlineBackup'</span><span class="p">,</span>
+    <span class="s1">'DeviceProtection'</span><span class="p">,</span>
+    <span class="s1">'TechSupport'</span><span class="p">,</span>
+    <span class="s1">'StreamingTV'</span><span class="p">,</span>
+    <span class="s1">'StreamingMovies'</span><span class="p">,</span>
+    <span class="s1">'Contract'</span><span class="p">,</span>
+    <span class="s1">'PaperlessBilling'</span><span class="p">,</span>
+    <span class="s1">'PaymentMethod'</span><span class="p">,</span>
 <span class="p">]:</span>
     <span class="p">(</span>
-        <span class="c1"># create a binary 1/0 response column, where 1 indicates Churn = &#39;Yes&#39;;</span>
+        <span class="c1"># create a binary 1/0 response column, where 1 indicates Churn = 'Yes';</span>
         <span class="c1"># group by the values of the current feature;</span>
         <span class="c1"># calculate the mean of the response; and</span>
         <span class="c1"># plot.</span>
         <span class="n">dataset</span><span class="p">[[</span><span class="n">feature</span><span class="p">]]</span>
-        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">'Yes'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'mean'</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'Dodgerblue'</span><span class="p">)</span>
     <span class="p">)</span>
 
 
 <span class="p">(</span>
     <span class="c1"># The same is done for MonthlyCharges except that the value is rounded</span>
     <span class="c1"># to the nearest $10 using np.round(, -1).</span>
-    <span class="n">dataset</span><span class="p">[[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]]</span>
+    <span class="n">dataset</span><span class="p">[[</span><span class="s1">'MonthlyCharges'</span><span class="p">]]</span>
     <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
-        <span class="n">Feature_MonthlyCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
-        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">Feature_MonthlyCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'MonthlyCharges'</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">'Yes'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">)</span>
-    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">])</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Feature_MonthlyCharges&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'MonthlyCharges'</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Feature_MonthlyCharges'</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'mean'</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'Dodgerblue'</span><span class="p">)</span>
 <span class="p">)</span>
 
 
 <span class="p">(</span>
     <span class="c1"># TotalCharges is rounded to the nearest $1,000 using np.round(, -3).</span>
-    <span class="n">dataset</span><span class="p">[[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]]</span>
+    <span class="n">dataset</span><span class="p">[[</span><span class="s1">'TotalCharges'</span><span class="p">]]</span>
     <span class="o">.</span><span class="n">assign</span><span class="p">(</span>
-        <span class="n">Feature_TotalCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
-        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">Feature_TotalCharges</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">],</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">Response</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">Churn</span> <span class="o">==</span> <span class="s1">'Yes'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">)</span>
-    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">])</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Feature_TotalCharges&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;Dodgerblue&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'TotalCharges'</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Feature_TotalCharges'</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">'mean'</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'Dodgerblue'</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Feature_TotalCharges&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel='Feature_TotalCharges'&gt;
 </pre></div>
 </div>
 <img alt="../_images/c169e907ed58da7cf19c30fee877b2323484ee6fd313b10148c05292986ecec5.png" src="../_images/c169e907ed58da7cf19c30fee877b2323484ee6fd313b10148c05292986ecec5.png" />
@@ -1308,7 +1308,7 @@ This is specified with <code class="docutils literal notranslate"><span class="p
                                        <span class="n">verbose</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                                        <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">)</span>
 <span class="c1"># Train the model.</span>
-<span class="c1"># &#39;train_gbm_y.values.ravel()&#39; converts the series of response values into</span>
+<span class="c1"># 'train_gbm_y.values.ravel()' converts the series of response values into</span>
 <span class="c1"># a 1D array which is the format expected by the .fit() method</span>
 <span class="n">gbm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 </pre></div>
@@ -1357,7 +1357,7 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <span class="n">validation_y_preds</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> 
 
 <span class="c1"># Obtain the predicted churn outcomes, G(X).</span>
-<span class="c1"># Returns the predicted class as 0 for &#39;no churn&#39; or 1 for &#39;churn&#39;.</span>
+<span class="c1"># Returns the predicted class as 0 for 'no churn' or 1 for 'churn'.</span>
 <span class="n">train_y_class</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_gbm_x</span><span class="p">)</span>
 <span class="n">validation_y_class</span> <span class="o">=</span> <span class="n">gbm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">validation_gbm_x</span><span class="p">)</span>
 </pre></div>
@@ -1367,13 +1367,13 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on train and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">train_y_preds</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'train'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">train_y_preds</span><span class="p">),</span>
+ <span class="s1">'validation'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.8774950558946257, &#39;validation&#39;: 0.8589570358298064}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.8774950558946257, 'validation': 0.8589570358298064}
 </pre></div>
 </div>
 </div>
@@ -1405,13 +1405,13 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the F1 score.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="p">,</span> <span class="n">train_y_class</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'train'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">train_gbm_y</span><span class="p">,</span> <span class="n">train_y_class</span><span class="p">),</span>
+ <span class="s1">'validation'</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.6495086569957885, &#39;validation&#39;: 0.5618860510805501}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.6495086569957885, 'validation': 0.5618860510805501}
 </pre></div>
 </div>
 </div>
@@ -1431,20 +1431,20 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <span class="c1"># Convert to a dataframe and order by importance.</span>
 <span class="c1"># Note: the feature names become the index for the dataframe, and the importance </span>
 <span class="c1"># is the first column (index 0).</span>
-<span class="n">gbm_fi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">gbm_feat_imps</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Importance&#39;</span><span class="p">})</span>
-<span class="n">gbm_fi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">gbm_fi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">gbm_feat_imps</span><span class="p">,</span> <span class="n">orient</span> <span class="o">=</span> <span class="s1">'index'</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">'Importance'</span><span class="p">})</span>
+<span class="n">gbm_fi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">'Importance'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Plot the feature importances.</span>
-<span class="n">gbm_fi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;barh&#39;</span><span class="p">,</span> \
+<span class="n">gbm_fi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'barh'</span><span class="p">,</span> \
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span> \
-            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Feature importance&#39;</span><span class="p">,</span> \
-            <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;Dodgerblue&#39;</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s1">'Feature importance'</span><span class="p">,</span> \
+            <span class="n">color</span> <span class="o">=</span> <span class="s1">'Dodgerblue'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;Feature importance&#39;}&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={'center':'Feature importance'}&gt;
 </pre></div>
 </div>
 <img alt="../_images/1e7801f2276672ef0aa0d1cd5d2613bdcea2a8d19d62a2f8742f9b66021adc24.png" src="../_images/1e7801f2276672ef0aa0d1cd5d2613bdcea2a8d19d62a2f8742f9b66021adc24.png" />
@@ -1486,7 +1486,7 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;tenure&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;Contract_Month-to-month&#39;], dtype=&#39;object&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index(['tenure', 'MonthlyCharges', 'TotalCharges', 'Contract_Month-to-month'], dtype='object')
 </pre></div>
 </div>
 </div>
@@ -1498,7 +1498,7 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <span class="c1"># easier to plot the data. </span>
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">gbm_pdp_idx</span><span class="p">:</span>
     <span class="n">plot_partial_dependence</span><span class="p">(</span><span class="n">gbm_model</span><span class="p">,</span> <span class="n">train_gbm_x</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">idx</span><span class="p">],</span>
-                          <span class="n">line_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;Dodgerblue&#39;</span><span class="p">})</span>
+                          <span class="n">line_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">'color'</span><span class="p">:</span> <span class="s1">'Dodgerblue'</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1595,14 +1595,14 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the AUC on validation data under model 1 (&#39;old&#39;) and model 2 (&#39;new&#39;).</span>
-<span class="p">{</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds_v2</span><span class="p">),</span>
- <span class="s1">&#39;old&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the AUC on validation data under model 1 ('old') and model 2 ('new').</span>
+<span class="p">{</span><span class="s1">'new'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds_v2</span><span class="p">),</span>
+ <span class="s1">'old'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">validation_y_preds</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;new&#39;: 0.861474435196195, &#39;old&#39;: 0.8589570358298064}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'new': 0.861474435196195, 'old': 0.8589570358298064}
 </pre></div>
 </div>
 </div>
@@ -1633,13 +1633,13 @@ This is specified with <code class="docutils literal notranslate"><span class="p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the F1 score for the two models.</span>
-<span class="p">{</span><span class="s1">&#39;new&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class_v2</span><span class="p">),</span>
- <span class="s1">&#39;old&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'new'</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class_v2</span><span class="p">),</span>
+ <span class="s1">'old'</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">validation_gbm_y</span><span class="p">,</span> <span class="n">validation_y_class</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;new&#39;: 0.5697211155378485, &#39;old&#39;: 0.5618860510805501}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'new': 0.5697211155378485, 'old': 0.5618860510805501}
 </pre></div>
 </div>
 </div>
@@ -1767,13 +1767,13 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the sigmoid function (to be used as the activation function).</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">  </span><span class="sd">'''</span>
 <span class="sd">  Sigmoid activation function</span>
 <span class="sd">  Params:</span>
 <span class="sd">    x: a float or integer value</span>
 <span class="sd">  Return:</span>
 <span class="sd">    The value of the sigmoid function evaluated at x (float)</span>
-<span class="sd">  &#39;&#39;&#39;</span>
+<span class="sd">  '''</span>
   <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1789,13 +1789,13 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the first derivative of the sigmoid function.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">dsigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Derivative of the sigmoid function evaluated at x</span>
 <span class="sd">    Params:</span>
 <span class="sd">    x: value the function will be evaluated at</span>
 <span class="sd">    Return:</span>
 <span class="sd">    The value of the function evaluated at x (float)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="k">return</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
@@ -1806,14 +1806,14 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the mean-squared error loss function.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
+<span class="w">    </span><span class="sd">''' </span>
 <span class="sd">    Mean-squared error loss function</span>
 <span class="sd">    Params:</span>
 <span class="sd">    response: the vector of responses, Y</span>
 <span class="sd">    pred: the vector of predicted values, Y_hat</span>
 <span class="sd">    Return:</span>
 <span class="sd">    The MSE value (float)</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="k">return</span> <span class="p">((</span><span class="n">response</span> <span class="o">-</span> <span class="n">pred</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">response</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -1824,7 +1824,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to provide random starting values for the weights and bias term.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">init_params</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Randomly initializes weights and initialises biases to 0</span>
 <span class="sd">    Params:</span>
 <span class="sd">    n_p: number of features (size of input array)</span>
@@ -1834,7 +1834,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <span class="sd">    Returns:</span>
 <span class="sd">    a0: bias vector</span>
 <span class="sd">    aT: random weights vector</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
     <span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_h</span><span class="p">))</span>
     <span class="n">aT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_h</span><span class="p">)</span> <span class="o">*</span> <span class="nb">range</span> <span class="o">+</span> <span class="n">start</span>
     <span class="k">return</span> <span class="n">a0</span><span class="p">,</span> <span class="n">aT</span>
@@ -1864,7 +1864,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <span class="c1"># the number of features in the dataset (20). There is a single output neuron</span>
 <span class="c1"># and no hidden layers.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">fwd_pass1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Performs the forward pass calculations for a single neuron network</span>
 <span class="sd">    Params:</span>
 <span class="sd">    input: input data frame</span>
@@ -1874,7 +1874,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 <span class="sd">                       If True, returns the linear score in addition to the </span>
 <span class="sd">                       output value y_hat after the activation function has</span>
 <span class="sd">                       been applied.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="c1"># Calculate the value for the neuron on the linear scale,</span>
     <span class="c1"># using the sum-product of the inputs and weights, plus the bias term</span>
@@ -1951,7 +1951,7 @@ $<span class="math notranslate nohighlight">\(a_j=a_j-\alpha \partial a_j\)</spa
 
     <span class="c1"># Print the loss calculated after every 25th iteration.</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;iter </span><span class="si">{</span><span class="n">_</span><span class="si">}</span><span class="s1"> MSE: </span><span class="si">{</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'iter </span><span class="si">{</span><span class="n">_</span><span class="si">}</span><span class="s1"> MSE: </span><span class="si">{</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1998,13 +1998,13 @@ They also compare the single layer neural network to the final GBM model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the training and validation AUC.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn1_train</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'train'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn1_train</span><span class="p">),</span>
+ <span class="s1">'validation'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.8299297457961795, &#39;validation&#39;: 0.8414724395699427}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.8299297457961795, 'validation': 0.8414724395699427}
 </pre></div>
 </div>
 </div>
@@ -2028,13 +2028,13 @@ They also compare the single layer neural network to the final GBM model.</p>
 <p>The output from the single layer neural network can now be compared to the output from the final GBM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;GBM final&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">),</span>
- <span class="s1">&#39;NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">'GBM final'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">),</span>
+ <span class="s1">'NN 1'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;GBM final&#39;: 0.861474435196195, &#39;NN 1&#39;: 0.8414724395699427}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'GBM final': 0.861474435196195, 'NN 1': 0.8414724395699427}
 </pre></div>
 </div>
 </div>
@@ -2070,7 +2070,7 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="n">keep_intermediate</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Performs the forward propagation calculations for a network with a single hidden layer.</span>
 <span class="sd">    Params:</span>
 <span class="sd">    input: input data</span>
@@ -2081,7 +2081,7 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <span class="sd">    keep_intermediate: (logical) keep the intermediate results? </span>
 <span class="sd">                       If True, returns the linear scores and activations for</span>
 <span class="sd">                       the hidden and output layers.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="c1"># Calculate the neurons in layer 1 (the hidden layer).</span>
     <span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">l1_bias</span> <span class="c1"># linear score</span>
@@ -2128,9 +2128,9 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rounds</span><span class="p">):</span>
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    The model is trained by first performing a forward pass to get the predictions,</span>
-<span class="sd">    followed by a backward pass to &#39;propagate&#39; the loss back through each of the</span>
+<span class="sd">    followed by a backward pass to 'propagate' the loss back through each of the</span>
 <span class="sd">    neurons.</span>
 <span class="sd">    This is repeated each iteration until the network has converged or </span>
 <span class="sd">    the maximum number of rounds has been reached.</span>
@@ -2140,7 +2140,7 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 <span class="sd">    ln_bias: vector of bias values (one per neuron) for layer n</span>
 <span class="sd">    fn: vector of linear scores (one per neuron) for layer n</span>
 <span class="sd">    zn: vector of activations (one per neuron) for layer n</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="c1"># Perform the forward pass.</span>
     <span class="n">f1</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">y_hat</span> <span class="o">=</span> <span class="n">fwd_pass2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">l1_bias</span><span class="p">,</span> <span class="n">l1_weights</span><span class="p">,</span> <span class="n">l2_bias</span><span class="p">,</span> <span class="n">l2_weights</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
@@ -2165,7 +2165,7 @@ $<span class="math notranslate nohighlight">\(f(X_{i.}) = a_{01} + a_{1}^{T}X_{i
 
     <span class="c1"># Print the loss after every 25th iteration.</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iter&#39;</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'iter'</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="s1">':'</span><span class="p">,</span> <span class="n">mse_loss</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2207,13 +2207,13 @@ iter 475 : 0.18941896598690924
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn2_train</span><span class="p">),</span>
- <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">)}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">'train'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">pred_nn2_train</span><span class="p">),</span>
+ <span class="s1">'validation'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.8136249709132997, &#39;validation&#39;: 0.8250833589715872}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.8136249709132997, 'validation': 0.8250833589715872}
 </pre></div>
 </div>
 </div>
@@ -2221,16 +2221,16 @@ iter 475 : 0.18941896598690924
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare NN 2 to GBM final and NN 1</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 2&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 1&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;3. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'1. NN 2'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
+ <span class="s1">'2. NN 1'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
+ <span class="s1">'3. GBM final'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1. NN 2&#39;: 0.8250833589715872,
- &#39;2. NN 1&#39;: 0.8414724395699427,
- &#39;3. GBM final&#39;: 0.861474435196195}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1. NN 2': 0.8250833589715872,
+ '2. NN 1': 0.8414724395699427,
+ '3. GBM final': 0.861474435196195}
 </pre></div>
 </div>
 </div>
@@ -2261,16 +2261,16 @@ iter 475 : 0.18941896598690924
 <span class="c1"># Build a model with 1 (dense) hidden layer, 4 neurons and</span>
 <span class="c1"># a sigmoid activation function.</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_dim</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">&#39;random_uniform&#39;</span><span class="p">))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">&#39;random_uniform&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">input_dim</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">'random_uniform'</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'sigmoid'</span><span class="p">,</span> <span class="n">kernel_initializer</span> <span class="o">=</span> <span class="s1">'random_uniform'</span><span class="p">))</span>
 
 <span class="c1"># Specify the optimiser to use.</span>
 <span class="n">opt</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
 <span class="c1"># Compile the model using the mean-squared error loss function.</span>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;mse&#39;</span><span class="p">,</span>
-    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="s1">'mse'</span><span class="p">,</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'mse'</span><span class="p">],</span>
     <span class="n">optimizer</span> <span class="o">=</span> <span class="n">opt</span>    
 <span class="p">)</span>
 
@@ -3313,12 +3313,12 @@ Epoch 500/500
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras_train_preds</span><span class="p">),</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'train'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras_train_preds</span><span class="p">),</span> <span class="s1">'validation'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.8112781367883518, &#39;validation&#39;: 0.8222811671087532}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.8112781367883518, 'validation': 0.8222811671087532}
 </pre></div>
 </div>
 </div>
@@ -3326,18 +3326,18 @@ Epoch 500/500
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the AUCs under all models built to date.</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 3&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 2&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;3. NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;4. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'1. NN 3'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
+ <span class="s1">'2. NN 2'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
+ <span class="s1">'3. NN 1'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
+ <span class="s1">'4. GBM final'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1. NN 3&#39;: 0.8222811671087532,
- &#39;2. NN 2&#39;: 0.8250833589715872,
- &#39;3. NN 1&#39;: 0.8414724395699427,
- &#39;4. GBM final&#39;: 0.861474435196195}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1. NN 3': 0.8222811671087532,
+ '2. NN 2': 0.8250833589715872,
+ '3. NN 1': 0.8414724395699427,
+ '4. GBM final': 0.861474435196195}
 </pre></div>
 </div>
 </div>
@@ -3363,15 +3363,15 @@ Epoch 500/500
 
 <span class="c1"># Construct the adjusted neural network model.</span>
 <span class="n">model2</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">))</span>
-<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">))</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">))</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">'l2'</span><span class="p">))</span>
+<span class="n">model2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'sigmoid'</span><span class="p">))</span>
 <span class="c1"># Compile the model using the Adam optimiser and the logistic loss function</span>
 <span class="c1"># for a binary classifier (binary_cross_entropy).</span>
 <span class="n">model2</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">'binary_crossentropy'</span><span class="p">,</span>
     <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">),</span>
-    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">],</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'binary_crossentropy'</span><span class="p">],</span>
 <span class="p">)</span>
 <span class="n">model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
@@ -3600,12 +3600,12 @@ Epoch 100/100
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the AUC on the training and validation data.</span>
-<span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras2_train_preds</span><span class="p">),</span> <span class="s1">&#39;validation&#39;</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'train'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">keras2_train_preds</span><span class="p">),</span> <span class="s1">'validation'</span><span class="p">:</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;train&#39;: 0.8345909687506179, &#39;validation&#39;: 0.8480247457655306}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'train': 0.8345909687506179, 'validation': 0.8480247457655306}
 </pre></div>
 </div>
 </div>
@@ -3628,20 +3628,20 @@ Epoch 100/100
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the results of all five models built in this notebook.</span>
-<span class="p">{</span><span class="s1">&#39;1. NN 4 (Keras2)&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;2. NN 3 (Keras1)&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
- <span class="s1">&#39;3. NN 2&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
- <span class="s1">&#39;4. NN 1&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
- <span class="s1">&#39;5. GBM final&#39;</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
+<span class="p">{</span><span class="s1">'1. NN 4 (Keras2)'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras2_validation_preds</span><span class="p">),</span>
+ <span class="s1">'2. NN 3 (Keras1)'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">keras_validation_preds</span><span class="p">),</span>
+ <span class="s1">'3. NN 2'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn2_validation</span><span class="p">),</span>
+ <span class="s1">'4. NN 1'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">pred_nn1_validation</span><span class="p">),</span>
+ <span class="s1">'5. GBM final'</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">response_validation</span><span class="p">,</span> <span class="n">validation_gbm_preds_final</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1. NN 4 (Keras2)&#39;: 0.8480247457655306,
- &#39;2. NN 3 (Keras1)&#39;: 0.8222811671087532,
- &#39;3. NN 2&#39;: 0.8250833589715872,
- &#39;4. NN 1&#39;: 0.8414724395699427,
- &#39;5. GBM final&#39;: 0.861474435196195}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1. NN 4 (Keras2)': 0.8480247457655306,
+ '2. NN 3 (Keras1)': 0.8222811671087532,
+ '3. NN 2': 0.8250833589715872,
+ '4. NN 1': 0.8414724395699427,
+ '5. GBM final': 0.861474435196195}
 </pre></div>
 </div>
 </div>

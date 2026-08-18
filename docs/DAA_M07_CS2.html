@@ -638,8 +638,8 @@ n.b. for installing <code class="docutils literal notranslate"><span class="pre"
 <span class="c1"># Packages to be used in pre-processing the text.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span> <span class="c1"># For a standard list of stopwords.</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;wordnet&#39;</span><span class="p">)</span> <span class="c1"># For lemmatisation.</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'stopwords'</span><span class="p">)</span> <span class="c1"># For a standard list of stopwords.</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span> <span class="c1"># For lemmatisation.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pkg_resources</span>
 <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>symspellpy
 <span class="kn">from</span><span class="w"> </span><span class="nn">symspellpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">SymSpell</span><span class="p">,</span> <span class="n">Verbosity</span>
@@ -741,24 +741,24 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to clean text.</span>
 <span class="c1"># Note that not all of these cleaning steps may be needed for different models.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Basic cleaning does the following:</span>
+<span class="w">    </span><span class="sd">''' Basic cleaning does the following:</span>
 <span class="sd">        - converts all words to lowercase;</span>
 <span class="sd">        - removes punctuation and special characters;</span>
-<span class="sd">        - uses &#39;split&#39; to create tokens; and</span>
+<span class="sd">        - uses 'split' to create tokens; and</span>
 <span class="sd">        - fixes spelling mistakes.</span>
 
 <span class="sd">        Full cleaning also does the following:</span>
 <span class="sd">        - removes stop words;</span>
 <span class="sd">        - performs stemming; and</span>
 <span class="sd">        - performs lemmatisation.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    '''</span>
 
     <span class="c1"># Convert all text to lower case.</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
-    <span class="c1"># Remove all non-digits/non-alphabetical characters (&#39;\w&#39;)</span>
-    <span class="c1"># or  white spaces (&#39;\s&#39;).</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="c1"># Remove all non-digits/non-alphabetical characters ('\w')</span>
+    <span class="c1"># or  white spaces ('\s').</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[^\w\s]'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
     <span class="c1"># Create tokens from the text.</span>
     <span class="n">text_list</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
@@ -787,7 +787,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
         <span class="n">wnl</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">wordnet</span><span class="o">.</span><span class="n">WordNetLemmatizer</span><span class="p">()</span>
         <span class="n">text_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">wnl</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text_list</span><span class="p">]</span>
 
-    <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_list</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_list</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
@@ -798,20 +798,20 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to create a word cloud from the words in the dataset.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_wordcloud</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">blacklist</span><span class="o">=</span><span class="p">[]):</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting wordcloud for topic </span><span class="si">{}</span><span class="s1"> ...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">topic</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">body_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">==</span> <span class="n">topic</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Getting wordcloud for topic </span><span class="si">{}</span><span class="s1"> ...'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">topic</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">body_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">][</span><span class="n">dataset</span><span class="p">[</span><span class="n">model</span><span class="p">]</span> <span class="o">==</span> <span class="n">topic</span><span class="p">])</span>
 
     <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">blacklist</span><span class="p">:</span>
-        <span class="n">body_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">each</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">body_list</span><span class="p">]</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">body_list</span><span class="p">)</span>
+        <span class="n">body_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">each</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">body_list</span><span class="p">]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">body_list</span><span class="p">)</span>
     <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">560</span><span class="p">,</span>
-                          <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">background_color</span><span class="o">=</span><span class="s1">'white'</span><span class="p">,</span> <span class="n">collocations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                           <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
 
     <span class="c1"># plot the WordCloud image</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -832,8 +832,8 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create dataset from the csv import.</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip&#39;</span><span class="p">,</span>
-    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp1252&#39;</span><span class="p">)</span>
+    <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip'</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">'cp1252'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -848,13 +848,13 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get spelling datasets.</span>
 <span class="n">sym_spell</span> <span class="o">=</span> <span class="n">SymSpell</span><span class="p">(</span><span class="n">max_dictionary_edit_distance</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">prefix_length</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">dictionary_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;symspellpy&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency_dictionary_en_82_765.txt&#39;</span><span class="p">)</span>
+<span class="n">dictionary_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="s1">'symspellpy'</span><span class="p">,</span> <span class="s1">'frequency_dictionary_en_82_765.txt'</span><span class="p">)</span>
 <span class="n">sym_spell</span><span class="o">.</span><span class="n">load_dictionary</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="n">term_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">count_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Add some common words to the dictionary that are likely to be found in the</span>
-<span class="c1"># case study corpus, to avoid them being incorrectly &#39;fixed&#39; by the spell checker.</span>
-<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">&#39;covid&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">&#39;coronavirus&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1"># case study corpus, to avoid them being incorrectly 'fixed' by the spell checker.</span>
+<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">'covid'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sym_spell</span><span class="o">.</span><span class="n">create_dictionary_entry</span><span class="p">(</span><span class="s1">'coronavirus'</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -875,7 +875,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;pubDate&#39;, &#39;rating&#39;, &#39;title&#39;, &#39;body&#39;, &#39;url&#39;, &#39;pubMonth&#39;], dtype=&#39;object&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index(['pubDate', 'rating', 'title', 'body', 'url', 'pubMonth'], dtype='object')
 </pre></div>
 </div>
 </div>
@@ -896,12 +896,12 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the text of the first review.</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;I used this travel insurance mainly for the car hire excess. I paid $108 for cover for a family of 5, compared to the car company  excess only insurance of $200. Booking online very easy, with immediate confirmations. I did not claim, but felt assured from other people who had needed to, giving generally positive reviews. Will definitely use this company again for future travels, and would recommend to others.\n\n&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'I used this travel insurance mainly for the car hire excess. I paid $108 for cover for a family of 5, compared to the car company  excess only insurance of $200. Booking online very easy, with immediate confirmations. I did not claim, but felt assured from other people who had needed to, giving generally positive reviews. Will definitely use this company again for future travels, and would recommend to others.\n\n'
 </pre></div>
 </div>
 </div>
@@ -924,7 +924,7 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get stopwords.</span>
-<span class="n">stopwords</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">stopwords</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">'english'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -934,20 +934,20 @@ Requirement already satisfied: click in /Users/Jacky/opt/miniconda3/lib/python3.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check that the cleaning function defined at the top of the notebook</span>
 <span class="c1"># is working as expected.</span>
 <span class="n">review_number</span> <span class="o">=</span> <span class="mi">11</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Original&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Basic clean&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--Full clean&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'--Original'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'--Basic clean'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'--Full clean'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">][</span><span class="n">review_number</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--Original
-please please please do not get insurance with this company unless you have the time to write down eveyhing you had pre-exsisting even gastro 5 years ago because i can promise you if you didn&#39;t have it before you will by the time they finish with you so now i will take the time (my precise time) to write a review once a week and hopefully save some poor soul the stress and confusion that i have had to deal with good luck
+please please please do not get insurance with this company unless you have the time to write down eveyhing you had pre-exsisting even gastro 5 years ago because i can promise you if you didn't have it before you will by the time they finish with you so now i will take the time (my precise time) to write a review once a week and hopefully save some poor soul the stress and confusion that i have had to deal with good luck
 none zero zilch
 i should have read reviews first but because travel agent recommended i thought they would have been really good. foolish me to trust people no wonder the world is becoming what it is with nobody caring well kharma is a real thing so be careful who you rip off and staff be realistic do you think the company will care when you walk out the  door fool fool fool
 
@@ -974,11 +974,11 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the cleaning function on the full dataset. This step can take a while to run.</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_full&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'body_clean_full'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
     <span class="c1"># The lambda function is used above to apply the clean_text function to all the</span>
     <span class="c1"># reviews in the corpus.</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_bert&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-    <span class="c1"># The &#39;body_clean_bert&#39; uses a basic clean to prepare the data for use with the</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'body_clean_bert'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'body'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_clean</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># The 'body_clean_bert' uses a basic clean to prepare the data for use with the</span>
     <span class="c1"># Bert model.</span>
 <span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1081,13 +1081,13 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set date range of reviews to be analysed.</span>
 
-<span class="n">Months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2019-01&#39;</span><span class="p">,</span><span class="s1">&#39;2019-02&#39;</span><span class="p">,</span><span class="s1">&#39;2019-03&#39;</span><span class="p">,</span><span class="s1">&#39;2019-04&#39;</span><span class="p">,</span><span class="s1">&#39;2019-05&#39;</span><span class="p">,</span><span class="s1">&#39;2019-06&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;2019-07&#39;</span><span class="p">,</span><span class="s1">&#39;2019-08&#39;</span><span class="p">,</span><span class="s1">&#39;2019-09&#39;</span><span class="p">,</span><span class="s1">&#39;2019-10&#39;</span><span class="p">,</span><span class="s1">&#39;2019-11&#39;</span><span class="p">,</span><span class="s1">&#39;2019-12&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;2020-01&#39;</span><span class="p">,</span><span class="s1">&#39;2020-02&#39;</span><span class="p">,</span><span class="s1">&#39;2020-03&#39;</span><span class="p">,</span><span class="s1">&#39;2020-04&#39;</span><span class="p">,</span><span class="s1">&#39;2020-05&#39;</span><span class="p">,</span><span class="s1">&#39;2020-06&#39;</span><span class="p">]</span>
-          <span class="c1"># Because &#39;pubMonth&#39; is recorded as a string, a list of</span>
+<span class="n">Months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'2019-01'</span><span class="p">,</span><span class="s1">'2019-02'</span><span class="p">,</span><span class="s1">'2019-03'</span><span class="p">,</span><span class="s1">'2019-04'</span><span class="p">,</span><span class="s1">'2019-05'</span><span class="p">,</span><span class="s1">'2019-06'</span><span class="p">,</span>
+          <span class="s1">'2019-07'</span><span class="p">,</span><span class="s1">'2019-08'</span><span class="p">,</span><span class="s1">'2019-09'</span><span class="p">,</span><span class="s1">'2019-10'</span><span class="p">,</span><span class="s1">'2019-11'</span><span class="p">,</span><span class="s1">'2019-12'</span><span class="p">,</span>
+          <span class="s1">'2020-01'</span><span class="p">,</span><span class="s1">'2020-02'</span><span class="p">,</span><span class="s1">'2020-03'</span><span class="p">,</span><span class="s1">'2020-04'</span><span class="p">,</span><span class="s1">'2020-05'</span><span class="p">,</span><span class="s1">'2020-06'</span><span class="p">]</span>
+          <span class="c1"># Because 'pubMonth' is recorded as a string, a list of</span>
           <span class="c1"># string values is created, representing the months of</span>
           <span class="c1"># interest for this analysis.</span>
-          <span class="c1"># An alternative approach would be to convert the &#39;pubDate&#39; into</span>
+          <span class="c1"># An alternative approach would be to convert the 'pubDate' into</span>
           <span class="c1"># a date and search within a specified date range.</span>
 
 <span class="c1"># Choose which reviews, based on rating, will be included in the analysis.</span>
@@ -1096,11 +1096,11 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 
 <span class="n">ratings</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="c1"># If you want to apply the subsetting specified above, then remove the &#39;#&#39;</span>
+<span class="c1"># If you want to apply the subsetting specified above, then remove the '#'</span>
 <span class="c1"># at the start of each line below:</span>
 
-<span class="c1"># dataset = dataset[dataset[&#39;pubMonth&#39;].isin(Months)]</span>
-<span class="c1"># dataset = dataset[dataset[&#39;rating&#39;].isin(ratings)]</span>
+<span class="c1"># dataset = dataset[dataset['pubMonth'].isin(Months)]</span>
+<span class="c1"># dataset = dataset[dataset['rating'].isin(ratings)]</span>
 <span class="c1"># print(dataset.shape)</span>
 </pre></div>
 </div>
@@ -1120,14 +1120,14 @@ plea plea plea get insur compani unless time write everyth preexist even castro 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate TF-IDF weights</span>
-<span class="n">clean_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_full&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">clean_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'body_clean_full'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
 <span class="n">embedding_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">clean_input</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their tf-idf weights:&#39;</span><span class="p">,</span> <span class="n">embedding_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape of list containing reviews and their tf-idf weights:'</span><span class="p">,</span> <span class="n">embedding_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="n">tsne1</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">embedding_tfidf_tsne</span> <span class="o">=</span> <span class="n">tsne1</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">embedding_tfidf</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their t-SNE components:&#39;</span><span class="p">,</span> <span class="n">embedding_tfidf_tsne</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape of list containing reviews and their t-SNE components:'</span><span class="p">,</span> <span class="n">embedding_tfidf_tsne</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1145,8 +1145,8 @@ Shape of list containing reviews and their t-SNE components: (19395, 2)
 <p>Import the BERT data set (the text that has only had basic cleaning).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bert_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;body_clean_bert&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting vector embeddings for BERT ...&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bert_input</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'body_clean_bert'</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Getting vector embeddings for BERT ...'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1159,7 +1159,7 @@ Shape of list containing reviews and their t-SNE components: (19395, 2)
 <p>Create a model to perform embeddings using BERT.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">&#39;distilbert-base-nli-mean-tokens&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">'distilbert-base-nli-mean-tokens'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1172,9 +1172,9 @@ This can take some time as the model is approximately 265Mb.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">bert_input</span><span class="p">,</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">embedding_BERT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Getting vector embeddings for BERT. Done!&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Getting vector embeddings for BERT. Done!'</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their BERT weights:&#39;</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape of list containing reviews and their BERT weights:'</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1190,7 +1190,7 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tsne2</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">embedding_BERT_tsne</span> <span class="o">=</span> <span class="n">tsne2</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">embedding_BERT</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of list containing reviews and their t-SNE components:&#39;</span><span class="p">,</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape of list containing reviews and their t-SNE components:'</span><span class="p">,</span>
       <span class="n">embedding_BERT_tsne</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1204,7 +1204,7 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print an example of a BERT embedding.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bert embedding sample&#39;</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Bert embedding sample'</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
   <span class="c1"># This prints the first 50 vectors created by the BERT</span>
   <span class="c1"># embedding for the first review in the dataset.</span>
 </pre></div>
@@ -1244,7 +1244,7 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
     <span class="c1"># of observations to their closest cluster centroid, so a smaller score</span>
     <span class="c1"># indicates a better clustering of the data.</span>
 <span class="n">labels_tfidf_kmeans</span> <span class="o">=</span> <span class="n">kmeans_model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span><span class="p">)</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label_TFIDF_KMeans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'label_TFIDF_KMeans'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">score_tfidf_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1261,28 +1261,28 @@ Shape of list containing reviews and their BERT weights: (19395, 768)
 <span class="n">labels1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
 <span class="n">distinct_labels1</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
 
-<span class="c1"># Create a plot of the reviews clustered by &#39;topic&#39;.</span>
-<span class="c1"># Note that at this point the &#39;topic&#39; of each cluster has not yet</span>
+<span class="c1"># Create a plot of the reviews clustered by 'topic'.</span>
+<span class="c1"># Note that at this point the 'topic' of each cluster has not yet</span>
 <span class="c1"># been analysed or defined.</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_tfidf_kmeans</span><span class="p">)</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels1</span><span class="p">)):</span>
     <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
-    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_tfidf_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Topic&#39;</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> topics identified with tf-idf, t-SNE and KMeans&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Topic'</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">'upper left'</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'</span><span class="si">{}</span><span class="s1"> topics identified with tf-idf, t-SNE and KMeans'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
 
 <span class="c1"># Create a list of context specific common words that will</span>
 <span class="c1"># be hidden in the word clouds produced.</span>
-<span class="n">hidden_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;insurance&#39;</span><span class="p">,</span><span class="s1">&#39;travel&#39;</span><span class="p">,</span><span class="s1">&#39;policy&#39;</span><span class="p">,</span><span class="s1">&#39;claim&#39;</span><span class="p">]</span>
+<span class="n">hidden_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'insurance'</span><span class="p">,</span><span class="s1">'travel'</span><span class="p">,</span><span class="s1">'policy'</span><span class="p">,</span><span class="s1">'claim'</span><span class="p">]</span>
 
 <span class="c1"># Create a word cloud to help identify the meaning of</span>
-<span class="c1"># each &#39;topic&#39; identified in the KMeans clustering.</span>
+<span class="c1"># each 'topic' identified in the KMeans clustering.</span>
 <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">K</span><span class="p">):</span>
-    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">&#39;label_TFIDF_KMeans&#39;</span><span class="p">,</span><span class="n">hidden_words</span><span class="p">)</span>
+    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">'label_TFIDF_KMeans'</span><span class="p">,</span><span class="n">hidden_words</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1314,7 +1314,7 @@ Getting wordcloud for topic 6 ...
 <span class="n">kmeans_model2</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">K2</span><span class="p">)</span>
 <span class="n">score_BERT_tsne</span> <span class="o">=</span> <span class="n">kmeans_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
 <span class="n">labels_BERT_kmeans</span> <span class="o">=</span> <span class="n">kmeans_model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
-<span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;label_BERT_KMeans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
+<span class="n">dataset</span><span class="p">[</span><span class="s1">'label_BERT_KMeans'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">score_BERT_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1331,28 +1331,28 @@ Getting wordcloud for topic 6 ...
 <span class="n">labels2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
 <span class="n">distinct_labels2</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">labels_BERT_kmeans</span><span class="p">)</span>
 
-<span class="c1"># Create a plot of the reviews clustered by &#39;topic&#39;</span>
-<span class="c1"># where the &#39;topic&#39; of each cluster has not yet</span>
+<span class="c1"># Create a plot of the reviews clustered by 'topic'</span>
+<span class="c1"># where the 'topic' of each cluster has not yet</span>
 <span class="c1"># been analysed.</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span><span class="p">)</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">labels2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_labels2</span><span class="p">)):</span>
     <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span> <span class="p">)</span><span class="o">*</span> <span class="mi">100</span>
-    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">cluster_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">embedding_BERT_tsne</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="n">labels2</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Topic&#39;</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> topics identified with BERT, tf-idf and t-SNE&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K2</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">cluster_label</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Topic'</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">'upper left'</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'</span><span class="si">{}</span><span class="s1"> topics identified with BERT, tf-idf and t-SNE'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">K2</span><span class="p">))</span>
 
 <span class="c1"># Create a list of context specific common words that will</span>
 <span class="c1"># be hidden in the word clouds producted.</span>
-<span class="n">hidden_words2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;insurance&#39;</span><span class="p">,</span><span class="s1">&#39;travel&#39;</span><span class="p">,</span><span class="s1">&#39;policy&#39;</span><span class="p">,</span><span class="s1">&#39;claim&#39;</span><span class="p">]</span>
+<span class="n">hidden_words2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'insurance'</span><span class="p">,</span><span class="s1">'travel'</span><span class="p">,</span><span class="s1">'policy'</span><span class="p">,</span><span class="s1">'claim'</span><span class="p">]</span>
 
 <span class="c1"># Create a word cloud to help identify the meaning of</span>
-<span class="c1"># each &#39;topic&#39; identified in the KMeans clustering.</span>
+<span class="c1"># each 'topic' identified in the KMeans clustering.</span>
 <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">K2</span><span class="p">):</span>
-    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">&#39;label_BERT_KMeans&#39;</span><span class="p">,</span><span class="n">hidden_words2</span><span class="p">)</span>
+    <span class="n">get_wordcloud</span><span class="p">(</span><span class="n">each</span><span class="p">,</span><span class="s1">'label_BERT_KMeans'</span><span class="p">,</span><span class="n">hidden_words2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1385,21 +1385,21 @@ Getting wordcloud for topic 6 ...
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the silhouette value for the TF-IDF based clustering after t-SNE</span>
 <span class="c1"># has been applied to reduce the dimension of the embeddings.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Silhouette Score (TF-IDF and t-SNE):&#39;</span><span class="p">,</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Silhouette Score (TF-IDF and t-SNE):'</span><span class="p">,</span>
       <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embedding_tfidf_tsne</span> <span class="p">,</span> <span class="n">labels_tfidf_kmeans</span><span class="p">))</span>
 
 <span class="c1"># Calculate silhouette values for the BERT based clustering.</span>
-<span class="c1">#print(&#39;Silhouette Score (BERT):&#39;,</span>
+<span class="c1">#print('Silhouette Score (BERT):',</span>
 <span class="c1">#      silhouette_score(embedding_BERT , labels_BERT_kmeans))</span>
 
 <span class="c1"># Calculate the silhouette value for the BERT based clustering after t-SNE</span>
 <span class="c1"># has been applied to reduce the dimension of the embeddings.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Silhouette Score (BERT and t-SNE):&#39;</span><span class="p">,</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Silhouette Score (BERT and t-SNE):'</span><span class="p">,</span>
       <span class="n">silhouette_score</span><span class="p">(</span><span class="n">embedding_BERT_tsne</span> <span class="p">,</span> <span class="n">labels_BERT_kmeans</span><span class="p">))</span>
 
 <span class="c1"># The WCSS scores for the TF-IDF and BERT models are also shown:</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WCSS Score (TF-IDF and t-SNE):&#39;</span><span class="p">,</span> <span class="n">score_tfidf_tsne</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WCSS Score (BERT):&#39;</span><span class="p">,</span> <span class="n">score_BERT_tsne</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'WCSS Score (TF-IDF and t-SNE):'</span><span class="p">,</span> <span class="n">score_tfidf_tsne</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'WCSS Score (BERT):'</span><span class="p">,</span> <span class="n">score_BERT_tsne</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

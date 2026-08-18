@@ -696,13 +696,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function that helps to format headings in the cell outputs.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">heading</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
 
-<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">  </span><span class="sd">'''</span>
 <span class="sd">  This function is used to print a bold heading followed by a new line.</span>
-<span class="sd">  &#39;&#39;&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span><span class="o">+</span><span class="n">string</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-  <span class="c1"># The &#39;\033[1m&#39; at the start of the string makes the font bold</span>
-  <span class="c1"># and the &#39;\033[0m&#39; at the end of the string makes the font go back to normal.</span>
-  <span class="c1"># The &#39;\n&#39; at the very end of the string prints a new line to give some space</span>
+<span class="sd">  '''</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\033</span><span class="s1">[1m'</span><span class="o">+</span><span class="n">string</span><span class="o">+</span><span class="s1">'</span><span class="se">\033</span><span class="s1">[0m</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+  <span class="c1"># The '\033[1m' at the start of the string makes the font bold</span>
+  <span class="c1"># and the '\033[0m' at the end of the string makes the font go back to normal.</span>
+  <span class="c1"># The '\n' at the very end of the string prints a new line to give some space</span>
   <span class="c1"># before the next item is printed to the output box.</span>
 </pre></div>
 </div>
@@ -712,12 +712,12 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to plot confusion matrices in an easy to visualise format.</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span>
-                          <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span>
+                          <span class="n">title</span><span class="o">=</span><span class="s1">'Confusion matrix'</span><span class="p">,</span>
                           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    This function prints and plots a nicely formatted confusion matrix.</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+<span class="sd">    '''</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
     <span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">))</span>
@@ -727,12 +727,12 @@ document.write(`
     <span class="n">thresh</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">range</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span>
-                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                 <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">'center'</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">'white'</span> <span class="k">if</span> <span class="n">cm</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">thresh</span> <span class="k">else</span> <span class="s1">'black'</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True response&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted response&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'True response'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Predicted response'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -758,7 +758,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the folder that your datasets are saved in.</span>
 <span class="c1"># or here, read it from the URL </span>
-<span class="n">infolder</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/&#39;</span>
+<span class="n">infolder</span> <span class="o">=</span> <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/'</span>
 </pre></div>
 </div>
 </div>
@@ -767,7 +767,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the transaction data.</span>
 <span class="c1"># Specify the filename.</span>
-<span class="n">file1</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS2_data1_transaction.csv.zip&#39;</span>
+<span class="n">file1</span> <span class="o">=</span> <span class="s1">'DAA_M06_CS2_data1_transaction.csv.zip'</span>
 
 <span class="c1"># Read in the data.</span>
 <span class="n">transaction</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file1</span><span class="p">)</span>
@@ -780,7 +780,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the identity data.</span>
 
 <span class="c1"># Specify the filename.</span>
-<span class="n">file2</span> <span class="o">=</span> <span class="s1">&#39;DAA_M06_CS2_data2_identity.csv.zip&#39;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s1">'DAA_M06_CS2_data2_identity.csv.zip'</span>
 
 <span class="c1"># Read in the data.</span>
 <span class="n">identity</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span> <span class="p">(</span><span class="n">infolder</span><span class="o">+</span><span class="n">file2</span><span class="p">)</span>
@@ -797,11 +797,11 @@ document.write(`
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">999</span>
 
 <span class="c1"># Print the first 5 rows of each dataset.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Transaction dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Identity dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1092,11 +1092,11 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the number of observations and features of the data sets.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Transaction dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Identity dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1104,7 +1104,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Transaction dataset</span>
 
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 590540 entries, 0 to 590539
 Columns: 394 entries, TransactionID to V339
 dtypes: float64(376), int64(4), object(14)
@@ -1114,7 +1114,7 @@ None
 
 <span class=" -Color -Color-Bold">Identity dataset</span>
 
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 144233 entries, 0 to 144232
 Data columns (total 41 columns):
  #   Column         Non-Null Count   Dtype  
@@ -1170,11 +1170,11 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Summarise key information about numeric features in each of the datasets.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Transaction dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Transaction dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Identity dataset&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Identity dataset'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">identity</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -2178,8 +2178,8 @@ max      44.000000    26.000000   548.000000   216.000000     32.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;TransactionID&#39;, &#39;isFraud&#39;, &#39;TransactionDT&#39;, &#39;TransactionAmt&#39;, &#39;ProductCD&#39;, &#39;card1&#39;, &#39;card2&#39;, &#39;card3&#39;, &#39;card4&#39;, &#39;card5&#39;, &#39;card6&#39;, &#39;addr1&#39;, &#39;addr2&#39;, &#39;dist1&#39;, &#39;dist2&#39;, &#39;P_emaildomain&#39;, &#39;R_emaildomain&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;, &#39;C4&#39;, &#39;C5&#39;, &#39;C6&#39;, &#39;C7&#39;, &#39;C8&#39;, &#39;C9&#39;, &#39;C10&#39;, &#39;C11&#39;, &#39;C12&#39;, &#39;C13&#39;, &#39;C14&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;, &#39;D4&#39;, &#39;D5&#39;, &#39;D6&#39;, &#39;D7&#39;, &#39;D8&#39;, &#39;D9&#39;, &#39;D10&#39;, &#39;D11&#39;, &#39;D12&#39;, &#39;D13&#39;, &#39;D14&#39;, &#39;D15&#39;, &#39;M1&#39;, &#39;M2&#39;, &#39;M3&#39;, &#39;M4&#39;, &#39;M5&#39;, &#39;M6&#39;, &#39;M7&#39;, &#39;M8&#39;, &#39;M9&#39;, &#39;V1&#39;, &#39;V2&#39;, &#39;V3&#39;, &#39;V4&#39;, &#39;V5&#39;, &#39;V6&#39;, &#39;V7&#39;, &#39;V8&#39;, &#39;V9&#39;, &#39;V10&#39;, &#39;V11&#39;, &#39;V12&#39;, &#39;V13&#39;, &#39;V14&#39;, &#39;V15&#39;, &#39;V16&#39;, &#39;V17&#39;, &#39;V18&#39;, &#39;V19&#39;, &#39;V20&#39;, &#39;V21&#39;, &#39;V22&#39;, &#39;V23&#39;, &#39;V24&#39;, &#39;V25&#39;, &#39;V26&#39;, &#39;V27&#39;, &#39;V28&#39;, &#39;V29&#39;, &#39;V30&#39;, &#39;V31&#39;, &#39;V32&#39;, &#39;V33&#39;, &#39;V34&#39;, &#39;V35&#39;, &#39;V36&#39;, &#39;V37&#39;, &#39;V38&#39;, &#39;V39&#39;, &#39;V40&#39;, &#39;V41&#39;, &#39;V42&#39;, &#39;V43&#39;, &#39;V44&#39;, &#39;V45&#39;, &#39;V46&#39;, &#39;V47&#39;, &#39;V48&#39;, &#39;V49&#39;, &#39;V50&#39;, &#39;V51&#39;, &#39;V52&#39;, &#39;V53&#39;, &#39;V54&#39;, &#39;V55&#39;, &#39;V56&#39;, &#39;V57&#39;, &#39;V58&#39;, &#39;V59&#39;, &#39;V60&#39;, &#39;V61&#39;, &#39;V62&#39;, &#39;V63&#39;, &#39;V64&#39;, &#39;V65&#39;, &#39;V66&#39;, &#39;V67&#39;, &#39;V68&#39;, &#39;V69&#39;, &#39;V70&#39;, &#39;V71&#39;, &#39;V72&#39;, &#39;V73&#39;, &#39;V74&#39;, &#39;V75&#39;, &#39;V76&#39;, &#39;V77&#39;, &#39;V78&#39;, &#39;V79&#39;, &#39;V80&#39;, &#39;V81&#39;, &#39;V82&#39;, &#39;V83&#39;, &#39;V84&#39;, &#39;V85&#39;, &#39;V86&#39;, &#39;V87&#39;, &#39;V88&#39;, &#39;V89&#39;, &#39;V90&#39;, &#39;V91&#39;, &#39;V92&#39;, &#39;V93&#39;, &#39;V94&#39;, &#39;V95&#39;, &#39;V96&#39;, &#39;V97&#39;, &#39;V98&#39;, &#39;V99&#39;, &#39;V100&#39;, &#39;V101&#39;, &#39;V102&#39;, &#39;V103&#39;, &#39;V104&#39;, &#39;V105&#39;, &#39;V106&#39;, &#39;V107&#39;, &#39;V108&#39;, &#39;V109&#39;, &#39;V110&#39;, &#39;V111&#39;, &#39;V112&#39;, &#39;V113&#39;, &#39;V114&#39;, &#39;V115&#39;, &#39;V116&#39;, &#39;V117&#39;, &#39;V118&#39;, &#39;V119&#39;, &#39;V120&#39;, &#39;V121&#39;, &#39;V122&#39;, &#39;V123&#39;, &#39;V124&#39;, &#39;V125&#39;, &#39;V126&#39;, &#39;V127&#39;, &#39;V128&#39;, &#39;V129&#39;, &#39;V130&#39;, &#39;V131&#39;, &#39;V132&#39;, &#39;V133&#39;, &#39;V134&#39;, &#39;V135&#39;, &#39;V136&#39;, &#39;V137&#39;, &#39;V138&#39;, &#39;V139&#39;, &#39;V140&#39;, &#39;V141&#39;, &#39;V142&#39;, &#39;V143&#39;, &#39;V144&#39;, &#39;V145&#39;, &#39;V146&#39;, &#39;V147&#39;, &#39;V148&#39;, &#39;V149&#39;, &#39;V150&#39;, &#39;V151&#39;, &#39;V152&#39;, &#39;V153&#39;, &#39;V154&#39;, &#39;V155&#39;, &#39;V156&#39;, &#39;V157&#39;, &#39;V158&#39;, &#39;V159&#39;, &#39;V160&#39;, &#39;V161&#39;, &#39;V162&#39;, &#39;V163&#39;, &#39;V164&#39;, &#39;V165&#39;, &#39;V166&#39;, &#39;V167&#39;, &#39;V168&#39;, &#39;V169&#39;, &#39;V170&#39;, &#39;V171&#39;, &#39;V172&#39;, &#39;V173&#39;, &#39;V174&#39;, &#39;V175&#39;, &#39;V176&#39;, &#39;V177&#39;, &#39;V178&#39;, &#39;V179&#39;, &#39;V180&#39;, &#39;V181&#39;, &#39;V182&#39;, &#39;V183&#39;, &#39;V184&#39;, &#39;V185&#39;, &#39;V186&#39;, &#39;V187&#39;, &#39;V188&#39;, &#39;V189&#39;, &#39;V190&#39;, &#39;V191&#39;, &#39;V192&#39;, &#39;V193&#39;, &#39;V194&#39;, &#39;V195&#39;, &#39;V196&#39;, &#39;V197&#39;, &#39;V198&#39;, &#39;V199&#39;, &#39;V200&#39;, &#39;V201&#39;, &#39;V202&#39;, &#39;V203&#39;, &#39;V204&#39;, &#39;V205&#39;, &#39;V206&#39;, &#39;V207&#39;, &#39;V208&#39;, &#39;V209&#39;, &#39;V210&#39;, &#39;V211&#39;, &#39;V212&#39;, &#39;V213&#39;, &#39;V214&#39;, &#39;V215&#39;, &#39;V216&#39;, &#39;V217&#39;, &#39;V218&#39;, &#39;V219&#39;, &#39;V220&#39;, &#39;V221&#39;, &#39;V222&#39;, &#39;V223&#39;, &#39;V224&#39;, &#39;V225&#39;, &#39;V226&#39;, &#39;V227&#39;, &#39;V228&#39;, &#39;V229&#39;, &#39;V230&#39;, &#39;V231&#39;, &#39;V232&#39;, &#39;V233&#39;, &#39;V234&#39;, &#39;V235&#39;, &#39;V236&#39;, &#39;V237&#39;, &#39;V238&#39;, &#39;V239&#39;, &#39;V240&#39;, &#39;V241&#39;, &#39;V242&#39;, &#39;V243&#39;, &#39;V244&#39;, &#39;V245&#39;, &#39;V246&#39;, &#39;V247&#39;, &#39;V248&#39;, &#39;V249&#39;, &#39;V250&#39;, &#39;V251&#39;, &#39;V252&#39;, &#39;V253&#39;, &#39;V254&#39;, &#39;V255&#39;, &#39;V256&#39;, &#39;V257&#39;, &#39;V258&#39;, &#39;V259&#39;, &#39;V260&#39;, &#39;V261&#39;, &#39;V262&#39;, &#39;V263&#39;, &#39;V264&#39;, &#39;V265&#39;, &#39;V266&#39;, &#39;V267&#39;, &#39;V268&#39;, &#39;V269&#39;, &#39;V270&#39;, &#39;V271&#39;, &#39;V272&#39;, &#39;V273&#39;, &#39;V274&#39;, &#39;V275&#39;, &#39;V276&#39;, &#39;V277&#39;, &#39;V278&#39;, &#39;V279&#39;, &#39;V280&#39;, &#39;V281&#39;, &#39;V282&#39;, &#39;V283&#39;, &#39;V284&#39;, &#39;V285&#39;, &#39;V286&#39;, &#39;V287&#39;, &#39;V288&#39;, &#39;V289&#39;, &#39;V290&#39;, &#39;V291&#39;, &#39;V292&#39;, &#39;V293&#39;, &#39;V294&#39;, &#39;V295&#39;, &#39;V296&#39;, &#39;V297&#39;, &#39;V298&#39;, &#39;V299&#39;, &#39;V300&#39;, &#39;V301&#39;, &#39;V302&#39;, &#39;V303&#39;, &#39;V304&#39;, &#39;V305&#39;, &#39;V306&#39;, &#39;V307&#39;, &#39;V308&#39;, &#39;V309&#39;, &#39;V310&#39;, &#39;V311&#39;, &#39;V312&#39;, &#39;V313&#39;, &#39;V314&#39;, &#39;V315&#39;, &#39;V316&#39;, &#39;V317&#39;, &#39;V318&#39;, &#39;V319&#39;, &#39;V320&#39;, &#39;V321&#39;, &#39;V322&#39;, &#39;V323&#39;, &#39;V324&#39;, &#39;V325&#39;, &#39;V326&#39;, &#39;V327&#39;, &#39;V328&#39;, &#39;V329&#39;, &#39;V330&#39;, &#39;V331&#39;, &#39;V332&#39;, &#39;V333&#39;, &#39;V334&#39;, &#39;V335&#39;, &#39;V336&#39;, &#39;V337&#39;, &#39;V338&#39;, &#39;V339&#39;]
-[&#39;TransactionID&#39;, &#39;id_01&#39;, &#39;id_02&#39;, &#39;id_03&#39;, &#39;id_04&#39;, &#39;id_05&#39;, &#39;id_06&#39;, &#39;id_07&#39;, &#39;id_08&#39;, &#39;id_09&#39;, &#39;id_10&#39;, &#39;id_11&#39;, &#39;id_12&#39;, &#39;id_13&#39;, &#39;id_14&#39;, &#39;id_15&#39;, &#39;id_16&#39;, &#39;id_17&#39;, &#39;id_18&#39;, &#39;id_19&#39;, &#39;id_20&#39;, &#39;id_21&#39;, &#39;id_22&#39;, &#39;id_23&#39;, &#39;id_24&#39;, &#39;id_25&#39;, &#39;id_26&#39;, &#39;id_27&#39;, &#39;id_28&#39;, &#39;id_29&#39;, &#39;id_30&#39;, &#39;id_31&#39;, &#39;id_32&#39;, &#39;id_33&#39;, &#39;id_34&#39;, &#39;id_35&#39;, &#39;id_36&#39;, &#39;id_37&#39;, &#39;id_38&#39;, &#39;DeviceType&#39;, &#39;DeviceInfo&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['TransactionID', 'isFraud', 'TransactionDT', 'TransactionAmt', 'ProductCD', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'addr1', 'addr2', 'dist1', 'dist2', 'P_emaildomain', 'R_emaildomain', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12', 'D13', 'D14', 'D15', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'V29', 'V30', 'V31', 'V32', 'V33', 'V34', 'V35', 'V36', 'V37', 'V38', 'V39', 'V40', 'V41', 'V42', 'V43', 'V44', 'V45', 'V46', 'V47', 'V48', 'V49', 'V50', 'V51', 'V52', 'V53', 'V54', 'V55', 'V56', 'V57', 'V58', 'V59', 'V60', 'V61', 'V62', 'V63', 'V64', 'V65', 'V66', 'V67', 'V68', 'V69', 'V70', 'V71', 'V72', 'V73', 'V74', 'V75', 'V76', 'V77', 'V78', 'V79', 'V80', 'V81', 'V82', 'V83', 'V84', 'V85', 'V86', 'V87', 'V88', 'V89', 'V90', 'V91', 'V92', 'V93', 'V94', 'V95', 'V96', 'V97', 'V98', 'V99', 'V100', 'V101', 'V102', 'V103', 'V104', 'V105', 'V106', 'V107', 'V108', 'V109', 'V110', 'V111', 'V112', 'V113', 'V114', 'V115', 'V116', 'V117', 'V118', 'V119', 'V120', 'V121', 'V122', 'V123', 'V124', 'V125', 'V126', 'V127', 'V128', 'V129', 'V130', 'V131', 'V132', 'V133', 'V134', 'V135', 'V136', 'V137', 'V138', 'V139', 'V140', 'V141', 'V142', 'V143', 'V144', 'V145', 'V146', 'V147', 'V148', 'V149', 'V150', 'V151', 'V152', 'V153', 'V154', 'V155', 'V156', 'V157', 'V158', 'V159', 'V160', 'V161', 'V162', 'V163', 'V164', 'V165', 'V166', 'V167', 'V168', 'V169', 'V170', 'V171', 'V172', 'V173', 'V174', 'V175', 'V176', 'V177', 'V178', 'V179', 'V180', 'V181', 'V182', 'V183', 'V184', 'V185', 'V186', 'V187', 'V188', 'V189', 'V190', 'V191', 'V192', 'V193', 'V194', 'V195', 'V196', 'V197', 'V198', 'V199', 'V200', 'V201', 'V202', 'V203', 'V204', 'V205', 'V206', 'V207', 'V208', 'V209', 'V210', 'V211', 'V212', 'V213', 'V214', 'V215', 'V216', 'V217', 'V218', 'V219', 'V220', 'V221', 'V222', 'V223', 'V224', 'V225', 'V226', 'V227', 'V228', 'V229', 'V230', 'V231', 'V232', 'V233', 'V234', 'V235', 'V236', 'V237', 'V238', 'V239', 'V240', 'V241', 'V242', 'V243', 'V244', 'V245', 'V246', 'V247', 'V248', 'V249', 'V250', 'V251', 'V252', 'V253', 'V254', 'V255', 'V256', 'V257', 'V258', 'V259', 'V260', 'V261', 'V262', 'V263', 'V264', 'V265', 'V266', 'V267', 'V268', 'V269', 'V270', 'V271', 'V272', 'V273', 'V274', 'V275', 'V276', 'V277', 'V278', 'V279', 'V280', 'V281', 'V282', 'V283', 'V284', 'V285', 'V286', 'V287', 'V288', 'V289', 'V290', 'V291', 'V292', 'V293', 'V294', 'V295', 'V296', 'V297', 'V298', 'V299', 'V300', 'V301', 'V302', 'V303', 'V304', 'V305', 'V306', 'V307', 'V308', 'V309', 'V310', 'V311', 'V312', 'V313', 'V314', 'V315', 'V316', 'V317', 'V318', 'V319', 'V320', 'V321', 'V322', 'V323', 'V324', 'V325', 'V326', 'V327', 'V328', 'V329', 'V330', 'V331', 'V332', 'V333', 'V334', 'V335', 'V336', 'V337', 'V338', 'V339']
+['TransactionID', 'id_01', 'id_02', 'id_03', 'id_04', 'id_05', 'id_06', 'id_07', 'id_08', 'id_09', 'id_10', 'id_11', 'id_12', 'id_13', 'id_14', 'id_15', 'id_16', 'id_17', 'id_18', 'id_19', 'id_20', 'id_21', 'id_22', 'id_23', 'id_24', 'id_25', 'id_26', 'id_27', 'id_28', 'id_29', 'id_30', 'id_31', 'id_32', 'id_33', 'id_34', 'id_35', 'id_36', 'id_37', 'id_38', 'DeviceType', 'DeviceInfo']
 </pre></div>
 </div>
 </div>
@@ -2188,16 +2188,16 @@ max      44.000000    26.000000   548.000000   216.000000     32.000000
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the proportion of fraud to non-fraud observations in the</span>
 <span class="c1"># transaction dataset.</span>
-<span class="c1"># Fraudulent transactions are represented by &#39;isFraud&#39; = 1</span>
-<span class="c1"># and non-fraudulent transactions are represented by &#39;isFraud&#39; = 0.</span>
-<span class="n">fraud</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">])</span>
+<span class="c1"># Fraudulent transactions are represented by 'isFraud' = 1</span>
+<span class="c1"># and non-fraudulent transactions are represented by 'isFraud' = 0.</span>
+<span class="n">fraud</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="s1">'isFraud'</span><span class="p">])</span>
 <span class="n">not_fraud</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">-</span><span class="n">fraud</span>
 
 <span class="n">percent_fraud</span> <span class="o">=</span> <span class="n">fraud</span><span class="o">/</span><span class="p">(</span><span class="n">fraud</span><span class="o">+</span><span class="n">not_fraud</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are &#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; fraudulent transactions out of &#39;</span><span class="o">+</span>
-      <span class="s1">&#39;</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="o">+</span><span class="n">not_fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; total transactions in the dataset.&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;These fraudulent transactions represent approximately &#39;</span><span class="o">+</span><span class="s1">&#39;</span><span class="si">{:,.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">percent_fraud</span><span class="p">)</span><span class="o">+</span>
-      <span class="s1">&#39; of all transactions.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'There are '</span><span class="o">+</span><span class="s1">'</span><span class="si">{:,.0f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">' fraudulent transactions out of '</span><span class="o">+</span>
+      <span class="s1">'</span><span class="si">{:,.0f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fraud</span><span class="o">+</span><span class="n">not_fraud</span><span class="p">)</span><span class="o">+</span><span class="s1">' total transactions in the dataset.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'These fraudulent transactions represent approximately '</span><span class="o">+</span><span class="s1">'</span><span class="si">{:,.2%}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">percent_fraud</span><span class="p">)</span><span class="o">+</span>
+      <span class="s1">' of all transactions.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2222,13 +2222,13 @@ These fraudulent transactions represent approximately 3.50% of all transactions.
 <span class="c1"># across some of the features.</span>
 
 <span class="c1"># Calculate the average transaction amounts for fraud and non fraud transactions.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Average transaction amounts for fraud and non fraud&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;isFraud&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;TransactionAmt&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Average transaction amounts for fraud and non fraud'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'isFraud'</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">'TransactionAmt'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># Calculate percentage fraud for each Product Code.</span>
-<span class="n">heading</span><span class="p">(</span><span class="s1">&#39;Percentage fraud and total transactions for each Product Code&#39;</span><span class="p">)</span>
-<span class="n">product_groups</span> <span class="o">=</span> <span class="n">transaction</span><span class="p">[[</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">,</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<span class="n">heading</span><span class="p">(</span><span class="s1">'Percentage fraud and total transactions for each Product Code'</span><span class="p">)</span>
+<span class="n">product_groups</span> <span class="o">=</span> <span class="n">transaction</span><span class="p">[[</span><span class="s1">'ProductCD'</span><span class="p">,</span><span class="s1">'isFraud'</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'ProductCD'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">'mean'</span><span class="p">,</span><span class="s1">'count'</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">product_groups</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2267,17 +2267,17 @@ W          0.020399  439670
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Join the transaction and identity datasets using a left join so that all</span>
 <span class="c1"># observations in the transaction dataset are retained</span>
-<span class="c1"># (the transaction dataset contains the response &#39;isFraud&#39;), and any matching</span>
+<span class="c1"># (the transaction dataset contains the response 'isFraud'), and any matching</span>
 <span class="c1"># observations in the identity dataset are joined into the merge.</span>
 
-<span class="n">product</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span>
-<span class="n">fraud_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;ProductCD&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;C&#39;</span><span class="p">],</span><span class="n">identity</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">product</span> <span class="o">=</span> <span class="s1">'C'</span>
+<span class="n">fraud_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">transaction</span><span class="p">[</span><span class="n">transaction</span><span class="p">[</span><span class="s1">'ProductCD'</span><span class="p">]</span><span class="o">==</span><span class="s1">'C'</span><span class="p">],</span><span class="n">identity</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="s1">'TransactionID'</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Columns: 434 entries, TransactionID to DeviceInfo
 dtypes: float64(399), int64(4), object(31)
@@ -2295,45 +2295,45 @@ None
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore the feature types and missingness of the fraud data.</span>
 
 <span class="c1"># Explore the first 14 features.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[[</span><span class="s1">&#39;TransactionDT&#39;</span><span class="p">,</span><span class="s1">&#39;TransactionAmt&#39;</span><span class="p">,</span><span class="s1">&#39;card1&#39;</span><span class="p">,</span><span class="s1">&#39;card2&#39;</span><span class="p">,</span><span class="s1">&#39;card3&#39;</span><span class="p">,</span><span class="s1">&#39;card4&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;card5&#39;</span><span class="p">,</span><span class="s1">&#39;card6&#39;</span><span class="p">,</span><span class="s1">&#39;addr1&#39;</span><span class="p">,</span><span class="s1">&#39;addr2&#39;</span><span class="p">,</span><span class="s1">&#39;dist1&#39;</span><span class="p">,</span><span class="s1">&#39;dist2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[[</span><span class="s1">'TransactionDT'</span><span class="p">,</span><span class="s1">'TransactionAmt'</span><span class="p">,</span><span class="s1">'card1'</span><span class="p">,</span><span class="s1">'card2'</span><span class="p">,</span><span class="s1">'card3'</span><span class="p">,</span><span class="s1">'card4'</span><span class="p">,</span>
+                  <span class="s1">'card5'</span><span class="p">,</span><span class="s1">'card6'</span><span class="p">,</span><span class="s1">'addr1'</span><span class="p">,</span><span class="s1">'addr2'</span><span class="p">,</span><span class="s1">'dist1'</span><span class="p">,</span><span class="s1">'dist2'</span><span class="p">]]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the &#39;C#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)]</span>
+<span class="c1"># Explore the 'C#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'C'</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the &#39;D#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)]</span>
+<span class="c1"># Explore the 'D#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'D'</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the &#39;M#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)]</span>
+<span class="c1"># Explore the 'M#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'M'</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the first 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
+<span class="c1"># Explore the first 100 'V#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'V'</span><span class="p">)][</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the next 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span>
+<span class="c1"># Explore the next 100 'V#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'V'</span><span class="p">)][</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the next 100 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span>
+<span class="c1"># Explore the next 100 'V#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'V'</span><span class="p">)][</span><span class="mi">200</span><span class="p">:</span><span class="mi">300</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
-<span class="c1"># Explore the final 39 &#39;V#&#39; features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)][</span><span class="mi">300</span><span class="p">:]</span>
+<span class="c1"># Explore the final 39 'V#' features.</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'V'</span><span class="p">)][</span><span class="mi">300</span><span class="p">:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 
 <span class="c1"># Explore the id_## features.</span>
-<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)]</span>
+<span class="n">filter_col</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fraud_data</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_data</span><span class="p">[</span><span class="n">filter_col</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 12 columns):
  #   Column          Non-Null Count  Dtype  
@@ -2353,7 +2353,7 @@ Data columns (total 12 columns):
 dtypes: float64(8), int64(2), object(2)
 memory usage: 6.8+ MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 14 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2375,7 +2375,7 @@ Data columns (total 14 columns):
 dtypes: float64(14)
 memory usage: 7.8 MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 17 columns):
  #   Column      Non-Null Count  Dtype  
@@ -2400,7 +2400,7 @@ Data columns (total 17 columns):
 dtypes: float64(15), object(2)
 memory usage: 9.4+ MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 9 columns):
  #   Column  Non-Null Count  Dtype 
@@ -2417,7 +2417,7 @@ Data columns (total 9 columns):
 dtypes: object(9)
 memory usage: 5.2+ MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 100 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2525,7 +2525,7 @@ Data columns (total 100 columns):
 dtypes: float64(100)
 memory usage: 52.8 MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 100 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2633,7 +2633,7 @@ Data columns (total 100 columns):
 dtypes: float64(100)
 memory usage: 52.8 MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 100 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2741,7 +2741,7 @@ Data columns (total 100 columns):
 dtypes: float64(100)
 memory usage: 52.8 MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 39 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2788,7 +2788,7 @@ Data columns (total 39 columns):
 dtypes: float64(39)
 memory usage: 20.9 MB
 None
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 68519 entries, 0 to 68518
 Data columns (total 38 columns):
  #   Column  Non-Null Count  Dtype  
@@ -2843,7 +2843,7 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the features that are numeric and have at least 60,000 observations.</span>
-<span class="n">fraud_numeric</span> <span class="o">=</span> <span class="n">fraud_data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;number&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;TransactionID&#39;</span><span class="p">)</span>
+<span class="n">fraud_numeric</span> <span class="o">=</span> <span class="n">fraud_data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">'number'</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'TransactionID'</span><span class="p">)</span>
 
 <span class="c1"># Select only the features that have at least 60,000 non-missing values.</span>
 <span class="n">fraud_numeric2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -2853,23 +2853,23 @@ None
       <span class="n">fraud_numeric2</span><span class="p">[</span><span class="n">columnName</span><span class="p">]</span> <span class="o">=</span> <span class="n">columnData</span>
 
 <span class="c1"># Then select only the rows that do not have any missing values.</span>
-<span class="n">fraud_numeric3</span> <span class="o">=</span> <span class="n">fraud_numeric2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">)</span>
+<span class="n">fraud_numeric3</span> <span class="o">=</span> <span class="n">fraud_numeric2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'rows'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
 
 <span class="c1"># Check that there are no missing values in this new fraud data</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There are &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">+</span><span class="s1">&#39; missing values&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'There are '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">+</span><span class="s1">' missing values'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 51660 entries, 0 to 68518
 Columns: 203 entries, isFraud to id_20
 dtypes: float64(200), int64(3)
 memory usage: 80.4 MB
 None
-[&#39;isFraud&#39;, &#39;TransactionDT&#39;, &#39;TransactionAmt&#39;, &#39;card1&#39;, &#39;card2&#39;, &#39;card3&#39;, &#39;card5&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;, &#39;C4&#39;, &#39;C5&#39;, &#39;C6&#39;, &#39;C7&#39;, &#39;C8&#39;, &#39;C9&#39;, &#39;C10&#39;, &#39;C11&#39;, &#39;C12&#39;, &#39;C13&#39;, &#39;C14&#39;, &#39;D1&#39;, &#39;D4&#39;, &#39;D6&#39;, &#39;D10&#39;, &#39;D12&#39;, &#39;D15&#39;, &#39;V12&#39;, &#39;V13&#39;, &#39;V14&#39;, &#39;V15&#39;, &#39;V16&#39;, &#39;V17&#39;, &#39;V18&#39;, &#39;V19&#39;, &#39;V20&#39;, &#39;V21&#39;, &#39;V22&#39;, &#39;V23&#39;, &#39;V24&#39;, &#39;V25&#39;, &#39;V26&#39;, &#39;V27&#39;, &#39;V28&#39;, &#39;V29&#39;, &#39;V30&#39;, &#39;V31&#39;, &#39;V32&#39;, &#39;V33&#39;, &#39;V34&#39;, &#39;V35&#39;, &#39;V36&#39;, &#39;V37&#39;, &#39;V38&#39;, &#39;V39&#39;, &#39;V40&#39;, &#39;V41&#39;, &#39;V42&#39;, &#39;V43&#39;, &#39;V44&#39;, &#39;V45&#39;, &#39;V46&#39;, &#39;V47&#39;, &#39;V48&#39;, &#39;V49&#39;, &#39;V50&#39;, &#39;V51&#39;, &#39;V52&#39;, &#39;V53&#39;, &#39;V54&#39;, &#39;V55&#39;, &#39;V56&#39;, &#39;V57&#39;, &#39;V58&#39;, &#39;V59&#39;, &#39;V60&#39;, &#39;V61&#39;, &#39;V62&#39;, &#39;V63&#39;, &#39;V64&#39;, &#39;V65&#39;, &#39;V66&#39;, &#39;V67&#39;, &#39;V68&#39;, &#39;V69&#39;, &#39;V70&#39;, &#39;V71&#39;, &#39;V72&#39;, &#39;V73&#39;, &#39;V74&#39;, &#39;V75&#39;, &#39;V76&#39;, &#39;V77&#39;, &#39;V78&#39;, &#39;V79&#39;, &#39;V80&#39;, &#39;V81&#39;, &#39;V82&#39;, &#39;V83&#39;, &#39;V84&#39;, &#39;V85&#39;, &#39;V86&#39;, &#39;V87&#39;, &#39;V88&#39;, &#39;V89&#39;, &#39;V90&#39;, &#39;V91&#39;, &#39;V92&#39;, &#39;V93&#39;, &#39;V94&#39;, &#39;V95&#39;, &#39;V96&#39;, &#39;V97&#39;, &#39;V98&#39;, &#39;V99&#39;, &#39;V100&#39;, &#39;V101&#39;, &#39;V102&#39;, &#39;V103&#39;, &#39;V104&#39;, &#39;V105&#39;, &#39;V106&#39;, &#39;V107&#39;, &#39;V108&#39;, &#39;V109&#39;, &#39;V110&#39;, &#39;V111&#39;, &#39;V112&#39;, &#39;V113&#39;, &#39;V114&#39;, &#39;V115&#39;, &#39;V116&#39;, &#39;V117&#39;, &#39;V118&#39;, &#39;V119&#39;, &#39;V120&#39;, &#39;V121&#39;, &#39;V122&#39;, &#39;V123&#39;, &#39;V124&#39;, &#39;V125&#39;, &#39;V126&#39;, &#39;V127&#39;, &#39;V128&#39;, &#39;V129&#39;, &#39;V130&#39;, &#39;V131&#39;, &#39;V132&#39;, &#39;V133&#39;, &#39;V134&#39;, &#39;V135&#39;, &#39;V136&#39;, &#39;V137&#39;, &#39;V279&#39;, &#39;V280&#39;, &#39;V281&#39;, &#39;V282&#39;, &#39;V283&#39;, &#39;V284&#39;, &#39;V285&#39;, &#39;V286&#39;, &#39;V287&#39;, &#39;V288&#39;, &#39;V289&#39;, &#39;V290&#39;, &#39;V291&#39;, &#39;V292&#39;, &#39;V293&#39;, &#39;V294&#39;, &#39;V295&#39;, &#39;V296&#39;, &#39;V297&#39;, &#39;V298&#39;, &#39;V299&#39;, &#39;V300&#39;, &#39;V301&#39;, &#39;V302&#39;, &#39;V303&#39;, &#39;V304&#39;, &#39;V305&#39;, &#39;V306&#39;, &#39;V307&#39;, &#39;V308&#39;, &#39;V309&#39;, &#39;V310&#39;, &#39;V311&#39;, &#39;V312&#39;, &#39;V313&#39;, &#39;V314&#39;, &#39;V315&#39;, &#39;V316&#39;, &#39;V317&#39;, &#39;V318&#39;, &#39;V319&#39;, &#39;V320&#39;, &#39;V321&#39;, &#39;id_01&#39;, &#39;id_02&#39;, &#39;id_11&#39;, &#39;id_13&#39;, &#39;id_17&#39;, &#39;id_19&#39;, &#39;id_20&#39;]
+['isFraud', 'TransactionDT', 'TransactionAmt', 'card1', 'card2', 'card3', 'card5', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'D1', 'D4', 'D6', 'D10', 'D12', 'D15', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'V29', 'V30', 'V31', 'V32', 'V33', 'V34', 'V35', 'V36', 'V37', 'V38', 'V39', 'V40', 'V41', 'V42', 'V43', 'V44', 'V45', 'V46', 'V47', 'V48', 'V49', 'V50', 'V51', 'V52', 'V53', 'V54', 'V55', 'V56', 'V57', 'V58', 'V59', 'V60', 'V61', 'V62', 'V63', 'V64', 'V65', 'V66', 'V67', 'V68', 'V69', 'V70', 'V71', 'V72', 'V73', 'V74', 'V75', 'V76', 'V77', 'V78', 'V79', 'V80', 'V81', 'V82', 'V83', 'V84', 'V85', 'V86', 'V87', 'V88', 'V89', 'V90', 'V91', 'V92', 'V93', 'V94', 'V95', 'V96', 'V97', 'V98', 'V99', 'V100', 'V101', 'V102', 'V103', 'V104', 'V105', 'V106', 'V107', 'V108', 'V109', 'V110', 'V111', 'V112', 'V113', 'V114', 'V115', 'V116', 'V117', 'V118', 'V119', 'V120', 'V121', 'V122', 'V123', 'V124', 'V125', 'V126', 'V127', 'V128', 'V129', 'V130', 'V131', 'V132', 'V133', 'V134', 'V135', 'V136', 'V137', 'V279', 'V280', 'V281', 'V282', 'V283', 'V284', 'V285', 'V286', 'V287', 'V288', 'V289', 'V290', 'V291', 'V292', 'V293', 'V294', 'V295', 'V296', 'V297', 'V298', 'V299', 'V300', 'V301', 'V302', 'V303', 'V304', 'V305', 'V306', 'V307', 'V308', 'V309', 'V310', 'V311', 'V312', 'V313', 'V314', 'V315', 'V316', 'V317', 'V318', 'V319', 'V320', 'V321', 'id_01', 'id_02', 'id_11', 'id_13', 'id_17', 'id_19', 'id_20']
 There are 0 missing values
 </pre></div>
 </div>
@@ -2877,15 +2877,15 @@ There are 0 missing values
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate response (&#39;isFraud&#39;) from features in the fraud data.</span>
-<span class="n">fraud_response</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">]</span>
-<span class="n">fraud_features</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;isFraud&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate response ('isFraud') from features in the fraud data.</span>
+<span class="n">fraud_response</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="p">[</span><span class="s1">'isFraud'</span><span class="p">]</span>
+<span class="n">fraud_features</span> <span class="o">=</span> <span class="n">fraud_numeric3</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'isFraud'</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_features</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
 Int64Index: 51660 entries, 0 to 68518
 Columns: 202 entries, TransactionDT to id_20
 dtypes: float64(200), int64(2)
@@ -2922,11 +2922,11 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduce the feature list to those suggested above.</span>
-<span class="n">fraud_features_selected</span> <span class="o">=</span> <span class="n">fraud_features</span><span class="p">[[</span><span class="s1">&#39;id_02&#39;</span><span class="p">,</span> <span class="s1">&#39;id_19&#39;</span><span class="p">,</span> <span class="s1">&#39;id_20&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;V44&#39;</span><span class="p">,</span><span class="s1">&#39;V45&#39;</span><span class="p">,</span> <span class="s1">&#39;V86&#39;</span><span class="p">,</span> <span class="s1">&#39;V87&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;C1&#39;</span><span class="p">,</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C8&#39;</span><span class="p">,</span> <span class="s1">&#39;C11&#39;</span><span class="p">,</span> <span class="s1">&#39;C12&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;C13&#39;</span><span class="p">,</span> <span class="s1">&#39;C14&#39;</span><span class="p">,</span> <span class="s1">&#39;card1&#39;</span><span class="p">,</span> <span class="s1">&#39;card2&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;TransactionAmt&#39;</span><span class="p">,</span> <span class="s1">&#39;TransactionDT&#39;</span><span class="p">]]</span>
+<span class="n">fraud_features_selected</span> <span class="o">=</span> <span class="n">fraud_features</span><span class="p">[[</span><span class="s1">'id_02'</span><span class="p">,</span> <span class="s1">'id_19'</span><span class="p">,</span> <span class="s1">'id_20'</span><span class="p">,</span>
+                                           <span class="s1">'V44'</span><span class="p">,</span><span class="s1">'V45'</span><span class="p">,</span> <span class="s1">'V86'</span><span class="p">,</span> <span class="s1">'V87'</span><span class="p">,</span>
+                                           <span class="s1">'C1'</span><span class="p">,</span><span class="s1">'C2'</span><span class="p">,</span> <span class="s1">'C8'</span><span class="p">,</span> <span class="s1">'C11'</span><span class="p">,</span> <span class="s1">'C12'</span><span class="p">,</span>
+                                           <span class="s1">'C13'</span><span class="p">,</span> <span class="s1">'C14'</span><span class="p">,</span> <span class="s1">'card1'</span><span class="p">,</span> <span class="s1">'card2'</span><span class="p">,</span>
+                                           <span class="s1">'TransactionAmt'</span><span class="p">,</span> <span class="s1">'TransactionDT'</span><span class="p">]]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">fraud_features_selected</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
@@ -3005,9 +3005,9 @@ None
 
 <span class="c1"># Plot the elbow curve.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span><span class="n">score</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters (K)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cluster score&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Number of clusters (K)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Cluster score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Elbow curve'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3040,7 +3040,7 @@ None
 
 <span class="c1"># Calculate the distance between each observation and its cluster centroid.</span>
 <span class="n">distance</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span><span class="p">,</span><span class="n">Z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fraud_features_scaled</span><span class="p">,</span><span class="n">centroids</span><span class="p">[</span><span class="n">labels</span><span class="p">])]</span>
-  <span class="c1"># np.linalg.norm is the &#39;norm&#39; function from Numpy&#39;s linear algebra package</span>
+  <span class="c1"># np.linalg.norm is the 'norm' function from Numpy's linear algebra package</span>
   <span class="c1"># and is used to calculate the Euclidean distance between two points,</span>
   <span class="c1"># in this case between each observation (X) and its cluster centroid (Z).</span>
 
@@ -3083,11 +3083,11 @@ be evaluated using internal or manual evaluation techniques as described in Sect
 <span class="c1"># Compute the confusion matrix.</span>
 <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">)</span> 
 <span class="c1"># Plot the confusion matrix.</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Not fraud&#39;</span><span class="p">,</span><span class="s1">&#39;Fraud&#39;</span><span class="p">])</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Not fraud'</span><span class="p">,</span><span class="s1">'Fraud'</span><span class="p">])</span>
 
 <span class="c1"># Calculate the F1 score for these predictions.</span>
 <span class="c1"># F1 = 2 x (precision * recall) / (precision + recall).</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The F1 score is &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'The F1 score is '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -3138,11 +3138,11 @@ You should also experiment to see if you can obtain better fraud predictions fro
 <span class="c1"># True Negatives and False Negatives.</span>
 
 <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction2</span><span class="p">)</span> 
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Not fraud&#39;</span><span class="p">,</span><span class="s1">&#39;Fraud&#39;</span><span class="p">])</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Not fraud'</span><span class="p">,</span><span class="s1">'Fraud'</span><span class="p">])</span>
 
 <span class="c1"># Compare the predictions from Kmeans1 and Kmeans2</span>
-<span class="p">{</span><span class="s1">&#39;KMeans1 F1&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">),</span>
- <span class="s1">&#39;KMeans2 F1&#39;</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction2</span><span class="p">),</span>
+<span class="p">{</span><span class="s1">'KMeans1 F1'</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction</span><span class="p">),</span>
+ <span class="s1">'KMeans2 F1'</span><span class="p">:</span><span class="n">f1_score</span><span class="p">(</span><span class="n">fraud_response</span><span class="p">,</span> <span class="n">fraud_prediction2</span><span class="p">),</span>
  <span class="p">}</span>
 </pre></div>
 </div>
@@ -3151,7 +3151,7 @@ You should also experiment to see if you can obtain better fraud predictions fro
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 0. 0. ... 0. 0. 0.]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;KMeans1 F1&#39;: 0.44971996990721397, &#39;KMeans2 F1&#39;: 0.46225863077823287}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'KMeans1 F1': 0.44971996990721397, 'KMeans2 F1': 0.46225863077823287}
 </pre></div>
 </div>
 <img alt="../_images/4fcb36be838517df042e815ffc9697eff53cae3297ab709e9c9f97a50c351688.png" src="../_images/4fcb36be838517df042e815ffc9697eff53cae3297ab709e9c9f97a50c351688.png" />

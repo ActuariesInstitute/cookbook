@@ -886,17 +886,17 @@ Required-by: seaborn
 <span class="c1"># colours for plots - not all are used</span>
 <span class="c1"># We will also use viridis for some plots</span>
 <span class="n">plot_colors</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;dblue&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#113458&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;mblue&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#4096b8&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;gold&quot;</span>   <span class="p">:</span> <span class="s2">&quot;#d9ab16&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;lgrey&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#dcddd9&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;dgrey&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#3f4548&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;black&quot;</span>  <span class="p">:</span> <span class="s2">&quot;#3F4548&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;red&quot;</span>    <span class="p">:</span> <span class="s2">&quot;#d01e45&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;purple&quot;</span> <span class="p">:</span> <span class="s2">&quot;#8f4693&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;orange&quot;</span> <span class="p">:</span> <span class="s2">&quot;#ee741d&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;fuscia&quot;</span> <span class="p">:</span> <span class="s2">&quot;#e9458c&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;violet&quot;</span> <span class="p">:</span> <span class="s2">&quot;#8076cf&quot;</span>
+  <span class="s2">"dblue"</span>  <span class="p">:</span> <span class="s2">"#113458"</span><span class="p">,</span>
+  <span class="s2">"mblue"</span>  <span class="p">:</span> <span class="s2">"#4096b8"</span><span class="p">,</span>
+  <span class="s2">"gold"</span>   <span class="p">:</span> <span class="s2">"#d9ab16"</span><span class="p">,</span>
+  <span class="s2">"lgrey"</span>  <span class="p">:</span> <span class="s2">"#dcddd9"</span><span class="p">,</span>
+  <span class="s2">"dgrey"</span>  <span class="p">:</span> <span class="s2">"#3f4548"</span><span class="p">,</span>
+  <span class="s2">"black"</span>  <span class="p">:</span> <span class="s2">"#3F4548"</span><span class="p">,</span>
+  <span class="s2">"red"</span>    <span class="p">:</span> <span class="s2">"#d01e45"</span><span class="p">,</span>
+  <span class="s2">"purple"</span> <span class="p">:</span> <span class="s2">"#8f4693"</span><span class="p">,</span>
+  <span class="s2">"orange"</span> <span class="p">:</span> <span class="s2">"#ee741d"</span><span class="p">,</span>
+  <span class="s2">"fuscia"</span> <span class="p">:</span> <span class="s2">"#e9458c"</span><span class="p">,</span>
+  <span class="s2">"violet"</span> <span class="p">:</span> <span class="s2">"#8076cf"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -926,24 +926,24 @@ It is available in CSV form <a class="reference external" href="https://institut
 <p>First, load in the data and have a look at it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1-4 will bring up different datasets. Covered in &quot;next steps&quot; note at the end of the article</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1-4 will bring up different datasets. Covered in "next steps" note at the end of the article</span>
 <span class="n">dataset_number</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata</span><span class="si">{</span><span class="n">dataset_number</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">"https://institute-and-faculty-of-actuaries.github.io/mlr-blog/csv/lasso_simdata</span><span class="si">{</span><span class="n">dataset_number</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">,</span>
     <span class="n">dtype</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;pmts&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-        <span class="s2">&quot;acc&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-        <span class="s2">&quot;dev&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-        <span class="s2">&quot;cal&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-        <span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
-        <span class="s2">&quot;train_ind&quot;</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="s2">"pmts"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">"acc"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">"dev"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">"cal"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">"mu"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="s2">"train_ind"</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="p">})</span>
 
 <span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
 <span class="c1"># create the num_periods variable - number of acc/dev periods</span>
-<span class="n">num_periods</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">num_periods</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -963,13 +963,13 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_triangle</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span> 
     <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Claims Development&quot;</span><span class="p">,</span> 
-    <span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;viridis_r&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="c1"># Use Viridis colour palette just like the R code</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Claims Development"</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">"viridis_r"</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="c1"># Use Viridis colour palette just like the R code</span>
     <span class="n">center</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Plots a claims triangle heatmap</span>
+<span class="w">    </span><span class="sd">""" Plots a claims triangle heatmap</span>
 <span class="sd">    data:</span>
 <span class="sd">        Pandas DataFrame, indexed by date</span>
 <span class="sd">    mask_bottom:</span>
@@ -980,8 +980,8 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
 <span class="sd">    center:</span>
 <span class="sd">        Centre for heatmap</span>
 <span class="sd">    fig, ax: optional fig and ax</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
 
     <span class="c1"># Generate a mask for the triangle</span>
     <span class="k">if</span> <span class="n">mask_bottom</span><span class="p">:</span>
@@ -1004,8 +1004,8 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
         <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
         <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-        <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span>
-        <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+        <span class="n">fmt</span><span class="o">=</span><span class="s2">".0f"</span><span class="p">,</span>
+        <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"shrink"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
         <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">()</span>  <span class="c1"># Log scale</span>
     <span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 
@@ -1018,7 +1018,7 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Partial triangle - the model only sees this for training</span>
 <span class="n">plot_triangle</span><span class="p">(</span>
-    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"pmts"</span><span class="p">),</span>
     <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
@@ -1034,7 +1034,7 @@ The step-up in claim size (acc &gt; 16 and dev &gt; 20) is quite obvious in this
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Whole triangle - with test dataset</span>
 <span class="n">plot_triangle</span><span class="p">(</span>
-    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+    <span class="n">dat</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"pmts"</span><span class="p">),</span>
     <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -1054,8 +1054,8 @@ It’s likely, therefore, that the main differentiator between the performance o
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Factors with zero index</span>
-<span class="n">dat</span><span class="p">[</span><span class="s2">&quot;accf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">acc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">dat</span><span class="p">[</span><span class="s2">&quot;devf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">dev</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">dat</span><span class="p">[</span><span class="s2">"accf"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">acc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">dat</span><span class="p">[</span><span class="s2">"devf"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">dev</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1065,14 +1065,14 @@ It’s likely, therefore, that the main differentiator between the performance o
 <h2>Train and Test<a class="headerlink" href="#train-and-test" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="p">[</span><span class="s2">"acc"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">,</span> <span class="s2">"accf"</span><span class="p">,</span> <span class="s2">"devf"</span><span class="p">]])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="s2">"pmts"</span><span class="p">])</span>
 
-<span class="n">X_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="p">[</span><span class="s2">"acc"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">,</span> <span class="s2">"accf"</span><span class="p">,</span> <span class="s2">"devf"</span><span class="p">]])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"pmts"</span><span class="p">])</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">]])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"acc"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">,</span> <span class="s2">"accf"</span><span class="p">,</span> <span class="s2">"devf"</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">"pmts"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1174,18 +1174,18 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ccp_alpha&#39;: 0.0,
- &#39;criterion&#39;: &#39;mse&#39;,
- &#39;max_depth&#39;: 3,
- &#39;max_features&#39;: None,
- &#39;max_leaf_nodes&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;random_state&#39;: None,
- &#39;splitter&#39;: &#39;best&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'ccp_alpha': 0.0,
+ 'criterion': 'mse',
+ 'max_depth': 3,
+ 'max_features': None,
+ 'max_leaf_nodes': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'random_state': None,
+ 'splitter': 'best'}
 </pre></div>
 </div>
 </div>
@@ -1211,9 +1211,9 @@ We’ll then move onto the code needed to run hyper-parameter tuning using cross
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_tree</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;criterion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="s2">&quot;poisson&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
-    <span class="s2">&quot;ccp_alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+    <span class="s2">"criterion"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mse"</span><span class="p">,</span> <span class="s2">"poisson"</span><span class="p">],</span>
+    <span class="s2">"max_depth"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
+    <span class="s2">"ccp_alpha"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1232,9 +1232,9 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(estimator=DecisionTreeRegressor(),
-             param_grid={&#39;ccp_alpha&#39;: [0.0, 0.2, 0.4, 0.6, 0.8],
-                         &#39;criterion&#39;: [&#39;mse&#39;, &#39;poisson&#39;],
-                         &#39;max_depth&#39;: [2, 3, 5, 7, None]})
+             param_grid={'ccp_alpha': [0.0, 0.2, 0.4, 0.6, 0.8],
+                         'criterion': ['mse', 'poisson'],
+                         'max_depth': [2, 3, 5, 7, None]})
 </pre></div>
 </div>
 </div>
@@ -1247,18 +1247,18 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ccp_alpha&#39;: 0.8,
- &#39;criterion&#39;: &#39;mse&#39;,
- &#39;max_depth&#39;: None,
- &#39;max_features&#39;: None,
- &#39;max_leaf_nodes&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;random_state&#39;: None,
- &#39;splitter&#39;: &#39;best&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'ccp_alpha': 0.8,
+ 'criterion': 'mse',
+ 'max_depth': None,
+ 'max_features': None,
+ 'max_leaf_nodes': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'random_state': None,
+ 'splitter': 'best'}
 </pre></div>
 </div>
 </div>
@@ -1294,24 +1294,24 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True,
- &#39;ccp_alpha&#39;: 0.0,
- &#39;criterion&#39;: &#39;mse&#39;,
- &#39;max_depth&#39;: None,
- &#39;max_features&#39;: &#39;auto&#39;,
- &#39;max_leaf_nodes&#39;: None,
- &#39;max_samples&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;n_estimators&#39;: 100,
- &#39;n_jobs&#39;: None,
- &#39;oob_score&#39;: False,
- &#39;random_state&#39;: None,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'bootstrap': True,
+ 'ccp_alpha': 0.0,
+ 'criterion': 'mse',
+ 'max_depth': None,
+ 'max_features': 'auto',
+ 'max_leaf_nodes': None,
+ 'max_samples': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'n_estimators': 100,
+ 'n_jobs': None,
+ 'oob_score': False,
+ 'random_state': None,
+ 'verbose': 0,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1321,9 +1321,9 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_forest</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
-    <span class="s2">&quot;ccp_alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
-    <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="s2">"max_depth"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="c1"># None is unlimited depth.</span>
+    <span class="s2">"ccp_alpha"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+    <span class="s2">"random_state"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">grid_forest</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
@@ -1337,24 +1337,24 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bootstrap&#39;: True,
- &#39;ccp_alpha&#39;: 0.0,
- &#39;criterion&#39;: &#39;mse&#39;,
- &#39;max_depth&#39;: None,
- &#39;max_features&#39;: &#39;auto&#39;,
- &#39;max_leaf_nodes&#39;: None,
- &#39;max_samples&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;n_estimators&#39;: 100,
- &#39;n_jobs&#39;: None,
- &#39;oob_score&#39;: False,
- &#39;random_state&#39;: 0,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'bootstrap': True,
+ 'ccp_alpha': 0.0,
+ 'criterion': 'mse',
+ 'max_depth': None,
+ 'max_features': 'auto',
+ 'max_leaf_nodes': None,
+ 'max_samples': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'n_estimators': 100,
+ 'n_jobs': None,
+ 'oob_score': False,
+ 'random_state': 0,
+ 'verbose': 0,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1375,28 +1375,28 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;alpha&#39;: 0.9,
- &#39;ccp_alpha&#39;: 0.0,
- &#39;criterion&#39;: &#39;friedman_mse&#39;,
- &#39;init&#39;: None,
- &#39;learning_rate&#39;: 0.1,
- &#39;loss&#39;: &#39;ls&#39;,
- &#39;max_depth&#39;: 3,
- &#39;max_features&#39;: None,
- &#39;max_leaf_nodes&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;n_estimators&#39;: 100,
- &#39;n_iter_no_change&#39;: None,
- &#39;random_state&#39;: None,
- &#39;subsample&#39;: 1.0,
- &#39;tol&#39;: 0.0001,
- &#39;validation_fraction&#39;: 0.1,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'alpha': 0.9,
+ 'ccp_alpha': 0.0,
+ 'criterion': 'friedman_mse',
+ 'init': None,
+ 'learning_rate': 0.1,
+ 'loss': 'ls',
+ 'max_depth': 3,
+ 'max_features': None,
+ 'max_leaf_nodes': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'n_estimators': 100,
+ 'n_iter_no_change': None,
+ 'random_state': None,
+ 'subsample': 1.0,
+ 'tol': 0.0001,
+ 'validation_fraction': 0.1,
+ 'verbose': 0,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1408,10 +1408,10 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_gbm</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
-    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-    <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
-    <span class="s2">&quot;subsample&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="s2">"n_estimators"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+    <span class="s2">"max_depth"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">"learning_rate"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+    <span class="s2">"subsample"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1432,7 +1432,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <span class="n">grid_gbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1450,28 +1450,28 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;alpha&#39;: 0.9,
- &#39;ccp_alpha&#39;: 0.0,
- &#39;criterion&#39;: &#39;friedman_mse&#39;,
- &#39;init&#39;: None,
- &#39;learning_rate&#39;: 0.01,
- &#39;loss&#39;: &#39;ls&#39;,
- &#39;max_depth&#39;: 5,
- &#39;max_features&#39;: None,
- &#39;max_leaf_nodes&#39;: None,
- &#39;min_impurity_decrease&#39;: 0.0,
- &#39;min_impurity_split&#39;: None,
- &#39;min_samples_leaf&#39;: 1,
- &#39;min_samples_split&#39;: 2,
- &#39;min_weight_fraction_leaf&#39;: 0.0,
- &#39;n_estimators&#39;: 400,
- &#39;n_iter_no_change&#39;: None,
- &#39;random_state&#39;: None,
- &#39;subsample&#39;: 0.5,
- &#39;tol&#39;: 0.0001,
- &#39;validation_fraction&#39;: 0.1,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'alpha': 0.9,
+ 'ccp_alpha': 0.0,
+ 'criterion': 'friedman_mse',
+ 'init': None,
+ 'learning_rate': 0.01,
+ 'loss': 'ls',
+ 'max_depth': 5,
+ 'max_features': None,
+ 'max_leaf_nodes': None,
+ 'min_impurity_decrease': 0.0,
+ 'min_impurity_split': None,
+ 'min_samples_leaf': 1,
+ 'min_samples_split': 2,
+ 'min_weight_fraction_leaf': 0.0,
+ 'n_estimators': 400,
+ 'n_iter_no_change': None,
+ 'random_state': None,
+ 'subsample': 0.5,
+ 'tol': 0.0001,
+ 'validation_fraction': 0.1,
+ 'verbose': 0,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1481,10 +1481,10 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_hgbm</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;least_squares&quot;</span><span class="p">,</span> <span class="s2">&quot;poisson&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
-    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-    <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+    <span class="s2">"loss"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"least_squares"</span><span class="p">,</span> <span class="s2">"poisson"</span><span class="p">],</span>
+    <span class="s2">"max_iter"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+    <span class="s2">"max_depth"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s2">"learning_rate"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1505,7 +1505,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
 <span class="c1"># It was not faster in this case with this dataset.</span>
 </pre></div>
 </div>
@@ -1524,24 +1524,24 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;categorical_features&#39;: None,
- &#39;early_stopping&#39;: &#39;auto&#39;,
- &#39;l2_regularization&#39;: 0.0,
- &#39;learning_rate&#39;: 0.1,
- &#39;loss&#39;: &#39;poisson&#39;,
- &#39;max_bins&#39;: 255,
- &#39;max_depth&#39;: 6,
- &#39;max_iter&#39;: 400,
- &#39;max_leaf_nodes&#39;: 31,
- &#39;min_samples_leaf&#39;: 20,
- &#39;monotonic_cst&#39;: None,
- &#39;n_iter_no_change&#39;: 10,
- &#39;random_state&#39;: None,
- &#39;scoring&#39;: &#39;loss&#39;,
- &#39;tol&#39;: 1e-07,
- &#39;validation_fraction&#39;: 0.1,
- &#39;verbose&#39;: 0,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'categorical_features': None,
+ 'early_stopping': 'auto',
+ 'l2_regularization': 0.0,
+ 'learning_rate': 0.1,
+ 'loss': 'poisson',
+ 'max_bins': 255,
+ 'max_depth': 6,
+ 'max_iter': 400,
+ 'max_leaf_nodes': 31,
+ 'min_samples_leaf': 20,
+ 'monotonic_cst': None,
+ 'n_iter_no_change': 10,
+ 'random_state': None,
+ 'scoring': 'loss',
+ 'tol': 1e-07,
+ 'validation_fraction': 0.1,
+ 'verbose': 0,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1550,7 +1550,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gbm_prev</span> <span class="o">=</span> <span class="n">HistGradientBoostingRegressor</span><span class="p">(</span>
-    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span>  <span class="c1"># Poisson is close to Tweedie with variance power 1.01</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">'poisson'</span><span class="p">,</span>  <span class="c1"># Poisson is close to Tweedie with variance power 1.01</span>
     <span class="n">max_iter</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span>
     <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
     <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span>
@@ -1561,7 +1561,7 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HistGradientBoostingRegressor(learning_rate=0.3, loss=&#39;poisson&#39;, max_depth=3,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HistGradientBoostingRegressor(learning_rate=0.3, loss='poisson', max_depth=3,
                               max_iter=233)
 </pre></div>
 </div>
@@ -1580,7 +1580,7 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_nn</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;hidden_layer_sizes&quot;</span><span class="p">:</span> <span class="p">[</span> 
+    <span class="s2">"hidden_layer_sizes"</span><span class="p">:</span> <span class="p">[</span> 
         <span class="c1"># Keep these to 50 neurons to keep things small</span>
         <span class="c1"># (We do only have 3 factors)</span>
         <span class="p">(</span><span class="mi">50</span><span class="p">,),</span>           <span class="c1"># single hidden layer</span>
@@ -1589,19 +1589,19 @@ Another possible choice is Bayesian optimisation search.</p>
         <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="c1"># four layers</span>
         <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>     <span class="c1"># bottleneck model - reduce data to 10 final effects</span>
     <span class="p">],</span>
-    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="s2">"alpha"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
     <span class="c1"># Activation: Relu is standard but logistic / sigmoid has been used by some</span>
     <span class="c1"># researchers in reserving applications</span>
-    <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="s2">&quot;relu&quot;</span><span class="p">],</span> 
-    <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span><span class="p">]</span>  <span class="c1"># More iterations worked well for lasso model in R</span>
+    <span class="s2">"activation"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"logistic"</span><span class="p">,</span> <span class="s2">"relu"</span><span class="p">],</span> 
+    <span class="s2">"random_state"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">"max_iter"</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span><span class="p">]</span>  <span class="c1"># More iterations worked well for lasso model in R</span>
 <span class="p">}</span>
 
 <span class="n">col_transformer_nn</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;zero_to_one&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">])</span>
+        <span class="p">(</span><span class="s1">'zero_to_one'</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">(),</span> <span class="p">[</span><span class="s2">"acc"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">])</span>
     <span class="p">],</span>
-    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">'drop'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1612,8 +1612,8 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
 <span class="n">neural_network</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
     <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">col_transformer_nn</span><span class="p">),</span> 
-        <span class="p">(</span><span class="s1">&#39;nn&#39;</span><span class="p">,</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
+        <span class="p">(</span><span class="s1">'transform'</span><span class="p">,</span> <span class="n">col_transformer_nn</span><span class="p">),</span> 
+        <span class="p">(</span><span class="s1">'nn'</span><span class="p">,</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
                 <span class="n">regressor</span><span class="o">=</span><span class="n">RandomizedSearchCV</span><span class="p">(</span>
                   <span class="n">MLPRegressor</span><span class="p">(),</span>
                   <span class="n">parameters_nn</span><span class="p">,</span> 
@@ -1631,7 +1631,7 @@ Another possible choice is Bayesian optimisation search.</p>
 
 <span class="n">neural_network</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1643,34 +1643,34 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_network</span><span class="p">[</span><span class="s2">&quot;nn&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">regressor_</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_network</span><span class="p">[</span><span class="s2">"nn"</span><span class="p">]</span><span class="o">.</span><span class="n">regressor_</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;activation&#39;: &#39;relu&#39;,
- &#39;alpha&#39;: 1e-05,
- &#39;batch_size&#39;: &#39;auto&#39;,
- &#39;beta_1&#39;: 0.9,
- &#39;beta_2&#39;: 0.999,
- &#39;early_stopping&#39;: False,
- &#39;epsilon&#39;: 1e-08,
- &#39;hidden_layer_sizes&#39;: (12, 12, 12, 12),
- &#39;learning_rate&#39;: &#39;constant&#39;,
- &#39;learning_rate_init&#39;: 0.001,
- &#39;max_fun&#39;: 15000,
- &#39;max_iter&#39;: 200000,
- &#39;momentum&#39;: 0.9,
- &#39;n_iter_no_change&#39;: 10,
- &#39;nesterovs_momentum&#39;: True,
- &#39;power_t&#39;: 0.5,
- &#39;random_state&#39;: 0,
- &#39;shuffle&#39;: True,
- &#39;solver&#39;: &#39;adam&#39;,
- &#39;tol&#39;: 0.0001,
- &#39;validation_fraction&#39;: 0.1,
- &#39;verbose&#39;: False,
- &#39;warm_start&#39;: False}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'activation': 'relu',
+ 'alpha': 1e-05,
+ 'batch_size': 'auto',
+ 'beta_1': 0.9,
+ 'beta_2': 0.999,
+ 'early_stopping': False,
+ 'epsilon': 1e-08,
+ 'hidden_layer_sizes': (12, 12, 12, 12),
+ 'learning_rate': 'constant',
+ 'learning_rate_init': 0.001,
+ 'max_fun': 15000,
+ 'max_iter': 200000,
+ 'momentum': 0.9,
+ 'n_iter_no_change': 10,
+ 'nesterovs_momentum': True,
+ 'power_t': 0.5,
+ 'random_state': 0,
+ 'shuffle': True,
+ 'solver': 'adam',
+ 'tol': 0.0001,
+ 'validation_fraction': 0.1,
+ 'verbose': False,
+ 'warm_start': False}
 </pre></div>
 </div>
 </div>
@@ -1700,15 +1700,15 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col_transformer</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
-    <span class="p">[(</span><span class="s1">&#39;encoder&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="p">[</span><span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">])],</span> 
-    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span>
+    <span class="p">[(</span><span class="s1">'encoder'</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="p">[</span><span class="s2">"accf"</span><span class="p">,</span> <span class="s2">"devf"</span><span class="p">])],</span> 
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">'drop'</span>
 <span class="p">)</span>
 
 <span class="c1"># PoissonRegressor gives a log-link GLM. But need to set alpha=0 so it is not a LASSO.</span>
 <span class="n">chain_ladder</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
     <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">col_transformer</span><span class="p">),</span> 
-        <span class="p">(</span><span class="s1">&#39;glm&#39;</span><span class="p">,</span> <span class="n">PoissonRegressor</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
+        <span class="p">(</span><span class="s1">'transform'</span><span class="p">,</span> <span class="n">col_transformer</span><span class="p">),</span> 
+        <span class="p">(</span><span class="s1">'glm'</span><span class="p">,</span> <span class="n">PoissonRegressor</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
@@ -1717,10 +1717,10 @@ Another possible choice is Bayesian optimisation search.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;transform&#39;,
-                 ColumnTransformer(transformers=[(&#39;encoder&#39;, OneHotEncoder(),
-                                                  [&#39;accf&#39;, &#39;devf&#39;])])),
-                (&#39;glm&#39;, PoissonRegressor(alpha=0, max_iter=5000))])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[('transform',
+                 ColumnTransformer(transformers=[('encoder', OneHotEncoder(),
+                                                  ['accf', 'devf'])])),
+                ('glm', PoissonRegressor(alpha=0, max_iter=5000))])
 </pre></div>
 </div>
 </div>
@@ -1743,17 +1743,17 @@ Another possible choice is Bayesian optimisation search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">LinearSpline</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Linear spline function - used in data generation and in spline generation below</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">var</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">GetScaling</span><span class="p">(</span><span class="n">vec</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Function to calculate scaling factors for the basis functions</span>
 <span class="sd">    scaling is discussed in the paper</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">fn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
     <span class="n">fm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">vec</span> <span class="o">-</span> <span class="n">fm</span>  
@@ -1762,16 +1762,16 @@ Another possible choice is Bayesian optimisation search.</p>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">GetRamps</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">vecname</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Function to create the ramps for a particular primary vector</span>
 <span class="sd">    vec = fundamental regressor</span>
 <span class="sd">    vecname = name of regressor</span>
 <span class="sd">    np = number of periods</span>
 <span class="sd">    scaling = scaling factor to use</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
         <span class="p">{</span>
-            <span class="sa">f</span><span class="s2">&quot;L_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_999_</span><span class="si">{</span><span class="n">vecname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">LinearSpline</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling</span>
+            <span class="sa">f</span><span class="s2">"L_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_999_</span><span class="si">{</span><span class="n">vecname</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="n">LinearSpline</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span> <span class="o">/</span> <span class="n">scaling</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">)</span>
@@ -1779,13 +1779,13 @@ Another possible choice is Bayesian optimisation search.</p>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">,</span> <span class="n">vecname1</span><span class="p">,</span> <span class="n">vecname2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">,</span> <span class="n">scaling1</span><span class="p">,</span> <span class="n">scaling2</span><span class="p">,</span> <span class="n">train_ind</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create the step (heaviside) function interactions.</span>
-<span class="sd">    f&quot;I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}&quot; formats the name of the column</span>
+<span class="sd">    f"I_{vecname1}_ge_{i}xI_{vecname2}_ge_{j}" formats the name of the column</span>
 <span class="sd">    LinearSpline(vec1, 1, i+1) / scaling1 * LinearSpline(vec2, j, j + 1) / scaling2</span>
 <span class="sd">    is the interaction term</span>
 <span class="sd">    and we loop over all combinations of 1:nperiods and 2:nperiods</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     
     <span class="n">vecs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nperiods</span><span class="p">)]):</span>
@@ -1796,7 +1796,7 @@ Another possible choice is Bayesian optimisation search.</p>
 
         <span class="c1"># Only include if non-constant over training data</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">interaction</span><span class="p">[</span><span class="n">train_ind</span><span class="p">]</span> <span class="o">==</span> <span class="n">interaction</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="n">vecs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;I_</span><span class="si">{</span><span class="n">vecname1</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">xI_</span><span class="si">{</span><span class="n">vecname2</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interaction</span>
+            <span class="n">vecs</span><span class="p">[</span><span class="sa">f</span><span class="s2">"I_</span><span class="si">{</span><span class="n">vecname1</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">xI_</span><span class="si">{</span><span class="n">vecname2</span><span class="si">}</span><span class="s2">_ge_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">interaction</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vecs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span>
@@ -1811,7 +1811,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the scaling values</span>
 <span class="n">rho_factor_list</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">v</span><span class="p">:</span> <span class="n">GetScaling</span><span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> 
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"acc"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">rho_factor_list</span>
@@ -1819,7 +1819,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;acc&#39;: 9.539392014169456, &#39;dev&#39;: 9.539392014169456, &#39;cal&#39;: 9.539392014169456}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'acc': 9.539392014169456, 'dev': 9.539392014169456, 'cal': 9.539392014169456}
 </pre></div>
 </div>
 </div>
@@ -1827,11 +1827,11 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># main effects - matrix of values</span>
-<span class="n">main_effects_acc</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">])</span>
-<span class="n">main_effects_dev</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">])</span>
-<span class="n">main_effects_cal</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">])</span>
+<span class="n">main_effects_acc</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">"acc"</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">])</span>
+<span class="n">main_effects_dev</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">])</span>
+<span class="n">main_effects_cal</span> <span class="o">=</span> <span class="n">GetRamps</span><span class="p">(</span><span class="n">vec</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">],</span> <span class="n">vecname</span> <span class="o">=</span> <span class="s2">"cal"</span><span class="p">,</span> <span class="n">nperiods</span> <span class="o">=</span> <span class="n">num_periods</span><span class="p">,</span> <span class="n">scaling</span> <span class="o">=</span> <span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">])</span>
 
-<span class="n">main_effects</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects_acc</span><span class="p">,</span> <span class="n">main_effects_dev</span><span class="p">,</span> <span class="n">main_effects_cal</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<span class="n">main_effects</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects_acc</span><span class="p">,</span> <span class="n">main_effects_dev</span><span class="p">,</span> <span class="n">main_effects_cal</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2158,7 +2158,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export to file for debugging</span>
-<span class="c1"># main_effects.to_csv(&quot;main_effects_py.csv&quot;)</span>
+<span class="c1"># main_effects.to_csv("main_effects_py.csv")</span>
 </pre></div>
 </div>
 </div>
@@ -2167,19 +2167,19 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># interaction effects</span>
 <span class="n">int_effects</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
-    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span>  
-            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> 
-            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">]),</span>
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"train_ind"</span><span class="p">]),</span>
 
-    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">],</span>  
-            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> 
-            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">]),</span>
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"dev"</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">"cal"</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"train_ind"</span><span class="p">]),</span>
     
-    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;acc&quot;</span><span class="p">],</span>  
-            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">&quot;cal&quot;</span><span class="p">],</span> 
-            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;train_ind&quot;</span><span class="p">])</span>
+    <span class="n">GetInts</span><span class="p">(</span><span class="n">vec1</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">],</span> <span class="n">vecname1</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">scaling1</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"acc"</span><span class="p">],</span>  
+            <span class="n">vec2</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">],</span> <span class="n">vecname2</span><span class="o">=</span><span class="s2">"cal"</span><span class="p">,</span> <span class="n">scaling2</span><span class="o">=</span><span class="n">rho_factor_list</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">],</span> 
+            <span class="n">nperiods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">train_ind</span><span class="o">=</span><span class="n">dat</span><span class="p">[</span><span class="s2">"train_ind"</span><span class="p">])</span>
     <span class="p">],</span> 
-    <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2506,14 +2506,14 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export to file for debugging</span>
-<span class="c1"># int_effects.to_csv(&quot;int_effects_py.csv&quot;)</span>
+<span class="c1"># int_effects.to_csv("int_effects_py.csv")</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">varset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects</span><span class="p">,</span> <span class="n">int_effects</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">varset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_effects</span><span class="p">,</span> <span class="n">int_effects</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 <span class="n">varset_train</span> <span class="o">=</span> <span class="n">varset</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat</span><span class="o">.</span><span class="n">train_ind</span><span class="p">]</span>
 
 <span class="c1"># drop any constant columns over the training data set</span>
@@ -2527,10 +2527,10 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <span class="c1"># remove anything not used in modelling</span>
 <span class="n">dat_plus</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dat</span><span class="p">[[</span><span class="s2">&quot;pmts&quot;</span><span class="p">,</span> <span class="s2">&quot;train_ind&quot;</span><span class="p">]],</span> 
+        <span class="n">dat</span><span class="p">[[</span><span class="s2">"pmts"</span><span class="p">,</span> <span class="s2">"train_ind"</span><span class="p">]],</span> 
         <span class="n">varset</span>
     <span class="p">],</span> 
-    <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+    <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2627,8 +2627,8 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
         <span class="n">init_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">init_bias</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">target_device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Log Link GLM LASSO Regressor</span>
+        <span class="n">target_device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span><span class="p">)</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cpu"</span><span class="p">)):</span>
+<span class="w">        </span><span class="sd">""" Log Link GLM LASSO Regressor</span>
 
 <span class="sd">        This trains a GLM with Poisson loss, Log Link and l1 LASSO penalties</span>
 <span class="sd">        using Pytorch. It has early stopping </span>
@@ -2650,11 +2650,11 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <span class="sd">                RMSE must improve by this percent otherwise patience will decrement. </span>
 <span class="sd">                Once patience reaches zero, training stops.</span>
 
-<span class="sd">            verbose (int): 0 means don&#39;t print. 1 means do print.</span>
+<span class="sd">            verbose (int): 0 means don't print. 1 means do print.</span>
 
 <span class="sd">            init_weight, init_bias (torch tensor): initial weight (coefficient) </span>
 <span class="sd">                and bias (intercept) for a warm start. </span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">l1_penalty</span> <span class="o">=</span> <span class="n">l1_penalty</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight_decay</span> <span class="o">=</span> <span class="n">weight_decay</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span>
@@ -2721,7 +2721,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
                 <span class="n">rmse</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_tensor</span><span class="p">)))</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train RMSE: &quot;</span><span class="p">,</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>    <span class="c1"># Print loss</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">"Train RMSE: "</span><span class="p">,</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>    <span class="c1"># Print loss</span>
 
                 <span class="c1"># Stop if not </span>
                 <span class="k">if</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">last_rmse</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_improvement</span><span class="p">):</span>
@@ -2729,7 +2729,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
                 
                 <span class="k">if</span> <span class="n">patience</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insufficient improvement found, stopping training&quot;</span><span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">"Insufficient improvement found, stopping training"</span><span class="p">)</span>
                     <span class="k">break</span>
 
                 <span class="n">last_rmse</span> <span class="o">=</span> <span class="n">rmse</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -2776,7 +2776,7 @@ The <code class="docutils literal notranslate"><span class="pre">dat_plus</span>
 <span class="n">lasso_prev</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2829,12 +2829,12 @@ Ran in 64.2999 seconds
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters_lasso</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;l1_penalty&quot;</span><span class="p">:</span> <span class="n">lambdas</span><span class="p">,</span> 
-    <span class="s2">&quot;init_weight&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
-    <span class="s2">&quot;init_bias&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
-    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">],</span> <span class="c1"># Fine tuning?</span>
-    <span class="s2">&quot;check_improvement_every_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span> 
-    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="s2">"l1_penalty"</span><span class="p">:</span> <span class="n">lambdas</span><span class="p">,</span> 
+    <span class="s2">"init_weight"</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
+    <span class="s2">"init_bias"</span><span class="p">:</span> <span class="p">[</span><span class="n">lasso_prev</span><span class="o">.</span><span class="n">module_</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
+    <span class="s2">"lr"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">],</span> <span class="c1"># Fine tuning?</span>
+    <span class="s2">"check_improvement_every_iter"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span> 
+    <span class="s2">"verbose"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2852,7 +2852,7 @@ Ran in 64.2999 seconds
 
 <span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ran in </span><span class="si">{</span><span class="n">toc</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tic</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2868,14 +2868,14 @@ Ran in 34.7665 seconds
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the path includes a minimum value of error</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-  <span class="s2">&quot;log(lambda)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;l1_penalty&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]],</span>
-  <span class="s2">&quot;mean_test_score&quot;</span><span class="p">:</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span>
-<span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;log(lambda)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">)</span>
+  <span class="s2">"log(lambda)"</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">"l1_penalty"</span><span class="p">])</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">"params"</span><span class="p">]],</span>
+  <span class="s2">"mean_test_score"</span><span class="p">:</span> <span class="n">lasso</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">"mean_test_score"</span><span class="p">]</span>
+<span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"log(lambda)"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"mean_test_score"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;log(lambda)&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel='log(lambda)'&gt;
 </pre></div>
 </div>
 <img alt="../_images/6eb179b523c3a6d912f20ef6b8f8200bfde67941ccee8425a89f8ad67b05899c.png" src="../_images/6eb179b523c3a6d912f20ef6b8f8200bfde67941ccee8425a89f8ad67b05899c.png" />
@@ -2883,8 +2883,8 @@ Ran in 34.7665 seconds
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best regularisation parameter [log(lambda)] was:&quot;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()[</span><span class="s2">&quot;l1_penalty&quot;</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Best regularisation parameter [log(lambda)] was:"</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_params</span><span class="p">()[</span><span class="s2">"l1_penalty"</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -2903,18 +2903,18 @@ Ran in 34.7665 seconds
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;check_improvement_every_iter&#39;: 100,
- &#39;init_bias&#39;: tensor([15.3488]),
- &#39;init_weight&#39;: tensor([[-1.1317e+00, -8.1524e-01, -5.3453e-01,  ...,  1.3915e-04,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'check_improvement_every_iter': 100,
+ 'init_bias': tensor([15.3488]),
+ 'init_weight': tensor([[-1.1317e+00, -8.1524e-01, -5.3453e-01,  ...,  1.3915e-04,
            1.3895e-04,  1.3895e-04]]),
- &#39;l1_penalty&#39;: 8955.292703482508,
- &#39;lr&#39;: 0.001,
- &#39;max_iter&#39;: 200000,
- &#39;min_improvement&#39;: 0.01,
- &#39;patience&#39;: 3,
- &#39;target_device&#39;: device(type=&#39;cpu&#39;),
- &#39;verbose&#39;: 0,
- &#39;weight_decay&#39;: 0.0}
+ 'l1_penalty': 8955.292703482508,
+ 'lr': 0.001,
+ 'max_iter': 200000,
+ 'min_improvement': 0.01,
+ 'patience': 3,
+ 'target_device': device(type='cpu'),
+ 'verbose': 0,
+ 'weight_decay': 0.0}
 </pre></div>
 </div>
 </div>
@@ -2939,15 +2939,15 @@ Ran in 34.7665 seconds
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset of all forecasts</span>
 <span class="n">model_forecasts</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Decision Tree&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Random Forest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Classic GBM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Histogram GBM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gbm_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Neural Network&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neural_network</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;Chain Ladder&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chain_ladder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
-<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Decision Tree"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Random Forest"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Classic GBM"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Histogram GBM"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Hist GBM (prev)"</span><span class="p">]</span> <span class="o">=</span> <span class="n">gbm_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Neural Network"</span><span class="p">]</span> <span class="o">=</span> <span class="n">neural_network</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"Chain Ladder"</span><span class="p">]</span> <span class="o">=</span> <span class="n">chain_ladder</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"LASSO"</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">model_forecasts</span><span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3232,14 +3232,14 @@ Ran in 34.7665 seconds
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empty list to store results.</span>
 <span class="n">scikit_results</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">y_predicted_full_results</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">y_predicted_test_results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Actuals&quot;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">}</span>
+<span class="n">y_predicted_test_results</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Actuals"</span><span class="p">:</span> <span class="n">y_test</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO uses the &quot;plus&quot; datasets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO uses the "plus" datasets</span>
 <span class="c1"># Train:</span>
 <span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">)</span>
 <span class="n">train_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_predicted_train</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -3249,13 +3249,13 @@ Ran in 34.7665 seconds
 <span class="n">test_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted_test</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Append to the list of results.</span>
-<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
-<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;LASSO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
+<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">"LASSO"</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">"LASSO"</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
 <span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
-    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;LASSO&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
-    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+    <span class="s2">"Name"</span><span class="p">:</span> <span class="s2">"LASSO"</span><span class="p">,</span> 
+    <span class="s2">"Train RMSE"</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">"Test RMSE"</span><span class="p">:</span> <span class="n">test_rmse</span>
 <span class="p">}]</span>
 </pre></div>
 </div>
@@ -3263,7 +3263,7 @@ Ran in 34.7665 seconds
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO (prev) also uses the &quot;plus&quot; datasets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LASSO (prev) also uses the "plus" datasets</span>
 <span class="c1"># Train:</span>
 <span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">)</span>
 <span class="n">train_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_predicted_train</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -3273,13 +3273,13 @@ Ran in 34.7665 seconds
 <span class="n">test_rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted_test</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Append to the list of results.</span>
-<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
-<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
+<span class="n">y_predicted_full_results</span><span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">]</span> <span class="o">=</span> <span class="n">lasso_prev</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plus</span><span class="p">)</span>
+<span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
 <span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
-    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> 
-    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
-    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+    <span class="s2">"Name"</span><span class="p">:</span> <span class="s2">"LASSO (prev)"</span><span class="p">,</span> 
+    <span class="s2">"Train RMSE"</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">"Test RMSE"</span><span class="p">:</span> <span class="n">test_rmse</span>
 <span class="p">}]</span>
 </pre></div>
 </div>
@@ -3293,7 +3293,7 @@ Ran in 34.7665 seconds
 <span class="k">for</span> <span class="n">pipe</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
         <span class="p">[</span><span class="n">grid_tree</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">grid_forest</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">grid_gbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> 
          <span class="n">grid_hgbm</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">gbm_prev</span><span class="p">,</span> <span class="n">neural_network</span><span class="p">,</span> <span class="n">chain_ladder</span><span class="p">],</span>
-        <span class="p">[</span><span class="s2">&quot;Decision Tree&quot;</span><span class="p">,</span> <span class="s2">&quot;Random Forest&quot;</span><span class="p">,</span> <span class="s2">&quot;Classic GBM&quot;</span><span class="p">,</span> <span class="s2">&quot;Histogram GBM&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Neural Network&quot;</span><span class="p">,</span> <span class="s2">&quot;Chain Ladder&quot;</span><span class="p">]</span>
+        <span class="p">[</span><span class="s2">"Decision Tree"</span><span class="p">,</span> <span class="s2">"Random Forest"</span><span class="p">,</span> <span class="s2">"Classic GBM"</span><span class="p">,</span> <span class="s2">"Histogram GBM"</span><span class="p">,</span> <span class="s2">"Hist GBM (prev)"</span><span class="p">,</span> <span class="s2">"Neural Network"</span><span class="p">,</span> <span class="s2">"Chain Ladder"</span><span class="p">]</span>
     <span class="p">):</span>
 
     <span class="n">y_predicted_train</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
@@ -3306,9 +3306,9 @@ Ran in 34.7665 seconds
     <span class="n">y_predicted_test_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_predicted_test</span>
 
     <span class="n">scikit_results</span> <span class="o">+=</span> <span class="p">[{</span>
-    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> 
-    <span class="s2">&quot;Train RMSE&quot;</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
-    <span class="s2">&quot;Test RMSE&quot;</span><span class="p">:</span> <span class="n">test_rmse</span>
+    <span class="s2">"Name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> 
+    <span class="s2">"Train RMSE"</span><span class="p">:</span> <span class="n">train_rmse</span><span class="p">,</span>
+    <span class="s2">"Test RMSE"</span><span class="p">:</span> <span class="n">test_rmse</span>
     <span class="p">}]</span>
 </pre></div>
 </div>
@@ -3317,14 +3317,14 @@ Ran in 34.7665 seconds
 <p>Let’s have a look at these results for past and future data sets with results ranked by test RMSE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scikit_results</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Test RMSE&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scikit_results</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Test RMSE"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.float_format&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{0:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.float_format'</span><span class="p">,</span> <span class="s1">'</span><span class="si">{0:,.0f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_results</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3430,13 +3430,13 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_test_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="c1"># Skip prev models - these are similar enough to last version</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]:</span>  
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">,</span> <span class="s2">"Hist GBM (prev)"</span><span class="p">]:</span>  
         <span class="c1"># Plot</span>
         <span class="n">dat_</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
-        <span class="n">dat_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat_</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
+        <span class="n">dat_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dat_</span><span class="o">.</span><span class="n">train_ind</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"pmts"</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
         
         <span class="n">plot_triangle</span><span class="p">(</span>
-            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts&quot;</span><span class="p">),</span>
+            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"pmts"</span><span class="p">),</span>
             <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="n">name</span>
         <span class="p">)</span>
@@ -3475,16 +3475,16 @@ The graphs below show the log(fitted values), or log(payments) in the case of th
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_full_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="c1"># Skip prev models - these are similar enough to last version</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]:</span> 
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">,</span> <span class="s2">"Hist GBM (prev)"</span><span class="p">]:</span> 
 
         <span class="c1"># Plot</span>
         <span class="n">dat_</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
-        <span class="n">dat_</span><span class="p">[</span><span class="s2">&quot;pmts_ratio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dat_</span><span class="o">.</span><span class="n">pmts</span> <span class="o">/</span> <span class="n">y_pred</span>
+        <span class="n">dat_</span><span class="p">[</span><span class="s2">"pmts_ratio"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dat_</span><span class="o">.</span><span class="n">pmts</span> <span class="o">/</span> <span class="n">y_pred</span>
         
         <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># to be similar to R colouring</span>
         
         <span class="n">plot_triangle</span><span class="p">(</span>
-            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;pmts_ratio&quot;</span><span class="p">),</span>
+            <span class="n">dat_</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"pmts_ratio"</span><span class="p">),</span>
             <span class="n">mask_bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span>  <span class="c1"># vlag also not a bad palette for this</span>
@@ -3522,7 +3522,7 @@ The second function (<code class="docutils literal notranslate"><span class="pre
 We’ll wrap this in another function since we want to call this for a few different combinations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">scikit_results</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;LASSO (prev)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hist GBM (prev)&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">scikit_results</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"LASSO (prev)"</span><span class="p">,</span> <span class="s2">"Hist GBM (prev)"</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -3530,52 +3530,52 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="p">,</span> <span class="n">plot_mu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Plots model vs payments and mu</span>
 <span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">    model_forecasts: Pandas DataFrame. Should have dev, acc, mu, pmts </span>
 <span class="sd">    model_names: List of model names to plot Should be columns in model_forecasts</span>
-<span class="sd">    period_to_filter: &quot;dev&quot; or &quot;acc&quot;. The period to filter by</span>
-<span class="sd">    period: integer. filter value for period_to_filter. I.e. period_to_filter=&quot;acc&quot;, period=5 filters for acc=5.</span>
+<span class="sd">    period_to_filter: "dev" or "acc". The period to filter by</span>
+<span class="sd">    period: integer. filter value for period_to_filter. I.e. period_to_filter="acc", period=5 filters for acc=5.</span>
 <span class="sd">    total_num_periods: total number of periods. First total_num_periods - period periods are greyed out.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_names</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_names</span><span class="p">)))</span>
     
-    <span class="n">other_period</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;acc&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">period_to_filter</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">other_period</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"acc"</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">period_to_filter</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">model_names</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
         <span class="c1"># Shade historical quarters</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_num_periods</span> <span class="o">-</span> <span class="n">period</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;lgrey&quot;</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_num_periods</span> <span class="o">-</span> <span class="n">period</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">"lgrey"</span><span class="p">])</span>
         
         <span class="c1"># Plot mu</span>
         <span class="k">if</span> <span class="n">plot_mu</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
             <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
-            <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;dgrey&quot;</span><span class="p">],</span>
-            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">"mu"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">"dgrey"</span><span class="p">],</span>
+            <span class="n">linestyle</span><span class="o">=</span><span class="s1">':'</span><span class="p">)</span>
         
         <span class="c1"># Plot Payments</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
         <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
-        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">&quot;pmts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> 
-        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;dblue&quot;</span><span class="p">])</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="s2">"pmts"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> 
+        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">"dblue"</span><span class="p">])</span>
         
         <span class="c1"># Plot model</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
         <span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">other_period</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
         <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="p">[</span><span class="n">period_to_filter</span><span class="p">]</span> <span class="o">==</span> <span class="n">period</span><span class="p">,</span> <span class="n">model_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> 
-        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">plot_colors</span><span class="p">[</span><span class="s2">"red"</span><span class="p">],</span>
         <span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
             
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log(Payments)&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Modelled Values for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Log(Payments)'</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Modelled Values for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     
-    <span class="k">if</span> <span class="n">period_to_filter</span> <span class="o">==</span> <span class="s2">&quot;acc&quot;</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Development Quarter&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">period_to_filter</span> <span class="o">==</span> <span class="s2">"acc"</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Development Quarter'</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Accident Quarter&#39;</span><span class="p">)</span>  
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Accident Quarter'</span><span class="p">)</span>  
     
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -3584,7 +3584,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3599,7 +3599,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for accident quarter when development quarter = 24</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3612,7 +3612,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for accident quarter when development quarter = 35</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">"dev"</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3625,7 +3625,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for development quarter when accident quarter = 5</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3637,7 +3637,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <p><strong>Tracking for development quarter when accident quarter = 20</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QTrack</span><span class="p">(</span><span class="n">model_forecasts</span><span class="p">,</span> <span class="n">model_names</span><span class="p">,</span> <span class="n">period_to_filter</span><span class="o">=</span><span class="s2">"acc"</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">total_num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3657,9 +3657,9 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reserve_estimates</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">model_forecasts</span>
     <span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">model_forecasts</span><span class="o">.</span><span class="n">train_ind</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;acc&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pmts&quot;</span><span class="p">,</span> <span class="s2">&quot;accf&quot;</span><span class="p">,</span> <span class="s2">&quot;devf&quot;</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;cal&quot;</span><span class="p">,</span> <span class="s2">&quot;train_ind&quot;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"acc"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">"sum"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"pmts"</span><span class="p">,</span> <span class="s2">"accf"</span><span class="p">,</span> <span class="s2">"devf"</span><span class="p">,</span> <span class="s2">"dev"</span><span class="p">,</span> <span class="s2">"cal"</span><span class="p">,</span> <span class="s2">"train_ind"</span><span class="p">])</span>
 <span class="p">)</span>
 
 <span class="n">df_reserve_estimates</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0e11</span><span class="p">))</span>
@@ -3667,7 +3667,7 @@ We’ll wrap this in another function since we want to call this for a few diffe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;acc&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel='acc'&gt;
 </pre></div>
 </div>
 <img alt="../_images/622bafadcb2d7b8b76d51ebadddd1fad645440f46e7c83d1b5e11d48acd50afe.png" src="../_images/622bafadcb2d7b8b76d51ebadddd1fad645440f46e7c83d1b5e11d48acd50afe.png" />
@@ -3679,13 +3679,13 @@ We’ll wrap this in another function since we want to call this for a few diffe
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_reserve_summary</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_pred</span> <span class="ow">in</span> <span class="n">y_predicted_test_results</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
-    <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Reserves ($B)&quot;</span><span class="p">]</span>
+    <span class="n">orient</span><span class="o">=</span><span class="s2">"index"</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Reserves ($B)"</span><span class="p">]</span>
     <span class="p">)</span>
 
-<span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">&quot;Ratio to actual(%)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">&quot;Reserves ($B)&quot;</span><span class="p">]</span> <span class="o">/</span> 
-    <span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">&quot;Actuals&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">11</span>
+<span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">"Ratio to actual(%)"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_reserve_summary</span><span class="p">[</span><span class="s2">"Reserves ($B)"</span><span class="p">]</span> <span class="o">/</span> 
+    <span class="n">y_predicted_test_results</span><span class="p">[</span><span class="s2">"Actuals"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">11</span>
 <span class="p">)</span>
 
 <span class="n">df_reserve_summary</span>

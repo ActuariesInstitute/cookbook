@@ -635,8 +635,8 @@ This tutorial uses <strong>Ollama</strong> with the OpenAI-compatible API, givin
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the OpenAI client to point to your LOCAL Ollama server</span>
 <span class="c1"># This configuration ensures all data processing happens locally for privacy</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;http://localhost:11434/v1&#39;</span><span class="p">,</span>
-    <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;ollama&#39;</span><span class="p">,</span>  <span class="c1"># required but ignored by Ollama, can be anything</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s1">'http://localhost:11434/v1'</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s1">'ollama'</span><span class="p">,</span>  <span class="c1"># required but ignored by Ollama, can be anything</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -654,9 +654,9 @@ This tutorial uses <strong>Ollama</strong> with the OpenAI-compatible API, givin
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration parameters</span>
-<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s1">&#39;llama3.2&#39;</span>  <span class="c1"># Or &#39;llama3.2&#39;, &#39;mistral&#39;, &#39;gemma:2b&#39;, etc.</span>
-<span class="n">INPUT_CSV</span> <span class="o">=</span> <span class="s1">&#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip&#39;</span>
-<span class="n">OUTPUT_CSV</span> <span class="o">=</span> <span class="s1">&#39;reviews_with_extracted_claims_data.csv&#39;</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s1">'llama3.2'</span>  <span class="c1"># Or 'llama3.2', 'mistral', 'gemma:2b', etc.</span>
+<span class="n">INPUT_CSV</span> <span class="o">=</span> <span class="s1">'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip'</span>
+<span class="n">OUTPUT_CSV</span> <span class="o">=</span> <span class="s1">'reviews_with_extracted_claims_data.csv'</span>
 </pre></div>
 </div>
 </div>
@@ -673,24 +673,24 @@ We will also pretend the review score is not there for the purpose of this tutor
 <span class="k">try</span><span class="p">:</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
         <span class="n">INPUT_CSV</span><span class="p">,</span>
-        <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;cp1252&#39;</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s1">'cp1252'</span>
     <span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Limit to 50 reviews for demonstration    </span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;full_review&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span> <span class="c1"># Get full review text combining title and body</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> reviews from &#39;</span><span class="si">{</span><span class="n">INPUT_CSV</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Column names: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample review:</span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;full_review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">200</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">'full_review'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">'body'</span><span class="p">]</span> <span class="c1"># Get full review text combining title and body</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> reviews from '</span><span class="si">{</span><span class="n">INPUT_CSV</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Column names: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Sample review:</span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">'full_review'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">200</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file &#39;</span><span class="si">{</span><span class="n">INPUT_CSV</span><span class="si">}</span><span class="s2">&#39; was not found.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: The file '</span><span class="si">{</span><span class="n">INPUT_CSV</span><span class="si">}</span><span class="s2">' was not found."</span><span class="p">)</span>
     <span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded 50 reviews from &#39;https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip&#39;.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded 50 reviews from 'https://actuariesinstitute.github.io/cookbook/_static/daa_datasets/DAA_M07_CS2_data.csv.zip'.
 Dataset shape: (50, 7)
-Column names: [&#39;pubDate&#39;, &#39;rating&#39;, &#39;title&#39;, &#39;body&#39;, &#39;url&#39;, &#39;pubMonth&#39;, &#39;full_review&#39;]
+Column names: ['pubDate', 'rating', 'title', 'body', 'url', 'pubMonth', 'full_review']
 
 Sample review:
 Excellent value.: I used this travel insurance mainly for the car hire excess. I paid $108 for cover for a family of 5, compared to the car company  excess only insurance of $200. Booking online very ...
@@ -711,52 +711,52 @@ Excellent value.: I used this travel insurance mainly for the car hire excess. I
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">extract_full_analysis</span><span class="p">(</span><span class="n">review_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Analyzes a review and extracts sentiment, feedback category and specific issue</span>
 <span class="sd">    as a single JSON object.</span>
 <span class="sd">    </span>
 <span class="sd">    This function demonstrates how to use LLMs to transform unstructured text</span>
 <span class="sd">    into structured data suitable for actuarial analysis.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Comprehensive prompt designed for consistent, structured output</span>
-    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">You are a senior Customer Experience Analyst. Your task is to analyze the following review</span>
 <span class="s2">and return a single, valid JSON object and nothing else.</span>
 
-<span class="s2">1. &quot;sentiment&quot;: Classify the sentiment. Must be one of: &quot;Positive&quot;, &quot;Negative&quot;, or &quot;Neutral&quot;.</span>
-<span class="s2">2.  &quot;feedback_category&quot;: Classify the primary subject of the customer&#39;s feedback. Must be one of the following strings:</span>
-<span class="s2">    - &quot;Product Design &amp; Wording&quot;: Feedback on policy coverage, exclusions, price, or clarity of the Product Disclosure Statement (PDS).</span>
-<span class="s2">    - &quot;Sales &amp; Purchase Process&quot;: Feedback on the experience of buying the policy online or via an agent.</span>
-<span class="s2">    - &quot;Claims Process&quot;: Feedback on the experience of submitting, managing, or the outcome of a formal claim.</span>
-<span class="s2">    - &quot;Customer Support &amp; Communication&quot;: Feedback on general interactions with staff via phone or email.</span>
-<span class="s2">    - &quot;Emergency Assistance (24/7 Support)&quot;: Specific feedback on using the emergency helpline during a trip.</span>
-<span class="s2">    - &quot;Factual Claim Notification&quot;: The customer is stating facts to lodge a claim without providing feedback on service or product yet.</span>
-<span class="s2">3.  &quot;specific_issue&quot;: Identify the specific event or item mentioned (e.g., &quot;flight cancellation&quot;, &quot;lost baggage&quot;, &quot;confusing PDS&quot;, &quot;helpful agent&quot;). If none, use &quot;N/A&quot;.</span>
+<span class="s2">1. "sentiment": Classify the sentiment. Must be one of: "Positive", "Negative", or "Neutral".</span>
+<span class="s2">2.  "feedback_category": Classify the primary subject of the customer's feedback. Must be one of the following strings:</span>
+<span class="s2">    - "Product Design &amp; Wording": Feedback on policy coverage, exclusions, price, or clarity of the Product Disclosure Statement (PDS).</span>
+<span class="s2">    - "Sales &amp; Purchase Process": Feedback on the experience of buying the policy online or via an agent.</span>
+<span class="s2">    - "Claims Process": Feedback on the experience of submitting, managing, or the outcome of a formal claim.</span>
+<span class="s2">    - "Customer Support &amp; Communication": Feedback on general interactions with staff via phone or email.</span>
+<span class="s2">    - "Emergency Assistance (24/7 Support)": Specific feedback on using the emergency helpline during a trip.</span>
+<span class="s2">    - "Factual Claim Notification": The customer is stating facts to lodge a claim without providing feedback on service or product yet.</span>
+<span class="s2">3.  "specific_issue": Identify the specific event or item mentioned (e.g., "flight cancellation", "lost baggage", "confusing PDS", "helpful agent"). If none, use "N/A".</span>
 
 <span class="s2">Review:</span>
-<span class="s2">&quot;</span><span class="si">{</span><span class="n">review_text</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">"</span><span class="si">{</span><span class="n">review_text</span><span class="si">}</span><span class="s2">"</span>
 
-<span class="s2">JSON Output:&quot;&quot;&quot;</span>
+<span class="s2">JSON Output:"""</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Use Ollama&#39;s chat function with JSON formatting for reliable structured output</span>
+        <span class="c1"># Use Ollama's chat function with JSON formatting for reliable structured output</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">ollama</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span>
-            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
-            <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>  <span class="c1"># Ensures output is valid JSON</span>
-            <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># Deterministic output for consistency</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s1">'role'</span><span class="p">:</span> <span class="s1">'user'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+            <span class="nb">format</span><span class="o">=</span><span class="s1">'json'</span><span class="p">,</span>  <span class="c1"># Ensures output is valid JSON</span>
+            <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">'temperature'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># Deterministic output for consistency</span>
         <span class="p">)</span>
         
         <span class="c1"># Parse and return the structured response</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">'message'</span><span class="p">][</span><span class="s1">'content'</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">data</span>
             
     <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
         <span class="c1"># Safety net for rare cases where the output is not valid JSON</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;sentiment&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_category&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;specific_issue&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'sentiment'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">,</span> <span class="s1">'feedback_category'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">,</span> <span class="s1">'specific_issue'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">}</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;sentiment&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_category&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;specific_issue&#39;</span><span class="p">:</span> <span class="s1">&#39;Error&#39;</span><span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'sentiment'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">,</span> <span class="s1">'feedback_category'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">,</span> <span class="s1">'specific_issue'</span><span class="p">:</span> <span class="s1">'Error'</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -769,10 +769,10 @@ Excellent value.: I used this travel insurance mainly for the car hire excess. I
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply the LLM analysis function to review sample</span>
-<span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Performing analysis with </span><span class="si">{</span><span class="n">MODEL_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Performing analysis with </span><span class="si">{</span><span class="n">MODEL_NAME</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># The result will be a Series of dictionaries</span>
-<span class="n">results_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;full_review&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="n">extract_full_analysis</span><span class="p">)</span>
+<span class="n">results_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'full_review'</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="n">extract_full_analysis</span><span class="p">)</span>
 
 <span class="c1"># Use pd.json_normalize to elegantly convert the dictionaries into DataFrame columns</span>
 <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">results_series</span><span class="p">)</span>
@@ -780,11 +780,11 @@ Excellent value.: I used this travel insurance mainly for the car hire excess. I
 <span class="c1"># Combine the new structured data with our original DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">results_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Full data extraction complete.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Full data extraction complete."</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT_CSV</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results saved to &#39;</span><span class="si">{</span><span class="n">OUTPUT_CSV</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample of the final, enriched DataFrame:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span><span class="p">,</span> <span class="s1">&#39;feedback_category&#39;</span><span class="p">,</span> <span class="s1">&#39;specific_issue&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Results saved to '</span><span class="si">{</span><span class="n">OUTPUT_CSV</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Sample of the final, enriched DataFrame:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">'body'</span><span class="p">,</span> <span class="s1">'sentiment'</span><span class="p">,</span> <span class="s1">'feedback_category'</span><span class="p">,</span> <span class="s1">'specific_issue'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -793,7 +793,7 @@ Excellent value.: I used this travel insurance mainly for the car hire excess. I
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full data extraction complete.
-Results saved to &#39;reviews_with_extracted_claims_data.csv&#39;.
+Results saved to 'reviews_with_extracted_claims_data.csv'.
 
 Sample of the final, enriched DataFrame:
                                                 body sentiment  \
@@ -836,17 +836,17 @@ Sample of the final, enriched DataFrame:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter to focus on negative reviews for root cause analysis</span>
-<span class="n">negative_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Negative&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">negative_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'sentiment'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Negative'</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Root Cause Analysis for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> Negative Reviews ---&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Negative sentiment rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Root Cause Analysis for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> Negative Reviews ---"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Negative sentiment rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">negative_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No negative reviews were found to analyze.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No negative reviews were found to analyze."</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Display distribution of feedback categories in negative reviews</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Breakdown of negative feedback by category:&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">&#39;feedback_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Breakdown of negative feedback by category:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">'feedback_category'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -878,18 +878,18 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">negative_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
     <span class="c1"># Analysis 1: Primary drivers of negative sentiment by feedback category</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">negative_df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;feedback_category&#39;</span><span class="p">,</span> 
-                  <span class="n">order</span><span class="o">=</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">&#39;feedback_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
-                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;flare&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Primary Drivers of Negative Sentiment by Feedback Category&#39;</span><span class="p">,</span> 
-              <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Negative Reviews&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feedback Category&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">negative_df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'feedback_category'</span><span class="p">,</span> 
+                  <span class="n">order</span><span class="o">=</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">'feedback_category'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">"flare"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Primary Drivers of Negative Sentiment by Feedback Category'</span><span class="p">,</span> 
+              <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Number of Negative Reviews'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Feedback Category'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top negative feedback category: </span><span class="si">{</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">&#39;feedback_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This represents </span><span class="si">{</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">&#39;feedback_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> negative reviews&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Top negative feedback category: </span><span class="si">{</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">'feedback_category'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"This represents </span><span class="si">{</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">'feedback_category'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> out of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">negative_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> negative reviews"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -898,7 +898,7 @@ Name: count, dtype: int64
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
 
-  sns.countplot(data=negative_df, y=&#39;feedback_category&#39;,
+  sns.countplot(data=negative_df, y='feedback_category',
 </pre></div>
 </div>
 <img alt="../_images/916b71bc8793bb495c51a5caaed67a39824885dc6ea63fe668540c6609b36e4f.png" src="../_images/916b71bc8793bb495c51a5caaed67a39824885dc6ea63fe668540c6609b36e4f.png" />
@@ -917,8 +917,8 @@ We can sample a few specific issues to look for operational failure points or cu
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">negative_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
     <span class="c1"># Analysis 2: Specific issues driving negative sentiment</span>
-    <span class="c1"># Filter out &#39;N/A&#39; values and get top issues</span>
-    <span class="n">specific_issues</span> <span class="o">=</span> <span class="n">negative_df</span><span class="p">[</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">&#39;specific_issue&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;N/A&#39;</span><span class="p">][</span><span class="s1">&#39;specific_issue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="c1"># Filter out 'N/A' values and get top issues</span>
+    <span class="n">specific_issues</span> <span class="o">=</span> <span class="n">negative_df</span><span class="p">[</span><span class="n">negative_df</span><span class="p">[</span><span class="s1">'specific_issue'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'N/A'</span><span class="p">][</span><span class="s1">'specific_issue'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">specific_issues</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
@@ -971,19 +971,19 @@ see how the LLM has fared in reading the text compared to the true review score.
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
 <span class="c1"># Calculate sentiment proportions by rating</span>
-<span class="n">rating_sentiment_props</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">)[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rating_sentiment_props</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'rating'</span><span class="p">)[</span><span class="s1">'sentiment'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Create the stacked bar chart</span>
-<span class="n">rating_sentiment_props</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-                           <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;#ff6b6b&#39;</span><span class="p">,</span> <span class="s1">&#39;#4ecdc4&#39;</span><span class="p">,</span> <span class="s1">&#39;#45b7d1&#39;</span><span class="p">],</span>
+<span class="n">rating_sentiment_props</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                           <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'#ff6b6b'</span><span class="p">,</span> <span class="s1">'#4ecdc4'</span><span class="p">,</span> <span class="s1">'#45b7d1'</span><span class="p">],</span>
                            <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sentiment Proportions by Rating&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rating (1-5)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Proportion&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sentiment&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Sentiment Proportions by Rating'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Rating (1-5)'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Proportion'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Sentiment'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

@@ -652,8 +652,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install from github as at time of writing.</span>
-<span class="c1"># install.packages(&quot;devtools&quot;)</span>
-<span class="c1"># devtools::install_github(&quot;tidyverse/dtplyr&quot;)</span>
+<span class="c1"># install.packages("devtools")</span>
+<span class="c1"># devtools::install_github("tidyverse/dtplyr")</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">dtplyr</span><span class="p">)</span><span class="w"> </span>
 <span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
 <span class="n">mtcars</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
@@ -707,7 +707,7 @@ The following object is masked from ‘package:purrr’:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">arrow</span><span class="p">)</span>
-<span class="nf">write_parquet</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test.parquet&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Done!</span>
+<span class="nf">write_parquet</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="s">"test.parquet"</span><span class="p">)</span><span class="w"> </span><span class="c1"># Done!</span>
 </pre></div>
 </div>
 </div>
@@ -737,10 +737,10 @@ The following object is masked from ‘package:utils’:
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
 <span class="c1"># Road fatalities data - as previously seen in the YAP-YDAWG course</span>
-<span class="n">deaths</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://raw.githubusercontent.com/ActuariesInstitute/YAP-YDAWG-R-Workshop/master/bitre_ardd_fatalities_dec_2018.csv&quot;</span><span class="p">)</span>
+<span class="n">deaths</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">"https://raw.githubusercontent.com/ActuariesInstitute/YAP-YDAWG-R-Workshop/master/bitre_ardd_fatalities_dec_2018.csv"</span><span class="p">)</span>
 <span class="c1"># Explain age of the fatality based on speed limit, road user and crash type</span>
 <span class="n">model_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="n">Age</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Speed.Limit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Road.User</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Crash.Type</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">deaths</span><span class="p">)[,</span><span class="m">-1</span><span class="p">]</span>
-<span class="n">bst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgboost</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deaths</span><span class="o">$</span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">nrounds</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">objective</span><span class="o">=</span><span class="s">&quot;reg:squarederror&quot;</span><span class="p">)</span>
+<span class="n">bst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">xgboost</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deaths</span><span class="o">$</span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">nrounds</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">objective</span><span class="o">=</span><span class="s">"reg:squarederror"</span><span class="p">)</span>
 <span class="nf">xgb.importance</span><span class="p">(</span><span class="n">feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">model_matrix</span><span class="p">),</span><span class="w"> </span>
 <span class="w">               </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bst</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">  </span><span class="nf">xgb.plot.importance</span><span class="p">()</span>
@@ -821,7 +821,7 @@ The following objects are masked from ‘package:tidyr’:
 <span class="n">xgb_expl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">explain</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bst</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deaths</span><span class="o">$</span><span class="n">Age</span><span class="p">)</span>
 <span class="c1"># Variable splits type is either dependent on data by default, or </span>
 <span class="c1"># with uniform splits, shows an even split for plotting purposes</span>
-<span class="n">resp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model_profile</span><span class="p">(</span><span class="n">xgb_expl</span><span class="p">,</span><span class="w"> </span><span class="n">variables</span><span class="o">=</span><span class="s">&quot;Speed.Limit&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">variable_splits_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;uniform&quot;</span><span class="p">)</span>
+<span class="n">resp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model_profile</span><span class="p">(</span><span class="n">xgb_expl</span><span class="p">,</span><span class="w"> </span><span class="n">variables</span><span class="o">=</span><span class="s">"Speed.Limit"</span><span class="p">,</span><span class="w"> </span><span class="n">variable_splits_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"uniform"</span><span class="p">)</span>
 <span class="nf">plot</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -830,7 +830,7 @@ The following objects are masked from ‘package:tidyr’:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to DALEX (version: 2.3.0).
 Find examples and detailed introduction at: http://ema.drwhy.ai/
 Additional features will be available after installation of: ggpubr.
-Use &#39;install_dependencies()&#39; to get all suggested dependencies
+Use 'install_dependencies()' to get all suggested dependencies
 
 
 Attaching package: ‘DALEX’

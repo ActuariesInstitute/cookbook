@@ -655,14 +655,14 @@ Since we are trying to predict the category of products based on the complaints 
 <p>We will also get rid of null entries as they will not be of any use to us.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.dropbox.com/s/9whncsovtccbgx8/Consumer_complaints.parquet?dl=1&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">'https://www.dropbox.com/s/9whncsovtccbgx8/Consumer_complaints.parquet?dl=1'</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Consumer complaint narrative&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()),</span> <span class="p">[</span><span class="s1">&#39;Consumer complaint narrative&#39;</span><span class="p">,</span> <span class="s1">&#39;Product&#39;</span><span class="p">]]</span> \
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Consumer complaint narrative'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()),</span> <span class="p">[</span><span class="s1">'Consumer complaint narrative'</span><span class="p">,</span> <span class="s1">'Product'</span><span class="p">]]</span> \
        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
-       <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span> <span class="o">!=</span> <span class="s1">&#39;Credit card or prepaid card&#39;</span><span class="p">)]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'index'</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">','</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Product</span> <span class="o">!=</span> <span class="s1">'Credit card or prepaid card'</span><span class="p">)]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'description'</span><span class="p">,</span> <span class="s1">'target'</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'display.max_colwidth'</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -726,9 +726,9 @@ Since we are trying to predict the category of products based on the complaints 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">encoded_response</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;encoded_response&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
-                                  <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span> \
-                                  <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;encoded_response&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">'target'</span><span class="p">,</span> <span class="s1">'encoded_response'</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
+                                  <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'target'</span><span class="p">)</span> \
+                                  <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'encoded_response'</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -848,8 +848,8 @@ Notice that the document shown above is clearly about a cat and a dog. However, 
 How does this link back to the goal of having numerical features as our inputs? Imagine having a thousand text documents and extracting all (a subset) of the unique tokens that we think best represents them. Now, we can assign each unique token to a column in a dataframe and populate the rows with each document’s count of the respective words. Following the example above, our single document would produce a dataframe that looks like: <br><br></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;This&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-              <span class="s2">&quot;That&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"This"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"is"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"cat"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="s2">"That"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"dog"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -913,11 +913,11 @@ In this article however, we will be using a more robust model compared to count 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">sublinear_tf</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-                                   <span class="n">stop_words</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span><span class="p">,</span>
+                                   <span class="n">stop_words</span> <span class="o">=</span> <span class="s1">'english'</span><span class="p">,</span>
                                    <span class="n">min_df</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
                                    <span class="n">max_df</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
-                                   <span class="n">norm</span> <span class="o">=</span> <span class="s1">&#39;l2&#39;</span><span class="p">,</span>
-                                   <span class="n">token_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\b[^_\d\W]+\b&#39;</span><span class="p">)</span>
+                                   <span class="n">norm</span> <span class="o">=</span> <span class="s1">'l2'</span><span class="p">,</span>
+                                   <span class="n">token_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\b[^_\d\W]+\b'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1085,8 +1085,8 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-          intercept_scaling=1, max_iter=100, multi_class=&#39;ovr&#39;, n_jobs=1,
-          penalty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+          intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+          penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
           verbose=0, warm_start=False)
 </pre></div>
 </div>
@@ -1096,7 +1096,7 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">lr_classifier</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">coefficients</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">,</span> <span class="s1">&#39;coefficients&#39;</span><span class="p">]</span>
+<span class="n">coefficients</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'features'</span><span class="p">,</span> <span class="s1">'coefficients'</span><span class="p">]</span>
 <span class="n">coefficients</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1198,7 +1198,7 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
-<span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float'</span><span class="p">)</span> <span class="o">/</span> <span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1209,21 +1209,21 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> 
             <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;.3f&quot;</span><span class="p">,</span> 
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s2">".3f"</span><span class="p">,</span> 
             <span class="n">linewidths</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> 
             <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-            <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span> 
+            <span class="n">cmap</span> <span class="o">=</span> <span class="s1">'Reds'</span><span class="p">,</span> 
             <span class="n">xticklabels</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
             <span class="n">yticklabels</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
-<span class="n">all_sample_title</span> <span class="o">=</span> <span class="s1">&#39;Accuracy Score: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Actual'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Predicted'</span><span class="p">)</span>
+<span class="n">all_sample_title</span> <span class="o">=</span> <span class="s1">'Accuracy Score: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">all_sample_title</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5,1,&#39;Accuracy Score: 0.8517154487303741&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5,1,'Accuracy Score: 0.8517154487303741')
 </pre></div>
 </div>
 <img alt="../_images/adb6681f773b3e9edc93bd8417f8b212970f5ffaea33e6c84e368afee2b6c73a.png" src="../_images/adb6681f773b3e9edc93bd8417f8b212970f5ffaea33e6c84e368afee2b6c73a.png" />
@@ -1233,11 +1233,11 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">report2dict</span><span class="p">(</span><span class="n">cr</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Function solely for formatting purposes, can be ignored&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">'''Function solely for formatting purposes, can be ignored'''</span>
     
     <span class="n">tmp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
-        <span class="n">parsed_row</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">):</span>
+        <span class="n">parsed_row</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"  "</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_row</span><span class="p">)</span>
     <span class="n">measures</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1261,7 +1261,7 @@ Firstly, we instantiate a logistic regression classifier from the sklearn packag
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\jtan\appdata\local\continuum\anaconda3\lib\site-packages\sklearn\metrics\classification.py:1135: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
-  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
+  'precision', 'predicted', average, warn_for)
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1405,12 +1405,12 @@ Shown below are some examples where ‘Checking and savings account’ narrative
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">observe_errors</span><span class="p">(</span><span class="n">actual_response</span><span class="p">,</span> <span class="n">wrongly_predicted_response</span><span class="p">):</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
-    <span class="n">compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;actual&#39;</span><span class="p">,</span> <span class="s1">&#39;predicted&#39;</span><span class="p">])</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span> <span class="o">=</span> <span class="s1">'ignore'</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+    <span class="n">compare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">pred</span><span class="p">)),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'description'</span><span class="p">,</span> <span class="s1">'actual'</span><span class="p">,</span> <span class="s1">'predicted'</span><span class="p">])</span>
     <span class="n">compare</span> <span class="o">=</span> <span class="n">compare</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">actual_product</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">actual</span><span class="p">),</span>
                              <span class="n">predicted_product</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">predicted</span><span class="p">))</span> \
                      <span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">compare</span><span class="o">.</span><span class="n">actual</span> <span class="o">==</span> <span class="n">actual_response</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">compare</span><span class="o">.</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">wrongly_predicted_response</span><span class="p">),</span>
-                         <span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;actual_product&#39;</span><span class="p">,</span> <span class="s1">&#39;predicted_product&#39;</span><span class="p">]]</span>
+                         <span class="p">[</span><span class="s1">'description'</span><span class="p">,</span> <span class="s1">'actual_product'</span><span class="p">,</span> <span class="s1">'predicted_product'</span><span class="p">]]</span>
     <span class="k">return</span> <span class="n">compare</span>
 </pre></div>
 </div>
